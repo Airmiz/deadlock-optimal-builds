@@ -418,7 +418,9 @@ HTML = """<!doctype html>
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
-  /* Lineage chain: lower-tier items the player should pre-buy in this slot */
+  /* Lineage chain: chain stages render as their own rows in the proper
+     phase column. The fallback inline chip is shown only for ancestors
+     without buy-time data (rare). */
   .lineage-chain {
     margin-top: 4px;
     font-size: 10.5px;
@@ -444,6 +446,31 @@ HTML = """<!doctype html>
   }
   .lineage-chain .lc-arrow { color: var(--accent); margin: 0 3px; opacity: 0.7; }
   .lineage-chain .lc-when { color: var(--text-dim); margin-left: 3px; font-size: 9.5px; }
+
+  /* Stage row: a chain ancestor placed in its actual buy-phase column */
+  .item-row.is-stage {
+    background: linear-gradient(90deg, rgba(240,169,59,0.04) 0%, transparent 50%);
+    border-left: 2px dashed rgba(240,169,59,0.5);
+    padding: 6px 0 6px 6px;
+    margin-left: -8px;
+    opacity: 0.92;
+  }
+  .item-row.is-stage .icon { width: 28px; height: 28px; }
+  .item-row.is-stage .icon img { width: 24px; height: 24px; }
+  .item-row.is-stage .name { font-weight: 500; font-size: 12px; }
+  .item-row.is-stage .stage-arrow {
+    color: var(--accent);
+    margin: 0 4px;
+    opacity: 0.75;
+    font-size: 11px;
+  }
+  .item-row.is-stage .upgrades-to {
+    font-style: italic;
+    font-size: 10.5px;
+    color: var(--text-dim);
+    margin-top: 1px;
+  }
+  .item-row.is-stage .upgrades-to strong { color: var(--accent); font-style: normal; font-weight: 600; }
 
   /* Signature items: hero-specific picks (affinity ≥ 2x with non-trivial pick rate) */
   .signature-star {
@@ -749,10 +776,34 @@ HTML = """<!doctype html>
 
     // Get build for current MMR slice
     const items = h.items_by_slice[mmrSlice];
-    // Group by phase
+
+    // Build "events" — each phase column contains the buy events that happen
+    // in its time window. A picked item with an upgrade chain is decomposed
+    // into stage events (each ancestor in its actual buy-phase) plus the
+    // final-tier event in the late game. This way an early-game T1 component
+    // that upgrades to a T3 in late game shows up under EARLY.
+    const phaseFromBuyMin = (m) => m < 12.5 ? 'early' : m < 25 ? 'mid' : 'late';
+    const events = [];
+    for (const it of items) {
+      const chain = it.lineage_chain || [];
+      for (const c of chain) {
+        if (c.avg_buy_time_min == null) continue;  // fall back to inline chip for these
+        events.push({
+          kind: 'stage',
+          name: c.name, tier: c.tier, cost: c.cost, item_id: c.item_id,
+          buy_min: c.avg_buy_time_min,
+          phase: phaseFromBuyMin(c.avg_buy_time_min),
+          category: it.category,
+          upgrades_to_name: it.name,
+          upgrades_to_tier: it.tier,
+        });
+      }
+      events.push({ ...it, kind: 'final' });
+    }
+
+    // Group events by phase, sort within phase by buy time
     const byPhase = {early: [], mid: [], late: []};
-    for (const it of items) byPhase[it.phase].push(it);
-    // Sort each phase by buy_min
+    for (const e of events) byPhase[e.phase].push(e);
     for (const ph in byPhase) byPhase[ph].sort((a,b) => a.buy_min - b.buy_min);
     const totalCost = items.reduce((s,i) => s + (i.cost||0), 0);
     const spikeProgress = computeSpikeProgress(items);
@@ -841,17 +892,17 @@ HTML = """<!doctype html>
         <div class="phases">
           <div class="phase-col">
             <h4>Early <span class="when">${phaseWhen.early}</span></h4>
-            ${byPhase.early.length ? byPhase.early.map(renderItemRow).join('') : '<div class="summary-line">—</div>'}
+            ${byPhase.early.length ? byPhase.early.map(renderEvent).join('') : '<div class="summary-line">—</div>'}
             ${renderPhaseSpikeSummary(spikeProgress.byPhaseEnd.early)}
           </div>
           <div class="phase-col">
             <h4>Mid <span class="when">${phaseWhen.mid}</span></h4>
-            ${byPhase.mid.length ? byPhase.mid.map(renderItemRow).join('') : '<div class="summary-line">—</div>'}
+            ${byPhase.mid.length ? byPhase.mid.map(renderEvent).join('') : '<div class="summary-line">—</div>'}
             ${renderPhaseSpikeSummary(spikeProgress.byPhaseEnd.mid)}
           </div>
           <div class="phase-col">
             <h4>Late <span class="when">${phaseWhen.late}</span></h4>
-            ${byPhase.late.length ? byPhase.late.map(renderItemRow).join('') : '<div class="summary-line">—</div>'}
+            ${byPhase.late.length ? byPhase.late.map(renderEvent).join('') : '<div class="summary-line">—</div>'}
             ${renderPhaseSpikeSummary(spikeProgress.byPhaseEnd.late)}
           </div>
         </div>
@@ -910,6 +961,30 @@ HTML = """<!doctype html>
   };
   const escAttr = s => (s||'').replace(/"/g, '&quot;').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const escHtml = s => (s||'').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  function renderEvent(e) {
+    return e.kind === 'stage' ? renderStageRow(e) : renderItemRow(e);
+  }
+
+  function renderStageRow(stage) {
+    const cat = stage.category;
+    return `
+      <div class="item-row is-stage" title="Pre-buy that upgrades to ${escAttr(stage.upgrades_to_name)} later in the build">
+        <div class="icon"><span class="placeholder">T${stage.tier}</span></div>
+        <div>
+          <div class="name">T${stage.tier} ${escHtml(stage.name)}</div>
+          <div class="meta">
+            <span class="cat-pill cat-${cat}">${cat}</span>
+            buy@${stage.buy_min}min · pre-buy chip
+          </div>
+          <div class="upgrades-to">
+            <span class="stage-arrow">→</span> upgrades into <strong>${escHtml(stage.upgrades_to_name)}</strong> (T${stage.upgrades_to_tier}) in late game
+          </div>
+        </div>
+        <div class="cost">${fmtCost(stage.cost)}</div>
+      </div>
+    `;
+  }
 
   function renderSpikePanel(items) {
     const cats = ['weapon', 'vitality', 'spirit'];
@@ -995,18 +1070,16 @@ HTML = """<!doctype html>
     const dataAnn = hasAnnot ? ` data-annotation="${escAttr(item.annotation)}"` : '';
     const rowClasses = ['item-row'];
     if (isSignature) rowClasses.push('is-signature');
-    const chain = item.lineage_chain || [];
+    // Only show the inline chip line for ancestors WITHOUT buy-time data
+    // (those don't get their own stage row). Ancestors with buy times now
+    // appear in their actual phase column, so the chip would be redundant.
+    const chain = (item.lineage_chain || []).filter(c => c.avg_buy_time_min == null);
     const chainHtml = chain.length
       ? `<div class="lineage-chain">
-           <span class="lc-label">Pre-buy chain</span>
-           ${chain.map(c => {
-             const when = c.avg_buy_time_min != null
-               ? `<span class="lc-when">~${c.avg_buy_time_min}min</span>`
-               : '';
-             return `<span class="lc-stage" title="${escAttr(c.name)} (T${c.tier}, ${fmtCost(c.cost)})${c.matches ? ' · ' + c.matches.toLocaleString() + ' matches' : ''}">T${c.tier} ${escHtml(c.name)} ${fmtCost(c.cost)}${when}</span>`;
-           }).join('<span class="lc-arrow">→</span>')}
-           <span class="lc-arrow">→</span>
-           <span class="lc-stage" style="border-color:var(--accent);color:var(--accent)">T${item.tier} ${escHtml(item.name)}</span>
+           <span class="lc-label">Also pre-buy</span>
+           ${chain.map(c =>
+             `<span class="lc-stage" title="${escAttr(c.name)} (T${c.tier}, ${fmtCost(c.cost)})">T${c.tier} ${escHtml(c.name)} ${fmtCost(c.cost)}</span>`
+           ).join('<span class="lc-arrow">→</span>')}
          </div>`
       : '';
     return `
