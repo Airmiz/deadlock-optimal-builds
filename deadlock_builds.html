@@ -405,6 +405,98 @@
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  /* Investment-spike progression panel */
+  .spike-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+  .spike-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .spike-row:last-child { border-bottom: none; }
+  .spike-row .lbl {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  .spike-row.weapon .lbl   { color: var(--weapon); }
+  .spike-row.vitality .lbl { color: var(--vitality); }
+  .spike-row.spirit .lbl   { color: var(--spirit); }
+  .spike-bar {
+    position: relative;
+    height: 22px;
+    background: var(--bg);
+    border-radius: 4px;
+    overflow: visible;
+  }
+  .spike-fill {
+    position: absolute;
+    top: 0; left: 0; height: 100%;
+    border-radius: 4px;
+    background: rgba(240,169,59,0.18);
+    border-right: 2px solid var(--accent);
+    transition: width 0.2s;
+  }
+  .weapon .spike-fill   { background: rgba(214,133,107,0.18); border-right-color: var(--weapon); }
+  .vitality .spike-fill { background: rgba(108,180,106,0.18); border-right-color: var(--vitality); }
+  .spirit .spike-fill   { background: rgba(180,135,217,0.18); border-right-color: var(--spirit); }
+  .spike-mark {
+    position: absolute;
+    top: -2px;
+    width: 1px;
+    height: 26px;
+    background: var(--text-dim);
+    opacity: 0.4;
+  }
+  .spike-mark.major {
+    background: var(--accent);
+    width: 2px;
+    opacity: 1;
+  }
+  .spike-mark .lbl-mark {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+  .spike-mark.major .lbl-mark { color: var(--accent); font-weight: 700; }
+  .spike-mark.crossed { opacity: 0.85; }
+  .spike-phase-marker {
+    position: absolute;
+    top: 100%;
+    margin-top: 2px;
+    transform: translateX(-50%);
+    font-size: 9px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    font-weight: 700;
+    pointer-events: none;
+  }
+  .phase-spike-summary {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border);
+  }
+  .phase-spike-summary .ok    { color: var(--good); }
+  .phase-spike-summary .pend  { color: var(--text-dim); }
+  .phase-spike-summary .major { color: var(--accent); font-weight: 700; }
 </style>
 </head>
 <body>
@@ -447,6 +539,50 @@
   const fmtCost = v => '$' + v.toLocaleString();
   const titleCase = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
   const phaseWhen = { early: 'laning · ≤12.5 min', mid: 'mid game · 12.5–25 min', late: 'late game · 25+ min' };
+
+  // Investment-spike thresholds (universal across all 38 heroes; verified from
+  // hero asset data). The 4,800 milestone is the major spike — at that point
+  // the per-category bonus more than doubles.
+  const SPIKE_THRESHOLDS = [800, 1600, 2400, 3200, 4800, 7200, 9600, 16000];
+  const SPIKE_MAJOR = 4800;
+  const SPIKE_DISPLAY_MAX = 16000;
+  // Bonus values at each threshold (per category). Same for all heroes.
+  const SPIKE_BONUS = {
+    weapon:   { 800: 7,  1600: 9,  2400: 13, 3200: 20, 4800: 49, 7200: 60, 9600: 80,  16000: 95 },
+    vitality: { 800: 8,  1600: 10, 2400: 13, 3200: 17, 4800: 34, 7200: 39, 9600: 44,  16000: 48 },
+    spirit:   { 800: 7,  1600: 11, 2400: 15, 3200: 19, 4800: 38, 7200: 48, 9600: 57,  16000: 66 },
+  };
+  const SPIKE_UNIT = { weapon: '% wpn dmg', vitality: '% base HP', spirit: ' spirit' };
+
+  // Walk a flat list of items by buy_min and return the cumulative spend per
+  // category at the END of each phase (early/mid/late).
+  function computeSpikeProgress(itemsBySlice) {
+    const sorted = [...itemsBySlice].sort((a,b) => a.buy_min - b.buy_min);
+    const totals = { weapon: 0, vitality: 0, spirit: 0 };
+    const byPhaseEnd = { early: null, mid: null, late: null };
+    let lastPhase = 'early';
+    for (const it of sorted) {
+      // bucket: track cumulative as items roll in
+      if (it.category in totals) totals[it.category] += (it.cost || 0);
+      // when the next item is in a later phase, snapshot
+      if (it.phase !== lastPhase) {
+        byPhaseEnd[lastPhase] = { ...totals };
+        lastPhase = it.phase;
+      }
+    }
+    byPhaseEnd[lastPhase] = { ...totals };
+    // Fill any gaps (snapshot earlier phases if no items existed in them)
+    let last = { weapon: 0, vitality: 0, spirit: 0 };
+    for (const ph of ['early','mid','late']) {
+      if (byPhaseEnd[ph] === null) byPhaseEnd[ph] = { ...last };
+      last = byPhaseEnd[ph];
+    }
+    return { byPhaseEnd, finalTotals: totals };
+  }
+
+  function spikesCrossed(amount) {
+    return SPIKE_THRESHOLDS.filter(t => amount >= t);
+  }
 
   function renderHeroGrid() {
     const grid = document.getElementById('hero-grid');
@@ -492,6 +628,7 @@
     // Sort each phase by buy_min
     for (const ph in byPhase) byPhase[ph].sort((a,b) => a.buy_min - b.buy_min);
     const totalCost = items.reduce((s,i) => s + (i.cost||0), 0);
+    const spikeProgress = computeSpikeProgress(items);
 
     // Ability data for current slice
     const abInfo = h.ability_orders[mmrSlice];
@@ -540,6 +677,17 @@
       </section>
 
       <section>
+        <h3>Investment Spike Progression</h3>
+        <div class="summary-line">
+          Cumulative souls spent per category as the build comes online.
+          The <strong style="color:var(--accent)">4,800</strong> milestone is the major spike —
+          your per-category bonus <strong>more than doubles</strong> there
+          (e.g. spirit goes from +19 to +38). Tick marks below show smaller thresholds.
+        </div>
+        ${renderSpikePanel(items)}
+      </section>
+
+      <section>
         <h3>Item Build by Phase</h3>
         <div class="summary-line">
           From the synergy-aware ILP method — items chosen for win rate <em>and</em> pairwise synergy. Buy times are population averages.
@@ -555,14 +703,17 @@
           <div class="phase-col">
             <h4>Early <span class="when">${phaseWhen.early}</span></h4>
             ${byPhase.early.length ? byPhase.early.map(renderItemRow).join('') : '<div class="summary-line">—</div>'}
+            ${renderPhaseSpikeSummary(spikeProgress.byPhaseEnd.early)}
           </div>
           <div class="phase-col">
             <h4>Mid <span class="when">${phaseWhen.mid}</span></h4>
             ${byPhase.mid.length ? byPhase.mid.map(renderItemRow).join('') : '<div class="summary-line">—</div>'}
+            ${renderPhaseSpikeSummary(spikeProgress.byPhaseEnd.mid)}
           </div>
           <div class="phase-col">
             <h4>Late <span class="when">${phaseWhen.late}</span></h4>
             ${byPhase.late.length ? byPhase.late.map(renderItemRow).join('') : '<div class="summary-line">—</div>'}
+            ${renderPhaseSpikeSummary(spikeProgress.byPhaseEnd.late)}
           </div>
         </div>
       </section>
@@ -620,6 +771,67 @@
   };
   const escAttr = s => (s||'').replace(/"/g, '&quot;').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const escHtml = s => (s||'').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+  function renderSpikePanel(items) {
+    const cats = ['weapon', 'vitality', 'spirit'];
+    const finalTotals = items.reduce((acc, it) => {
+      if (it.category in acc) acc[it.category] += (it.cost || 0);
+      return acc;
+    }, { weapon: 0, vitality: 0, spirit: 0 });
+
+    return `<div class="spike-panel">${cats.map(cat => {
+      const total = finalTotals[cat];
+      const crossed = spikesCrossed(total);
+      // Display fill is capped at SPIKE_DISPLAY_MAX so the bar renders
+      const displayTotal = Math.min(total, SPIKE_DISPLAY_MAX);
+      const fillPct = (displayTotal / SPIKE_DISPLAY_MAX) * 100;
+      const major = total >= SPIKE_MAJOR;
+      const bonus = SPIKE_BONUS[cat];
+      const finalBonus = crossed.length ? bonus[crossed[crossed.length-1]] : 0;
+      const unit = SPIKE_UNIT[cat];
+
+      const marks = SPIKE_THRESHOLDS.map(t => {
+        const left = (t / SPIKE_DISPLAY_MAX) * 100;
+        const isCrossed = total >= t;
+        const isMajor = t === SPIKE_MAJOR;
+        const cls = ['spike-mark', isCrossed ? 'crossed' : '', isMajor ? 'major' : ''].filter(Boolean).join(' ');
+        return `<span class="${cls}" style="left:${left}%"><span class="lbl-mark">${t >= 1000 ? (t/1000)+'k' : t}</span></span>`;
+      }).join('');
+
+      return `
+        <div class="spike-row ${cat}">
+          <div class="lbl">${cat}</div>
+          <div class="spike-bar">
+            <div class="spike-fill" style="width:${fillPct}%"></div>
+            ${marks}
+            <div style="position:absolute;top:50%;right:8px;transform:translateY(-50%);font-size:11px;font-weight:600;color:var(--text)">
+              ${fmtCost(total)}
+              ${crossed.length ? `<span style="color:var(--text-dim);font-weight:400">  +${finalBonus}${unit}</span>` : ''}
+              ${major ? '<span style="color:var(--accent);font-weight:700">  ⚡ SPIKE</span>' : ''}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('')}</div>`;
+  }
+
+  function renderPhaseSpikeSummary(totalsAtPhaseEnd) {
+    if (!totalsAtPhaseEnd) return '';
+    const cats = ['weapon', 'vitality', 'spirit'];
+    const parts = cats.map(cat => {
+      const total = totalsAtPhaseEnd[cat] || 0;
+      const crossed = spikesCrossed(total);
+      const major = total >= SPIKE_MAJOR;
+      const ticks = crossed.length;
+      const label = total === 0
+        ? `<span class="pend">${cat}: $0</span>`
+        : major
+          ? `<span class="major">${cat}: ${fmtCost(total)} ⚡</span>`
+          : `<span class="ok">${cat}: ${fmtCost(total)} (${ticks}/${SPIKE_THRESHOLDS.length})</span>`;
+      return label;
+    });
+    return `<div class="phase-spike-summary">at end of phase &nbsp;·&nbsp; ${parts.join(' &nbsp;·&nbsp; ')}</div>`;
+  }
 
   function renderItemRow(item) {
     const cat = item.category;
