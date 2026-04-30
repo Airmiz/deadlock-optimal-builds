@@ -54,6 +54,76 @@ def is_upgrade_item(it: dict) -> bool:
     return it.get("type") == "upgrade" and it.get("item_slot_type") in ("weapon", "vitality", "spirit")
 
 
+# ============================================================
+# Upgrade chains: Deadlock items can have a `component_items` field
+# referencing a lower-tier item (by class_name). Buying the higher tier
+# CONSUMES the component — they share a single inventory slot. Treating
+# them as independent picks (which a naive ILP does) double-counts cost
+# and slots.
+# ============================================================
+def build_lineage_map(items_by_id: dict) -> tuple[dict, dict]:
+    """
+    Returns:
+      ancestors_of[item_id] = set of all transitive parent item_ids
+                              (items whose presence would conflict)
+      lineage_canon[item_id] = canonical (root) item id for the lineage
+                                (every item in the same upgrade family
+                                 maps to the same canonical id)
+    """
+    items_by_class = {it.get("class_name"): it for it in items_by_id.values()
+                      if it.get("class_name")}
+    parent_of: dict[int, set[int]] = {iid: set() for iid in items_by_id}
+    for it in items_by_id.values():
+        for cn in (it.get("component_items") or []):
+            parent = items_by_class.get(cn)
+            if parent and parent["id"] != it["id"]:
+                parent_of[it["id"]].add(parent["id"])
+
+    ancestors_of: dict[int, set[int]] = {}
+
+    def get_ancestors(iid: int) -> set:
+        if iid in ancestors_of:
+            return ancestors_of[iid]
+        out = set()
+        for p in parent_of.get(iid, ()):
+            out.add(p)
+            out |= get_ancestors(p)
+        ancestors_of[iid] = out
+        return out
+
+    for iid in items_by_id:
+        get_ancestors(iid)
+
+    # Group items into lineages via union-find on chain edges
+    root: dict[int, int] = {iid: iid for iid in items_by_id}
+
+    def find(x):
+        while root[x] != x:
+            root[x] = root[root[x]]
+            x = root[x]
+        return x
+
+    def union(a, b):
+        ra, rb = find(a), find(b)
+        if ra != rb:
+            root[ra] = rb
+
+    for child, parents in parent_of.items():
+        for p in parents:
+            union(child, p)
+
+    members: dict[int, list[int]] = {}
+    for iid in items_by_id:
+        r = find(iid)
+        members.setdefault(r, []).append(iid)
+    canon: dict[int, int] = {}
+    for r, group in members.items():
+        canonical = min(group)
+        for m in group:
+            canon[m] = canonical
+    return ancestors_of, canon
+
+
 def phase_for(buy_time_s: float) -> str:
     if buy_time_s < 750:
         return "early"
@@ -65,9 +135,17 @@ def phase_for(buy_time_s: float) -> str:
 # ============================================================
 # Item build generation (3 methods)
 # ============================================================
-def build_candidates(item_stats: list, items_by_id: dict, baseline_wr: float, min_matches: int) -> dict:
-    """Score each upgrade item meeting the sample floor."""
-    out = {}
+def build_candidates(item_stats: list, items_by_id: dict, baseline_wr: float,
+                     min_matches: int, lineage_canon: dict | None = None) -> dict:
+    """Score each upgrade item meeting the sample floor.
+
+    If lineage_canon is provided, dedupe the candidates so each upgrade-chain
+    lineage is represented by a single best-scored member. This prevents the
+    downstream optimizers from picking, e.g., both Extra Spirit (T1) and
+    Boundless Spirit (T4) in separate slots — they share an inventory slot
+    when actually played because the higher tier consumes the lower.
+    """
+    raw: dict[int, dict] = {}
     for s in item_stats:
         it = items_by_id.get(s["item_id"])
         if not it or not is_upgrade_item(it):
@@ -76,7 +154,7 @@ def build_candidates(item_stats: list, items_by_id: dict, baseline_wr: float, mi
             continue
         wr = s["wins"] / s["matches"]
         lb = wilson_lb(s["wins"], s["matches"])
-        out[s["item_id"]] = {
+        raw[s["item_id"]] = {
             "item_id": s["item_id"],
             "name": it["name"],
             "category": it["item_slot_type"],
@@ -91,7 +169,24 @@ def build_candidates(item_stats: list, items_by_id: dict, baseline_wr: float, mi
             "avg_buy_time_s": round(s["avg_buy_time_s"], 1),
             "phase": phase_for(s["avg_buy_time_s"]),
         }
-    return out
+
+    if not lineage_canon:
+        return raw
+
+    # Per-lineage: keep the strongest tier (best score; break ties by higher tier)
+    best_per_lineage: dict[int, dict] = {}
+    for c in raw.values():
+        canon = lineage_canon.get(c["item_id"], c["item_id"])
+        existing = best_per_lineage.get(canon)
+        if existing is None:
+            best_per_lineage[canon] = c
+        else:
+            score_better = c["score"] > existing["score"]
+            score_tie = c["score"] == existing["score"]
+            tier_better = c["tier"] > existing["tier"]
+            if score_better or (score_tie and tier_better):
+                best_per_lineage[canon] = c
+    return {c["item_id"]: c for c in best_per_lineage.values()}
 
 
 def method_wilson(candidates: dict) -> list:
@@ -462,6 +557,9 @@ def build_hero_output(
     base_all = next(h for h in json.load(open(paths["hero_stats_all"])) if h["hero_id"] == hero_id)
     base_hmmr = next(h for h in json.load(open(paths["hero_stats_hmmr"])) if h["hero_id"] == hero_id)
 
+    # ---- upgrade chain map (one per asset version, but cheap so we do it here) ----
+    _, lineage_canon = build_lineage_map(items_by_id)
+
     # ---- item methods, both MMR slices ----
     item_methods = {}
     for slice_label, paths_key, baseline, min_match_floor, pair_floor, build_floor in (
@@ -472,7 +570,8 @@ def build_hero_output(
         item_stats = json.load(open(paths[f"item_stats_{paths_key}"]))
         pair_stats = json.load(open(paths[f"pair_stats_{paths_key}"]))
         build_stats_raw = json.load(open(paths[f"build_stats_{paths_key}"]))
-        candidates = build_candidates(item_stats, items_by_id, baseline_wr, min_match_floor)
+        candidates = build_candidates(item_stats, items_by_id, baseline_wr,
+                                      min_match_floor, lineage_canon=lineage_canon)
 
         m1 = method_wilson(candidates)
         m2 = method_synergy_ilp(candidates, pair_stats, pair_floor)

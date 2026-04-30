@@ -45,18 +45,34 @@
     "items": {
       "method": "synergy_ilp",
       "mmr_slice": "high_mmr",
-      "total_cost": 60800,
+      "total_cost": 67200,
       "phases": {
         "early": [
           {
             "slot": "flex",
-            "category": "weapon",
+            "category": "vitality",
             "tier": 1,
             "cost": 800,
-            "name": "Close Quarters",
-            "item_id": 1342610602,
-            "avg_buy_time_min": 3.9,
-            "win_rate": 0.4884
+            "name": "Melee Lifesteal",
+            "item_id": 1437614329,
+            "avg_buy_time_min": 2.4,
+            "win_rate": 0.4876,
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Activates on Bashdown. Heavy melee minion waves to keep the cooldown short. Feel free to sell this first."
+          },
+          {
+            "slot": "flex",
+            "category": "vitality",
+            "tier": 1,
+            "cost": 800,
+            "name": "Extra Regen",
+            "item_id": 2829638276,
+            "avg_buy_time_min": 3.5,
+            "win_rate": 0.4778,
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Very solid green item, always worth taking if you're taking more damage than you'd like."
           },
           {
             "slot": "flex",
@@ -66,39 +82,38 @@
             "name": "Stalker",
             "item_id": 98582110,
             "avg_buy_time_min": 6.7,
-            "win_rate": 0.504
+            "win_rate": 0.504,
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Not terrible but the bleed doesn't seem to have much of a purpose in mid-game still after its rework."
+          },
+          {
+            "slot": "flex",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "name": "Battle Vest",
+            "item_id": 1235347618,
+            "avg_buy_time_min": 10.7,
+            "win_rate": 0.5025,
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Against heavy early gun"
           }
         ],
         "mid": [
           {
-            "slot": "flex",
-            "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "name": "Extra Health",
-            "item_id": 3633614685,
-            "avg_buy_time_min": 12.7,
-            "win_rate": 0.5069
-          },
-          {
-            "slot": "flex",
+            "slot": "spirit",
             "category": "spirit",
-            "tier": 1,
-            "cost": 800,
-            "name": "Spirit Strike",
-            "item_id": 465043967,
-            "avg_buy_time_min": 13.3,
-            "win_rate": 0.5028
-          },
-          {
-            "slot": "weapon",
-            "category": "weapon",
             "tier": 2,
             "cost": 1600,
-            "name": "Melee Charge",
-            "item_id": 26002154,
-            "avg_buy_time_min": 18.1,
-            "win_rate": 0.5142
+            "name": "Bullet Resist Shredder",
+            "item_id": 2971868509,
+            "avg_buy_time_min": 16.9,
+            "win_rate": 0.4987,
+            "tag": "flex",
+            "pick_rate": 0.429,
+            "annotation": "Resist, shred, and gets you 4.8k spirit. Synergizes well with Torment Pulse."
           },
           {
             "slot": "spirit",
@@ -108,17 +123,10 @@
             "name": "Spirit Snatch",
             "item_id": 3190916303,
             "avg_buy_time_min": 18.5,
-            "win_rate": 0.5076
-          },
-          {
-            "slot": "spirit",
-            "category": "spirit",
-            "tier": 1,
-            "cost": 800,
-            "name": "Mystic Expansion",
-            "item_id": 754480263,
-            "avg_buy_time_min": 20.4,
-            "win_rate": 0.5445
+            "win_rate": 0.5076,
+            "tag": "core",
+            "pick_rate": 0.857,
+            "annotation": "Bashdown applies this as an AoE"
           },
           {
             "slot": "spirit",
@@ -128,7 +136,10 @@
             "name": "Rapid Recharge",
             "item_id": 787198704,
             "avg_buy_time_min": 23.5,
-            "win_rate": 0.5327
+            "win_rate": 0.5327,
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Bashdowns scale better now, but can be skipped for rushing late paths"
           }
         ],
         "late": [
@@ -140,7 +151,10 @@
             "name": "Greater Expansion",
             "item_id": 1193964439,
             "avg_buy_time_min": 25.7,
-            "win_rate": 0.5633
+            "win_rate": 0.5633,
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Can be skipped if leaning into late gun items"
           },
           {
             "slot": "weapon",
@@ -150,7 +164,10 @@
             "name": "Crushing Fists",
             "item_id": 800008313,
             "avg_buy_time_min": 28.9,
-            "win_rate": 0.593
+            "win_rate": 0.593,
+            "tag": "core",
+            "pick_rate": 0.857,
+            "annotation": "Only makes sense to invest in more utility since we have Melee Charge. The stun can be really useful for interrupting channels."
           },
           {
             "slot": "vitality",
@@ -160,7 +177,10 @@
             "name": "Phantom Strike",
             "item_id": 1371725689,
             "avg_buy_time_min": 30.3,
-            "win_rate": 0.6189
+            "win_rate": 0.6189,
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Kill flyers"
           },
           {
             "slot": "vitality",
@@ -170,7 +190,10 @@
             "name": "Colossus",
             "item_id": 2407781327,
             "avg_buy_time_min": 30.3,
-            "win_rate": 0.6029
+            "win_rate": 0.6029,
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice."
           },
           {
             "slot": "vitality",
@@ -180,7 +203,10 @@
             "name": "Siphon Bullets",
             "item_id": 1282141666,
             "avg_buy_time_min": 31.6,
-            "win_rate": 0.6196
+            "win_rate": 0.6196,
+            "tag": "situational",
+            "pick_rate": 0.286,
+            "annotation": "Good sustain and taking %max hp. Great vs tanky units."
           },
           {
             "slot": "weapon",
@@ -190,7 +216,10 @@
             "name": "Frenzy",
             "item_id": 339443430,
             "avg_buy_time_min": 31.8,
-            "win_rate": 0.6214
+            "win_rate": 0.6214,
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Very good item to resist incoming spirit damage and retaliate with bonus stats. In primarily spirit comps, pair with Spirit Resilience for 75% resist."
           },
           {
             "slot": "weapon",
@@ -200,7 +229,23 @@
             "name": "Silencer",
             "item_id": 1113837674,
             "avg_buy_time_min": 32.0,
-            "win_rate": 0.6244
+            "win_rate": 0.6244,
+            "tag": "flex",
+            "pick_rate": 0.571,
+            "annotation": "Lowers enemy spirit damage output, and silences them. It builds up stacks on your Bashdown so you can hit multiple people with it at once. Very good."
+          },
+          {
+            "slot": "weapon",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "name": "Crippling Headshot",
+            "item_id": 3884003354,
+            "avg_buy_time_min": 32.1,
+            "win_rate": 0.6046,
+            "tag": "flex",
+            "pick_rate": 0.571,
+            "annotation": "Super easy to activate shred for both damage types + antiheal. Super necessary into high resistance frontliners like Yamato, Abrams, Victor, etc."
           },
           {
             "slot": "vitality",
@@ -210,7 +255,10 @@
             "name": "Leech",
             "item_id": 865846625,
             "avg_buy_time_min": 33.1,
-            "win_rate": 0.5998
+            "win_rate": 0.5998,
+            "tag": "situational",
+            "pick_rate": 0.286,
+            "annotation": "Infinite Healing and Sustain, u wanna shoot mostly and not use a lot of melees from this point. Use your 1 to reload."
           }
         ]
       }
@@ -280,7 +328,7 @@
   },
   "items": {
     "all_mmr": {
-      "candidate_count": 141,
+      "candidate_count": 92,
       "min_matches_filter": 500,
       "wilson_greedy": {
         "picks": [
@@ -298,7 +346,10 @@
             "wr_delta_pp": 13.09,
             "avg_buy_time_s": 2112.0,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.625,
+            "annotation": "Very good item to resist incoming spirit damage and retaliate with bonus stats. In primarily spirit comps, pair with Spirit Resilience for 75% resist."
           },
           {
             "item_id": 3884003354,
@@ -314,7 +365,10 @@
             "wr_delta_pp": 11.61,
             "avg_buy_time_s": 2141.3,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "Super easy to activate shred for both damage types + antiheal. Super necessary into high resistance frontliners like Yamato, Abrams, Victor, etc."
           },
           {
             "item_id": 1113837674,
@@ -330,7 +384,10 @@
             "wr_delta_pp": 11.24,
             "avg_buy_time_s": 2126.2,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "Lowers enemy spirit damage output, and silences them. It builds up stacks on your Bashdown so you can hit multiple people with it at once. Very good."
           },
           {
             "item_id": 1798666702,
@@ -346,7 +403,9 @@
             "wr_delta_pp": 11.56,
             "avg_buy_time_s": 2042.8,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "stat",
+            "pick_rate": 0.0
           },
           {
             "item_id": 1282141666,
@@ -362,7 +421,10 @@
             "wr_delta_pp": 11.25,
             "avg_buy_time_s": 2127.2,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "situational",
+            "pick_rate": 0.25,
+            "annotation": "Good sustain and taking %max hp. Great vs tanky units."
           },
           {
             "item_id": 2407781327,
@@ -378,7 +440,10 @@
             "wr_delta_pp": 10.24,
             "avg_buy_time_s": 1933.9,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.875,
+            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice."
           },
           {
             "item_id": 1371725689,
@@ -394,7 +459,10 @@
             "wr_delta_pp": 10.69,
             "avg_buy_time_s": 2011.1,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.75,
+            "annotation": "Kill flyers"
           },
           {
             "item_id": 3028234315,
@@ -410,7 +478,10 @@
             "wr_delta_pp": 8.83,
             "avg_buy_time_s": 2177.9,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "situational",
+            "pick_rate": 0.25,
+            "annotation": "*clink* *clink* *clink* Vs Heavy spirit dps could be good for more cooldowns!"
           },
           {
             "item_id": 1152158042,
@@ -426,7 +497,10 @@
             "wr_delta_pp": 9.17,
             "avg_buy_time_s": 2134.0,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.375,
+            "annotation": "Sets up your ult, or can better guarantee kills off of it"
           },
           {
             "item_id": 2142980412,
@@ -442,7 +516,9 @@
             "wr_delta_pp": 9.74,
             "avg_buy_time_s": 2161.8,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.125
           },
           {
             "item_id": 2417568017,
@@ -458,7 +534,10 @@
             "wr_delta_pp": 9.0,
             "avg_buy_time_s": 2299.1,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.25,
+            "annotation": "Good vs tanks, AOE max health damage"
           },
           {
             "item_id": 3577481646,
@@ -474,7 +553,9 @@
             "wr_delta_pp": 9.75,
             "avg_buy_time_s": 2116.5,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0
           },
           {
             "item_id": 2820116164,
@@ -490,7 +571,9 @@
             "wr_delta_pp": 9.66,
             "avg_buy_time_s": 2394.8,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "situational",
+            "pick_rate": 0.125
           },
           {
             "item_id": 800008313,
@@ -506,7 +589,10 @@
             "wr_delta_pp": 7.41,
             "avg_buy_time_s": 1735.2,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 0.875,
+            "annotation": "Only makes sense to invest in more utility since we have Melee Charge. The stun can be really useful for interrupting channels."
           },
           {
             "item_id": 2519598785,
@@ -522,7 +608,10 @@
             "wr_delta_pp": 7.71,
             "avg_buy_time_s": 2028.0,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "situational",
+            "pick_rate": 0.25,
+            "annotation": "If you're really agead or don't have any particular item you need to buy scaling your Blasted even further is pretty big."
           },
           {
             "item_id": 1193964439,
@@ -538,7 +627,10 @@
             "wr_delta_pp": 6.8,
             "avg_buy_time_s": 1652.6,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.625,
+            "annotation": "Can be skipped if leaning into late gun items"
           }
         ]
       },
@@ -558,7 +650,10 @@
             "wr_delta_pp": 13.09,
             "avg_buy_time_s": 2112.0,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.625,
+            "annotation": "Very good item to resist incoming spirit damage and retaliate with bonus stats. In primarily spirit comps, pair with Spirit Resilience for 75% resist."
           },
           {
             "item_id": 3884003354,
@@ -574,7 +669,10 @@
             "wr_delta_pp": 11.61,
             "avg_buy_time_s": 2141.3,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "Super easy to activate shred for both damage types + antiheal. Super necessary into high resistance frontliners like Yamato, Abrams, Victor, etc."
           },
           {
             "item_id": 1113837674,
@@ -590,23 +688,29 @@
             "wr_delta_pp": 11.24,
             "avg_buy_time_s": 2126.2,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "Lowers enemy spirit damage output, and silences them. It builds up stacks on your Bashdown so you can hit multiple people with it at once. Very good."
           },
           {
-            "item_id": 98582110,
-            "name": "Stalker",
+            "item_id": 1414319208,
+            "name": "Berserker",
             "category": "weapon",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 122893,
-            "wins": 60907,
-            "win_rate": 0.4956,
-            "wilson_lb": 0.4928,
-            "score": 0.0161,
-            "wr_delta_pp": 1.89,
-            "avg_buy_time_s": 473.6,
-            "phase": "early",
-            "slot": "weapon"
+            "tier": 3,
+            "cost": 3200,
+            "matches": 28220,
+            "wins": 14670,
+            "win_rate": 0.5198,
+            "wilson_lb": 0.514,
+            "score": 0.0373,
+            "wr_delta_pp": 4.31,
+            "avg_buy_time_s": 1643.3,
+            "phase": "late",
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.375,
+            "annotation": "If you already have stacked bullet resist this can help you stack more and helps you build more weapon damage fast. Worth considering selling Cultist Sacrifice for this."
           },
           {
             "item_id": 1282141666,
@@ -622,7 +726,29 @@
             "wr_delta_pp": 11.25,
             "avg_buy_time_s": 2127.2,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "situational",
+            "pick_rate": 0.25,
+            "annotation": "Good sustain and taking %max hp. Great vs tanky units."
+          },
+          {
+            "item_id": 2407781327,
+            "name": "Colossus",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 79228,
+            "wins": 45884,
+            "win_rate": 0.5791,
+            "wilson_lb": 0.5757,
+            "score": 0.099,
+            "wr_delta_pp": 10.24,
+            "avg_buy_time_s": 1933.9,
+            "phase": "late",
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.875,
+            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice."
           },
           {
             "item_id": 1371725689,
@@ -638,55 +764,86 @@
             "wr_delta_pp": 10.69,
             "avg_buy_time_s": 2011.1,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.75,
+            "annotation": "Kill flyers"
           },
           {
-            "item_id": 3028234315,
-            "name": "Witchmail",
+            "item_id": 865846625,
+            "name": "Leech",
             "category": "vitality",
             "tier": 4,
             "cost": 6400,
-            "matches": 10474,
-            "wins": 5918,
-            "win_rate": 0.565,
-            "wilson_lb": 0.5555,
-            "score": 0.0788,
-            "wr_delta_pp": 8.83,
-            "avg_buy_time_s": 2177.9,
+            "matches": 33266,
+            "wins": 18130,
+            "win_rate": 0.545,
+            "wilson_lb": 0.5396,
+            "score": 0.0629,
+            "wr_delta_pp": 6.83,
+            "avg_buy_time_s": 1979.1,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "situational",
+            "pick_rate": 0.25,
+            "annotation": "HEAR ME OUT - You are now completely online and can kinda 1v9 if played correctly - [OPTIONAL CAN BE SKIPPED] You want to mostly shoot now and melee less, reload with Bashdown (Can swap with Vampiric)"
           },
           {
-            "item_id": 2820116164,
-            "name": "Diviner's Kevlar",
-            "category": "vitality",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 2334,
-            "wins": 1338,
-            "win_rate": 0.5733,
-            "wilson_lb": 0.5531,
-            "score": 0.0764,
-            "wr_delta_pp": 9.66,
-            "avg_buy_time_s": 2394.8,
-            "phase": "late",
-            "slot": "vitality"
-          },
-          {
-            "item_id": 3190916303,
-            "name": "Spirit Snatch",
+            "item_id": 1193964439,
+            "name": "Greater Expansion",
             "category": "spirit",
             "tier": 3,
             "cost": 3200,
-            "matches": 195985,
-            "wins": 97896,
-            "win_rate": 0.4995,
-            "wilson_lb": 0.4973,
-            "score": 0.0206,
-            "wr_delta_pp": 2.28,
-            "avg_buy_time_s": 1207.8,
+            "matches": 88692,
+            "wins": 48313,
+            "win_rate": 0.5447,
+            "wilson_lb": 0.5414,
+            "score": 0.0648,
+            "wr_delta_pp": 6.8,
+            "avg_buy_time_s": 1652.6,
+            "phase": "late",
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.625,
+            "annotation": "Can be skipped if leaning into late gun items"
+          },
+          {
+            "item_id": 915014646,
+            "name": "Transcendent Cooldown",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 14374,
+            "wins": 7767,
+            "win_rate": 0.5404,
+            "wilson_lb": 0.5322,
+            "score": 0.0555,
+            "wr_delta_pp": 6.37,
+            "avg_buy_time_s": 2233.6,
+            "phase": "late",
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.625,
+            "annotation": "Decent item, you get your abilities twice a long fight and Actives faster. REMEMBER this works with Spirit Strike and Lifestrike aswell ! ANYTHING WITH A COOLDOWN"
+          },
+          {
+            "item_id": 395944548,
+            "name": "Torment Pulse",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 69566,
+            "wins": 35051,
+            "win_rate": 0.5039,
+            "wilson_lb": 0.5001,
+            "score": 0.0234,
+            "wr_delta_pp": 2.72,
+            "avg_buy_time_s": 1287.7,
             "phase": "mid",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.375,
+            "annotation": "A lot of DPS by being near people, usually bought in mid-game but I personally don't prioritize spirit damage as much on this character."
           },
           {
             "item_id": 2971868509,
@@ -702,126 +859,91 @@
             "wr_delta_pp": 1.8,
             "avg_buy_time_s": 1135.8,
             "phase": "mid",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.375,
+            "annotation": "Resist, shred, and gets you 4.8k spirit. Synergizes well with Torment Pulse."
           },
           {
-            "item_id": 3776945997,
-            "name": "Extra Charge",
-            "category": "spirit",
-            "tier": 1,
-            "cost": 800,
-            "matches": 101103,
-            "wins": 49263,
-            "win_rate": 0.4873,
-            "wilson_lb": 0.4842,
-            "score": 0.0075,
-            "wr_delta_pp": 1.06,
-            "avg_buy_time_s": 891.8,
-            "phase": "mid",
-            "slot": "spirit"
-          },
-          {
-            "item_id": 465043967,
-            "name": "Spirit Strike",
-            "category": "spirit",
-            "tier": 1,
-            "cost": 800,
-            "matches": 145730,
-            "wins": 70569,
-            "win_rate": 0.4842,
-            "wilson_lb": 0.4817,
-            "score": 0.005,
-            "wr_delta_pp": 0.75,
-            "avg_buy_time_s": 723.7,
+            "item_id": 98582110,
+            "name": "Stalker",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 122893,
+            "wins": 60907,
+            "win_rate": 0.4956,
+            "wilson_lb": 0.4928,
+            "score": 0.0161,
+            "wr_delta_pp": 1.89,
+            "avg_buy_time_s": 473.6,
             "phase": "early",
-            "slot": "spirit"
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.625,
+            "annotation": "Not terrible but the bleed doesn't seem to have much of a purpose in mid-game still after its rework."
           },
           {
-            "item_id": 3633614685,
-            "name": "Extra Health",
-            "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "matches": 138087,
-            "wins": 67941,
-            "win_rate": 0.492,
-            "wilson_lb": 0.4894,
-            "score": 0.0127,
-            "wr_delta_pp": 1.53,
-            "avg_buy_time_s": 728.9,
-            "phase": "early",
-            "slot": "flex"
-          },
-          {
-            "item_id": 2447176615,
-            "name": "Enduring Speed",
+            "item_id": 3970837787,
+            "name": "Enchanter's Emblem",
             "category": "vitality",
             "tier": 2,
             "cost": 1600,
-            "matches": 200073,
-            "wins": 98262,
-            "win_rate": 0.4911,
-            "wilson_lb": 0.4889,
-            "score": 0.0122,
-            "wr_delta_pp": 1.44,
-            "avg_buy_time_s": 924.0,
-            "phase": "mid",
-            "slot": "flex"
+            "matches": 86138,
+            "wins": 41493,
+            "win_rate": 0.4817,
+            "wilson_lb": 0.4784,
+            "score": 0.0017,
+            "wr_delta_pp": 0.5,
+            "avg_buy_time_s": 738.8,
+            "phase": "early",
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.625,
+            "annotation": "Very good spirit power (+ resist) increase item. Spirit power not only increases your damage but also your Blasted bonus HP scaling."
           },
           {
-            "item_id": 2095565695,
-            "name": "Point Blank",
+            "item_id": 3403085434,
+            "name": "Fleetfoot",
             "category": "weapon",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 248448,
-            "wins": 120741,
-            "win_rate": 0.486,
-            "wilson_lb": 0.484,
-            "score": 0.0073,
-            "wr_delta_pp": 0.93,
-            "avg_buy_time_s": 917.1,
+            "tier": 2,
+            "cost": 1600,
+            "matches": 44656,
+            "wins": 21374,
+            "win_rate": 0.4786,
+            "wilson_lb": 0.474,
+            "score": -0.0027,
+            "wr_delta_pp": 0.19,
+            "avg_buy_time_s": 1067.7,
             "phase": "mid",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "situational",
+            "pick_rate": 0.125
           },
           {
-            "item_id": 1548066885,
-            "name": "Extended Magazine",
+            "item_id": 1009965641,
+            "name": "Monster Rounds",
             "category": "weapon",
             "tier": 1,
             "cost": 800,
-            "matches": 107340,
-            "wins": 51454,
-            "win_rate": 0.4794,
-            "wilson_lb": 0.4764,
-            "score": -0.0003,
-            "wr_delta_pp": 0.27,
-            "avg_buy_time_s": 523.6,
+            "matches": 80078,
+            "wins": 37828,
+            "win_rate": 0.4724,
+            "wilson_lb": 0.4689,
+            "score": -0.0078,
+            "wr_delta_pp": -0.43,
+            "avg_buy_time_s": 329.0,
             "phase": "early",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "Helps you kill all NPCs faster to gain wave prio and take jungle faster. Take less chip damage from all NPCs. Super good item."
           }
         ]
       },
       "build_replication": {
         "picks": [
           {
-            "item_id": 1342610602,
-            "name": "Close Quarters",
-            "category": "weapon",
-            "tier": 1,
-            "cost": 800,
-            "matches": 261370,
-            "wins": 125330,
-            "win_rate": 0.4795,
-            "wilson_lb": 0.4776,
-            "score": 0.0009,
-            "wr_delta_pp": 0.28,
-            "avg_buy_time_s": 249.1,
-            "phase": "early",
-            "build_freq_weight": 195.8,
-            "slot": "weapon"
-          },
-          {
             "item_id": 2095565695,
             "name": "Point Blank",
             "category": "weapon",
@@ -836,7 +958,10 @@
             "avg_buy_time_s": 917.1,
             "phase": "mid",
             "build_freq_weight": 195.8,
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Huge damage increase up close, which is where all your fights will be. Gives a slow effect as well to help you stay on top of your target."
           },
           {
             "item_id": 2108215830,
@@ -853,7 +978,10 @@
             "avg_buy_time_s": 1549.6,
             "phase": "late",
             "build_freq_weight": 184.0,
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.625,
+            "annotation": "If you built BV, and your team needs one"
           },
           {
             "item_id": 800008313,
@@ -870,7 +998,30 @@
             "avg_buy_time_s": 1735.2,
             "phase": "late",
             "build_freq_weight": 175.8,
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 0.875,
+            "annotation": "Only makes sense to invest in more utility since we have Melee Charge. The stun can be really useful for interrupting channels."
+          },
+          {
+            "item_id": 3791587546,
+            "name": "Weighted Shots",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 53418,
+            "wins": 26158,
+            "win_rate": 0.4897,
+            "wilson_lb": 0.4854,
+            "score": 0.0088,
+            "wr_delta_pp": 1.3,
+            "avg_buy_time_s": 1422.5,
+            "phase": "mid",
+            "build_freq_weight": 168.8,
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.625,
+            "annotation": "Builds from Slowing Bullets and gives a large weapon damage increase. Makes it extremely hard to get away from you. Best into characters dashing a lot."
           },
           {
             "item_id": 2163598980,
@@ -887,24 +1038,10 @@
             "avg_buy_time_s": 1477.1,
             "phase": "mid",
             "build_freq_weight": 195.8,
-            "slot": "vitality"
-          },
-          {
-            "item_id": 2447176615,
-            "name": "Enduring Speed",
-            "category": "vitality",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 200073,
-            "wins": 98262,
-            "win_rate": 0.4911,
-            "wilson_lb": 0.4889,
-            "score": 0.0122,
-            "wr_delta_pp": 1.44,
-            "avg_buy_time_s": 924.0,
-            "phase": "mid",
-            "build_freq_weight": 195.8,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Core spirit resist; can consider rushing Spellbreaker against certain comps"
           },
           {
             "item_id": 2407781327,
@@ -921,92 +1058,10 @@
             "avg_buy_time_s": 1933.9,
             "phase": "late",
             "build_freq_weight": 195.8,
-            "slot": "vitality"
-          },
-          {
-            "item_id": 1437614329,
-            "name": "Melee Lifesteal",
-            "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "matches": 268547,
-            "wins": 128376,
-            "win_rate": 0.478,
-            "wilson_lb": 0.4762,
-            "score": -0.0005,
-            "wr_delta_pp": 0.13,
-            "avg_buy_time_s": 180.4,
-            "phase": "early",
-            "build_freq_weight": 195.8,
-            "slot": "vitality"
-          },
-          {
-            "item_id": 3190916303,
-            "name": "Spirit Snatch",
-            "category": "spirit",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 195985,
-            "wins": 97896,
-            "win_rate": 0.4995,
-            "wilson_lb": 0.4973,
-            "score": 0.0206,
-            "wr_delta_pp": 2.28,
-            "avg_buy_time_s": 1207.8,
-            "phase": "mid",
-            "build_freq_weight": 190.9,
-            "slot": "spirit"
-          },
-          {
-            "item_id": 1193964439,
-            "name": "Greater Expansion",
-            "category": "spirit",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 88692,
-            "wins": 48313,
-            "win_rate": 0.5447,
-            "wilson_lb": 0.5414,
-            "score": 0.0648,
-            "wr_delta_pp": 6.8,
-            "avg_buy_time_s": 1652.6,
-            "phase": "late",
-            "build_freq_weight": 184.0,
-            "slot": "spirit"
-          },
-          {
-            "item_id": 787198704,
-            "name": "Rapid Recharge",
-            "category": "spirit",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 123396,
-            "wins": 63127,
-            "win_rate": 0.5116,
-            "wilson_lb": 0.5088,
-            "score": 0.0321,
-            "wr_delta_pp": 3.49,
-            "avg_buy_time_s": 1496.4,
-            "phase": "mid",
-            "build_freq_weight": 139.7,
-            "slot": "spirit"
-          },
-          {
-            "item_id": 754480263,
-            "name": "Mystic Expansion",
-            "category": "spirit",
-            "tier": 1,
-            "cost": 800,
-            "matches": 73558,
-            "wins": 38405,
-            "win_rate": 0.5221,
-            "wilson_lb": 0.5185,
-            "score": 0.0418,
-            "wr_delta_pp": 4.54,
-            "avg_buy_time_s": 1189.9,
-            "phase": "mid",
-            "build_freq_weight": 132.8,
-            "slot": "spirit"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.875,
+            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice."
           },
           {
             "item_id": 3731635960,
@@ -1023,7 +1078,10 @@
             "avg_buy_time_s": 1489.5,
             "phase": "mid",
             "build_freq_weight": 195.8,
-            "slot": "flex"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.875,
+            "annotation": "Can be used to clear debuffs and curses like Warden's Binding Word or Vindicta's Stake. New spirit resist makes it even better into characters like Infernus."
           },
           {
             "item_id": 1414025773,
@@ -1040,7 +1098,90 @@
             "avg_buy_time_s": 1616.3,
             "phase": "late",
             "build_freq_weight": 188.9,
-            "slot": "flex"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.75,
+            "annotation": "Super good item, highly recommend against characters who rely on their abilities. Can also parry walker stomp to proc a free heal and stat bonus."
+          },
+          {
+            "item_id": 3190916303,
+            "name": "Spirit Snatch",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 195985,
+            "wins": 97896,
+            "win_rate": 0.4995,
+            "wilson_lb": 0.4973,
+            "score": 0.0206,
+            "wr_delta_pp": 2.28,
+            "avg_buy_time_s": 1207.8,
+            "phase": "mid",
+            "build_freq_weight": 190.9,
+            "slot": "spirit",
+            "tag": "core",
+            "pick_rate": 0.875,
+            "annotation": "Bashdown applies this as an AoE"
+          },
+          {
+            "item_id": 1193964439,
+            "name": "Greater Expansion",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 88692,
+            "wins": 48313,
+            "win_rate": 0.5447,
+            "wilson_lb": 0.5414,
+            "score": 0.0648,
+            "wr_delta_pp": 6.8,
+            "avg_buy_time_s": 1652.6,
+            "phase": "late",
+            "build_freq_weight": 184.0,
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.625,
+            "annotation": "Can be skipped if leaning into late gun items"
+          },
+          {
+            "item_id": 787198704,
+            "name": "Rapid Recharge",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 123396,
+            "wins": 63127,
+            "win_rate": 0.5116,
+            "wilson_lb": 0.5088,
+            "score": 0.0321,
+            "wr_delta_pp": 3.49,
+            "avg_buy_time_s": 1496.4,
+            "phase": "mid",
+            "build_freq_weight": 139.7,
+            "slot": "spirit",
+            "tag": "core",
+            "pick_rate": 0.75,
+            "annotation": "Bashdowns scale better now, but can be skipped for rushing late paths"
+          },
+          {
+            "item_id": 915014646,
+            "name": "Transcendent Cooldown",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 14374,
+            "wins": 7767,
+            "win_rate": 0.5404,
+            "wilson_lb": 0.5322,
+            "score": 0.0555,
+            "wr_delta_pp": 6.37,
+            "avg_buy_time_s": 2233.6,
+            "phase": "late",
+            "build_freq_weight": 115.6,
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.625,
+            "annotation": "Decent item, you get your abilities twice a long fight and Actives faster. REMEMBER this works with Spirit Strike and Lifestrike aswell ! ANYTHING WITH A COOLDOWN"
           },
           {
             "item_id": 1250307611,
@@ -1057,7 +1198,10 @@
             "avg_buy_time_s": 2035.9,
             "phase": "late",
             "build_freq_weight": 171.8,
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 0.75,
+            "annotation": "Great tank item to compliment bullet resists when going against multiple gun builds."
           },
           {
             "item_id": 3491236900,
@@ -1074,7 +1218,50 @@
             "avg_buy_time_s": 2135.0,
             "phase": "late",
             "build_freq_weight": 171.8,
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 0.75,
+            "annotation": "Very good item against really strong gun characters when you already have some bullet resist."
+          },
+          {
+            "item_id": 1955841979,
+            "name": "Spellbreaker",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 27485,
+            "wins": 15019,
+            "win_rate": 0.5464,
+            "wilson_lb": 0.5406,
+            "score": 0.0639,
+            "wr_delta_pp": 6.97,
+            "avg_buy_time_s": 2102.5,
+            "phase": "late",
+            "build_freq_weight": 171.8,
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 0.75,
+            "annotation": "Not only helps you eat large spirit damage chunks but gives base spirit and debuff resist too."
+          },
+          {
+            "item_id": 3270001687,
+            "name": "Warp Stone",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 12838,
+            "wins": 6424,
+            "win_rate": 0.5004,
+            "wilson_lb": 0.4917,
+            "score": 0.015,
+            "wr_delta_pp": 2.37,
+            "avg_buy_time_s": 1472.8,
+            "phase": "mid",
+            "build_freq_weight": 164.9,
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 0.75,
+            "annotation": "Mobility to get in and/or out paired with a huge resist buff."
           }
         ],
         "source_builds": [
@@ -1127,10 +1314,656 @@
             "matches": 447
           }
         ]
+      },
+      "item_metadata": {
+        "1437614329": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Activates on Bashdown. Heavy melee minion waves to keep the cooldown short. Feel free to sell this first.",
+          "builds_appearing_in": 8,
+          "builds_total": 8
+        },
+        "1342610602": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Melee resist and bonus damage against close range targets. Upgrades into Point Blank which is a very strong item for Billy.",
+          "builds_appearing_in": 8,
+          "builds_total": 8
+        },
+        "1548066885": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "More ammo to keep pressure with m1. Blasted ammo refill is scaled by max ammo, so this makes our light melee reload more effective.",
+          "builds_appearing_in": 4,
+          "builds_total": 8
+        },
+        "2095565695": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Huge damage increase up close, which is where all your fights will be. Gives a slow effect as well to help you stay on top of your target.",
+          "builds_appearing_in": 8,
+          "builds_total": 8
+        },
+        "2463960640": {
+          "tag": "core",
+          "pick_rate": 0.75,
+          "annotation": "If you skipped BV",
+          "builds_appearing_in": 6,
+          "builds_total": 8
+        },
+        "3970837787": {
+          "tag": "flex",
+          "pick_rate": 0.625,
+          "annotation": "Very good spirit power (+ resist) increase item. Spirit power not only increases your damage but also your Blasted bonus HP scaling.",
+          "builds_appearing_in": 5,
+          "builds_total": 8
+        },
+        "3633614685": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Good for surviving big bursts more. Kind of emulates the health difference we had with early Lifestrike. Upgrades into Colossus in late game.",
+          "builds_appearing_in": 4,
+          "builds_total": 8
+        },
+        "3399065363": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Can buy much earlier",
+          "builds_appearing_in": 4,
+          "builds_total": 8
+        },
+        "2447176615": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Rotation Speed",
+          "builds_appearing_in": 8,
+          "builds_total": 8
+        },
+        "1009965641": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Helps you kill all NPCs faster to gain wave prio and take jungle faster. Take less chip damage from all NPCs. Super good item.",
+          "builds_appearing_in": 4,
+          "builds_total": 8
+        },
+        "3862866912": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "I've been going resto shot in lane first before Melee Lifesteal and it feels so good, sometimes go both for more sustain early. Its for 4.8k gun spike early [Can sell After Escalating Resil or for it]",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "395944548": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "A lot of DPS by being near people, usually bought in mid-game but I personally don't prioritize spirit damage as much on this character.",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "380806748": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "Ult bot. Cooldown on ult and can be upgraded if slot locked. [Can be Swapped for BRS] When upgraded it helps with ur lifestrike, Torment and Melee Charge cooldowns aswell.",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "2163598980": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Core spirit resist; can consider rushing Spellbreaker against certain comps",
+          "builds_appearing_in": 8,
+          "builds_total": 8
+        },
+        "3190916303": {
+          "tag": "core",
+          "pick_rate": 0.875,
+          "annotation": "Bashdown applies this as an AoE",
+          "builds_appearing_in": 7,
+          "builds_total": 8
+        },
+        "26002154": {
+          "tag": "core",
+          "pick_rate": 0.75,
+          "annotation": "Makes heavy melees good. When active this doubles your Blasted HP gain, so ALWAYS pop Blasted first now.",
+          "builds_appearing_in": 6,
+          "builds_total": 8
+        },
+        "754480263": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "On Ult ( Can go on 1 but ult better)",
+          "builds_appearing_in": 4,
+          "builds_total": 8
+        },
+        "1193964439": {
+          "tag": "flex",
+          "pick_rate": 0.625,
+          "annotation": "Can be skipped if leaning into late gun items",
+          "builds_appearing_in": 5,
+          "builds_total": 8
+        },
+        "800008313": {
+          "tag": "core",
+          "pick_rate": 0.875,
+          "annotation": "Only makes sense to invest in more utility since we have Melee Charge. The stun can be really useful for interrupting channels.",
+          "builds_appearing_in": 7,
+          "builds_total": 8
+        },
+        "787198704": {
+          "tag": "core",
+          "pick_rate": 0.75,
+          "annotation": "Bashdowns scale better now, but can be skipped for rushing late paths",
+          "builds_appearing_in": 6,
+          "builds_total": 8
+        },
+        "3791587546": {
+          "tag": "flex",
+          "pick_rate": 0.625,
+          "annotation": "Builds from Slowing Bullets and gives a large weapon damage increase. Makes it extremely hard to get away from you. Best into characters dashing a lot.",
+          "builds_appearing_in": 5,
+          "builds_total": 8
+        },
+        "2971868509": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "Resist, shred, and gets you 4.8k spirit. Synergizes well with Torment Pulse.",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "2064029594": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "For big chunky healthy people + 10 flat spirit | This + Point Blank for Spike [Skip Escalating] For faster gun spike",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "2407781327": {
+          "tag": "core",
+          "pick_rate": 0.875,
+          "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice.",
+          "builds_appearing_in": 7,
+          "builds_total": 8
+        },
+        "339443430": {
+          "tag": "flex",
+          "pick_rate": 0.625,
+          "annotation": "Very good item to resist incoming spirit damage and retaliate with bonus stats. In primarily spirit comps, pair with Spirit Resilience for 75% resist.",
+          "builds_appearing_in": 5,
+          "builds_total": 8
+        },
+        "865846625": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "HEAR ME OUT - You are now completely online and can kinda 1v9 if played correctly - [OPTIONAL CAN BE SKIPPED] You want to mostly shoot now and melee less, reload with Bashdown (Can swap with Vampiric)",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "3884003354": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Super easy to activate shred for both damage types + antiheal. Super necessary into high resistance frontliners like Yamato, Abrams, Victor, etc.",
+          "builds_appearing_in": 4,
+          "builds_total": 8
+        },
+        "2108215830": {
+          "tag": "flex",
+          "pick_rate": 0.625,
+          "annotation": "If you built BV, and your team needs one",
+          "builds_appearing_in": 5,
+          "builds_total": 8
+        },
+        "1644605047": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Against low gun, and/or high CC",
+          "builds_appearing_in": 4,
+          "builds_total": 8
+        },
+        "1235347618": {
+          "tag": "flex",
+          "pick_rate": 0.625,
+          "annotation": "Against heavy early gun",
+          "builds_appearing_in": 5,
+          "builds_total": 8
+        },
+        "112198670": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "Nerfed, but still good. Now not the answer to everything but still worth considering.",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "1252627263": {
+          "tag": "core",
+          "pick_rate": 0.75,
+          "annotation": "Definitely way weaker, especially early on. Works well with Colossus. Much later provides nice relevant bursts.",
+          "builds_appearing_in": 6,
+          "builds_total": 8
+        },
+        "1813726886": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "If this is a bad Slowing Hex game, prio Rapid Recharge earlier for 4.8k Spirit",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "1152158042": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "Sets up your ult, or can better guarantee kills off of it",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "1955841979": {
+          "tag": "core",
+          "pick_rate": 0.75,
+          "annotation": "Not only helps you eat large spirit damage chunks but gives base spirit and debuff resist too.",
+          "builds_appearing_in": 6,
+          "builds_total": 8
+        },
+        "1250307611": {
+          "tag": "core",
+          "pick_rate": 0.75,
+          "annotation": "Great tank item to compliment bullet resists when going against multiple gun builds.",
+          "builds_appearing_in": 6,
+          "builds_total": 8
+        },
+        "3491236900": {
+          "tag": "core",
+          "pick_rate": 0.75,
+          "annotation": "Very good item against really strong gun characters when you already have some bullet resist.",
+          "builds_appearing_in": 6,
+          "builds_total": 8
+        },
+        "1378931225": {
+          "tag": "flex",
+          "pick_rate": 0.625,
+          "annotation": "Immune to bullets for a bit",
+          "builds_appearing_in": 5,
+          "builds_total": 8
+        },
+        "3731635960": {
+          "tag": "core",
+          "pick_rate": 0.875,
+          "annotation": "Can be used to clear debuffs and curses like Warden's Binding Word or Vindicta's Stake. New spirit resist makes it even better into characters like Infernus.",
+          "builds_appearing_in": 7,
+          "builds_total": 8
+        },
+        "1414025773": {
+          "tag": "core",
+          "pick_rate": 0.75,
+          "annotation": "Super good item, highly recommend against characters who rely on their abilities. Can also parry walker stomp to proc a free heal and stat bonus.",
+          "builds_appearing_in": 6,
+          "builds_total": 8
+        },
+        "3270001687": {
+          "tag": "core",
+          "pick_rate": 0.75,
+          "annotation": "Mobility to get in and/or out paired with a huge resist buff.",
+          "builds_appearing_in": 6,
+          "builds_total": 8
+        },
+        "3696726732": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "Strong antiheal and percent health bleed. Gives no stat bonuses which kind of sucks but this item is still good.",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "1055679805": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "Less healing than Leech passively but when active component is used it heals you by over 1000. With Frenzy pop Vampiric Burst below 50% HP to maximize fire rate and healing.",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "2951612397": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "Put On Blasted for Longer Duration!",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "915014646": {
+          "tag": "flex",
+          "pick_rate": 0.625,
+          "annotation": "Decent item, you get your abilities twice a long fight and Actives faster. REMEMBER this works with Spirit Strike and Lifestrike aswell ! ANYTHING WITH A COOLDOWN",
+          "builds_appearing_in": 5,
+          "builds_total": 8
+        },
+        "1282141666": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "Good sustain and taking %max hp. Great vs tanky units.",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "2037039379": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "Like Silencer, this item works with Bashdown, so you can affect multiple people at once. Gives a HUGE damage bonus and really good bonus health too. Destroy Abrams.",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "1113837674": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Lowers enemy spirit damage output, and silences them. It builds up stacks on your Bashdown so you can hit multiple people with it at once. Very good.",
+          "builds_appearing_in": 4,
+          "builds_total": 8
+        },
+        "3028234315": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "*clink* *clink* *clink* Vs Heavy spirit dps could be good for more cooldowns!",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "1932939246": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "Strong for ult usage and mid-boss fights. Bashdown and Rising Ram soft cc can be used to force people to stay in the fire.",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "1414319208": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "If you already have stacked bullet resist this can help you stack more and helps you build more weapon damage fast. Worth considering selling Cultist Sacrifice for this.",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "2417568017": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "Good vs tanks, AOE max health damage",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "1371725689": {
+          "tag": "core",
+          "pick_rate": 0.75,
+          "annotation": "Kill flyers",
+          "builds_appearing_in": 6,
+          "builds_total": 8
+        },
+        "98582110": {
+          "tag": "flex",
+          "pick_rate": 0.625,
+          "annotation": "Not terrible but the bleed doesn't seem to have much of a purpose in mid-game still after its rework.",
+          "builds_appearing_in": 5,
+          "builds_total": 8
+        },
+        "465043967": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Increase damage on your 1",
+          "builds_appearing_in": 4,
+          "builds_total": 8
+        },
+        "3776945997": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Early Second Charge for more slams",
+          "builds_appearing_in": 4,
+          "builds_total": 8
+        },
+        "2533252781": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "2820116164": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "1662311306": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "If you're too grandpa to Counterspell Affliction in time (me) this item will be a very expensive band-aid to your poor reaction time.",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "3357231760": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "677738769": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "1047818222": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "Big into cc heavy teams, works well with Reactive Barrier and upgrades into Spellbreaker or Unstoppable.",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "1710079648": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Actually OP item. Use this inbetween waves and hit boxes, take sinners, or take camps. Can be bought later if you're omega pooping on the enemy lane (would still buy anyway though).",
+          "builds_appearing_in": 4,
+          "builds_total": 8
+        },
+        "2829638276": {
+          "tag": "flex",
+          "pick_rate": 0.625,
+          "annotation": "Very solid green item, always worth taking if you're taking more damage than you'd like.",
+          "builds_appearing_in": 5,
+          "builds_total": 8
+        },
+        "4204808176": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "For the naughty laners who like to melee you a lot. Don't just spam it like a bot, that will get you killed.",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "2717651715": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "This character NEEDS Blasted active to be OP right now. Superior makes our duration longer and scales the amount of time melees extend it. OP on upgraded Rising Ram too.v",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "3140772621": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "More useful now than pre-November patch. Fat resist bonus when low.",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "989206714": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "Gives spirit resist, fire rate, and FAT debuff resist. Definitely pick into hard CC.",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "1976391348": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "Gives spirit resist and is lowkey a little OP. Strong early damage that scales and slows for a long duration. Effectively a 5th ability. Do not sleep on this item.",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "1925087134": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "Very helpful when played into characters that rely on their m1.",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "1254091416": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "Like Slowing Hex, kind of OP, lets you get picks easier and shuts down people in the sky.",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "619484391": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "Fallen from grace since last patch but still a silence which proves useful when ambushing enemies.",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "2617435668": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "Another item to shutdown carries with, boasting even more debuffs and clearing all buffs.",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "2603935618": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "Cheap antiheal and heals on kill. Great for ganking playstyle.",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "3144988365": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "50% heal reduction is pretty large and also bleeds 30% of someone's health for its duration. Gives bonus spirit power and health which are very nice.",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "2519598785": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "If you're really agead or don't have any particular item you need to buy scaling your Blasted even further is pretty big.",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "630839635": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "Mostly testing right now but being Blasted is more important than ever, so never not having Blasted is kind of big.",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "2356412290": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "Even more ammo and gun damage. Extra ammo is important because it scales our melee ammo replenish and lets us mix up our melee mindgames.",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "3294954488": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "This item is INSANE damage. Cultist Sacrifice is less necessary with how squishy jungle is now, and this grants you the range and damage aspect but better early on.",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "710436191": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "Higher DPS and hard movement lock on whoever you hit. Very easy to hit targets with the active component after Rising Ram or Bashdown. Useful for slippery targets.",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "1770441818": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "Cheap and easy bullet resist shred.",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "2481177645": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "Big bullet resist shred on alone targets, and bullet resist shred around people in general.",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "3403085434": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "3585132399": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "1219329868": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "2121044373": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "Can proc off of both 1 and 2",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "1292979587": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "Increase gun damage and speed after Slamming",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "2142980412": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "3261353684": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "7409189": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "334300056": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "Make it easier to jump around and chase enemys between slam cooldowns",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "343572757": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "Rush this if the enemy has lots of healing",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        }
       }
     },
     "high_mmr": {
-      "candidate_count": 93,
+      "candidate_count": 62,
       "min_matches_filter": 300,
       "wilson_greedy": {
         "picks": [
@@ -1148,7 +1981,10 @@
             "wr_delta_pp": 13.44,
             "avg_buy_time_s": 1909.6,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Very good item to resist incoming spirit damage and retaliate with bonus stats. In primarily spirit comps, pair with Spirit Resilience for 75% resist."
           },
           {
             "item_id": 1113837674,
@@ -1164,7 +2000,10 @@
             "wr_delta_pp": 13.75,
             "avg_buy_time_s": 1917.4,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.571,
+            "annotation": "Lowers enemy spirit damage output, and silences them. It builds up stacks on your Bashdown so you can hit multiple people with it at once. Very good."
           },
           {
             "item_id": 800008313,
@@ -1180,7 +2019,10 @@
             "wr_delta_pp": 10.6,
             "avg_buy_time_s": 1735.4,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 0.857,
+            "annotation": "Only makes sense to invest in more utility since we have Melee Charge. The stun can be really useful for interrupting channels."
           },
           {
             "item_id": 3884003354,
@@ -1196,7 +2038,10 @@
             "wr_delta_pp": 11.76,
             "avg_buy_time_s": 1924.3,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.571,
+            "annotation": "Super easy to activate shred for both damage types + antiheal. Super necessary into high resistance frontliners like Yamato, Abrams, Victor, etc."
           },
           {
             "item_id": 1371725689,
@@ -1212,7 +2057,10 @@
             "wr_delta_pp": 13.19,
             "avg_buy_time_s": 1820.2,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Kill flyers"
           },
           {
             "item_id": 2407781327,
@@ -1228,7 +2076,10 @@
             "wr_delta_pp": 11.59,
             "avg_buy_time_s": 1818.3,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice."
           },
           {
             "item_id": 1282141666,
@@ -1244,7 +2095,10 @@
             "wr_delta_pp": 13.26,
             "avg_buy_time_s": 1896.2,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "situational",
+            "pick_rate": 0.286,
+            "annotation": "Good sustain and taking %max hp. Great vs tanky units."
           },
           {
             "item_id": 865846625,
@@ -1260,7 +2114,10 @@
             "wr_delta_pp": 11.29,
             "avg_buy_time_s": 1983.6,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "situational",
+            "pick_rate": 0.286,
+            "annotation": "Infinite Healing and Sustain, u wanna shoot mostly and not use a lot of melees from this point. Use your 1 to reload."
           },
           {
             "item_id": 1152158042,
@@ -1276,7 +2133,10 @@
             "wr_delta_pp": 12.32,
             "avg_buy_time_s": 1928.6,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.429,
+            "annotation": "Sets up your ult, or can better guarantee kills off of it"
           },
           {
             "item_id": 1193964439,
@@ -1292,7 +2152,10 @@
             "wr_delta_pp": 7.63,
             "avg_buy_time_s": 1542.2,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Can be skipped if leaning into late gun items"
           },
           {
             "item_id": 915014646,
@@ -1308,7 +2171,10 @@
             "wr_delta_pp": 9.79,
             "avg_buy_time_s": 2125.5,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.571,
+            "annotation": "Lategame upgrade for all your actives, insane value, only buy if you are tanky enough"
           },
           {
             "item_id": 2519598785,
@@ -1324,7 +2190,10 @@
             "wr_delta_pp": 10.51,
             "avg_buy_time_s": 1836.9,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.143,
+            "annotation": "If you're really agead or don't have any particular item you need to buy scaling your Blasted even further is pretty big."
           },
           {
             "item_id": 2820116164,
@@ -1340,7 +2209,9 @@
             "wr_delta_pp": 13.73,
             "avg_buy_time_s": 2137.5,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "situational",
+            "pick_rate": 0.143
           },
           {
             "item_id": 3028234315,
@@ -1356,7 +2227,10 @@
             "wr_delta_pp": 10.05,
             "avg_buy_time_s": 1967.0,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "situational",
+            "pick_rate": 0.286,
+            "annotation": "*clink* *clink* *clink* Vs Heavy spirit dps could be good for more cooldowns!"
           },
           {
             "item_id": 2108215830,
@@ -1372,7 +2246,10 @@
             "wr_delta_pp": 7.24,
             "avg_buy_time_s": 1407.7,
             "phase": "mid",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "If you built BV, and your team needs one"
           },
           {
             "item_id": 3491236900,
@@ -1388,7 +2265,10 @@
             "wr_delta_pp": 7.81,
             "avg_buy_time_s": 1935.6,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 0.857,
+            "annotation": "Very good item against really strong gun characters when you already have some bullet resist."
           }
         ]
       },
@@ -1408,7 +2288,10 @@
             "wr_delta_pp": 13.44,
             "avg_buy_time_s": 1909.6,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Very good item to resist incoming spirit damage and retaliate with bonus stats. In primarily spirit comps, pair with Spirit Resilience for 75% resist."
           },
           {
             "item_id": 1113837674,
@@ -1424,7 +2307,10 @@
             "wr_delta_pp": 13.75,
             "avg_buy_time_s": 1917.4,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.571,
+            "annotation": "Lowers enemy spirit damage output, and silences them. It builds up stacks on your Bashdown so you can hit multiple people with it at once. Very good."
           },
           {
             "item_id": 800008313,
@@ -1440,23 +2326,29 @@
             "wr_delta_pp": 10.6,
             "avg_buy_time_s": 1735.4,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 0.857,
+            "annotation": "Only makes sense to invest in more utility since we have Melee Charge. The stun can be really useful for interrupting channels."
           },
           {
-            "item_id": 26002154,
-            "name": "Melee Charge",
+            "item_id": 3884003354,
+            "name": "Crippling Headshot",
             "category": "weapon",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 20315,
-            "wins": 10445,
-            "win_rate": 0.5142,
-            "wilson_lb": 0.5073,
-            "score": 0.0203,
-            "wr_delta_pp": 2.72,
-            "avg_buy_time_s": 1087.3,
-            "phase": "mid",
-            "slot": "weapon"
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1449,
+            "wins": 876,
+            "win_rate": 0.6046,
+            "wilson_lb": 0.5791,
+            "score": 0.0922,
+            "wr_delta_pp": 11.76,
+            "avg_buy_time_s": 1924.3,
+            "phase": "late",
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.571,
+            "annotation": "Super easy to activate shred for both damage types + antiheal. Super necessary into high resistance frontliners like Yamato, Abrams, Victor, etc."
           },
           {
             "item_id": 1371725689,
@@ -1472,7 +2364,10 @@
             "wr_delta_pp": 13.19,
             "avg_buy_time_s": 1820.2,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Kill flyers"
           },
           {
             "item_id": 2407781327,
@@ -1488,7 +2383,10 @@
             "wr_delta_pp": 11.59,
             "avg_buy_time_s": 1818.3,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice."
           },
           {
             "item_id": 1282141666,
@@ -1504,7 +2402,10 @@
             "wr_delta_pp": 13.26,
             "avg_buy_time_s": 1896.2,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "situational",
+            "pick_rate": 0.286,
+            "annotation": "Good sustain and taking %max hp. Great vs tanky units."
           },
           {
             "item_id": 865846625,
@@ -1520,7 +2421,10 @@
             "wr_delta_pp": 11.29,
             "avg_buy_time_s": 1983.6,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "situational",
+            "pick_rate": 0.286,
+            "annotation": "Infinite Healing and Sustain, u wanna shoot mostly and not use a lot of melees from this point. Use your 1 to reload."
           },
           {
             "item_id": 1193964439,
@@ -1536,23 +2440,10 @@
             "wr_delta_pp": 7.63,
             "avg_buy_time_s": 1542.2,
             "phase": "late",
-            "slot": "spirit"
-          },
-          {
-            "item_id": 754480263,
-            "name": "Mystic Expansion",
-            "category": "spirit",
-            "tier": 1,
-            "cost": 800,
-            "matches": 11624,
-            "wins": 6329,
-            "win_rate": 0.5445,
-            "wilson_lb": 0.5354,
-            "score": 0.0485,
-            "wr_delta_pp": 5.75,
-            "avg_buy_time_s": 1223.2,
-            "phase": "mid",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Can be skipped if leaning into late gun items"
           },
           {
             "item_id": 787198704,
@@ -1568,7 +2459,10 @@
             "wr_delta_pp": 4.58,
             "avg_buy_time_s": 1411.4,
             "phase": "mid",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Bashdowns scale better now, but can be skipped for rushing late paths"
           },
           {
             "item_id": 3190916303,
@@ -1584,23 +2478,29 @@
             "wr_delta_pp": 2.07,
             "avg_buy_time_s": 1112.9,
             "phase": "mid",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "core",
+            "pick_rate": 0.857,
+            "annotation": "Bashdown applies this as an AoE"
           },
           {
-            "item_id": 3633614685,
-            "name": "Extra Health",
-            "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "matches": 19335,
-            "wins": 9801,
-            "win_rate": 0.5069,
-            "wilson_lb": 0.4999,
-            "score": 0.0129,
-            "wr_delta_pp": 2.0,
-            "avg_buy_time_s": 762.5,
+            "item_id": 2971868509,
+            "name": "Bullet Resist Shredder",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 6956,
+            "wins": 3469,
+            "win_rate": 0.4987,
+            "wilson_lb": 0.487,
+            "score": 0.0,
+            "wr_delta_pp": 1.18,
+            "avg_buy_time_s": 1012.4,
             "phase": "mid",
-            "slot": "flex"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.429,
+            "annotation": "Resist, shred, and gets you 4.8k spirit. Synergizes well with Torment Pulse."
           },
           {
             "item_id": 98582110,
@@ -1616,61 +2516,72 @@
             "wr_delta_pp": 1.7,
             "avg_buy_time_s": 402.9,
             "phase": "early",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Not terrible but the bleed doesn't seem to have much of a purpose in mid-game still after its rework."
           },
           {
-            "item_id": 465043967,
-            "name": "Spirit Strike",
-            "category": "spirit",
-            "tier": 1,
-            "cost": 800,
-            "matches": 19413,
-            "wins": 9760,
-            "win_rate": 0.5028,
-            "wilson_lb": 0.4957,
-            "score": 0.0088,
-            "wr_delta_pp": 1.58,
-            "avg_buy_time_s": 798.3,
-            "phase": "mid",
-            "slot": "flex"
-          },
-          {
-            "item_id": 1342610602,
-            "name": "Close Quarters",
-            "category": "weapon",
-            "tier": 1,
-            "cost": 800,
-            "matches": 33918,
-            "wins": 16565,
-            "win_rate": 0.4884,
-            "wilson_lb": 0.4831,
-            "score": -0.0039,
-            "wr_delta_pp": 0.14,
-            "avg_buy_time_s": 235.6,
+            "item_id": 1235347618,
+            "name": "Battle Vest",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 13562,
+            "wins": 6815,
+            "win_rate": 0.5025,
+            "wilson_lb": 0.4941,
+            "score": 0.0072,
+            "wr_delta_pp": 1.56,
+            "avg_buy_time_s": 639.7,
             "phase": "early",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Against heavy early gun"
+          },
+          {
+            "item_id": 1437614329,
+            "name": "Melee Lifesteal",
+            "category": "vitality",
+            "tier": 1,
+            "cost": 800,
+            "matches": 33784,
+            "wins": 16472,
+            "win_rate": 0.4876,
+            "wilson_lb": 0.4822,
+            "score": -0.0047,
+            "wr_delta_pp": 0.06,
+            "avg_buy_time_s": 143.0,
+            "phase": "early",
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Activates on Bashdown. Heavy melee minion waves to keep the cooldown short. Feel free to sell this first."
+          },
+          {
+            "item_id": 2829638276,
+            "name": "Extra Regen",
+            "category": "vitality",
+            "tier": 1,
+            "cost": 800,
+            "matches": 9903,
+            "wins": 4732,
+            "win_rate": 0.4778,
+            "wilson_lb": 0.468,
+            "score": -0.0189,
+            "wr_delta_pp": -0.91,
+            "avg_buy_time_s": 207.7,
+            "phase": "early",
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Very solid green item, always worth taking if you're taking more damage than you'd like."
           }
         ]
       },
       "build_replication": {
         "picks": [
-          {
-            "item_id": 1342610602,
-            "name": "Close Quarters",
-            "category": "weapon",
-            "tier": 1,
-            "cost": 800,
-            "matches": 33918,
-            "wins": 16565,
-            "win_rate": 0.4884,
-            "wilson_lb": 0.4831,
-            "score": -0.0039,
-            "wr_delta_pp": 0.14,
-            "avg_buy_time_s": 235.6,
-            "phase": "early",
-            "build_freq_weight": 48.3,
-            "slot": "weapon"
-          },
           {
             "item_id": 2095565695,
             "name": "Point Blank",
@@ -1686,7 +2597,10 @@
             "avg_buy_time_s": 826.6,
             "phase": "mid",
             "build_freq_weight": 48.3,
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Huge damage increase up close, which is where all your fights will be. Gives a slow effect as well to help you stay on top of your target."
           },
           {
             "item_id": 98582110,
@@ -1703,7 +2617,10 @@
             "avg_buy_time_s": 402.9,
             "phase": "early",
             "build_freq_weight": 48.3,
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Not terrible but the bleed doesn't seem to have much of a purpose in mid-game still after its rework."
           },
           {
             "item_id": 2108215830,
@@ -1720,7 +2637,30 @@
             "avg_buy_time_s": 1407.7,
             "phase": "mid",
             "build_freq_weight": 47.1,
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "If you built BV, and your team needs one"
+          },
+          {
+            "item_id": 3791587546,
+            "name": "Weighted Shots",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 7990,
+            "wins": 3987,
+            "win_rate": 0.499,
+            "wilson_lb": 0.488,
+            "score": 0.0011,
+            "wr_delta_pp": 1.21,
+            "avg_buy_time_s": 1322.6,
+            "phase": "mid",
+            "build_freq_weight": 35.7,
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Builds from Slowing Bullets and gives a large weapon damage increase. Makes it extremely hard to get away from you. Best into characters dashing a lot."
           },
           {
             "item_id": 2163598980,
@@ -1737,7 +2677,10 @@
             "avg_buy_time_s": 1361.1,
             "phase": "mid",
             "build_freq_weight": 48.3,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Core spirit resist; can consider rushing Spellbreaker against certain comps"
           },
           {
             "item_id": 3270001687,
@@ -1754,7 +2697,10 @@
             "avg_buy_time_s": 1309.8,
             "phase": "mid",
             "build_freq_weight": 48.3,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Mobility to get in and/or out paired with a huge resist buff."
           },
           {
             "item_id": 1250307611,
@@ -1771,7 +2717,10 @@
             "avg_buy_time_s": 1930.3,
             "phase": "late",
             "build_freq_weight": 48.3,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.857,
+            "annotation": "Great tank item to compliment bullet resists when going against multiple gun builds."
           },
           {
             "item_id": 1235347618,
@@ -1788,7 +2737,10 @@
             "avg_buy_time_s": 639.7,
             "phase": "early",
             "build_freq_weight": 48.3,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Against heavy early gun"
           },
           {
             "item_id": 1193964439,
@@ -1805,7 +2757,10 @@
             "avg_buy_time_s": 1542.2,
             "phase": "late",
             "build_freq_weight": 47.1,
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Can be skipped if leaning into late gun items"
           },
           {
             "item_id": 3190916303,
@@ -1822,24 +2777,10 @@
             "avg_buy_time_s": 1112.9,
             "phase": "mid",
             "build_freq_weight": 47.1,
-            "slot": "spirit"
-          },
-          {
-            "item_id": 1813726886,
-            "name": "Slowing Hex",
-            "category": "spirit",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 3388,
-            "wins": 1573,
-            "win_rate": 0.4643,
-            "wilson_lb": 0.4475,
-            "score": -0.0394,
-            "wr_delta_pp": -2.27,
-            "avg_buy_time_s": 1043.3,
-            "phase": "mid",
-            "build_freq_weight": 31.4,
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "core",
+            "pick_rate": 0.857,
+            "annotation": "Bashdown applies this as an AoE"
           },
           {
             "item_id": 1152158042,
@@ -1856,7 +2797,30 @@
             "avg_buy_time_s": 1928.6,
             "phase": "late",
             "build_freq_weight": 31.4,
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.429,
+            "annotation": "Sets up your ult, or can better guarantee kills off of it"
+          },
+          {
+            "item_id": 787198704,
+            "name": "Rapid Recharge",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 16419,
+            "wins": 8747,
+            "win_rate": 0.5327,
+            "wilson_lb": 0.5251,
+            "score": 0.0382,
+            "wr_delta_pp": 4.58,
+            "avg_buy_time_s": 1411.4,
+            "phase": "mid",
+            "build_freq_weight": 28.4,
+            "slot": "spirit",
+            "tag": "core",
+            "pick_rate": 0.714,
+            "annotation": "Bashdowns scale better now, but can be skipped for rushing late paths"
           },
           {
             "item_id": 3491236900,
@@ -1873,24 +2837,10 @@
             "avg_buy_time_s": 1935.6,
             "phase": "late",
             "build_freq_weight": 48.3,
-            "slot": "flex"
-          },
-          {
-            "item_id": 2447176615,
-            "name": "Enduring Speed",
-            "category": "vitality",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 27191,
-            "wins": 13518,
-            "win_rate": 0.4971,
-            "wilson_lb": 0.4912,
-            "score": 0.0043,
-            "wr_delta_pp": 1.02,
-            "avg_buy_time_s": 866.1,
-            "phase": "mid",
-            "build_freq_weight": 48.3,
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 0.857,
+            "annotation": "Very good item against really strong gun characters when you already have some bullet resist."
           },
           {
             "item_id": 1414025773,
@@ -1907,7 +2857,10 @@
             "avg_buy_time_s": 1484.5,
             "phase": "mid",
             "build_freq_weight": 48.3,
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 0.857,
+            "annotation": "Super good item, highly recommend against characters who rely on their abilities. Can also parry walker stomp to proc a free heal and stat bonus."
           },
           {
             "item_id": 1955841979,
@@ -1924,7 +2877,30 @@
             "avg_buy_time_s": 1948.5,
             "phase": "late",
             "build_freq_weight": 48.3,
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 0.857,
+            "annotation": "Not only helps you eat large spirit damage chunks but gives base spirit and debuff resist too."
+          },
+          {
+            "item_id": 2407781327,
+            "name": "Colossus",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 10458,
+            "wins": 6305,
+            "win_rate": 0.6029,
+            "wilson_lb": 0.5935,
+            "score": 0.1065,
+            "wr_delta_pp": 11.59,
+            "avg_buy_time_s": 1818.3,
+            "phase": "late",
+            "build_freq_weight": 48.3,
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice."
           }
         ],
         "source_builds": [
@@ -1971,6 +2947,596 @@
             "matches": 215
           }
         ]
+      },
+      "item_metadata": {
+        "1437614329": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Activates on Bashdown. Heavy melee minion waves to keep the cooldown short. Feel free to sell this first.",
+          "builds_appearing_in": 7,
+          "builds_total": 7
+        },
+        "1342610602": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Melee resist and bonus damage against close range targets. Upgrades into Point Blank which is a very strong item for Billy.",
+          "builds_appearing_in": 7,
+          "builds_total": 7
+        },
+        "98582110": {
+          "tag": "core",
+          "pick_rate": 0.714,
+          "annotation": "Not terrible but the bleed doesn't seem to have much of a purpose in mid-game still after its rework.",
+          "builds_appearing_in": 5,
+          "builds_total": 7
+        },
+        "2095565695": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Huge damage increase up close, which is where all your fights will be. Gives a slow effect as well to help you stay on top of your target.",
+          "builds_appearing_in": 7,
+          "builds_total": 7
+        },
+        "1235347618": {
+          "tag": "core",
+          "pick_rate": 0.714,
+          "annotation": "Against heavy early gun",
+          "builds_appearing_in": 5,
+          "builds_total": 7
+        },
+        "3633614685": {
+          "tag": "flex",
+          "pick_rate": 0.571,
+          "annotation": "Good for surviving big bursts more. Kind of emulates the health difference we had with early Lifestrike. Upgrades into Colossus in late game.",
+          "builds_appearing_in": 4,
+          "builds_total": 7
+        },
+        "3399065363": {
+          "tag": "flex",
+          "pick_rate": 0.571,
+          "annotation": "Can buy much earlier",
+          "builds_appearing_in": 4,
+          "builds_total": 7
+        },
+        "2447176615": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Rotation Speed",
+          "builds_appearing_in": 7,
+          "builds_total": 7
+        },
+        "465043967": {
+          "tag": "flex",
+          "pick_rate": 0.429,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 7
+        },
+        "3190916303": {
+          "tag": "core",
+          "pick_rate": 0.857,
+          "annotation": "Bashdown applies this as an AoE",
+          "builds_appearing_in": 6,
+          "builds_total": 7
+        },
+        "3776945997": {
+          "tag": "flex",
+          "pick_rate": 0.429,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 7
+        },
+        "787198704": {
+          "tag": "core",
+          "pick_rate": 0.714,
+          "annotation": "Bashdowns scale better now, but can be skipped for rushing late paths",
+          "builds_appearing_in": 5,
+          "builds_total": 7
+        },
+        "2163598980": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Core spirit resist; can consider rushing Spellbreaker against certain comps",
+          "builds_appearing_in": 7,
+          "builds_total": 7
+        },
+        "2108215830": {
+          "tag": "core",
+          "pick_rate": 0.714,
+          "annotation": "If you built BV, and your team needs one",
+          "builds_appearing_in": 5,
+          "builds_total": 7
+        },
+        "754480263": {
+          "tag": "flex",
+          "pick_rate": 0.571,
+          "annotation": "On Ult ( Can go on 1 but ult better)",
+          "builds_appearing_in": 4,
+          "builds_total": 7
+        },
+        "1193964439": {
+          "tag": "core",
+          "pick_rate": 0.714,
+          "annotation": "Can be skipped if leaning into late gun items",
+          "builds_appearing_in": 5,
+          "builds_total": 7
+        },
+        "3731635960": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Can be used to clear debuffs and curses like Warden's Binding Word or Vindicta's Stake. New spirit resist makes it even better into characters like Infernus.",
+          "builds_appearing_in": 7,
+          "builds_total": 7
+        },
+        "800008313": {
+          "tag": "core",
+          "pick_rate": 0.857,
+          "annotation": "Only makes sense to invest in more utility since we have Melee Charge. The stun can be really useful for interrupting channels.",
+          "builds_appearing_in": 6,
+          "builds_total": 7
+        },
+        "2407781327": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice.",
+          "builds_appearing_in": 7,
+          "builds_total": 7
+        },
+        "1250307611": {
+          "tag": "core",
+          "pick_rate": 0.857,
+          "annotation": "Great tank item to compliment bullet resists when going against multiple gun builds.",
+          "builds_appearing_in": 6,
+          "builds_total": 7
+        },
+        "2533252781": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "2820116164": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "3491236900": {
+          "tag": "core",
+          "pick_rate": 0.857,
+          "annotation": "Very good item against really strong gun characters when you already have some bullet resist.",
+          "builds_appearing_in": 6,
+          "builds_total": 7
+        },
+        "1662311306": {
+          "tag": "situational",
+          "pick_rate": 0.286,
+          "annotation": "If you're too grandpa to Counterspell Affliction in time (me) this item will be a very expensive band-aid to your poor reaction time.",
+          "builds_appearing_in": 2,
+          "builds_total": 7
+        },
+        "1955841979": {
+          "tag": "core",
+          "pick_rate": 0.857,
+          "annotation": "Not only helps you eat large spirit damage chunks but gives base spirit and debuff resist too.",
+          "builds_appearing_in": 6,
+          "builds_total": 7
+        },
+        "3357231760": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "677738769": {
+          "tag": "situational",
+          "pick_rate": 0.286,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 7
+        },
+        "1371725689": {
+          "tag": "core",
+          "pick_rate": 0.714,
+          "annotation": "Kill flyers",
+          "builds_appearing_in": 5,
+          "builds_total": 7
+        },
+        "2417568017": {
+          "tag": "situational",
+          "pick_rate": 0.286,
+          "annotation": "Good vs tanks, AOE max health damage",
+          "builds_appearing_in": 2,
+          "builds_total": 7
+        },
+        "915014646": {
+          "tag": "flex",
+          "pick_rate": 0.571,
+          "annotation": "Lategame upgrade for all your actives, insane value, only buy if you are tanky enough",
+          "builds_appearing_in": 4,
+          "builds_total": 7
+        },
+        "1644605047": {
+          "tag": "flex",
+          "pick_rate": 0.571,
+          "annotation": "Against low gun, and/or high CC",
+          "builds_appearing_in": 4,
+          "builds_total": 7
+        },
+        "1047818222": {
+          "tag": "situational",
+          "pick_rate": 0.286,
+          "annotation": "Big into cc heavy teams, works well with Reactive Barrier and upgrades into Spellbreaker or Unstoppable.",
+          "builds_appearing_in": 2,
+          "builds_total": 7
+        },
+        "3791587546": {
+          "tag": "core",
+          "pick_rate": 0.714,
+          "annotation": "Builds from Slowing Bullets and gives a large weapon damage increase. Makes it extremely hard to get away from you. Best into characters dashing a lot.",
+          "builds_appearing_in": 5,
+          "builds_total": 7
+        },
+        "26002154": {
+          "tag": "core",
+          "pick_rate": 0.714,
+          "annotation": "Makes heavy melees good. When active this doubles your Blasted HP gain, so ALWAYS pop Blasted first now.",
+          "builds_appearing_in": 5,
+          "builds_total": 7
+        },
+        "1414025773": {
+          "tag": "core",
+          "pick_rate": 0.857,
+          "annotation": "Super good item, highly recommend against characters who rely on their abilities. Can also parry walker stomp to proc a free heal and stat bonus.",
+          "builds_appearing_in": 6,
+          "builds_total": 7
+        },
+        "3270001687": {
+          "tag": "core",
+          "pick_rate": 0.714,
+          "annotation": "Mobility to get in and/or out paired with a huge resist buff.",
+          "builds_appearing_in": 5,
+          "builds_total": 7
+        },
+        "1548066885": {
+          "tag": "flex",
+          "pick_rate": 0.571,
+          "annotation": "More ammo to keep pressure with m1. Blasted ammo refill is scaled by max ammo, so this makes our light melee reload more effective.",
+          "builds_appearing_in": 4,
+          "builds_total": 7
+        },
+        "2463960640": {
+          "tag": "core",
+          "pick_rate": 0.857,
+          "annotation": "If you skipped BV",
+          "builds_appearing_in": 6,
+          "builds_total": 7
+        },
+        "3970837787": {
+          "tag": "flex",
+          "pick_rate": 0.571,
+          "annotation": "Very good spirit power (+ resist) increase item. Spirit power not only increases your damage but also your Blasted bonus HP scaling.",
+          "builds_appearing_in": 4,
+          "builds_total": 7
+        },
+        "1009965641": {
+          "tag": "flex",
+          "pick_rate": 0.571,
+          "annotation": "Helps you kill all NPCs faster to gain wave prio and take jungle faster. Take less chip damage from all NPCs. Super good item.",
+          "builds_appearing_in": 4,
+          "builds_total": 7
+        },
+        "3862866912": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "I've been going resto shot in lane first before Melee Lifesteal and it feels so good, sometimes go both for more sustain early. Its for 4.8k gun spike early [Can sell After Escalating Resil or for it]",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "395944548": {
+          "tag": "flex",
+          "pick_rate": 0.429,
+          "annotation": "A lot of DPS by being near people, usually bought in mid-game but I personally don't prioritize spirit damage as much on this character.",
+          "builds_appearing_in": 3,
+          "builds_total": 7
+        },
+        "380806748": {
+          "tag": "situational",
+          "pick_rate": 0.286,
+          "annotation": "Ult bot. Cooldown on ult and can be upgraded if slot locked. [Can be Swapped for BRS] When upgraded it helps with ur lifestrike, Torment and Melee Charge cooldowns aswell.",
+          "builds_appearing_in": 2,
+          "builds_total": 7
+        },
+        "2971868509": {
+          "tag": "flex",
+          "pick_rate": 0.429,
+          "annotation": "Resist, shred, and gets you 4.8k spirit. Synergizes well with Torment Pulse.",
+          "builds_appearing_in": 3,
+          "builds_total": 7
+        },
+        "2064029594": {
+          "tag": "situational",
+          "pick_rate": 0.286,
+          "annotation": "For big chunky healthy people + 10 flat spirit | This + Point Blank for Spike [Skip Escalating] For faster gun spike",
+          "builds_appearing_in": 2,
+          "builds_total": 7
+        },
+        "339443430": {
+          "tag": "core",
+          "pick_rate": 0.714,
+          "annotation": "Very good item to resist incoming spirit damage and retaliate with bonus stats. In primarily spirit comps, pair with Spirit Resilience for 75% resist.",
+          "builds_appearing_in": 5,
+          "builds_total": 7
+        },
+        "865846625": {
+          "tag": "situational",
+          "pick_rate": 0.286,
+          "annotation": "Infinite Healing and Sustain, u wanna shoot mostly and not use a lot of melees from this point. Use your 1 to reload.",
+          "builds_appearing_in": 2,
+          "builds_total": 7
+        },
+        "3884003354": {
+          "tag": "flex",
+          "pick_rate": 0.571,
+          "annotation": "Super easy to activate shred for both damage types + antiheal. Super necessary into high resistance frontliners like Yamato, Abrams, Victor, etc.",
+          "builds_appearing_in": 4,
+          "builds_total": 7
+        },
+        "112198670": {
+          "tag": "situational",
+          "pick_rate": 0.286,
+          "annotation": "Nerfed, but still good. Now not the answer to everything but still worth considering.",
+          "builds_appearing_in": 2,
+          "builds_total": 7
+        },
+        "1252627263": {
+          "tag": "core",
+          "pick_rate": 0.714,
+          "annotation": "Definitely way weaker, especially early on. Works well with Colossus. Much later provides nice relevant bursts.",
+          "builds_appearing_in": 5,
+          "builds_total": 7
+        },
+        "1813726886": {
+          "tag": "flex",
+          "pick_rate": 0.429,
+          "annotation": "If this is a bad Slowing Hex game, prio Rapid Recharge earlier for 4.8k Spirit",
+          "builds_appearing_in": 3,
+          "builds_total": 7
+        },
+        "1152158042": {
+          "tag": "flex",
+          "pick_rate": 0.429,
+          "annotation": "Sets up your ult, or can better guarantee kills off of it",
+          "builds_appearing_in": 3,
+          "builds_total": 7
+        },
+        "1378931225": {
+          "tag": "core",
+          "pick_rate": 0.714,
+          "annotation": "Immune to bullets for a bit",
+          "builds_appearing_in": 5,
+          "builds_total": 7
+        },
+        "3696726732": {
+          "tag": "flex",
+          "pick_rate": 0.429,
+          "annotation": "Strong antiheal and percent health bleed. Gives no stat bonuses which kind of sucks but this item is still good.",
+          "builds_appearing_in": 3,
+          "builds_total": 7
+        },
+        "1055679805": {
+          "tag": "flex",
+          "pick_rate": 0.429,
+          "annotation": "Less healing than Leech passively but when active component is used it heals you by over 1000. With Frenzy pop Vampiric Burst below 50% HP to maximize fire rate and healing.",
+          "builds_appearing_in": 3,
+          "builds_total": 7
+        },
+        "2951612397": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "Put On Blasted for Longer Duration!",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "1282141666": {
+          "tag": "situational",
+          "pick_rate": 0.286,
+          "annotation": "Good sustain and taking %max hp. Great vs tanky units.",
+          "builds_appearing_in": 2,
+          "builds_total": 7
+        },
+        "2037039379": {
+          "tag": "situational",
+          "pick_rate": 0.286,
+          "annotation": "Like Silencer, this item works with Bashdown, so you can affect multiple people at once. Gives a HUGE damage bonus and really good bonus health too. Destroy Abrams.",
+          "builds_appearing_in": 2,
+          "builds_total": 7
+        },
+        "1113837674": {
+          "tag": "flex",
+          "pick_rate": 0.571,
+          "annotation": "Lowers enemy spirit damage output, and silences them. It builds up stacks on your Bashdown so you can hit multiple people with it at once. Very good.",
+          "builds_appearing_in": 4,
+          "builds_total": 7
+        },
+        "3028234315": {
+          "tag": "situational",
+          "pick_rate": 0.286,
+          "annotation": "*clink* *clink* *clink* Vs Heavy spirit dps could be good for more cooldowns!",
+          "builds_appearing_in": 2,
+          "builds_total": 7
+        },
+        "1932939246": {
+          "tag": "flex",
+          "pick_rate": 0.429,
+          "annotation": "Strong for ult usage and mid-boss fights. Bashdown and Rising Ram soft cc can be used to force people to stay in the fire.",
+          "builds_appearing_in": 3,
+          "builds_total": 7
+        },
+        "1414319208": {
+          "tag": "flex",
+          "pick_rate": 0.429,
+          "annotation": "If you already have stacked bullet resist this can help you stack more and helps you build more weapon damage fast. Worth considering selling Cultist Sacrifice for this.",
+          "builds_appearing_in": 3,
+          "builds_total": 7
+        },
+        "1710079648": {
+          "tag": "flex",
+          "pick_rate": 0.571,
+          "annotation": "Actually OP item. Use this inbetween waves and hit boxes, take sinners, or take camps. Can be bought later if you're omega pooping on the enemy lane (would still buy anyway though).",
+          "builds_appearing_in": 4,
+          "builds_total": 7
+        },
+        "2829638276": {
+          "tag": "core",
+          "pick_rate": 0.714,
+          "annotation": "Very solid green item, always worth taking if you're taking more damage than you'd like.",
+          "builds_appearing_in": 5,
+          "builds_total": 7
+        },
+        "4204808176": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "For the naughty laners who like to melee you a lot. Don't just spam it like a bot, that will get you killed.",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "2717651715": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "This character NEEDS Blasted active to be OP right now. Superior makes our duration longer and scales the amount of time melees extend it. OP on upgraded Rising Ram too.v",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "3140772621": {
+          "tag": "situational",
+          "pick_rate": 0.286,
+          "annotation": "More useful now than pre-November patch. Fat resist bonus when low.",
+          "builds_appearing_in": 2,
+          "builds_total": 7
+        },
+        "989206714": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "Gives spirit resist, fire rate, and FAT debuff resist. Definitely pick into hard CC.",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "1976391348": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "Gives spirit resist and is lowkey a little OP. Strong early damage that scales and slows for a long duration. Effectively a 5th ability. Do not sleep on this item.",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "1925087134": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "Very helpful when played into characters that rely on their m1.",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "1254091416": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "Like Slowing Hex, kind of OP, lets you get picks easier and shuts down people in the sky.",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "619484391": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "Fallen from grace since last patch but still a silence which proves useful when ambushing enemies.",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "2617435668": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "Another item to shutdown carries with, boasting even more debuffs and clearing all buffs.",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "2603935618": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "Cheap antiheal and heals on kill. Great for ganking playstyle.",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "3144988365": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "50% heal reduction is pretty large and also bleeds 30% of someone's health for its duration. Gives bonus spirit power and health which are very nice.",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "2519598785": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "If you're really agead or don't have any particular item you need to buy scaling your Blasted even further is pretty big.",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "630839635": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "Mostly testing right now but being Blasted is more important than ever, so never not having Blasted is kind of big.",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "2356412290": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "Even more ammo and gun damage. Extra ammo is important because it scales our melee ammo replenish and lets us mix up our melee mindgames.",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "3294954488": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "This item is INSANE damage. Cultist Sacrifice is less necessary with how squishy jungle is now, and this grants you the range and damage aspect but better early on.",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "710436191": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "Higher DPS and hard movement lock on whoever you hit. Very easy to hit targets with the active component after Rising Ram or Bashdown. Useful for slippery targets.",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "1770441818": {
+          "tag": "situational",
+          "pick_rate": 0.286,
+          "annotation": "Cheap and easy bullet resist shred.",
+          "builds_appearing_in": 2,
+          "builds_total": 7
+        },
+        "2481177645": {
+          "tag": "flex",
+          "pick_rate": 0.429,
+          "annotation": "Big bullet resist shred on alone targets, and bullet resist shred around people in general.",
+          "builds_appearing_in": 3,
+          "builds_total": 7
+        },
+        "3403085434": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        },
+        "3585132399": {
+          "tag": "situational",
+          "pick_rate": 0.143,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 7
+        }
       }
     }
   },

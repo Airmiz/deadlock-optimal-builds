@@ -45,19 +45,9 @@
     "items": {
       "method": "synergy_ilp",
       "mmr_slice": "high_mmr",
-      "total_cost": 70400,
+      "total_cost": 78400,
       "phases": {
         "early": [
-          {
-            "slot": "spirit",
-            "category": "spirit",
-            "tier": 1,
-            "cost": 800,
-            "name": "Mystic Burst",
-            "item_id": 1998374645,
-            "avg_buy_time_min": 2.5,
-            "win_rate": 0.4978
-          },
           {
             "slot": "flex",
             "category": "weapon",
@@ -66,27 +56,33 @@
             "name": "Stalker",
             "item_id": 98582110,
             "avg_buy_time_min": 5.9,
-            "win_rate": 0.5104
-          },
-          {
-            "slot": "vitality",
-            "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "name": "Extra Stamina",
-            "item_id": 4139877411,
-            "avg_buy_time_min": 7.5,
-            "win_rate": 0.51
+            "win_rate": 0.5104,
+            "tag": "flex",
+            "pick_rate": 0.444
           },
           {
             "slot": "flex",
             "category": "weapon",
             "tier": 2,
             "cost": 1600,
-            "name": "Slowing Bullets",
-            "item_id": 393974127,
-            "avg_buy_time_min": 8.4,
-            "win_rate": 0.5191
+            "name": "Kinetic Dash",
+            "item_id": 3977876567,
+            "avg_buy_time_min": 9.2,
+            "win_rate": 0.5116,
+            "tag": "core",
+            "pick_rate": 0.778
+          },
+          {
+            "slot": "vitality",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "name": "Healbane",
+            "item_id": 2603935618,
+            "avg_buy_time_min": 11.2,
+            "win_rate": 0.5098,
+            "tag": "flex",
+            "pick_rate": 0.444
           }
         ],
         "mid": [
@@ -98,17 +94,21 @@
             "name": "Fortitude",
             "item_id": 3585132399,
             "avg_buy_time_min": 15.7,
-            "win_rate": 0.5321
+            "win_rate": 0.5321,
+            "tag": "flex",
+            "pick_rate": 0.556
           },
           {
-            "slot": "spirit",
-            "category": "spirit",
-            "tier": 2,
-            "cost": 1600,
-            "name": "Duration Extender",
-            "item_id": 2951612397,
-            "avg_buy_time_min": 19.5,
-            "win_rate": 0.5222
+            "slot": "flex",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "name": "Toxic Bullets",
+            "item_id": 3696726732,
+            "avg_buy_time_min": 15.7,
+            "win_rate": 0.5101,
+            "tag": "core",
+            "pick_rate": 0.778
           },
           {
             "slot": "spirit",
@@ -118,10 +118,24 @@
             "name": "Superior Duration",
             "item_id": 2717651715,
             "avg_buy_time_min": 22.6,
-            "win_rate": 0.5341
+            "win_rate": 0.5341,
+            "tag": "core",
+            "pick_rate": 0.889
           }
         ],
         "late": [
+          {
+            "slot": "spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "name": "Escalating Exposure",
+            "item_id": 3005970438,
+            "avg_buy_time_min": 25.9,
+            "win_rate": 0.5669,
+            "tag": "situational",
+            "pick_rate": 0.222
+          },
           {
             "slot": "weapon",
             "category": "weapon",
@@ -130,17 +144,9 @@
             "name": "Glass Cannon",
             "item_id": 365620721,
             "avg_buy_time_min": 28.0,
-            "win_rate": 0.6423
-          },
-          {
-            "slot": "vitality",
-            "category": "vitality",
-            "tier": 4,
-            "cost": 6400,
-            "name": "Vampiric Burst",
-            "item_id": 1055679805,
-            "avg_buy_time_min": 28.3,
-            "win_rate": 0.579
+            "win_rate": 0.6423,
+            "tag": "situational",
+            "pick_rate": 0.111
           },
           {
             "slot": "weapon",
@@ -150,7 +156,9 @@
             "name": "Shadow Weave",
             "item_id": 1798666702,
             "avg_buy_time_min": 29.0,
-            "win_rate": 0.6675
+            "win_rate": 0.6675,
+            "tag": "flex",
+            "pick_rate": 0.333
           },
           {
             "slot": "weapon",
@@ -160,7 +168,23 @@
             "name": "Lucky Shot",
             "item_id": 1396247347,
             "avg_buy_time_min": 29.8,
-            "win_rate": 0.6413
+            "win_rate": 0.6413,
+            "tag": "flex",
+            "pick_rate": 0.333,
+            "annotation": "nuts on vin cuz it procs after all damage buffs -- can replace with boundless if they have lots of anti-gun or you dont have many sniper stacks"
+          },
+          {
+            "slot": "spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "name": "Mercurial Magnum",
+            "item_id": 3919289022,
+            "avg_buy_time_min": 30.4,
+            "win_rate": 0.5965,
+            "tag": "situational",
+            "pick_rate": 0.222,
+            "annotation": "not bad upgrade if no slot"
           },
           {
             "slot": "spirit",
@@ -170,7 +194,10 @@
             "name": "Spirit Burn",
             "item_id": 343572757,
             "avg_buy_time_min": 31.6,
-            "win_rate": 0.6334
+            "win_rate": 0.6334,
+            "tag": "situational",
+            "pick_rate": 0.111,
+            "annotation": "more damage and anti-heal"
           },
           {
             "slot": "weapon",
@@ -180,7 +207,9 @@
             "name": "Silencer",
             "item_id": 1113837674,
             "avg_buy_time_min": 32.0,
-            "win_rate": 0.6417
+            "win_rate": 0.6417,
+            "tag": "flex",
+            "pick_rate": 0.556
           },
           {
             "slot": "vitality",
@@ -190,7 +219,21 @@
             "name": "Inhibitor",
             "item_id": 2037039379,
             "avg_buy_time_min": 32.0,
-            "win_rate": 0.6285
+            "win_rate": 0.6285,
+            "tag": "flex",
+            "pick_rate": 0.667
+          },
+          {
+            "slot": "vitality",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "name": "Leech",
+            "item_id": 865846625,
+            "avg_buy_time_min": 32.1,
+            "win_rate": 0.6042,
+            "tag": "situational",
+            "pick_rate": 0.222
           },
           {
             "slot": "flex",
@@ -200,17 +243,9 @@
             "name": "Crippling Headshot",
             "item_id": 3884003354,
             "avg_buy_time_min": 32.3,
-            "win_rate": 0.6243
-          },
-          {
-            "slot": "flex",
-            "category": "weapon",
-            "tier": 4,
-            "cost": 6400,
-            "name": "Frenzy",
-            "item_id": 339443430,
-            "avg_buy_time_min": 33.2,
-            "win_rate": 0.6351
+            "win_rate": 0.6243,
+            "tag": "flex",
+            "pick_rate": 0.556
           }
         ]
       }
@@ -278,7 +313,7 @@
   },
   "items": {
     "all_mmr": {
-      "candidate_count": 137,
+      "candidate_count": 89,
       "min_matches_filter": 500,
       "wilson_greedy": {
         "picks": [
@@ -296,7 +331,9 @@
             "wr_delta_pp": 12.68,
             "avg_buy_time_s": 1814.0,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "situational",
+            "pick_rate": 0.2
           },
           {
             "item_id": 1113837674,
@@ -312,7 +349,9 @@
             "wr_delta_pp": 12.64,
             "avg_buy_time_s": 2075.9,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.6
           },
           {
             "item_id": 1798666702,
@@ -328,7 +367,9 @@
             "wr_delta_pp": 12.96,
             "avg_buy_time_s": 1870.8,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.4
           },
           {
             "item_id": 1396247347,
@@ -344,7 +385,10 @@
             "wr_delta_pp": 12.07,
             "avg_buy_time_s": 1874.4,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.4,
+            "annotation": "nuts on vin cuz it procs after all damage buffs -- can replace with boundless if they have lots of anti-gun or you dont have many sniper stacks"
           },
           {
             "item_id": 2037039379,
@@ -360,7 +404,9 @@
             "wr_delta_pp": 11.07,
             "avg_buy_time_s": 2010.4,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "flex",
+            "pick_rate": 0.6
           },
           {
             "item_id": 1282141666,
@@ -376,7 +422,9 @@
             "wr_delta_pp": 8.8,
             "avg_buy_time_s": 2015.2,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "situational",
+            "pick_rate": 0.3
           },
           {
             "item_id": 2820116164,
@@ -392,7 +440,9 @@
             "wr_delta_pp": 9.57,
             "avg_buy_time_s": 2229.4,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "situational",
+            "pick_rate": 0.1
           },
           {
             "item_id": 2407781327,
@@ -408,7 +458,9 @@
             "wr_delta_pp": 7.75,
             "avg_buy_time_s": 2320.3,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "situational",
+            "pick_rate": 0.2
           },
           {
             "item_id": 343572757,
@@ -424,7 +476,10 @@
             "wr_delta_pp": 9.1,
             "avg_buy_time_s": 2077.5,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.1,
+            "annotation": "more damage and anti-heal"
           },
           {
             "item_id": 3577481646,
@@ -440,7 +495,9 @@
             "wr_delta_pp": 8.32,
             "avg_buy_time_s": 2067.2,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0
           },
           {
             "item_id": 3919289022,
@@ -456,7 +513,10 @@
             "wr_delta_pp": 6.06,
             "avg_buy_time_s": 1959.8,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.3,
+            "annotation": "not bad upgrade if no slot"
           },
           {
             "item_id": 2142980412,
@@ -472,7 +532,10 @@
             "wr_delta_pp": 5.71,
             "avg_buy_time_s": 1801.1,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "not bad upgrade if no slot"
           },
           {
             "item_id": 2226497419,
@@ -488,7 +551,10 @@
             "wr_delta_pp": 12.48,
             "avg_buy_time_s": 2112.9,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "situational",
+            "pick_rate": 0.3,
+            "annotation": "extra damage"
           },
           {
             "item_id": 339443430,
@@ -504,7 +570,9 @@
             "wr_delta_pp": 11.63,
             "avg_buy_time_s": 2134.6,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.5
           },
           {
             "item_id": 3884003354,
@@ -520,7 +588,9 @@
             "wr_delta_pp": 11.06,
             "avg_buy_time_s": 2080.1,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.6
           },
           {
             "item_id": 673001892,
@@ -536,7 +606,10 @@
             "wr_delta_pp": 10.9,
             "avg_buy_time_s": 2339.8,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.4,
+            "annotation": "buy this only when the enemy already has a plated armor"
           }
         ]
       },
@@ -556,7 +629,9 @@
             "wr_delta_pp": 12.68,
             "avg_buy_time_s": 1814.0,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "situational",
+            "pick_rate": 0.2
           },
           {
             "item_id": 1113837674,
@@ -572,23 +647,9 @@
             "wr_delta_pp": 12.64,
             "avg_buy_time_s": 2075.9,
             "phase": "late",
-            "slot": "weapon"
-          },
-          {
-            "item_id": 1798666702,
-            "name": "Shadow Weave",
-            "category": "weapon",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 6977,
-            "wins": 4449,
-            "win_rate": 0.6377,
-            "wilson_lb": 0.6263,
-            "score": 0.1182,
-            "wr_delta_pp": 12.96,
-            "avg_buy_time_s": 1870.8,
-            "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.6
           },
           {
             "item_id": 1396247347,
@@ -604,135 +665,10 @@
             "wr_delta_pp": 12.07,
             "avg_buy_time_s": 1874.4,
             "phase": "late",
-            "slot": "weapon"
-          },
-          {
-            "item_id": 2037039379,
-            "name": "Inhibitor",
-            "category": "vitality",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 61835,
-            "wins": 38267,
-            "win_rate": 0.6189,
-            "wilson_lb": 0.615,
-            "score": 0.1069,
-            "wr_delta_pp": 11.07,
-            "avg_buy_time_s": 2010.4,
-            "phase": "late",
-            "slot": "vitality"
-          },
-          {
-            "item_id": 4139877411,
-            "name": "Extra Stamina",
-            "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "matches": 210216,
-            "wins": 108032,
-            "win_rate": 0.5139,
-            "wilson_lb": 0.5118,
-            "score": 0.0037,
-            "wr_delta_pp": 0.58,
-            "avg_buy_time_s": 442.3,
-            "phase": "early",
-            "slot": "vitality"
-          },
-          {
-            "item_id": 2829638276,
-            "name": "Extra Regen",
-            "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "matches": 119871,
-            "wins": 60707,
-            "win_rate": 0.5064,
-            "wilson_lb": 0.5036,
-            "score": -0.0045,
-            "wr_delta_pp": -0.17,
-            "avg_buy_time_s": 233.7,
-            "phase": "early",
-            "slot": "vitality"
-          },
-          {
-            "item_id": 2603935618,
-            "name": "Healbane",
-            "category": "vitality",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 67424,
-            "wins": 33895,
-            "win_rate": 0.5027,
-            "wilson_lb": 0.4989,
-            "score": -0.0092,
-            "wr_delta_pp": -0.54,
-            "avg_buy_time_s": 749.0,
-            "phase": "early",
-            "slot": "vitality"
-          },
-          {
-            "item_id": 343572757,
-            "name": "Spirit Burn",
-            "category": "spirit",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 5969,
-            "wins": 3576,
-            "win_rate": 0.5991,
-            "wilson_lb": 0.5866,
-            "score": 0.0785,
-            "wr_delta_pp": 9.1,
-            "avg_buy_time_s": 2077.5,
-            "phase": "late",
-            "slot": "spirit"
-          },
-          {
-            "item_id": 2951612397,
-            "name": "Duration Extender",
-            "category": "spirit",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 67982,
-            "wins": 35037,
-            "win_rate": 0.5154,
-            "wilson_lb": 0.5116,
-            "score": 0.0035,
-            "wr_delta_pp": 0.73,
-            "avg_buy_time_s": 1184.3,
-            "phase": "mid",
-            "slot": "spirit"
-          },
-          {
-            "item_id": 1150006784,
-            "name": "Arcane Surge",
-            "category": "spirit",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 52414,
-            "wins": 26593,
-            "win_rate": 0.5074,
-            "wilson_lb": 0.5031,
-            "score": -0.005,
-            "wr_delta_pp": -0.07,
-            "avg_buy_time_s": 789.8,
-            "phase": "mid",
-            "slot": "spirit"
-          },
-          {
-            "item_id": 1998374645,
-            "name": "Mystic Burst",
-            "category": "spirit",
-            "tier": 1,
-            "cost": 800,
-            "matches": 55231,
-            "wins": 27244,
-            "win_rate": 0.4933,
-            "wilson_lb": 0.4891,
-            "score": -0.019,
-            "wr_delta_pp": -1.48,
-            "avg_buy_time_s": 231.6,
-            "phase": "early",
-            "slot": "spirit"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.4,
+            "annotation": "nuts on vin cuz it procs after all damage buffs -- can replace with boundless if they have lots of anti-gun or you dont have many sniper stacks"
           },
           {
             "item_id": 339443430,
@@ -748,7 +684,155 @@
             "wr_delta_pp": 11.63,
             "avg_buy_time_s": 2134.6,
             "phase": "late",
-            "slot": "flex"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.5
+          },
+          {
+            "item_id": 2037039379,
+            "name": "Inhibitor",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 61835,
+            "wins": 38267,
+            "win_rate": 0.6189,
+            "wilson_lb": 0.615,
+            "score": 0.1069,
+            "wr_delta_pp": 11.07,
+            "avg_buy_time_s": 2010.4,
+            "phase": "late",
+            "slot": "vitality",
+            "tag": "flex",
+            "pick_rate": 0.6
+          },
+          {
+            "item_id": 1055679805,
+            "name": "Vampiric Burst",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 144452,
+            "wins": 82125,
+            "win_rate": 0.5685,
+            "wilson_lb": 0.566,
+            "score": 0.0579,
+            "wr_delta_pp": 6.04,
+            "avg_buy_time_s": 1732.3,
+            "phase": "late",
+            "slot": "vitality",
+            "tag": "flex",
+            "pick_rate": 0.5
+          },
+          {
+            "item_id": 2603935618,
+            "name": "Healbane",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 67424,
+            "wins": 33895,
+            "win_rate": 0.5027,
+            "wilson_lb": 0.4989,
+            "score": -0.0092,
+            "wr_delta_pp": -0.54,
+            "avg_buy_time_s": 749.0,
+            "phase": "early",
+            "slot": "vitality",
+            "tag": "flex",
+            "pick_rate": 0.5
+          },
+          {
+            "item_id": 1710079648,
+            "name": "Healing Rite",
+            "category": "vitality",
+            "tier": 1,
+            "cost": 800,
+            "matches": 29231,
+            "wins": 14469,
+            "win_rate": 0.495,
+            "wilson_lb": 0.4893,
+            "score": -0.0189,
+            "wr_delta_pp": -1.31,
+            "avg_buy_time_s": 344.2,
+            "phase": "early",
+            "slot": "vitality",
+            "tag": "flex",
+            "pick_rate": 0.5
+          },
+          {
+            "item_id": 343572757,
+            "name": "Spirit Burn",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 5969,
+            "wins": 3576,
+            "win_rate": 0.5991,
+            "wilson_lb": 0.5866,
+            "score": 0.0785,
+            "wr_delta_pp": 9.1,
+            "avg_buy_time_s": 2077.5,
+            "phase": "late",
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.1,
+            "annotation": "more damage and anti-heal"
+          },
+          {
+            "item_id": 3919289022,
+            "name": "Mercurial Magnum",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 23784,
+            "wins": 13526,
+            "win_rate": 0.5687,
+            "wilson_lb": 0.5624,
+            "score": 0.0543,
+            "wr_delta_pp": 6.06,
+            "avg_buy_time_s": 1959.8,
+            "phase": "late",
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.3,
+            "annotation": "not bad upgrade if no slot"
+          },
+          {
+            "item_id": 2717651715,
+            "name": "Superior Duration",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 98910,
+            "wins": 52483,
+            "win_rate": 0.5306,
+            "wilson_lb": 0.5275,
+            "score": 0.0194,
+            "wr_delta_pp": 2.25,
+            "avg_buy_time_s": 1434.6,
+            "phase": "mid",
+            "slot": "spirit",
+            "tag": "core",
+            "pick_rate": 0.9
+          },
+          {
+            "item_id": 1998374645,
+            "name": "Mystic Burst",
+            "category": "spirit",
+            "tier": 1,
+            "cost": 800,
+            "matches": 55231,
+            "wins": 27244,
+            "win_rate": 0.4933,
+            "wilson_lb": 0.4891,
+            "score": -0.019,
+            "wr_delta_pp": -1.48,
+            "avg_buy_time_s": 231.6,
+            "phase": "early",
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.3
           },
           {
             "item_id": 3884003354,
@@ -764,7 +848,9 @@
             "wr_delta_pp": 11.06,
             "avg_buy_time_s": 2080.1,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.6
           },
           {
             "item_id": 2480592370,
@@ -780,7 +866,10 @@
             "wr_delta_pp": 8.43,
             "avg_buy_time_s": 1801.7,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "situational",
+            "pick_rate": 0.2,
+            "annotation": "stacker"
           },
           {
             "item_id": 98582110,
@@ -796,7 +885,27 @@
             "wr_delta_pp": -0.24,
             "avg_buy_time_s": 457.8,
             "phase": "early",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.5
+          },
+          {
+            "item_id": 3970837787,
+            "name": "Enchanter's Emblem",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 23624,
+            "wins": 11677,
+            "win_rate": 0.4943,
+            "wilson_lb": 0.4879,
+            "score": -0.0202,
+            "wr_delta_pp": -1.38,
+            "avg_buy_time_s": 736.1,
+            "phase": "early",
+            "slot": "flex",
+            "tag": "situational",
+            "pick_rate": 0.2
           }
         ]
       },
@@ -817,7 +926,9 @@
             "avg_buy_time_s": 597.1,
             "phase": "early",
             "build_freq_weight": 425.1,
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 0.8
           },
           {
             "item_id": 673001892,
@@ -834,7 +945,10 @@
             "avg_buy_time_s": 2339.8,
             "phase": "late",
             "build_freq_weight": 280.4,
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.4,
+            "annotation": "buy this only when the enemy already has a plated armor"
           },
           {
             "item_id": 2226497419,
@@ -851,7 +965,10 @@
             "avg_buy_time_s": 2112.9,
             "phase": "late",
             "build_freq_weight": 277.7,
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "situational",
+            "pick_rate": 0.3,
+            "annotation": "extra damage"
           },
           {
             "item_id": 2480592370,
@@ -868,7 +985,10 @@
             "avg_buy_time_s": 1801.7,
             "phase": "late",
             "build_freq_weight": 273.4,
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "situational",
+            "pick_rate": 0.2,
+            "annotation": "stacker"
           },
           {
             "item_id": 1414025773,
@@ -885,7 +1005,10 @@
             "avg_buy_time_s": 1521.4,
             "phase": "late",
             "build_freq_weight": 490.3,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.9,
+            "annotation": "BUY 1 OF 3 3KS DEPENDING ON GAME (counterspell for pocket lash mina type games)"
           },
           {
             "item_id": 3731635960,
@@ -902,7 +1025,10 @@
             "avg_buy_time_s": 1505.6,
             "phase": "late",
             "build_freq_weight": 490.3,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.9,
+            "annotation": "counter item against: doorman, haze, infernus, ledy geist, mcginnis, mina, mirage, mo krill, paige, paradox, seven, silver, venator, vindicta, vyper, warden and debuff items"
           },
           {
             "item_id": 1378931225,
@@ -919,7 +1045,10 @@
             "avg_buy_time_s": 1774.0,
             "phase": "late",
             "build_freq_weight": 483.7,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.8,
+            "annotation": "it's perfect in a situation where the enemy is in a gun and he's well-fed"
           },
           {
             "item_id": 3491236900,
@@ -936,7 +1065,10 @@
             "avg_buy_time_s": 2147.6,
             "phase": "late",
             "build_freq_weight": 467.3,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "flex",
+            "pick_rate": 0.7,
+            "annotation": "best gun counter item"
           },
           {
             "item_id": 2142980412,
@@ -953,7 +1085,10 @@
             "avg_buy_time_s": 1801.1,
             "phase": "late",
             "build_freq_weight": 369.1,
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "not bad upgrade if no slot"
           },
           {
             "item_id": 1998374645,
@@ -970,58 +1105,49 @@
             "avg_buy_time_s": 231.6,
             "phase": "early",
             "build_freq_weight": 361.2,
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.3
           },
           {
-            "item_id": 968099481,
-            "name": "Extra Spirit",
+            "item_id": 3919289022,
+            "name": "Mercurial Magnum",
             "category": "spirit",
-            "tier": 1,
-            "cost": 800,
-            "matches": 42179,
-            "wins": 20102,
-            "win_rate": 0.4766,
-            "wilson_lb": 0.4718,
-            "score": -0.0363,
-            "wr_delta_pp": -3.15,
-            "avg_buy_time_s": 643.0,
-            "phase": "early",
-            "build_freq_weight": 344.8,
-            "slot": "spirit"
-          },
-          {
-            "item_id": 1219329868,
-            "name": "Spirit Sap",
-            "category": "spirit",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 9320,
-            "wins": 4854,
-            "win_rate": 0.5208,
-            "wilson_lb": 0.5107,
-            "score": 0.0026,
-            "wr_delta_pp": 1.27,
-            "avg_buy_time_s": 1306.6,
-            "phase": "mid",
-            "build_freq_weight": 344.8,
-            "slot": "spirit"
-          },
-          {
-            "item_id": 1955841979,
-            "name": "Spellbreaker",
-            "category": "vitality",
             "tier": 4,
             "cost": 6400,
-            "matches": 19952,
-            "wins": 11254,
-            "win_rate": 0.5641,
-            "wilson_lb": 0.5572,
-            "score": 0.049,
-            "wr_delta_pp": 5.59,
-            "avg_buy_time_s": 2182.7,
+            "matches": 23784,
+            "wins": 13526,
+            "win_rate": 0.5687,
+            "wilson_lb": 0.5624,
+            "score": 0.0543,
+            "wr_delta_pp": 6.06,
+            "avg_buy_time_s": 1959.8,
             "phase": "late",
-            "build_freq_weight": 467.3,
-            "slot": "flex"
+            "build_freq_weight": 277.0,
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.3,
+            "annotation": "not bad upgrade if no slot"
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 13030,
+            "wins": 6981,
+            "win_rate": 0.5358,
+            "wilson_lb": 0.5272,
+            "score": 0.0191,
+            "wr_delta_pp": 2.76,
+            "avg_buy_time_s": 1896.8,
+            "phase": "late",
+            "build_freq_weight": 273.7,
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.3,
+            "annotation": "powerspike"
           },
           {
             "item_id": 1710079648,
@@ -1038,24 +1164,9 @@
             "avg_buy_time_s": 344.2,
             "phase": "early",
             "build_freq_weight": 394.3,
-            "slot": "flex"
-          },
-          {
-            "item_id": 4139877411,
-            "name": "Extra Stamina",
-            "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "matches": 210216,
-            "wins": 108032,
-            "win_rate": 0.5139,
-            "wilson_lb": 0.5118,
-            "score": 0.0037,
-            "wr_delta_pp": 0.58,
-            "avg_buy_time_s": 442.3,
-            "phase": "early",
-            "build_freq_weight": 388.5,
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.5
           },
           {
             "item_id": 1644605047,
@@ -1072,7 +1183,49 @@
             "avg_buy_time_s": 964.2,
             "phase": "mid",
             "build_freq_weight": 277.7,
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "situational",
+            "pick_rate": 0.3,
+            "annotation": "counter stun"
+          },
+          {
+            "item_id": 3361811174,
+            "name": "Cheat Death",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 913,
+            "wins": 536,
+            "win_rate": 0.5871,
+            "wilson_lb": 0.5548,
+            "score": 0.0467,
+            "wr_delta_pp": 7.9,
+            "avg_buy_time_s": 2574.7,
+            "phase": "late",
+            "build_freq_weight": 273.4,
+            "slot": "flex",
+            "tag": "situational",
+            "pick_rate": 0.2,
+            "annotation": "counter dynamo and mo krill in deep late"
+          },
+          {
+            "item_id": 915014646,
+            "name": "Transcendent Cooldown",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 3353,
+            "wins": 1865,
+            "win_rate": 0.5562,
+            "wilson_lb": 0.5393,
+            "score": 0.0312,
+            "wr_delta_pp": 4.81,
+            "avg_buy_time_s": 2135.5,
+            "phase": "late",
+            "build_freq_weight": 273.4,
+            "slot": "flex",
+            "tag": "situational",
+            "pick_rate": 0.2
           }
         ],
         "source_builds": [
@@ -1137,10 +1290,838 @@
             "matches": 231
           }
         ]
+      },
+      "item_metadata": {
+        "968099481": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 10
+        },
+        "1998374645": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "84321454": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "1219329868": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "7409189": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "4139877411": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "",
+          "builds_appearing_in": 6,
+          "builds_total": 10
+        },
+        "3977876567": {
+          "tag": "core",
+          "pick_rate": 0.8,
+          "annotation": "",
+          "builds_appearing_in": 8,
+          "builds_total": 10
+        },
+        "3731635960": {
+          "tag": "core",
+          "pick_rate": 0.9,
+          "annotation": "counter item against: doorman, haze, infernus, ledy geist, mcginnis, mina, mirage, mo krill, paige, paradox, seven, silver, venator, vindicta, vyper, warden and debuff items",
+          "builds_appearing_in": 9,
+          "builds_total": 10
+        },
+        "334300056": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "2519598785": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "powerspike",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "395867183": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "2121044373": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "380806748": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 10
+        },
+        "3261353684": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 10
+        },
+        "343572757": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "more damage and anti-heal",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "2226497419": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "extra damage",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "2480592370": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "stacker",
+          "builds_appearing_in": 2,
+          "builds_total": 10
+        },
+        "915014646": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 10
+        },
+        "2533252781": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "better to buy on high pts lobby then on low",
+          "builds_appearing_in": 2,
+          "builds_total": 10
+        },
+        "1710079648": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 10
+        },
+        "1644605047": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "counter stun",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "1378931225": {
+          "tag": "core",
+          "pick_rate": 0.8,
+          "annotation": "it's perfect in a situation where the enemy is in a gun and he's well-fed",
+          "builds_appearing_in": 8,
+          "builds_total": 10
+        },
+        "1414025773": {
+          "tag": "core",
+          "pick_rate": 0.9,
+          "annotation": "BUY 1 OF 3 3KS DEPENDING ON GAME (counterspell for pocket lash mina type games)",
+          "builds_appearing_in": 9,
+          "builds_total": 10
+        },
+        "3361811174": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "counter dynamo and mo krill in deep late",
+          "builds_appearing_in": 2,
+          "builds_total": 10
+        },
+        "1955841979": {
+          "tag": "core",
+          "pick_rate": 0.8,
+          "annotation": "best spirit counter item",
+          "builds_appearing_in": 8,
+          "builds_total": 10
+        },
+        "3491236900": {
+          "tag": "flex",
+          "pick_rate": 0.7,
+          "annotation": "best gun counter item",
+          "builds_appearing_in": 7,
+          "builds_total": 10
+        },
+        "673001892": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "buy this only when the enemy already has a plated armor",
+          "builds_appearing_in": 4,
+          "builds_total": 10
+        },
+        "3919289022": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "not bad upgrade if no slot",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "2142980412": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "not bad upgrade if no slot",
+          "builds_appearing_in": 5,
+          "builds_total": 10
+        },
+        "98582110": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 10
+        },
+        "2603935618": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 10
+        },
+        "3696726732": {
+          "tag": "core",
+          "pick_rate": 0.8,
+          "annotation": "",
+          "builds_appearing_in": 8,
+          "builds_total": 10
+        },
+        "1150006784": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 10
+        },
+        "1292979587": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "3585132399": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "optional",
+          "builds_appearing_in": 6,
+          "builds_total": 10
+        },
+        "2829638276": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 10
+        },
+        "3633614685": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 10
+        },
+        "619484391": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "",
+          "builds_appearing_in": 6,
+          "builds_total": 10
+        },
+        "2951612397": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "",
+          "builds_appearing_in": 6,
+          "builds_total": 10
+        },
+        "2717651715": {
+          "tag": "core",
+          "pick_rate": 0.9,
+          "annotation": "",
+          "builds_appearing_in": 9,
+          "builds_total": 10
+        },
+        "989206714": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "absolutely insane if you can outheal the damage",
+          "builds_appearing_in": 4,
+          "builds_total": 10
+        },
+        "499683006": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 10
+        },
+        "1055679805": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 10
+        },
+        "1798666702": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 10
+        },
+        "2481177645": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "",
+          "builds_appearing_in": 6,
+          "builds_total": 10
+        },
+        "3884003354": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "",
+          "builds_appearing_in": 6,
+          "builds_total": 10
+        },
+        "339443430": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 10
+        },
+        "2037039379": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "",
+          "builds_appearing_in": 6,
+          "builds_total": 10
+        },
+        "1113837674": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "",
+          "builds_appearing_in": 6,
+          "builds_total": 10
+        },
+        "2163598980": {
+          "tag": "flex",
+          "pick_rate": 0.7,
+          "annotation": "",
+          "builds_appearing_in": 7,
+          "builds_total": 10
+        },
+        "1342610602": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 10
+        },
+        "393974127": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 10
+        },
+        "3791587546": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "2095565695": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 10
+        },
+        "3140772621": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "2407781327": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 10
+        },
+        "1250307611": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "",
+          "builds_appearing_in": 6,
+          "builds_total": 10
+        },
+        "668299740": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "4104549924": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "3399065363": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 10
+        },
+        "1437614329": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "sell later",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "2010028405": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "465043967": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "1009965641": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "2447176615": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "",
+          "builds_appearing_in": 6,
+          "builds_total": 10
+        },
+        "3403085434": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "2739107182": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 10
+        },
+        "1396247347": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "nuts on vin cuz it procs after all damage buffs -- can replace with boundless if they have lots of anti-gun or you dont have many sniper stacks",
+          "builds_appearing_in": 4,
+          "builds_total": 10
+        },
+        "2678489038": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "2064029594": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 10
+        },
+        "3776945997": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "1548066885": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "2356412290": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "3331811235": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 10
+        },
+        "787198704": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "not that great for this build, but the faster snipes is nice. Needed for 4.8k spirit spike",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "2152872419": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "865846625": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 10
+        },
+        "1409190604": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "Can replace leech if you want - great item, but cant use snipe so only get it very late when you stop sniping",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "1254091416": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "3270001687": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "112198670": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 10
+        },
+        "1932939246": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "good for pivoting to a more support role -- alch fire+stake get crazy range when flying",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "1193964439": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "3005970438": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 10
+        },
+        "2800629741": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "for when you just love the view from up there",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "4204808176": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 10
+        },
+        "1813726886": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "infernus can go kick rocks too. if he hasnt already ran his ass back home by the time this connects, that is",
+          "builds_appearing_in": 4,
+          "builds_total": 10
+        },
+        "1144549437": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "876563814": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "3970837787": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 10
+        },
+        "1235347618": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "865958998": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "2081037738": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "4075861416": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "3812615317": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 10
+        },
+        "2820116164": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "1282141666": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "1797283378": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "381961617": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "2221211450": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "1047818222": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "677738769": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "3357231760": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "3190916303": {
+          "tag": "situational",
+          "pick_rate": 0.3,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 10
+        },
+        "2061878743": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 10
+        },
+        "3144988365": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 10
+        },
+        "1770441818": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "2108215830": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "2617435668": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 10
+        },
+        "1371725689": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "1976391348": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 10
+        },
+        "1252627263": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "365620721": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 10
+        },
+        "1662311306": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "2463960640": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "1414319208": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "709540378": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        },
+        "2971868509": {
+          "tag": "situational",
+          "pick_rate": 0.1,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 10
+        }
       }
     },
     "high_mmr": {
-      "candidate_count": 116,
+      "candidate_count": 75,
       "min_matches_filter": 300,
       "wilson_greedy": {
         "picks": [
@@ -1158,7 +2139,9 @@
             "wr_delta_pp": 16.27,
             "avg_buy_time_s": 1737.9,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.333
           },
           {
             "item_id": 2226497419,
@@ -1174,7 +2157,10 @@
             "wr_delta_pp": 16.9,
             "avg_buy_time_s": 1917.0,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.333,
+            "annotation": "extra damage"
           },
           {
             "item_id": 1396247347,
@@ -1190,7 +2176,10 @@
             "wr_delta_pp": 13.65,
             "avg_buy_time_s": 1785.6,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.333,
+            "annotation": "nuts on vin cuz it procs after all damage buffs -- can replace with boundless if they have lots of anti-gun or you dont have many sniper stacks"
           },
           {
             "item_id": 1113837674,
@@ -1206,7 +2195,9 @@
             "wr_delta_pp": 13.69,
             "avg_buy_time_s": 1919.1,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.556
           },
           {
             "item_id": 2037039379,
@@ -1222,7 +2213,9 @@
             "wr_delta_pp": 12.37,
             "avg_buy_time_s": 1918.2,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "flex",
+            "pick_rate": 0.667
           },
           {
             "item_id": 1282141666,
@@ -1238,7 +2231,9 @@
             "wr_delta_pp": 9.32,
             "avg_buy_time_s": 1787.1,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "flex",
+            "pick_rate": 0.333
           },
           {
             "item_id": 865846625,
@@ -1254,23 +2249,28 @@
             "wr_delta_pp": 9.93,
             "avg_buy_time_s": 1924.8,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "situational",
+            "pick_rate": 0.222
           },
           {
-            "item_id": 1055679805,
-            "name": "Vampiric Burst",
+            "item_id": 1955841979,
+            "name": "Spellbreaker",
             "category": "vitality",
             "tier": 4,
             "cost": 6400,
-            "matches": 23905,
-            "wins": 13841,
-            "win_rate": 0.579,
-            "wilson_lb": 0.5727,
-            "score": 0.0679,
-            "wr_delta_pp": 7.42,
-            "avg_buy_time_s": 1695.3,
+            "matches": 3452,
+            "wins": 1995,
+            "win_rate": 0.5779,
+            "wilson_lb": 0.5614,
+            "score": 0.0566,
+            "wr_delta_pp": 7.31,
+            "avg_buy_time_s": 2047.2,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.778,
+            "annotation": "best spirit counter item"
           },
           {
             "item_id": 343572757,
@@ -1286,7 +2286,10 @@
             "wr_delta_pp": 12.86,
             "avg_buy_time_s": 1893.6,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.111,
+            "annotation": "more damage and anti-heal"
           },
           {
             "item_id": 3812615317,
@@ -1302,7 +2305,9 @@
             "wr_delta_pp": 9.96,
             "avg_buy_time_s": 1882.7,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.222
           },
           {
             "item_id": 3919289022,
@@ -1318,7 +2323,10 @@
             "wr_delta_pp": 9.16,
             "avg_buy_time_s": 1823.4,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.222,
+            "annotation": "not bad upgrade if no slot"
           },
           {
             "item_id": 3005970438,
@@ -1334,7 +2342,9 @@
             "wr_delta_pp": 6.21,
             "avg_buy_time_s": 1554.6,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.222
           },
           {
             "item_id": 365620721,
@@ -1350,7 +2360,9 @@
             "wr_delta_pp": 13.75,
             "avg_buy_time_s": 1678.4,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "situational",
+            "pick_rate": 0.111
           },
           {
             "item_id": 339443430,
@@ -1366,7 +2378,9 @@
             "wr_delta_pp": 13.03,
             "avg_buy_time_s": 1989.1,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.556
           },
           {
             "item_id": 3884003354,
@@ -1382,7 +2396,9 @@
             "wr_delta_pp": 11.95,
             "avg_buy_time_s": 1939.9,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.556
           },
           {
             "item_id": 2480592370,
@@ -1398,7 +2414,10 @@
             "wr_delta_pp": 10.07,
             "avg_buy_time_s": 1829.4,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "situational",
+            "pick_rate": 0.222,
+            "annotation": "stacker"
           }
         ]
       },
@@ -1418,7 +2437,9 @@
             "wr_delta_pp": 16.27,
             "avg_buy_time_s": 1737.9,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.333
           },
           {
             "item_id": 1396247347,
@@ -1434,7 +2455,10 @@
             "wr_delta_pp": 13.65,
             "avg_buy_time_s": 1785.6,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.333,
+            "annotation": "nuts on vin cuz it procs after all damage buffs -- can replace with boundless if they have lots of anti-gun or you dont have many sniper stacks"
           },
           {
             "item_id": 1113837674,
@@ -1450,7 +2474,9 @@
             "wr_delta_pp": 13.69,
             "avg_buy_time_s": 1919.1,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.556
           },
           {
             "item_id": 365620721,
@@ -1466,7 +2492,9 @@
             "wr_delta_pp": 13.75,
             "avg_buy_time_s": 1678.4,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "situational",
+            "pick_rate": 0.111
           },
           {
             "item_id": 2037039379,
@@ -1482,23 +2510,27 @@
             "wr_delta_pp": 12.37,
             "avg_buy_time_s": 1918.2,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "flex",
+            "pick_rate": 0.667
           },
           {
-            "item_id": 1055679805,
-            "name": "Vampiric Burst",
+            "item_id": 865846625,
+            "name": "Leech",
             "category": "vitality",
             "tier": 4,
             "cost": 6400,
-            "matches": 23905,
-            "wins": 13841,
-            "win_rate": 0.579,
-            "wilson_lb": 0.5727,
-            "score": 0.0679,
-            "wr_delta_pp": 7.42,
-            "avg_buy_time_s": 1695.3,
+            "matches": 1200,
+            "wins": 725,
+            "win_rate": 0.6042,
+            "wilson_lb": 0.5762,
+            "score": 0.0714,
+            "wr_delta_pp": 9.93,
+            "avg_buy_time_s": 1924.8,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "situational",
+            "pick_rate": 0.222
           },
           {
             "item_id": 3585132399,
@@ -1514,23 +2546,27 @@
             "wr_delta_pp": 2.73,
             "avg_buy_time_s": 941.8,
             "phase": "mid",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "flex",
+            "pick_rate": 0.556
           },
           {
-            "item_id": 4139877411,
-            "name": "Extra Stamina",
+            "item_id": 2603935618,
+            "name": "Healbane",
             "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "matches": 41136,
-            "wins": 20978,
-            "win_rate": 0.51,
-            "wilson_lb": 0.5051,
-            "score": 0.0003,
-            "wr_delta_pp": 0.51,
-            "avg_buy_time_s": 448.3,
+            "tier": 2,
+            "cost": 1600,
+            "matches": 21939,
+            "wins": 11185,
+            "win_rate": 0.5098,
+            "wilson_lb": 0.5032,
+            "score": -0.0016,
+            "wr_delta_pp": 0.5,
+            "avg_buy_time_s": 669.8,
             "phase": "early",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "flex",
+            "pick_rate": 0.444
           },
           {
             "item_id": 343572757,
@@ -1546,7 +2582,47 @@
             "wr_delta_pp": 12.86,
             "avg_buy_time_s": 1893.6,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.111,
+            "annotation": "more damage and anti-heal"
+          },
+          {
+            "item_id": 3919289022,
+            "name": "Mercurial Magnum",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1975,
+            "wins": 1178,
+            "win_rate": 0.5965,
+            "wilson_lb": 0.5747,
+            "score": 0.0698,
+            "wr_delta_pp": 9.16,
+            "avg_buy_time_s": 1823.4,
+            "phase": "late",
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.222,
+            "annotation": "not bad upgrade if no slot"
+          },
+          {
+            "item_id": 3005970438,
+            "name": "Escalating Exposure",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 9081,
+            "wins": 5148,
+            "win_rate": 0.5669,
+            "wilson_lb": 0.5567,
+            "score": 0.0519,
+            "wr_delta_pp": 6.21,
+            "avg_buy_time_s": 1554.6,
+            "phase": "late",
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.222
           },
           {
             "item_id": 2717651715,
@@ -1562,55 +2638,9 @@
             "wr_delta_pp": 2.93,
             "avg_buy_time_s": 1357.4,
             "phase": "mid",
-            "slot": "spirit"
-          },
-          {
-            "item_id": 2951612397,
-            "name": "Duration Extender",
-            "category": "spirit",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 20229,
-            "wins": 10564,
-            "win_rate": 0.5222,
-            "wilson_lb": 0.5153,
-            "score": 0.0105,
-            "wr_delta_pp": 1.74,
-            "avg_buy_time_s": 1169.9,
-            "phase": "mid",
-            "slot": "spirit"
-          },
-          {
-            "item_id": 1998374645,
-            "name": "Mystic Burst",
-            "category": "spirit",
-            "tier": 1,
-            "cost": 800,
-            "matches": 16289,
-            "wins": 8109,
-            "win_rate": 0.4978,
-            "wilson_lb": 0.4901,
-            "score": -0.0147,
-            "wr_delta_pp": -0.7,
-            "avg_buy_time_s": 152.8,
-            "phase": "early",
-            "slot": "spirit"
-          },
-          {
-            "item_id": 339443430,
-            "name": "Frenzy",
-            "category": "weapon",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 4475,
-            "wins": 2842,
-            "win_rate": 0.6351,
-            "wilson_lb": 0.6209,
-            "score": 0.116,
-            "wr_delta_pp": 13.03,
-            "avg_buy_time_s": 1989.1,
-            "phase": "late",
-            "slot": "flex"
+            "slot": "spirit",
+            "tag": "core",
+            "pick_rate": 0.889
           },
           {
             "item_id": 3884003354,
@@ -1626,23 +2656,45 @@
             "wr_delta_pp": 11.95,
             "avg_buy_time_s": 1939.9,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.556
           },
           {
-            "item_id": 393974127,
-            "name": "Slowing Bullets",
+            "item_id": 3977876567,
+            "name": "Kinetic Dash",
             "category": "weapon",
             "tier": 2,
             "cost": 1600,
-            "matches": 41645,
-            "wins": 21618,
-            "win_rate": 0.5191,
-            "wilson_lb": 0.5143,
-            "score": 0.0095,
-            "wr_delta_pp": 1.43,
-            "avg_buy_time_s": 501.9,
+            "matches": 52403,
+            "wins": 26811,
+            "win_rate": 0.5116,
+            "wilson_lb": 0.5074,
+            "score": 0.0025,
+            "wr_delta_pp": 0.68,
+            "avg_buy_time_s": 551.6,
             "phase": "early",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 0.778
+          },
+          {
+            "item_id": 3696726732,
+            "name": "Toxic Bullets",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 47259,
+            "wins": 24106,
+            "win_rate": 0.5101,
+            "wilson_lb": 0.5056,
+            "score": 0.0008,
+            "wr_delta_pp": 0.53,
+            "avg_buy_time_s": 942.9,
+            "phase": "mid",
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 0.778
           },
           {
             "item_id": 98582110,
@@ -1658,7 +2710,9 @@
             "wr_delta_pp": 0.56,
             "avg_buy_time_s": 355.3,
             "phase": "early",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.444
           }
         ]
       },
@@ -1679,7 +2733,9 @@
             "avg_buy_time_s": 551.6,
             "phase": "early",
             "build_freq_weight": 148.7,
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 0.778
           },
           {
             "item_id": 3884003354,
@@ -1696,7 +2752,9 @@
             "avg_buy_time_s": 1939.9,
             "phase": "late",
             "build_freq_weight": 118.2,
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.556
           },
           {
             "item_id": 3696726732,
@@ -1713,7 +2771,9 @@
             "avg_buy_time_s": 942.9,
             "phase": "mid",
             "build_freq_weight": 118.2,
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 0.778
           },
           {
             "item_id": 98582110,
@@ -1730,7 +2790,9 @@
             "avg_buy_time_s": 355.3,
             "phase": "early",
             "build_freq_weight": 118.2,
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.444
           },
           {
             "item_id": 1378931225,
@@ -1747,7 +2809,10 @@
             "avg_buy_time_s": 1614.2,
             "phase": "late",
             "build_freq_weight": 182.1,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.889,
+            "annotation": "it's perfect in a situation where the enemy is in a gun and he's well-fed"
           },
           {
             "item_id": 3491236900,
@@ -1764,7 +2829,10 @@
             "avg_buy_time_s": 1998.8,
             "phase": "late",
             "build_freq_weight": 182.1,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "flex",
+            "pick_rate": 0.667,
+            "annotation": "best gun counter item"
           },
           {
             "item_id": 1414025773,
@@ -1781,7 +2849,10 @@
             "avg_buy_time_s": 1411.2,
             "phase": "mid",
             "build_freq_weight": 182.1,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.889,
+            "annotation": "BUY 1 OF 3 3KS DEPENDING ON GAME (counterspell for pocket lash mina type games)"
           },
           {
             "item_id": 1955841979,
@@ -1798,7 +2869,10 @@
             "avg_buy_time_s": 2047.2,
             "phase": "late",
             "build_freq_weight": 182.1,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.778,
+            "annotation": "best spirit counter item"
           },
           {
             "item_id": 2142980412,
@@ -1815,7 +2889,10 @@
             "avg_buy_time_s": 1688.8,
             "phase": "late",
             "build_freq_weight": 121.3,
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.444,
+            "annotation": "not bad upgrade if no slot"
           },
           {
             "item_id": 2717651715,
@@ -1832,7 +2909,9 @@
             "avg_buy_time_s": 1357.4,
             "phase": "mid",
             "build_freq_weight": 118.2,
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "core",
+            "pick_rate": 0.889
           },
           {
             "item_id": 619484391,
@@ -1849,24 +2928,28 @@
             "avg_buy_time_s": 1201.3,
             "phase": "mid",
             "build_freq_weight": 118.2,
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.556
           },
           {
-            "item_id": 1150006784,
-            "name": "Arcane Surge",
+            "item_id": 2121044373,
+            "name": "Tankbuster",
             "category": "spirit",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 18180,
-            "wins": 9173,
-            "win_rate": 0.5046,
-            "wilson_lb": 0.4973,
-            "score": -0.0075,
-            "wr_delta_pp": -0.03,
-            "avg_buy_time_s": 756.9,
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2504,
+            "wins": 1294,
+            "win_rate": 0.5168,
+            "wilson_lb": 0.4972,
+            "score": -0.0076,
+            "wr_delta_pp": 1.2,
+            "avg_buy_time_s": 1462.1,
             "phase": "mid",
-            "build_freq_weight": 115.1,
-            "slot": "spirit"
+            "build_freq_weight": 64.0,
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.111
           },
           {
             "item_id": 3731635960,
@@ -1883,7 +2966,10 @@
             "avg_buy_time_s": 1369.6,
             "phase": "mid",
             "build_freq_weight": 182.1,
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 0.889,
+            "annotation": "BUY 1 OF 3 3KS DEPENDING ON GAME (infernus vindicta haze mirage toxic bullets heroes)"
           },
           {
             "item_id": 1710079648,
@@ -1900,24 +2986,9 @@
             "avg_buy_time_s": 280.7,
             "phase": "early",
             "build_freq_weight": 124.8,
-            "slot": "flex"
-          },
-          {
-            "item_id": 4139877411,
-            "name": "Extra Stamina",
-            "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "matches": 41136,
-            "wins": 20978,
-            "win_rate": 0.51,
-            "wilson_lb": 0.5051,
-            "score": 0.0003,
-            "wr_delta_pp": 0.51,
-            "avg_buy_time_s": 448.3,
-            "phase": "early",
-            "build_freq_weight": 121.3,
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.556
           },
           {
             "item_id": 2163598980,
@@ -1934,7 +3005,28 @@
             "avg_buy_time_s": 1540.7,
             "phase": "late",
             "build_freq_weight": 118.2,
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.667
+          },
+          {
+            "item_id": 339443430,
+            "name": "Frenzy",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 4475,
+            "wins": 2842,
+            "win_rate": 0.6351,
+            "wilson_lb": 0.6209,
+            "score": 0.116,
+            "wr_delta_pp": 13.03,
+            "avg_buy_time_s": 1989.1,
+            "phase": "late",
+            "build_freq_weight": 118.2,
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.556
           }
         ],
         "source_builds": [
@@ -1993,6 +3085,806 @@
             "matches": 103
           }
         ]
+      },
+      "item_metadata": {
+        "968099481": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 9
+        },
+        "1998374645": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 9
+        },
+        "84321454": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "1219329868": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "7409189": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 9
+        },
+        "4139877411": {
+          "tag": "flex",
+          "pick_rate": 0.667,
+          "annotation": "",
+          "builds_appearing_in": 6,
+          "builds_total": 9
+        },
+        "3977876567": {
+          "tag": "core",
+          "pick_rate": 0.778,
+          "annotation": "",
+          "builds_appearing_in": 7,
+          "builds_total": 9
+        },
+        "3731635960": {
+          "tag": "core",
+          "pick_rate": 0.889,
+          "annotation": "BUY 1 OF 3 3KS DEPENDING ON GAME (infernus vindicta haze mirage toxic bullets heroes)",
+          "builds_appearing_in": 8,
+          "builds_total": 9
+        },
+        "334300056": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "2519598785": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "powerspike",
+          "builds_appearing_in": 3,
+          "builds_total": 9
+        },
+        "395867183": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "2121044373": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "380806748": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "3261353684": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "343572757": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "more damage and anti-heal",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "2226497419": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "extra damage",
+          "builds_appearing_in": 3,
+          "builds_total": 9
+        },
+        "2480592370": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "stacker",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "915014646": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "2533252781": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "better to buy on high pts lobby then on low",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "1710079648": {
+          "tag": "flex",
+          "pick_rate": 0.556,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 9
+        },
+        "1644605047": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "counter stun",
+          "builds_appearing_in": 3,
+          "builds_total": 9
+        },
+        "1378931225": {
+          "tag": "core",
+          "pick_rate": 0.889,
+          "annotation": "it's perfect in a situation where the enemy is in a gun and he's well-fed",
+          "builds_appearing_in": 8,
+          "builds_total": 9
+        },
+        "1414025773": {
+          "tag": "core",
+          "pick_rate": 0.889,
+          "annotation": "BUY 1 OF 3 3KS DEPENDING ON GAME (counterspell for pocket lash mina type games)",
+          "builds_appearing_in": 8,
+          "builds_total": 9
+        },
+        "3361811174": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "counter dynamo and mo krill in deep late",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "1955841979": {
+          "tag": "core",
+          "pick_rate": 0.778,
+          "annotation": "best spirit counter item",
+          "builds_appearing_in": 7,
+          "builds_total": 9
+        },
+        "3491236900": {
+          "tag": "flex",
+          "pick_rate": 0.667,
+          "annotation": "best gun counter item",
+          "builds_appearing_in": 6,
+          "builds_total": 9
+        },
+        "673001892": {
+          "tag": "flex",
+          "pick_rate": 0.444,
+          "annotation": "buy this only when the enemy already has a plated armor",
+          "builds_appearing_in": 4,
+          "builds_total": 9
+        },
+        "3919289022": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "not bad upgrade if no slot",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "2142980412": {
+          "tag": "flex",
+          "pick_rate": 0.444,
+          "annotation": "not bad upgrade if no slot",
+          "builds_appearing_in": 4,
+          "builds_total": 9
+        },
+        "98582110": {
+          "tag": "flex",
+          "pick_rate": 0.444,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 9
+        },
+        "2603935618": {
+          "tag": "flex",
+          "pick_rate": 0.444,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 9
+        },
+        "3696726732": {
+          "tag": "core",
+          "pick_rate": 0.778,
+          "annotation": "",
+          "builds_appearing_in": 7,
+          "builds_total": 9
+        },
+        "1150006784": {
+          "tag": "flex",
+          "pick_rate": 0.444,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 9
+        },
+        "1292979587": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "3585132399": {
+          "tag": "flex",
+          "pick_rate": 0.556,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 9
+        },
+        "2829638276": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 9
+        },
+        "3633614685": {
+          "tag": "flex",
+          "pick_rate": 0.556,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 9
+        },
+        "619484391": {
+          "tag": "flex",
+          "pick_rate": 0.556,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 9
+        },
+        "2951612397": {
+          "tag": "flex",
+          "pick_rate": 0.556,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 9
+        },
+        "2717651715": {
+          "tag": "core",
+          "pick_rate": 0.889,
+          "annotation": "",
+          "builds_appearing_in": 8,
+          "builds_total": 9
+        },
+        "989206714": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "absolutely insane if you can outheal the damage",
+          "builds_appearing_in": 3,
+          "builds_total": 9
+        },
+        "499683006": {
+          "tag": "flex",
+          "pick_rate": 0.444,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 9
+        },
+        "1055679805": {
+          "tag": "flex",
+          "pick_rate": 0.444,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 9
+        },
+        "1798666702": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 9
+        },
+        "2481177645": {
+          "tag": "flex",
+          "pick_rate": 0.556,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 9
+        },
+        "3884003354": {
+          "tag": "flex",
+          "pick_rate": 0.556,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 9
+        },
+        "339443430": {
+          "tag": "flex",
+          "pick_rate": 0.556,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 9
+        },
+        "2037039379": {
+          "tag": "flex",
+          "pick_rate": 0.667,
+          "annotation": "",
+          "builds_appearing_in": 6,
+          "builds_total": 9
+        },
+        "1113837674": {
+          "tag": "flex",
+          "pick_rate": 0.556,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 9
+        },
+        "2163598980": {
+          "tag": "flex",
+          "pick_rate": 0.667,
+          "annotation": "",
+          "builds_appearing_in": 6,
+          "builds_total": 9
+        },
+        "1342610602": {
+          "tag": "flex",
+          "pick_rate": 0.444,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 9
+        },
+        "393974127": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 9
+        },
+        "3791587546": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "2095565695": {
+          "tag": "flex",
+          "pick_rate": 0.444,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 9
+        },
+        "3140772621": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "2407781327": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "1250307611": {
+          "tag": "flex",
+          "pick_rate": 0.556,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 9
+        },
+        "668299740": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 9
+        },
+        "4104549924": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 9
+        },
+        "3399065363": {
+          "tag": "flex",
+          "pick_rate": 0.444,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 9
+        },
+        "1437614329": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "2010028405": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "465043967": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "1009965641": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 9
+        },
+        "2447176615": {
+          "tag": "flex",
+          "pick_rate": 0.556,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 9
+        },
+        "3403085434": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 9
+        },
+        "2739107182": {
+          "tag": "flex",
+          "pick_rate": 0.444,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 9
+        },
+        "1396247347": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "nuts on vin cuz it procs after all damage buffs -- can replace with boundless if they have lots of anti-gun or you dont have many sniper stacks",
+          "builds_appearing_in": 3,
+          "builds_total": 9
+        },
+        "2678489038": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "2064029594": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "3776945997": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "1548066885": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "2356412290": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "3331811235": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "787198704": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "not that great for this build, but the faster snipes is nice. Needed for 4.8k spirit spike",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "2152872419": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "865846625": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "1409190604": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "Can replace leech if you want - great item, but cant use snipe so only get it very late when you stop sniping",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "1254091416": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "3270001687": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 9
+        },
+        "112198670": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "1932939246": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "good for pivoting to a more support role -- alch fire+stake get crazy range when flying",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "1193964439": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "3005970438": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "2800629741": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "for when you just love the view from up there",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "4204808176": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "1813726886": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "infernus can go kick rocks too. if he hasnt already ran his ass back home by the time this connects, that is",
+          "builds_appearing_in": 3,
+          "builds_total": 9
+        },
+        "1144549437": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "876563814": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "3970837787": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "1235347618": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "865958998": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "2081037738": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "4075861416": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "3812615317": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "2820116164": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "1282141666": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 9
+        },
+        "1797283378": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "2061878743": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 9
+        },
+        "2617435668": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 9
+        },
+        "1371725689": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "381961617": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "2221211450": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "1047818222": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "677738769": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "3357231760": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "3190916303": {
+          "tag": "situational",
+          "pick_rate": 0.222,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 9
+        },
+        "3144988365": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "1770441818": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "2108215830": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "1976391348": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "1252627263": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "365620721": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        },
+        "1662311306": {
+          "tag": "situational",
+          "pick_rate": 0.111,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 9
+        }
       }
     }
   },

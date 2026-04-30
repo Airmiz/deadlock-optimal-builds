@@ -45,61 +45,47 @@
     "items": {
       "method": "synergy_ilp",
       "mmr_slice": "high_mmr",
-      "total_cost": 63200,
+      "total_cost": 61600,
       "phases": {
         "early": [
           {
             "slot": "flex",
-            "category": "vitality",
+            "category": "weapon",
             "tier": 1,
             "cost": 800,
-            "name": "Melee Lifesteal",
-            "item_id": 1437614329,
-            "avg_buy_time_min": 3.5,
-            "win_rate": 0.4987
-          },
-          {
-            "slot": "flex",
-            "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "name": "Extra Health",
-            "item_id": 3633614685,
-            "avg_buy_time_min": 7.5,
-            "win_rate": 0.5035
-          },
-          {
-            "slot": "flex",
-            "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "name": "Extra Stamina",
-            "item_id": 4139877411,
-            "avg_buy_time_min": 9.7,
-            "win_rate": 0.5046
+            "name": "Monster Rounds",
+            "item_id": 1009965641,
+            "avg_buy_time_min": 4.2,
+            "win_rate": 0.4964,
+            "tag": "flex",
+            "pick_rate": 0.667
           },
           {
             "slot": "weapon",
             "category": "weapon",
             "tier": 2,
             "cost": 1600,
-            "name": "Slowing Bullets",
-            "item_id": 393974127,
-            "avg_buy_time_min": 10.5,
-            "win_rate": 0.5013
+            "name": "Stalker",
+            "item_id": 98582110,
+            "avg_buy_time_min": 7.4,
+            "win_rate": 0.5143,
+            "tag": "situational",
+            "pick_rate": 0.167
+          },
+          {
+            "slot": "flex",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "name": "Restorative Locket",
+            "item_id": 2059712766,
+            "avg_buy_time_min": 8.2,
+            "win_rate": 0.5168,
+            "tag": "flex",
+            "pick_rate": 0.667
           }
         ],
         "mid": [
-          {
-            "slot": "flex",
-            "category": "weapon",
-            "tier": 3,
-            "cost": 3200,
-            "name": "Express Shot",
-            "item_id": 690458959,
-            "avg_buy_time_min": 14.1,
-            "win_rate": 0.497
-          },
           {
             "slot": "spirit",
             "category": "spirit",
@@ -108,7 +94,9 @@
             "name": "Slowing Hex",
             "item_id": 1813726886,
             "avg_buy_time_min": 15.6,
-            "win_rate": 0.4999
+            "win_rate": 0.4999,
+            "tag": "flex",
+            "pick_rate": 0.667
           },
           {
             "slot": "spirit",
@@ -118,20 +106,61 @@
             "name": "Silence Wave",
             "item_id": 619484391,
             "avg_buy_time_min": 17.0,
-            "win_rate": 0.4723
+            "win_rate": 0.4723,
+            "tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "this item builds so much ult charge cus damage and if you bola + silence them they cant react to any of your damage"
+          },
+          {
+            "slot": "spirit",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "name": "Bullet Resist Shredder",
+            "item_id": 2971868509,
+            "avg_buy_time_min": 17.4,
+            "win_rate": 0.5213,
+            "tag": "flex",
+            "pick_rate": 0.333
           },
           {
             "slot": "weapon",
             "category": "weapon",
             "tier": 3,
             "cost": 3200,
-            "name": "Hunter's Aura",
-            "item_id": 2481177645,
-            "avg_buy_time_min": 18.4,
-            "win_rate": 0.5258
+            "name": "Point Blank",
+            "item_id": 2095565695,
+            "avg_buy_time_min": 20.7,
+            "win_rate": 0.5178,
+            "tag": "flex",
+            "pick_rate": 0.5
+          },
+          {
+            "slot": "flex",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "name": "Warp Stone",
+            "item_id": 3270001687,
+            "avg_buy_time_min": 22.9,
+            "win_rate": 0.5171,
+            "tag": "core",
+            "pick_rate": 1.0
           }
         ],
         "late": [
+          {
+            "slot": "weapon",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "name": "Berserker",
+            "item_id": 1414319208,
+            "avg_buy_time_min": 25.7,
+            "win_rate": 0.5586,
+            "tag": "core",
+            "pick_rate": 0.833
+          },
           {
             "slot": "spirit",
             "category": "spirit",
@@ -140,7 +169,22 @@
             "name": "Superior Duration",
             "item_id": 2717651715,
             "avg_buy_time_min": 28.4,
-            "win_rate": 0.5707
+            "win_rate": 0.5707,
+            "tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "lets you have longer bolas, silence waves, unstoppable, disarm, shred, DoT from wolf leap, just turbo value item."
+          },
+          {
+            "slot": "flex",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "name": "Diviner's Kevlar",
+            "item_id": 2820116164,
+            "avg_buy_time_min": 28.7,
+            "win_rate": 0.5428,
+            "tag": "flex",
+            "pick_rate": 0.5
           },
           {
             "slot": "vitality",
@@ -150,17 +194,23 @@
             "name": "Phantom Strike",
             "item_id": 1371725689,
             "avg_buy_time_min": 30.1,
-            "win_rate": 0.6235
+            "win_rate": 0.6235,
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Really good to gap close and is one of Silvers best late game spikes. You can rush this before unstop if youre really ahead."
           },
           {
-            "slot": "spirit",
-            "category": "spirit",
+            "slot": "vitality",
+            "category": "vitality",
             "tier": 4,
             "cost": 6400,
-            "name": "Arctic Blast",
-            "item_id": 3812615317,
-            "avg_buy_time_min": 30.7,
-            "win_rate": 0.6079
+            "name": "Unstoppable",
+            "item_id": 3357231760,
+            "avg_buy_time_min": 30.6,
+            "win_rate": 0.5706,
+            "tag": "core",
+            "pick_rate": 0.833,
+            "annotation": "this item is extremely good for once you transform and can stick on someone without having to worry about CC. Definitely her best T4."
           },
           {
             "slot": "vitality",
@@ -170,17 +220,9 @@
             "name": "Inhibitor",
             "item_id": 2037039379,
             "avg_buy_time_min": 31.1,
-            "win_rate": 0.6158
-          },
-          {
-            "slot": "weapon",
-            "category": "weapon",
-            "tier": 4,
-            "cost": 6400,
-            "name": "Lucky Shot",
-            "item_id": 1396247347,
-            "avg_buy_time_min": 32.0,
-            "win_rate": 0.6498
+            "win_rate": 0.6158,
+            "tag": "core",
+            "pick_rate": 1.0
           },
           {
             "slot": "weapon",
@@ -190,17 +232,9 @@
             "name": "Silencer",
             "item_id": 1113837674,
             "avg_buy_time_min": 32.2,
-            "win_rate": 0.6344
-          },
-          {
-            "slot": "vitality",
-            "category": "vitality",
-            "tier": 4,
-            "cost": 6400,
-            "name": "Vampiric Burst",
-            "item_id": 1055679805,
-            "avg_buy_time_min": 33.0,
-            "win_rate": 0.5875
+            "win_rate": 0.6344,
+            "tag": "flex",
+            "pick_rate": 0.667
           },
           {
             "slot": "vitality",
@@ -210,7 +244,9 @@
             "name": "Healing Tempo",
             "item_id": 1427630806,
             "avg_buy_time_min": 33.8,
-            "win_rate": 0.6118
+            "win_rate": 0.6118,
+            "tag": "flex",
+            "pick_rate": 0.333
           }
         ]
       }
@@ -278,7 +314,7 @@
   },
   "items": {
     "all_mmr": {
-      "candidate_count": 129,
+      "candidate_count": 84,
       "min_matches_filter": 500,
       "wilson_greedy": {
         "picks": [
@@ -296,7 +332,10 @@
             "wr_delta_pp": 11.36,
             "avg_buy_time_s": 2081.6,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 0.75,
+            "annotation": "If youre getting shredded by spirit damage or problematic abilities are locking you down get this"
           },
           {
             "item_id": 2221211450,
@@ -312,7 +351,10 @@
             "wr_delta_pp": 11.29,
             "avg_buy_time_s": 2036.8,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "situational",
+            "pick_rate": 0.25,
+            "annotation": "Really good in base form, in lycan its kind of mediocre I think"
           },
           {
             "item_id": 339443430,
@@ -328,7 +370,10 @@
             "wr_delta_pp": 10.23,
             "avg_buy_time_s": 2130.4,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "The only T4 worth rushing on this character, if youre losing get inhibitor instead"
           },
           {
             "item_id": 1396247347,
@@ -344,7 +389,10 @@
             "wr_delta_pp": 9.07,
             "avg_buy_time_s": 2041.9,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.375,
+            "annotation": "So much fucking damage do not discount this item, However this item is basically placeholder for any T4 item, Lucky Shot is just the most generically good and worth rushing imo"
           },
           {
             "item_id": 1371725689,
@@ -360,7 +408,10 @@
             "wr_delta_pp": 11.79,
             "avg_buy_time_s": 1963.3,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Really good to gap close and is one of Silvers best late game spikes. You can rush this before unstop if youre really ahead."
           },
           {
             "item_id": 2037039379,
@@ -376,7 +427,10 @@
             "wr_delta_pp": 9.32,
             "avg_buy_time_s": 1976.3,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Get earlier when losing, generally damage reduction > resistances  since stacking resists is bad"
           },
           {
             "item_id": 3357231760,
@@ -392,7 +446,10 @@
             "wr_delta_pp": 6.66,
             "avg_buy_time_s": 1931.8,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.875,
+            "annotation": "When you get lycan you will become public enemy number 1 and CC really hurts you"
           },
           {
             "item_id": 1282141666,
@@ -408,7 +465,10 @@
             "wr_delta_pp": 7.57,
             "avg_buy_time_s": 2211.1,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "flex",
+            "pick_rate": 0.375,
+            "annotation": "Maybe against mo or something"
           },
           {
             "item_id": 493591231,
@@ -424,7 +484,9 @@
             "wr_delta_pp": 8.92,
             "avg_buy_time_s": 2089.0,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.25
           },
           {
             "item_id": 3812615317,
@@ -440,7 +502,10 @@
             "wr_delta_pp": 7.67,
             "avg_buy_time_s": 2016.4,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.375,
+            "annotation": "If you need the CC or theres like a mina or theyre building alot of bullet res etc, theres alot of reasons to want this item but not enough for it to be core. Use your judgement"
           },
           {
             "item_id": 2717651715,
@@ -456,7 +521,10 @@
             "wr_delta_pp": 5.91,
             "avg_buy_time_s": 1774.5,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.375,
+            "annotation": "lets you have longer bolas, silence waves, unstoppable, disarm, shred, DoT from wolf leap, just turbo value item."
           },
           {
             "item_id": 915014646,
@@ -472,7 +540,10 @@
             "wr_delta_pp": 5.23,
             "avg_buy_time_s": 2181.1,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.375,
+            "annotation": "Less cooldown is nice and we build some actives, unsure how good it actually is though"
           },
           {
             "item_id": 2226497419,
@@ -488,7 +559,10 @@
             "wr_delta_pp": 9.4,
             "avg_buy_time_s": 2040.0,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "situational",
+            "pick_rate": 0.125,
+            "annotation": "This effectively reads (+ fire rate, + fire rate, + cooldown reduction) its not bad if you can proc wolf easily and consistently, spirit lifesteal is irrelevant though"
           },
           {
             "item_id": 365620721,
@@ -504,7 +578,10 @@
             "wr_delta_pp": 7.75,
             "avg_buy_time_s": 1822.0,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "situational",
+            "pick_rate": 0.125,
+            "annotation": "If youre annihilating the enemy team and not dying, want to build this as early as possible if you're getting it, Im thinking about moving this to core but I need to try it more"
           },
           {
             "item_id": 2820116164,
@@ -520,7 +597,10 @@
             "wr_delta_pp": 6.31,
             "avg_buy_time_s": 1885.8,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.625,
+            "annotation": "1000 barrier isnt anything to scoff at but spirit power doesnt do that much for us"
           },
           {
             "item_id": 1427630806,
@@ -536,7 +616,10 @@
             "wr_delta_pp": 6.53,
             "avg_buy_time_s": 2076.8,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.375,
+            "annotation": "Builds out of healing booster and gives stats you want, I dont know if its worth 4.8k though"
           }
         ]
       },
@@ -556,7 +639,10 @@
             "wr_delta_pp": 11.36,
             "avg_buy_time_s": 2081.6,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 0.75,
+            "annotation": "If youre getting shredded by spirit damage or problematic abilities are locking you down get this"
           },
           {
             "item_id": 2221211450,
@@ -572,7 +658,10 @@
             "wr_delta_pp": 11.29,
             "avg_buy_time_s": 2036.8,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "situational",
+            "pick_rate": 0.25,
+            "annotation": "Really good in base form, in lycan its kind of mediocre I think"
           },
           {
             "item_id": 339443430,
@@ -588,23 +677,29 @@
             "wr_delta_pp": 10.23,
             "avg_buy_time_s": 2130.4,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "The only T4 worth rushing on this character, if youre losing get inhibitor instead"
           },
           {
-            "item_id": 1396247347,
-            "name": "Lucky Shot",
+            "item_id": 800008313,
+            "name": "Crushing Fists",
             "category": "weapon",
             "tier": 4,
             "cost": 6400,
-            "matches": 15134,
-            "wins": 8722,
-            "win_rate": 0.5763,
-            "wilson_lb": 0.5684,
-            "score": 0.0828,
-            "wr_delta_pp": 9.07,
-            "avg_buy_time_s": 2041.9,
+            "matches": 21404,
+            "wins": 11453,
+            "win_rate": 0.5351,
+            "wilson_lb": 0.5284,
+            "score": 0.0428,
+            "wr_delta_pp": 4.95,
+            "avg_buy_time_s": 1801.7,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "Bait item, might have some use though"
           },
           {
             "item_id": 1371725689,
@@ -620,7 +715,10 @@
             "wr_delta_pp": 11.79,
             "avg_buy_time_s": 1963.3,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Really good to gap close and is one of Silvers best late game spikes. You can rush this before unstop if youre really ahead."
           },
           {
             "item_id": 2037039379,
@@ -636,71 +734,104 @@
             "wr_delta_pp": 9.32,
             "avg_buy_time_s": 1976.3,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Get earlier when losing, generally damage reduction > resistances  since stacking resists is bad"
           },
           {
-            "item_id": 4139877411,
-            "name": "Extra Stamina",
+            "item_id": 2820116164,
+            "name": "Diviner's Kevlar",
             "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "matches": 249553,
-            "wins": 122531,
-            "win_rate": 0.491,
-            "wilson_lb": 0.489,
-            "score": 0.0035,
-            "wr_delta_pp": 0.54,
-            "avg_buy_time_s": 572.0,
-            "phase": "early",
-            "slot": "vitality"
+            "tier": 4,
+            "cost": 6400,
+            "matches": 26764,
+            "wins": 14685,
+            "win_rate": 0.5487,
+            "wilson_lb": 0.5427,
+            "score": 0.0571,
+            "wr_delta_pp": 6.31,
+            "avg_buy_time_s": 1885.8,
+            "phase": "late",
+            "slot": "vitality",
+            "tag": "flex",
+            "pick_rate": 0.625,
+            "annotation": "1000 barrier isnt anything to scoff at but spirit power doesnt do that much for us"
           },
           {
-            "item_id": 1437614329,
-            "name": "Melee Lifesteal",
+            "item_id": 334300056,
+            "name": "Stamina Mastery",
             "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "matches": 268467,
-            "wins": 130794,
-            "win_rate": 0.4872,
-            "wilson_lb": 0.4853,
-            "score": -0.0003,
-            "wr_delta_pp": 0.16,
-            "avg_buy_time_s": 251.4,
-            "phase": "early",
-            "slot": "vitality"
+            "tier": 3,
+            "cost": 3200,
+            "matches": 224328,
+            "wins": 112559,
+            "win_rate": 0.5018,
+            "wilson_lb": 0.4997,
+            "score": 0.0141,
+            "wr_delta_pp": 1.62,
+            "avg_buy_time_s": 1297.6,
+            "phase": "mid",
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Massive buff to your chase and rotation speed, you NEED this item to keep up. Also keep in mind people will try to run from you the moment you proc your ult because they are terrified of the wolp"
           },
           {
-            "item_id": 3812615317,
-            "name": "Arctic Blast",
+            "item_id": 915014646,
+            "name": "Transcendent Cooldown",
             "category": "spirit",
             "tier": 4,
             "cost": 6400,
-            "matches": 5670,
-            "wins": 3188,
-            "win_rate": 0.5623,
-            "wilson_lb": 0.5493,
-            "score": 0.0637,
-            "wr_delta_pp": 7.67,
-            "avg_buy_time_s": 2016.4,
+            "matches": 8193,
+            "wins": 4407,
+            "win_rate": 0.5379,
+            "wilson_lb": 0.5271,
+            "score": 0.0415,
+            "wr_delta_pp": 5.23,
+            "avg_buy_time_s": 2181.1,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.375,
+            "annotation": "Less cooldown is nice and we build some actives, unsure how good it actually is though"
           },
           {
-            "item_id": 2717651715,
-            "name": "Superior Duration",
+            "item_id": 2971868509,
+            "name": "Bullet Resist Shredder",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 19716,
+            "wins": 9700,
+            "win_rate": 0.492,
+            "wilson_lb": 0.485,
+            "score": -0.0006,
+            "wr_delta_pp": 0.64,
+            "avg_buy_time_s": 1179.2,
+            "phase": "mid",
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.25
+          },
+          {
+            "item_id": 619484391,
+            "name": "Silence Wave",
             "category": "spirit",
             "tier": 3,
             "cost": 3200,
-            "matches": 30135,
-            "wins": 16415,
-            "win_rate": 0.5447,
-            "wilson_lb": 0.5391,
-            "score": 0.0535,
-            "wr_delta_pp": 5.91,
-            "avg_buy_time_s": 1774.5,
-            "phase": "late",
-            "slot": "spirit"
+            "matches": 52495,
+            "wins": 25394,
+            "win_rate": 0.4837,
+            "wilson_lb": 0.4795,
+            "score": -0.0061,
+            "wr_delta_pp": -0.18,
+            "avg_buy_time_s": 1119.0,
+            "phase": "mid",
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.375,
+            "annotation": "this item builds so much ult charge cus damage and if you bola + silence them they cant react to any of your damage"
           },
           {
             "item_id": 1813726886,
@@ -716,39 +847,47 @@
             "wr_delta_pp": -0.45,
             "avg_buy_time_s": 1035.0,
             "phase": "mid",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.625,
+            "annotation": "Mina, Pocket, Lash, Shiv, Calico, etc. Dashes are bad for you, stop them"
           },
           {
-            "item_id": 465043967,
-            "name": "Spirit Strike",
-            "category": "spirit",
-            "tier": 1,
-            "cost": 800,
-            "matches": 37746,
-            "wins": 17592,
-            "win_rate": 0.4661,
-            "wilson_lb": 0.461,
-            "score": -0.0245,
-            "wr_delta_pp": -1.95,
-            "avg_buy_time_s": 410.5,
-            "phase": "early",
-            "slot": "spirit"
-          },
-          {
-            "item_id": 393974127,
-            "name": "Slowing Bullets",
+            "item_id": 98582110,
+            "name": "Stalker",
             "category": "weapon",
             "tier": 2,
             "cost": 1600,
-            "matches": 240901,
-            "wins": 119568,
-            "win_rate": 0.4963,
-            "wilson_lb": 0.4943,
-            "score": 0.0088,
-            "wr_delta_pp": 1.08,
-            "avg_buy_time_s": 692.0,
+            "matches": 63825,
+            "wins": 32241,
+            "win_rate": 0.5051,
+            "wilson_lb": 0.5013,
+            "score": 0.0157,
+            "wr_delta_pp": 1.96,
+            "avg_buy_time_s": 520.7,
             "phase": "early",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "situational",
+            "pick_rate": 0.125
+          },
+          {
+            "item_id": 2059712766,
+            "name": "Restorative Locket",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 47908,
+            "wins": 24154,
+            "win_rate": 0.5042,
+            "wilson_lb": 0.4997,
+            "score": 0.0141,
+            "wr_delta_pp": 1.86,
+            "avg_buy_time_s": 571.5,
+            "phase": "early",
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.625,
+            "annotation": "Resto locket lets you hmc"
           },
           {
             "item_id": 3077079169,
@@ -764,61 +903,33 @@
             "wr_delta_pp": 1.09,
             "avg_buy_time_s": 608.5,
             "phase": "early",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "situational",
+            "pick_rate": 0.25
           },
           {
-            "item_id": 1342610602,
-            "name": "Close Quarters",
-            "category": "weapon",
-            "tier": 1,
-            "cost": 800,
-            "matches": 258295,
-            "wins": 126269,
-            "win_rate": 0.4889,
-            "wilson_lb": 0.4869,
-            "score": 0.0013,
-            "wr_delta_pp": 0.33,
-            "avg_buy_time_s": 267.4,
-            "phase": "early",
-            "slot": "flex"
-          },
-          {
-            "item_id": 2829638276,
-            "name": "Extra Regen",
+            "item_id": 1437614329,
+            "name": "Melee Lifesteal",
             "category": "vitality",
             "tier": 1,
             "cost": 800,
-            "matches": 143800,
-            "wins": 70003,
-            "win_rate": 0.4868,
-            "wilson_lb": 0.4842,
-            "score": -0.0014,
-            "wr_delta_pp": 0.12,
-            "avg_buy_time_s": 257.0,
+            "matches": 268467,
+            "wins": 130794,
+            "win_rate": 0.4872,
+            "wilson_lb": 0.4853,
+            "score": -0.0003,
+            "wr_delta_pp": 0.16,
+            "avg_buy_time_s": 251.4,
             "phase": "early",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "good overall item, you can sell it late game for a tier 4 or something if you really need to spend your money."
           }
         ]
       },
       "build_replication": {
         "picks": [
-          {
-            "item_id": 1342610602,
-            "name": "Close Quarters",
-            "category": "weapon",
-            "tier": 1,
-            "cost": 800,
-            "matches": 258295,
-            "wins": 126269,
-            "win_rate": 0.4889,
-            "wilson_lb": 0.4869,
-            "score": 0.0013,
-            "wr_delta_pp": 0.33,
-            "avg_buy_time_s": 267.4,
-            "phase": "early",
-            "build_freq_weight": 383.4,
-            "slot": "weapon"
-          },
           {
             "item_id": 2481177645,
             "name": "Hunter's Aura",
@@ -834,7 +945,10 @@
             "avg_buy_time_s": 1256.7,
             "phase": "mid",
             "build_freq_weight": 383.4,
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Makes you take less bullet damage and isnt resists, also shreds bullet resists"
           },
           {
             "item_id": 1414319208,
@@ -851,24 +965,49 @@
             "avg_buy_time_s": 1578.5,
             "phase": "late",
             "build_freq_weight": 382.3,
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 0.75,
+            "annotation": "Its free damage"
           },
           {
-            "item_id": 393974127,
-            "name": "Slowing Bullets",
+            "item_id": 3791587546,
+            "name": "Weighted Shots",
             "category": "weapon",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 240901,
-            "wins": 119568,
-            "win_rate": 0.4963,
-            "wilson_lb": 0.4943,
-            "score": 0.0088,
-            "wr_delta_pp": 1.08,
-            "avg_buy_time_s": 692.0,
-            "phase": "early",
-            "build_freq_weight": 382.3,
-            "slot": "weapon"
+            "tier": 3,
+            "cost": 3200,
+            "matches": 128087,
+            "wins": 63966,
+            "win_rate": 0.4994,
+            "wilson_lb": 0.4967,
+            "score": 0.0111,
+            "wr_delta_pp": 1.38,
+            "avg_buy_time_s": 1404.7,
+            "phase": "mid",
+            "build_freq_weight": 365.4,
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 0.75
+          },
+          {
+            "item_id": 2095565695,
+            "name": "Point Blank",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 205535,
+            "wins": 101320,
+            "win_rate": 0.493,
+            "wilson_lb": 0.4908,
+            "score": 0.0052,
+            "wr_delta_pp": 0.74,
+            "avg_buy_time_s": 1151.6,
+            "phase": "mid",
+            "build_freq_weight": 301.4,
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.625,
+            "annotation": "Slow and damage gods gift to silver deadlock, Get after lifestrike if youre going for cultists at 8 minutes"
           },
           {
             "item_id": 2163598980,
@@ -885,7 +1024,10 @@
             "avg_buy_time_s": 1475.3,
             "phase": "mid",
             "build_freq_weight": 383.4,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "really good so you dont get bursted down by spirit so that you can actually get ur transformation off"
           },
           {
             "item_id": 2037039379,
@@ -902,7 +1044,10 @@
             "avg_buy_time_s": 1976.3,
             "phase": "late",
             "build_freq_weight": 383.4,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Get earlier when losing, generally damage reduction > resistances  since stacking resists is bad"
           },
           {
             "item_id": 3270001687,
@@ -919,7 +1064,10 @@
             "avg_buy_time_s": 1504.1,
             "phase": "late",
             "build_freq_weight": 383.4,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "The last item Id consider really \"Core\" to the build, after this youre alot freer to build whatever you want"
           },
           {
             "item_id": 334300056,
@@ -936,7 +1084,10 @@
             "avg_buy_time_s": 1297.6,
             "phase": "mid",
             "build_freq_weight": 383.4,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Massive buff to your chase and rotation speed, you NEED this item to keep up. Also keep in mind people will try to run from you the moment you proc your ult because they are terrified of the wolp"
           },
           {
             "item_id": 1813726886,
@@ -953,7 +1104,10 @@
             "avg_buy_time_s": 1035.0,
             "phase": "mid",
             "build_freq_weight": 315.5,
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.625,
+            "annotation": "Mina, Pocket, Lash, Shiv, Calico, etc. Dashes are bad for you, stop them"
           },
           {
             "item_id": 2717651715,
@@ -970,7 +1124,10 @@
             "avg_buy_time_s": 1774.5,
             "phase": "late",
             "build_freq_weight": 107.7,
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.375,
+            "annotation": "lets you have longer bolas, silence waves, unstoppable, disarm, shred, DoT from wolf leap, just turbo value item."
           },
           {
             "item_id": 395944548,
@@ -987,7 +1144,9 @@
             "avg_buy_time_s": 1413.9,
             "phase": "mid",
             "build_freq_weight": 98.5,
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.375
           },
           {
             "item_id": 2971868509,
@@ -1004,7 +1163,9 @@
             "avg_buy_time_s": 1179.2,
             "phase": "mid",
             "build_freq_weight": 97.3,
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "situational",
+            "pick_rate": 0.25
           },
           {
             "item_id": 1250307611,
@@ -1021,7 +1182,10 @@
             "avg_buy_time_s": 2094.2,
             "phase": "late",
             "build_freq_weight": 383.4,
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "slow resist + additional protection from gun heroes"
           },
           {
             "item_id": 1371725689,
@@ -1038,7 +1202,10 @@
             "avg_buy_time_s": 1963.3,
             "phase": "late",
             "build_freq_weight": 383.4,
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Really good to gap close and is one of Silvers best late game spikes. You can rush this before unstop if youre really ahead."
           },
           {
             "item_id": 1437614329,
@@ -1055,7 +1222,10 @@
             "avg_buy_time_s": 251.4,
             "phase": "early",
             "build_freq_weight": 383.4,
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "good overall item, you can sell it late game for a tier 4 or something if you really need to spend your money."
           },
           {
             "item_id": 3140772621,
@@ -1072,7 +1242,10 @@
             "avg_buy_time_s": 1731.2,
             "phase": "late",
             "build_freq_weight": 382.3,
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 0.875,
+            "annotation": "Bad item, if their entire team is gun though its still good"
           }
         ],
         "source_builds": [
@@ -1125,10 +1298,726 @@
             "matches": 498
           }
         ]
+      },
+      "item_metadata": {
+        "3862866912": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "Sustain if you can hit it, I dont think its that good though",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "1437614329": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "good overall item, you can sell it late game for a tier 4 or something if you really need to spend your money.",
+          "builds_appearing_in": 8,
+          "builds_total": 8
+        },
+        "2059712766": {
+          "tag": "flex",
+          "pick_rate": 0.625,
+          "annotation": "Resto locket lets you hmc",
+          "builds_appearing_in": 5,
+          "builds_total": 8
+        },
+        "3633614685": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "1342610602": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Builds into point blank and is a solid damage increase for silver",
+          "builds_appearing_in": 8,
+          "builds_total": 8
+        },
+        "690458959": {
+          "tag": "core",
+          "pick_rate": 0.75,
+          "annotation": "Still testing but I think its compy",
+          "builds_appearing_in": 6,
+          "builds_total": 8
+        },
+        "393974127": {
+          "tag": "core",
+          "pick_rate": 0.875,
+          "annotation": "Gives everything silver wants, this is better against opening rounds against mobile targets",
+          "builds_appearing_in": 7,
+          "builds_total": 8
+        },
+        "4139877411": {
+          "tag": "core",
+          "pick_rate": 0.875,
+          "annotation": "stamina lets you get around the map faster for box routes and ganks, along with surviving lane easier.",
+          "builds_appearing_in": 7,
+          "builds_total": 8
+        },
+        "1813726886": {
+          "tag": "flex",
+          "pick_rate": 0.625,
+          "annotation": "Mina, Pocket, Lash, Shiv, Calico, etc. Dashes are bad for you, stop them",
+          "builds_appearing_in": 5,
+          "builds_total": 8
+        },
+        "112198670": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "If youre getting nuked repeatedly or youre against vyper",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "805079544": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "2481177645": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Makes you take less bullet damage and isnt resists, also shreds bullet resists",
+          "builds_appearing_in": 8,
+          "builds_total": 8
+        },
+        "334300056": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Massive buff to your chase and rotation speed, you NEED this item to keep up. Also keep in mind people will try to run from you the moment you proc your ult because they are terrified of the wolp",
+          "builds_appearing_in": 8,
+          "builds_total": 8
+        },
+        "1414319208": {
+          "tag": "core",
+          "pick_rate": 0.75,
+          "annotation": "Its free damage",
+          "builds_appearing_in": 6,
+          "builds_total": 8
+        },
+        "2163598980": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "really good so you dont get bursted down by spirit so that you can actually get ur transformation off",
+          "builds_appearing_in": 8,
+          "builds_total": 8
+        },
+        "3357231760": {
+          "tag": "core",
+          "pick_rate": 0.875,
+          "annotation": "When you get lycan you will become public enemy number 1 and CC really hurts you",
+          "builds_appearing_in": 7,
+          "builds_total": 8
+        },
+        "2095565695": {
+          "tag": "flex",
+          "pick_rate": 0.625,
+          "annotation": "Slow and damage gods gift to silver deadlock, Get after lifestrike if youre going for cultists at 8 minutes",
+          "builds_appearing_in": 5,
+          "builds_total": 8
+        },
+        "1055679805": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "Pop this when you enter wolf or when youre just about to hit it and heal to full",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "3270001687": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "The last item Id consider really \"Core\" to the build, after this youre alot freer to build whatever you want",
+          "builds_appearing_in": 8,
+          "builds_total": 8
+        },
+        "1371725689": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Really good to gap close and is one of Silvers best late game spikes. You can rush this before unstop if youre really ahead.",
+          "builds_appearing_in": 8,
+          "builds_total": 8
+        },
+        "3491236900": {
+          "tag": "core",
+          "pick_rate": 0.75,
+          "annotation": "mina/haze/mirage/infernus/venator",
+          "builds_appearing_in": 6,
+          "builds_total": 8
+        },
+        "339443430": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "The only T4 worth rushing on this character, if youre losing get inhibitor instead",
+          "builds_appearing_in": 4,
+          "builds_total": 8
+        },
+        "2407781327": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Resists good, slows good",
+          "builds_appearing_in": 4,
+          "builds_total": 8
+        },
+        "1955841979": {
+          "tag": "flex",
+          "pick_rate": 0.625,
+          "annotation": "good vs burst damage + debuff resist",
+          "builds_appearing_in": 5,
+          "builds_total": 8
+        },
+        "1250307611": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "slow resist + additional protection from gun heroes",
+          "builds_appearing_in": 8,
+          "builds_total": 8
+        },
+        "2037039379": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Get earlier when losing, generally damage reduction > resistances  since stacking resists is bad",
+          "builds_appearing_in": 8,
+          "builds_total": 8
+        },
+        "1414025773": {
+          "tag": "core",
+          "pick_rate": 0.75,
+          "annotation": "pocket/lash",
+          "builds_appearing_in": 6,
+          "builds_total": 8
+        },
+        "1378931225": {
+          "tag": "core",
+          "pick_rate": 0.875,
+          "annotation": "haze/warden/venator",
+          "builds_appearing_in": 7,
+          "builds_total": 8
+        },
+        "3585132399": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "2717651715": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "lets you have longer bolas, silence waves, unstoppable, disarm, shred, DoT from wolf leap, just turbo value item.",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "3140772621": {
+          "tag": "core",
+          "pick_rate": 0.875,
+          "annotation": "Bad item, if their entire team is gun though its still good",
+          "builds_appearing_in": 7,
+          "builds_total": 8
+        },
+        "3791587546": {
+          "tag": "core",
+          "pick_rate": 0.75,
+          "annotation": "",
+          "builds_appearing_in": 6,
+          "builds_total": 8
+        },
+        "2678489038": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "Massive damage and a bit of shred, you should be able to proc your ult 100% of the time with this and express shot until way later",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "2971868509": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "395944548": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "499683006": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "1235347618": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Optional, should be the first to go for slot, if you really need to win lane",
+          "builds_appearing_in": 4,
+          "builds_total": 8
+        },
+        "1252627263": {
+          "tag": "flex",
+          "pick_rate": 0.625,
+          "annotation": "Crazy sustain in lycan",
+          "builds_appearing_in": 5,
+          "builds_total": 8
+        },
+        "1396247347": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "So much fucking damage do not discount this item, However this item is basically placeholder for any T4 item, Lucky Shot is just the most generically good and worth rushing imo",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "2829638276": {
+          "tag": "core",
+          "pick_rate": 0.75,
+          "annotation": "Get earlier if youre really struggling",
+          "builds_appearing_in": 6,
+          "builds_total": 8
+        },
+        "2566692615": {
+          "tag": "flex",
+          "pick_rate": 0.625,
+          "annotation": "Never die + makes the curve better",
+          "builds_appearing_in": 5,
+          "builds_total": 8
+        },
+        "3731635960": {
+          "tag": "core",
+          "pick_rate": 0.875,
+          "annotation": "decay/toxic bullets/mirage/infernus/shiv knives if u feel u need to purge it",
+          "builds_appearing_in": 7,
+          "builds_total": 8
+        },
+        "1427630806": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "Builds out of healing booster and gives stats you want, I dont know if its worth 4.8k though",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "1113837674": {
+          "tag": "core",
+          "pick_rate": 0.75,
+          "annotation": "If youre getting shredded by spirit damage or problematic abilities are locking you down get this",
+          "builds_appearing_in": 6,
+          "builds_total": 8
+        },
+        "2820116164": {
+          "tag": "flex",
+          "pick_rate": 0.625,
+          "annotation": "1000 barrier isnt anything to scoff at but spirit power doesnt do that much for us",
+          "builds_appearing_in": 5,
+          "builds_total": 8
+        },
+        "2533252781": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "If youre getting hate crimed, this plus unstoppable makes it so you dont get one shot",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "1662311306": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "4204808176": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "abrams billy drifter calico",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "3399065363": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "1644605047": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 8
+        },
+        "1047818222": {
+          "tag": "flex",
+          "pick_rate": 0.625,
+          "annotation": "Builds into unstoppable or spellbreaker",
+          "builds_appearing_in": 5,
+          "builds_total": 8
+        },
+        "2447176615": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "Against slows and or for rotations",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "1009965641": {
+          "tag": "core",
+          "pick_rate": 0.75,
+          "annotation": "If your laner is goated at clearing waves you might be able to skip but usually you want this. Also lets you jungle",
+          "builds_appearing_in": 6,
+          "builds_total": 8
+        },
+        "98582110": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "3077079169": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "619484391": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "this item builds so much ult charge cus damage and if you bola + silence them they cant react to any of your damage",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "3361075077": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "High fire rate characters will give you free ult and when you get resists they are punished for shooting you which is good since youre a big target in ult",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "3028234315": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "Good spirit res and makes your 1 a 1 second cooldown",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "493591231": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "3696726732": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Silvers bullets have really fucked build up percentages for some reasons, read how much this item builds up per shot",
+          "builds_appearing_in": 4,
+          "builds_total": 8
+        },
+        "2221211450": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "Really good in base form, in lycan its kind of mediocre I think",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "865846625": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "1282141666": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "Maybe against mo or something",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "2121044373": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "late late game",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "465043967": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "380806748": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "3261353684": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "cooldown is good, choose superior duration or this AFTER you buy one of the green T4 items on the left.",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "2922054143": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "steroid for 1 (both lycan and human)",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "754480263": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "1976391348": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "1144549437": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "395867183": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "only get after spirit investment or replace for spirit shredder",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "2064029594": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "SO much damage and with the new scalings on your 2 and 3 the spirit power isnt a wasted stat, opening rounds is compy as fuck",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "3970837787": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "If you really need spirit res that bad",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "3812615317": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "If you need the CC or theres like a mina or theyre building alot of bullet res etc, theres alot of reasons to want this item but not enough for it to be core. Use your judgement",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "915014646": {
+          "tag": "flex",
+          "pick_rate": 0.375,
+          "annotation": "Less cooldown is nice and we build some actives, unsure how good it actually is though",
+          "builds_appearing_in": 3,
+          "builds_total": 8
+        },
+        "2142980412": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "Could end up being a good spirit damage reduction item",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "3361811174": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "800008313": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Bait item, might have some use though",
+          "builds_appearing_in": 4,
+          "builds_total": 8
+        },
+        "2951612397": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "3190916303": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "Could be useful to reduce spirit damage idk",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "1770441818": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "this or slowing bullets",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "1932939246": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "1710079648": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "EMERGENCY ITEM",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "709540378": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "Win more item, if youre not able to get it by 8 minutes skip it. This is your biggest consideration in lane, if you can play for it play for it",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "365620721": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "If youre annihilating the enemy team and not dying, want to build this as early as possible if you're getting it, Im thinking about moving this to core but I need to try it more",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "1254091416": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "Against fliers or movement demons like celeste",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "3074274290": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "If youre annihilating the enemy team",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "2417568017": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "The spirit res is too much to ignore and %health damage is never bad, if they arent buying bullet resists you can get this later or if theyre maxing bullet res get it early",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "673001892": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "If they have metal skin or alot of resistences this breaks through",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "2226497419": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "This effectively reads (+ fire rate, + fire rate, + cooldown reduction) its not bad if you can proc wolf easily and consistently, spirit lifesteal is irrelevant though",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "2617435668": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "For if youre literally useless and like 0/20/5, curse turns you into a goated support its that good",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "3884003354": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "If you need shred that badly, this isnt the best since you cant proc it in ult but its 12 seconds",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "968099481": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "Might be compy as fuck",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "84321454": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "Might even be lane core now",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "1292979587": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "New scalings on 2 might make this compy",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "3919289022": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "Might actually be really good now",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "3977876567": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "Used to be core in an earlier version of the build but it doesnt do enough in wolf form takes our extra stam making it harder to build stam mastery, still has potential though",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "4053935515": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "NO WOLF SILVER",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "865958998": {
+          "tag": "situational",
+          "pick_rate": 0.25,
+          "annotation": "Could be good you like most of what it gives you",
+          "builds_appearing_in": 2,
+          "builds_total": 8
+        },
+        "26002154": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        },
+        "4104549924": {
+          "tag": "situational",
+          "pick_rate": 0.125,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 8
+        }
       }
     },
     "high_mmr": {
-      "candidate_count": 91,
+      "candidate_count": 64,
       "min_matches_filter": 300,
       "wilson_greedy": {
         "picks": [
@@ -1146,7 +2035,9 @@
             "wr_delta_pp": 13.75,
             "avg_buy_time_s": 1930.6,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.667
           },
           {
             "item_id": 1396247347,
@@ -1162,7 +2053,9 @@
             "wr_delta_pp": 15.29,
             "avg_buy_time_s": 1922.3,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.333
           },
           {
             "item_id": 339443430,
@@ -1178,7 +2071,9 @@
             "wr_delta_pp": 11.55,
             "avg_buy_time_s": 2007.4,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.333
           },
           {
             "item_id": 2221211450,
@@ -1194,7 +2089,9 @@
             "wr_delta_pp": 11.36,
             "avg_buy_time_s": 1852.2,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "situational",
+            "pick_rate": 0.167
           },
           {
             "item_id": 1371725689,
@@ -1210,7 +2107,10 @@
             "wr_delta_pp": 12.67,
             "avg_buy_time_s": 1804.9,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Really good to gap close and is one of Silvers best late game spikes. You can rush this before unstop if youre really ahead."
           },
           {
             "item_id": 2037039379,
@@ -1226,7 +2126,9 @@
             "wr_delta_pp": 11.9,
             "avg_buy_time_s": 1867.2,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0
           },
           {
             "item_id": 1427630806,
@@ -1242,7 +2144,9 @@
             "wr_delta_pp": 11.49,
             "avg_buy_time_s": 2025.2,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "flex",
+            "pick_rate": 0.333
           },
           {
             "item_id": 1055679805,
@@ -1258,7 +2162,9 @@
             "wr_delta_pp": 9.06,
             "avg_buy_time_s": 1982.2,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "flex",
+            "pick_rate": 0.333
           },
           {
             "item_id": 3812615317,
@@ -1274,7 +2180,9 @@
             "wr_delta_pp": 11.11,
             "avg_buy_time_s": 1839.4,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.333
           },
           {
             "item_id": 2717651715,
@@ -1290,23 +2198,10 @@
             "wr_delta_pp": 7.39,
             "avg_buy_time_s": 1705.0,
             "phase": "late",
-            "slot": "spirit"
-          },
-          {
-            "item_id": 2951612397,
-            "name": "Duration Extender",
-            "category": "spirit",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 2544,
-            "wins": 1385,
-            "win_rate": 0.5444,
-            "wilson_lb": 0.525,
-            "score": 0.0282,
-            "wr_delta_pp": 4.76,
-            "avg_buy_time_s": 1505.7,
-            "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "lets you have longer bolas, silence waves, unstoppable, disarm, shred, DoT from wolf leap, just turbo value item."
           },
           {
             "item_id": 915014646,
@@ -1322,7 +2217,27 @@
             "wr_delta_pp": 5.72,
             "avg_buy_time_s": 2160.4,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.333
+          },
+          {
+            "item_id": 2971868509,
+            "name": "Bullet Resist Shredder",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 2797,
+            "wins": 1458,
+            "win_rate": 0.5213,
+            "wilson_lb": 0.5027,
+            "score": 0.0059,
+            "wr_delta_pp": 2.44,
+            "avg_buy_time_s": 1044.9,
+            "phase": "mid",
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.333
           },
           {
             "item_id": 3357231760,
@@ -1338,7 +2253,10 @@
             "wr_delta_pp": 7.38,
             "avg_buy_time_s": 1836.0,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 0.833,
+            "annotation": "this item is extremely good for once you transform and can stick on someone without having to worry about CC. Definitely her best T4."
           },
           {
             "item_id": 3028234315,
@@ -1354,7 +2272,9 @@
             "wr_delta_pp": 9.42,
             "avg_buy_time_s": 2028.9,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "situational",
+            "pick_rate": 0.167
           },
           {
             "item_id": 1414319208,
@@ -1370,7 +2290,9 @@
             "wr_delta_pp": 6.17,
             "avg_buy_time_s": 1541.9,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 0.833
           },
           {
             "item_id": 2407781327,
@@ -1386,7 +2308,9 @@
             "wr_delta_pp": 8.49,
             "avg_buy_time_s": 1939.5,
             "phase": "late",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.333
           }
         ]
       },
@@ -1406,55 +2330,63 @@
             "wr_delta_pp": 13.75,
             "avg_buy_time_s": 1930.6,
             "phase": "late",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.667
           },
           {
-            "item_id": 1396247347,
-            "name": "Lucky Shot",
-            "category": "weapon",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 1065,
-            "wins": 692,
-            "win_rate": 0.6498,
-            "wilson_lb": 0.6206,
-            "score": 0.1238,
-            "wr_delta_pp": 15.29,
-            "avg_buy_time_s": 1922.3,
-            "phase": "late",
-            "slot": "weapon"
-          },
-          {
-            "item_id": 2481177645,
-            "name": "Hunter's Aura",
+            "item_id": 1414319208,
+            "name": "Berserker",
             "category": "weapon",
             "tier": 3,
             "cost": 3200,
-            "matches": 35853,
-            "wins": 18850,
-            "win_rate": 0.5258,
-            "wilson_lb": 0.5206,
-            "score": 0.0237,
-            "wr_delta_pp": 2.89,
-            "avg_buy_time_s": 1106.8,
-            "phase": "mid",
-            "slot": "weapon"
+            "matches": 19874,
+            "wins": 11101,
+            "win_rate": 0.5586,
+            "wilson_lb": 0.5517,
+            "score": 0.0548,
+            "wr_delta_pp": 6.17,
+            "avg_buy_time_s": 1541.9,
+            "phase": "late",
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 0.833
           },
           {
-            "item_id": 393974127,
-            "name": "Slowing Bullets",
+            "item_id": 2095565695,
+            "name": "Point Blank",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 28473,
+            "wins": 14743,
+            "win_rate": 0.5178,
+            "wilson_lb": 0.512,
+            "score": 0.0151,
+            "wr_delta_pp": 2.09,
+            "avg_buy_time_s": 1241.7,
+            "phase": "mid",
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.5
+          },
+          {
+            "item_id": 98582110,
+            "name": "Stalker",
             "category": "weapon",
             "tier": 2,
             "cost": 1600,
-            "matches": 45416,
-            "wins": 22767,
-            "win_rate": 0.5013,
-            "wilson_lb": 0.4967,
-            "score": -0.0002,
-            "wr_delta_pp": 0.44,
-            "avg_buy_time_s": 632.2,
+            "matches": 10683,
+            "wins": 5494,
+            "win_rate": 0.5143,
+            "wilson_lb": 0.5048,
+            "score": 0.0079,
+            "wr_delta_pp": 1.74,
+            "avg_buy_time_s": 445.4,
             "phase": "early",
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "situational",
+            "pick_rate": 0.167
           },
           {
             "item_id": 1371725689,
@@ -1470,7 +2402,10 @@
             "wr_delta_pp": 12.67,
             "avg_buy_time_s": 1804.9,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Really good to gap close and is one of Silvers best late game spikes. You can rush this before unstop if youre really ahead."
           },
           {
             "item_id": 2037039379,
@@ -1486,7 +2421,9 @@
             "wr_delta_pp": 11.9,
             "avg_buy_time_s": 1867.2,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0
           },
           {
             "item_id": 1427630806,
@@ -1502,39 +2439,28 @@
             "wr_delta_pp": 11.49,
             "avg_buy_time_s": 2025.2,
             "phase": "late",
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "flex",
+            "pick_rate": 0.333
           },
           {
-            "item_id": 1055679805,
-            "name": "Vampiric Burst",
+            "item_id": 3357231760,
+            "name": "Unstoppable",
             "category": "vitality",
             "tier": 4,
             "cost": 6400,
-            "matches": 1869,
-            "wins": 1098,
-            "win_rate": 0.5875,
-            "wilson_lb": 0.565,
-            "score": 0.0681,
-            "wr_delta_pp": 9.06,
-            "avg_buy_time_s": 1982.2,
+            "matches": 13431,
+            "wins": 7664,
+            "win_rate": 0.5706,
+            "wilson_lb": 0.5622,
+            "score": 0.0654,
+            "wr_delta_pp": 7.38,
+            "avg_buy_time_s": 1836.0,
             "phase": "late",
-            "slot": "vitality"
-          },
-          {
-            "item_id": 3812615317,
-            "name": "Arctic Blast",
-            "category": "spirit",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 732,
-            "wins": 445,
-            "win_rate": 0.6079,
-            "wilson_lb": 0.5721,
-            "score": 0.0752,
-            "wr_delta_pp": 11.11,
-            "avg_buy_time_s": 1839.4,
-            "phase": "late",
-            "slot": "spirit"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 0.833,
+            "annotation": "this item is extremely good for once you transform and can stick on someone without having to worry about CC. Definitely her best T4."
           },
           {
             "item_id": 2717651715,
@@ -1550,7 +2476,28 @@
             "wr_delta_pp": 7.39,
             "avg_buy_time_s": 1705.0,
             "phase": "late",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "lets you have longer bolas, silence waves, unstoppable, disarm, shred, DoT from wolf leap, just turbo value item."
+          },
+          {
+            "item_id": 2971868509,
+            "name": "Bullet Resist Shredder",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 2797,
+            "wins": 1458,
+            "win_rate": 0.5213,
+            "wilson_lb": 0.5027,
+            "score": 0.0059,
+            "wr_delta_pp": 2.44,
+            "avg_buy_time_s": 1044.9,
+            "phase": "mid",
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.333
           },
           {
             "item_id": 1813726886,
@@ -1566,7 +2513,9 @@
             "wr_delta_pp": 0.3,
             "avg_buy_time_s": 933.9,
             "phase": "mid",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.667
           },
           {
             "item_id": 619484391,
@@ -1582,93 +2531,87 @@
             "wr_delta_pp": -2.45,
             "avg_buy_time_s": 1020.0,
             "phase": "mid",
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "this item builds so much ult charge cus damage and if you bola + silence them they cant react to any of your damage"
           },
           {
-            "item_id": 4139877411,
-            "name": "Extra Stamina",
+            "item_id": 2820116164,
+            "name": "Diviner's Kevlar",
             "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "matches": 42296,
-            "wins": 21343,
-            "win_rate": 0.5046,
-            "wilson_lb": 0.4998,
-            "score": 0.003,
-            "wr_delta_pp": 0.78,
-            "avg_buy_time_s": 583.2,
-            "phase": "early",
-            "slot": "flex"
+            "tier": 4,
+            "cost": 6400,
+            "matches": 4523,
+            "wins": 2455,
+            "win_rate": 0.5428,
+            "wilson_lb": 0.5282,
+            "score": 0.0314,
+            "wr_delta_pp": 4.59,
+            "avg_buy_time_s": 1721.6,
+            "phase": "late",
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.5
           },
           {
-            "item_id": 3633614685,
-            "name": "Extra Health",
+            "item_id": 2059712766,
+            "name": "Restorative Locket",
             "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "matches": 18988,
-            "wins": 9561,
-            "win_rate": 0.5035,
-            "wilson_lb": 0.4964,
-            "score": -0.0004,
-            "wr_delta_pp": 0.67,
-            "avg_buy_time_s": 449.5,
+            "tier": 2,
+            "cost": 1600,
+            "matches": 14326,
+            "wins": 7404,
+            "win_rate": 0.5168,
+            "wilson_lb": 0.5086,
+            "score": 0.0118,
+            "wr_delta_pp": 2.0,
+            "avg_buy_time_s": 490.3,
             "phase": "early",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.667
           },
           {
-            "item_id": 1437614329,
-            "name": "Melee Lifesteal",
+            "item_id": 3270001687,
+            "name": "Warp Stone",
             "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "matches": 45962,
-            "wins": 22919,
-            "win_rate": 0.4987,
-            "wilson_lb": 0.4941,
-            "score": -0.0028,
-            "wr_delta_pp": 0.18,
-            "avg_buy_time_s": 211.8,
-            "phase": "early",
-            "slot": "flex"
-          },
-          {
-            "item_id": 690458959,
-            "name": "Express Shot",
-            "category": "weapon",
             "tier": 3,
             "cost": 3200,
-            "matches": 32461,
-            "wins": 16134,
-            "win_rate": 0.497,
-            "wilson_lb": 0.4916,
-            "score": -0.0053,
-            "wr_delta_pp": 0.02,
-            "avg_buy_time_s": 846.7,
+            "matches": 12437,
+            "wins": 6431,
+            "win_rate": 0.5171,
+            "wilson_lb": 0.5083,
+            "score": 0.0114,
+            "wr_delta_pp": 2.02,
+            "avg_buy_time_s": 1376.1,
             "phase": "mid",
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 1.0
+          },
+          {
+            "item_id": 1009965641,
+            "name": "Monster Rounds",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 10852,
+            "wins": 5387,
+            "win_rate": 0.4964,
+            "wilson_lb": 0.487,
+            "score": -0.0099,
+            "wr_delta_pp": -0.05,
+            "avg_buy_time_s": 254.2,
+            "phase": "early",
+            "slot": "flex",
+            "tag": "flex",
+            "pick_rate": 0.667
           }
         ]
       },
       "build_replication": {
         "picks": [
-          {
-            "item_id": 1342610602,
-            "name": "Close Quarters",
-            "category": "weapon",
-            "tier": 1,
-            "cost": 800,
-            "matches": 40006,
-            "wins": 20201,
-            "win_rate": 0.5049,
-            "wilson_lb": 0.5,
-            "score": 0.0032,
-            "wr_delta_pp": 0.81,
-            "avg_buy_time_s": 238.6,
-            "phase": "early",
-            "build_freq_weight": 135.7,
-            "slot": "weapon"
-          },
           {
             "item_id": 2481177645,
             "name": "Hunter's Aura",
@@ -1684,7 +2627,10 @@
             "avg_buy_time_s": 1106.8,
             "phase": "mid",
             "build_freq_weight": 135.7,
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "really big damage spike and allows you to beat anyone in a 1v1 once you have this item and all the ones on the left."
           },
           {
             "item_id": 3791587546,
@@ -1701,7 +2647,9 @@
             "avg_buy_time_s": 1373.1,
             "phase": "mid",
             "build_freq_weight": 135.7,
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 0.833
           },
           {
             "item_id": 1414319208,
@@ -1718,7 +2666,28 @@
             "avg_buy_time_s": 1541.9,
             "phase": "late",
             "build_freq_weight": 135.7,
-            "slot": "weapon"
+            "slot": "weapon",
+            "tag": "core",
+            "pick_rate": 0.833
+          },
+          {
+            "item_id": 1113837674,
+            "name": "Silencer",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 5208,
+            "wins": 3304,
+            "win_rate": 0.6344,
+            "wilson_lb": 0.6212,
+            "score": 0.1244,
+            "wr_delta_pp": 13.75,
+            "avg_buy_time_s": 1930.6,
+            "phase": "late",
+            "build_freq_weight": 126.0,
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate": 0.667
           },
           {
             "item_id": 2163598980,
@@ -1735,7 +2704,10 @@
             "avg_buy_time_s": 1390.6,
             "phase": "mid",
             "build_freq_weight": 135.7,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "really good so you dont get bursted down by spirit so that you can actually get ur transformation off"
           },
           {
             "item_id": 3140772621,
@@ -1752,7 +2724,9 @@
             "avg_buy_time_s": 1608.3,
             "phase": "late",
             "build_freq_weight": 135.7,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0
           },
           {
             "item_id": 2037039379,
@@ -1769,7 +2743,9 @@
             "avg_buy_time_s": 1867.2,
             "phase": "late",
             "build_freq_weight": 135.7,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0
           },
           {
             "item_id": 3270001687,
@@ -1786,7 +2762,9 @@
             "avg_buy_time_s": 1376.1,
             "phase": "mid",
             "build_freq_weight": 135.7,
-            "slot": "vitality"
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0
           },
           {
             "item_id": 1813726886,
@@ -1803,7 +2781,9 @@
             "avg_buy_time_s": 933.9,
             "phase": "mid",
             "build_freq_weight": 100.0,
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.667
           },
           {
             "item_id": 2121044373,
@@ -1820,7 +2800,10 @@
             "avg_buy_time_s": 1531.1,
             "phase": "late",
             "build_freq_weight": 11.7,
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.333,
+            "annotation": "late late game"
           },
           {
             "item_id": 619484391,
@@ -1837,7 +2820,10 @@
             "avg_buy_time_s": 1020.0,
             "phase": "mid",
             "build_freq_weight": 11.7,
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "this item builds so much ult charge cus damage and if you bola + silence them they cant react to any of your damage"
           },
           {
             "item_id": 2717651715,
@@ -1854,7 +2840,10 @@
             "avg_buy_time_s": 1705.0,
             "phase": "late",
             "build_freq_weight": 9.7,
-            "slot": "spirit"
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "lets you have longer bolas, silence waves, unstoppable, disarm, shred, DoT from wolf leap, just turbo value item."
           },
           {
             "item_id": 334300056,
@@ -1871,7 +2860,9 @@
             "avg_buy_time_s": 1286.8,
             "phase": "mid",
             "build_freq_weight": 135.7,
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 1.0
           },
           {
             "item_id": 1250307611,
@@ -1888,24 +2879,10 @@
             "avg_buy_time_s": 2002.8,
             "phase": "late",
             "build_freq_weight": 135.7,
-            "slot": "flex"
-          },
-          {
-            "item_id": 4139877411,
-            "name": "Extra Stamina",
-            "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "matches": 42296,
-            "wins": 21343,
-            "win_rate": 0.5046,
-            "wilson_lb": 0.4998,
-            "score": 0.003,
-            "wr_delta_pp": 0.78,
-            "avg_buy_time_s": 583.2,
-            "phase": "early",
-            "build_freq_weight": 135.7,
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "slow resist + additional protection from gun heroes"
           },
           {
             "item_id": 3491236900,
@@ -1922,7 +2899,30 @@
             "avg_buy_time_s": 1979.8,
             "phase": "late",
             "build_freq_weight": 135.7,
-            "slot": "flex"
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 0.833,
+            "annotation": "mina/haze/mirage/infernus/venator"
+          },
+          {
+            "item_id": 1371725689,
+            "name": "Phantom Strike",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 7517,
+            "wins": 4687,
+            "win_rate": 0.6235,
+            "wilson_lb": 0.6125,
+            "score": 0.1156,
+            "wr_delta_pp": 12.67,
+            "avg_buy_time_s": 1804.9,
+            "phase": "late",
+            "build_freq_weight": 135.7,
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Really good to gap close and is one of Silvers best late game spikes. You can rush this before unstop if youre really ahead."
           }
         ],
         "source_builds": [
@@ -1963,6 +2963,589 @@
             "matches": 315
           }
         ]
+      },
+      "item_metadata": {
+        "1342610602": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 6,
+          "builds_total": 6
+        },
+        "1437614329": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "good overall item, you can sell it late game for a tier 4 or something if you really need to spend your money.",
+          "builds_appearing_in": 6,
+          "builds_total": 6
+        },
+        "2059712766": {
+          "tag": "flex",
+          "pick_rate": 0.667,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 6
+        },
+        "4139877411": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "stamina lets you get around the map faster for box routes and ganks, along with surviving lane easier.",
+          "builds_appearing_in": 6,
+          "builds_total": 6
+        },
+        "2829638276": {
+          "tag": "core",
+          "pick_rate": 0.833,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 6
+        },
+        "2566692615": {
+          "tag": "flex",
+          "pick_rate": 0.667,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 6
+        },
+        "393974127": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 6,
+          "builds_total": 6
+        },
+        "2481177645": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "really big damage spike and allows you to beat anyone in a 1v1 once you have this item and all the ones on the left.",
+          "builds_appearing_in": 6,
+          "builds_total": 6
+        },
+        "1813726886": {
+          "tag": "flex",
+          "pick_rate": 0.667,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 6
+        },
+        "1252627263": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 6
+        },
+        "3731635960": {
+          "tag": "core",
+          "pick_rate": 0.833,
+          "annotation": "decay/toxic bullets/mirage/infernus/shiv knives if u feel u need to purge it",
+          "builds_appearing_in": 5,
+          "builds_total": 6
+        },
+        "3791587546": {
+          "tag": "core",
+          "pick_rate": 0.833,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 6
+        },
+        "3270001687": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 6,
+          "builds_total": 6
+        },
+        "2095565695": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 6
+        },
+        "334300056": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 6,
+          "builds_total": 6
+        },
+        "1414319208": {
+          "tag": "core",
+          "pick_rate": 0.833,
+          "annotation": "",
+          "builds_appearing_in": 5,
+          "builds_total": 6
+        },
+        "2037039379": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 6,
+          "builds_total": 6
+        },
+        "1427630806": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 6
+        },
+        "3357231760": {
+          "tag": "core",
+          "pick_rate": 0.833,
+          "annotation": "this item is extremely good for once you transform and can stick on someone without having to worry about CC. Definitely her best T4.",
+          "builds_appearing_in": 5,
+          "builds_total": 6
+        },
+        "1371725689": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Really good to gap close and is one of Silvers best late game spikes. You can rush this before unstop if youre really ahead.",
+          "builds_appearing_in": 6,
+          "builds_total": 6
+        },
+        "1113837674": {
+          "tag": "flex",
+          "pick_rate": 0.667,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 6
+        },
+        "3491236900": {
+          "tag": "core",
+          "pick_rate": 0.833,
+          "annotation": "mina/haze/mirage/infernus/venator",
+          "builds_appearing_in": 5,
+          "builds_total": 6
+        },
+        "2820116164": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 6
+        },
+        "2533252781": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "1250307611": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "slow resist + additional protection from gun heroes",
+          "builds_appearing_in": 6,
+          "builds_total": 6
+        },
+        "1662311306": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 6
+        },
+        "1414025773": {
+          "tag": "flex",
+          "pick_rate": 0.667,
+          "annotation": "pocket/lash",
+          "builds_appearing_in": 4,
+          "builds_total": 6
+        },
+        "3140772621": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 6,
+          "builds_total": 6
+        },
+        "1378931225": {
+          "tag": "core",
+          "pick_rate": 0.833,
+          "annotation": "haze/warden/venator",
+          "builds_appearing_in": 5,
+          "builds_total": 6
+        },
+        "2163598980": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "really good so you dont get bursted down by spirit so that you can actually get ur transformation off",
+          "builds_appearing_in": 6,
+          "builds_total": 6
+        },
+        "4204808176": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "abrams billy drifter calico",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "3399065363": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "1644605047": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 6
+        },
+        "1047818222": {
+          "tag": "flex",
+          "pick_rate": 0.667,
+          "annotation": "build into unstop most games, could do breaker too",
+          "builds_appearing_in": 4,
+          "builds_total": 6
+        },
+        "2447176615": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 6
+        },
+        "3862866912": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "3633614685": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 6
+        },
+        "690458959": {
+          "tag": "core",
+          "pick_rate": 0.833,
+          "annotation": "buying express + slowing bullets gets u your 4.8k gun spike and is ur first powerspike of the game",
+          "builds_appearing_in": 5,
+          "builds_total": 6
+        },
+        "112198670": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "805079544": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "1055679805": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 6
+        },
+        "339443430": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 6
+        },
+        "2407781327": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 6
+        },
+        "1955841979": {
+          "tag": "flex",
+          "pick_rate": 0.667,
+          "annotation": "good vs burst damage + debuff resist",
+          "builds_appearing_in": 4,
+          "builds_total": 6
+        },
+        "3585132399": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 6
+        },
+        "2717651715": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "lets you have longer bolas, silence waves, unstoppable, disarm, shred, DoT from wolf leap, just turbo value item.",
+          "builds_appearing_in": 3,
+          "builds_total": 6
+        },
+        "2678489038": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "2971868509": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 6
+        },
+        "395944548": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 6
+        },
+        "499683006": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "1235347618": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 6
+        },
+        "1396247347": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 6
+        },
+        "465043967": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "380806748": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "3261353684": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "cooldown is good, choose superior duration or this AFTER you buy one of the green T4 items on the left.",
+          "builds_appearing_in": 2,
+          "builds_total": 6
+        },
+        "1009965641": {
+          "tag": "flex",
+          "pick_rate": 0.667,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 6
+        },
+        "2922054143": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "steroid for 1 (both lycan and human)",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "619484391": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "this item builds so much ult charge cus damage and if you bola + silence them they cant react to any of your damage",
+          "builds_appearing_in": 3,
+          "builds_total": 6
+        },
+        "754480263": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "1976391348": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "1144549437": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "395867183": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "only get after spirit investment or replace for spirit shredder",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "2064029594": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "3970837787": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "replaceable",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "2121044373": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "late late game",
+          "builds_appearing_in": 2,
+          "builds_total": 6
+        },
+        "3812615317": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 6
+        },
+        "915014646": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 6
+        },
+        "2142980412": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "3361811174": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "800008313": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 6
+        },
+        "98582110": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "3077079169": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 6
+        },
+        "3361075077": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "3028234315": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "493591231": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "3696726732": {
+          "tag": "flex",
+          "pick_rate": 0.333,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 6
+        },
+        "2221211450": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "865846625": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "1282141666": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "2951612397": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "3190916303": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "1770441818": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "this or slowing bullets",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        },
+        "1932939246": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6
+        }
       }
     }
   },
