@@ -418,6 +418,94 @@ HTML = """<!doctype html>
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
+  /* Signature items: hero-specific picks (affinity ≥ 2x with non-trivial pick rate) */
+  .signature-star {
+    display: inline-block;
+    margin-right: 5px;
+    color: var(--accent);
+    font-size: 12px;
+    cursor: help;
+    text-shadow: 0 0 6px rgba(240,169,59,0.5);
+  }
+  .item-row.is-signature {
+    background: linear-gradient(90deg, rgba(240,169,59,0.05) 0%, transparent 60%);
+    border-left: 2px solid var(--accent);
+    padding-left: 6px;
+    margin-left: -8px;
+  }
+
+  /* Archetype panel */
+  .archetype-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .archetype-row {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .archetype-row:last-child { border-bottom: none; }
+  .archetype-row .label-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .archetype-row .name { font-size: 14px; }
+  .archetype-row.primary .name { color: var(--accent); }
+  .archetype-row .share-pill {
+    display: inline-block;
+    padding: 1px 8px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 11px;
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+  .archetype-row.primary .share-pill {
+    background: rgba(240,169,59,0.1);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .archetype-row .archetype-meta {
+    color: var(--text-dim);
+    font-size: 11px;
+  }
+  .archetype-row .sig-items {
+    margin-top: 4px;
+    color: var(--text-dim);
+    font-size: 12px;
+  }
+  .archetype-row .sig-items .name-chip {
+    display: inline-block;
+    background: var(--bg);
+    padding: 2px 7px;
+    margin: 2px 4px 2px 0;
+    border-radius: 4px;
+    color: var(--text);
+    font-size: 11px;
+  }
+  .archetype-row .cat-bar {
+    display: inline-flex;
+    height: 6px;
+    width: 100px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: var(--bg);
+    vertical-align: middle;
+    margin: 0 6px;
+  }
+  .archetype-row .cat-bar > i {
+    display: block;
+    height: 100%;
+  }
+  .archetype-row .cat-bar > i.weapon   { background: var(--weapon); }
+  .archetype-row .cat-bar > i.vitality { background: var(--vitality); }
+  .archetype-row .cat-bar > i.spirit   { background: var(--spirit); }
+
   /* Investment-spike progression panel */
   .spike-panel {
     background: var(--bg-card);
@@ -641,6 +729,7 @@ HTML = """<!doctype html>
     for (const ph in byPhase) byPhase[ph].sort((a,b) => a.buy_min - b.buy_min);
     const totalCost = items.reduce((s,i) => s + (i.cost||0), 0);
     const spikeProgress = computeSpikeProgress(items);
+    const sigCount = items.filter(i => i.signature).length;
 
     // Ability data for current slice
     const abInfo = h.ability_orders[mmrSlice];
@@ -656,6 +745,7 @@ HTML = """<!doctype html>
             <div class="stat"><strong>Baseline WR:</strong> <span class="wr-badge ${wrClass(wr)}">${fmtPct(wr)}</span></div>
             <div class="stat"><strong>Sample:</strong> ${slice.matches.toLocaleString()} matches · ${slice.players.toLocaleString()} players</div>
             <div class="stat"><strong>Build cost:</strong> ${fmtCost(totalCost)}</div>
+            ${sigCount > 0 ? `<div class="stat"><strong>Signature picks:</strong> ${sigCount} ⭐ <span style="color:var(--text-dim);font-size:11px">hero-specific items</span></div>` : ''}
           </div>
         </div>
       </div>
@@ -686,6 +776,16 @@ HTML = """<!doctype html>
             <summary>${abInfo.alternate_fulls.length} alternate full orders</summary>
             ${abInfo.alternate_fulls.map(o => renderOrderCard(o, 'full-alt')).join('')}
           </details>` : ''}
+      </section>
+
+      <section>
+        <h3>Build Archetypes</h3>
+        <div class="summary-line">
+          Community builds for this hero, clustered by item composition (Jaccard distance).
+          The top archetype is the most common playstyle; the recommended build leans toward it.
+          ⭐ items below mark hero-specific picks — items this hero uses ≥2× more than the average hero.
+        </div>
+        ${renderArchetypesPanel(h.archetypes)}
       </section>
 
       <section>
@@ -854,20 +954,27 @@ HTML = """<!doctype html>
     const hasAnnot = !!(item.annotation && item.annotation.length);
     const tagLabel = TAG_LABEL[tag] || tag.toUpperCase();
     const tagTitle = TAG_TITLE[tag] || '';
+    const isSignature = !!item.signature;
+    const affinity = item.affinity;
+    const sigStar = isSignature
+      ? `<span class="signature-star" title="Hero-specific: this hero picks ${item.name} ${affinity ? affinity.toFixed(1) + '× ' : ''}more often than the average hero">⭐</span>`
+      : '';
     const pickBar = pickRate > 0
       ? `<span class="pick-rate-bar" title="${(pickRate*100).toFixed(0)}% of top community builds use this"><i style="width:${(pickRate*100).toFixed(0)}%"></i></span>`
       : '';
     const tooltip = hasAnnot
-      ? `<div class="annot-tooltip"><span class="annot-source">Community build note · ${(pickRate*100).toFixed(0)}% pick rate</span>${escHtml(item.annotation)}</div>`
+      ? `<div class="annot-tooltip"><span class="annot-source">Community build note · ${(pickRate*100).toFixed(0)}% pick rate${affinity ? ' · ' + affinity.toFixed(1) + '× hero affinity' : ''}</span>${escHtml(item.annotation)}</div>`
       : '';
     const dataAnn = hasAnnot ? ` data-annotation="${escAttr(item.annotation)}"` : '';
+    const rowClasses = ['item-row'];
+    if (isSignature) rowClasses.push('is-signature');
     return `
-      <div class="item-row"${dataAnn}>
+      <div class="${rowClasses.join(' ')}"${dataAnn}>
         <div class="icon">
           ${item.image ? `<img src="${item.image}" onerror="this.style.display='none';this.parentNode.innerHTML='<span class=placeholder>'+(item.tier?'T'+item.tier:'?')+'</span>'">` : `<span class="placeholder">T${item.tier||'?'}</span>`}
         </div>
         <div>
-          <div class="name">${item.name}<span class="tag-pill tag-${tag}" title="${tagTitle}">${tagLabel}</span>${pickBar}</div>
+          <div class="name">${sigStar}${item.name}<span class="tag-pill tag-${tag}" title="${tagTitle}">${tagLabel}</span>${pickBar}</div>
           <div class="meta">
             <span class="cat-pill cat-${cat}">${cat}</span>
             ${isFlex ? '<span class="slot-flex">FLEX SLOT · </span>' : ''}
@@ -878,6 +985,46 @@ HTML = """<!doctype html>
         ${tooltip}
       </div>
     `;
+  }
+
+  function renderArchetypesPanel(archetypes) {
+    if (!archetypes || !archetypes.clusters || archetypes.clusters.length === 0) {
+      return '<div class="summary-line">Not enough community builds to cluster.</div>';
+    }
+    // Filter out tiny clusters (<2 builds) — they're outliers, not archetypes
+    const meaningful = archetypes.clusters.filter(c => c.build_count >= 2);
+    if (meaningful.length === 0) {
+      return `<div class="summary-line">Only ${archetypes.total_builds} community build(s) found — too few to cluster meaningfully.</div>`;
+    }
+    return `<div class="archetype-panel">${meaningful.map((c, idx) => {
+      const isPrimary = idx === 0;
+      const mix = c.category_mix || {};
+      const sigs = (c.signature_items || []).slice(0, 4);
+      const sigLine = sigs.length
+        ? `<div class="sig-items">Distinguishing items: ${sigs.map(s => `<span class="name-chip" title="${(s.in_cluster_rate*100).toFixed(0)}% of this archetype's builds use it">${escHtml(s.name)}</span>`).join('')}</div>`
+        : '';
+      const samples = (c.sample_build_names || []).slice(0, 2).map(escHtml).join(' · ');
+      const sampleLine = samples ? `<div class="archetype-meta">Top builds: ${samples}</div>` : '';
+      return `
+        <div class="archetype-row ${isPrimary ? 'primary' : ''}">
+          <div class="label-line">
+            <span class="name">${isPrimary ? '★ ' : ''}${escHtml(c.label)}</span>
+            <span class="share-pill">${(c.share*100).toFixed(0)}% of top builds · ${c.build_count} builds${c.avg_wr != null ? ' · ' + (c.avg_wr*100).toFixed(1) + '% avg WR' : ''}</span>
+          </div>
+          <div class="archetype-meta">
+            Category mix:
+            <span class="cat-bar" title="${(mix.weapon||0)*100}% weapon, ${(mix.vitality||0)*100}% vitality, ${(mix.spirit||0)*100}% spirit">
+              <i class="weapon" style="width:${(mix.weapon||0)*100}%"></i><i class="vitality" style="width:${(mix.vitality||0)*100}%"></i><i class="spirit" style="width:${(mix.spirit||0)*100}%"></i>
+            </span>
+            <span style="color:var(--weapon)">${((mix.weapon||0)*100).toFixed(0)}%</span> /
+            <span style="color:var(--vitality)">${((mix.vitality||0)*100).toFixed(0)}%</span> /
+            <span style="color:var(--spirit)">${((mix.spirit||0)*100).toFixed(0)}%</span>
+          </div>
+          ${sigLine}
+          ${sampleLine}
+        </div>
+      `;
+    }).join('')}</div>`;
   }
 
   // Wire up controls
