@@ -78,6 +78,9 @@ def compact_hero(d: dict) -> dict:
                         "buy_min": p["avg_buy_time_min"],
                         "wr": p["win_rate"],
                         "image": items_assets.get(p["item_id"], {}).get("image"),
+                        "tag": p.get("tag", "stat"),
+                        "pick_rate": p.get("pick_rate", 0.0),
+                        "annotation": p.get("annotation", ""),
                     } for p in d["recommended"]["items"]["phases"][ph]]
                     for ph in ("early", "mid", "late")
                 },
@@ -105,6 +108,9 @@ def compact_hero(d: dict) -> dict:
                 "buy_min": round(p["avg_buy_time_s"] / 60, 1),
                 "wr": p["win_rate"], "phase": p["phase"],
                 "image": items_assets.get(p["item_id"], {}).get("image"),
+                "tag": p.get("tag", "stat"),
+                "pick_rate": p.get("pick_rate", 0.0),
+                "annotation": p.get("annotation", ""),
             } for p in d["items"][src]["synergy_ilp"]["picks"]]
             for slice_label, src in (("all", "all_mmr"), ("high", "high_mmr"))
         },

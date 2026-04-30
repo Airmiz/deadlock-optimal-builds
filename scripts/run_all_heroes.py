@@ -114,7 +114,7 @@ def paths_for(hid: int) -> dict:
 
 def process_one(h):
     hid, name = h["id"], h["name"]
-    out_path = HERO_ROOT / f"{slug(name)}_build.json"
+    out_path = HERO_OUT / f"{slug(name)}_build.json"
     if SKIP_EXISTING and out_path.exists() and out_path.stat().st_size > 1000:
         return (hid, name, "cached", out_path)
     try:

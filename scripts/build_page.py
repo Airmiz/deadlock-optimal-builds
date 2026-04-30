@@ -331,6 +331,70 @@ HTML = """<!doctype html>
   .cat-vitality { background: rgba(108,180,106,0.15); color: var(--vitality); }
   .cat-spirit { background: rgba(180,135,217,0.15); color: var(--spirit); }
   .slot-flex { color: var(--flex); font-size: 10px; font-weight: 600; }
+
+  /* Tag pills: core / flex / situational / stat */
+  .tag-pill {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 9.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-left: 6px;
+    border: 1px solid transparent;
+    vertical-align: middle;
+  }
+  .tag-core        { background: rgba(88,196,108,0.16);  color: var(--good);    border-color: rgba(88,196,108,0.4); }
+  .tag-flex        { background: rgba(240,169,59,0.14);  color: var(--accent);  border-color: rgba(240,169,59,0.35); }
+  .tag-situational { background: rgba(139,148,163,0.12); color: var(--neutral); border-color: rgba(139,148,163,0.3); }
+  .tag-stat        { background: rgba(106,141,180,0.14); color: var(--flex);    border-color: rgba(106,141,180,0.35); }
+
+  /* Hover tooltip showing the annotation */
+  .item-row { position: relative; }
+  .item-row[data-annotation]:hover .annot-tooltip {
+    display: block;
+  }
+  .annot-tooltip {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 4px);
+    background: var(--bg);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: var(--text);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.5);
+    z-index: 50;
+    line-height: 1.5;
+    pointer-events: none;
+  }
+  .annot-tooltip .annot-source {
+    display: block;
+    color: var(--text-dim);
+    font-size: 10px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .pick-rate-bar {
+    display: inline-block;
+    width: 36px;
+    height: 4px;
+    background: var(--bg);
+    border-radius: 2px;
+    overflow: hidden;
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+  .pick-rate-bar > i {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+  }
   .summary-line {
     color: var(--text-dim);
     font-size: 12px;
@@ -489,7 +553,16 @@ HTML = """<!doctype html>
 
       <section>
         <h3>Item Build by Phase</h3>
-        <div class="summary-line">From the synergy-aware ILP method — items chosen for win rate <em>and</em> pairwise synergy. Buy times are population averages.</div>
+        <div class="summary-line">
+          From the synergy-aware ILP method — items chosen for win rate <em>and</em> pairwise synergy. Buy times are population averages.
+          Hover any item with a community-build note to see the tooltip authors wrote about it.
+        </div>
+        <div class="summary-line" style="margin-top:-8px">
+          <span class="tag-pill tag-core">CORE</span> in &gt;70% of top builds &nbsp;·&nbsp;
+          <span class="tag-pill tag-flex">FLEX</span> 30–70% &nbsp;·&nbsp;
+          <span class="tag-pill tag-situational">SIT.</span> &lt;30% &nbsp;·&nbsp;
+          <span class="tag-pill tag-stat">STAT</span> stat-derived only
+        </div>
         <div class="phases">
           <div class="phase-col">
             <h4>Early <span class="when">${phaseWhen.early}</span></h4>
@@ -550,17 +623,39 @@ HTML = """<!doctype html>
     `;
   }
 
+  const TAG_LABEL = { core: 'CORE', flex: 'FLEX', situational: 'SIT.', stat: 'STAT' };
+  const TAG_TITLE = {
+    core: 'In >70% of top community builds for this hero',
+    flex: 'In 30–70% of top community builds — situational pick',
+    situational: 'Used in <30% of top builds — buy when needed',
+    stat: 'Stat-derived pick (no community build uses it yet)',
+  };
+  const escAttr = s => (s||'').replace(/"/g, '&quot;').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const escHtml = s => (s||'').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
   function renderItemRow(item) {
     const cat = item.category;
     const slot = item.slot;
     const isFlex = slot === 'flex';
+    const tag = item.tag || 'stat';
+    const pickRate = item.pick_rate || 0;
+    const hasAnnot = !!(item.annotation && item.annotation.length);
+    const tagLabel = TAG_LABEL[tag] || tag.toUpperCase();
+    const tagTitle = TAG_TITLE[tag] || '';
+    const pickBar = pickRate > 0
+      ? `<span class="pick-rate-bar" title="${(pickRate*100).toFixed(0)}% of top community builds use this"><i style="width:${(pickRate*100).toFixed(0)}%"></i></span>`
+      : '';
+    const tooltip = hasAnnot
+      ? `<div class="annot-tooltip"><span class="annot-source">Community build note · ${(pickRate*100).toFixed(0)}% pick rate</span>${escHtml(item.annotation)}</div>`
+      : '';
+    const dataAnn = hasAnnot ? ` data-annotation="${escAttr(item.annotation)}"` : '';
     return `
-      <div class="item-row">
+      <div class="item-row"${dataAnn}>
         <div class="icon">
           ${item.image ? `<img src="${item.image}" onerror="this.style.display='none';this.parentNode.innerHTML='<span class=placeholder>'+(item.tier?'T'+item.tier:'?')+'</span>'">` : `<span class="placeholder">T${item.tier||'?'}</span>`}
         </div>
         <div>
-          <div class="name">${item.name}</div>
+          <div class="name">${item.name}<span class="tag-pill tag-${tag}" title="${tagTitle}">${tagLabel}</span>${pickBar}</div>
           <div class="meta">
             <span class="cat-pill cat-${cat}">${cat}</span>
             ${isFlex ? '<span class="slot-flex">FLEX SLOT · </span>' : ''}
@@ -568,6 +663,7 @@ HTML = """<!doctype html>
           </div>
         </div>
         <div class="cost">${fmtCost(item.cost)}</div>
+        ${tooltip}
       </div>
     `;
   }

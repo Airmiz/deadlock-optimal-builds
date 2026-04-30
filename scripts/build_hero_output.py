@@ -298,6 +298,100 @@ def analyze_ability_orders(records: list, ability_id_to_name: dict, sample_floor
 
 
 # ============================================================
+# Item metadata (pick-rate tags + community-build annotations)
+# ============================================================
+def compute_item_metadata(build_stats_raw: list, build_files_dir: Path,
+                          build_match_floor: int) -> dict:
+    """
+    Walk the cached community builds for this hero and compute, per item:
+      - pick_rate: fraction of qualifying builds containing the item
+      - tag: 'core' (>0.7), 'flex' (0.3-0.7), or 'situational' (<=0.3)
+      - annotation: best author-written tooltip (highest-WR build, then longest)
+      - sample sizes for transparency
+
+    Items that never appear in any community build won't be in the result;
+    callers should treat absence as tag='stat'.
+    """
+    stats_by_id = {b["hero_build_id"]: b for b in build_stats_raw}
+    qualifying_ids = [b["hero_build_id"] for b in build_stats_raw
+                      if b["matches"] >= build_match_floor]
+
+    item_appearances: Counter = Counter()
+    item_annotations: dict[int, list[tuple[float, int, str]]] = defaultdict(list)
+    builds_processed = 0
+
+    for bid in qualifying_ids:
+        f = build_files_dir / f"build_{bid}.json"
+        if not f.exists():
+            continue
+        try:
+            d = json.load(open(f))
+        except Exception:
+            continue
+        if not (isinstance(d, list) and d):
+            continue
+        b = d[0].get("hero_build")
+        if not b or "details" not in b:
+            continue
+        st = stats_by_id.get(bid)
+        if not st:
+            continue
+        wr = st["wins"] / st["matches"]
+        builds_processed += 1
+        seen_in_build: set[int] = set()
+        for cat in b["details"].get("mod_categories", []):
+            for mod in cat.get("mods", []):
+                iid = mod.get("ability_id")
+                if not iid:
+                    continue
+                if iid not in seen_in_build:
+                    item_appearances[iid] += 1
+                    seen_in_build.add(iid)
+                ann = mod.get("annotation")
+                if ann and ann.strip():
+                    item_annotations[iid].append((wr, st["matches"], ann.strip()))
+
+    if builds_processed == 0:
+        return {}
+
+    out: dict[int, dict] = {}
+    for iid, count in item_appearances.items():
+        rate = count / builds_processed
+        if rate > 0.7:
+            tag = "core"
+        elif rate > 0.3:
+            tag = "flex"
+        else:
+            tag = "situational"
+        annots = sorted(item_annotations.get(iid, []),
+                        key=lambda a: (-a[0], -a[1], -len(a[2])))
+        annotation = annots[0][2] if annots else ""
+        out[iid] = {
+            "tag": tag,
+            "pick_rate": round(rate, 3),
+            "annotation": annotation,
+            "builds_appearing_in": count,
+            "builds_total": builds_processed,
+        }
+    return out
+
+
+def decorate_picks(picks: list, metadata: dict) -> list:
+    """Attach tag + annotation to each pick. Items not in metadata are tagged 'stat'."""
+    for p in picks:
+        meta = metadata.get(p["item_id"])
+        if meta:
+            p["tag"] = meta["tag"]
+            p["pick_rate"] = meta["pick_rate"]
+            if meta["annotation"]:
+                p["annotation"] = meta["annotation"]
+        else:
+            p["tag"] = "stat"
+            p["pick_rate"] = 0.0
+    return picks
+
+
+# ============================================================
 # Hero output assembly
 # ============================================================
 def get_hero_abilities(hero: dict, items_by_id: dict, items_by_classname: dict) -> dict:
@@ -318,12 +412,17 @@ def select_recommended(item_methods: dict, ability: dict) -> dict:
     picks = item_methods["high_mmr"]["synergy_ilp"]["picks"]
     by_phase: dict[str, list] = defaultdict(list)
     for p in picks:
-        by_phase[p["phase"]].append({
+        entry = {
             "slot": p["slot"], "category": p["category"], "tier": p["tier"], "cost": p["cost"],
             "name": p["name"], "item_id": p["item_id"],
             "avg_buy_time_min": round(p["avg_buy_time_s"] / 60, 1),
             "win_rate": p["win_rate"],
-        })
+            "tag": p.get("tag", "stat"),
+            "pick_rate": p.get("pick_rate", 0.0),
+        }
+        if p.get("annotation"):
+            entry["annotation"] = p["annotation"]
+        by_phase[p["phase"]].append(entry)
     for ph in by_phase:
         by_phase[ph].sort(key=lambda x: x["avg_buy_time_min"])
     total_cost = sum(p["cost"] for p in picks)
@@ -381,12 +480,19 @@ def build_hero_output(
             candidates, build_stats_raw, baseline_wr, CACHE, build_floor
         )
 
+        # Per-slice item metadata (pick rate + best annotation across community builds)
+        metadata = compute_item_metadata(build_stats_raw, BUILD_FILES, build_floor)
+        m1 = decorate_picks(m1, metadata)
+        m2 = decorate_picks(m2, metadata)
+        m3 = decorate_picks(m3, metadata)
+
         item_methods[slice_label] = {
             "candidate_count": len(candidates),
             "min_matches_filter": min_match_floor,
             "wilson_greedy": {"picks": m1},
             "synergy_ilp": {"picks": m2},
             "build_replication": {"picks": m3, "source_builds": builds_seen},
+            "item_metadata": metadata,
         }
 
     # ---- ability orders ----
