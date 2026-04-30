@@ -418,6 +418,33 @@ HTML = """<!doctype html>
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
+  /* Lineage chain: lower-tier items the player should pre-buy in this slot */
+  .lineage-chain {
+    margin-top: 4px;
+    font-size: 10.5px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .lineage-chain .lc-label {
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: var(--text-dim);
+    margin-right: 6px;
+    font-size: 9px;
+  }
+  .lineage-chain .lc-stage {
+    display: inline-block;
+    padding: 1px 6px;
+    margin-right: 2px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text);
+    font-size: 10.5px;
+  }
+  .lineage-chain .lc-arrow { color: var(--accent); margin: 0 3px; opacity: 0.7; }
+  .lineage-chain .lc-when { color: var(--text-dim); margin-left: 3px; font-size: 9.5px; }
+
   /* Signature items: hero-specific picks (affinity ≥ 2x with non-trivial pick rate) */
   .signature-star {
     display: inline-block;
@@ -968,6 +995,20 @@ HTML = """<!doctype html>
     const dataAnn = hasAnnot ? ` data-annotation="${escAttr(item.annotation)}"` : '';
     const rowClasses = ['item-row'];
     if (isSignature) rowClasses.push('is-signature');
+    const chain = item.lineage_chain || [];
+    const chainHtml = chain.length
+      ? `<div class="lineage-chain">
+           <span class="lc-label">Pre-buy chain</span>
+           ${chain.map(c => {
+             const when = c.avg_buy_time_min != null
+               ? `<span class="lc-when">~${c.avg_buy_time_min}min</span>`
+               : '';
+             return `<span class="lc-stage" title="${escAttr(c.name)} (T${c.tier}, ${fmtCost(c.cost)})${c.matches ? ' · ' + c.matches.toLocaleString() + ' matches' : ''}">T${c.tier} ${escHtml(c.name)} ${fmtCost(c.cost)}${when}</span>`;
+           }).join('<span class="lc-arrow">→</span>')}
+           <span class="lc-arrow">→</span>
+           <span class="lc-stage" style="border-color:var(--accent);color:var(--accent)">T${item.tier} ${escHtml(item.name)}</span>
+         </div>`
+      : '';
     return `
       <div class="${rowClasses.join(' ')}"${dataAnn}>
         <div class="icon">
@@ -980,6 +1021,7 @@ HTML = """<!doctype html>
             ${isFlex ? '<span class="slot-flex">FLEX SLOT · </span>' : ''}
             T${item.tier} · buy@${item.buy_min}min · WR ${fmtPct(item.wr)}
           </div>
+          ${chainHtml}
         </div>
         <div class="cost">${fmtCost(item.cost)}</div>
         ${tooltip}

@@ -45,7 +45,7 @@
     "items": {
       "method": "synergy_ilp",
       "mmr_slice": "high_mmr",
-      "total_cost": 70400,
+      "total_cost": 64800,
       "phases": {
         "early": [
           {
@@ -62,7 +62,19 @@
             "annotation": "This just makes killing minions so much easier."
           },
           {
-            "slot": "vitality",
+            "slot": "weapon",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "name": "High-Velocity Rounds",
+            "item_id": 3077079169,
+            "avg_buy_time_min": 3.0,
+            "win_rate": 0.4912,
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "slot": "flex",
             "category": "vitality",
             "tier": 1,
             "cost": 800,
@@ -100,19 +112,6 @@
             "pick_rate": 0.0
           },
           {
-            "slot": "flex",
-            "category": "spirit",
-            "tier": 3,
-            "cost": 3200,
-            "name": "Rapid Recharge",
-            "item_id": 787198704,
-            "avg_buy_time_min": 11.0,
-            "win_rate": 0.4724,
-            "tag": "core",
-            "pick_rate": 0.75,
-            "annotation": "Key item, nothing better on this character."
-          },
-          {
             "slot": "vitality",
             "category": "vitality",
             "tier": 2,
@@ -137,7 +136,30 @@
             "avg_buy_time_min": 15.9,
             "win_rate": 0.5091,
             "tag": "situational",
-            "pick_rate": 0.25
+            "pick_rate": 0.25,
+            "lineage_chain": [
+              {
+                "item_id": 3633614685,
+                "name": "Extra Health",
+                "tier": 1,
+                "cost": 800,
+                "matches": 5321,
+                "avg_buy_time_min": 9.9
+              }
+            ]
+          },
+          {
+            "slot": "vitality",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "name": "Dispel Magic",
+            "item_id": 3731635960,
+            "avg_buy_time_min": 23.1,
+            "win_rate": 0.4828,
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Needed against Bombop or Curse."
           },
           {
             "slot": "flex",
@@ -150,7 +172,25 @@
             "win_rate": 0.5082,
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Big damage bonus, spirit is just good on this character."
+            "annotation": "Big damage bonus, spirit is just good on this character.",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "matches": 17911,
+                "avg_buy_time_min": 5.3
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 18669,
+                "avg_buy_time_min": 10.9
+              }
+            ]
           }
         ],
         "late": [
@@ -166,18 +206,6 @@
             "tag": "core",
             "pick_rate": 0.75,
             "annotation": "Movement + Spirit Power + Duration = Win. Use it to find and steal a good ult."
-          },
-          {
-            "slot": "weapon",
-            "category": "weapon",
-            "tier": 4,
-            "cost": 6400,
-            "name": "Crushing Fists",
-            "item_id": 800008313,
-            "avg_buy_time_min": 27.2,
-            "win_rate": 0.5607,
-            "tag": "stat",
-            "pick_rate": 0.0
           },
           {
             "slot": "spirit",
@@ -216,7 +244,17 @@
             "win_rate": 0.5387,
             "tag": "core",
             "pick_rate": 0.75,
-            "annotation": "Throw this, then proc rabbit at its epicenter. Have assistant throw an orb during this for a massive damage burst."
+            "annotation": "Throw this, then proc rabbit at its epicenter. Have assistant throw an orb during this for a massive damage burst.",
+            "lineage_chain": [
+              {
+                "item_id": 1813726886,
+                "name": "Slowing Hex",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 4627,
+                "avg_buy_time_min": 19.5
+              }
+            ]
           },
           {
             "slot": "spirit",
@@ -255,7 +293,25 @@
             "win_rate": 0.5531,
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Pick this up if we have a lot of actives."
+            "annotation": "Pick this up if we have a lot of actives.",
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 10316,
+                "avg_buy_time_min": 21.1
+              },
+              {
+                "item_id": 3261353684,
+                "name": "Superior Cooldown",
+                "tier": 3,
+                "cost": 3200,
+                "matches": 14116,
+                "avg_buy_time_min": 25.4
+              }
+            ]
           }
         ]
       }
@@ -361,7 +417,17 @@
             "phase": "late",
             "slot": "weapon",
             "tag": "stat",
-            "pick_rate": 0.0
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 26002154,
+                "name": "Melee Charge",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 24961,
+                "avg_buy_time_min": 7.8
+              }
+            ]
           },
           {
             "item_id": 2226497419,
@@ -397,7 +463,17 @@
             "phase": "late",
             "slot": "weapon",
             "tag": "stat",
-            "pick_rate": 0.0
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 1770441818,
+                "name": "Weakening Headshot",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 513,
+                "avg_buy_time_min": 24.9
+              }
+            ]
           },
           {
             "item_id": 2820116164,
@@ -470,7 +546,17 @@
             "phase": "late",
             "slot": "vitality",
             "tag": "stat",
-            "pick_rate": 0.0
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 3633614685,
+                "name": "Extra Health",
+                "tier": 1,
+                "cost": 800,
+                "matches": 28024,
+                "avg_buy_time_min": 8.6
+              }
+            ]
           },
           {
             "item_id": 2800629741,
@@ -564,7 +650,17 @@
             "phase": "late",
             "slot": "flex",
             "tag": "stat",
-            "pick_rate": 0.0
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 1976391348,
+                "name": "Cold Front",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 12865,
+                "avg_buy_time_min": 15.5
+              }
+            ]
           },
           {
             "item_id": 3028234315,
@@ -621,7 +717,17 @@
             "slot": "flex",
             "tag": "flex",
             "pick_rate": 0.6,
-            "annotation": "OP item, use the assistant to stack up on enemies then send in vexing orb for a massive burst. Buy against high resistance teams."
+            "annotation": "OP item, use the assistant to stack up on enemies then send in vexing orb for a massive burst. Buy against high resistance teams.",
+            "lineage_chain": [
+              {
+                "item_id": 2081037738,
+                "name": "Mystic Vulnerability",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 27452,
+                "avg_buy_time_min": 23.6
+              }
+            ]
           }
         ]
       },
@@ -643,7 +749,17 @@
             "phase": "late",
             "slot": "weapon",
             "tag": "stat",
-            "pick_rate": 0.0
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 26002154,
+                "name": "Melee Charge",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 24961,
+                "avg_buy_time_min": 7.8
+              }
+            ]
           },
           {
             "item_id": 393974127,
@@ -869,7 +985,17 @@
             "slot": "flex",
             "tag": "flex",
             "pick_rate": 0.6,
-            "annotation": "OP item, use the assistant to stack up on enemies then send in vexing orb for a massive burst. Buy against high resistance teams."
+            "annotation": "OP item, use the assistant to stack up on enemies then send in vexing orb for a massive burst. Buy against high resistance teams.",
+            "lineage_chain": [
+              {
+                "item_id": 2081037738,
+                "name": "Mystic Vulnerability",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 27452,
+                "avg_buy_time_min": 23.6
+              }
+            ]
           },
           {
             "item_id": 493591231,
@@ -888,7 +1014,17 @@
             "slot": "flex",
             "tag": "core",
             "pick_rate": 0.8,
-            "annotation": "I think this item is generally pretty poor but its buyable if you have kevlar already and are stealing seven / warden / mcginnis ult. Specifically very good with Vindicta ult."
+            "annotation": "I think this item is generally pretty poor but its buyable if you have kevlar already and are stealing seven / warden / mcginnis ult. Specifically very good with Vindicta ult.",
+            "lineage_chain": [
+              {
+                "item_id": 1102081447,
+                "name": "Mystic Slow",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 17036,
+                "avg_buy_time_min": 22.0
+              }
+            ]
           },
           {
             "item_id": 2519598785,
@@ -907,7 +1043,25 @@
             "slot": "flex",
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Big damage bonus, spirit is just good on this character."
+            "annotation": "Big damage bonus, spirit is just good on this character.",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "matches": 86877,
+                "avg_buy_time_min": 5.5
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 96198,
+                "avg_buy_time_min": 11.0
+              }
+            ]
           },
           {
             "item_id": 2717651715,
@@ -926,7 +1080,17 @@
             "slot": "flex",
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Good for rabbit builds and longer assistants, skippable if rolling and dealing enough damage."
+            "annotation": "Good for rabbit builds and longer assistants, skippable if rolling and dealing enough damage.",
+            "lineage_chain": [
+              {
+                "item_id": 2951612397,
+                "name": "Duration Extender",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 65240,
+                "avg_buy_time_min": 18.4
+              }
+            ]
           }
         ]
       },
@@ -1109,7 +1273,17 @@
             "slot": "spirit",
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Good for rabbit builds and longer assistants, skippable if rolling and dealing enough damage."
+            "annotation": "Good for rabbit builds and longer assistants, skippable if rolling and dealing enough damage.",
+            "lineage_chain": [
+              {
+                "item_id": 2951612397,
+                "name": "Duration Extender",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 65240,
+                "avg_buy_time_min": 18.4
+              }
+            ]
           },
           {
             "item_id": 343572757,
@@ -1149,7 +1323,17 @@
             "slot": "spirit",
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "This boosts all of our abilities use cases, goated item."
+            "annotation": "This boosts all of our abilities use cases, goated item.",
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "matches": 102820,
+                "avg_buy_time_min": 11.7
+              }
+            ]
           },
           {
             "item_id": 1254091416,
@@ -1189,7 +1373,25 @@
             "slot": "flex",
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Big damage bonus, spirit is just good on this character."
+            "annotation": "Big damage bonus, spirit is just good on this character.",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "matches": 86877,
+                "avg_buy_time_min": 5.5
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 96198,
+                "avg_buy_time_min": 11.0
+              }
+            ]
           },
           {
             "item_id": 787198704,
@@ -1209,7 +1411,17 @@
             "slot": "flex",
             "tag": "core",
             "pick_rate": 0.8,
-            "annotation": "Key item, nothing better on this character."
+            "annotation": "Key item, nothing better on this character.",
+            "lineage_chain": [
+              {
+                "item_id": 3776945997,
+                "name": "Extra Charge",
+                "tier": 1,
+                "cost": 800,
+                "matches": 93018,
+                "avg_buy_time_min": 3.9
+              }
+            ]
           },
           {
             "item_id": 600033864,
@@ -1855,7 +2067,17 @@
             "phase": "late",
             "slot": "weapon",
             "tag": "stat",
-            "pick_rate": 0.0
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 26002154,
+                "name": "Melee Charge",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 3078,
+                "avg_buy_time_min": 8.3
+              }
+            ]
           },
           {
             "item_id": 98582110,
@@ -1909,7 +2131,17 @@
             "phase": "mid",
             "slot": "weapon",
             "tag": "stat",
-            "pick_rate": 0.0
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 1342610602,
+                "name": "Close Quarters",
+                "tier": 1,
+                "cost": 800,
+                "matches": 1719,
+                "avg_buy_time_min": 12.5
+              }
+            ]
           },
           {
             "item_id": 2820116164,
@@ -1965,7 +2197,17 @@
             "slot": "vitality",
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Great against Pocket / Drifter / Bebop. Remember cooldown is half when used on a teamate."
+            "annotation": "Great against Pocket / Drifter / Bebop. Remember cooldown is half when used on a teamate.",
+            "lineage_chain": [
+              {
+                "item_id": 857669956,
+                "name": "Guardian Ward",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 3205,
+                "avg_buy_time_min": 12.3
+              }
+            ]
           },
           {
             "item_id": 3585132399,
@@ -1983,7 +2225,17 @@
             "phase": "mid",
             "slot": "vitality",
             "tag": "situational",
-            "pick_rate": 0.25
+            "pick_rate": 0.25,
+            "lineage_chain": [
+              {
+                "item_id": 3633614685,
+                "name": "Extra Health",
+                "tier": 1,
+                "cost": 800,
+                "matches": 5321,
+                "avg_buy_time_min": 9.9
+              }
+            ]
           },
           {
             "item_id": 3812615317,
@@ -2001,7 +2253,17 @@
             "phase": "late",
             "slot": "spirit",
             "tag": "stat",
-            "pick_rate": 0.0
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 1976391348,
+                "name": "Cold Front",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 1418,
+                "avg_buy_time_min": 15.1
+              }
+            ]
           },
           {
             "item_id": 2800629741,
@@ -2077,7 +2339,25 @@
             "slot": "flex",
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Pick this up if we have a lot of actives."
+            "annotation": "Pick this up if we have a lot of actives.",
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 10316,
+                "avg_buy_time_min": 21.1
+              },
+              {
+                "item_id": 3261353684,
+                "name": "Superior Cooldown",
+                "tier": 3,
+                "cost": 3200,
+                "matches": 14116,
+                "avg_buy_time_min": 25.4
+              }
+            ]
           },
           {
             "item_id": 3005970438,
@@ -2096,7 +2376,17 @@
             "slot": "flex",
             "tag": "core",
             "pick_rate": 0.75,
-            "annotation": "OP item, use the assistant to stack up on enemies then send in vexing orb for a massive burst. Buy against high resistance teams."
+            "annotation": "OP item, use the assistant to stack up on enemies then send in vexing orb for a massive burst. Buy against high resistance teams.",
+            "lineage_chain": [
+              {
+                "item_id": 2081037738,
+                "name": "Mystic Vulnerability",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 4609,
+                "avg_buy_time_min": 24.0
+              }
+            ]
           },
           {
             "item_id": 630839635,
@@ -2134,30 +2424,22 @@
             "slot": "flex",
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "works well with big AOE ults (ivy, lash, seven, warden ect)"
+            "annotation": "works well with big AOE ults (ivy, lash, seven, warden ect)",
+            "lineage_chain": [
+              {
+                "item_id": 1102081447,
+                "name": "Mystic Slow",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 3980,
+                "avg_buy_time_min": 21.6
+              }
+            ]
           }
         ]
       },
       "synergy_ilp": {
         "picks": [
-          {
-            "item_id": 800008313,
-            "name": "Crushing Fists",
-            "category": "weapon",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 1375,
-            "wins": 771,
-            "win_rate": 0.5607,
-            "wilson_lb": 0.5344,
-            "score": 0.064,
-            "wr_delta_pp": 9.04,
-            "avg_buy_time_s": 1633.5,
-            "phase": "late",
-            "slot": "weapon",
-            "tag": "stat",
-            "pick_rate": 0.0
-          },
           {
             "item_id": 393974127,
             "name": "Slowing Bullets",
@@ -2171,6 +2453,24 @@
             "score": 0.0081,
             "wr_delta_pp": 2.58,
             "avg_buy_time_s": 472.8,
+            "phase": "early",
+            "slot": "weapon",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3077079169,
+            "name": "High-Velocity Rounds",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 2160,
+            "wins": 1061,
+            "win_rate": 0.4912,
+            "wilson_lb": 0.4702,
+            "score": -0.0002,
+            "wr_delta_pp": 2.09,
+            "avg_buy_time_s": 180.1,
             "phase": "early",
             "slot": "weapon",
             "tag": "stat",
@@ -2249,7 +2549,36 @@
             "phase": "mid",
             "slot": "vitality",
             "tag": "situational",
-            "pick_rate": 0.25
+            "pick_rate": 0.25,
+            "lineage_chain": [
+              {
+                "item_id": 3633614685,
+                "name": "Extra Health",
+                "tier": 1,
+                "cost": 800,
+                "matches": 5321,
+                "avg_buy_time_min": 9.9
+              }
+            ]
+          },
+          {
+            "item_id": 3731635960,
+            "name": "Dispel Magic",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 4176,
+            "wins": 2016,
+            "win_rate": 0.4828,
+            "wilson_lb": 0.4676,
+            "score": -0.0027,
+            "wr_delta_pp": 1.24,
+            "avg_buy_time_s": 1386.1,
+            "phase": "mid",
+            "slot": "vitality",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Needed against Bombop or Curse."
           },
           {
             "item_id": 3970837787,
@@ -2269,25 +2598,6 @@
             "tag": "core",
             "pick_rate": 1.0,
             "annotation": "Good cheap spirit resist and buffs. Buy Healbane instead against multiple healing enemies."
-          },
-          {
-            "item_id": 1710079648,
-            "name": "Healing Rite",
-            "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "matches": 6529,
-            "wins": 3111,
-            "win_rate": 0.4765,
-            "wilson_lb": 0.4644,
-            "score": -0.0059,
-            "wr_delta_pp": 0.62,
-            "avg_buy_time_s": 293.9,
-            "phase": "early",
-            "slot": "vitality",
-            "tag": "core",
-            "pick_rate": 1.0,
-            "annotation": "Pick up if you need lane sustain, buy later for farming if you dont need immediately."
           },
           {
             "item_id": 2800629741,
@@ -2363,7 +2673,25 @@
             "slot": "spirit",
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Pick this up if we have a lot of actives."
+            "annotation": "Pick this up if we have a lot of actives.",
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 10316,
+                "avg_buy_time_min": 21.1
+              },
+              {
+                "item_id": 3261353684,
+                "name": "Superior Cooldown",
+                "tier": 3,
+                "cost": 3200,
+                "matches": 14116,
+                "avg_buy_time_min": 25.4
+              }
+            ]
           },
           {
             "item_id": 630839635,
@@ -2401,7 +2729,17 @@
             "slot": "flex",
             "tag": "core",
             "pick_rate": 0.75,
-            "annotation": "Throw this, then proc rabbit at its epicenter. Have assistant throw an orb during this for a massive damage burst."
+            "annotation": "Throw this, then proc rabbit at its epicenter. Have assistant throw an orb during this for a massive damage burst.",
+            "lineage_chain": [
+              {
+                "item_id": 1813726886,
+                "name": "Slowing Hex",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 4627,
+                "avg_buy_time_min": 19.5
+              }
+            ]
           },
           {
             "item_id": 2519598785,
@@ -2420,26 +2758,44 @@
             "slot": "flex",
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Big damage bonus, spirit is just good on this character."
+            "annotation": "Big damage bonus, spirit is just good on this character.",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "matches": 17911,
+                "avg_buy_time_min": 5.3
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 18669,
+                "avg_buy_time_min": 10.9
+              }
+            ]
           },
           {
-            "item_id": 787198704,
-            "name": "Rapid Recharge",
-            "category": "spirit",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 16661,
-            "wins": 7871,
-            "win_rate": 0.4724,
-            "wilson_lb": 0.4648,
-            "score": -0.0055,
-            "wr_delta_pp": 0.21,
-            "avg_buy_time_s": 658.5,
+            "item_id": 1710079648,
+            "name": "Healing Rite",
+            "category": "vitality",
+            "tier": 1,
+            "cost": 800,
+            "matches": 6529,
+            "wins": 3111,
+            "win_rate": 0.4765,
+            "wilson_lb": 0.4644,
+            "score": -0.0059,
+            "wr_delta_pp": 0.62,
+            "avg_buy_time_s": 293.9,
             "phase": "early",
             "slot": "flex",
             "tag": "core",
-            "pick_rate": 0.75,
-            "annotation": "Key item, nothing better on this character."
+            "pick_rate": 1.0,
+            "annotation": "Pick up if you need lane sustain, buy later for farming if you dont need immediately."
           }
         ]
       },
@@ -2562,7 +2918,17 @@
             "slot": "vitality",
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Great against Pocket / Drifter / Bebop. Remember cooldown is half when used on a teamate."
+            "annotation": "Great against Pocket / Drifter / Bebop. Remember cooldown is half when used on a teamate.",
+            "lineage_chain": [
+              {
+                "item_id": 857669956,
+                "name": "Guardian Ward",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 3205,
+                "avg_buy_time_min": 12.3
+              }
+            ]
           },
           {
             "item_id": 3357231760,
@@ -2582,7 +2948,17 @@
             "slot": "vitality",
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "If you focus on Dynamo or Lash ults and the enemy team has counters to you."
+            "annotation": "If you focus on Dynamo or Lash ults and the enemy team has counters to you.",
+            "lineage_chain": [
+              {
+                "item_id": 1047818222,
+                "name": "Debuff Reducer",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 2098,
+                "avg_buy_time_min": 27.0
+              }
+            ]
           },
           {
             "item_id": 3270001687,
@@ -2622,7 +2998,17 @@
             "slot": "spirit",
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Good for rabbit builds and longer assistants, skippable if rolling and dealing enough damage."
+            "annotation": "Good for rabbit builds and longer assistants, skippable if rolling and dealing enough damage.",
+            "lineage_chain": [
+              {
+                "item_id": 2951612397,
+                "name": "Duration Extender",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 13670,
+                "avg_buy_time_min": 18.1
+              }
+            ]
           },
           {
             "item_id": 3005970438,
@@ -2642,7 +3028,17 @@
             "slot": "spirit",
             "tag": "core",
             "pick_rate": 0.75,
-            "annotation": "OP item, use the assistant to stack up on enemies then send in vexing orb for a massive burst. Buy against high resistance teams."
+            "annotation": "OP item, use the assistant to stack up on enemies then send in vexing orb for a massive burst. Buy against high resistance teams.",
+            "lineage_chain": [
+              {
+                "item_id": 2081037738,
+                "name": "Mystic Vulnerability",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 4609,
+                "avg_buy_time_min": 24.0
+              }
+            ]
           },
           {
             "item_id": 343572757,
@@ -2682,7 +3078,17 @@
             "slot": "spirit",
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "This boosts all of our abilities use cases, goated item."
+            "annotation": "This boosts all of our abilities use cases, goated item.",
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "matches": 21426,
+                "avg_buy_time_min": 12.9
+              }
+            ]
           },
           {
             "item_id": 1378931225,

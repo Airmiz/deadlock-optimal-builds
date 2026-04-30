@@ -318,6 +318,7 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
                         "tag": p.get("tag", "stat"),
                         "pick_rate": p.get("pick_rate", 0.0),
                         "annotation": p.get("annotation", ""),
+                        "lineage_chain": p.get("lineage_chain", []),
                     }) for p in d["recommended"]["items"]["phases"][ph]]
                     for ph in ("early", "mid", "late")
                 },
@@ -349,6 +350,7 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
                 "tag": p.get("tag", "stat"),
                 "pick_rate": p.get("pick_rate", 0.0),
                 "annotation": p.get("annotation", ""),
+                "lineage_chain": p.get("lineage_chain", []),
             }) for p in d["items"][src]["synergy_ilp"]["picks"]]
             for slice_label, src in (("all", "all_mmr"), ("high", "high_mmr"))
         },

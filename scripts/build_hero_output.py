@@ -486,6 +486,36 @@ def decorate_picks(picks: list, metadata: dict) -> list:
     return picks
 
 
+def attach_lineage_chain(picks: list, ancestors_of: dict,
+                         items_by_id: dict, item_stats: list) -> list:
+    """Decorate each pick with its lineage_chain — the lower-tier ancestors
+    a player should pre-buy in the early/mid game. The chain is sorted by
+    tier ascending so the earliest pre-purchase is first.
+    """
+    stats_by_id = {s["item_id"]: s for s in item_stats}
+    for p in picks:
+        ancs = ancestors_of.get(p["item_id"], set())
+        chain = []
+        for anc_id in ancs:
+            it = items_by_id.get(anc_id)
+            if not it:
+                continue
+            anc_stat = stats_by_id.get(anc_id)
+            chain.append({
+                "item_id": anc_id,
+                "name": it.get("name"),
+                "tier": it.get("item_tier"),
+                "cost": it.get("cost"),
+                "matches": anc_stat["matches"] if anc_stat else None,
+                "avg_buy_time_min": (round(anc_stat["avg_buy_time_s"] / 60, 1)
+                                     if anc_stat else None),
+            })
+        chain.sort(key=lambda c: (c["tier"] or 0, c["cost"] or 0))
+        if chain:
+            p["lineage_chain"] = chain
+    return picks
+
+
 # ============================================================
 # Hero output assembly
 # ============================================================
@@ -517,6 +547,8 @@ def select_recommended(item_methods: dict, ability: dict) -> dict:
         }
         if p.get("annotation"):
             entry["annotation"] = p["annotation"]
+        if p.get("lineage_chain"):
+            entry["lineage_chain"] = p["lineage_chain"]
         by_phase[p["phase"]].append(entry)
     for ph in by_phase:
         by_phase[ph].sort(key=lambda x: x["avg_buy_time_min"])
@@ -558,7 +590,7 @@ def build_hero_output(
     base_hmmr = next(h for h in json.load(open(paths["hero_stats_hmmr"])) if h["hero_id"] == hero_id)
 
     # ---- upgrade chain map (one per asset version, but cheap so we do it here) ----
-    _, lineage_canon = build_lineage_map(items_by_id)
+    ancestors_of, lineage_canon = build_lineage_map(items_by_id)
 
     # ---- item methods, both MMR slices ----
     item_methods = {}
@@ -584,6 +616,10 @@ def build_hero_output(
         m1 = decorate_picks(m1, metadata)
         m2 = decorate_picks(m2, metadata)
         m3 = decorate_picks(m3, metadata)
+        # Lineage chain: lower-tier ancestors a player should pre-buy
+        m1 = attach_lineage_chain(m1, ancestors_of, items_by_id, item_stats)
+        m2 = attach_lineage_chain(m2, ancestors_of, items_by_id, item_stats)
+        m3 = attach_lineage_chain(m3, ancestors_of, items_by_id, item_stats)
 
         item_methods[slice_label] = {
             "candidate_count": len(candidates),

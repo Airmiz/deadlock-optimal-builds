@@ -45,7 +45,7 @@
     "items": {
       "method": "synergy_ilp",
       "mmr_slice": "high_mmr",
-      "total_cost": 67200,
+      "total_cost": 69600,
       "phases": {
         "early": [
           {
@@ -60,19 +60,6 @@
             "tag": "core",
             "pick_rate": 1.0,
             "annotation": "Activates on Bashdown. Heavy melee minion waves to keep the cooldown short. Feel free to sell this first."
-          },
-          {
-            "slot": "flex",
-            "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "name": "Extra Regen",
-            "item_id": 2829638276,
-            "avg_buy_time_min": 3.5,
-            "win_rate": 0.4778,
-            "tag": "core",
-            "pick_rate": 0.714,
-            "annotation": "Very solid green item, always worth taking if you're taking more damage than you'd like."
           },
           {
             "slot": "flex",
@@ -126,7 +113,30 @@
             "win_rate": 0.5076,
             "tag": "core",
             "pick_rate": 0.857,
-            "annotation": "Bashdown applies this as an AoE"
+            "annotation": "Bashdown applies this as an AoE",
+            "lineage_chain": [
+              {
+                "item_id": 465043967,
+                "name": "Spirit Strike",
+                "tier": 1,
+                "cost": 800,
+                "matches": 19413,
+                "avg_buy_time_min": 13.3
+              }
+            ]
+          },
+          {
+            "slot": "flex",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "name": "Spirit Resilience",
+            "item_id": 2163598980,
+            "avg_buy_time_min": 22.7,
+            "win_rate": 0.5052,
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Core spirit resist; can consider rushing Spellbreaker against certain comps"
           },
           {
             "slot": "spirit",
@@ -139,7 +149,17 @@
             "win_rate": 0.5327,
             "tag": "core",
             "pick_rate": 0.714,
-            "annotation": "Bashdowns scale better now, but can be skipped for rushing late paths"
+            "annotation": "Bashdowns scale better now, but can be skipped for rushing late paths",
+            "lineage_chain": [
+              {
+                "item_id": 3776945997,
+                "name": "Extra Charge",
+                "tier": 1,
+                "cost": 800,
+                "matches": 14220,
+                "avg_buy_time_min": 16.7
+              }
+            ]
           }
         ],
         "late": [
@@ -154,7 +174,17 @@
             "win_rate": 0.5633,
             "tag": "core",
             "pick_rate": 0.714,
-            "annotation": "Can be skipped if leaning into late gun items"
+            "annotation": "Can be skipped if leaning into late gun items",
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "matches": 11624,
+                "avg_buy_time_min": 20.4
+              }
+            ]
           },
           {
             "slot": "weapon",
@@ -167,7 +197,17 @@
             "win_rate": 0.593,
             "tag": "core",
             "pick_rate": 0.857,
-            "annotation": "Only makes sense to invest in more utility since we have Melee Charge. The stun can be really useful for interrupting channels."
+            "annotation": "Only makes sense to invest in more utility since we have Melee Charge. The stun can be really useful for interrupting channels.",
+            "lineage_chain": [
+              {
+                "item_id": 26002154,
+                "name": "Melee Charge",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 20315,
+                "avg_buy_time_min": 18.1
+              }
+            ]
           },
           {
             "slot": "vitality",
@@ -193,7 +233,17 @@
             "win_rate": 0.6029,
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice."
+            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice.",
+            "lineage_chain": [
+              {
+                "item_id": 3633614685,
+                "name": "Extra Health",
+                "tier": 1,
+                "cost": 800,
+                "matches": 19335,
+                "avg_buy_time_min": 12.7
+              }
+            ]
           },
           {
             "slot": "vitality",
@@ -245,7 +295,17 @@
             "win_rate": 0.6046,
             "tag": "flex",
             "pick_rate": 0.571,
-            "annotation": "Super easy to activate shred for both damage types + antiheal. Super necessary into high resistance frontliners like Yamato, Abrams, Victor, etc."
+            "annotation": "Super easy to activate shred for both damage types + antiheal. Super necessary into high resistance frontliners like Yamato, Abrams, Victor, etc.",
+            "lineage_chain": [
+              {
+                "item_id": 1770441818,
+                "name": "Weakening Headshot",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 1199,
+                "avg_buy_time_min": 25.2
+              }
+            ]
           },
           {
             "slot": "vitality",
@@ -258,7 +318,25 @@
             "win_rate": 0.5998,
             "tag": "situational",
             "pick_rate": 0.286,
-            "annotation": "Infinite Healing and Sustain, u wanna shoot mostly and not use a lot of melees from this point. Use your 1 to reload."
+            "annotation": "Infinite Healing and Sustain, u wanna shoot mostly and not use a lot of melees from this point. Use your 1 to reload.",
+            "lineage_chain": [
+              {
+                "item_id": 499683006,
+                "name": "Bullet Lifesteal",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 1222,
+                "avg_buy_time_min": 22.8
+              },
+              {
+                "item_id": 876563814,
+                "name": "Spirit Lifesteal",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 500,
+                "avg_buy_time_min": 28.0
+              }
+            ]
           }
         ]
       }
@@ -368,7 +446,17 @@
             "slot": "weapon",
             "tag": "flex",
             "pick_rate": 0.5,
-            "annotation": "Super easy to activate shred for both damage types + antiheal. Super necessary into high resistance frontliners like Yamato, Abrams, Victor, etc."
+            "annotation": "Super easy to activate shred for both damage types + antiheal. Super necessary into high resistance frontliners like Yamato, Abrams, Victor, etc.",
+            "lineage_chain": [
+              {
+                "item_id": 1770441818,
+                "name": "Weakening Headshot",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 6522,
+                "avg_buy_time_min": 27.6
+              }
+            ]
           },
           {
             "item_id": 1113837674,
@@ -443,7 +531,17 @@
             "slot": "vitality",
             "tag": "core",
             "pick_rate": 0.875,
-            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice."
+            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice.",
+            "lineage_chain": [
+              {
+                "item_id": 3633614685,
+                "name": "Extra Health",
+                "tier": 1,
+                "cost": 800,
+                "matches": 138087,
+                "avg_buy_time_min": 12.1
+              }
+            ]
           },
           {
             "item_id": 1371725689,
@@ -500,7 +598,17 @@
             "slot": "spirit",
             "tag": "flex",
             "pick_rate": 0.375,
-            "annotation": "Sets up your ult, or can better guarantee kills off of it"
+            "annotation": "Sets up your ult, or can better guarantee kills off of it",
+            "lineage_chain": [
+              {
+                "item_id": 1813726886,
+                "name": "Slowing Hex",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 16493,
+                "avg_buy_time_min": 19.5
+              }
+            ]
           },
           {
             "item_id": 2142980412,
@@ -518,7 +626,17 @@
             "phase": "late",
             "slot": "spirit",
             "tag": "situational",
-            "pick_rate": 0.125
+            "pick_rate": 0.125,
+            "lineage_chain": [
+              {
+                "item_id": 1219329868,
+                "name": "Spirit Sap",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 916,
+                "avg_buy_time_min": 29.2
+              }
+            ]
           },
           {
             "item_id": 2417568017,
@@ -592,7 +710,17 @@
             "slot": "flex",
             "tag": "core",
             "pick_rate": 0.875,
-            "annotation": "Only makes sense to invest in more utility since we have Melee Charge. The stun can be really useful for interrupting channels."
+            "annotation": "Only makes sense to invest in more utility since we have Melee Charge. The stun can be really useful for interrupting channels.",
+            "lineage_chain": [
+              {
+                "item_id": 26002154,
+                "name": "Melee Charge",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 186711,
+                "avg_buy_time_min": 16.9
+              }
+            ]
           },
           {
             "item_id": 2519598785,
@@ -611,7 +739,25 @@
             "slot": "flex",
             "tag": "situational",
             "pick_rate": 0.25,
-            "annotation": "If you're really agead or don't have any particular item you need to buy scaling your Blasted even further is pretty big."
+            "annotation": "If you're really agead or don't have any particular item you need to buy scaling your Blasted even further is pretty big.",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "matches": 11226,
+                "avg_buy_time_min": 15.2
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 11618,
+                "avg_buy_time_min": 20.7
+              }
+            ]
           },
           {
             "item_id": 1193964439,
@@ -630,7 +776,17 @@
             "slot": "flex",
             "tag": "flex",
             "pick_rate": 0.625,
-            "annotation": "Can be skipped if leaning into late gun items"
+            "annotation": "Can be skipped if leaning into late gun items",
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "matches": 73558,
+                "avg_buy_time_min": 19.8
+              }
+            ]
           }
         ]
       },
@@ -672,7 +828,17 @@
             "slot": "weapon",
             "tag": "flex",
             "pick_rate": 0.5,
-            "annotation": "Super easy to activate shred for both damage types + antiheal. Super necessary into high resistance frontliners like Yamato, Abrams, Victor, etc."
+            "annotation": "Super easy to activate shred for both damage types + antiheal. Super necessary into high resistance frontliners like Yamato, Abrams, Victor, etc.",
+            "lineage_chain": [
+              {
+                "item_id": 1770441818,
+                "name": "Weakening Headshot",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 6522,
+                "avg_buy_time_min": 27.6
+              }
+            ]
           },
           {
             "item_id": 1113837674,
@@ -748,7 +914,17 @@
             "slot": "vitality",
             "tag": "core",
             "pick_rate": 0.875,
-            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice."
+            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice.",
+            "lineage_chain": [
+              {
+                "item_id": 3633614685,
+                "name": "Extra Health",
+                "tier": 1,
+                "cost": 800,
+                "matches": 138087,
+                "avg_buy_time_min": 12.1
+              }
+            ]
           },
           {
             "item_id": 1371725689,
@@ -786,7 +962,25 @@
             "slot": "vitality",
             "tag": "situational",
             "pick_rate": 0.25,
-            "annotation": "HEAR ME OUT - You are now completely online and can kinda 1v9 if played correctly - [OPTIONAL CAN BE SKIPPED] You want to mostly shoot now and melee less, reload with Bashdown (Can swap with Vampiric)"
+            "annotation": "HEAR ME OUT - You are now completely online and can kinda 1v9 if played correctly - [OPTIONAL CAN BE SKIPPED] You want to mostly shoot now and melee less, reload with Bashdown (Can swap with Vampiric)",
+            "lineage_chain": [
+              {
+                "item_id": 499683006,
+                "name": "Bullet Lifesteal",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 24845,
+                "avg_buy_time_min": 18.9
+              },
+              {
+                "item_id": 876563814,
+                "name": "Spirit Lifesteal",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 11485,
+                "avg_buy_time_min": 25.2
+              }
+            ]
           },
           {
             "item_id": 1193964439,
@@ -805,7 +999,17 @@
             "slot": "spirit",
             "tag": "flex",
             "pick_rate": 0.625,
-            "annotation": "Can be skipped if leaning into late gun items"
+            "annotation": "Can be skipped if leaning into late gun items",
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "matches": 73558,
+                "avg_buy_time_min": 19.8
+              }
+            ]
           },
           {
             "item_id": 915014646,
@@ -824,7 +1028,25 @@
             "slot": "spirit",
             "tag": "flex",
             "pick_rate": 0.625,
-            "annotation": "Decent item, you get your abilities twice a long fight and Actives faster. REMEMBER this works with Spirit Strike and Lifestrike aswell ! ANYTHING WITH A COOLDOWN"
+            "annotation": "Decent item, you get your abilities twice a long fight and Actives faster. REMEMBER this works with Spirit Strike and Lifestrike aswell ! ANYTHING WITH A COOLDOWN",
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 66271,
+                "avg_buy_time_min": 18.3
+              },
+              {
+                "item_id": 3261353684,
+                "name": "Superior Cooldown",
+                "tier": 3,
+                "cost": 3200,
+                "matches": 21362,
+                "avg_buy_time_min": 30.0
+              }
+            ]
           },
           {
             "item_id": 395944548,
@@ -961,7 +1183,17 @@
             "slot": "weapon",
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Huge damage increase up close, which is where all your fights will be. Gives a slow effect as well to help you stay on top of your target."
+            "annotation": "Huge damage increase up close, which is where all your fights will be. Gives a slow effect as well to help you stay on top of your target.",
+            "lineage_chain": [
+              {
+                "item_id": 1342610602,
+                "name": "Close Quarters",
+                "tier": 1,
+                "cost": 800,
+                "matches": 261370,
+                "avg_buy_time_min": 4.2
+              }
+            ]
           },
           {
             "item_id": 2108215830,
@@ -1001,7 +1233,17 @@
             "slot": "weapon",
             "tag": "core",
             "pick_rate": 0.875,
-            "annotation": "Only makes sense to invest in more utility since we have Melee Charge. The stun can be really useful for interrupting channels."
+            "annotation": "Only makes sense to invest in more utility since we have Melee Charge. The stun can be really useful for interrupting channels.",
+            "lineage_chain": [
+              {
+                "item_id": 26002154,
+                "name": "Melee Charge",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 186711,
+                "avg_buy_time_min": 16.9
+              }
+            ]
           },
           {
             "item_id": 3791587546,
@@ -1021,7 +1263,17 @@
             "slot": "weapon",
             "tag": "flex",
             "pick_rate": 0.625,
-            "annotation": "Builds from Slowing Bullets and gives a large weapon damage increase. Makes it extremely hard to get away from you. Best into characters dashing a lot."
+            "annotation": "Builds from Slowing Bullets and gives a large weapon damage increase. Makes it extremely hard to get away from you. Best into characters dashing a lot.",
+            "lineage_chain": [
+              {
+                "item_id": 393974127,
+                "name": "Slowing Bullets",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 35588,
+                "avg_buy_time_min": 15.0
+              }
+            ]
           },
           {
             "item_id": 2163598980,
@@ -1061,7 +1313,17 @@
             "slot": "vitality",
             "tag": "core",
             "pick_rate": 0.875,
-            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice."
+            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice.",
+            "lineage_chain": [
+              {
+                "item_id": 3633614685,
+                "name": "Extra Health",
+                "tier": 1,
+                "cost": 800,
+                "matches": 138087,
+                "avg_buy_time_min": 12.1
+              }
+            ]
           },
           {
             "item_id": 3731635960,
@@ -1121,7 +1383,17 @@
             "slot": "spirit",
             "tag": "core",
             "pick_rate": 0.875,
-            "annotation": "Bashdown applies this as an AoE"
+            "annotation": "Bashdown applies this as an AoE",
+            "lineage_chain": [
+              {
+                "item_id": 465043967,
+                "name": "Spirit Strike",
+                "tier": 1,
+                "cost": 800,
+                "matches": 145730,
+                "avg_buy_time_min": 12.1
+              }
+            ]
           },
           {
             "item_id": 1193964439,
@@ -1141,7 +1413,17 @@
             "slot": "spirit",
             "tag": "flex",
             "pick_rate": 0.625,
-            "annotation": "Can be skipped if leaning into late gun items"
+            "annotation": "Can be skipped if leaning into late gun items",
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "matches": 73558,
+                "avg_buy_time_min": 19.8
+              }
+            ]
           },
           {
             "item_id": 787198704,
@@ -1161,7 +1443,17 @@
             "slot": "spirit",
             "tag": "core",
             "pick_rate": 0.75,
-            "annotation": "Bashdowns scale better now, but can be skipped for rushing late paths"
+            "annotation": "Bashdowns scale better now, but can be skipped for rushing late paths",
+            "lineage_chain": [
+              {
+                "item_id": 3776945997,
+                "name": "Extra Charge",
+                "tier": 1,
+                "cost": 800,
+                "matches": 101103,
+                "avg_buy_time_min": 14.9
+              }
+            ]
           },
           {
             "item_id": 915014646,
@@ -1181,7 +1473,25 @@
             "slot": "spirit",
             "tag": "flex",
             "pick_rate": 0.625,
-            "annotation": "Decent item, you get your abilities twice a long fight and Actives faster. REMEMBER this works with Spirit Strike and Lifestrike aswell ! ANYTHING WITH A COOLDOWN"
+            "annotation": "Decent item, you get your abilities twice a long fight and Actives faster. REMEMBER this works with Spirit Strike and Lifestrike aswell ! ANYTHING WITH A COOLDOWN",
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 66271,
+                "avg_buy_time_min": 18.3
+              },
+              {
+                "item_id": 3261353684,
+                "name": "Superior Cooldown",
+                "tier": 3,
+                "cost": 3200,
+                "matches": 21362,
+                "avg_buy_time_min": 30.0
+              }
+            ]
           },
           {
             "item_id": 1250307611,
@@ -1201,7 +1511,25 @@
             "slot": "flex",
             "tag": "core",
             "pick_rate": 0.75,
-            "annotation": "Great tank item to compliment bullet resists when going against multiple gun builds."
+            "annotation": "Great tank item to compliment bullet resists when going against multiple gun builds.",
+            "lineage_chain": [
+              {
+                "item_id": 3399065363,
+                "name": "Sprint Boots",
+                "tier": 1,
+                "cost": 800,
+                "matches": 135752,
+                "avg_buy_time_min": 12.1
+              },
+              {
+                "item_id": 2447176615,
+                "name": "Enduring Speed",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 200073,
+                "avg_buy_time_min": 15.4
+              }
+            ]
           },
           {
             "item_id": 3491236900,
@@ -1241,7 +1569,17 @@
             "slot": "flex",
             "tag": "core",
             "pick_rate": 0.75,
-            "annotation": "Not only helps you eat large spirit damage chunks but gives base spirit and debuff resist too."
+            "annotation": "Not only helps you eat large spirit damage chunks but gives base spirit and debuff resist too.",
+            "lineage_chain": [
+              {
+                "item_id": 1047818222,
+                "name": "Debuff Reducer",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 24962,
+                "avg_buy_time_min": 26.6
+              }
+            ]
           },
           {
             "item_id": 3270001687,
@@ -2022,7 +2360,17 @@
             "slot": "weapon",
             "tag": "core",
             "pick_rate": 0.857,
-            "annotation": "Only makes sense to invest in more utility since we have Melee Charge. The stun can be really useful for interrupting channels."
+            "annotation": "Only makes sense to invest in more utility since we have Melee Charge. The stun can be really useful for interrupting channels.",
+            "lineage_chain": [
+              {
+                "item_id": 26002154,
+                "name": "Melee Charge",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 20315,
+                "avg_buy_time_min": 18.1
+              }
+            ]
           },
           {
             "item_id": 3884003354,
@@ -2041,7 +2389,17 @@
             "slot": "weapon",
             "tag": "flex",
             "pick_rate": 0.571,
-            "annotation": "Super easy to activate shred for both damage types + antiheal. Super necessary into high resistance frontliners like Yamato, Abrams, Victor, etc."
+            "annotation": "Super easy to activate shred for both damage types + antiheal. Super necessary into high resistance frontliners like Yamato, Abrams, Victor, etc.",
+            "lineage_chain": [
+              {
+                "item_id": 1770441818,
+                "name": "Weakening Headshot",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 1199,
+                "avg_buy_time_min": 25.2
+              }
+            ]
           },
           {
             "item_id": 1371725689,
@@ -2079,7 +2437,17 @@
             "slot": "vitality",
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice."
+            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice.",
+            "lineage_chain": [
+              {
+                "item_id": 3633614685,
+                "name": "Extra Health",
+                "tier": 1,
+                "cost": 800,
+                "matches": 19335,
+                "avg_buy_time_min": 12.7
+              }
+            ]
           },
           {
             "item_id": 1282141666,
@@ -2117,7 +2485,25 @@
             "slot": "vitality",
             "tag": "situational",
             "pick_rate": 0.286,
-            "annotation": "Infinite Healing and Sustain, u wanna shoot mostly and not use a lot of melees from this point. Use your 1 to reload."
+            "annotation": "Infinite Healing and Sustain, u wanna shoot mostly and not use a lot of melees from this point. Use your 1 to reload.",
+            "lineage_chain": [
+              {
+                "item_id": 499683006,
+                "name": "Bullet Lifesteal",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 1222,
+                "avg_buy_time_min": 22.8
+              },
+              {
+                "item_id": 876563814,
+                "name": "Spirit Lifesteal",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 500,
+                "avg_buy_time_min": 28.0
+              }
+            ]
           },
           {
             "item_id": 1152158042,
@@ -2136,7 +2522,17 @@
             "slot": "spirit",
             "tag": "flex",
             "pick_rate": 0.429,
-            "annotation": "Sets up your ult, or can better guarantee kills off of it"
+            "annotation": "Sets up your ult, or can better guarantee kills off of it",
+            "lineage_chain": [
+              {
+                "item_id": 1813726886,
+                "name": "Slowing Hex",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 3388,
+                "avg_buy_time_min": 17.4
+              }
+            ]
           },
           {
             "item_id": 1193964439,
@@ -2155,7 +2551,17 @@
             "slot": "spirit",
             "tag": "core",
             "pick_rate": 0.714,
-            "annotation": "Can be skipped if leaning into late gun items"
+            "annotation": "Can be skipped if leaning into late gun items",
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "matches": 11624,
+                "avg_buy_time_min": 20.4
+              }
+            ]
           },
           {
             "item_id": 915014646,
@@ -2174,7 +2580,25 @@
             "slot": "spirit",
             "tag": "flex",
             "pick_rate": 0.571,
-            "annotation": "Lategame upgrade for all your actives, insane value, only buy if you are tanky enough"
+            "annotation": "Lategame upgrade for all your actives, insane value, only buy if you are tanky enough",
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 6244,
+                "avg_buy_time_min": 17.8
+              },
+              {
+                "item_id": 3261353684,
+                "name": "Superior Cooldown",
+                "tier": 3,
+                "cost": 3200,
+                "matches": 1745,
+                "avg_buy_time_min": 29.2
+              }
+            ]
           },
           {
             "item_id": 2519598785,
@@ -2193,7 +2617,25 @@
             "slot": "spirit",
             "tag": "situational",
             "pick_rate": 0.143,
-            "annotation": "If you're really agead or don't have any particular item you need to buy scaling your Blasted even further is pretty big."
+            "annotation": "If you're really agead or don't have any particular item you need to buy scaling your Blasted even further is pretty big.",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "matches": 801,
+                "avg_buy_time_min": 15.9
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 867,
+                "avg_buy_time_min": 20.4
+              }
+            ]
           },
           {
             "item_id": 2820116164,
@@ -2329,7 +2771,17 @@
             "slot": "weapon",
             "tag": "core",
             "pick_rate": 0.857,
-            "annotation": "Only makes sense to invest in more utility since we have Melee Charge. The stun can be really useful for interrupting channels."
+            "annotation": "Only makes sense to invest in more utility since we have Melee Charge. The stun can be really useful for interrupting channels.",
+            "lineage_chain": [
+              {
+                "item_id": 26002154,
+                "name": "Melee Charge",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 20315,
+                "avg_buy_time_min": 18.1
+              }
+            ]
           },
           {
             "item_id": 3884003354,
@@ -2348,7 +2800,17 @@
             "slot": "weapon",
             "tag": "flex",
             "pick_rate": 0.571,
-            "annotation": "Super easy to activate shred for both damage types + antiheal. Super necessary into high resistance frontliners like Yamato, Abrams, Victor, etc."
+            "annotation": "Super easy to activate shred for both damage types + antiheal. Super necessary into high resistance frontliners like Yamato, Abrams, Victor, etc.",
+            "lineage_chain": [
+              {
+                "item_id": 1770441818,
+                "name": "Weakening Headshot",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 1199,
+                "avg_buy_time_min": 25.2
+              }
+            ]
           },
           {
             "item_id": 1371725689,
@@ -2386,7 +2848,17 @@
             "slot": "vitality",
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice."
+            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice.",
+            "lineage_chain": [
+              {
+                "item_id": 3633614685,
+                "name": "Extra Health",
+                "tier": 1,
+                "cost": 800,
+                "matches": 19335,
+                "avg_buy_time_min": 12.7
+              }
+            ]
           },
           {
             "item_id": 1282141666,
@@ -2424,7 +2896,25 @@
             "slot": "vitality",
             "tag": "situational",
             "pick_rate": 0.286,
-            "annotation": "Infinite Healing and Sustain, u wanna shoot mostly and not use a lot of melees from this point. Use your 1 to reload."
+            "annotation": "Infinite Healing and Sustain, u wanna shoot mostly and not use a lot of melees from this point. Use your 1 to reload.",
+            "lineage_chain": [
+              {
+                "item_id": 499683006,
+                "name": "Bullet Lifesteal",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 1222,
+                "avg_buy_time_min": 22.8
+              },
+              {
+                "item_id": 876563814,
+                "name": "Spirit Lifesteal",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 500,
+                "avg_buy_time_min": 28.0
+              }
+            ]
           },
           {
             "item_id": 1193964439,
@@ -2443,7 +2933,17 @@
             "slot": "spirit",
             "tag": "core",
             "pick_rate": 0.714,
-            "annotation": "Can be skipped if leaning into late gun items"
+            "annotation": "Can be skipped if leaning into late gun items",
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "matches": 11624,
+                "avg_buy_time_min": 20.4
+              }
+            ]
           },
           {
             "item_id": 787198704,
@@ -2462,7 +2962,17 @@
             "slot": "spirit",
             "tag": "core",
             "pick_rate": 0.714,
-            "annotation": "Bashdowns scale better now, but can be skipped for rushing late paths"
+            "annotation": "Bashdowns scale better now, but can be skipped for rushing late paths",
+            "lineage_chain": [
+              {
+                "item_id": 3776945997,
+                "name": "Extra Charge",
+                "tier": 1,
+                "cost": 800,
+                "matches": 14220,
+                "avg_buy_time_min": 16.7
+              }
+            ]
           },
           {
             "item_id": 3190916303,
@@ -2481,7 +2991,17 @@
             "slot": "spirit",
             "tag": "core",
             "pick_rate": 0.857,
-            "annotation": "Bashdown applies this as an AoE"
+            "annotation": "Bashdown applies this as an AoE",
+            "lineage_chain": [
+              {
+                "item_id": 465043967,
+                "name": "Spirit Strike",
+                "tier": 1,
+                "cost": 800,
+                "matches": 19413,
+                "avg_buy_time_min": 13.3
+              }
+            ]
           },
           {
             "item_id": 2971868509,
@@ -2501,6 +3021,25 @@
             "tag": "flex",
             "pick_rate": 0.429,
             "annotation": "Resist, shred, and gets you 4.8k spirit. Synergizes well with Torment Pulse."
+          },
+          {
+            "item_id": 2163598980,
+            "name": "Spirit Resilience",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 22169,
+            "wins": 11200,
+            "win_rate": 0.5052,
+            "wilson_lb": 0.4986,
+            "score": 0.0117,
+            "wr_delta_pp": 1.83,
+            "avg_buy_time_s": 1361.1,
+            "phase": "mid",
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Core spirit resist; can consider rushing Spellbreaker against certain comps"
           },
           {
             "item_id": 98582110,
@@ -2558,25 +3097,6 @@
             "tag": "core",
             "pick_rate": 1.0,
             "annotation": "Activates on Bashdown. Heavy melee minion waves to keep the cooldown short. Feel free to sell this first."
-          },
-          {
-            "item_id": 2829638276,
-            "name": "Extra Regen",
-            "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "matches": 9903,
-            "wins": 4732,
-            "win_rate": 0.4778,
-            "wilson_lb": 0.468,
-            "score": -0.0189,
-            "wr_delta_pp": -0.91,
-            "avg_buy_time_s": 207.7,
-            "phase": "early",
-            "slot": "flex",
-            "tag": "core",
-            "pick_rate": 0.714,
-            "annotation": "Very solid green item, always worth taking if you're taking more damage than you'd like."
           }
         ]
       },
@@ -2600,7 +3120,17 @@
             "slot": "weapon",
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Huge damage increase up close, which is where all your fights will be. Gives a slow effect as well to help you stay on top of your target."
+            "annotation": "Huge damage increase up close, which is where all your fights will be. Gives a slow effect as well to help you stay on top of your target.",
+            "lineage_chain": [
+              {
+                "item_id": 1342610602,
+                "name": "Close Quarters",
+                "tier": 1,
+                "cost": 800,
+                "matches": 33918,
+                "avg_buy_time_min": 3.9
+              }
+            ]
           },
           {
             "item_id": 98582110,
@@ -2660,7 +3190,17 @@
             "slot": "weapon",
             "tag": "core",
             "pick_rate": 0.714,
-            "annotation": "Builds from Slowing Bullets and gives a large weapon damage increase. Makes it extremely hard to get away from you. Best into characters dashing a lot."
+            "annotation": "Builds from Slowing Bullets and gives a large weapon damage increase. Makes it extremely hard to get away from you. Best into characters dashing a lot.",
+            "lineage_chain": [
+              {
+                "item_id": 393974127,
+                "name": "Slowing Bullets",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 6977,
+                "avg_buy_time_min": 12.9
+              }
+            ]
           },
           {
             "item_id": 2163598980,
@@ -2720,7 +3260,25 @@
             "slot": "vitality",
             "tag": "core",
             "pick_rate": 0.857,
-            "annotation": "Great tank item to compliment bullet resists when going against multiple gun builds."
+            "annotation": "Great tank item to compliment bullet resists when going against multiple gun builds.",
+            "lineage_chain": [
+              {
+                "item_id": 3399065363,
+                "name": "Sprint Boots",
+                "tier": 1,
+                "cost": 800,
+                "matches": 18414,
+                "avg_buy_time_min": 12.1
+              },
+              {
+                "item_id": 2447176615,
+                "name": "Enduring Speed",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 27191,
+                "avg_buy_time_min": 14.4
+              }
+            ]
           },
           {
             "item_id": 1235347618,
@@ -2760,7 +3318,17 @@
             "slot": "spirit",
             "tag": "core",
             "pick_rate": 0.714,
-            "annotation": "Can be skipped if leaning into late gun items"
+            "annotation": "Can be skipped if leaning into late gun items",
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "matches": 11624,
+                "avg_buy_time_min": 20.4
+              }
+            ]
           },
           {
             "item_id": 3190916303,
@@ -2780,7 +3348,17 @@
             "slot": "spirit",
             "tag": "core",
             "pick_rate": 0.857,
-            "annotation": "Bashdown applies this as an AoE"
+            "annotation": "Bashdown applies this as an AoE",
+            "lineage_chain": [
+              {
+                "item_id": 465043967,
+                "name": "Spirit Strike",
+                "tier": 1,
+                "cost": 800,
+                "matches": 19413,
+                "avg_buy_time_min": 13.3
+              }
+            ]
           },
           {
             "item_id": 1152158042,
@@ -2800,7 +3378,17 @@
             "slot": "spirit",
             "tag": "flex",
             "pick_rate": 0.429,
-            "annotation": "Sets up your ult, or can better guarantee kills off of it"
+            "annotation": "Sets up your ult, or can better guarantee kills off of it",
+            "lineage_chain": [
+              {
+                "item_id": 1813726886,
+                "name": "Slowing Hex",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 3388,
+                "avg_buy_time_min": 17.4
+              }
+            ]
           },
           {
             "item_id": 787198704,
@@ -2820,7 +3408,17 @@
             "slot": "spirit",
             "tag": "core",
             "pick_rate": 0.714,
-            "annotation": "Bashdowns scale better now, but can be skipped for rushing late paths"
+            "annotation": "Bashdowns scale better now, but can be skipped for rushing late paths",
+            "lineage_chain": [
+              {
+                "item_id": 3776945997,
+                "name": "Extra Charge",
+                "tier": 1,
+                "cost": 800,
+                "matches": 14220,
+                "avg_buy_time_min": 16.7
+              }
+            ]
           },
           {
             "item_id": 3491236900,
@@ -2880,7 +3478,17 @@
             "slot": "flex",
             "tag": "core",
             "pick_rate": 0.857,
-            "annotation": "Not only helps you eat large spirit damage chunks but gives base spirit and debuff resist too."
+            "annotation": "Not only helps you eat large spirit damage chunks but gives base spirit and debuff resist too.",
+            "lineage_chain": [
+              {
+                "item_id": 1047818222,
+                "name": "Debuff Reducer",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 3578,
+                "avg_buy_time_min": 26.3
+              }
+            ]
           },
           {
             "item_id": 2407781327,
@@ -2900,7 +3508,17 @@
             "slot": "flex",
             "tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice."
+            "annotation": "Fat HP increase + insane resists and more weapon damage. Very good tank item. Now gives bonus melee damage when active, which is nice.",
+            "lineage_chain": [
+              {
+                "item_id": 3633614685,
+                "name": "Extra Health",
+                "tier": 1,
+                "cost": 800,
+                "matches": 19335,
+                "avg_buy_time_min": 12.7
+              }
+            ]
           }
         ],
         "source_builds": [
