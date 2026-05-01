@@ -1,0 +1,1319 @@
+{
+  "spec_version": "1.1.0",
+  "hero": {
+    "id": 76,
+    "name": "Graves",
+    "abilities": [
+      {
+        "id": 3214055642,
+        "name": "Jar of Dead"
+      },
+      {
+        "id": 2001589780,
+        "name": "Grasping Hands"
+      },
+      {
+        "id": 629925354,
+        "name": "Essence Theft"
+      },
+      {
+        "id": 4110547059,
+        "name": "Borrowed Decree"
+      }
+    ]
+  },
+  "patch": {
+    "id": "patch_129989",
+    "title": "04-30-2026 Update",
+    "min_unix_timestamp": 1777592780
+  },
+  "mmr_slices": {
+    "all_mmr": {
+      "filter": "no MMR filter",
+      "baseline_win_rate": 0.4682,
+      "matches": 314,
+      "players": 302
+    },
+    "high_mmr": {
+      "filter": "min_average_badge=91 (Phantom+)",
+      "baseline_win_rate": 0.5,
+      "matches": 22,
+      "players": 21
+    }
+  },
+  "recommended": {
+    "items": {
+      "method": "synergy_ilp",
+      "mmr_slice": "high_mmr",
+      "total_cost": 7200,
+      "phases": {
+        "early": [
+          {
+            "slot": "weapon",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "name": "Restorative Shot",
+            "item_id": 3862866912,
+            "avg_buy_time_min": 1.6,
+            "avg_sell_time_min": 27.4,
+            "win_rate": 0.5471,
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "is_active": false,
+            "cooldown_s": 6.0,
+            "imbue": null
+          }
+        ],
+        "mid": [
+          {
+            "slot": "weapon",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "name": "Toxic Bullets",
+            "item_id": 3696726732,
+            "avg_buy_time_min": 15.4,
+            "avg_sell_time_min": 40.2,
+            "win_rate": 0.5553,
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null
+          },
+          {
+            "slot": "vitality",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "name": "Stamina Mastery",
+            "item_id": 334300056,
+            "avg_buy_time_min": 19.2,
+            "avg_sell_time_min": 21.5,
+            "win_rate": 0.5595,
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "matches": 448,
+                "avg_buy_time_min": 6.9
+              }
+            ]
+          }
+        ],
+        "late": []
+      }
+    },
+    "abilities": {
+      "ap_priority_order": [
+        "Jar of Dead",
+        "Essence Theft",
+        "Borrowed Decree",
+        "Grasping Hands"
+      ],
+      "best_full_order": null,
+      "best_opener_first4": null
+    }
+  },
+  "items": {
+    "all_mmr": {
+      "candidate_count": 25,
+      "min_matches_filter": 500,
+      "wilson_greedy": {
+        "picks": [
+          {
+            "item_id": 1113837674,
+            "name": "Silencer",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 587,
+            "wins": 355,
+            "win_rate": 0.6048,
+            "wilson_lb": 0.5647,
+            "score": 0.0965,
+            "wr_delta_pp": 13.66,
+            "avg_buy_time_s": 2161.7,
+            "phase": "late",
+            "avg_sell_time_s": 1708.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2480592370,
+            "name": "Ricochet",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1780,
+            "wins": 962,
+            "win_rate": 0.5404,
+            "wilson_lb": 0.5172,
+            "score": 0.0491,
+            "wr_delta_pp": 7.23,
+            "avg_buy_time_s": 1655.3,
+            "phase": "late",
+            "avg_sell_time_s": 1824.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 811521119,
+            "name": "Tesla Bullets",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1418,
+            "wins": 741,
+            "win_rate": 0.5226,
+            "wilson_lb": 0.4965,
+            "score": 0.0284,
+            "wr_delta_pp": 5.44,
+            "avg_buy_time_s": 843.6,
+            "phase": "mid",
+            "avg_sell_time_s": 1878.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3696726732,
+            "name": "Toxic Bullets",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2632,
+            "wins": 1330,
+            "win_rate": 0.5053,
+            "wilson_lb": 0.4862,
+            "score": 0.0181,
+            "wr_delta_pp": 3.72,
+            "avg_buy_time_s": 1037.8,
+            "phase": "mid",
+            "avg_sell_time_s": 2826.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2037039379,
+            "name": "Inhibitor",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 893,
+            "wins": 501,
+            "win_rate": 0.561,
+            "wilson_lb": 0.5283,
+            "score": 0.0601,
+            "wr_delta_pp": 9.29,
+            "avg_buy_time_s": 2001.6,
+            "phase": "late",
+            "avg_sell_time_s": 2001.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 865846625,
+            "name": "Leech",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2048,
+            "wins": 1081,
+            "win_rate": 0.5278,
+            "wilson_lb": 0.5062,
+            "score": 0.038,
+            "wr_delta_pp": 5.97,
+            "avg_buy_time_s": 1750.2,
+            "phase": "late",
+            "avg_sell_time_s": 2003.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 499683006,
+                "name": "Bullet Lifesteal",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 1221,
+                "avg_buy_time_min": 19.9
+              },
+              {
+                "item_id": 876563814,
+                "name": "Spirit Lifesteal",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 2283,
+                "avg_buy_time_min": 18.8
+              }
+            ]
+          },
+          {
+            "item_id": 334300056,
+            "name": "Stamina Mastery",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2416,
+            "wins": 1238,
+            "win_rate": 0.5124,
+            "wilson_lb": 0.4925,
+            "score": 0.0243,
+            "wr_delta_pp": 4.43,
+            "avg_buy_time_s": 1258.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2311.9,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "matches": 2952,
+                "avg_buy_time_min": 7.2
+              }
+            ]
+          },
+          {
+            "item_id": 3970837787,
+            "name": "Enchanter's Emblem",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 649,
+            "wins": 338,
+            "win_rate": 0.5208,
+            "wilson_lb": 0.4824,
+            "score": 0.0142,
+            "wr_delta_pp": 5.26,
+            "avg_buy_time_s": 849.0,
+            "phase": "mid",
+            "avg_sell_time_s": 2431.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3919289022,
+            "name": "Mercurial Magnum",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 702,
+            "wins": 398,
+            "win_rate": 0.567,
+            "wilson_lb": 0.53,
+            "score": 0.0619,
+            "wr_delta_pp": 9.88,
+            "avg_buy_time_s": 1969.3,
+            "phase": "late",
+            "avg_sell_time_s": 2362.2,
+            "is_active": false,
+            "cooldown_s": 15.0,
+            "imbue": "imbue_active",
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 84321454,
+                "name": "Quicksilver Reload",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 1581,
+                "avg_buy_time_min": 9.5
+              }
+            ]
+          },
+          {
+            "item_id": 3005970438,
+            "name": "Escalating Exposure",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1260,
+            "wins": 695,
+            "win_rate": 0.5516,
+            "wilson_lb": 0.524,
+            "score": 0.0559,
+            "wr_delta_pp": 8.34,
+            "avg_buy_time_s": 1752.1,
+            "phase": "late",
+            "avg_sell_time_s": 2034.8,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 2081037738,
+                "name": "Mystic Vulnerability",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 1287,
+                "avg_buy_time_min": 22.2
+              }
+            ]
+          },
+          {
+            "item_id": 1292979587,
+            "name": "Surge of Power",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 601,
+            "wins": 315,
+            "win_rate": 0.5241,
+            "wilson_lb": 0.4842,
+            "score": 0.016,
+            "wr_delta_pp": 5.6,
+            "avg_buy_time_s": 1249.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2828.1,
+            "is_active": false,
+            "cooldown_s": 14.0,
+            "imbue": "imbue_active",
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "matches": 1486,
+                "avg_buy_time_min": 7.6
+              }
+            ]
+          },
+          {
+            "item_id": 2717651715,
+            "name": "Superior Duration",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1211,
+            "wins": 609,
+            "win_rate": 0.5029,
+            "wilson_lb": 0.4748,
+            "score": 0.0066,
+            "wr_delta_pp": 3.47,
+            "avg_buy_time_s": 1429.2,
+            "phase": "mid",
+            "avg_sell_time_s": 2408.9,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 2951612397,
+                "name": "Duration Extender",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 1069,
+                "avg_buy_time_min": 18.8
+              }
+            ]
+          },
+          {
+            "item_id": 4104549924,
+            "name": "Swift Striker",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1112,
+            "wins": 572,
+            "win_rate": 0.5144,
+            "wilson_lb": 0.485,
+            "score": 0.0169,
+            "wr_delta_pp": 4.62,
+            "avg_buy_time_s": 850.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2486.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 668299740,
+                "name": "Rapid Rounds",
+                "tier": 1,
+                "cost": 800,
+                "matches": 1139,
+                "avg_buy_time_min": 10.2
+              }
+            ]
+          },
+          {
+            "item_id": 3862866912,
+            "name": "Restorative Shot",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 3123,
+            "wins": 1538,
+            "win_rate": 0.4925,
+            "wilson_lb": 0.475,
+            "score": 0.0068,
+            "wr_delta_pp": 2.43,
+            "avg_buy_time_s": 134.5,
+            "phase": "early",
+            "avg_sell_time_s": 1856.4,
+            "is_active": false,
+            "cooldown_s": 6.0,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2829638276,
+            "name": "Extra Regen",
+            "category": "vitality",
+            "tier": 1,
+            "cost": 800,
+            "matches": 665,
+            "wins": 341,
+            "win_rate": 0.5128,
+            "wilson_lb": 0.4748,
+            "score": 0.0067,
+            "wr_delta_pp": 4.46,
+            "avg_buy_time_s": 304.5,
+            "phase": "early",
+            "avg_sell_time_s": 1395.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3647584222,
+            "name": "Split Shot",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1188,
+            "wins": 592,
+            "win_rate": 0.4983,
+            "wilson_lb": 0.4699,
+            "score": 0.0018,
+            "wr_delta_pp": 3.02,
+            "avg_buy_time_s": 854.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2077.3,
+            "is_active": true,
+            "cooldown_s": 24.0,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate": 0.0
+          }
+        ]
+      },
+      "synergy_ilp": {
+        "picks": [
+          {
+            "item_id": 1113837674,
+            "name": "Silencer",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 587,
+            "wins": 355,
+            "win_rate": 0.6048,
+            "wilson_lb": 0.5647,
+            "score": 0.0965,
+            "wr_delta_pp": 13.66,
+            "avg_buy_time_s": 2161.7,
+            "phase": "late",
+            "avg_sell_time_s": 1708.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2480592370,
+            "name": "Ricochet",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1780,
+            "wins": 962,
+            "win_rate": 0.5404,
+            "wilson_lb": 0.5172,
+            "score": 0.0491,
+            "wr_delta_pp": 7.23,
+            "avg_buy_time_s": 1655.3,
+            "phase": "late",
+            "avg_sell_time_s": 1824.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 811521119,
+            "name": "Tesla Bullets",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1418,
+            "wins": 741,
+            "win_rate": 0.5226,
+            "wilson_lb": 0.4965,
+            "score": 0.0284,
+            "wr_delta_pp": 5.44,
+            "avg_buy_time_s": 843.6,
+            "phase": "mid",
+            "avg_sell_time_s": 1878.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3696726732,
+            "name": "Toxic Bullets",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2632,
+            "wins": 1330,
+            "win_rate": 0.5053,
+            "wilson_lb": 0.4862,
+            "score": 0.0181,
+            "wr_delta_pp": 3.72,
+            "avg_buy_time_s": 1037.8,
+            "phase": "mid",
+            "avg_sell_time_s": 2826.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2037039379,
+            "name": "Inhibitor",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 893,
+            "wins": 501,
+            "win_rate": 0.561,
+            "wilson_lb": 0.5283,
+            "score": 0.0601,
+            "wr_delta_pp": 9.29,
+            "avg_buy_time_s": 2001.6,
+            "phase": "late",
+            "avg_sell_time_s": 2001.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 865846625,
+            "name": "Leech",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2048,
+            "wins": 1081,
+            "win_rate": 0.5278,
+            "wilson_lb": 0.5062,
+            "score": 0.038,
+            "wr_delta_pp": 5.97,
+            "avg_buy_time_s": 1750.2,
+            "phase": "late",
+            "avg_sell_time_s": 2003.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 499683006,
+                "name": "Bullet Lifesteal",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 1221,
+                "avg_buy_time_min": 19.9
+              },
+              {
+                "item_id": 876563814,
+                "name": "Spirit Lifesteal",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 2283,
+                "avg_buy_time_min": 18.8
+              }
+            ]
+          },
+          {
+            "item_id": 334300056,
+            "name": "Stamina Mastery",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2416,
+            "wins": 1238,
+            "win_rate": 0.5124,
+            "wilson_lb": 0.4925,
+            "score": 0.0243,
+            "wr_delta_pp": 4.43,
+            "avg_buy_time_s": 1258.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2311.9,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "matches": 2952,
+                "avg_buy_time_min": 7.2
+              }
+            ]
+          },
+          {
+            "item_id": 3970837787,
+            "name": "Enchanter's Emblem",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 649,
+            "wins": 338,
+            "win_rate": 0.5208,
+            "wilson_lb": 0.4824,
+            "score": 0.0142,
+            "wr_delta_pp": 5.26,
+            "avg_buy_time_s": 849.0,
+            "phase": "mid",
+            "avg_sell_time_s": 2431.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3919289022,
+            "name": "Mercurial Magnum",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 702,
+            "wins": 398,
+            "win_rate": 0.567,
+            "wilson_lb": 0.53,
+            "score": 0.0619,
+            "wr_delta_pp": 9.88,
+            "avg_buy_time_s": 1969.3,
+            "phase": "late",
+            "avg_sell_time_s": 2362.2,
+            "is_active": false,
+            "cooldown_s": 15.0,
+            "imbue": "imbue_active",
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 84321454,
+                "name": "Quicksilver Reload",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 1581,
+                "avg_buy_time_min": 9.5
+              }
+            ]
+          },
+          {
+            "item_id": 3005970438,
+            "name": "Escalating Exposure",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1260,
+            "wins": 695,
+            "win_rate": 0.5516,
+            "wilson_lb": 0.524,
+            "score": 0.0559,
+            "wr_delta_pp": 8.34,
+            "avg_buy_time_s": 1752.1,
+            "phase": "late",
+            "avg_sell_time_s": 2034.8,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 2081037738,
+                "name": "Mystic Vulnerability",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 1287,
+                "avg_buy_time_min": 22.2
+              }
+            ]
+          },
+          {
+            "item_id": 1292979587,
+            "name": "Surge of Power",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 601,
+            "wins": 315,
+            "win_rate": 0.5241,
+            "wilson_lb": 0.4842,
+            "score": 0.016,
+            "wr_delta_pp": 5.6,
+            "avg_buy_time_s": 1249.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2828.1,
+            "is_active": false,
+            "cooldown_s": 14.0,
+            "imbue": "imbue_active",
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "matches": 1486,
+                "avg_buy_time_min": 7.6
+              }
+            ]
+          },
+          {
+            "item_id": 2717651715,
+            "name": "Superior Duration",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1211,
+            "wins": 609,
+            "win_rate": 0.5029,
+            "wilson_lb": 0.4748,
+            "score": 0.0066,
+            "wr_delta_pp": 3.47,
+            "avg_buy_time_s": 1429.2,
+            "phase": "mid",
+            "avg_sell_time_s": 2408.9,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 2951612397,
+                "name": "Duration Extender",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 1069,
+                "avg_buy_time_min": 18.8
+              }
+            ]
+          },
+          {
+            "item_id": 4104549924,
+            "name": "Swift Striker",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1112,
+            "wins": 572,
+            "win_rate": 0.5144,
+            "wilson_lb": 0.485,
+            "score": 0.0169,
+            "wr_delta_pp": 4.62,
+            "avg_buy_time_s": 850.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2486.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 668299740,
+                "name": "Rapid Rounds",
+                "tier": 1,
+                "cost": 800,
+                "matches": 1139,
+                "avg_buy_time_min": 10.2
+              }
+            ]
+          },
+          {
+            "item_id": 3862866912,
+            "name": "Restorative Shot",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 3123,
+            "wins": 1538,
+            "win_rate": 0.4925,
+            "wilson_lb": 0.475,
+            "score": 0.0068,
+            "wr_delta_pp": 2.43,
+            "avg_buy_time_s": 134.5,
+            "phase": "early",
+            "avg_sell_time_s": 1856.4,
+            "is_active": false,
+            "cooldown_s": 6.0,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3647584222,
+            "name": "Split Shot",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1188,
+            "wins": 592,
+            "win_rate": 0.4983,
+            "wilson_lb": 0.4699,
+            "score": 0.0018,
+            "wr_delta_pp": 3.02,
+            "avg_buy_time_s": 854.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2077.3,
+            "is_active": true,
+            "cooldown_s": 24.0,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1763073141,
+            "name": "Recharging Rush",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1766,
+            "wins": 849,
+            "win_rate": 0.4807,
+            "wilson_lb": 0.4575,
+            "score": -0.0106,
+            "wr_delta_pp": 1.26,
+            "avg_buy_time_s": 874.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2423.9,
+            "is_active": false,
+            "cooldown_s": 24.0,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate": 0.0
+          }
+        ]
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "item_metadata": {}
+    },
+    "high_mmr": {
+      "candidate_count": 3,
+      "min_matches_filter": 300,
+      "wilson_greedy": {
+        "picks": [
+          {
+            "item_id": 3696726732,
+            "name": "Toxic Bullets",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 407,
+            "wins": 226,
+            "win_rate": 0.5553,
+            "wilson_lb": 0.5067,
+            "score": 0.0067,
+            "wr_delta_pp": 5.53,
+            "avg_buy_time_s": 926.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2412.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3862866912,
+            "name": "Restorative Shot",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 446,
+            "wins": 244,
+            "win_rate": 0.5471,
+            "wilson_lb": 0.5007,
+            "score": 0.0007,
+            "wr_delta_pp": 4.71,
+            "avg_buy_time_s": 97.5,
+            "phase": "early",
+            "avg_sell_time_s": 1642.4,
+            "is_active": false,
+            "cooldown_s": 6.0,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 334300056,
+            "name": "Stamina Mastery",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 370,
+            "wins": 207,
+            "win_rate": 0.5595,
+            "wilson_lb": 0.5085,
+            "score": 0.0085,
+            "wr_delta_pp": 5.95,
+            "avg_buy_time_s": 1154.3,
+            "phase": "mid",
+            "avg_sell_time_s": 1288.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "matches": 448,
+                "avg_buy_time_min": 6.9
+              }
+            ]
+          }
+        ]
+      },
+      "synergy_ilp": {
+        "picks": [
+          {
+            "item_id": 3696726732,
+            "name": "Toxic Bullets",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 407,
+            "wins": 226,
+            "win_rate": 0.5553,
+            "wilson_lb": 0.5067,
+            "score": 0.0067,
+            "wr_delta_pp": 5.53,
+            "avg_buy_time_s": 926.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2412.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3862866912,
+            "name": "Restorative Shot",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 446,
+            "wins": 244,
+            "win_rate": 0.5471,
+            "wilson_lb": 0.5007,
+            "score": 0.0007,
+            "wr_delta_pp": 4.71,
+            "avg_buy_time_s": 97.5,
+            "phase": "early",
+            "avg_sell_time_s": 1642.4,
+            "is_active": false,
+            "cooldown_s": 6.0,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 334300056,
+            "name": "Stamina Mastery",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 370,
+            "wins": 207,
+            "win_rate": 0.5595,
+            "wilson_lb": 0.5085,
+            "score": 0.0085,
+            "wr_delta_pp": 5.95,
+            "avg_buy_time_s": 1154.3,
+            "phase": "mid",
+            "avg_sell_time_s": 1288.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "matches": 448,
+                "avg_buy_time_min": 6.9
+              }
+            ]
+          }
+        ]
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "item_metadata": {}
+    }
+  },
+  "ability_orders": {
+    "all_mmr": {
+      "total_records": 7,
+      "total_matches": 795,
+      "ability_priority": [
+        {
+          "ability_id": 3214055642,
+          "name": "Jar of Dead",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 4110547059,
+          "name": "Borrowed Decree",
+          "avg_ap_all_players": 3.92,
+          "avg_ap_winners": 3.98,
+          "winner_premium_ap": 0.06
+        },
+        {
+          "ability_id": 629925354,
+          "name": "Essence Theft",
+          "avg_ap_all_players": 3.93,
+          "avg_ap_winners": 3.95,
+          "winner_premium_ap": 0.02
+        },
+        {
+          "ability_id": 2001589780,
+          "name": "Grasping Hands",
+          "avg_ap_all_players": 3.55,
+          "avg_ap_winners": 3.72,
+          "winner_premium_ap": 0.17
+        }
+      ],
+      "best_full_orders": [
+        {
+          "sequence_ids": [
+            3214055642,
+            3214055642,
+            2001589780,
+            629925354,
+            629925354,
+            4110547059,
+            629925354,
+            3214055642,
+            3214055642,
+            629925354,
+            2001589780,
+            4110547059,
+            4110547059,
+            4110547059,
+            2001589780,
+            2001589780
+          ],
+          "sequence_names": [
+            "Jar of Dead",
+            "Jar of Dead",
+            "Grasping Hands",
+            "Essence Theft",
+            "Essence Theft",
+            "Borrowed Decree",
+            "Essence Theft",
+            "Jar of Dead",
+            "Jar of Dead",
+            "Essence Theft",
+            "Grasping Hands",
+            "Borrowed Decree",
+            "Borrowed Decree",
+            "Borrowed Decree",
+            "Grasping Hands",
+            "Grasping Hands"
+          ],
+          "wins": 217,
+          "losses": 111,
+          "matches": 328,
+          "players": 308,
+          "win_rate": 0.6616
+        }
+      ],
+      "best_openers_first4": [
+        {
+          "sequence_names": [
+            "Jar of Dead",
+            "Jar of Dead",
+            "Grasping Hands",
+            "Essence Theft"
+          ],
+          "wins": 311,
+          "matches": 578,
+          "win_rate": 0.5381
+        }
+      ]
+    },
+    "high_mmr": {
+      "total_records": 2,
+      "total_matches": 78,
+      "ability_priority": [
+        {
+          "ability_id": 3214055642,
+          "name": "Jar of Dead",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 629925354,
+          "name": "Essence Theft",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 4110547059,
+          "name": "Borrowed Decree",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 2001589780,
+          "name": "Grasping Hands",
+          "avg_ap_all_players": 3.67,
+          "avg_ap_winners": 3.67,
+          "winner_premium_ap": 0.01
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    }
+  },
+  "provenance": {
+    "data_source": "api.deadlock-api.com",
+    "endpoints_used": [
+      "/v1/analytics/hero-stats",
+      "/v1/analytics/item-stats",
+      "/v1/analytics/item-permutation-stats?comb_size=2",
+      "/v1/analytics/hero-build-stats/{hero_id}",
+      "/v1/analytics/ability-order-stats",
+      "/v1/builds (per-build details)"
+    ],
+    "asset_sources": [
+      "https://assets.deadlock-api.com/v2/heroes",
+      "https://assets.deadlock-api.com/v2/items"
+    ]
+  }
+}

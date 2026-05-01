@@ -1,0 +1,1610 @@
+{
+  "spec_version": "1.1.0",
+  "hero": {
+    "id": 77,
+    "name": "Apollo",
+    "abilities": [
+      {
+        "id": 725153709,
+        "name": "Disengaging Sigil"
+      },
+      {
+        "id": 2006773718,
+        "name": "Riposte"
+      },
+      {
+        "id": 147493976,
+        "name": "Flawless Advance"
+      },
+      {
+        "id": 494112189,
+        "name": "Itani Lo Sahn"
+      }
+    ]
+  },
+  "patch": {
+    "id": "patch_129989",
+    "title": "04-30-2026 Update",
+    "min_unix_timestamp": 1777592780
+  },
+  "mmr_slices": {
+    "all_mmr": {
+      "filter": "no MMR filter",
+      "baseline_win_rate": 0.5164,
+      "matches": 244,
+      "players": 241
+    },
+    "high_mmr": {
+      "filter": "min_average_badge=91 (Phantom+)",
+      "baseline_win_rate": 0.4118,
+      "matches": 34,
+      "players": 33
+    }
+  },
+  "recommended": {
+    "items": {
+      "method": "synergy_ilp",
+      "mmr_slice": "high_mmr",
+      "total_cost": 27200,
+      "phases": {
+        "early": [
+          {
+            "slot": "flex",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "name": "Cold Front",
+            "item_id": 1976391348,
+            "avg_buy_time_min": 7.9,
+            "avg_sell_time_min": 33.5,
+            "win_rate": 0.5026,
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "is_active": true,
+            "cooldown_s": 25.0,
+            "imbue": null
+          }
+        ],
+        "mid": [
+          {
+            "slot": "vitality",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "name": "Spirit Lifesteal",
+            "item_id": 876563814,
+            "avg_buy_time_min": 13.8,
+            "avg_sell_time_min": 34.3,
+            "win_rate": 0.523,
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null
+          },
+          {
+            "slot": "vitality",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "name": "Healbane",
+            "item_id": 2603935618,
+            "avg_buy_time_min": 14.0,
+            "avg_sell_time_min": 34.1,
+            "win_rate": 0.5179,
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null
+          },
+          {
+            "slot": "flex",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "name": "Torment Pulse",
+            "item_id": 395944548,
+            "avg_buy_time_min": 15.2,
+            "avg_sell_time_min": 29.2,
+            "win_rate": 0.489,
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "is_active": false,
+            "cooldown_s": 1.4,
+            "imbue": null
+          },
+          {
+            "slot": "vitality",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "name": "Stamina Mastery",
+            "item_id": 334300056,
+            "avg_buy_time_min": 19.8,
+            "avg_sell_time_min": 28.2,
+            "win_rate": 0.5253,
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "matches": 445,
+                "avg_buy_time_min": 12.8
+              }
+            ]
+          },
+          {
+            "slot": "spirit",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "name": "Superior Cooldown",
+            "item_id": 3261353684,
+            "avg_buy_time_min": 22.6,
+            "avg_sell_time_min": 33.7,
+            "win_rate": 0.524,
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 426,
+                "avg_buy_time_min": 18.2
+              }
+            ]
+          },
+          {
+            "slot": "spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "name": "Boundless Spirit",
+            "item_id": 2519598785,
+            "avg_buy_time_min": 23.4,
+            "avg_sell_time_min": 27.3,
+            "win_rate": 0.526,
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "matches": 716,
+                "avg_buy_time_min": 4.5
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 732,
+                "avg_buy_time_min": 8.2
+              }
+            ]
+          },
+          {
+            "slot": "spirit",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "name": "Tankbuster",
+            "item_id": 2121044373,
+            "avg_buy_time_min": 24.1,
+            "avg_sell_time_min": 25.8,
+            "win_rate": 0.5245,
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "is_active": false,
+            "cooldown_s": 14.0,
+            "imbue": null,
+            "lineage_chain": [
+              {
+                "item_id": 1998374645,
+                "name": "Mystic Burst",
+                "tier": 1,
+                "cost": 800,
+                "matches": 724,
+                "avg_buy_time_min": 1.6
+              }
+            ]
+          }
+        ],
+        "late": [
+          {
+            "slot": "spirit",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "name": "Greater Expansion",
+            "item_id": 1193964439,
+            "avg_buy_time_min": 26.5,
+            "avg_sell_time_min": 24.7,
+            "win_rate": 0.5255,
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "matches": 627,
+                "avg_buy_time_min": 6.8
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "abilities": {
+      "ap_priority_order": [
+        "Riposte",
+        "Flawless Advance",
+        "Itani Lo Sahn",
+        "Disengaging Sigil"
+      ],
+      "best_full_order": null,
+      "best_opener_first4": {
+        "sequence_names": [
+          "Disengaging Sigil",
+          "Disengaging Sigil",
+          "Flawless Advance",
+          "Flawless Advance"
+        ],
+        "wins": 95,
+        "matches": 205,
+        "win_rate": 0.4634
+      }
+    }
+  },
+  "items": {
+    "all_mmr": {
+      "candidate_count": 20,
+      "min_matches_filter": 500,
+      "wilson_greedy": {
+        "picks": [
+          {
+            "item_id": 876563814,
+            "name": "Spirit Lifesteal",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1982,
+            "wins": 1051,
+            "win_rate": 0.5303,
+            "wilson_lb": 0.5083,
+            "score": -0.0081,
+            "wr_delta_pp": 1.39,
+            "avg_buy_time_s": 858.9,
+            "phase": "mid",
+            "avg_sell_time_s": 2144.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2829638276,
+            "name": "Extra Regen",
+            "category": "vitality",
+            "tier": 1,
+            "cost": 800,
+            "matches": 1045,
+            "wins": 560,
+            "win_rate": 0.5359,
+            "wilson_lb": 0.5056,
+            "score": -0.0108,
+            "wr_delta_pp": 1.95,
+            "avg_buy_time_s": 254.4,
+            "phase": "early",
+            "avg_sell_time_s": 1559.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2603935618,
+            "name": "Healbane",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 2221,
+            "wins": 1166,
+            "win_rate": 0.525,
+            "wilson_lb": 0.5042,
+            "score": -0.0122,
+            "wr_delta_pp": 0.86,
+            "avg_buy_time_s": 931.5,
+            "phase": "mid",
+            "avg_sell_time_s": 2387.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 334300056,
+            "name": "Stamina Mastery",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2235,
+            "wins": 1158,
+            "win_rate": 0.5181,
+            "wilson_lb": 0.4974,
+            "score": -0.019,
+            "wr_delta_pp": 0.17,
+            "avg_buy_time_s": 1248.5,
+            "phase": "mid",
+            "avg_sell_time_s": 2084.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "matches": 2175,
+                "avg_buy_time_min": 12.1
+              }
+            ]
+          },
+          {
+            "item_id": 343572757,
+            "name": "Spirit Burn",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 953,
+            "wins": 569,
+            "win_rate": 0.5971,
+            "wilson_lb": 0.5656,
+            "score": 0.0492,
+            "wr_delta_pp": 8.07,
+            "avg_buy_time_s": 2060.5,
+            "phase": "late",
+            "avg_sell_time_s": 2038.9,
+            "is_active": false,
+            "cooldown_s": 20.0,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3577481646,
+            "name": "Mystic Reverb",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1256,
+            "wins": 733,
+            "win_rate": 0.5836,
+            "wilson_lb": 0.5561,
+            "score": 0.0397,
+            "wr_delta_pp": 6.72,
+            "avg_buy_time_s": 1811.2,
+            "phase": "late",
+            "avg_sell_time_s": 1798.0,
+            "is_active": false,
+            "cooldown_s": 6.25,
+            "imbue": "imbue_active",
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2693,
+            "wins": 1432,
+            "win_rate": 0.5317,
+            "wilson_lb": 0.5129,
+            "score": -0.0035,
+            "wr_delta_pp": 1.54,
+            "avg_buy_time_s": 1513.0,
+            "phase": "late",
+            "avg_sell_time_s": 1728.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "matches": 3187,
+                "avg_buy_time_min": 4.4
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 3291,
+                "avg_buy_time_min": 8.3
+              }
+            ]
+          },
+          {
+            "item_id": 2081037738,
+            "name": "Mystic Vulnerability",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 979,
+            "wins": 518,
+            "win_rate": 0.5291,
+            "wilson_lb": 0.4978,
+            "score": -0.0186,
+            "wr_delta_pp": 1.27,
+            "avg_buy_time_s": 1303.1,
+            "phase": "mid",
+            "avg_sell_time_s": 2097.9,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3261353684,
+            "name": "Superior Cooldown",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2654,
+            "wins": 1368,
+            "win_rate": 0.5154,
+            "wilson_lb": 0.4964,
+            "score": -0.02,
+            "wr_delta_pp": -0.09,
+            "avg_buy_time_s": 1367.8,
+            "phase": "mid",
+            "avg_sell_time_s": 2017.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 2106,
+                "avg_buy_time_min": 17.3
+              }
+            ]
+          },
+          {
+            "item_id": 395944548,
+            "name": "Torment Pulse",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2539,
+            "wins": 1309,
+            "win_rate": 0.5156,
+            "wilson_lb": 0.4961,
+            "score": -0.0203,
+            "wr_delta_pp": -0.08,
+            "avg_buy_time_s": 1005.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2547.5,
+            "is_active": false,
+            "cooldown_s": 1.4,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1976391348,
+            "name": "Cold Front",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 2094,
+            "wins": 1082,
+            "win_rate": 0.5167,
+            "wilson_lb": 0.4953,
+            "score": -0.0211,
+            "wr_delta_pp": 0.03,
+            "avg_buy_time_s": 560.9,
+            "phase": "early",
+            "avg_sell_time_s": 2163.8,
+            "is_active": true,
+            "cooldown_s": 25.0,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1193964439,
+            "name": "Greater Expansion",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1995,
+            "wins": 1027,
+            "win_rate": 0.5148,
+            "wilson_lb": 0.4928,
+            "score": -0.0235,
+            "wr_delta_pp": -0.16,
+            "avg_buy_time_s": 1527.5,
+            "phase": "late",
+            "avg_sell_time_s": 1947.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "matches": 2623,
+                "avg_buy_time_min": 7.0
+              }
+            ]
+          }
+        ]
+      },
+      "synergy_ilp": {
+        "picks": [
+          {
+            "item_id": 876563814,
+            "name": "Spirit Lifesteal",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1982,
+            "wins": 1051,
+            "win_rate": 0.5303,
+            "wilson_lb": 0.5083,
+            "score": -0.0081,
+            "wr_delta_pp": 1.39,
+            "avg_buy_time_s": 858.9,
+            "phase": "mid",
+            "avg_sell_time_s": 2144.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2829638276,
+            "name": "Extra Regen",
+            "category": "vitality",
+            "tier": 1,
+            "cost": 800,
+            "matches": 1045,
+            "wins": 560,
+            "win_rate": 0.5359,
+            "wilson_lb": 0.5056,
+            "score": -0.0108,
+            "wr_delta_pp": 1.95,
+            "avg_buy_time_s": 254.4,
+            "phase": "early",
+            "avg_sell_time_s": 1559.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2603935618,
+            "name": "Healbane",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 2221,
+            "wins": 1166,
+            "win_rate": 0.525,
+            "wilson_lb": 0.5042,
+            "score": -0.0122,
+            "wr_delta_pp": 0.86,
+            "avg_buy_time_s": 931.5,
+            "phase": "mid",
+            "avg_sell_time_s": 2387.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 334300056,
+            "name": "Stamina Mastery",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2235,
+            "wins": 1158,
+            "win_rate": 0.5181,
+            "wilson_lb": 0.4974,
+            "score": -0.019,
+            "wr_delta_pp": 0.17,
+            "avg_buy_time_s": 1248.5,
+            "phase": "mid",
+            "avg_sell_time_s": 2084.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "matches": 2175,
+                "avg_buy_time_min": 12.1
+              }
+            ]
+          },
+          {
+            "item_id": 343572757,
+            "name": "Spirit Burn",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 953,
+            "wins": 569,
+            "win_rate": 0.5971,
+            "wilson_lb": 0.5656,
+            "score": 0.0492,
+            "wr_delta_pp": 8.07,
+            "avg_buy_time_s": 2060.5,
+            "phase": "late",
+            "avg_sell_time_s": 2038.9,
+            "is_active": false,
+            "cooldown_s": 20.0,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3577481646,
+            "name": "Mystic Reverb",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1256,
+            "wins": 733,
+            "win_rate": 0.5836,
+            "wilson_lb": 0.5561,
+            "score": 0.0397,
+            "wr_delta_pp": 6.72,
+            "avg_buy_time_s": 1811.2,
+            "phase": "late",
+            "avg_sell_time_s": 1798.0,
+            "is_active": false,
+            "cooldown_s": 6.25,
+            "imbue": "imbue_active",
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2693,
+            "wins": 1432,
+            "win_rate": 0.5317,
+            "wilson_lb": 0.5129,
+            "score": -0.0035,
+            "wr_delta_pp": 1.54,
+            "avg_buy_time_s": 1513.0,
+            "phase": "late",
+            "avg_sell_time_s": 1728.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "matches": 3187,
+                "avg_buy_time_min": 4.4
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 3291,
+                "avg_buy_time_min": 8.3
+              }
+            ]
+          },
+          {
+            "item_id": 3261353684,
+            "name": "Superior Cooldown",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2654,
+            "wins": 1368,
+            "win_rate": 0.5154,
+            "wilson_lb": 0.4964,
+            "score": -0.02,
+            "wr_delta_pp": -0.09,
+            "avg_buy_time_s": 1367.8,
+            "phase": "mid",
+            "avg_sell_time_s": 2017.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 2106,
+                "avg_buy_time_min": 17.3
+              }
+            ]
+          },
+          {
+            "item_id": 395944548,
+            "name": "Torment Pulse",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2539,
+            "wins": 1309,
+            "win_rate": 0.5156,
+            "wilson_lb": 0.4961,
+            "score": -0.0203,
+            "wr_delta_pp": -0.08,
+            "avg_buy_time_s": 1005.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2547.5,
+            "is_active": false,
+            "cooldown_s": 1.4,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1976391348,
+            "name": "Cold Front",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 2094,
+            "wins": 1082,
+            "win_rate": 0.5167,
+            "wilson_lb": 0.4953,
+            "score": -0.0211,
+            "wr_delta_pp": 0.03,
+            "avg_buy_time_s": 560.9,
+            "phase": "early",
+            "avg_sell_time_s": 2163.8,
+            "is_active": true,
+            "cooldown_s": 25.0,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1193964439,
+            "name": "Greater Expansion",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1995,
+            "wins": 1027,
+            "win_rate": 0.5148,
+            "wilson_lb": 0.4928,
+            "score": -0.0235,
+            "wr_delta_pp": -0.16,
+            "avg_buy_time_s": 1527.5,
+            "phase": "late",
+            "avg_sell_time_s": 1947.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "matches": 2623,
+                "avg_buy_time_min": 7.0
+              }
+            ]
+          },
+          {
+            "item_id": 2059712766,
+            "name": "Restorative Locket",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1044,
+            "wins": 545,
+            "win_rate": 0.522,
+            "wilson_lb": 0.4917,
+            "score": -0.0247,
+            "wr_delta_pp": 0.56,
+            "avg_buy_time_s": 739.3,
+            "phase": "early",
+            "avg_sell_time_s": 2171.8,
+            "is_active": true,
+            "cooldown_s": 20.0,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate": 0.0
+          }
+        ]
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "item_metadata": {}
+    },
+    "high_mmr": {
+      "candidate_count": 9,
+      "min_matches_filter": 300,
+      "wilson_greedy": {
+        "picks": [
+          {
+            "item_id": 334300056,
+            "name": "Stamina Mastery",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 474,
+            "wins": 249,
+            "win_rate": 0.5253,
+            "wilson_lb": 0.4803,
+            "score": 0.0686,
+            "wr_delta_pp": 11.36,
+            "avg_buy_time_s": 1189.0,
+            "phase": "mid",
+            "avg_sell_time_s": 1693.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "matches": 445,
+                "avg_buy_time_min": 12.8
+              }
+            ]
+          },
+          {
+            "item_id": 876563814,
+            "name": "Spirit Lifesteal",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 434,
+            "wins": 227,
+            "win_rate": 0.523,
+            "wilson_lb": 0.4761,
+            "score": 0.0643,
+            "wr_delta_pp": 11.13,
+            "avg_buy_time_s": 829.4,
+            "phase": "mid",
+            "avg_sell_time_s": 2055.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2603935618,
+            "name": "Healbane",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 531,
+            "wins": 275,
+            "win_rate": 0.5179,
+            "wilson_lb": 0.4754,
+            "score": 0.0636,
+            "wr_delta_pp": 10.61,
+            "avg_buy_time_s": 842.9,
+            "phase": "mid",
+            "avg_sell_time_s": 2048.3,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 616,
+            "wins": 324,
+            "win_rate": 0.526,
+            "wilson_lb": 0.4865,
+            "score": 0.0747,
+            "wr_delta_pp": 11.42,
+            "avg_buy_time_s": 1406.2,
+            "phase": "mid",
+            "avg_sell_time_s": 1637.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "matches": 716,
+                "avg_buy_time_min": 4.5
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 732,
+                "avg_buy_time_min": 8.2
+              }
+            ]
+          },
+          {
+            "item_id": 3261353684,
+            "name": "Superior Cooldown",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 584,
+            "wins": 306,
+            "win_rate": 0.524,
+            "wilson_lb": 0.4834,
+            "score": 0.0717,
+            "wr_delta_pp": 11.22,
+            "avg_buy_time_s": 1355.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2021.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 426,
+                "avg_buy_time_min": 18.2
+              }
+            ]
+          },
+          {
+            "item_id": 2121044373,
+            "name": "Tankbuster",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 530,
+            "wins": 278,
+            "win_rate": 0.5245,
+            "wilson_lb": 0.482,
+            "score": 0.0702,
+            "wr_delta_pp": 11.28,
+            "avg_buy_time_s": 1448.6,
+            "phase": "mid",
+            "avg_sell_time_s": 1548.0,
+            "is_active": false,
+            "cooldown_s": 14.0,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 1998374645,
+                "name": "Mystic Burst",
+                "tier": 1,
+                "cost": 800,
+                "matches": 724,
+                "avg_buy_time_min": 1.6
+              }
+            ]
+          },
+          {
+            "item_id": 1193964439,
+            "name": "Greater Expansion",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 411,
+            "wins": 216,
+            "win_rate": 0.5255,
+            "wilson_lb": 0.4773,
+            "score": 0.0655,
+            "wr_delta_pp": 11.38,
+            "avg_buy_time_s": 1589.5,
+            "phase": "late",
+            "avg_sell_time_s": 1479.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "matches": 627,
+                "avg_buy_time_min": 6.8
+              }
+            ]
+          },
+          {
+            "item_id": 1976391348,
+            "name": "Cold Front",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 575,
+            "wins": 289,
+            "win_rate": 0.5026,
+            "wilson_lb": 0.4619,
+            "score": 0.0501,
+            "wr_delta_pp": 9.08,
+            "avg_buy_time_s": 474.3,
+            "phase": "early",
+            "avg_sell_time_s": 2012.8,
+            "is_active": true,
+            "cooldown_s": 25.0,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 395944548,
+            "name": "Torment Pulse",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 593,
+            "wins": 290,
+            "win_rate": 0.489,
+            "wilson_lb": 0.449,
+            "score": 0.0372,
+            "wr_delta_pp": 7.73,
+            "avg_buy_time_s": 913.8,
+            "phase": "mid",
+            "avg_sell_time_s": 1750.6,
+            "is_active": false,
+            "cooldown_s": 1.4,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate": 0.0
+          }
+        ]
+      },
+      "synergy_ilp": {
+        "picks": [
+          {
+            "item_id": 334300056,
+            "name": "Stamina Mastery",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 474,
+            "wins": 249,
+            "win_rate": 0.5253,
+            "wilson_lb": 0.4803,
+            "score": 0.0686,
+            "wr_delta_pp": 11.36,
+            "avg_buy_time_s": 1189.0,
+            "phase": "mid",
+            "avg_sell_time_s": 1693.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "matches": 445,
+                "avg_buy_time_min": 12.8
+              }
+            ]
+          },
+          {
+            "item_id": 876563814,
+            "name": "Spirit Lifesteal",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 434,
+            "wins": 227,
+            "win_rate": 0.523,
+            "wilson_lb": 0.4761,
+            "score": 0.0643,
+            "wr_delta_pp": 11.13,
+            "avg_buy_time_s": 829.4,
+            "phase": "mid",
+            "avg_sell_time_s": 2055.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2603935618,
+            "name": "Healbane",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 531,
+            "wins": 275,
+            "win_rate": 0.5179,
+            "wilson_lb": 0.4754,
+            "score": 0.0636,
+            "wr_delta_pp": 10.61,
+            "avg_buy_time_s": 842.9,
+            "phase": "mid",
+            "avg_sell_time_s": 2048.3,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 616,
+            "wins": 324,
+            "win_rate": 0.526,
+            "wilson_lb": 0.4865,
+            "score": 0.0747,
+            "wr_delta_pp": 11.42,
+            "avg_buy_time_s": 1406.2,
+            "phase": "mid",
+            "avg_sell_time_s": 1637.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "matches": 716,
+                "avg_buy_time_min": 4.5
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 732,
+                "avg_buy_time_min": 8.2
+              }
+            ]
+          },
+          {
+            "item_id": 3261353684,
+            "name": "Superior Cooldown",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 584,
+            "wins": 306,
+            "win_rate": 0.524,
+            "wilson_lb": 0.4834,
+            "score": 0.0717,
+            "wr_delta_pp": 11.22,
+            "avg_buy_time_s": 1355.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2021.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "matches": 426,
+                "avg_buy_time_min": 18.2
+              }
+            ]
+          },
+          {
+            "item_id": 2121044373,
+            "name": "Tankbuster",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 530,
+            "wins": 278,
+            "win_rate": 0.5245,
+            "wilson_lb": 0.482,
+            "score": 0.0702,
+            "wr_delta_pp": 11.28,
+            "avg_buy_time_s": 1448.6,
+            "phase": "mid",
+            "avg_sell_time_s": 1548.0,
+            "is_active": false,
+            "cooldown_s": 14.0,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 1998374645,
+                "name": "Mystic Burst",
+                "tier": 1,
+                "cost": 800,
+                "matches": 724,
+                "avg_buy_time_min": 1.6
+              }
+            ]
+          },
+          {
+            "item_id": 1193964439,
+            "name": "Greater Expansion",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 411,
+            "wins": 216,
+            "win_rate": 0.5255,
+            "wilson_lb": 0.4773,
+            "score": 0.0655,
+            "wr_delta_pp": 11.38,
+            "avg_buy_time_s": 1589.5,
+            "phase": "late",
+            "avg_sell_time_s": 1479.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "matches": 627,
+                "avg_buy_time_min": 6.8
+              }
+            ]
+          },
+          {
+            "item_id": 1976391348,
+            "name": "Cold Front",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 575,
+            "wins": 289,
+            "win_rate": 0.5026,
+            "wilson_lb": 0.4619,
+            "score": 0.0501,
+            "wr_delta_pp": 9.08,
+            "avg_buy_time_s": 474.3,
+            "phase": "early",
+            "avg_sell_time_s": 2012.8,
+            "is_active": true,
+            "cooldown_s": 25.0,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 395944548,
+            "name": "Torment Pulse",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 593,
+            "wins": 290,
+            "win_rate": 0.489,
+            "wilson_lb": 0.449,
+            "score": 0.0372,
+            "wr_delta_pp": 7.73,
+            "avg_buy_time_s": 913.8,
+            "phase": "mid",
+            "avg_sell_time_s": 1750.6,
+            "is_active": false,
+            "cooldown_s": 1.4,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate": 0.0
+          }
+        ]
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "item_metadata": {}
+    }
+  },
+  "ability_orders": {
+    "all_mmr": {
+      "total_records": 7,
+      "total_matches": 767,
+      "ability_priority": [
+        {
+          "ability_id": 2006773718,
+          "name": "Riposte",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 147493976,
+          "name": "Flawless Advance",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 494112189,
+          "name": "Itani Lo Sahn",
+          "avg_ap_all_players": 3.68,
+          "avg_ap_winners": 3.76,
+          "winner_premium_ap": 0.07
+        },
+        {
+          "ability_id": 725153709,
+          "name": "Disengaging Sigil",
+          "avg_ap_all_players": 3.49,
+          "avg_ap_winners": 3.63,
+          "winner_premium_ap": 0.13
+        }
+      ],
+      "best_full_orders": [
+        {
+          "sequence_ids": [
+            725153709,
+            725153709,
+            147493976,
+            147493976,
+            2006773718,
+            494112189,
+            147493976,
+            147493976,
+            2006773718,
+            494112189,
+            494112189,
+            2006773718,
+            2006773718,
+            494112189,
+            725153709,
+            725153709
+          ],
+          "sequence_names": [
+            "Disengaging Sigil",
+            "Disengaging Sigil",
+            "Flawless Advance",
+            "Flawless Advance",
+            "Riposte",
+            "Itani Lo Sahn",
+            "Flawless Advance",
+            "Flawless Advance",
+            "Riposte",
+            "Itani Lo Sahn",
+            "Itani Lo Sahn",
+            "Riposte",
+            "Riposte",
+            "Itani Lo Sahn",
+            "Disengaging Sigil",
+            "Disengaging Sigil"
+          ],
+          "wins": 131,
+          "losses": 76,
+          "matches": 207,
+          "players": 194,
+          "win_rate": 0.6329
+        }
+      ],
+      "best_openers_first4": [
+        {
+          "sequence_names": [
+            "Disengaging Sigil",
+            "Disengaging Sigil",
+            "Flawless Advance",
+            "Flawless Advance"
+          ],
+          "wins": 396,
+          "matches": 767,
+          "win_rate": 0.5163
+        }
+      ]
+    },
+    "high_mmr": {
+      "total_records": 7,
+      "total_matches": 205,
+      "ability_priority": [
+        {
+          "ability_id": 2006773718,
+          "name": "Riposte",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 147493976,
+          "name": "Flawless Advance",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 494112189,
+          "name": "Itani Lo Sahn",
+          "avg_ap_all_players": 3.57,
+          "avg_ap_winners": 3.71,
+          "winner_premium_ap": 0.13
+        },
+        {
+          "ability_id": 725153709,
+          "name": "Disengaging Sigil",
+          "avg_ap_all_players": 3.38,
+          "avg_ap_winners": 3.53,
+          "winner_premium_ap": 0.15
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": [
+        {
+          "sequence_names": [
+            "Disengaging Sigil",
+            "Disengaging Sigil",
+            "Flawless Advance",
+            "Flawless Advance"
+          ],
+          "wins": 95,
+          "matches": 205,
+          "win_rate": 0.4634
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "data_source": "api.deadlock-api.com",
+    "endpoints_used": [
+      "/v1/analytics/hero-stats",
+      "/v1/analytics/item-stats",
+      "/v1/analytics/item-permutation-stats?comb_size=2",
+      "/v1/analytics/hero-build-stats/{hero_id}",
+      "/v1/analytics/ability-order-stats",
+      "/v1/builds (per-build details)"
+    ],
+    "asset_sources": [
+      "https://assets.deadlock-api.com/v2/heroes",
+      "https://assets.deadlock-api.com/v2/items"
+    ]
+  }
+}
