@@ -753,30 +753,76 @@
   };
   const SPIKE_UNIT = { weapon: '% wpn dmg', vitality: '% base HP', spirit: ' spirit' };
 
-  // Walk a flat list of items by buy_min and return the cumulative spend per
-  // category at the END of each phase (early/mid/late). The snapshot for a
-  // given phase must reflect ONLY items with phase == that phase or earlier;
-  // we therefore snapshot BEFORE incrementing whenever we cross a boundary.
+  // Build a list of "cost events" — each one represents gold actually spent
+  // at a known time. A pick with a lineage chain decomposes into incremental
+  // events: T1 stage adds its full cost, T2 adds the differential, the
+  // final tier adds (final cost - last stage cost). Picks with no chain
+  // just add their full cost at the final buy time. For multi-parent
+  // lineages (e.g. Leech with both Spirit Lifesteal AND Bullet Lifesteal as
+  // T2 components), we keep only one stage per tier — picking the earliest
+  // by buy time — because a real player only pre-buys one component path.
+  function buildCostEvents(build) {
+    const events = [];
+    const phaseFromMin = m => m < 12.5 ? 'early' : m < 25 ? 'mid' : 'late';
+    for (const pick of build) {
+      const rawChain = (pick.lineage_chain || []).filter(s => s.avg_buy_time_min != null);
+      // Sort by tier asc, then buy_min asc, then dedupe by tier (keep earliest)
+      rawChain.sort((a, b) => (a.tier - b.tier) || (a.avg_buy_time_min - b.avg_buy_time_min));
+      const seenTiers = new Set();
+      const stages = [];
+      for (const s of rawChain) {
+        if (seenTiers.has(s.tier)) continue;
+        seenTiers.add(s.tier);
+        stages.push(s);
+      }
+      let prevCost = 0;
+      for (const s of stages) {
+        const incr = (s.cost || 0) - prevCost;
+        if (incr > 0) {
+          events.push({
+            buy_min: s.avg_buy_time_min,
+            phase: phaseFromMin(s.avg_buy_time_min),
+            category: pick.category,
+            cost: incr,
+          });
+        }
+        prevCost = Math.max(prevCost, s.cost || 0);
+      }
+      const finalIncr = (pick.cost || 0) - prevCost;
+      if (finalIncr > 0) {
+        events.push({
+          buy_min: pick.buy_min,
+          phase: pick.phase,
+          category: pick.category,
+          cost: finalIncr,
+        });
+      }
+    }
+    return events;
+  }
+
+  // Walk the cost events sorted by time, accumulate per-category totals, and
+  // snapshot at phase boundaries (BEFORE the boundary-crossing event so the
+  // 'end of N' figure reflects only events with phase <= N).
   function computeSpikeProgress(itemsBySlice) {
-    const sorted = [...itemsBySlice].sort((a,b) => a.buy_min - b.buy_min);
+    const events = buildCostEvents(itemsBySlice);
+    events.sort((a, b) => a.buy_min - b.buy_min);
     const totals = { weapon: 0, vitality: 0, spirit: 0 };
     const byPhaseEnd = { early: null, mid: null, late: null };
+    const phasesOrder = ['early','mid','late'];
     let lastPhase = 'early';
-    for (const it of sorted) {
-      // Snapshot the running totals at every boundary BEFORE we add the
-      // crossing item. If items skip a phase entirely (no early-game items,
-      // first item is mid), snapshot the empty earlier phases as we go.
-      while (it.phase !== lastPhase) {
+    for (const e of events) {
+      while (e.phase !== lastPhase) {
         byPhaseEnd[lastPhase] = { ...totals };
-        lastPhase = lastPhase === 'early' ? 'mid' : 'late';
+        const i = phasesOrder.indexOf(lastPhase);
+        lastPhase = phasesOrder[i + 1] || lastPhase;
       }
-      if (it.category in totals) totals[it.category] += (it.cost || 0);
+      if (e.category in totals) totals[e.category] += (e.cost || 0);
     }
-    // Final snapshot for the last phase touched, plus any remaining phases
     while (true) {
       byPhaseEnd[lastPhase] = { ...totals };
       if (lastPhase === 'late') break;
-      lastPhase = lastPhase === 'early' ? 'mid' : 'late';
+      lastPhase = phasesOrder[phasesOrder.indexOf(lastPhase) + 1];
     }
     return { byPhaseEnd, finalTotals: totals };
   }
