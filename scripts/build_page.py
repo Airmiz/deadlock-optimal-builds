@@ -664,6 +664,99 @@ HTML = """<!doctype html>
   .archetype-row .cat-bar > i.vitality { background: var(--vitality); }
   .archetype-row .cat-bar > i.spirit   { background: var(--spirit); }
 
+  /* Counter-pick (matchup) panel */
+  .counter-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .counter-enemies {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+  .counter-enemy {
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 4px;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.1s;
+    user-select: none;
+  }
+  .counter-enemy:hover { border-color: var(--accent); }
+  .counter-enemy.active {
+    border-color: var(--bad);
+    background: rgba(211,98,98,0.08);
+  }
+  .counter-enemy img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 3px;
+  }
+  .counter-enemy .lbl {
+    font-size: 9.5px;
+    margin-top: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .counter-results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 12px;
+  }
+  .counter-results h4 {
+    margin: 0 0 8px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .counter-results .buy h4   { color: var(--good); }
+  .counter-results .avoid h4 { color: var(--bad); }
+  .counter-row {
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    gap: 8px;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px dashed var(--border);
+  }
+  .counter-row:last-child { border-bottom: none; }
+  .counter-row .icon {
+    width: 28px; height: 28px;
+    border-radius: 4px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .counter-row .icon img { width: 24px; height: 24px; object-fit: contain; }
+  .counter-row .name { font-size: 12px; }
+  .counter-row .meta { font-size: 10px; color: var(--text-dim); }
+  .counter-row .delta { font-size: 12px; font-weight: 700; text-align: right; min-width: 64px; }
+  .counter-row.pos .delta { color: var(--good); }
+  .counter-row.neg .delta { color: var(--bad); }
+  .counter-empty {
+    color: var(--text-dim);
+    text-align: center;
+    padding: 18px;
+    font-size: 12px;
+  }
+  .counter-summary {
+    color: var(--text-dim);
+    font-size: 11px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border);
+  }
+
   /* Investment-spike progression panel */
   .spike-panel {
     background: var(--bg-card);
@@ -797,6 +890,10 @@ HTML = """<!doctype html>
   // Per-hero active archetype index — null/undefined means "use recommended"
   // Reset on patch change since hero objects differ between patches.
   let activeArchetypeIdxByHero = {};
+  // Per-(patch, hero) selected enemy hero IDs for the counter-pick panel
+  // Stored as Set<enemy_id>. Up to 6 enemies (one full team minus self).
+  const counterEnemiesByHero = {};
+  function counterKey(heroId) { return activePatchId + ':' + heroId; }
 
   // Build the patch-toggle buttons. Sort by recency (newer patch_id first).
   const patchIds = Object.keys(DATA.patches).sort().reverse();
@@ -993,6 +1090,21 @@ HTML = """<!doctype html>
       renderMain();
       return;
     }
+    const enemyTile = e.target.closest('[data-enemy-id]');
+    if (enemyTile) {
+      const heroId = parseInt(enemyTile.dataset.heroId, 10);
+      const enemyId = parseInt(enemyTile.dataset.enemyId, 10);
+      const key = counterKey(heroId);
+      const set = counterEnemiesByHero[key] || new Set();
+      if (set.has(enemyId)) {
+        set.delete(enemyId);
+      } else if (set.size < 6) {
+        set.add(enemyId);
+      }
+      counterEnemiesByHero[key] = set;
+      renderMain();
+      return;
+    }
   });
 
   function renderMain() {
@@ -1137,6 +1249,17 @@ HTML = """<!doctype html>
           <button class="reset" data-reset-hero="${h.id}">← Back to recommended</button>
         </div>
       ` : ''}
+
+      <section>
+        <h3>Matchup Counter Picks</h3>
+        <div class="summary-line">
+          Click enemy heroes you'll be facing — the panel below ranks items by their
+          aggregated win-rate delta vs the baseline build for those matchups.
+          <strong style="color:var(--good)">Green</strong> = buy this when facing them,
+          <strong style="color:var(--bad)">red</strong> = these items underperform vs them.
+        </div>
+        ${renderCounterPanel(h)}
+      </section>
 
       <section>
         <h3>Investment Spike Progression</h3>
@@ -1422,6 +1545,94 @@ HTML = """<!doctype html>
         ${tooltip}
       </div>
     `;
+  }
+
+  function renderCounterPanel(hero) {
+    const counters = (activePatch.counters || {})[hero.id] || (activePatch.counters || {})[String(hero.id)];
+    if (!counters || Object.keys(counters).length === 0) {
+      return `<div class="counter-empty">No counter-pick data on this patch yet (patch released too recently — needs more matches accumulated).</div>`;
+    }
+    const key = counterKey(hero.id);
+    const selected = counterEnemiesByHero[key] || new Set();
+
+    // Render enemy hero grid (every playable hero except this one)
+    const enemyGrid = activePatch.heroes
+      .filter(e => e.id !== hero.id)
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map(e => {
+        const isActive = selected.has(e.id);
+        const dim = !counters[e.id] && !counters[String(e.id)] ? ' style="opacity:0.4"' : '';
+        return `<div class="counter-enemy ${isActive ? 'active' : ''}" data-enemy-id="${e.id}" data-hero-id="${hero.id}"${dim}>
+            <img src="${e.image || ''}" loading="lazy" onerror="this.style.opacity=0.3">
+            <div class="lbl">${escHtml(e.name)}</div>
+          </div>`;
+      }).join('');
+
+    // Aggregate counter signals across selected enemies
+    let aggregated = '';
+    if (selected.size === 0) {
+      aggregated = `<div class="counter-empty">Select up to 6 enemy heroes above to see recommended item swaps for that matchup.</div>`;
+    } else {
+      const itemAgg = {};  // item_id → { total_delta, occurrences, sample_item }
+      for (const eid of selected) {
+        const list = counters[eid] || counters[String(eid)] || [];
+        for (const c of list) {
+          const cur = itemAgg[c.item_id] || { total: 0, occurrences: 0, sample: c };
+          cur.total += c.delta_pp;
+          cur.occurrences += 1;
+          itemAgg[c.item_id] = cur;
+        }
+      }
+      const ranked = Object.entries(itemAgg).map(([iid, info]) => ({
+        item_id: parseInt(iid, 10),
+        total_delta: info.total,
+        avg_delta: info.total / info.occurrences,
+        occurrences: info.occurrences,
+        sample: info.sample,
+      })).sort((a, b) => b.total_delta - a.total_delta);
+
+      const positives = ranked.filter(r => r.total_delta > 0).slice(0, 7);
+      const negatives = ranked.filter(r => r.total_delta < 0).slice(-7).reverse();
+
+      const renderRow = (r, sign) => `
+        <div class="counter-row ${sign}">
+          <div class="icon">${r.sample.image
+            ? `<img src="${r.sample.image}" onerror="this.style.display='none'">`
+            : `<span style="font-size:11px;color:var(--text-dim)">T${r.sample.tier||'?'}</span>`}</div>
+          <div>
+            <div class="name">${escHtml(r.sample.name)}</div>
+            <div class="meta">
+              <span class="cat-pill cat-${r.sample.category}">${r.sample.category}</span>
+              T${r.sample.tier} · matters in ${r.occurrences}/${selected.size} matchup${selected.size === 1 ? '' : 's'}
+            </div>
+          </div>
+          <div class="delta">${r.total_delta >= 0 ? '+' : ''}${r.total_delta.toFixed(1)}pp</div>
+        </div>
+      `;
+
+      aggregated = `
+        <div class="counter-results">
+          <div class="buy">
+            <h4>↑ Buy these vs this enemy lineup</h4>
+            ${positives.length ? positives.map(r => renderRow(r, 'pos')).join('') : '<div class="counter-empty">No positive deltas in selected matchups.</div>'}
+          </div>
+          <div class="avoid">
+            <h4>↓ Avoid / sell these vs this lineup</h4>
+            ${negatives.length ? negatives.map(r => renderRow(r, 'neg')).join('') : '<div class="counter-empty">No negative deltas in selected matchups.</div>'}
+          </div>
+        </div>
+        <div class="counter-summary">
+          Aggregated across ${selected.size} selected enemy hero${selected.size === 1 ? '' : 'es'}.
+          Δpp = sum of (WR vs that enemy) − (baseline WR) across the listed matchups.
+          Each item must have at least 100 matches in the matchup-specific slice and 200 in the baseline to surface.
+        </div>
+      `;
+    }
+
+    return `<div class="counter-panel">
+      <div class="counter-enemies">${enemyGrid}</div>
+      ${aggregated}
+    </div>`;
   }
 
   function renderArchetypesPanel(archetypes, activeIdx, heroId) {

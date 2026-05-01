@@ -557,6 +557,87 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
     return out
 
 
+def compute_counters_for_patch(patch_id: str, top_k: int = 12) -> dict:
+    """
+    For each (hero, enemy) cached counter file, compute per-item WR delta
+    against the no-enemy-filter baseline. Returns:
+      { hero_id: { enemy_id: [ {item_id, delta_pp, n_vs, n_base, name, category, tier, cost, image}, ... ] } }
+    where each list holds the top-K items by |delta|, mixing buy-this and avoid-this picks.
+    """
+    counters_dir = CACHE / patch_id / "counters"
+    hero_data_dir = CACHE / patch_id / "hero_data"
+    if not counters_dir.exists():
+        return {}
+
+    # Per-hero baselines (high-MMR slice — counters were fetched at HMMR)
+    baselines: dict[int, dict[int, dict]] = {}
+    for h in json.load(open(CACHE / "playable_heroes.json")):
+        f = hero_data_dir / f"itemstats_hmmr_{h['id']}.json"
+        if not f.exists():
+            continue
+        try:
+            d = json.load(open(f))
+        except Exception:
+            continue
+        baselines[h["id"]] = {s["item_id"]: s for s in d}
+
+    out: dict[int, dict[int, list]] = {}
+    for cf in counters_dir.glob("*_vs_*.json"):
+        try:
+            stem = cf.stem  # "19_vs_31"
+            hero_id, enemy_id = (int(x) for x in stem.split("_vs_"))
+        except ValueError:
+            continue
+        try:
+            stats = json.load(open(cf))
+        except Exception:
+            continue
+        baseline_for_hero = baselines.get(hero_id, {})
+        if not baseline_for_hero:
+            continue
+
+        deltas = []
+        for s in stats:
+            iid = s["item_id"]
+            base = baseline_for_hero.get(iid)
+            if not base:
+                continue
+            n_vs = s.get("matches", 0)
+            n_base = base.get("matches", 0)
+            if n_vs < 100 or n_base < 200:
+                continue  # need both samples to be meaningful
+            it = items_assets.get(iid)
+            if not (it and it.get("type") == "upgrade"
+                    and it.get("item_slot_type") in ("weapon", "vitality", "spirit")):
+                continue
+            wr_vs = s["wins"] / n_vs
+            wr_base = base["wins"] / n_base
+            delta_pp = round((wr_vs - wr_base) * 100, 2)
+            if abs(delta_pp) < 0.4:
+                continue  # ignore tiny/noise deltas
+            deltas.append({
+                "item_id": iid,
+                "delta_pp": delta_pp,
+                "n_vs": n_vs,
+                "n_base": n_base,
+                "name": it.get("name", "?"),
+                "category": it.get("item_slot_type"),
+                "tier": it.get("item_tier"),
+                "cost": it.get("cost"),
+                "image": it.get("image"),
+            })
+        if not deltas:
+            continue
+        # Keep top-K by |delta|. Also separately keep top-3 most-positive +
+        # top-3 most-negative for guaranteed buy/avoid representation, to avoid
+        # one-sided tails dominating when matchup is wholly favorable/unfavorable.
+        deltas.sort(key=lambda x: -abs(x["delta_pp"]))
+        kept = deltas[:top_k]
+        kept.sort(key=lambda x: -x["delta_pp"])
+        out.setdefault(hero_id, {})[enemy_id] = kept
+    return out
+
+
 def build_patch_payload(patch_id: str) -> dict | None:
     """Run the full compact pipeline for one patch and return its payload.
     Returns None if the patch has no per-hero outputs on disk."""
@@ -617,6 +698,10 @@ def build_patch_payload(patch_id: str) -> dict | None:
     tier = sorted(heroes_data, key=lambda h: -h["mmr"]["high"]["wr"])
 
     meta = PATCH_REGISTRY.get(patch_id, {})
+    print(f"  {patch_id}: computing matchup counter signals …")
+    counters = compute_counters_for_patch(patch_id)
+    n_pairs = sum(len(v) for v in counters.values())
+    print(f"  {patch_id}: {n_pairs} (hero,enemy) pairs with usable counter data")
     return {
         "id": patch_id,
         "title": meta.get("title", patch_id),
@@ -625,6 +710,7 @@ def build_patch_payload(patch_id: str) -> dict | None:
         "signature_picks": n_signature,
         "heroes": heroes_data,
         "tier_order_ids": [h["id"] for h in tier],
+        "counters": counters,
     }
 
 
