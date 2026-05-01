@@ -1,0 +1,67 @@
+name: Deploy on push
+
+# Deploys the already-committed site files (deadlock_builds.html,
+# methodology.html, assets/, favicon.svg, docs/) to GitHub Pages on every
+# push to main. Decoupled from refresh.yml so visual/code changes ship
+# immediately instead of waiting for the next data-refresh window.
+#
+# refresh.yml = data + build + deploy (slow path, every 3 hours)
+# deploy.yml  = deploy only          (fast path, every push)
+
+on:
+  push:
+    branches: [main]
+    # Skip pushes that don't touch site-relevant files (e.g. cache/)
+    paths:
+      - 'deadlock_builds.html'
+      - 'methodology.html'
+      - 'favicon.svg'
+      - 'assets/**'
+      - 'docs/**'
+      - 'heroes/**'
+      - 'all_heroes_index.json'
+      - 'all_heroes_tier_list.csv'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Don't fight refresh.yml's deploy — share the same concurrency group so
+# Pages publishes serially. Cancel earlier deploys when a newer push lands
+# (the latest commit wins).
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Stage Pages content
+        run: |
+          mkdir -p _site
+          cp deadlock_builds.html _site/index.html
+          cp deadlock_builds.html _site/deadlock_builds.html
+          cp methodology.html     _site/methodology.html
+          cp favicon.svg          _site/favicon.svg
+          cp -r assets _site/assets
+          mkdir -p _site/docs
+          cp -r docs/*.md _site/docs/ 2>/dev/null || true
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
