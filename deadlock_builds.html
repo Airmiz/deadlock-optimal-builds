@@ -652,6 +652,95 @@
   .archetype-row .cat-bar > i.vitality { background: var(--vitality); }
   .archetype-row .cat-bar > i.spirit   { background: var(--spirit); }
 
+  /* Copy-build button + toast */
+  .copy-build-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
+  }
+  .copy-build-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.1s;
+  }
+  .copy-build-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .copy-build-btn.copied { background: var(--good); color: var(--bg); border-color: var(--good); }
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-card);
+    border: 1px solid var(--accent);
+    color: var(--text);
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.5);
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(-4px); }
+
+  /* Matchup rankings (per-hero counter best/worst lists) */
+  .matchup-rankings {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .matchup-rankings .col {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+  }
+  .matchup-rankings .col.easy { border-left: 3px solid var(--good); }
+  .matchup-rankings .col.hard { border-left: 3px solid var(--bad); }
+  .matchup-rankings h5 {
+    margin: 0 0 6px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-dim);
+    font-weight: 600;
+  }
+  .matchup-rankings .col.easy h5 { color: var(--good); }
+  .matchup-rankings .col.hard h5 { color: var(--bad); }
+  .matchup-rankings .row {
+    display: grid;
+    grid-template-columns: 24px 1fr auto;
+    gap: 8px;
+    align-items: center;
+    padding: 4px 0;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background 0.08s;
+  }
+  .matchup-rankings .row:hover { background: var(--bg-card); }
+  .matchup-rankings .row img {
+    width: 24px; height: 24px;
+    border-radius: 3px;
+    object-fit: cover;
+    background: #000;
+  }
+  .matchup-rankings .row .name { font-size: 12px; }
+  .matchup-rankings .row .delta {
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .matchup-rankings .col.easy .delta { color: var(--good); }
+  .matchup-rankings .col.hard .delta { color: var(--bad); }
+
   /* Counter-pick (matchup) panel */
   .counter-panel {
     background: var(--bg-card);
@@ -843,6 +932,7 @@
   <div>
     <h1>DEADLOCK OPTIMAL BUILDS</h1>
     <div class="meta" id="patch-info">loading…</div>
+    <div class="meta" style="margin-top:2px"><a href="docs/methodology.md" style="color:var(--text-dim);text-decoration:underline" target="_blank">📖 Methodology &amp; glossary</a></div>
   </div>
   <div style="display:flex; gap:14px; align-items:center;">
     <div class="toggle-group" id="patch-toggle"></div>
@@ -1056,6 +1146,80 @@
     renderMain();
   }
 
+  // Plain-text export for the active build (current hero, MMR, archetype).
+  function buildExportText(hero) {
+    const items = (activeArchetypeIdxByHero[hero.id] != null)
+      ? (() => {
+          const meaningful = (hero.archetypes && hero.archetypes.clusters || []).filter(c => c.build_count >= 2 && c.build);
+          return meaningful[activeArchetypeIdxByHero[hero.id]].build;
+        })()
+      : hero.items_by_slice[mmrSlice];
+    const total = items.reduce((s, i) => s + (i.cost || 0), 0);
+    const archActive = activeArchetypeIdxByHero[hero.id] != null;
+    const variant = archActive
+      ? `${(hero.archetypes.clusters.filter(c => c.build_count >= 2 && c.build)[activeArchetypeIdxByHero[hero.id]] || {}).label} archetype build`
+      : 'Recommended build · synergy ILP';
+    const phaseFromBuyMin = (m) => m < 12.5 ? 'EARLY' : m < 25 ? 'MID' : 'LATE';
+    const phaseLabels = { EARLY: 'EARLY (laning · ≤12.5 min)', MID: 'MID (mid game · 12.5–25 min)', LATE: 'LATE (late game · 25+ min)' };
+
+    const byPhase = { EARLY: [], MID: [], LATE: [] };
+    for (const it of items) byPhase[phaseFromBuyMin(it.buy_min)].push(it);
+    for (const ph in byPhase) byPhase[ph].sort((a,b) => a.buy_min - b.buy_min);
+
+    const lines = [];
+    lines.push(`${hero.name.toUpperCase()} — ${activePatchId} (${activePatch.title})`);
+    lines.push(`${variant} · ${mmrSlice === 'high' ? 'high-MMR' : 'all-MMR'} · $${total.toLocaleString()}`);
+    const wr = hero.mmr[mmrSlice].wr * 100;
+    lines.push(`Hero baseline WR: ${wr.toFixed(2)}% over ${hero.mmr[mmrSlice].matches.toLocaleString()} matches`);
+    lines.push('');
+    for (const ph of ['EARLY','MID','LATE']) {
+      lines.push(phaseLabels[ph]);
+      if (byPhase[ph].length === 0) {
+        lines.push('  —');
+      } else {
+        for (const it of byPhase[ph]) {
+          const cd = (it.is_active && it.cooldown_s) ? ` · CD ${Math.round(it.cooldown_s)}s` : '';
+          const imb = it.imbue ? ' · imbuable' : '';
+          const sig = it.signature ? ' ★' : '';
+          lines.push(`  T${it.tier} ${it.name}${sig} (${it.category}, $${(it.cost||0).toLocaleString()}, ~${it.buy_min}min${cd}${imb})`);
+        }
+      }
+      lines.push('');
+    }
+
+    // Ability priority + best opener (from recommended view, applies regardless of build)
+    const ab = hero.recommended.abilities;
+    if (ab.ap_priority_order && ab.ap_priority_order.length) {
+      lines.push(`Ability priority: ${ab.ap_priority_order.join(' > ')}`);
+    }
+    if (ab.best_opener_first4 && ab.best_opener_first4.sequence_names) {
+      const op = ab.best_opener_first4;
+      lines.push(`Best opener (first 4): ${op.sequence_names.join(' → ')} (${(op.win_rate*100).toFixed(2)}% over ${op.matches.toLocaleString()} matches)`);
+    }
+    if (ab.best_full_order && ab.best_full_order.sequence_names) {
+      const f = ab.best_full_order;
+      lines.push(`Best full sequence: ${f.sequence_names.join(' → ')} (${(f.win_rate*100).toFixed(2)}% over ${f.matches.toLocaleString()} matches)`);
+    }
+    lines.push('');
+    lines.push(`Source: ${DATA.data_source} · spec ${DATA.spec_version}`);
+    return lines.join('
+');
+  }
+
+  function showToast(msg) {
+    let t = document.getElementById('toast');
+    if (!t) {
+      t = document.createElement('div');
+      t.id = 'toast';
+      t.className = 'toast';
+      document.body.appendChild(t);
+    }
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(window.__toastTimeout);
+    window.__toastTimeout = setTimeout(() => t.classList.remove('show'), 1800);
+  }
+
   // Event delegation for archetype "View this build" buttons + reset banner.
   document.addEventListener('click', e => {
     const archBtn = e.target.closest('[data-arch-idx]');
@@ -1076,6 +1240,33 @@
       const heroId = parseInt(resetBtn.dataset.resetHero, 10);
       delete activeArchetypeIdxByHero[heroId];
       renderMain();
+      return;
+    }
+    const copyBtn = e.target.closest('[data-copy-hero]');
+    if (copyBtn) {
+      const heroId = parseInt(copyBtn.dataset.copyHero, 10);
+      const hero = activePatch.heroes.find(x => x.id === heroId);
+      if (hero) {
+        const text = buildExportText(hero);
+        const fallback = () => {
+          const ta = document.createElement('textarea');
+          ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+          document.body.appendChild(ta); ta.select();
+          try { document.execCommand('copy'); } finally { document.body.removeChild(ta); }
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).catch(fallback);
+        } else {
+          fallback();
+        }
+        copyBtn.classList.add('copied');
+        copyBtn.textContent = '✓ Copied';
+        showToast('Build copied to clipboard');
+        setTimeout(() => {
+          copyBtn.classList.remove('copied');
+          copyBtn.textContent = '📋 Copy build to clipboard';
+        }, 1500);
+      }
       return;
     }
     const enemyTile = e.target.closest('[data-enemy-id]');
@@ -1264,6 +1455,9 @@
       </section>
 
       <section>
+        <div class="copy-build-row">
+          <button class="copy-build-btn" data-copy-hero="${h.id}">📋 Copy build to clipboard</button>
+        </div>
         <h3>Item Build by Phase</h3>
         <div class="summary-line">
           From the synergy-aware ILP method — items chosen for win rate <em>and</em> pairwise synergy. Buy times are population averages.
@@ -1535,6 +1729,50 @@
     `;
   }
 
+  // Per-enemy aggregate matchup signal — sum of all positive deltas minus
+  // sum of negative deltas. Positive = your hero wins this matchup; negative
+  // = you struggle vs them.
+  function aggregateMatchupSignal(counterList) {
+    if (!counterList) return 0;
+    return counterList.reduce((acc, c) => acc + (c.delta_pp || 0), 0);
+  }
+
+  function renderMatchupRankings(hero, counters) {
+    const ranked = [];
+    for (const e of activePatch.heroes) {
+      if (e.id === hero.id) continue;
+      const list = counters[e.id] || counters[String(e.id)];
+      if (!list || list.length === 0) continue;
+      const signal = aggregateMatchupSignal(list);
+      ranked.push({ enemy: e, signal });
+    }
+    if (ranked.length < 4) return '';
+    ranked.sort((a, b) => b.signal - a.signal);
+    const easiest = ranked.slice(0, 5);
+    const hardest = ranked.slice(-5).reverse();
+
+    const renderRow = (r) => `
+      <div class="row" data-enemy-id="${r.enemy.id}" data-hero-id="${hero.id}" title="Click to add ${escAttr(r.enemy.name)} to selection">
+        <img src="${r.enemy.image || ''}" loading="lazy" onerror="this.style.opacity=0.3">
+        <div class="name">${escHtml(r.enemy.name)}</div>
+        <div class="delta">${r.signal >= 0 ? '+' : ''}${r.signal.toFixed(1)}pp</div>
+      </div>
+    `;
+
+    return `
+      <div class="matchup-rankings">
+        <div class="col easy">
+          <h5>↑ Easiest matchups for ${escHtml(hero.name)}</h5>
+          ${easiest.map(renderRow).join('')}
+        </div>
+        <div class="col hard">
+          <h5>↓ Hardest matchups for ${escHtml(hero.name)}</h5>
+          ${hardest.map(renderRow).join('')}
+        </div>
+      </div>
+    `;
+  }
+
   function renderCounterPanel(hero) {
     const counters = (activePatch.counters || {})[hero.id] || (activePatch.counters || {})[String(hero.id)];
     if (!counters || Object.keys(counters).length === 0) {
@@ -1542,6 +1780,7 @@
     }
     const key = counterKey(hero.id);
     const selected = counterEnemiesByHero[key] || new Set();
+    const matchupSection = renderMatchupRankings(hero, counters);
 
     // Render enemy hero grid (every playable hero except this one)
     const enemyGrid = activePatch.heroes
@@ -1618,6 +1857,7 @@
     }
 
     return `<div class="counter-panel">
+      ${matchupSection}
       <div class="counter-enemies">${enemyGrid}</div>
       ${aggregated}
     </div>`;
