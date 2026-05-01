@@ -664,6 +664,183 @@ HTML = """<!doctype html>
   .archetype-row .cat-bar > i.vitality { background: var(--vitality); }
   .archetype-row .cat-bar > i.spirit   { background: var(--spirit); }
 
+  /* Hero search filter (sidebar) */
+  .hero-search {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 7px 10px;
+    border-radius: 5px;
+    font-size: 13px;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+  }
+  .hero-search:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .hero-search::placeholder { color: var(--text-dim); }
+  .empty-filter {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 12px;
+    padding: 18px 6px;
+  }
+
+  /* Top-level view toggle (Detail / Matrix) */
+  .view-toggle {
+    display: inline-flex;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-right: 8px;
+  }
+  .view-toggle button {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    padding: 6px 14px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .view-toggle button.active {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  /* Matchup matrix */
+  .matrix-container {
+    overflow: auto;
+    max-height: calc(100vh - 60px);
+    padding: 12px;
+  }
+  .matrix-intro {
+    color: var(--text-dim);
+    font-size: 13px;
+    margin-bottom: 14px;
+    max-width: 720px;
+    line-height: 1.5;
+  }
+  .matrix-intro strong { color: var(--text); }
+  .matrix {
+    display: grid;
+    border-collapse: collapse;
+    width: max-content;
+  }
+  .matrix .corner {
+    background: var(--bg-elev);
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 30;
+    border-right: 2px solid var(--border);
+    border-bottom: 2px solid var(--border);
+    width: 100px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+  .matrix .col-head, .matrix .row-head {
+    background: var(--bg-elev);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .matrix .col-head {
+    position: sticky;
+    top: 0;
+    height: 64px;
+    z-index: 20;
+    border-bottom: 2px solid var(--border);
+  }
+  .matrix .col-head img {
+    width: 24px; height: 24px;
+    border-radius: 3px;
+    object-fit: cover;
+    background: #000;
+  }
+  .matrix .col-head .lbl {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin-top: 4px;
+    color: var(--text-dim);
+    white-space: nowrap;
+    overflow: hidden;
+    max-height: 28px;
+  }
+  .matrix .row-head {
+    position: sticky;
+    left: 0;
+    width: 100px;
+    height: 28px;
+    z-index: 20;
+    border-right: 2px solid var(--border);
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-left: 4px;
+    gap: 6px;
+  }
+  .matrix .row-head img {
+    width: 22px; height: 22px;
+    border-radius: 3px;
+    object-fit: cover;
+    background: #000;
+    flex-shrink: 0;
+  }
+  .matrix .row-head .lbl {
+    font-size: 10px;
+    color: var(--text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .matrix .col-head:hover, .matrix .row-head:hover { background: var(--bg-card); }
+  .matrix-cell {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    border: 1px solid var(--border);
+  }
+  .matrix-cell.empty { background: var(--bg); color: var(--text-dim); cursor: default; }
+  .matrix-cell.diag  { background: var(--bg-elev); color: var(--text-dim); cursor: default; }
+  .matrix-cell:hover { outline: 2px solid var(--accent); outline-offset: -1px; z-index: 10; }
+  .matrix-legend {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 14px;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .matrix-legend .swatch {
+    display: inline-block;
+    width: 16px; height: 14px;
+    border-radius: 2px;
+    border: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
   /* Copy-build button + toast */
   .copy-build-row {
     display: flex;
@@ -947,6 +1124,10 @@ HTML = """<!doctype html>
     <div class="meta" style="margin-top:2px"><a href="docs/methodology.md" style="color:var(--text-dim);text-decoration:underline" target="_blank">📖 Methodology &amp; glossary</a></div>
   </div>
   <div style="display:flex; gap:14px; align-items:center;">
+    <div class="toggle-group" id="view-toggle">
+      <button data-view="detail" class="active">Detail</button>
+      <button data-view="matrix">Matchup Matrix</button>
+    </div>
     <div class="toggle-group" id="patch-toggle"></div>
     <div class="toggle-group" id="mmr-toggle">
       <button data-mmr="all">All MMR</button>
@@ -956,6 +1137,7 @@ HTML = """<!doctype html>
 </header>
 <div class="layout">
   <aside>
+    <input id="hero-search" class="hero-search" type="search" placeholder="Search heroes…" autocomplete="off">
     <div class="sort" id="sort-buttons">
       <button data-sort="alpha" class="active">A–Z</button>
       <button data-sort="tier">By WR</button>
@@ -977,6 +1159,8 @@ HTML = """<!doctype html>
   let selectedHeroId = null;
   let mmrSlice = 'high';
   let sortMode = 'alpha';
+  let viewMode = 'detail';   // 'detail' | 'matrix'
+  let heroFilter = '';       // hero search filter (lowercased)
   // Per-hero active archetype index — null/undefined means "use recommended"
   // Reset on patch change since hero objects differ between patches.
   let activeArchetypeIdxByHero = {};
@@ -1130,12 +1314,22 @@ HTML = """<!doctype html>
   function renderHeroGrid() {
     const grid = document.getElementById('hero-grid');
     let order = [...activePatch.heroes];
+    if (heroFilter) {
+      order = order.filter(h => h.name.toLowerCase().includes(heroFilter));
+    }
     if (sortMode === 'alpha') {
       order.sort((a,b) => a.name.localeCompare(b.name));
     } else {
       order.sort((a,b) => b.mmr[mmrSlice].wr - a.mmr[mmrSlice].wr);
     }
     grid.innerHTML = '';
+    if (order.length === 0) {
+      const div = document.createElement('div');
+      div.className = 'empty-filter';
+      div.textContent = `No heroes matching "${heroFilter}"`;
+      grid.appendChild(div);
+      return;
+    }
     for (const h of order) {
       const div = document.createElement('div');
       div.className = 'hero-tile' + (h.id === selectedHeroId ? ' active' : '');
@@ -1280,6 +1474,33 @@ HTML = """<!doctype html>
       }
       return;
     }
+    // Matrix cell / header click — jump to detail view with hero + enemy pre-selected
+    const jumpCell = e.target.closest('[data-jump-hero], [data-jump-enemy]');
+    if (jumpCell && viewMode === 'matrix') {
+      const heroId = jumpCell.dataset.jumpHero ? parseInt(jumpCell.dataset.jumpHero, 10) : null;
+      const enemyId = jumpCell.dataset.jumpEnemy ? parseInt(jumpCell.dataset.jumpEnemy, 10) : null;
+      if (heroId != null) {
+        selectedHeroId = heroId;
+        if (enemyId != null) {
+          const k = counterKey(heroId);
+          const set = counterEnemiesByHero[k] || new Set();
+          set.add(enemyId);
+          counterEnemiesByHero[k] = set;
+        }
+      } else if (enemyId != null && selectedHeroId != null) {
+        // Clicked a column header without a row — add to current hero's enemies
+        const k = counterKey(selectedHeroId);
+        const set = counterEnemiesByHero[k] || new Set();
+        set.add(enemyId);
+        counterEnemiesByHero[k] = set;
+      }
+      viewMode = 'detail';
+      document.querySelectorAll('#view-toggle button').forEach(b => b.classList.toggle('active', b.dataset.view === 'detail'));
+      renderHeroGrid();
+      renderMain();
+      return;
+    }
+
     const enemyTile = e.target.closest('[data-enemy-id]');
     if (enemyTile) {
       const heroId = parseInt(enemyTile.dataset.heroId, 10);
@@ -1297,7 +1518,100 @@ HTML = """<!doctype html>
     }
   });
 
+  function renderMatrix() {
+    const main = document.getElementById('main');
+    const counters = activePatch.counters || {};
+    const heroes = [...activePatch.heroes].sort((a,b) => a.name.localeCompare(b.name));
+    const itemsDict = activePatch.items_dict || {};
+    if (Object.keys(counters).length === 0) {
+      main.innerHTML = `<div class="empty-state"><p>No matchup data on this patch yet.</p>
+        <p style="font-size:13px;margin-top:8px">The matchup matrix needs the counter-pick data fetched per (hero, enemy) pair. The new patch (${escHtml(activePatch.title)}) is too thin for that yet — switch to the older patch in the header to see the matrix.</p></div>`;
+      return;
+    }
+
+    // Per-(hero,enemy) aggregate signal: sum of all delta_pp values
+    const signal = {};
+    let maxAbs = 1;
+    for (const h of heroes) {
+      const hList = counters[h.id] || counters[String(h.id)] || {};
+      signal[h.id] = {};
+      for (const e of heroes) {
+        if (e.id === h.id) continue;
+        const list = hList[e.id] || hList[String(e.id)];
+        if (!list) continue;
+        const s = list.reduce((acc, c) => acc + (c.delta_pp || 0), 0);
+        signal[h.id][e.id] = s;
+        if (Math.abs(s) > maxAbs) maxAbs = Math.abs(s);
+      }
+    }
+
+    // Color: HSL — green hue 130 for positive, red hue 0 for negative.
+    // Saturation scales with |signal|/maxAbs, lightness clamped to keep readable.
+    const cellColor = (s) => {
+      if (s == null) return '';
+      const hue = s > 0 ? 130 : 0;
+      const sat = Math.min(80, Math.abs(s) / maxAbs * 100);
+      const light = 18 + (1 - Math.min(1, Math.abs(s) / maxAbs)) * 6;
+      return `background:hsl(${hue},${sat}%,${light}%)`;
+    };
+
+    // Build the grid as one flat sequence of items: corner, col-headers, then row-by-row
+    const cellsHtml = [];
+    cellsHtml.push(`<div class="corner">vs →<br>↓ you</div>`);
+    for (const e of heroes) {
+      cellsHtml.push(`<div class="col-head" data-jump-enemy="${e.id}" title="${escAttr(e.name)}">
+        <img src="${e.image || ''}" loading="lazy">
+      </div>`);
+    }
+    for (const h of heroes) {
+      cellsHtml.push(`<div class="row-head" data-jump-hero="${h.id}" title="${escAttr(h.name)}">
+        <img src="${h.image || ''}" loading="lazy">
+        <span class="lbl">${escHtml(h.name)}</span>
+      </div>`);
+      for (const e of heroes) {
+        if (e.id === h.id) {
+          cellsHtml.push(`<div class="matrix-cell diag">—</div>`);
+          continue;
+        }
+        const s = signal[h.id]?.[e.id];
+        if (s == null) {
+          cellsHtml.push(`<div class="matrix-cell empty" title="No data">·</div>`);
+        } else {
+          cellsHtml.push(`<div class="matrix-cell" style="${cellColor(s)}"
+            data-jump-hero="${h.id}" data-jump-enemy="${e.id}"
+            title="${escAttr(h.name)} vs ${escAttr(e.name)}: ${s > 0 ? '+' : ''}${s.toFixed(1)}pp">${s > 0 ? '+' : ''}${s.toFixed(0)}</div>`);
+        }
+      }
+    }
+    const colCount = heroes.length + 1;
+
+    main.innerHTML = `
+      <div class="matrix-container">
+        <h3 style="margin-top:0">Hero Matchup Matrix — ${escHtml(activePatch.title)}</h3>
+        <div class="matrix-intro">
+          Each cell is the <strong>aggregate matchup signal</strong> for (your hero) vs (enemy hero):
+          sum of per-item win-rate deltas across the cached counter data.
+          <span style="color:var(--good)">Green</span> = your hero generally wins this matchup;
+          <span style="color:var(--bad)">red</span> = you struggle vs them.
+          Click any cell to switch to detail view with that hero selected and the enemy pre-added to the counter panel.
+          Click a row label or column header to jump to that hero's detail view.
+        </div>
+        <div class="matrix" style="grid-template-columns: 100px repeat(${heroes.length}, 28px)">
+          ${cellsHtml.join('')}
+        </div>
+        <div class="matrix-legend">
+          <span><span class="swatch" style="background:hsl(130,80%,20%)"></span> strong advantage</span>
+          <span><span class="swatch" style="background:hsl(130,40%,22%)"></span> mild advantage</span>
+          <span><span class="swatch" style="background:#1c2230"></span> neutral / no data</span>
+          <span><span class="swatch" style="background:hsl(0,40%,22%)"></span> mild disadvantage</span>
+          <span><span class="swatch" style="background:hsl(0,80%,20%)"></span> strong disadvantage</span>
+        </div>
+      </div>
+    `;
+  }
+
   function renderMain() {
+    if (viewMode === 'matrix') { renderMatrix(); return; }
     const main = document.getElementById('main');
     if (selectedHeroId == null) { main.innerHTML = `<div class="empty-state"><p>Select a hero from the left.</p></div>`; return; }
     const h = activePatch.heroes.find(x => x.id === selectedHeroId);
@@ -1925,6 +2239,22 @@ HTML = """<!doctype html>
   }
 
   // Wire up controls
+  document.getElementById('view-toggle').addEventListener('click', e => {
+    if (e.target.tagName !== 'BUTTON') return;
+    const v = e.target.dataset.view;
+    if (!v || v === viewMode) return;
+    viewMode = v;
+    document.querySelectorAll('#view-toggle button').forEach(b => b.classList.toggle('active', b.dataset.view === v));
+    renderMain();
+  });
+
+  // Hero search filter — debounced via input event
+  const searchInput = document.getElementById('hero-search');
+  searchInput.addEventListener('input', () => {
+    heroFilter = searchInput.value.trim().toLowerCase();
+    renderHeroGrid();
+  });
+
   document.getElementById('patch-toggle').addEventListener('click', e => {
     if (e.target.tagName !== 'BUTTON') return;
     const pid = e.target.dataset.patch;
