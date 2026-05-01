@@ -1037,10 +1037,14 @@ HTML = """<!doctype html>
     grid-template-columns: 80px 1fr;
     gap: 12px;
     align-items: center;
-    padding: 8px 0;
+    /* Top padding reserves room for the threshold tick labels above the
+       bar (positioned at top:-16px); bottom padding reserves room for the
+       phase checkpoint markers below (~28px including the cost line,
+       phase tag, and gap). */
+    padding: 22px 0 36px;
     border-bottom: 1px solid var(--border);
   }
-  .spike-row:last-child { border-bottom: none; }
+  .spike-row:last-child { border-bottom: none; padding-bottom: 28px; }
   .spike-row .lbl {
     font-size: 12px;
     text-transform: uppercase;
@@ -1105,8 +1109,10 @@ HTML = """<!doctype html>
   }
   .phase-checkpoint.major .pc-cost { color: var(--accent); }
   .phase-checkpoint.major .pc-marker { background: var(--accent); width: 2px; opacity: 1; }
-  /* Slight extra height on the spike-bar to give checkpoints room below */
-  .spike-row { padding-bottom: 28px; }
+  /* (Per-row vertical padding handled in the main .spike-row rule above —
+     22px top reserves room for the 800/1.6k/… threshold labels positioned
+     at top:-16px on each tick; 36px bottom reserves room for the phase
+     checkpoint markers + cost + phase tag below the bar.) */
   .spike-mark {
     position: absolute;
     top: -2px;
