@@ -829,18 +829,37 @@ HTML = """<!doctype html>
   const titleCase = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
   const phaseWhen = { early: 'laning · ≤12.5 min', mid: 'mid game · 12.5–25 min', late: 'late game · 25+ min' };
 
-  // Investment-spike thresholds (universal across all 38 heroes; verified from
-  // hero asset data). The 4,800 milestone is the major spike — at that point
-  // the per-category bonus more than doubles.
+  // Investment-spike thresholds (universal across heroes; verified from
+  // the asset's cost_bonuses data). The 4,800 milestone is the major
+  // spike — at that point the per-category bonus more than doubles.
   const SPIKE_THRESHOLDS = [800, 1600, 2400, 3200, 4800, 7200, 9600, 16000];
   const SPIKE_MAJOR = 4800;
   const SPIKE_DISPLAY_MAX = 16000;
-  // Bonus values at each threshold (per category). Same for all heroes.
-  const SPIKE_BONUS = {
-    weapon:   { 800: 7,  1600: 9,  2400: 13, 3200: 20, 4800: 49, 7200: 60, 9600: 80,  16000: 95 },
-    vitality: { 800: 8,  1600: 10, 2400: 13, 3200: 17, 4800: 34, 7200: 39, 9600: 44,  16000: 48 },
-    spirit:   { 800: 7,  1600: 11, 2400: 15, 3200: 19, 4800: 38, 7200: 48, 9600: 57,  16000: 66 },
+  // Bonus values at each threshold, per category, per patch.
+  // Source for patch_125825: asset cost_bonuses (still served by the CDN).
+  // Source for patch_129989: 04-30-2026 patch notes (asset CDN had not
+  //   refreshed at the time of writing — vitality/weapon bonuses changed,
+  //   spirit was not mentioned so kept identical).
+  const SPIKE_BONUS_BY_PATCH = {
+    patch_125825: {
+      weapon:   { 800: 7,  1600: 9,  2400: 13, 3200: 20, 4800: 49, 7200: 60, 9600: 80,  16000: 95 },
+      vitality: { 800: 8,  1600: 10, 2400: 13, 3200: 17, 4800: 34, 7200: 39, 9600: 44,  16000: 48 },
+      spirit:   { 800: 7,  1600: 11, 2400: 15, 3200: 19, 4800: 38, 7200: 48, 9600: 57,  16000: 66 },
+    },
+    patch_129989: {
+      // Weapon: 7/9/13/20/49/60/80/95/115/135 → 9/12/15/18/46/55/70/85/100/115
+      weapon:   { 800: 9,  1600: 12, 2400: 15, 3200: 18, 4800: 46, 7200: 55, 9600: 70,  16000: 85 },
+      // Vitality: 8/10/13/17/34/39/44/48/52/56 → 9/12/15/20/38/42/46/50/56/62
+      vitality: { 800: 9,  1600: 12, 2400: 15, 3200: 20, 4800: 38, 7200: 42, 9600: 46,  16000: 50 },
+      spirit:   { 800: 7,  1600: 11, 2400: 15, 3200: 19, 4800: 38, 7200: 48, 9600: 57,  16000: 66 },
+    },
   };
+  // Default to the newest known patch's values for any future patch we
+  // haven't hardcoded yet.
+  const SPIKE_BONUS_FALLBACK = SPIKE_BONUS_BY_PATCH.patch_129989;
+  function getSpikeBonus() {
+    return SPIKE_BONUS_BY_PATCH[activePatchId] || SPIKE_BONUS_FALLBACK;
+  }
   const SPIKE_UNIT = { weapon: '% wpn dmg', vitality: '% base HP', spirit: ' spirit' };
 
   // Build a list of "cost events" — each one represents gold actually spent
@@ -1125,7 +1144,10 @@ HTML = """<!doctype html>
           Cumulative souls spent per category as the build comes online.
           The <strong style="color:var(--accent)">4,800</strong> milestone is the major spike —
           your per-category bonus <strong>more than doubles</strong> there
-          (e.g. spirit goes from +19 to +38). Tick marks below show smaller thresholds.
+          (this patch: weapon ${getSpikeBonus().weapon[3200]}→${getSpikeBonus().weapon[4800]}%,
+          vitality ${getSpikeBonus().vitality[3200]}→${getSpikeBonus().vitality[4800]}%,
+          spirit ${getSpikeBonus().spirit[3200]}→${getSpikeBonus().spirit[4800]}%).
+          Tick marks below show smaller thresholds.
         </div>
         ${renderSpikePanel(items)}
       </section>
@@ -1275,7 +1297,7 @@ HTML = """<!doctype html>
       const displayTotal = Math.min(total, SPIKE_DISPLAY_MAX);
       const fillPct = (displayTotal / SPIKE_DISPLAY_MAX) * 100;
       const major = total >= SPIKE_MAJOR;
-      const bonus = SPIKE_BONUS[cat];
+      const bonus = getSpikeBonus()[cat];
       const finalBonus = crossed.length ? bonus[crossed[crossed.length-1]] : 0;
       const unit = SPIKE_UNIT[cat];
 
