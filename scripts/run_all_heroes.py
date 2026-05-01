@@ -13,7 +13,7 @@ from pathlib import Path
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _paths import (
-    ROOT, CACHE, HERO_OUT, HERO_DATA, BUILD_FILES, ASSETS,
+    ROOT, CACHE, PATCH_CACHE, HERO_OUT, HERO_DATA, BUILD_FILES, ASSETS,
     PATCH_ID, PATCH_TITLE, PATCH_MIN_TS, HMMR_BADGE, SPEC_VERSION,
 )
 
@@ -99,8 +99,8 @@ bho.method_build_replication = _patched_build_replication
 
 def paths_for(hid: int) -> dict:
     return {
-        "hero_stats_all":  CACHE / "hero_stats_all.json",
-        "hero_stats_hmmr": CACHE / "hero_stats_hmmr.json",
+        "hero_stats_all":  PATCH_CACHE / "hero_stats_all.json",
+        "hero_stats_hmmr": PATCH_CACHE / "hero_stats_hmmr.json",
         "item_stats_all":  HERO_DATA / f"itemstats_all_{hid}.json",
         "item_stats_hmmr": HERO_DATA / f"itemstats_hmmr_{hid}.json",
         "pair_stats_all":  HERO_DATA / f"perm2_all_{hid}.json",

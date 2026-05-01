@@ -763,9 +763,12 @@ HTML = """<!doctype html>
     <h1>DEADLOCK OPTIMAL BUILDS</h1>
     <div class="meta" id="patch-info">loading…</div>
   </div>
-  <div class="toggle-group" id="mmr-toggle">
-    <button data-mmr="all">All MMR</button>
-    <button data-mmr="high" class="active">High MMR (Phantom+)</button>
+  <div style="display:flex; gap:14px; align-items:center;">
+    <div class="toggle-group" id="patch-toggle"></div>
+    <div class="toggle-group" id="mmr-toggle">
+      <button data-mmr="all">All MMR</button>
+      <button data-mmr="high" class="active">High MMR (Phantom+)</button>
+    </div>
   </div>
 </header>
 <div class="layout">
@@ -785,14 +788,40 @@ HTML = """<!doctype html>
 <script id="page-data" type="application/json">__DATA__</script>
 <script>
   const DATA = JSON.parse(document.getElementById('page-data').textContent);
-  document.getElementById('patch-info').textContent =
-    DATA.patch.id + ' — ' + DATA.patch.title + '  ·  ' + DATA.heroes.length + ' heroes  ·  data: ' + DATA.data_source;
 
+  let activePatchId = DATA.default_patch;
+  let activePatch = DATA.patches[activePatchId];
   let selectedHeroId = null;
   let mmrSlice = 'high';
   let sortMode = 'alpha';
   // Per-hero active archetype index — null/undefined means "use recommended"
-  const activeArchetypeIdxByHero = {};
+  // Reset on patch change since hero objects differ between patches.
+  let activeArchetypeIdxByHero = {};
+
+  // Build the patch-toggle buttons. Sort by recency (newer patch_id first).
+  const patchIds = Object.keys(DATA.patches).sort().reverse();
+  const patchToggle = document.getElementById('patch-toggle');
+  patchToggle.innerHTML = patchIds.map(pid => {
+    const p = DATA.patches[pid];
+    const cls = pid === activePatchId ? 'active' : '';
+    const isNew = pid === patchIds[0] ? ' <span style="color:var(--good);font-size:9px;margin-left:3px">NEW</span>' : '';
+    return `<button data-patch="${pid}" class="${cls}" title="${p.title}">${p.title}${isNew}</button>`;
+  }).join('');
+
+  function updatePatchInfo() {
+    // Compute the total match count across all heroes in this patch as a
+    // freshness signal — newly-released patches have very thin data.
+    const totalMatches = activePatch.heroes.reduce((s, h) => s + (h.mmr.all.matches || 0), 0);
+    let freshness = '';
+    if (totalMatches < 100000) {
+      freshness = ` · <span style="color:var(--bad);font-weight:600">⚠ thin data (${(totalMatches/1000).toFixed(0)}K matches across all heroes — builds will look noisy)</span>`;
+    } else if (totalMatches < 1000000) {
+      freshness = ` · <span style="color:var(--accent)">young patch (${(totalMatches/1000).toFixed(0)}K matches)</span>`;
+    }
+    document.getElementById('patch-info').innerHTML =
+      activePatchId + ' — ' + activePatch.title + '  ·  ' + activePatch.heroes.length + ' heroes' + freshness;
+  }
+  updatePatchInfo();
 
   const fmtPct = v => v == null ? '—' : (v*100).toFixed(2) + '%';
   const wrClass = v => v >= 0.50 ? 'good' : v >= 0.475 ? 'neutral' : 'bad';
@@ -894,7 +923,7 @@ HTML = """<!doctype html>
 
   function renderHeroGrid() {
     const grid = document.getElementById('hero-grid');
-    let order = [...DATA.heroes];
+    let order = [...activePatch.heroes];
     if (sortMode === 'alpha') {
       order.sort((a,b) => a.name.localeCompare(b.name));
     } else {
@@ -950,8 +979,12 @@ HTML = """<!doctype html>
   function renderMain() {
     const main = document.getElementById('main');
     if (selectedHeroId == null) { main.innerHTML = `<div class="empty-state"><p>Select a hero from the left.</p></div>`; return; }
-    const h = DATA.heroes.find(x => x.id === selectedHeroId);
-    if (!h) return;
+    const h = activePatch.heroes.find(x => x.id === selectedHeroId);
+    if (!h) {
+      main.innerHTML = `<div class="empty-state"><p>This hero has no data on <strong>${escHtml(activePatch.title)}</strong>.</p>
+        <p style="font-size:13px;margin-top:8px">Switch to a different patch in the header, or pick another hero.</p></div>`;
+      return;
+    }
 
     // Determine active build: either the recommended (default) or the
     // user-selected archetype's composite build for this hero.
@@ -1416,6 +1449,18 @@ HTML = """<!doctype html>
   }
 
   // Wire up controls
+  document.getElementById('patch-toggle').addEventListener('click', e => {
+    if (e.target.tagName !== 'BUTTON') return;
+    const pid = e.target.dataset.patch;
+    if (!pid || pid === activePatchId) return;
+    activePatchId = pid;
+    activePatch = DATA.patches[pid];
+    activeArchetypeIdxByHero = {};  // archetype refs are per-patch hero objects
+    document.querySelectorAll('#patch-toggle button').forEach(b => b.classList.toggle('active', b.dataset.patch === pid));
+    updatePatchInfo();
+    renderHeroGrid();
+    renderMain();
+  });
   document.getElementById('mmr-toggle').addEventListener('click', e => {
     if (e.target.tagName !== 'BUTTON') return;
     mmrSlice = e.target.dataset.mmr;

@@ -20,18 +20,30 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from _paths import CACHE, HERO_DATA, PATCH_MIN_TS, HMMR_BADGE
+from _paths import CACHE, HERO_DATA, PATCH_CACHE, PATCH_ID, PATCH_TITLE, PATCH_MIN_TS, HMMR_BADGE
 
 
 HMMR_MIN_MATCHES_BUILD = 30
 ALL_MIN_MATCHES_BUILD = 50
 
 
+_HEADERS = {
+    # Cloudflare in front of api.deadlock-api.com sometimes 403s opaque UAs;
+    # mimicking a real browser avoids the challenge.
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+                  "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Accept": "application/json, text/plain, */*",
+    "Accept-Language": "en-US,en;q=0.9",
+}
+
+
 def fetch(url: str, dest: Path, timeout: int = 25) -> tuple[Path, str]:
-    if dest.exists() and dest.stat().st_size > 5:
+    # Even an empty `[]` (2 bytes) is a valid cached response for a brand-new
+    # patch where the API genuinely has no data yet. Cache anything ≥ 2 bytes.
+    if dest.exists() and dest.stat().st_size >= 2:
         return dest, "cached"
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": "deadlock-build-analysis/1.0"})
+        req = urllib.request.Request(url, headers=_HEADERS)
         with urllib.request.urlopen(req, timeout=timeout) as r:
             data = r.read()
         dest.write_bytes(data)
@@ -81,13 +93,13 @@ def hero_urls(hid: int) -> list[tuple[str, Path]]:
 
 
 def main() -> None:
-    print("[1/3] Bootstrapping asset metadata …")
+    print(f"[1/3] Bootstrapping asset metadata for {PATCH_ID} ({PATCH_TITLE}) …")
     bootstrap_assets()
 
     fetch(f"https://api.deadlock-api.com/v1/analytics/hero-stats?min_unix_timestamp={PATCH_MIN_TS}",
-          CACHE / "hero_stats_all.json")
+          PATCH_CACHE / "hero_stats_all.json")
     fetch(f"https://api.deadlock-api.com/v1/analytics/hero-stats?min_unix_timestamp={PATCH_MIN_TS}&min_average_badge={HMMR_BADGE}",
-          CACHE / "hero_stats_hmmr.json")
+          PATCH_CACHE / "hero_stats_hmmr.json")
 
     print("[2/3] Building per-hero job list …")
     heroes = json.load(open(CACHE / "playable_heroes.json"))
@@ -99,7 +111,9 @@ def main() -> None:
     print("[3/3] Fetching …")
     t0 = time.time()
     cached = ok = err = 0
-    with ThreadPoolExecutor(max_workers=6) as pool:
+    # Lower parallelism (3 instead of 6) to stay under the 200 req/min IP cap
+    # — important when both patches are being fetched on the same day.
+    with ThreadPoolExecutor(max_workers=3) as pool:
         futures = {pool.submit(fetch, u, d): (u, d) for u, d in all_jobs}
         for i, fut in enumerate(as_completed(futures), 1):
             _, status = fut.result()

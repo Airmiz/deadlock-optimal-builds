@@ -518,20 +518,22 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
     return out
 
 
-def main() -> None:
-    # Pass 1: load all hero outputs (we'll need them twice — for cross-hero
-    # baselines and for compaction).
-    raw_outputs = []
-    for f in sorted(HERO_OUT.glob("*_build.json")):
-        raw_outputs.append(json.load(open(f)))
-    print(f"Loaded {len(raw_outputs)} hero output files")
+def build_patch_payload(patch_id: str) -> dict | None:
+    """Run the full compact pipeline for one patch and return its payload.
+    Returns None if the patch has no per-hero outputs on disk."""
+    from _paths import PATCH_REGISTRY  # local import to keep the global pure
+    hero_out_dir = ROOT / "heroes" / patch_id
+    patch_cache_dir = CACHE / patch_id
+    files = sorted(hero_out_dir.glob("*_build.json"))
+    if not files:
+        print(f"  {patch_id}: no hero outputs on disk — skipped")
+        return None
 
-    print("Computing cross-hero pick-rate baselines …")
+    raw_outputs = [json.load(open(f)) for f in files]
+    print(f"  {patch_id}: loaded {len(raw_outputs)} hero outputs")
+
     baselines = compute_cross_hero_baselines(raw_outputs)
-    print(f"  {len(baselines)} items have at least one hero with non-zero pick rate")
 
-    print("Clustering archetypes per hero …")
-    # Build the global lineage map once (shared across all heroes).
     import sys as _sys
     _sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     from build_hero_output import build_lineage_map  # noqa: E402
@@ -540,68 +542,155 @@ def main() -> None:
     archetypes_by_hero: dict[int, dict] = {}
     for d in raw_outputs:
         hid = d["hero"]["id"]
-        # Pull this hero's high-MMR item stats so we can decorate cluster
-        # builds with realistic buy times + win rates.
-        stats_path = HERO_DATA / f"itemstats_hmmr_{hid}.json"
+        stats_path = patch_cache_dir / "hero_data" / f"itemstats_hmmr_{hid}.json"
         try:
             hero_stats = json.load(open(stats_path)) if stats_path.exists() else []
         except Exception:
             hero_stats = []
         meta_high = d.get("items", {}).get("high_mmr", {}).get("item_metadata", {})
-        # The metadata dict is keyed by string ids (JSON quirk); normalize to int
         meta_by_int: dict[int, dict] = {}
         for k, v in meta_high.items():
             try:
                 meta_by_int[int(k)] = v
             except (ValueError, TypeError):
                 pass
-        archetypes_by_hero[hid] = cluster_archetypes_for_hero(
-            hid,
+        archetypes_by_hero[hid] = cluster_archetypes_for_hero_in(
+            hid, patch_cache_dir,
             hero_item_stats=hero_stats,
             lineage_canon=lineage_canon,
             ancestors_of=ancestors_of,
             metadata_by_item=meta_by_int,
         )
-    n_clusters = sum(len(v["clusters"]) for v in archetypes_by_hero.values())
-    n_with_builds = sum(1 for v in archetypes_by_hero.values()
-                        for c in v["clusters"] if c.get("build"))
-    print(f"  {n_clusters} clusters across {len(archetypes_by_hero)} heroes "
-          f"({n_with_builds} with composite builds)")
 
-    print("Compacting per-hero data …")
     heroes_data = []
     n_signature = 0
     for d in raw_outputs:
         hid = d["hero"]["id"]
         ch = compact_hero(d, baselines=baselines, archetypes=archetypes_by_hero.get(hid))
-        # Count signature picks for visibility
         for ph in ("early", "mid", "late"):
             for p in ch["recommended"]["items"]["phases"][ph]:
                 if p.get("signature"):
                     n_signature += 1
         heroes_data.append(ch)
-    print(f"  signature picks across all 38 recommended builds: {n_signature}")
 
-    # Sort alphabetically by name for stable display, but the page can re-sort
     heroes_data.sort(key=lambda h: h["name"])
-
-    # Compute meta-level data: tier list (by high-MMR WR)
     tier = sorted(heroes_data, key=lambda h: -h["mmr"]["high"]["wr"])
 
-    page_data = {
-        "spec_version": "1.0.0",
-        "patch": {"id": "patch_125825", "title": "04-10-2026 Update"},
-        "data_source": "api.deadlock-api.com",
+    meta = PATCH_REGISTRY.get(patch_id, {})
+    return {
+        "id": patch_id,
+        "title": meta.get("title", patch_id),
+        "min_unix_timestamp": meta.get("min_ts", 0),
+        "hero_count": len(heroes_data),
+        "signature_picks": n_signature,
         "heroes": heroes_data,
         "tier_order_ids": [h["id"] for h in tier],
+    }
+
+
+def cluster_archetypes_for_hero_in(hid: int, patch_cache_dir, max_clusters: int = 3,
+                                    hero_item_stats: list | None = None,
+                                    lineage_canon: dict | None = None,
+                                    ancestors_of: dict | None = None,
+                                    metadata_by_item: dict | None = None) -> dict:
+    """Patch-scoped variant: looks up build-stats / build files under the
+    given patch_cache_dir rather than the module-level HERO_DATA constant.
+    """
+    seen_ids: set[int] = set()
+    builds: list[dict] = []
+    for slice_label in ("all", "hmmr"):
+        f = patch_cache_dir / "hero_data" / f"buildstats_{slice_label}_{hid}.json"
+        if not f.exists():
+            continue
+        for st in json.load(open(f)):
+            bid = st["hero_build_id"]
+            if bid in seen_ids:
+                continue
+            if st["matches"] < 50:
+                continue
+            bf = BUILD_FILES / f"build_{bid}.json"
+            if not bf.exists():
+                continue
+            try:
+                d = json.load(open(bf))
+            except Exception:
+                continue
+            if not (isinstance(d, list) and d):
+                continue
+            b = d[0].get("hero_build")
+            if not b or "details" not in b:
+                continue
+            items: set[int] = set()
+            for cat in b["details"].get("mod_categories", []):
+                for mod in cat.get("mods", []):
+                    iid = mod.get("ability_id")
+                    if iid:
+                        items.add(iid)
+            if not items:
+                continue
+            seen_ids.add(bid)
+            builds.append({
+                "id": bid, "name": b.get("name", "?"),
+                "wr": st["wins"] / st["matches"], "matches": st["matches"], "items": items,
+            })
+
+    if not builds:
+        return {"clusters": [], "total_builds": 0}
+    if len(builds) <= 2:
+        k = 1
+    elif len(builds) <= 5:
+        k = 2
+    else:
+        k = min(max_clusters, max(2, len(builds) // 4))
+    clusters = _agglomerative(builds, k)
+    out = []
+    for ci in clusters:
+        in_b = [builds[i] for i in ci]
+        out_b = [builds[i] for i in range(len(builds)) if i not in ci]
+        meta = _label_cluster(in_b, out_b)
+        meta["share"] = round(len(in_b) / len(builds), 3)
+        meta["sample_build_names"] = [b["name"] for b in sorted(in_b, key=lambda x: -x["wr"])[:3]]
+        if hero_item_stats is not None and lineage_canon is not None and ancestors_of is not None:
+            meta["build"] = _aggregate_cluster_build(in_b, hero_item_stats,
+                                                     lineage_canon, ancestors_of, metadata_by_item)
+        out.append(meta)
+    out.sort(key=lambda c: -c["share"])
+    return {"clusters": out, "total_builds": len(builds)}
+
+
+def main() -> None:
+    print("Building multi-patch page payload …")
+    # Discover available patches by what's on disk
+    patches_root = ROOT / "heroes"
+    patch_dirs = sorted([p for p in patches_root.iterdir() if p.is_dir()],
+                        key=lambda p: p.name, reverse=True)
+    print(f"Patch folders found: {[p.name for p in patch_dirs]}")
+
+    payloads = {}
+    for pdir in patch_dirs:
+        pid = pdir.name
+        payload = build_patch_payload(pid)
+        if payload:
+            payloads[pid] = payload
+
+    # Default to the newest patch present (highest patch_id by sort)
+    default_patch = max(payloads.keys()) if payloads else None
+
+    page_data = {
+        "spec_version": "1.1.0",
+        "data_source": "api.deadlock-api.com",
+        "default_patch": default_patch,
+        "patches": payloads,
     }
 
     target = CACHE / "page_data.json"
     with open(target, "w") as f:
         json.dump(page_data, f, separators=(",", ":"))
     size = target.stat().st_size
-    print(f"[saved] {target}  {size:,} bytes  ({size/1024:.1f} KB)")
-    print(f"  {len(heroes_data)} heroes")
+    print(f"\n[saved] {target}  {size:,} bytes  ({size/1024:.1f} KB)")
+    for pid, p in payloads.items():
+        marker = "  ← default" if pid == default_patch else ""
+        print(f"  {pid}: {p['hero_count']} heroes, {p['signature_picks']} signature picks{marker}")
 
 
 if __name__ == "__main__":

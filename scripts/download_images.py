@@ -18,22 +18,33 @@ from _paths import (
 
 
 def collect_urls(data: dict) -> set[tuple[str, str]]:
-    """Walk the data and return (url, kind) tuples — kind = 'heroes'|'items'|'abilities'."""
+    """Walk the data and return (url, kind) tuples — kind = 'heroes'|'items'|'abilities'.
+    Handles both the legacy single-patch shape and the multi-patch shape with a
+    'patches' dict keyed by patch_id.
+    """
     urls: set[tuple[str, str]] = set()
-    for h in data["heroes"]:
-        if h.get("image"):
-            urls.add((h["image"], "heroes"))
-        for ab in h.get("abilities", []):
-            if ab.get("image"):
-                urls.add((ab["image"], "abilities"))
-        for ph in ("early", "mid", "late"):
-            for it in h["recommended"]["items"]["phases"][ph]:
-                if it.get("image"):
-                    urls.add((it["image"], "items"))
-        for slc in ("all", "high"):
-            for it in h["items_by_slice"][slc]:
-                if it.get("image"):
-                    urls.add((it["image"], "items"))
+
+    def walk_hero_list(heroes: list) -> None:
+        for h in heroes:
+            if h.get("image"):
+                urls.add((h["image"], "heroes"))
+            for ab in h.get("abilities", []):
+                if ab.get("image"):
+                    urls.add((ab["image"], "abilities"))
+            for ph in ("early", "mid", "late"):
+                for it in h["recommended"]["items"]["phases"][ph]:
+                    if it.get("image"):
+                        urls.add((it["image"], "items"))
+            for slc in ("all", "high"):
+                for it in h["items_by_slice"][slc]:
+                    if it.get("image"):
+                        urls.add((it["image"], "items"))
+
+    if "patches" in data:
+        for p in data["patches"].values():
+            walk_hero_list(p.get("heroes", []))
+    else:
+        walk_hero_list(data.get("heroes", []))
     return urls
 
 
@@ -96,16 +107,23 @@ def main() -> None:
         # Fall back to the remote URL if download failed
         return url
 
-    for h in data["heroes"]:
-        h["image"] = rewrite(h.get("image"))
-        for ab in h.get("abilities", []):
-            ab["image"] = rewrite(ab.get("image"))
-        for ph in ("early", "mid", "late"):
-            for it in h["recommended"]["items"]["phases"][ph]:
-                it["image"] = rewrite(it.get("image"))
-        for slc in ("all", "high"):
-            for it in h["items_by_slice"][slc]:
-                it["image"] = rewrite(it.get("image"))
+    def rewrite_hero_list(heroes: list) -> None:
+        for h in heroes:
+            h["image"] = rewrite(h.get("image"))
+            for ab in h.get("abilities", []):
+                ab["image"] = rewrite(ab.get("image"))
+            for ph in ("early", "mid", "late"):
+                for it in h["recommended"]["items"]["phases"][ph]:
+                    it["image"] = rewrite(it.get("image"))
+            for slc in ("all", "high"):
+                for it in h["items_by_slice"][slc]:
+                    it["image"] = rewrite(it.get("image"))
+
+    if "patches" in data:
+        for p in data["patches"].values():
+            rewrite_hero_list(p.get("heroes", []))
+    else:
+        rewrite_hero_list(data.get("heroes", []))
 
     # Overwrite page_data.json so build_page.py picks up the local paths
     out = CACHE / "page_data.json"
