@@ -754,27 +754,29 @@
   const SPIKE_UNIT = { weapon: '% wpn dmg', vitality: '% base HP', spirit: ' spirit' };
 
   // Walk a flat list of items by buy_min and return the cumulative spend per
-  // category at the END of each phase (early/mid/late).
+  // category at the END of each phase (early/mid/late). The snapshot for a
+  // given phase must reflect ONLY items with phase == that phase or earlier;
+  // we therefore snapshot BEFORE incrementing whenever we cross a boundary.
   function computeSpikeProgress(itemsBySlice) {
     const sorted = [...itemsBySlice].sort((a,b) => a.buy_min - b.buy_min);
     const totals = { weapon: 0, vitality: 0, spirit: 0 };
     const byPhaseEnd = { early: null, mid: null, late: null };
     let lastPhase = 'early';
     for (const it of sorted) {
-      // bucket: track cumulative as items roll in
-      if (it.category in totals) totals[it.category] += (it.cost || 0);
-      // when the next item is in a later phase, snapshot
-      if (it.phase !== lastPhase) {
+      // Snapshot the running totals at every boundary BEFORE we add the
+      // crossing item. If items skip a phase entirely (no early-game items,
+      // first item is mid), snapshot the empty earlier phases as we go.
+      while (it.phase !== lastPhase) {
         byPhaseEnd[lastPhase] = { ...totals };
-        lastPhase = it.phase;
+        lastPhase = lastPhase === 'early' ? 'mid' : 'late';
       }
+      if (it.category in totals) totals[it.category] += (it.cost || 0);
     }
-    byPhaseEnd[lastPhase] = { ...totals };
-    // Fill any gaps (snapshot earlier phases if no items existed in them)
-    let last = { weapon: 0, vitality: 0, spirit: 0 };
-    for (const ph of ['early','mid','late']) {
-      if (byPhaseEnd[ph] === null) byPhaseEnd[ph] = { ...last };
-      last = byPhaseEnd[ph];
+    // Final snapshot for the last phase touched, plus any remaining phases
+    while (true) {
+      byPhaseEnd[lastPhase] = { ...totals };
+      if (lastPhase === 'late') break;
+      lastPhase = lastPhase === 'early' ? 'mid' : 'late';
     }
     return { byPhaseEnd, finalTotals: totals };
   }
