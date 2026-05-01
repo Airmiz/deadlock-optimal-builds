@@ -53,20 +53,41 @@ def fetch(url: str, dest: Path, timeout: int = 25) -> tuple[Path, str]:
 
 
 def bootstrap_assets() -> None:
-    """Fetch asset metadata + derive playable hero list. Idempotent."""
-    fetch("https://assets.deadlock-api.com/v2/heroes", CACHE / "heroes.json")
-    fetch("https://assets.deadlock-api.com/v2/items", CACHE / "items.json")
+    """Fetch asset metadata + derive playable hero list, snapshot per-patch.
 
-    heroes = json.load(open(CACHE / "heroes.json"))
+    Each patch keeps its own snapshot of heroes.json + items.json under
+    cache/<patch_id>/. This way, when the asset CDN updates for a new
+    patch (item rebalances, new items, etc.), the previous patch's
+    display stays correct because it reads its frozen snapshot.
+
+    A copy is also written to cache/ root for backwards compatibility
+    with any scripts that still reference the old global path.
+    """
+    # Patch-snapshot path (canonical going forward)
+    fetch("https://assets.deadlock-api.com/v2/heroes", PATCH_CACHE / "heroes.json")
+    fetch("https://assets.deadlock-api.com/v2/items",  PATCH_CACHE / "items.json")
+    # Mirror to cache/ root for legacy callers (build_page_data still
+    # reads items_assets at module level; will migrate in a follow-up).
+    if not (CACHE / "heroes.json").exists():
+        (CACHE / "heroes.json").write_bytes((PATCH_CACHE / "heroes.json").read_bytes())
+    if not (CACHE / "items.json").exists():
+        (CACHE / "items.json").write_bytes((PATCH_CACHE / "items.json").read_bytes())
+
+    heroes = json.load(open(PATCH_CACHE / "heroes.json"))
     playable = [h for h in heroes
                 if h.get("player_selectable", False)
                 and not h.get("disabled", False)
                 and not h.get("in_development", False)]
-    dest = CACHE / "playable_heroes.json"
+    payload = [{"id": h["id"], "name": h["name"], "class_name": h["class_name"]}
+               for h in playable]
+    dest = PATCH_CACHE / "playable_heroes.json"
     with open(dest, "w") as f:
-        json.dump([{"id": h["id"], "name": h["name"], "class_name": h["class_name"]}
-                   for h in playable], f, indent=2)
-    print(f"  playable heroes: {len(playable)} -> {dest.name}")
+        json.dump(payload, f, indent=2)
+    # Mirror to legacy global path for backwards compat
+    if not (CACHE / "playable_heroes.json").exists():
+        with open(CACHE / "playable_heroes.json", "w") as f:
+            json.dump(payload, f, indent=2)
+    print(f"  playable heroes: {len(playable)} -> {dest.relative_to(PATCH_CACHE.parent.parent)}")
 
 
 def hero_urls(hid: int) -> list[tuple[str, Path]]:

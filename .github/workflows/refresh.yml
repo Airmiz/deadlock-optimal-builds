@@ -1,0 +1,118 @@
+name: Refresh + deploy
+
+# Pulls fresh data from the deadlock-api community API, regenerates the
+# per-hero outputs, rebuilds the HTML page, commits the result back to
+# main, and deploys the static site to GitHub Pages.
+#
+# Triggers:
+#   - Nightly at 06:00 UTC
+#   - Manual via Actions tab → "Run workflow"
+#
+# Setup required (one-time, in repo settings):
+#   1. Settings → Pages → Source = "GitHub Actions"
+#   2. Settings → Actions → General → Workflow permissions = "Read and write"
+#      (so the job can push regenerated files back to main)
+#   3. (optional) Set PATCH_ID env at the workflow level if you want a
+#      different default than what's in scripts/_paths.py
+
+on:
+  schedule:
+    # 06:00 UTC daily — well after Valve's typical patch-drop window so
+    # the deadlock-api caches will have absorbed the morning's matches.
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      patch_id:
+        description: 'Patch ID to refresh (defaults to all patches in scripts/_paths.py)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write       # push regenerated files
+  pages: write          # deploy to Pages
+  id-token: write       # OIDC for Pages deploy
+
+concurrency:
+  group: refresh-deploy
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pulp
+
+      - name: Refresh patch_125825 (older patch — stable counters)
+        env:
+          PATCH_ID: patch_125825
+        run: |
+          python3 scripts/batch_fetch.py
+          python3 scripts/batch_fetch_builds.py
+          # counters only re-fetched if a new build_id surfaces; cached entries skip
+          python3 scripts/batch_fetch_counters.py
+          python3 scripts/run_all_heroes.py
+
+      - name: Refresh patch_129989 (current patch)
+        env:
+          PATCH_ID: patch_129989
+        run: |
+          python3 scripts/batch_fetch.py
+          python3 scripts/batch_fetch_builds.py
+          python3 scripts/run_all_heroes.py
+
+      - name: Compile multi-patch page payload
+        run: |
+          python3 scripts/build_index.py
+          python3 scripts/build_page_data.py
+          python3 scripts/download_images.py
+          python3 scripts/build_page.py
+
+      - name: Commit changes
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A heroes/ assets/ deadlock_builds.html all_heroes_index.json all_heroes_tier_list.csv
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: nightly refresh $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+      - name: Stage Pages content
+        run: |
+          mkdir -p _site
+          # GitHub Pages serves index.html by default
+          cp deadlock_builds.html _site/index.html
+          cp -r assets _site/assets
+          mkdir -p _site/docs
+          cp -r docs/*.md _site/docs/ 2>/dev/null || true
+          # Tiny landing redirect for users hitting /deadlock_builds.html
+          cp deadlock_builds.html _site/deadlock_builds.html
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  deploy:
+    needs: refresh
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

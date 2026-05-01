@@ -1811,11 +1811,11 @@ HTML = """<!doctype html>
     if (selected.size === 0) {
       aggregated = `<div class="counter-empty">Select up to 6 enemy heroes above to see recommended item swaps for that matchup.</div>`;
     } else {
-      const itemAgg = {};  // item_id → { total_delta, occurrences, sample_item }
+      const itemAgg = {};  // item_id → { total_delta, occurrences }
       for (const eid of selected) {
         const list = counters[eid] || counters[String(eid)] || [];
         for (const c of list) {
-          const cur = itemAgg[c.item_id] || { total: 0, occurrences: 0, sample: c };
+          const cur = itemAgg[c.item_id] || { total: 0, occurrences: 0 };
           cur.total += c.delta_pp;
           cur.occurrences += 1;
           itemAgg[c.item_id] = cur;
@@ -1826,27 +1826,31 @@ HTML = """<!doctype html>
         total_delta: info.total,
         avg_delta: info.total / info.occurrences,
         occurrences: info.occurrences,
-        sample: info.sample,
       })).sort((a, b) => b.total_delta - a.total_delta);
 
       const positives = ranked.filter(r => r.total_delta > 0).slice(0, 7);
       const negatives = ranked.filter(r => r.total_delta < 0).slice(-7).reverse();
 
-      const renderRow = (r, sign) => `
-        <div class="counter-row ${sign}">
-          <div class="icon">${r.sample.image
-            ? `<img src="${r.sample.image}" onerror="this.style.display='none'">`
-            : `<span style="font-size:11px;color:var(--text-dim)">T${r.sample.tier||'?'}</span>`}</div>
-          <div>
-            <div class="name">${escHtml(r.sample.name)}</div>
-            <div class="meta">
-              <span class="cat-pill cat-${r.sample.category}">${r.sample.category}</span>
-              T${r.sample.tier} · matters in ${r.occurrences}/${selected.size} matchup${selected.size === 1 ? '' : 's'}
+      const itemsDict = activePatch.items_dict || {};
+      const itemInfo = (iid) => itemsDict[iid] || itemsDict[String(iid)] || {};
+      const renderRow = (r, sign) => {
+        const info = itemInfo(r.item_id);
+        return `
+          <div class="counter-row ${sign}">
+            <div class="icon">${info.image
+              ? `<img src="${info.image}" onerror="this.style.display='none'">`
+              : `<span style="font-size:11px;color:var(--text-dim)">T${info.tier||'?'}</span>`}</div>
+            <div>
+              <div class="name">${escHtml(info.name || '?')}</div>
+              <div class="meta">
+                <span class="cat-pill cat-${info.category}">${info.category||''}</span>
+                T${info.tier||'?'} · matters in ${r.occurrences}/${selected.size} matchup${selected.size === 1 ? '' : 's'}
+              </div>
             </div>
+            <div class="delta">${r.total_delta >= 0 ? '+' : ''}${r.total_delta.toFixed(1)}pp</div>
           </div>
-          <div class="delta">${r.total_delta >= 0 ? '+' : ''}${r.total_delta.toFixed(1)}pp</div>
-        </div>
-      `;
+        `;
+      };
 
       aggregated = `
         <div class="counter-results">

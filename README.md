@@ -87,6 +87,18 @@ python3 build_page.py         # ~1 sec — emits the HTML
 
 Every script is idempotent — re-running them only fetches missing data.
 
+## Auto-refresh + GitHub Pages
+
+`.github/workflows/refresh.yml` runs the full pipeline nightly at 06:00 UTC, commits the regenerated outputs back to `main`, and deploys the site to GitHub Pages. To enable for your fork:
+
+1. **Settings → Pages** → Source: **GitHub Actions**
+2. **Settings → Actions → General → Workflow permissions** → **Read and write**
+3. Either wait for the scheduled run or trigger manually from the **Actions** tab → "Refresh + deploy" → "Run workflow"
+
+After the first successful deploy you get a public URL like `https://<your-username>.github.io/deadlock/` serving the latest build view. The workflow stages just `index.html` (renamed from `deadlock_builds.html`) plus `assets/` and `docs/` into the artifact, so the Pages payload is ~5 MB and loads instantly.
+
+For a one-off public deploy without auto-refresh, push the current state and just run the workflow manually once.
+
 ## Dependencies
 
 - Python 3.10+

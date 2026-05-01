@@ -25,9 +25,28 @@ def slug(name: str) -> str:
     return re.sub(r"[^a-zA-Z0-9]+", "_", name).strip("_").lower()
 
 
-# Asset look-ups
+# Asset look-ups (LEGACY/global — patch-aware code below loads per-patch
+# snapshots from cache/<patch_id>/ when available, falling back to these).
 heroes_assets = {h["id"]: h for h in json.load(open(CACHE / "heroes.json"))}
 items_assets = {i["id"]: i for i in json.load(open(CACHE / "items.json"))}
+
+
+def load_patch_assets(patch_id: str) -> tuple[dict, dict]:
+    """Load per-patch snapshots of heroes.json + items.json. Falls back to
+    the global cache/ versions if the patch-specific snapshot doesn't exist
+    (legacy patches fetched before snapshotting was added)."""
+    patch_dir = CACHE / patch_id
+    h_path = patch_dir / "heroes.json"
+    i_path = patch_dir / "items.json"
+    h_global = CACHE / "heroes.json"
+    i_global = CACHE / "items.json"
+
+    heroes_src = h_path if h_path.exists() else h_global
+    items_src  = i_path if i_path.exists() else i_global
+
+    h = {x["id"]: x for x in json.load(open(heroes_src))}
+    i = {x["id"]: x for x in json.load(open(items_src))}
+    return h, i
 
 # Build per-item lookup with name + tier + cost + category + image
 def item_info(iid: int) -> dict:
@@ -753,16 +772,13 @@ def compute_counters_for_patch(patch_id: str, top_k: int = 12) -> dict:
             delta_pp = round((wr_vs - wr_base) * 100, 2)
             if abs(delta_pp) < 0.4:
                 continue  # ignore tiny/noise deltas
+            # Only keep id-keyed fields; UI looks up name/cat/tier/cost/image
+            # from a shared items dict embedded once per patch (saves ~2 MB).
             deltas.append({
                 "item_id": iid,
                 "delta_pp": delta_pp,
                 "n_vs": n_vs,
                 "n_base": n_base,
-                "name": it.get("name", "?"),
-                "category": it.get("item_slot_type"),
-                "tier": it.get("item_tier"),
-                "cost": it.get("cost"),
-                "image": it.get("image"),
             })
         if not deltas:
             continue
@@ -778,7 +794,13 @@ def compute_counters_for_patch(patch_id: str, top_k: int = 12) -> dict:
 
 def build_patch_payload(patch_id: str) -> dict | None:
     """Run the full compact pipeline for one patch and return its payload.
-    Returns None if the patch has no per-hero outputs on disk."""
+    Returns None if the patch has no per-hero outputs on disk.
+
+    Loads per-patch asset snapshots (heroes.json/items.json from
+    cache/<patch_id>/) so item attributes that may differ between patches
+    (e.g. Shadow Weave at T4 on patch_125825 → T3 on patch_129989) display
+    correctly per patch.
+    """
     from _paths import PATCH_REGISTRY  # local import to keep the global pure
     hero_out_dir = ROOT / "heroes" / patch_id
     patch_cache_dir = CACHE / patch_id
@@ -790,6 +812,20 @@ def build_patch_payload(patch_id: str) -> dict | None:
     raw_outputs = [json.load(open(f)) for f in files]
     print(f"  {patch_id}: loaded {len(raw_outputs)} hero outputs")
 
+    # Swap module-level asset dicts to this patch's snapshot for the
+    # duration of this call. Used by compact_hero, _aggregate_cluster_build,
+    # _optimize_cluster_build, compute_counters_for_patch, etc.
+    global heroes_assets, items_assets
+    saved_h, saved_i = heroes_assets, items_assets
+    heroes_assets, items_assets = load_patch_assets(patch_id)
+    print(f"  {patch_id}: loaded patch-specific asset snapshot ({len(items_assets)} items)")
+    try:
+        return _build_patch_payload_inner(patch_id, raw_outputs, hero_out_dir, patch_cache_dir, PATCH_REGISTRY)
+    finally:
+        heroes_assets, items_assets = saved_h, saved_i
+
+
+def _build_patch_payload_inner(patch_id, raw_outputs, hero_out_dir, patch_cache_dir, PATCH_REGISTRY):
     baselines = compute_cross_hero_baselines(raw_outputs)
 
     import sys as _sys
@@ -870,6 +906,26 @@ def build_patch_payload(patch_id: str) -> dict | None:
     counters = compute_counters_for_patch(patch_id)
     n_pairs = sum(len(v) for v in counters.values())
     print(f"  {patch_id}: {n_pairs} (hero,enemy) pairs with usable counter data")
+
+    # Build a shared items dict for counter-row lookups. Only includes items
+    # that actually appear in counter signals to keep the dict tight.
+    seen_item_ids: set[int] = set()
+    for hd in counters.values():
+        for lst in hd.values():
+            for c in lst:
+                seen_item_ids.add(c["item_id"])
+    items_dict: dict[int, dict] = {}
+    for iid in seen_item_ids:
+        it = items_assets.get(iid)
+        if it:
+            items_dict[iid] = {
+                "name": it.get("name", "?"),
+                "category": it.get("item_slot_type"),
+                "tier": it.get("item_tier"),
+                "cost": it.get("cost"),
+                "image": it.get("image"),
+            }
+
     return {
         "id": patch_id,
         "title": meta.get("title", patch_id),
@@ -879,6 +935,7 @@ def build_patch_payload(patch_id: str) -> dict | None:
         "heroes": heroes_data,
         "tier_order_ids": [h["id"] for h in tier],
         "counters": counters,
+        "items_dict": items_dict,
     }
 
 
