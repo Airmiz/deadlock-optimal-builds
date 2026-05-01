@@ -187,7 +187,124 @@ def _label_cluster(builds_in_cluster: list, builds_in_other_clusters: list) -> d
     }
 
 
-def cluster_archetypes_for_hero(hid: int, max_clusters: int = 3) -> dict:
+def _phase_for(buy_time_s: float) -> str:
+    if buy_time_s < 750:
+        return "early"
+    if buy_time_s < 1500:
+        return "mid"
+    return "late"
+
+
+def _aggregate_cluster_build(in_builds: list[dict], hero_item_stats: list[dict],
+                             lineage_canon: dict, ancestors_of: dict,
+                             metadata_by_item: dict | None = None) -> list[dict]:
+    """For one archetype cluster, build a 16-slot composite by aggregating
+    item picks across the cluster's builds. Returns picks shaped like
+    items_by_slice entries so the page can render them with the same code path.
+    """
+    n_builds = len(in_builds)
+    if n_builds == 0:
+        return []
+
+    counts: dict[int, int] = {}
+    for b in in_builds:
+        for iid in b["items"]:
+            counts[iid] = counts.get(iid, 0) + 1
+
+    stats_by_id = {s["item_id"]: s for s in hero_item_stats}
+    candidates = []
+    for iid, count in counts.items():
+        it = items_assets.get(iid, {})
+        if not (it.get("type") == "upgrade"
+                and it.get("item_slot_type") in ("weapon", "vitality", "spirit")):
+            continue
+        s = stats_by_id.get(iid)
+        if s and s.get("matches"):
+            buy_min = round(s["avg_buy_time_s"] / 60, 1)
+            wr = s["wins"] / s["matches"]
+            phase = _phase_for(s["avg_buy_time_s"])
+        else:
+            buy_min = 30.0  # fallback when item isn't in this hero's stats slice
+            wr = 0.0
+            phase = "late"
+        meta = (metadata_by_item or {}).get(iid, {})
+        candidates.append({
+            "item_id": iid,
+            "name": it.get("name", "?"),
+            "category": it.get("item_slot_type"),
+            "tier": it.get("item_tier"),
+            "cost": it.get("cost", 0),
+            "buy_min": buy_min,
+            "wr": round(wr, 4),
+            "phase": phase,
+            "image": it.get("image"),
+            "cluster_pick_rate": round(count / n_builds, 3),
+            "tag": meta.get("tag", "stat"),
+            "pick_rate": meta.get("pick_rate", 0.0),
+            "annotation": meta.get("annotation", ""),
+        })
+
+    # Lineage dedupe — keep highest cluster pick rate per lineage
+    by_lineage: dict[int, dict] = {}
+    for c in candidates:
+        canon = lineage_canon.get(c["item_id"], c["item_id"])
+        existing = by_lineage.get(canon)
+        if (existing is None
+                or c["cluster_pick_rate"] > existing["cluster_pick_rate"]
+                or (c["cluster_pick_rate"] == existing["cluster_pick_rate"] and c["tier"] > existing["tier"])):
+            by_lineage[canon] = c
+    candidates = list(by_lineage.values())
+
+    # 4 per category (by cluster pick rate), then 4 flex from remaining
+    by_cat: dict[str, list] = {"weapon": [], "vitality": [], "spirit": []}
+    for c in candidates:
+        if c["category"] in by_cat:
+            by_cat[c["category"]].append(c)
+    for cat in by_cat:
+        by_cat[cat].sort(key=lambda x: -x["cluster_pick_rate"])
+
+    picks, used = [], set()
+    for cat in ("weapon", "vitality", "spirit"):
+        for c in by_cat[cat][:4]:
+            picks.append({**c, "slot": cat})
+            used.add(c["item_id"])
+    flex_pool = sorted(
+        [c for c in candidates if c["item_id"] not in used],
+        key=lambda x: -x["cluster_pick_rate"],
+    )[:4]
+    for c in flex_pool:
+        picks.append({**c, "slot": "flex"})
+
+    # Decorate with lineage chains (same shape as the recommended build)
+    for p in picks:
+        ancs = ancestors_of.get(p["item_id"], set())
+        chain = []
+        for anc_id in ancs:
+            it = items_assets.get(anc_id)
+            if not it:
+                continue
+            anc_stat = stats_by_id.get(anc_id)
+            chain.append({
+                "item_id": anc_id,
+                "name": it.get("name"),
+                "tier": it.get("item_tier"),
+                "cost": it.get("cost"),
+                "matches": anc_stat["matches"] if anc_stat else None,
+                "avg_buy_time_min": (round(anc_stat["avg_buy_time_s"] / 60, 1)
+                                     if anc_stat else None),
+            })
+        chain.sort(key=lambda c: (c["tier"] or 0, c["cost"] or 0))
+        if chain:
+            p["lineage_chain"] = chain
+
+    return picks
+
+
+def cluster_archetypes_for_hero(hid: int, max_clusters: int = 3,
+                                hero_item_stats: list | None = None,
+                                lineage_canon: dict | None = None,
+                                ancestors_of: dict | None = None,
+                                metadata_by_item: dict | None = None) -> dict:
     """Pull the cached community builds for a hero, cluster them, return labelled archetypes."""
     # Stitch together both slices' build lists; dedupe by build_id
     seen_ids: set[int] = set()
@@ -250,6 +367,12 @@ def cluster_archetypes_for_hero(hid: int, max_clusters: int = 3) -> dict:
         meta = _label_cluster(in_builds, out_builds)
         meta["share"] = round(len(in_builds) / len(builds), 3)
         meta["sample_build_names"] = [b["name"] for b in sorted(in_builds, key=lambda x: -x["wr"])[:3]]
+        # Aggregate a 16-slot composite build for this cluster, if we have
+        # the stats / lineage maps to decorate it with buy times etc.
+        if hero_item_stats is not None and lineage_canon is not None and ancestors_of is not None:
+            meta["build"] = _aggregate_cluster_build(
+                in_builds, hero_item_stats, lineage_canon, ancestors_of, metadata_by_item
+            )
         out.append(meta)
 
     out.sort(key=lambda c: -c["share"])
@@ -356,6 +479,14 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
         },
         "archetypes": archetypes or {"clusters": [], "total_builds": 0},
     }
+
+    # Decorate each cluster's composite build with affinity/signature using
+    # the same logic as the main picks, so clicking an archetype produces
+    # a fully-featured build view.
+    for c in out["archetypes"].get("clusters", []):
+        if c.get("build"):
+            c["build"] = [with_affinity(p) for p in c["build"]]
+
     return out
 
 
@@ -372,12 +503,42 @@ def main() -> None:
     print(f"  {len(baselines)} items have at least one hero with non-zero pick rate")
 
     print("Clustering archetypes per hero …")
+    # Build the global lineage map once (shared across all heroes).
+    import sys as _sys
+    _sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from build_hero_output import build_lineage_map  # noqa: E402
+    ancestors_of, lineage_canon = build_lineage_map(items_assets)
+
     archetypes_by_hero: dict[int, dict] = {}
     for d in raw_outputs:
         hid = d["hero"]["id"]
-        archetypes_by_hero[hid] = cluster_archetypes_for_hero(hid)
+        # Pull this hero's high-MMR item stats so we can decorate cluster
+        # builds with realistic buy times + win rates.
+        stats_path = HERO_DATA / f"itemstats_hmmr_{hid}.json"
+        try:
+            hero_stats = json.load(open(stats_path)) if stats_path.exists() else []
+        except Exception:
+            hero_stats = []
+        meta_high = d.get("items", {}).get("high_mmr", {}).get("item_metadata", {})
+        # The metadata dict is keyed by string ids (JSON quirk); normalize to int
+        meta_by_int: dict[int, dict] = {}
+        for k, v in meta_high.items():
+            try:
+                meta_by_int[int(k)] = v
+            except (ValueError, TypeError):
+                pass
+        archetypes_by_hero[hid] = cluster_archetypes_for_hero(
+            hid,
+            hero_item_stats=hero_stats,
+            lineage_canon=lineage_canon,
+            ancestors_of=ancestors_of,
+            metadata_by_item=meta_by_int,
+        )
     n_clusters = sum(len(v["clusters"]) for v in archetypes_by_hero.values())
-    print(f"  {n_clusters} clusters across {len(archetypes_by_hero)} heroes")
+    n_with_builds = sum(1 for v in archetypes_by_hero.values()
+                        for c in v["clusters"] if c.get("build"))
+    print(f"  {n_clusters} clusters across {len(archetypes_by_hero)} heroes "
+          f"({n_with_builds} with composite builds)")
 
     print("Compacting per-hero data …")
     heroes_data = []

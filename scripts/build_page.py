@@ -509,6 +509,61 @@ HTML = """<!doctype html>
   }
   .archetype-row .name { font-size: 14px; }
   .archetype-row.primary .name { color: var(--accent); }
+  .archetype-row.active {
+    background: rgba(240,169,59,0.06);
+    border-radius: 6px;
+    padding: 10px 12px;
+    border: 1px solid rgba(240,169,59,0.4);
+    margin: 4px -8px;
+  }
+  .archetype-row .view-btn {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: auto;
+    transition: all 0.1s;
+  }
+  .archetype-row .view-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .archetype-row.active .view-btn {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+  .archetype-row.active .view-btn::before { content: '✓ '; }
+  .build-view-banner {
+    background: rgba(240,169,59,0.08);
+    border: 1px solid rgba(240,169,59,0.3);
+    border-radius: 6px;
+    padding: 8px 14px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .build-view-banner .label {
+    color: var(--accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 10.5px;
+    letter-spacing: 1px;
+  }
+  .build-view-banner .reset {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    cursor: pointer;
+    margin-left: auto;
+  }
+  .build-view-banner .reset:hover { color: var(--accent); border-color: var(--accent); }
   .archetype-row .share-pill {
     display: inline-block;
     padding: 1px 8px;
@@ -687,6 +742,8 @@ HTML = """<!doctype html>
   let selectedHeroId = null;
   let mmrSlice = 'high';
   let sortMode = 'alpha';
+  // Per-hero active archetype index — null/undefined means "use recommended"
+  const activeArchetypeIdxByHero = {};
 
   const fmtPct = v => v == null ? '—' : (v*100).toFixed(2) + '%';
   const wrClass = v => v >= 0.50 ? 'good' : v >= 0.475 ? 'neutral' : 'bad';
@@ -764,9 +821,34 @@ HTML = """<!doctype html>
 
   function selectHero(id) {
     selectedHeroId = id;
+    // Don't reset other heroes' archetype selections — keep state per hero
     renderHeroGrid();
     renderMain();
   }
+
+  // Event delegation for archetype "View this build" buttons + reset banner.
+  document.addEventListener('click', e => {
+    const archBtn = e.target.closest('[data-arch-idx]');
+    if (archBtn) {
+      const heroId = parseInt(archBtn.dataset.archHero, 10);
+      const idx = parseInt(archBtn.dataset.archIdx, 10);
+      // Toggle: clicking the active one resets to recommended
+      if (activeArchetypeIdxByHero[heroId] === idx) {
+        delete activeArchetypeIdxByHero[heroId];
+      } else {
+        activeArchetypeIdxByHero[heroId] = idx;
+      }
+      renderMain();
+      return;
+    }
+    const resetBtn = e.target.closest('[data-reset-hero]');
+    if (resetBtn) {
+      const heroId = parseInt(resetBtn.dataset.resetHero, 10);
+      delete activeArchetypeIdxByHero[heroId];
+      renderMain();
+      return;
+    }
+  });
 
   function renderMain() {
     const main = document.getElementById('main');
@@ -774,8 +856,13 @@ HTML = """<!doctype html>
     const h = DATA.heroes.find(x => x.id === selectedHeroId);
     if (!h) return;
 
-    // Get build for current MMR slice
-    const items = h.items_by_slice[mmrSlice];
+    // Determine active build: either the recommended (default) or the
+    // user-selected archetype's composite build for this hero.
+    const activeArchIdx = activeArchetypeIdxByHero[h.id];
+    const meaningfulArchs = (h.archetypes && h.archetypes.clusters || []).filter(c => c.build_count >= 2 && c.build);
+    const activeArch = (activeArchIdx != null) ? meaningfulArchs[activeArchIdx] : null;
+    // Get build for current MMR slice (or the active archetype's composite)
+    const items = activeArch ? activeArch.build : h.items_by_slice[mmrSlice];
 
     // Build "events" — each phase column contains the buy events that happen
     // in its time window. A picked item with an upgrade chain is decomposed
@@ -860,11 +947,19 @@ HTML = """<!doctype html>
         <h3>Build Archetypes</h3>
         <div class="summary-line">
           Community builds for this hero, clustered by item composition (Jaccard distance).
-          The top archetype is the most common playstyle; the recommended build leans toward it.
-          ⭐ items below mark hero-specific picks — items this hero uses ≥2× more than the average hero.
+          Click <strong>View this build</strong> on any archetype to swap the build view below.
+          ⭐ items mark hero-specific picks — items this hero uses ≥2× more than the average hero.
         </div>
-        ${renderArchetypesPanel(h.archetypes)}
+        ${renderArchetypesPanel(h.archetypes, activeArchIdx, h.id)}
       </section>
+
+      ${activeArch ? `
+        <div class="build-view-banner">
+          <span class="label">Viewing</span>
+          <span><strong>${escHtml(activeArch.label)}</strong> archetype build · ${activeArch.build_count} community builds · ${(activeArch.avg_wr*100).toFixed(2)}% avg WR</span>
+          <button class="reset" data-reset-hero="${h.id}">← Back to recommended</button>
+        </div>
+      ` : ''}
 
       <section>
         <h3>Investment Spike Progression</h3>
@@ -1102,7 +1197,7 @@ HTML = """<!doctype html>
     `;
   }
 
-  function renderArchetypesPanel(archetypes) {
+  function renderArchetypesPanel(archetypes, activeIdx, heroId) {
     if (!archetypes || !archetypes.clusters || archetypes.clusters.length === 0) {
       return '<div class="summary-line">Not enough community builds to cluster.</div>';
     }
@@ -1113,6 +1208,7 @@ HTML = """<!doctype html>
     }
     return `<div class="archetype-panel">${meaningful.map((c, idx) => {
       const isPrimary = idx === 0;
+      const isActive = (activeIdx === idx);
       const mix = c.category_mix || {};
       const sigs = (c.signature_items || []).slice(0, 4);
       const sigLine = sigs.length
@@ -1120,11 +1216,16 @@ HTML = """<!doctype html>
         : '';
       const samples = (c.sample_build_names || []).slice(0, 2).map(escHtml).join(' · ');
       const sampleLine = samples ? `<div class="archetype-meta">Top builds: ${samples}</div>` : '';
+      const hasBuild = !!(c.build && c.build.length);
+      const button = hasBuild
+        ? `<button class="view-btn" data-arch-hero="${heroId}" data-arch-idx="${idx}" title="${isActive ? 'Currently viewing this build' : 'Show this archetype\\'s aggregated build'}">${isActive ? 'Viewing' : 'View this build'}</button>`
+        : '';
       return `
-        <div class="archetype-row ${isPrimary ? 'primary' : ''}">
+        <div class="archetype-row ${isPrimary ? 'primary' : ''} ${isActive ? 'active' : ''}">
           <div class="label-line">
             <span class="name">${isPrimary ? '★ ' : ''}${escHtml(c.label)}</span>
             <span class="share-pill">${(c.share*100).toFixed(0)}% of top builds · ${c.build_count} builds${c.avg_wr != null ? ' · ' + (c.avg_wr*100).toFixed(1) + '% avg WR' : ''}</span>
+            ${button}
           </div>
           <div class="archetype-meta">
             Category mix:
