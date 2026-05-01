@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Methodology — Deadlock Optimal Builds</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {delimiters:[
+    {left:'$$',right:'$$',display:true},
+    {left:'$',right:'$',display:false}
+  ]});"></script>
+<style>
+  :root {
+    --bg: #0e1217;
+    --bg-elev: #161b23;
+    --bg-card: #1c2230;
+    --border: #2a3140;
+    --text: #e6e8ec;
+    --text-dim: #8b94a3;
+    --accent: #f0a93b;
+    --weapon: #d6856b;
+    --vitality: #6cb46a;
+    --spirit: #b487d9;
+    --good: #58c46c;
+    --bad: #d36262;
+    --info: #79c4ff;
+    --signature: #f0a93b;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 36px 28px 80px;
+  }
+  header.page {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 18px;
+    margin-bottom: 32px;
+  }
+  header.page h1 {
+    margin: 0 0 6px;
+    font-size: 28px;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+  }
+  header.page .subtitle {
+    color: var(--text-dim);
+    font-size: 14px;
+  }
+  header.page .back {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 13px;
+    border: 1px solid var(--accent);
+    padding: 4px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 10px;
+    transition: background 0.15s;
+  }
+  header.page .back:hover { background: rgba(240,169,59,0.1); }
+  nav.toc {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 36px;
+    columns: 2;
+    column-gap: 24px;
+  }
+  nav.toc h3 {
+    margin: 0 0 10px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    column-span: all;
+  }
+  nav.toc a {
+    display: block;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13px;
+    padding: 3px 0;
+    transition: color 0.1s;
+    break-inside: avoid;
+  }
+  nav.toc a:hover { color: var(--accent); }
+  nav.toc a:before { content: "›  "; color: var(--text-dim); }
+
+  h2 {
+    color: var(--accent);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 6px;
+    margin-top: 50px;
+    margin-bottom: 16px;
+    font-size: 22px;
+    letter-spacing: 0.3px;
+    scroll-margin-top: 16px;
+  }
+  h3 {
+    color: var(--text);
+    margin-top: 26px;
+    margin-bottom: 10px;
+    font-size: 17px;
+    font-weight: 600;
+  }
+  p { margin: 10px 0; }
+  ul, ol { padding-left: 22px; margin: 10px 0; }
+  li { margin: 4px 0; }
+  a { color: var(--info); }
+  strong { color: var(--text); font-weight: 600; }
+  em { color: var(--text); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+  code {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    padding: 1.5px 6px;
+    border-radius: 3px;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.88em;
+    color: var(--accent);
+  }
+  pre {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--text);
+  }
+
+  /* Equation block */
+  .eq {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 22px;
+    margin: 14px 0;
+    font-size: 16px;
+    text-align: center;
+    overflow-x: auto;
+  }
+
+  /* Callouts */
+  .callout {
+    border-left: 3px solid var(--info);
+    background: rgba(121,196,255,0.05);
+    padding: 12px 16px;
+    margin: 16px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 14px;
+  }
+  .callout.example   { border-color: var(--good);  background: rgba(88,196,108,0.06); }
+  .callout.warn      { border-color: var(--bad);   background: rgba(211,98,98,0.06); }
+  .callout.note      { border-color: var(--accent);background: rgba(240,169,59,0.05); }
+  .callout strong:first-child { color: var(--info); }
+  .callout.example strong:first-child { color: var(--good); }
+  .callout.warn strong:first-child { color: var(--bad); }
+  .callout.note strong:first-child { color: var(--accent); }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    background: var(--bg-elev);
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 13.5px;
+  }
+  th, td {
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    background: var(--bg-card);
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+  tr:last-child td { border-bottom: none; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; color: var(--text-dim); }
+  td.good { color: var(--good); font-weight: 600; }
+  td.bad  { color: var(--bad);  font-weight: 600; }
+  td.center { text-align: center; }
+
+  /* Tag/badge demos */
+  .badge {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    border: 1px solid transparent;
+    margin: 0 2px;
+    vertical-align: middle;
+  }
+  .badge.core        { background: rgba(88,196,108,0.16);  color: var(--good);    border-color: rgba(88,196,108,0.4); }
+  .badge.flex        { background: rgba(240,169,59,0.14);  color: var(--accent);  border-color: rgba(240,169,59,0.35); }
+  .badge.situational { background: rgba(139,148,163,0.12); color: var(--text-dim);border-color: rgba(139,148,163,0.3); }
+  .badge.stat        { background: rgba(106,141,180,0.14); color: #6a8db4;        border-color: rgba(106,141,180,0.35); }
+  .badge.signature   { background: rgba(240,169,59,0.18);  color: var(--signature); border-color: rgba(240,169,59,0.5); text-shadow: 0 0 6px rgba(240,169,59,0.3); }
+  .badge.cd          { color: #79c4ff; background: rgba(121,196,255,0.08); border-color: rgba(121,196,255,0.4); }
+  .badge.imbue       { color: #c984ff; background: rgba(201,132,255,0.08); border-color: rgba(201,132,255,0.5); }
+  .badge.weapon      { background: rgba(214,133,107,0.15); color: var(--weapon); }
+  .badge.vitality    { background: rgba(108,180,106,0.15); color: var(--vitality); }
+  .badge.spirit      { background: rgba(180,135,217,0.15); color: var(--spirit); }
+
+  /* Inline visual helpers */
+  .arrow { color: var(--accent); margin: 0 6px; font-weight: 600; }
+  .number { color: var(--accent); font-variant-numeric: tabular-nums; }
+
+  /* SVG figure container */
+  figure {
+    margin: 22px 0;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 18px 12px;
+  }
+  figcaption {
+    color: var(--text-dim);
+    font-size: 12.5px;
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="page">
+  <h1>Methodology &amp; Glossary</h1>
+  <div class="subtitle">How every metric, score, and badge on the build page is computed.</div>
+  <a href="deadlock_builds.html" class="back">← Back to builds</a>
+</header>
+
+<nav class="toc">
+  <h3>Contents</h3>
+  <a href="#overview">1. Overview</a>
+  <a href="#data">2. Data sources</a>
+  <a href="#mmr">3. MMR slices</a>
+  <a href="#wilson">4. Wilson lower bound</a>
+  <a href="#floors">5. Sample-size floors</a>
+  <a href="#methods">6. Three build methods</a>
+  <a href="#tags">7. Item tags</a>
+  <a href="#signature">8. Signature items (hero affinity)</a>
+  <a href="#spikes">9. Investment-spike progression</a>
+  <a href="#lineage">10. Lineage chains</a>
+  <a href="#sell">11. Sell events</a>
+  <a href="#cd-imbue">12. Cooldown &amp; imbue badges</a>
+  <a href="#archetypes">13. Archetype clustering</a>
+  <a href="#counters">14. Counter-pick panel</a>
+  <a href="#overrides">15. Per-patch item overrides</a>
+  <a href="#ability">16. Ability priority</a>
+  <a href="#pipeline">17. Pipeline reproducibility</a>
+  <a href="#caveats">18. What this project doesn't do</a>
+</nav>
+
+<h2 id="overview">1. Overview</h2>
+<p>
+This project derives optimal item builds and ability orders for every playable Deadlock hero from public match data. Nothing is hand-curated — every recommendation is a function of the public API plus the algorithms below. If you can read the API and reproduce the algorithms, you get the same builds.
+</p>
+<p>
+The page is patch-aware: each patch's data lives under its own namespace so multiple patches can be browsed side-by-side. When Valve ships a balance patch, the pipeline re-runs against the new patch's match data and the recommendations update — usually within hours of release once enough matches accumulate.
+</p>
+<div class="callout note">
+  <strong>Design principle.</strong> Every number on the page is a function of an API response and a documented formula. If you click an item, you should be able to trace the score back to <em>wins</em>, <em>losses</em>, and <em>matches</em> at the API level.
+</div>
+
+<h2 id="data">2. Data sources</h2>
+<p>The pipeline pulls from two community-run hosts:</p>
+<table>
+  <thead>
+    <tr><th>Endpoint</th><th>Used for</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>api.deadlock-api.com/v1/analytics/hero-stats</code></td><td>Per-hero baseline win rate</td></tr>
+    <tr><td><code>api.deadlock-api.com/v1/analytics/item-stats</code></td><td>Per-item win rates (filtered by hero, MMR, time, and optionally enemy hero)</td></tr>
+    <tr><td><code>api.deadlock-api.com/v1/analytics/item-permutation-stats</code></td><td>Pairwise item synergies (<code>comb_size=2</code>)</td></tr>
+    <tr><td><code>api.deadlock-api.com/v1/analytics/hero-build-stats/{hero_id}</code></td><td>Top community builds and their stats</td></tr>
+    <tr><td><code>api.deadlock-api.com/v1/analytics/ability-order-stats</code></td><td>Ability point ordering win rates</td></tr>
+    <tr><td><code>api.deadlock-api.com/v1/builds</code></td><td>Per-build details (item lists, author, descriptions)</td></tr>
+    <tr><td><code>assets.deadlock-api.com/v2/heroes</code></td><td>Hero metadata: names, portraits, abilities, cost-bonus tables</td></tr>
+    <tr><td><code>assets.deadlock-api.com/v2/items</code></td><td>Item metadata: names, tiers, costs, images, upgrade-component graph, cooldowns, imbue type</td></tr>
+  </tbody>
+</table>
+<p>
+The pipeline is patch-aware: each patch's data lives under <code>cache/&lt;patch_id&gt;/</code> and <code>heroes/&lt;patch_id&gt;/</code>. Asset metadata is also snapshotted per-patch so patches with different item attributes (tier changes, cooldown adjustments) display correctly.
+</p>
+
+<h2 id="mmr">3. MMR slices</h2>
+<p>Two skill cohorts are computed for every hero. The page shows them via the <strong>All MMR / High MMR</strong> toggle.</p>
+<table>
+  <thead>
+    <tr><th>Slice</th><th>Filter</th><th>Population</th><th>Use</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>All-MMR</strong></td><td>none</td><td>everyone playing the patch</td><td>broad sample, biased by skill confounds</td></tr>
+    <tr><td><strong>High-MMR</strong> <em>(default)</em></td><td><code>min_average_badge=91</code></td><td>Phantom 1+ (~top 15-20%)</td><td>sharper signal at smaller sample</td></tr>
+  </tbody>
+</table>
+<p>
+Most metrics on the page (signature stars, recommended build, archetype optimization, counter-picks) use the high-MMR slice. The badge value 91 is a Deadlock convention: <code>tier × 10 + subtier</code>, so 91 means Phantom 1 (tier 9, subtier 1) and above.
+</p>
+
+<h2 id="wilson">4. Wilson lower bound</h2>
+<p>
+For every item, the API gives <em>wins</em> and <em>matches</em>. The naive win rate $\hat{p} = \text{wins}/\text{matches}$ is unreliable on small samples — a 60% win rate over 5 matches tells you almost nothing about the true win rate.
+</p>
+<p>Wilson's score interval at 95% confidence gives a defensible <strong>lower bound</strong> on the true win rate that automatically penalizes small samples:</p>
+<div class="eq">
+$$
+W_{\mathrm{LB}}(\text{wins}, n) = \frac{\hat{p} + \frac{z^2}{2n} - z\sqrt{\frac{\hat{p}(1-\hat{p})}{n} + \frac{z^2}{4n^2}}}{1 + \frac{z^2}{n}}
+$$
+</div>
+<p>where $\hat{p} = \text{wins}/n$, $n = \text{matches}$, and $z = 1.96$ for a 95% confidence level.</p>
+<p>The optimizer's score for an item is then:</p>
+<div class="eq">
+$$
+\text{score} = W_{\mathrm{LB}}(\text{wins}, n) - \text{baseline\_WR}
+$$
+</div>
+<p>so positive scores mean "this item makes the hero better than that hero's average".</p>
+
+<h3>Worked example: Boundless Spirit on Shiv (high MMR)</h3>
+<p>
+From <code>cache/patch_125825/hero_data/itemstats_hmmr_19.json</code>, the entry for Boundless Spirit (<code>id=1835738020</code>):
+</p>
+<pre><code>wins   = 10,389
+losses =  8,765
+matches = 19,154</code></pre>
+<p>So $\hat{p} = 10389/19154 = 0.5424$ — a raw 54.24% win rate. Plugging into the Wilson formula:</p>
+<div class="eq">
+$$
+W_{\mathrm{LB}} = \frac{0.5424 + \frac{3.84}{38308} - 1.96\sqrt{\frac{0.5424 \cdot 0.4576}{19154} + \frac{3.84}{1.46\!\times\!10^9}}}{1 + \frac{3.84}{19154}} \approx 0.5353
+$$
+</div>
+<p>So Wilson LB ≈ 53.53%, almost identical to the raw WR because the sample is large. With Shiv's high-MMR baseline of <span class="number">47.35%</span>, the score is:</p>
+<div class="eq">
+$$
+\text{score} = 0.5353 - 0.4735 = 0.0618
+$$
+</div>
+<p>i.e. Boundless Spirit on Shiv beats the baseline by <span class="number">+6.18 percentage points</span>. The optimizer ranks items by this score.</p>
+
+<div class="callout">
+  <strong>Why Wilson and not raw WR?</strong> Because the cost of being wrong matters. An item with 50 matches and 60% WR gets a Wilson LB closer to 47% — the optimizer correctly de-prioritizes it relative to a 5,000-match item at 53% (which keeps its 53%). At 50,000 matches the methods agree to four decimal places. Wilson smoothly trades raw signal for sample-size confidence.
+</div>
+
+<h2 id="floors">5. Sample-size floors</h2>
+<p>Every analysis stage requires a minimum match count for inclusion:</p>
+<table>
+  <thead>
+    <tr><th>Stage</th><th>Floor</th><th>Why</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>All-MMR item candidates</td><td class="num">500</td><td>large pool — strict floor avoids one-off picks</td></tr>
+    <tr><td>High-MMR item candidates</td><td class="num">300</td><td>smaller pool — looser threshold</td></tr>
+    <tr><td>All-MMR pair synergies</td><td class="num">500</td><td>matches the candidate pool floor</td></tr>
+    <tr><td>High-MMR pair synergies</td><td class="num">200</td><td>pair counts shrink fast</td></tr>
+    <tr><td>Per-cluster optimization</td><td class="num">≥30%</td><td>item must appear in ≥30% of cluster's community builds (relaxes to 15% if no feasible build)</td></tr>
+    <tr><td>Counter-pick matchup data</td><td class="num">100 / 200</td><td>≥100 matches in matchup slice, ≥200 in baseline; <code>|delta|</code> ≥ 0.4pp</td></tr>
+    <tr><td>Best ability order (display)</td><td class="num">200 / 100</td><td>200 in all-MMR, 100 in high-MMR for full sequences; doubled for openers</td></tr>
+  </tbody>
+</table>
+
+<h2 id="methods">6. Three build methods</h2>
+<p>The page surfaces the synergy-aware ILP as the default <em>Recommended</em> build. The full per-hero JSON in <code>heroes/&lt;patch_id&gt;/</code> carries all three for inspection.</p>
+
+<h3>Method 1: Wilson Greedy</h3>
+<p>Rank items by score, take top 4 per category + 4 flex. Simple and defensible.</p>
+<pre><code>for cat in (weapon, vitality, spirit):
+    pick top 4 candidates by score in this category
+flex = top 4 from remaining pool by score</code></pre>
+<p><strong>Bias:</strong> prefers high-WR late-game items because they have tighter confidence intervals.</p>
+
+<h3>Method 2: Synergy-aware ILP <em>(default)</em></h3>
+<p>Linear program that maximizes individual scores PLUS pairwise synergy bonuses, subject to slot constraints:</p>
+<div class="eq">
+$$
+\max \sum_{i \in I} \text{score}_i \cdot x_i \;+\; \sum_{(i,j) \in P} \text{synergy}_{ij} \cdot y_{ij}
+$$
+</div>
+<p>subject to:</p>
+<ul>
+  <li>$x_i \in \{0,1\}$ — pick decision per item</li>
+  <li>$y_{ij} \in \{0,1\}$ — pair-active when both picked: $y_{ij} \le x_i$, $y_{ij} \le x_j$, $y_{ij} \ge x_i + x_j - 1$</li>
+  <li>$\sum_{i \in C_k} x_i \ge 4$ for each category $C_k$ (weapon / vitality / spirit)</li>
+  <li>$\sum_{i} x_i = 16$ (16-slot inventory)</li>
+  <li>at most one $x_i$ per upgrade-chain lineage (lineage dedup, see §10)</li>
+</ul>
+<p>The pairwise synergy bonus comes from <code>/v1/analytics/item-permutation-stats</code> with <code>comb_size=2</code>:</p>
+<div class="eq">
+$$
+\text{synergy}_{ij} = (\text{WR}_{ij} - \overline{\text{WR}}_{i,j}) \cdot w_{ij}
+$$
+</div>
+<p>where $\overline{\text{WR}}_{i,j}$ is the average of items $i$ and $j$'s individual WRs, and $w_{ij} = \min(1, n_{ij}/k)$ is a sample-size weight ($k$ defaults to $4 \times \text{pair\_floor}$). The top-400 strongest synergies feed the LP to keep it tractable.</p>
+<p>Solved with CBC via PuLP, time-limited to 4 seconds per hero — finds a feasible solution almost instantly; the time limit is for proving optimality.</p>
+
+<h3>Method 3: Build Replication</h3>
+<p>Aggregate items across the highest-WR community builds, weighted by:</p>
+<div class="eq">
+$$
+w_{\text{build}} = \text{matches} \cdot \max\!\left(0,\; \text{WR}_{\text{build}} - \text{baseline\_WR} + 0.02\right)
+$$
+</div>
+<p>Then pick top 4 per category by build-frequency-weight + 4 flex from remaining.</p>
+<p><strong>What this captures that Wilson and ILP miss:</strong> situational utility items (Counter Spell, Dispel Magic, Metal Skin, Healbane) that don't have impressive standalone win rates but appear in every winning build because they're how high-MMR players survive long enough to use the rest of their kit.</p>
+
+<div class="callout example">
+  <strong>Why three?</strong> Each captures a different signal. Wilson tells you "what wins given enough data". ILP tells you "what wins together". Replication tells you "what real winning humans buy". Disagreements between them are diagnostic — they're how you spot selection bias and missing utility items.
+</div>
+
+<h2 id="tags">7. Item tags</h2>
+<p>Every pick on the page wears one of four tag colors based on how often it appears across the community's top builds <em>for this hero</em>:</p>
+<table>
+  <thead>
+    <tr><th>Tag</th><th>Pick rate</th><th>Meaning</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><span class="badge core">CORE</span></td><td class="num">&gt; 70%</td><td>universal pick for this hero</td></tr>
+    <tr><td><span class="badge flex">FLEX</span></td><td class="num">30–70%</td><td>situational pick</td></tr>
+    <tr><td><span class="badge situational">SIT.</span></td><td class="num">≤ 30%</td><td>counter / utility role; appears in some builds</td></tr>
+    <tr><td><span class="badge stat">STAT</span></td><td>n/a</td><td>purely stat-derived: optimizer found this WR, no community build uses it</td></tr>
+  </tbody>
+</table>
+<div class="callout warn">
+  <strong>About <span class="badge stat">STAT</span> picks.</strong> The optimizer found a winning item that the community hasn't validated. It could be a hidden gem, or it could be sample noise the community has correctly identified as a trap. Treat with appropriate skepticism — these are bets, not consensus. Patches with thin data (e.g. brand-new patches) tend to have lots of <span class="badge stat">STAT</span> picks.
+</div>
+
+<h2 id="signature">8. Signature items (hero affinity)</h2>
+<p>The gold ⭐ on certain item rows marks a hero affinity score above a threshold. Affinity is a hero's pick rate for an item, normalized by the average across all heroes:</p>
+<div class="eq">
+$$
+\text{affinity}_{h,i} = \frac{P(i \mid \text{hero}=h)}{\bar{P}(i)} \quad\text{where}\quad \bar{P}(i) = \tfrac{1}{38} \sum_{h'} P(i \mid \text{hero}=h')
+$$
+</div>
+<p>An item is tagged <strong>signature</strong> if it satisfies both:</p>
+<ul>
+  <li>$\text{affinity}_{h,i} \ge 2.0$ — this hero picks it ≥2× the average hero</li>
+  <li>$P(i \mid \text{hero}=h) \ge 0.30$ — the hero picks it in ≥30% of top builds</li>
+</ul>
+
+<div class="callout example">
+  <strong>Worked example.</strong> <em>Infuser</em> (T4 vitality, $6,400) appears in 50% of Shiv's top high-MMR builds, but only 9% of the average hero's. So affinity = 0.50 / 0.09 ≈ <span class="number">5.6×</span>. Both conditions clear, and Infuser earns a ⭐ on Shiv's recommended build. On Lash, Infuser's pick rate is comparable to the average hero's — no star, even though both heroes deal spirit damage.
+</div>
+
+<h2 id="spikes">9. Investment-spike progression</h2>
+<p>Deadlock has cumulative gold-spent thresholds per category. At each threshold, your damage / health / spirit-power gets a percentage bonus. Bonuses are mostly small until <strong>4,800 souls</strong> — there the bonus more than doubles. The page calls this the <em>major spike</em>.</p>
+<p>The thresholds are universal across heroes: <span class="number">800, 1,600, 2,400, 3,200, 4,800, 7,200, 9,600, 16,000</span>.</p>
+
+<figure>
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+  <defs>
+    <linearGradient id="weapon-gradient" x1="0" x2="1">
+      <stop offset="0" stop-color="rgba(214,133,107,0.5)"/>
+      <stop offset="1" stop-color="rgba(214,133,107,0.1)"/>
+    </linearGradient>
+  </defs>
+  <!-- axis -->
+  <line x1="60" y1="180" x2="760" y2="180" stroke="#2a3140" stroke-width="2"/>
+  <line x1="60" y1="20"  x2="60"  y2="180" stroke="#2a3140" stroke-width="2"/>
+  <!-- threshold gridlines + labels -->
+  <g font-family="ui-monospace, monospace" font-size="10" fill="#8b94a3" text-anchor="middle">
+    <line x1="100" y1="20" x2="100" y2="180" stroke="#2a3140" stroke-dasharray="2 4"/><text x="100" y="200">800</text>
+    <line x1="170" y1="20" x2="170" y2="180" stroke="#2a3140" stroke-dasharray="2 4"/><text x="170" y="200">1.6k</text>
+    <line x1="240" y1="20" x2="240" y2="180" stroke="#2a3140" stroke-dasharray="2 4"/><text x="240" y="200">2.4k</text>
+    <line x1="310" y1="20" x2="310" y2="180" stroke="#2a3140" stroke-dasharray="2 4"/><text x="310" y="200">3.2k</text>
+    <line x1="430" y1="20" x2="430" y2="180" stroke="#f0a93b" stroke-width="2"/><text x="430" y="200" fill="#f0a93b" font-weight="700">4.8k ⚡</text>
+    <line x1="540" y1="20" x2="540" y2="180" stroke="#2a3140" stroke-dasharray="2 4"/><text x="540" y="200">7.2k</text>
+    <line x1="630" y1="20" x2="630" y2="180" stroke="#2a3140" stroke-dasharray="2 4"/><text x="630" y="200">9.6k</text>
+    <line x1="740" y1="20" x2="740" y2="180" stroke="#2a3140" stroke-dasharray="2 4"/><text x="740" y="200">16k</text>
+  </g>
+  <!-- staircase: weapon bonus on patch_125825: 7,9,13,20,49,60,80,95 -->
+  <path d="M 60 175 L 100 175 L 100 169 L 170 169 L 170 167 L 240 167 L 240 161 L 310 161 L 310 154 L 430 154 L 430 117 L 540 117 L 540 105 L 630 105 L 630 85 L 740 85 L 740 70"
+    fill="none" stroke="#d6856b" stroke-width="2.5"/>
+  <text x="700" y="64" font-size="11" fill="#d6856b" font-family="-apple-system,sans-serif" font-weight="600">+95% weapon</text>
+  <!-- y-axis label -->
+  <text x="55" y="14" font-size="10" fill="#8b94a3" text-anchor="end">% bonus</text>
+  <text x="55" y="84" font-size="10" fill="#8b94a3" text-anchor="end">+50</text>
+  <text x="55" y="184" font-size="10" fill="#8b94a3" text-anchor="end">+0</text>
+</svg>
+<figcaption>Weapon investment-spike staircase on patch_125825. The 4,800 milestone is the discontinuity where the bonus jumps from +20% to +49%. Spirit and vitality have the same shape with different magnitudes.</figcaption>
+</figure>
+
+<p>On patch_125825 the bonuses at each threshold are:</p>
+<table>
+  <thead><tr><th>Threshold</th><th>Weapon</th><th>Vitality</th><th>Spirit</th></tr></thead>
+  <tbody>
+    <tr><td>800</td><td class="num">+7%</td><td class="num">+8%</td><td class="num">+7%</td></tr>
+    <tr><td>1,600</td><td class="num">+9%</td><td class="num">+10%</td><td class="num">+11%</td></tr>
+    <tr><td>2,400</td><td class="num">+13%</td><td class="num">+13%</td><td class="num">+15%</td></tr>
+    <tr><td>3,200</td><td class="num">+20%</td><td class="num">+17%</td><td class="num">+19%</td></tr>
+    <tr><td><strong>4,800</strong> ⚡</td><td class="good num"><strong>+49%</strong></td><td class="good num"><strong>+34%</strong></td><td class="good num"><strong>+38%</strong></td></tr>
+    <tr><td>7,200</td><td class="num">+60%</td><td class="num">+39%</td><td class="num">+48%</td></tr>
+    <tr><td>9,600</td><td class="num">+80%</td><td class="num">+44%</td><td class="num">+57%</td></tr>
+    <tr><td>16,000</td><td class="num">+95%</td><td class="num">+48%</td><td class="num">+66%</td></tr>
+  </tbody>
+</table>
+<p>Patch 129989 (04-30-2026) rebalanced weapon and vitality bonuses — see <code>SPIKE_BONUS_BY_PATCH</code> in <code>scripts/build_page.py</code> for the per-patch table.</p>
+<p>The phase-summary line at the bottom of each Early/Mid/Late column shows running totals plus a ⚡ flag when the major spike has been crossed.</p>
+
+<h2 id="lineage">10. Lineage chains</h2>
+<p>Some Deadlock items have an upgrade-component relationship — buying the higher tier <em>consumes</em> the lower-tier component. They share an inventory slot:</p>
+<pre><code>Extra Spirit (T1, $800)
+  ↓ upgrades to
+Improved Spirit (T2, $1,600)
+  ↓ upgrades to
+Boundless Spirit (T4, $6,400)</code></pre>
+<p>The optimizer applies <strong>lineage dedup</strong>: within an upgrade family, only one slot. This used to be a real problem — earlier builds showed both Extra Spirit and Boundless Spirit in two separate slots, double-counting cost and slot economy.</p>
+<p>Lineages are computed by union-find on the directed component-edge graph extracted from the asset metadata's <code>component_items</code> field. Items in the same union are forbidden from co-occurring in a build.</p>
+
+<div class="callout example">
+  <strong>Audit before/after the fix.</strong> Before lineage dedup, 35 of 38 heroes had at least one chain conflict in their recommended build (78 conflict pairs total). After dedup, every recommended build holds 16 distinct lineages.
+</div>
+
+<p>The page surfaces the chain visually: each lower-tier ancestor renders as its own <em>stage row</em> in the phase column matching its actual buy time, with a "↑ upgrades into X in late game" footer. So you see when to buy Extra Spirit (~10 min) AND when it becomes Boundless Spirit (~30 min) — same slot, different items in time.</p>
+
+<h2 id="sell">11. Sell events</h2>
+<p>The API returns an <code>avg_sell_time_s</code> for every item. Real Deadlock builds are buy timelines, not snapshots — early/mid items get sold to free slots for late-game purchases.</p>
+<p>The page surfaces a <strong>↓ Sell</strong> event in the destination phase column when all of the following hold:</p>
+<ul>
+  <li>$\text{sell\_min} - \text{buy\_min} \ge 6$ minutes (real strategic sell, not match-end noise)</li>
+  <li>item was bought in early or mid phase (T4 picks aren't sold)</li>
+  <li>$\text{sell\_min} \lt 38$ (otherwise it's just match-end)</li>
+</ul>
+<p>Refund estimate is ~50% of cost — the Deadlock convention. Sell rows have a red dashed border to distinguish them from buy rows.</p>
+
+<div class="callout example">
+  <strong>Shiv example.</strong> <em>Restorative Shot</em> (T1 weapon, $800) is bought at minute 1.8 and sold at minute 24.4 — held 22.6 minutes. Hits all three filters → renders a sell event in the late phase column. <em>Witchmail</em> (T4 vitality, $6,400) is bought at minute 31.8 and "sold" at minute 32.1 — that's match-end noise, filtered out.
+</div>
+
+<h2 id="cd-imbue">12. Cooldown &amp; imbue badges</h2>
+<p>Two badges appear next to the category pill on item rows:</p>
+<ul>
+  <li><span class="badge cd">⚡ CD <span class="number">30s</span></span> — active item; press-to-use cooldown extracted from <code>properties.AbilityCooldown</code></li>
+  <li><span class="badge imbue">🔮 Imbue: any active</span> — item that imbues a hero ability with its effect</li>
+</ul>
+<p>The three imbue types:</p>
+<table>
+  <thead><tr><th>Type</th><th>Example items</th><th>Behavior</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Imbue: stats</strong></td><td>Compress Cooldown, Mystic Expansion, Duration Extender</td><td>passive imbues stat modifiers onto an ability</td></tr>
+    <tr><td><strong>Imbue: any active</strong></td><td>Mystic Reverb, Surge of Power, Quicksilver Reload, Mercurial Magnum, Ballistic Enchantment</td><td>imbues onto any active ability (incl. ultimate)</td></tr>
+    <tr><td><strong>Imbue: non-ult active</strong></td><td>Echo Shard, Omnicharge Signet</td><td>imbues onto a non-ultimate active only</td></tr>
+  </tbody>
+</table>
+
+<h2 id="archetypes">13. Archetype clustering</h2>
+<p>For each hero, the cached community top builds are clustered by Jaccard distance on item sets:</p>
+<div class="eq">
+$$
+d_J(A, B) = 1 - \frac{|A \cap B|}{|A \cup B|}
+$$
+</div>
+<p>where $A$ and $B$ are the item-id sets of two builds. Average-linkage agglomerative clustering merges the closest pairs until we hit a target $k$ ($k \in \{1,2,3\}$ depending on build count).</p>
+
+<h3>Per-cluster optimization (the synergy_ilp build_method)</h3>
+<p>Each meaningful cluster (≥2 builds) gets its own stat-optimized build. The synergy ILP is re-run with the candidate pool restricted to items appearing in ≥30% of the cluster's builds (relaxes to 15% if no feasible 16-slot build exists otherwise).</p>
+<p>Result: each archetype produces a build that's both <em>stat-optimized</em> AND <em>archetype-coherent</em>, instead of the popularity-aggregate fallback.</p>
+
+<div class="callout example">
+  <strong>Seven on patch_125825.</strong> Two clusters cleanly separate:
+  <ul>
+    <li><strong>Suppressor build</strong> (75% of top builds, 56.34% avg WR) — gun-pressure: Mercurial Magnum, Crippling Headshot, Spiritual Overflow</li>
+    <li><strong>Mystic Reverb build</strong> (17%, 56.19% avg WR) — anti-gun spirit: Bullet Resist Shredder, Counterspell, Mystic Reverb, Inhibitor</li>
+  </ul>
+  Both run through the synergy ILP scoped to their cluster's vocabulary and produce different, internally coherent builds.
+</div>
+
+<h2 id="counters">14. Counter-pick panel</h2>
+<p>For every (hero, enemy_hero) pair, we pull <code>/v1/analytics/item-stats?hero_id=X&amp;enemy_hero_ids=Y</code> and compute, per item, the win-rate delta against the no-enemy-filter baseline:</p>
+<div class="eq">
+$$
+\Delta_{i, h, e} = \mathrm{WR}(i \mid \text{hero}=h, \text{enemy}=e) - \mathrm{WR}(i \mid \text{hero}=h)
+$$
+</div>
+<p>Positive delta = item works <em>better</em> than usual when enemy $e$ is on the field.</p>
+
+<h3>Aggregating across selected enemies</h3>
+<p>When the user selects multiple enemies $\{e_1, e_2, \ldots, e_k\}$ in the panel, the page sums per-item deltas:</p>
+<div class="eq">
+$$
+\text{matchup\_score}_{i, h, S} = \sum_{e \in S} \Delta_{i, h, e}
+$$
+</div>
+<p>Top items by positive matchup_score are the buy recommendations; bottom items are the avoid recommendations.</p>
+
+<h3>Filters (so the signal isn't noise)</h3>
+<ul>
+  <li>$n_{\text{vs}} \ge 100$ matches in the matchup-specific slice</li>
+  <li>$n_{\text{baseline}} \ge 200$</li>
+  <li>$|\Delta| \ge 0.4\text{pp}$</li>
+  <li>Top 12 stored per pair, ranked by $|\Delta|$</li>
+</ul>
+
+<div class="callout example">
+  <strong>Shiv vs Lash counter signals (high MMR).</strong>
+  <table>
+    <thead><tr><th>Buy ↑</th><th>Δpp</th><th>Avoid ↓</th><th>Δpp</th></tr></thead>
+    <tbody>
+      <tr><td>Recharging Rush</td><td class="good num">+3.7</td><td>Rapid Rounds</td><td class="bad num">−3.9</td></tr>
+      <tr><td>Fleetfoot</td><td class="good num">+3.5</td><td>Stamina Mastery</td><td class="bad num">−3.9</td></tr>
+      <tr><td>Unstoppable</td><td class="good num">+2.8</td><td>Extra Stamina</td><td class="bad num">−3.7</td></tr>
+      <tr><td>Slowing Hex</td><td class="good num">+2.6</td><td>Bullet Lifesteal</td><td class="bad num">−2.2</td></tr>
+      <tr><td>Phantom Strike</td><td class="good num">+2.2</td><td>Spirit Rend</td><td class="bad num">−2.0</td></tr>
+    </tbody>
+  </table>
+  Intuitive: vs Lash you want CC/disengage tools (Phantom Strike, Disarming Hex, Slowing Hex, Unstoppable); stamina items lose value because his ult ignores stamina.
+</div>
+
+<h2 id="overrides">15. Per-patch item overrides</h2>
+<p>The asset CDN at <code>assets.deadlock-api.com</code> can lag a Deadlock patch by hours-to-days. When a patch ships, items like Shadow Weave can show their pre-patch tier/cost/cooldown values in our cache.</p>
+<p><code>ITEM_OVERRIDES_BY_PATCH</code> in <code>scripts/build_page_data.py</code> is a small per-patch dict that hand-codes corrections from the patch notes. Applied at compact-hero time so each patch shows its own correct values.</p>
+
+<div class="callout example">
+  <strong>Shadow Weave timeline.</strong> Patch 04-30-2026 moved Shadow Weave from T4 to T3, dropped its cost from $6,400 to $3,200, and lengthened its cooldown from 32s to 45s. The asset CDN didn't update for several hours after release, so the page would have shown the old values on the new patch. The override entry corrects this until the CDN catches up:
+  <pre><code>"patch_129989": {
+    1798666702: {"tier": 3, "cost": 3200, "cooldown_s": 45},  # Shadow Weave
+    ...
+}</code></pre>
+</div>
+
+<p>Once the asset CDN refreshes, the override entries should be deleted and the cache refetched — at that point the items.json will carry the correct values natively.</p>
+
+<h2 id="ability">16. Ability priority</h2>
+<p>Per hero, <code>/v1/analytics/ability-order-stats</code> returns ordered sequences of ability point spends with <em>wins</em>, <em>losses</em>, <em>matches</em>, plus aggregate stats. From these we compute three signals:</p>
+
+<h3>Winner-weighted AP investment</h3>
+<p>For each ability, the average AP spent on it weighted by <em>wins only</em>, alongside the population-average:</p>
+<div class="eq">
+$$
+\overline{\text{AP}}^{\text{winners}}_a = \frac{\sum_o W_o \cdot \mathrm{count}(a, o)}{\sum_o W_o} \,,\qquad
+\overline{\text{AP}}^{\text{pop}}_a = \frac{\sum_o N_o \cdot \mathrm{count}(a, o)}{\sum_o N_o}
+$$
+</div>
+<p>where the sum is over ability orders $o$ in the data, $W_o$ is wins on that order, $N_o$ is matches, and $\mathrm{count}(a, o)$ is the number of times ability $a$ appears in $o$.</p>
+<p>The <strong>winner premium</strong> $\overline{\text{AP}}^{\text{winners}}_a - \overline{\text{AP}}^{\text{pop}}_a$ is the cleanest "what should I do differently" signal in the dataset — a positive premium means winners invest in this ability more than the average player.</p>
+
+<h3>Best opener (first 4 points)</h3>
+<p>The ordered first-4-points pattern with highest WR over enough sample (≥400 all-MMR / ≥200 high-MMR).</p>
+
+<h3>Best full sequence</h3>
+<p>The highest-WR complete 16-point ordering with sample ≥200 all-MMR / ≥100 high-MMR.</p>
+
+<div class="callout example">
+  <strong>Shiv high-MMR ability priority.</strong>
+  <table>
+    <thead><tr><th>Ability</th><th>Pop avg AP</th><th>Winner avg AP</th><th>Winner premium</th></tr></thead>
+    <tbody>
+      <tr><td>Slice and Dice (Dash)</td><td class="num">3.95</td><td class="num">3.97</td><td class="num">+0.02</td></tr>
+      <tr><td>Serrated Knives</td><td class="num">3.82</td><td class="num">3.87</td><td class="num">+0.05</td></tr>
+      <tr><td>Bloodletting</td><td class="num">3.39</td><td class="num">3.60</td><td class="good num">+0.21</td></tr>
+      <tr><td>Killing Blow (Ult)</td><td class="num">2.49</td><td class="num">2.77</td><td class="good num">+0.28</td></tr>
+    </tbody>
+  </table>
+  The most actionable insight: average Shiv players underlevel Bloodletting and the Ult. Winners invest more in both. The opener column shows the highest-WR first-4-point pattern at this skill: Knives → Knives → Dash → Dash (49.93% WR over 5,379 matches).
+</div>
+
+<h2 id="pipeline">17. Pipeline reproducibility</h2>
+<p>Every script is patch-aware via the <code>PATCH_ID</code> env var, idempotent (skips already-cached files), and self-contained.</p>
+<pre><code>PATCH_ID=patch_129989 python3 scripts/batch_fetch.py        # ~1 min for fresh fetch
+PATCH_ID=patch_129989 python3 scripts/batch_fetch_builds.py # community build details
+PATCH_ID=patch_125825 python3 scripts/batch_fetch_counters.py # matchup data
+PATCH_ID=patch_129989 python3 scripts/run_all_heroes.py     # generate per-hero JSONs
+python3 scripts/build_page_data.py                           # multi-patch payload
+python3 scripts/download_images.py                           # localize image refs
+python3 scripts/build_page.py                                # assemble HTML</code></pre>
+<p>The pipeline auto-runs every 3 hours via GitHub Actions (<code>.github/workflows/refresh.yml</code>) and deploys to GitHub Pages. Each run takes ~2-3 minutes warm-cache (the cache directory is persisted across runs via <code>actions/cache@v4</code>).</p>
+
+<h2 id="caveats">18. What this project doesn't do</h2>
+<p>Honest list of methodology gaps:</p>
+<ul>
+  <li><strong>Live MMR-stratification within High MMR.</strong> Phantom-1 vs Eternus-6 isn't broken out; would help but the sample sizes get tiny.</li>
+  <li><strong>Hierarchical pooling for low-pick heroes.</strong> Vyper / Sinclair-class heroes have sparse per-hero data; pooling across heroes via a multi-level model would help.</li>
+  <li><strong>Provably-optimal CBC convergence.</strong> The 4-second timeout sometimes leaves provably-optimal slack, but the difference is rounding-error per pick.</li>
+  <li><strong>Bayesian shrinkage as an alternative to Wilson.</strong> Analyzed in <code>analysis/wilson_vs_bayesian.py</code> — found ~4% pick changes, not worth the new hyperparameter.</li>
+  <li><strong>Real-time match data.</strong> Refresh is a 3-hour cadence; faster than that hits the API's 1-hour cache TTL anyway.</li>
+  <li><strong>Causal vs observational.</strong> All recommendations are observational. We don't claim "buy this and you'll win"; we show "winners on this hero buy this".</li>
+</ul>
+
+<hr>
+<p style="color:var(--text-dim); font-size:13px; text-align:center; margin-top:48px">
+<a href="deadlock_builds.html">← Back to builds</a>
+&nbsp;·&nbsp;
+Pipeline source: <a href="https://github.com/Airmiz/deadlock-optimal-builds">github.com/Airmiz/deadlock-optimal-builds</a>
+&nbsp;·&nbsp;
+Data: <a href="https://api.deadlock-api.com">api.deadlock-api.com</a>
+</p>
+
+</div>
+</body>
+</html>

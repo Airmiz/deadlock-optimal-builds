@@ -1121,7 +1121,7 @@ HTML = """<!doctype html>
   <div>
     <h1>DEADLOCK OPTIMAL BUILDS</h1>
     <div class="meta" id="patch-info">loading…</div>
-    <div class="meta" style="margin-top:2px"><a href="docs/methodology.md" style="color:var(--text-dim);text-decoration:underline" target="_blank">📖 Methodology &amp; glossary</a></div>
+    <div class="meta" style="margin-top:2px"><a href="methodology.html" style="color:var(--text-dim);text-decoration:underline" target="_blank">📖 Methodology &amp; glossary</a></div>
   </div>
   <div style="display:flex; gap:14px; align-items:center;">
     <div class="toggle-group" id="view-toggle">
