@@ -1245,7 +1245,7 @@ HTML = """<!doctype html>
       ${activeArch ? `
         <div class="build-view-banner">
           <span class="label">Viewing</span>
-          <span><strong>${escHtml(activeArch.label)}</strong> archetype build · ${activeArch.build_count} community builds · ${(activeArch.avg_wr*100).toFixed(2)}% avg WR</span>
+          <span><strong>${escHtml(activeArch.label)}</strong> archetype build · ${activeArch.build_count} community builds · ${(activeArch.avg_wr*100).toFixed(2)}% avg WR · <em style="color:var(--text-dim);font-style:normal">build method: ${activeArch.build_method === 'synergy_ilp' ? 'synergy ILP (stat-optimized for this archetype)' : 'frequency (popularity-aggregated)'}</em></span>
           <button class="reset" data-reset-hero="${h.id}">← Back to recommended</button>
         </div>
       ` : ''}

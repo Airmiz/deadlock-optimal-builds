@@ -356,8 +356,146 @@ def _aggregate_cluster_build(in_builds: list[dict], hero_item_stats: list[dict],
     return picks
 
 
+def _optimize_cluster_build(in_builds: list[dict], hero_item_stats: list,
+                            pair_stats: list, baseline_wr: float,
+                            lineage_canon: dict, ancestors_of: dict,
+                            metadata_by_item: dict | None) -> list[dict]:
+    """
+    Per-archetype synergy ILP. Restricts the candidate pool to items that
+    appear in this cluster's community builds, then runs the same Wilson-LB
+    + pairwise-synergy optimization the global recommended build uses.
+    The result is a stat-optimized 16-slot build that's *coherent* with the
+    archetype's playstyle, rather than the cluster's popularity aggregate.
+    """
+    # Lazy import to avoid circular deps
+    import sys as _sys
+    _sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from build_hero_output import build_candidates, method_synergy_ilp  # noqa
+
+    n_builds = len(in_builds)
+    if n_builds == 0:
+        return []
+
+    cluster_picks: dict[int, int] = {}
+    for b in in_builds:
+        for iid in b["items"]:
+            cluster_picks[iid] = cluster_picks.get(iid, 0) + 1
+
+    # Items used in ≥30% of the cluster's builds form the archetype's vocabulary.
+    # If this is too restrictive (<20 candidates after filtering), relax to 15%.
+    threshold = 0.30
+    cluster_item_ids = {iid for iid, c in cluster_picks.items()
+                        if c / n_builds >= threshold}
+
+    # Build the standard candidate pool (Wilson scored, lineage-deduped) for
+    # this hero, then intersect with the archetype's vocabulary.
+    all_candidates = build_candidates(
+        hero_item_stats, items_assets, baseline_wr,
+        min_matches=300, lineage_canon=lineage_canon,
+    )
+
+    cluster_cands = {iid: c for iid, c in all_candidates.items()
+                     if iid in cluster_item_ids}
+
+    # Need ≥16 candidates plus enough per category for the slot constraints.
+    # If we don't have enough, relax the threshold step-wise.
+    def category_counts(cands):
+        out = {"weapon": 0, "vitality": 0, "spirit": 0}
+        for c in cands.values():
+            if c["category"] in out:
+                out[c["category"]] += 1
+        return out
+
+    relaxations = [0.30, 0.20, 0.15, 0.10]
+    for thr in relaxations:
+        cluster_item_ids = {iid for iid, c in cluster_picks.items()
+                            if c / n_builds >= thr}
+        cluster_cands = {iid: c for iid, c in all_candidates.items()
+                         if iid in cluster_item_ids}
+        cc = category_counts(cluster_cands)
+        # Need at least 4 per main category to satisfy the slot constraint.
+        if (len(cluster_cands) >= 16 and
+                cc["weapon"] >= 4 and cc["vitality"] >= 4 and cc["spirit"] >= 4):
+            break
+    else:
+        # Couldn't get enough candidates even after relaxation — bail.
+        return []
+
+    # Run the synergy ILP on the cluster-restricted pool.
+    try:
+        picks = method_synergy_ilp(cluster_cands, pair_stats, pair_min_matches=200)
+    except Exception:
+        return []
+
+    # Annotate each pick with the same fields the cluster's frequency build has,
+    # plus tag/pick_rate/annotation/cooldown/imbue from the metadata layer.
+    stats_by_id = {s["item_id"]: s for s in hero_item_stats}
+    for p in picks:
+        # Cluster pick rate (how popular it is within this archetype)
+        p["cluster_pick_rate"] = round(cluster_picks.get(p["item_id"], 0) / n_builds, 3)
+        # Annotation / tag from cross-build metadata
+        meta = (metadata_by_item or {}).get(p["item_id"], {})
+        p["tag"] = meta.get("tag", "stat")
+        p["pick_rate"] = meta.get("pick_rate", 0.0)
+        if meta.get("annotation"):
+            p["annotation"] = meta["annotation"]
+        # Re-attach phase, sell_min, image, etc. from item-stats / asset
+        s = stats_by_id.get(p["item_id"])
+        if s and s.get("matches"):
+            p["buy_min"] = round(s["avg_buy_time_s"] / 60, 1)
+            sell_s = s.get("avg_sell_time_s") or 0
+            p["sell_min"] = round(sell_s / 60, 1) if sell_s else None
+            p["wr"] = round(s["wins"] / s["matches"], 4)
+        else:
+            p["buy_min"] = 30.0
+            p["sell_min"] = None
+            p["wr"] = 0.0
+        # Active / cooldown / imbue
+        it = items_assets.get(p["item_id"], {})
+        p["image"] = it.get("image")
+        p["is_active"] = bool(it.get("is_active_item"))
+        p["imbue"] = it.get("imbue")
+        # Cooldown lookup
+        props = it.get("properties") or {}
+        raw_cd = props.get("AbilityCooldown")
+        cd_s = None
+        if raw_cd is not None:
+            v = raw_cd.get("value") if isinstance(raw_cd, dict) else raw_cd
+            try:
+                f = float(v)
+                if f > 0:
+                    cd_s = f
+            except (TypeError, ValueError):
+                pass
+        p["cooldown_s"] = cd_s
+        # Lineage chain (lower-tier ancestors with buy times)
+        ancs = ancestors_of.get(p["item_id"], set())
+        chain = []
+        for anc_id in ancs:
+            ait = items_assets.get(anc_id)
+            if not ait:
+                continue
+            anc_stat = stats_by_id.get(anc_id)
+            chain.append({
+                "item_id": anc_id,
+                "name": ait.get("name"),
+                "tier": ait.get("item_tier"),
+                "cost": ait.get("cost"),
+                "matches": anc_stat["matches"] if anc_stat else None,
+                "avg_buy_time_min": (round(anc_stat["avg_buy_time_s"] / 60, 1)
+                                     if anc_stat else None),
+            })
+        chain.sort(key=lambda c: (c["tier"] or 0, c["cost"] or 0))
+        if chain:
+            p["lineage_chain"] = chain
+
+    return picks
+
+
 def cluster_archetypes_for_hero(hid: int, max_clusters: int = 3,
                                 hero_item_stats: list | None = None,
+                                pair_stats: list | None = None,
+                                baseline_wr: float | None = None,
                                 lineage_canon: dict | None = None,
                                 ancestors_of: dict | None = None,
                                 metadata_by_item: dict | None = None) -> dict:
@@ -659,14 +797,27 @@ def build_patch_payload(patch_id: str) -> dict | None:
     from build_hero_output import build_lineage_map  # noqa: E402
     ancestors_of, lineage_canon = build_lineage_map(items_assets)
 
-    archetypes_by_hero: dict[int, dict] = {}
-    for d in raw_outputs:
+    # Pre-load high-MMR baseline once (used per hero)
+    try:
+        hero_stats_hmmr = json.load(open(patch_cache_dir / "hero_stats_hmmr.json"))
+        baseline_by_hero = {h["hero_id"]: h for h in hero_stats_hmmr}
+    except Exception:
+        baseline_by_hero = {}
+
+    def cluster_one(d):
         hid = d["hero"]["id"]
         stats_path = patch_cache_dir / "hero_data" / f"itemstats_hmmr_{hid}.json"
         try:
             hero_stats = json.load(open(stats_path)) if stats_path.exists() else []
         except Exception:
             hero_stats = []
+        pair_path = patch_cache_dir / "hero_data" / f"perm2_hmmr_{hid}.json"
+        try:
+            pair_stats = json.load(open(pair_path)) if pair_path.exists() else []
+        except Exception:
+            pair_stats = []
+        base_h = baseline_by_hero.get(hid)
+        baseline_wr_h = (base_h["wins"] / base_h["matches"]) if (base_h and base_h.get("matches")) else None
         meta_high = d.get("items", {}).get("high_mmr", {}).get("item_metadata", {})
         meta_by_int: dict[int, dict] = {}
         for k, v in meta_high.items():
@@ -674,13 +825,30 @@ def build_patch_payload(patch_id: str) -> dict | None:
                 meta_by_int[int(k)] = v
             except (ValueError, TypeError):
                 pass
-        archetypes_by_hero[hid] = cluster_archetypes_for_hero_in(
+        return hid, cluster_archetypes_for_hero_in(
             hid, patch_cache_dir,
             hero_item_stats=hero_stats,
+            pair_stats=pair_stats,
+            baseline_wr=baseline_wr_h,
             lineage_canon=lineage_canon,
             ancestors_of=ancestors_of,
             metadata_by_item=meta_by_int,
         )
+
+    # Parallelize across 4 threads — CBC releases the GIL during native solve
+    archetypes_by_hero: dict[int, dict] = {}
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    import time as _time
+    t0 = _time.time()
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        futs = {pool.submit(cluster_one, d): d for d in raw_outputs}
+        done = 0
+        for fut in as_completed(futs):
+            hid, result = fut.result()
+            archetypes_by_hero[hid] = result
+            done += 1
+            if done % 10 == 0 or done == len(raw_outputs):
+                print(f"    clustered {done}/{len(raw_outputs)} heroes  ({_time.time()-t0:.1f}s)")
 
     heroes_data = []
     n_signature = 0
@@ -716,6 +884,8 @@ def build_patch_payload(patch_id: str) -> dict | None:
 
 def cluster_archetypes_for_hero_in(hid: int, patch_cache_dir, max_clusters: int = 3,
                                     hero_item_stats: list | None = None,
+                                    pair_stats: list | None = None,
+                                    baseline_wr: float | None = None,
                                     lineage_canon: dict | None = None,
                                     ancestors_of: dict | None = None,
                                     metadata_by_item: dict | None = None) -> dict:
@@ -777,8 +947,22 @@ def cluster_archetypes_for_hero_in(hid: int, patch_cache_dir, max_clusters: int 
         meta["share"] = round(len(in_b) / len(builds), 3)
         meta["sample_build_names"] = [b["name"] for b in sorted(in_b, key=lambda x: -x["wr"])[:3]]
         if hero_item_stats is not None and lineage_canon is not None and ancestors_of is not None:
-            meta["build"] = _aggregate_cluster_build(in_b, hero_item_stats,
-                                                     lineage_canon, ancestors_of, metadata_by_item)
+            # Try the synergy-ILP optimizer first (per-archetype stat optimization).
+            # Fall back to frequency-based aggregation if the optimizer can't find
+            # 16 viable picks (rare — happens for low-data clusters).
+            optimized = []
+            if pair_stats is not None and baseline_wr is not None and len(in_b) >= 2:
+                optimized = _optimize_cluster_build(
+                    in_b, hero_item_stats, pair_stats, baseline_wr,
+                    lineage_canon, ancestors_of, metadata_by_item,
+                )
+            if optimized:
+                meta["build"] = optimized
+                meta["build_method"] = "synergy_ilp"  # the good kind
+            else:
+                meta["build"] = _aggregate_cluster_build(in_b, hero_item_stats,
+                                                         lineage_canon, ancestors_of, metadata_by_item)
+                meta["build_method"] = "frequency"  # fallback
         out.append(meta)
     out.sort(key=lambda c: -c["share"])
     return {"clusters": out, "total_builds": len(builds)}
