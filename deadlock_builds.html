@@ -1047,15 +1047,54 @@
   }
   .spike-fill {
     position: absolute;
-    top: 0; left: 0; height: 100%;
-    border-radius: 4px;
-    background: rgba(240,169,59,0.18);
-    border-right: 2px solid var(--accent);
-    transition: width 0.2s;
+    top: 0; height: 100%;
+    transition: width 0.2s, left 0.2s;
   }
-  .weapon .spike-fill   { background: rgba(214,133,107,0.18); border-right-color: var(--weapon); }
-  .vitality .spike-fill { background: rgba(108,180,106,0.18); border-right-color: var(--vitality); }
-  .spirit .spike-fill   { background: rgba(180,135,217,0.18); border-right-color: var(--spirit); }
+  /* Three progressive segments per bar: early (lightest), mid (medium),
+     late (full saturation). Visually shows the build coming online. */
+  .spike-fill.seg-early { opacity: 0.30; border-radius: 4px 0 0 4px; }
+  .spike-fill.seg-mid   { opacity: 0.55; }
+  .spike-fill.seg-late  { opacity: 0.95; border-radius: 0 4px 4px 0; }
+  /* When a segment is the leftmost-filled (e.g. no early-game spend → mid is leftmost),
+     give it the left rounded corner. JS adds .seg-leftmost to the right element. */
+  .spike-fill.seg-leftmost  { border-radius: 4px 0 0 4px; }
+  .weapon .spike-fill   { background: var(--weapon); }
+  .vitality .spike-fill { background: var(--vitality); }
+  .spirit .spike-fill   { background: var(--spirit); }
+  /* Phase boundary tick that drops below the bar with a $ label and phase tag. */
+  .phase-checkpoint {
+    position: absolute;
+    top: 100%;
+    margin-top: 2px;
+    transform: translateX(-50%);
+    text-align: center;
+    pointer-events: none;
+    font-size: 9px;
+    line-height: 1.1;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+  .phase-checkpoint .pc-cost { color: var(--text); font-weight: 600; font-size: 10px; }
+  .phase-checkpoint .pc-tag {
+    display: block;
+    font-size: 8.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-dim);
+    margin-top: 1px;
+  }
+  .phase-checkpoint .pc-marker {
+    display: block;
+    width: 1px;
+    height: 8px;
+    background: var(--text-dim);
+    margin: 0 auto 1px;
+    opacity: 0.6;
+  }
+  .phase-checkpoint.major .pc-cost { color: var(--accent); }
+  .phase-checkpoint.major .pc-marker { background: var(--accent); width: 2px; opacity: 1; }
+  /* Slight extra height on the spike-bar to give checkpoints room below */
+  .spike-row { padding-bottom: 28px; }
   .spike-mark {
     position: absolute;
     top: -2px;
@@ -1757,15 +1796,13 @@
       <section>
         <h3>Investment Spike Progression</h3>
         <div class="summary-line">
-          Cumulative souls spent per category as the build comes online.
-          The <strong style="color:var(--accent)">4,800</strong> milestone is the major spike —
-          your per-category bonus <strong>more than doubles</strong> there
-          (this patch: weapon ${getSpikeBonus().weapon[3200]}→${getSpikeBonus().weapon[4800]}%,
-          vitality ${getSpikeBonus().vitality[3200]}→${getSpikeBonus().vitality[4800]}%,
-          spirit ${getSpikeBonus().spirit[3200]}→${getSpikeBonus().spirit[4800]}%).
-          Tick marks below show smaller thresholds.
+          Each bar shows cumulative souls spent in that category as the build comes online.
+          <span style="opacity:0.4;color:var(--accent)">■</span> = early-game spend ·
+          <span style="opacity:0.65;color:var(--accent)">■</span> = added by mid-game ·
+          <span style="color:var(--accent)">■</span> = added by late-game.
+          Checkpoint labels below the bar show <strong>exactly</strong> how much you've spent at the end of each phase, so you can read off when each category crosses the <strong style="color:var(--accent)">4,800</strong> major spike (this patch: weapon ${getSpikeBonus().weapon[3200]}→${getSpikeBonus().weapon[4800]}%, vitality ${getSpikeBonus().vitality[3200]}→${getSpikeBonus().vitality[4800]}%, spirit ${getSpikeBonus().spirit[3200]}→${getSpikeBonus().spirit[4800]}%).
         </div>
-        ${renderSpikePanel(items)}
+        ${renderSpikePanel(items, spikeProgress.byPhaseEnd)}
       </section>
 
       <section>
@@ -1902,23 +1939,47 @@
     `;
   }
 
-  function renderSpikePanel(items) {
+  // Each category bar is now a 3-segment progressive fill: early / mid / late
+  // (lighter → darker), with checkpoint markers below at the phase boundaries
+  // showing exactly what's spent at each phase end. Reads left-to-right as
+  // a build-comes-online timeline rather than a "final state only" snapshot.
+  function renderSpikePanel(items, byPhaseEnd) {
     const cats = ['weapon', 'vitality', 'spirit'];
-    const finalTotals = items.reduce((acc, it) => {
-      if (it.category in acc) acc[it.category] += (it.cost || 0);
-      return acc;
-    }, { weapon: 0, vitality: 0, spirit: 0 });
-
     return `<div class="spike-panel">${cats.map(cat => {
-      const total = finalTotals[cat];
+      const earlyEnd = (byPhaseEnd && byPhaseEnd.early) ? (byPhaseEnd.early[cat] || 0) : 0;
+      const midEnd   = (byPhaseEnd && byPhaseEnd.mid)   ? (byPhaseEnd.mid[cat]   || 0) : 0;
+      const lateEnd  = (byPhaseEnd && byPhaseEnd.late)  ? (byPhaseEnd.late[cat]  || 0) : 0;
+      const total = lateEnd;
       const crossed = spikesCrossed(total);
-      // Display fill is capped at SPIKE_DISPLAY_MAX so the bar renders
-      const displayTotal = Math.min(total, SPIKE_DISPLAY_MAX);
-      const fillPct = (displayTotal / SPIKE_DISPLAY_MAX) * 100;
       const major = total >= SPIKE_MAJOR;
       const bonus = getSpikeBonus()[cat];
       const finalBonus = crossed.length ? bonus[crossed[crossed.length-1]] : 0;
       const unit = SPIKE_UNIT[cat];
+
+      // Segment positions as % of the display max
+      const pct = (v) => (Math.min(v, SPIKE_DISPLAY_MAX) / SPIKE_DISPLAY_MAX) * 100;
+      const earlyPct = pct(earlyEnd);
+      const midPct   = pct(midEnd);
+      const latePct  = pct(lateEnd);
+
+      // Determine which segment is the leftmost non-empty (for left rounding)
+      let leftmost = '';
+      if (earlyPct > 0) leftmost = 'early';
+      else if (midPct > 0) leftmost = 'mid';
+      else if (latePct > 0) leftmost = 'late';
+
+      const segHtml = (cls, leftP, rightP) => {
+        const w = rightP - leftP;
+        if (w <= 0.01) return '';
+        const lm = (cls === leftmost) ? ' seg-leftmost' : '';
+        return `<div class="spike-fill seg-${cls}${lm}" style="left:${leftP}%;width:${w}%"></div>`;
+      };
+
+      const fills = [
+        segHtml('early', 0,        earlyPct),
+        segHtml('mid',   earlyPct, midPct),
+        segHtml('late',  midPct,   latePct),
+      ].join('');
 
       const marks = SPIKE_THRESHOLDS.map(t => {
         const left = (t / SPIKE_DISPLAY_MAX) * 100;
@@ -1928,15 +1989,36 @@
         return `<span class="${cls}" style="left:${left}%"><span class="lbl-mark">${t >= 1000 ? (t/1000)+'k' : t}</span></span>`;
       }).join('');
 
+      // Phase checkpoints below the bar — only render distinct positions.
+      const checkpoints = [];
+      const seen = new Set();
+      const pushCheckpoint = (phaseLabel, pos, value, durationLbl) => {
+        const key = pos.toFixed(1) + ':' + value;
+        if (seen.has(key) || pos < 0.3) return;
+        seen.add(key);
+        const isMajorCp = value >= SPIKE_MAJOR;
+        const phaseClass = isMajorCp ? 'major' : '';
+        checkpoints.push(`
+          <div class="phase-checkpoint ${phaseClass}" style="left:${pos}%">
+            <span class="pc-marker"></span>
+            <span class="pc-cost">${fmtCost(value)}</span>
+            <span class="pc-tag">${phaseLabel}</span>
+          </div>
+        `);
+      };
+      pushCheckpoint('end early', earlyPct, earlyEnd);
+      pushCheckpoint('end mid',   midPct,   midEnd);
+      pushCheckpoint('final',     latePct,  lateEnd);
+
       return `
         <div class="spike-row ${cat}">
           <div class="lbl">${cat}</div>
           <div class="spike-bar">
-            <div class="spike-fill" style="width:${fillPct}%"></div>
+            ${fills}
             ${marks}
+            ${checkpoints.join('')}
             <div style="position:absolute;top:50%;right:8px;transform:translateY(-50%);font-size:11px;font-weight:600;color:var(--text)">
-              ${fmtCost(total)}
-              ${crossed.length ? `<span style="color:var(--text-dim);font-weight:400">  +${finalBonus}${unit}</span>` : ''}
+              ${crossed.length ? `<span style="color:var(--text-dim);font-weight:400">+${finalBonus}${unit}</span>` : ''}
               ${major ? '<span style="color:var(--accent);font-weight:700">  ⚡ SPIKE</span>' : ''}
             </div>
           </div>
