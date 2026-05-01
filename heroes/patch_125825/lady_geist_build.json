@@ -45,7 +45,7 @@
     "items": {
       "method": "synergy_ilp",
       "mmr_slice": "high_mmr",
-      "total_cost": 68800,
+      "total_cost": 71200,
       "phases": {
         "early": [
           {
@@ -88,7 +88,10 @@
                 "tier": 1,
                 "cost": 800,
                 "matches": 44901,
-                "avg_buy_time_min": 4.7
+                "avg_buy_time_min": 4.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -115,7 +118,10 @@
                 "tier": 1,
                 "cost": 800,
                 "matches": 27749,
-                "avg_buy_time_min": 6.5
+                "avg_buy_time_min": 6.5,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -139,22 +145,6 @@
         ],
         "mid": [
           {
-            "slot": "spirit",
-            "category": "spirit",
-            "tier": 1,
-            "cost": 800,
-            "name": "Extra Charge",
-            "item_id": 3776945997,
-            "avg_buy_time_min": 15.1,
-            "avg_sell_time_min": 26.6,
-            "win_rate": 0.5086,
-            "tag": "stat",
-            "pick_rate": 0.0,
-            "is_active": false,
-            "cooldown_s": null,
-            "imbue": null
-          },
-          {
             "slot": "flex",
             "category": "weapon",
             "tier": 2,
@@ -170,6 +160,23 @@
             "cooldown_s": 24.0,
             "imbue": null,
             "annotation": "buy at max 2"
+          },
+          {
+            "slot": "flex",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "name": "Spirit Resilience",
+            "item_id": 2163598980,
+            "avg_buy_time_min": 20.7,
+            "avg_sell_time_min": 29.3,
+            "win_rate": 0.5105,
+            "tag": "core",
+            "pick_rate": 1.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "annotation": "I lowkey just always take currently due to spirit meta | Buy if lots of enemy spirit on the enemy team"
           },
           {
             "slot": "flex",
@@ -230,7 +237,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 13727,
-                "avg_buy_time_min": 24.6
+                "avg_buy_time_min": 24.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               },
               {
                 "item_id": 876563814,
@@ -238,9 +248,31 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 19352,
-                "avg_buy_time_min": 18.3
+                "avg_buy_time_min": 18.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
+          },
+          {
+            "slot": "spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "name": "Echo Shard",
+            "item_id": 630839635,
+            "avg_buy_time_min": 30.3,
+            "avg_sell_time_min": 38.2,
+            "win_rate": 0.5765,
+            "tag": "situational",
+            "pick_rate": 0.167,
+            "is_active": true,
+            "cooldown_s": 35.0,
+            "imbue": "imbue_active_non_ult",
+            "annotation": "Try to buy this before Trans Cooldown, 1 Bomb won't do it all so having a two helps clean up.",
+            "imbue_target_id": 715325746,
+            "imbue_target_share": 1.0
           },
           {
             "slot": "weapon",
@@ -265,7 +297,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 5422,
-                "avg_buy_time_min": 27.7
+                "avg_buy_time_min": 27.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -285,33 +320,6 @@
             "cooldown_s": null,
             "imbue": null,
             "annotation": "Anti-heal, reduces enemy damage, and increases your weapon damage | 3-shot buildup"
-          },
-          {
-            "slot": "flex",
-            "category": "vitality",
-            "tier": 4,
-            "cost": 6400,
-            "name": "Spellbreaker",
-            "item_id": 1955841979,
-            "avg_buy_time_min": 33.9,
-            "avg_sell_time_min": 33.3,
-            "win_rate": 0.5519,
-            "tag": "core",
-            "pick_rate": 1.0,
-            "is_active": false,
-            "cooldown_s": 9.0,
-            "imbue": null,
-            "annotation": "buy if lots of spirit burst",
-            "lineage_chain": [
-              {
-                "item_id": 1047818222,
-                "name": "Debuff Reducer",
-                "tier": 2,
-                "cost": 1600,
-                "matches": 2438,
-                "avg_buy_time_min": 28.2
-              }
-            ]
           },
           {
             "slot": "vitality",
@@ -336,7 +344,10 @@
                 "tier": 1,
                 "cost": 800,
                 "matches": 1075,
-                "avg_buy_time_min": 25.8
+                "avg_buy_time_min": 25.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -491,7 +502,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 16496,
-                "avg_buy_time_min": 27.8
+                "avg_buy_time_min": 27.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -614,7 +628,10 @@
                 "tier": 1,
                 "cost": 800,
                 "matches": 6746,
-                "avg_buy_time_min": 18.6
+                "avg_buy_time_min": 18.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -767,7 +784,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 6100,
-                "avg_buy_time_min": 19.4
+                "avg_buy_time_min": 19.4,
+                "imbue": "imbue_active",
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -823,7 +843,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 111851,
-                "avg_buy_time_min": 23.3
+                "avg_buy_time_min": 23.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -878,7 +901,10 @@
                 "tier": 1,
                 "cost": 800,
                 "matches": 149641,
-                "avg_buy_time_min": 6.6
+                "avg_buy_time_min": 6.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               },
               {
                 "item_id": 7409189,
@@ -886,7 +912,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 145358,
-                "avg_buy_time_min": 17.8
+                "avg_buy_time_min": 17.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           }
@@ -923,7 +952,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 16496,
-                "avg_buy_time_min": 27.8
+                "avg_buy_time_min": 27.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -1046,7 +1078,10 @@
                 "tier": 1,
                 "cost": 800,
                 "matches": 6746,
-                "avg_buy_time_min": 18.6
+                "avg_buy_time_min": 18.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -1152,7 +1187,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 6100,
-                "avg_buy_time_min": 19.4
+                "avg_buy_time_min": 19.4,
+                "imbue": "imbue_active",
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -1185,7 +1223,10 @@
                 "tier": 1,
                 "cost": 800,
                 "matches": 246851,
-                "avg_buy_time_min": 5.1
+                "avg_buy_time_min": 5.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -1362,7 +1403,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 16496,
-                "avg_buy_time_min": 27.8
+                "avg_buy_time_min": 27.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -1516,7 +1560,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 15558,
-                "avg_buy_time_min": 28.7
+                "avg_buy_time_min": 28.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -1550,7 +1597,10 @@
                 "tier": 1,
                 "cost": 800,
                 "matches": 246851,
-                "avg_buy_time_min": 5.1
+                "avg_buy_time_min": 5.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -1632,7 +1682,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 111851,
-                "avg_buy_time_min": 23.3
+                "avg_buy_time_min": 23.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -1666,7 +1719,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 66530,
-                "avg_buy_time_min": 24.8
+                "avg_buy_time_min": 24.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               },
               {
                 "item_id": 876563814,
@@ -1674,7 +1730,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 170305,
-                "avg_buy_time_min": 15.1
+                "avg_buy_time_min": 15.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -1756,7 +1815,10 @@
                 "tier": 1,
                 "cost": 800,
                 "matches": 118254,
-                "avg_buy_time_min": 7.2
+                "avg_buy_time_min": 7.2,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               },
               {
                 "item_id": 2447176615,
@@ -1764,7 +1826,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 135838,
-                "avg_buy_time_min": 15.9
+                "avg_buy_time_min": 15.9,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           }
@@ -2776,7 +2841,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 5422,
-                "avg_buy_time_min": 27.7
+                "avg_buy_time_min": 27.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -2854,7 +2922,10 @@
                 "tier": 1,
                 "cost": 800,
                 "matches": 1075,
-                "avg_buy_time_min": 25.8
+                "avg_buy_time_min": 25.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -2933,7 +3004,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 13727,
-                "avg_buy_time_min": 24.6
+                "avg_buy_time_min": 24.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               },
               {
                 "item_id": 876563814,
@@ -2941,7 +3015,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 19352,
-                "avg_buy_time_min": 18.3
+                "avg_buy_time_min": 18.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -3001,7 +3078,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 484,
-                "avg_buy_time_min": 19.6
+                "avg_buy_time_min": 19.6,
+                "imbue": "imbue_active",
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -3034,7 +3114,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 10765,
-                "avg_buy_time_min": 22.1
+                "avg_buy_time_min": 22.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -3059,7 +3142,9 @@
             "slot": "spirit",
             "tag": "situational",
             "pick_rate": 0.167,
-            "annotation": "Life Steal on bomb and does another bomb attack percentage?? Yes please sign me up, however your other items are priority first"
+            "annotation": "Life Steal on bomb and does another bomb attack percentage?? Yes please sign me up, however your other items are priority first",
+            "imbue_target_id": 715325746,
+            "imbue_target_share": 1.0
           },
           {
             "item_id": 1427630806,
@@ -3090,7 +3175,10 @@
                 "tier": 1,
                 "cost": 800,
                 "matches": 36980,
-                "avg_buy_time_min": 2.4
+                "avg_buy_time_min": 2.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               },
               {
                 "item_id": 2566692615,
@@ -3098,7 +3186,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 13864,
-                "avg_buy_time_min": 15.2
+                "avg_buy_time_min": 15.2,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -3176,7 +3267,10 @@
                 "tier": 1,
                 "cost": 800,
                 "matches": 12795,
-                "avg_buy_time_min": 7.5
+                "avg_buy_time_min": 7.5,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               },
               {
                 "item_id": 7409189,
@@ -3184,7 +3278,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 12333,
-                "avg_buy_time_min": 18.1
+                "avg_buy_time_min": 18.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           }
@@ -3243,7 +3340,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 5422,
-                "avg_buy_time_min": 27.7
+                "avg_buy_time_min": 27.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -3322,7 +3422,10 @@
                 "tier": 1,
                 "cost": 800,
                 "matches": 1075,
-                "avg_buy_time_min": 25.8
+                "avg_buy_time_min": 25.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -3401,7 +3504,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 13727,
-                "avg_buy_time_min": 24.6
+                "avg_buy_time_min": 24.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               },
               {
                 "item_id": 876563814,
@@ -3409,31 +3515,37 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 19352,
-                "avg_buy_time_min": 18.3
+                "avg_buy_time_min": 18.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
           {
-            "item_id": 3776945997,
-            "name": "Extra Charge",
+            "item_id": 630839635,
+            "name": "Echo Shard",
             "category": "spirit",
-            "tier": 1,
-            "cost": 800,
-            "matches": 13261,
-            "wins": 6744,
-            "win_rate": 0.5086,
-            "wilson_lb": 0.5,
-            "score": -0.0026,
-            "wr_delta_pp": 0.59,
-            "avg_buy_time_s": 907.5,
-            "phase": "mid",
-            "avg_sell_time_s": 1596.3,
-            "is_active": false,
-            "cooldown_s": null,
-            "imbue": null,
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2470,
+            "wins": 1424,
+            "win_rate": 0.5765,
+            "wilson_lb": 0.5569,
+            "score": 0.0543,
+            "wr_delta_pp": 7.38,
+            "avg_buy_time_s": 1817.9,
+            "phase": "late",
+            "avg_sell_time_s": 2294.1,
+            "is_active": true,
+            "cooldown_s": 35.0,
+            "imbue": "imbue_active_non_ult",
             "slot": "spirit",
-            "tag": "stat",
-            "pick_rate": 0.0
+            "tag": "situational",
+            "pick_rate": 0.167,
+            "annotation": "Try to buy this before Trans Cooldown, 1 Bomb won't do it all so having a two helps clean up.",
+            "imbue_target_id": 715325746,
+            "imbue_target_share": 1.0
           },
           {
             "item_id": 2947183272,
@@ -3464,7 +3576,10 @@
                 "tier": 1,
                 "cost": 800,
                 "matches": 44901,
-                "avg_buy_time_min": 4.7
+                "avg_buy_time_min": 4.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -3515,39 +3630,6 @@
             "annotation": "sell second"
           },
           {
-            "item_id": 1955841979,
-            "name": "Spellbreaker",
-            "category": "vitality",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 2254,
-            "wins": 1244,
-            "win_rate": 0.5519,
-            "wilson_lb": 0.5313,
-            "score": 0.0286,
-            "wr_delta_pp": 4.92,
-            "avg_buy_time_s": 2034.0,
-            "phase": "late",
-            "avg_sell_time_s": 1995.6,
-            "is_active": false,
-            "cooldown_s": 9.0,
-            "imbue": null,
-            "slot": "flex",
-            "tag": "core",
-            "pick_rate": 1.0,
-            "annotation": "buy if lots of spirit burst",
-            "lineage_chain": [
-              {
-                "item_id": 1047818222,
-                "name": "Debuff Reducer",
-                "tier": 2,
-                "cost": 1600,
-                "matches": 2438,
-                "avg_buy_time_min": 28.2
-              }
-            ]
-          },
-          {
             "item_id": 3403085434,
             "name": "Fleetfoot",
             "category": "weapon",
@@ -3594,6 +3676,29 @@
             "annotation": "buy at max 2"
           },
           {
+            "item_id": 2163598980,
+            "name": "Spirit Resilience",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 31233,
+            "wins": 15946,
+            "win_rate": 0.5105,
+            "wilson_lb": 0.505,
+            "score": 0.0023,
+            "wr_delta_pp": 0.79,
+            "avg_buy_time_s": 1239.3,
+            "phase": "mid",
+            "avg_sell_time_s": 1758.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "I lowkey just always take currently due to spirit meta | Buy if lots of enemy spirit on the enemy team"
+          },
+          {
             "item_id": 3977876567,
             "name": "Kinetic Dash",
             "category": "weapon",
@@ -3622,7 +3727,10 @@
                 "tier": 1,
                 "cost": 800,
                 "matches": 27749,
-                "avg_buy_time_min": 6.5
+                "avg_buy_time_min": 6.5,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           }
@@ -3660,7 +3768,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 5422,
-                "avg_buy_time_min": 27.7
+                "avg_buy_time_min": 27.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -3862,7 +3973,10 @@
                 "tier": 1,
                 "cost": 800,
                 "matches": 44901,
-                "avg_buy_time_min": 4.7
+                "avg_buy_time_min": 4.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -4016,7 +4130,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 2438,
-                "avg_buy_time_min": 28.2
+                "avg_buy_time_min": 28.2,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           },
@@ -4050,7 +4167,10 @@
                 "tier": 1,
                 "cost": 800,
                 "matches": 36980,
-                "avg_buy_time_min": 2.4
+                "avg_buy_time_min": 2.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               },
               {
                 "item_id": 2566692615,
@@ -4058,7 +4178,10 @@
                 "tier": 2,
                 "cost": 1600,
                 "matches": 13864,
-                "avg_buy_time_min": 15.2
+                "avg_buy_time_min": 15.2,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
               }
             ]
           }
@@ -4766,8 +4889,8 @@
           "annotation": "Life Steal on bomb and does another bomb attack percentage?? Yes please sign me up, however your other items are priority first",
           "builds_appearing_in": 1,
           "builds_total": 6,
-          "imbue_target_id": null,
-          "imbue_target_share": null
+          "imbue_target_id": 715325746,
+          "imbue_target_share": 1.0
         },
         "1150006784": {
           "tag": "flex",

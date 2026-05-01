@@ -350,7 +350,11 @@ def _aggregate_cluster_build(in_builds: list[dict], hero_item_stats: list[dict],
     for c in flex_pool:
         picks.append({**c, "slot": "flex"})
 
-    # Decorate with lineage chains (same shape as the recommended build)
+    # Decorate with lineage chains (same shape as the recommended build).
+    # Ancestor entries also carry imbue metadata so the page can render
+    # imbue badges on stage rows when a passive imbue component (e.g.
+    # Compress Cooldown → Superior Cooldown) is the imbuable item even
+    # though its non-imbuable descendant is what the optimizer picked.
     for p in picks:
         ancs = ancestors_of.get(p["item_id"], set())
         chain = []
@@ -359,6 +363,7 @@ def _aggregate_cluster_build(in_builds: list[dict], hero_item_stats: list[dict],
             if not it:
                 continue
             anc_stat = stats_by_id.get(anc_id)
+            anc_meta = (metadata_by_item or {}).get(anc_id, {})
             chain.append({
                 "item_id": anc_id,
                 "name": it.get("name"),
@@ -367,6 +372,9 @@ def _aggregate_cluster_build(in_builds: list[dict], hero_item_stats: list[dict],
                 "matches": anc_stat["matches"] if anc_stat else None,
                 "avg_buy_time_min": (round(anc_stat["avg_buy_time_s"] / 60, 1)
                                      if anc_stat else None),
+                "imbue": it.get("imbue"),
+                "imbue_target_id": anc_meta.get("imbue_target_id"),
+                "imbue_target_share": anc_meta.get("imbue_target_share"),
             })
         chain.sort(key=lambda c: (c["tier"] or 0, c["cost"] or 0))
         if chain:
@@ -487,7 +495,10 @@ def _optimize_cluster_build(in_builds: list[dict], hero_item_stats: list,
             except (TypeError, ValueError):
                 pass
         p["cooldown_s"] = cd_s
-        # Lineage chain (lower-tier ancestors with buy times)
+        # Lineage chain (lower-tier ancestors with buy times). Ancestors
+        # carry their own imbue metadata so stage rows can show imbue
+        # badges (e.g. T2 Compress Cooldown is the imbuable component
+        # even when the optimizer picks T3 Superior Cooldown).
         ancs = ancestors_of.get(p["item_id"], set())
         chain = []
         for anc_id in ancs:
@@ -495,6 +506,7 @@ def _optimize_cluster_build(in_builds: list[dict], hero_item_stats: list,
             if not ait:
                 continue
             anc_stat = stats_by_id.get(anc_id)
+            anc_meta = (metadata_by_item or {}).get(anc_id, {})
             chain.append({
                 "item_id": anc_id,
                 "name": ait.get("name"),
@@ -503,6 +515,9 @@ def _optimize_cluster_build(in_builds: list[dict], hero_item_stats: list,
                 "matches": anc_stat["matches"] if anc_stat else None,
                 "avg_buy_time_min": (round(anc_stat["avg_buy_time_s"] / 60, 1)
                                      if anc_stat else None),
+                "imbue": ait.get("imbue"),
+                "imbue_target_id": anc_meta.get("imbue_target_id"),
+                "imbue_target_share": anc_meta.get("imbue_target_share"),
             })
         chain.sort(key=lambda c: (c["tier"] or 0, c["cost"] or 0))
         if chain:
@@ -922,15 +937,26 @@ def _build_patch_payload_inner(patch_id, raw_outputs, hero_out_dir, patch_cache_
     # Also include any imbue_target_id surfaced by picks — these are
     # ability ids (not upgrade-item ids) but live in the same items.json
     # under the signature1..4 slots, so the asset dict resolves them.
+    # Walk both top-level picks AND their lineage_chain ancestors, since
+    # passive imbue components (Compress Cooldown, Mystic Expansion,
+    # Duration Extender) carry their own imbue_target_id on the chain
+    # entry — that's what stage rows render.
+    def _harvest_imbue_targets(p):
+        if p.get("imbue_target_id"):
+            seen_item_ids.add(p["imbue_target_id"])
+        for c in (p.get("lineage_chain") or []):
+            if c.get("imbue_target_id"):
+                seen_item_ids.add(c["imbue_target_id"])
     for h in heroes_data:
         for ph in ("early", "mid", "late"):
             for p in h["recommended"]["items"]["phases"][ph]:
-                if p.get("imbue_target_id"):
-                    seen_item_ids.add(p["imbue_target_id"])
+                _harvest_imbue_targets(p)
         for slc in ("all", "high"):
             for p in h["items_by_slice"][slc]:
-                if p.get("imbue_target_id"):
-                    seen_item_ids.add(p["imbue_target_id"])
+                _harvest_imbue_targets(p)
+        for c in (h.get("archetypes", {}) or {}).get("clusters", []):
+            for p in (c.get("build") or []):
+                _harvest_imbue_targets(p)
     items_dict: dict[int, dict] = {}
     for iid in seen_item_ids:
         it = items_assets.get(iid)
@@ -1056,6 +1082,163 @@ def main() -> None:
         payload = build_patch_payload(pid)
         if payload:
             payloads[pid] = payload
+
+    # Cross-patch imbue-target fallback. A new patch (e.g. patch_129989) often
+    # has zero community-build metadata for the first few days because few
+    # players have published builds at high MMR yet. Imbue choices, however,
+    # are tied to (hero, item) pairs — they don't change patch-over-patch
+    # unless an ability gets reworked. So when a pick on a newer patch is
+    # missing imbue_target_id, fall back to the same (hero, item) target
+    # from a prior patch's data. This restores 🔮 → ability badges on
+    # patches that haven't accumulated community builds yet.
+    if len(payloads) > 1:
+        # Build a (hero_id, item_id) -> (target_id, share, source_patch) map
+        # from each patch's per-hero JSON metadata (not just the picks),
+        # since the metadata covers far more items than what the optimizer
+        # ends up choosing. Prioritize newer patches but accept any.
+        cross_imbue: dict[tuple[int, int], tuple[int, float | None, str]] = {}
+        ordered = sorted(payloads.keys(), reverse=True)
+        for pid in ordered:
+            hero_dir = ROOT / "heroes" / pid
+            if not hero_dir.exists():
+                continue
+            for hf in hero_dir.glob("*_build.json"):
+                try:
+                    hd = json.load(open(hf))
+                except Exception:
+                    continue
+                hid = hd.get("hero", {}).get("id")
+                if hid is None:
+                    continue
+                for slice_label in ("high_mmr", "all_mmr"):
+                    md = hd.get("items", {}).get(slice_label, {}).get("item_metadata", {})
+                    for iid_str, m in md.items():
+                        try:
+                            iid = int(iid_str)
+                        except (ValueError, TypeError):
+                            continue
+                        tgt = m.get("imbue_target_id")
+                        if not tgt:
+                            continue
+                        key = (hid, iid)
+                        cross_imbue.setdefault(key, (tgt,
+                                                    m.get("imbue_target_share"), pid))
+
+        # Hero-mode fallback: per-hero modal imbue target across ALL items
+        # in the hero's metadata. When a hero has no community-build target
+        # for a specific item but the hero consistently imbues most other
+        # items onto the same ability (e.g. Lash imbues 4 items onto Ground
+        # Strike), we use that ability as a reasonable default for the
+        # missing item. Targets are hero-specific so this only works
+        # *within* a hero, never across heroes.
+        from collections import Counter
+        hero_modal_target: dict[int, tuple[int, str]] = {}  # hid -> (target_id, source_pid)
+        for pid in ordered:
+            hero_dir = ROOT / "heroes" / pid
+            if not hero_dir.exists():
+                continue
+            for hf in hero_dir.glob("*_build.json"):
+                try:
+                    hd = json.load(open(hf))
+                except Exception:
+                    continue
+                hid = hd.get("hero", {}).get("id")
+                if hid is None or hid in hero_modal_target:
+                    continue  # newer patch already supplied a modal
+                target_counter: Counter = Counter()
+                for slice_label in ("high_mmr", "all_mmr"):
+                    md = hd.get("items", {}).get(slice_label, {}).get("item_metadata", {})
+                    for m in md.values():
+                        tgt = m.get("imbue_target_id")
+                        if tgt:
+                            target_counter[tgt] += 1
+                if target_counter:
+                    top, _ = target_counter.most_common(1)[0]
+                    hero_modal_target[hid] = (top, pid)
+
+        # Apply fallback: any pick missing imbue_target_id but present in the
+        # cross-patch map gets filled in. If the cross-patch map doesn't
+        # have an entry, fall back to the hero's modal target.
+        filled = 0
+        modal_filled = 0
+        for pid, payload in payloads.items():
+            for h in payload["heroes"]:
+                hid = h["id"]
+                modal = hero_modal_target.get(hid)
+                def _fill(p):
+                    nonlocal filled, modal_filled
+                    if p.get("imbue") and not p.get("imbue_target_id"):
+                        key = (hid, p.get("item_id"))
+                        hit = cross_imbue.get(key)
+                        if hit:
+                            p["imbue_target_id"] = hit[0]
+                            p["imbue_target_share"] = hit[1]
+                            if hit[2] != pid:
+                                p["imbue_target_source_patch"] = hit[2]
+                            filled += 1
+                        elif modal:
+                            p["imbue_target_id"] = modal[0]
+                            p["imbue_target_inferred"] = True  # weakest signal
+                            p["imbue_target_source_patch"] = modal[1]
+                            modal_filled += 1
+                    for c in (p.get("lineage_chain") or []):
+                        if c.get("imbue") and not c.get("imbue_target_id"):
+                            key = (hid, c.get("item_id"))
+                            hit = cross_imbue.get(key)
+                            if hit:
+                                c["imbue_target_id"] = hit[0]
+                                c["imbue_target_share"] = hit[1]
+                                if hit[2] != pid:
+                                    c["imbue_target_source_patch"] = hit[2]
+                                filled += 1
+                            elif modal:
+                                c["imbue_target_id"] = modal[0]
+                                c["imbue_target_inferred"] = True
+                                c["imbue_target_source_patch"] = modal[1]
+                                modal_filled += 1
+                for ph in ("early", "mid", "late"):
+                    for p in h["recommended"]["items"]["phases"][ph]:
+                        _fill(p)
+                for slc in ("all", "high"):
+                    for p in h["items_by_slice"][slc]:
+                        _fill(p)
+                for c in (h.get("archetypes", {}) or {}).get("clusters", []):
+                    for p in (c.get("build") or []):
+                        _fill(p)
+        # Re-harvest items_dict ids since we just added new imbue_target_ids.
+        # The patch's items_dict was built before fallback ran, so any newly
+        # filled target won't resolve to a name. Rebuild items_dict per patch.
+        for pid, payload in payloads.items():
+            seen: set[int] = set(int(k) for k in payload["items_dict"].keys())
+            for h in payload["heroes"]:
+                def _harvest_ids(p):
+                    if p.get("imbue_target_id"):
+                        seen.add(p["imbue_target_id"])
+                    for c in (p.get("lineage_chain") or []):
+                        if c.get("imbue_target_id"):
+                            seen.add(c["imbue_target_id"])
+                for ph in ("early", "mid", "late"):
+                    for p in h["recommended"]["items"]["phases"][ph]:
+                        _harvest_ids(p)
+                for slc in ("all", "high"):
+                    for p in h["items_by_slice"][slc]:
+                        _harvest_ids(p)
+                for c in (h.get("archetypes", {}) or {}).get("clusters", []):
+                    for p in (c.get("build") or []):
+                        _harvest_ids(p)
+            for iid in seen:
+                if str(iid) in payload["items_dict"] or iid in payload["items_dict"]:
+                    continue
+                it = items_assets.get(iid)
+                if it:
+                    payload["items_dict"][iid] = {
+                        "name": it.get("name", "?"),
+                        "category": it.get("item_slot_type"),
+                        "tier": it.get("item_tier"),
+                        "image": it.get("image"),
+                    }
+        if filled or modal_filled:
+            print(f"  imbue-target fallback: {filled} cross-patch + {modal_filled} hero-modal-inferred")
 
     # Default to the newest patch present (highest patch_id by sort)
     default_patch = max(payloads.keys()) if payloads else None

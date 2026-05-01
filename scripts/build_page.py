@@ -1160,16 +1160,182 @@ HTML = """<!doctype html>
   .phase-spike-summary .ok    { color: var(--good); }
   .phase-spike-summary .pend  { color: var(--text-dim); }
   .phase-spike-summary .major { color: var(--accent); font-weight: 700; }
+
+  /* ==========================================================
+     Mobile responsive layout (≤900px)
+     ----------------------------------------------------------
+     The desktop layout assumes a wide viewport: a fixed 280px
+     left rail, two scroll regions, three side-by-side phase
+     columns, and a no-scroll body. Phones can't show that, so
+     on narrow viewports we:
+       - let the document scroll naturally (drop body overflow)
+       - collapse the layout to one column with a slide-out
+         hero drawer (toggled by a hamburger button)
+       - stack 2/3-column grids vertically
+       - tighten paddings + font sizes
+       - convert hover-only annotation tooltips to tap-to-toggle
+     A mobile-nav button is appended to the header so the user
+     can re-open the hero list on mobile after picking one.
+     ========================================================== */
+  .mobile-nav-toggle {
+    display: none;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .mobile-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 90;
+  }
+  @media (max-width: 900px) {
+    body {
+      overflow: auto;
+      -webkit-text-size-adjust: 100%;
+    }
+    header {
+      padding: 10px 12px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    header h1 { font-size: 14px; }
+    header > div:last-child {
+      flex-wrap: wrap;
+      gap: 8px !important;
+      width: 100%;
+    }
+    .toggle-group button {
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+    .mobile-nav-toggle { display: inline-flex; align-items: center; }
+    .layout {
+      display: block;
+      height: auto;
+      min-height: calc(100vh - 53px);
+    }
+    /* Sidebar becomes an off-canvas drawer that slides in from
+       the left when the hamburger is tapped. We keep aside in
+       the DOM (don't display:none) so search + sort still work
+       once it's open. */
+    aside {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 84vw;
+      max-width: 320px;
+      z-index: 100;
+      transform: translateX(-100%);
+      transition: transform 0.2s ease;
+      box-shadow: 4px 0 16px rgba(0,0,0,0.5);
+    }
+    body.nav-open aside { transform: translateX(0); }
+    body.nav-open .mobile-backdrop { display: block; }
+    main {
+      padding: 14px 12px 60px;
+      max-width: 100%;
+      overflow: visible;
+    }
+    /* Hero header — portrait shrinks, stats wrap */
+    .hero-header {
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+    }
+    .hero-portrait { width: 56px; height: 56px; border-radius: 6px; }
+    .hero-title h2 { font-size: 20px; }
+    .hero-title .stats {
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      font-size: 12px;
+    }
+    /* Stack the 3 phase columns into a single vertical column.
+       Each phase keeps its own card but takes full width. */
+    .phases { grid-template-columns: 1fr; gap: 10px; }
+    .phase-col { padding: 10px 12px; }
+    .phase-col h4 { font-size: 12px; margin-bottom: 8px; }
+    .item-row { padding: 6px 0; gap: 6px; grid-template-columns: 32px 1fr auto; }
+    .item-row .icon { width: 32px; height: 32px; }
+    .item-row .icon img { width: 28px; height: 28px; }
+    .item-row .name { font-size: 12px; }
+    .item-row .meta { font-size: 10px; }
+    .item-row .cost { font-size: 11px; }
+    /* Ability rows: drop the right-most stats column on narrow
+       screens — show name + AP only, hide the per-mmr breakdown */
+    .ability-row {
+      grid-template-columns: 36px 1fr auto;
+      padding: 8px 10px;
+      gap: 8px;
+    }
+    .ability-row .icon { width: 28px; height: 28px; }
+    .ability-row .icon img { width: 26px; height: 26px; }
+    .ability-row .ap-stat:last-child { display: none; }
+    /* Stack alternate-orders + matchup rankings vertically */
+    .alt-orders { grid-template-columns: 1fr; }
+    .matchup-rankings { grid-template-columns: 1fr; gap: 10px; }
+    /* Investment-spike panel: keep it readable at narrow widths */
+    .spike-panel { padding: 10px 12px; }
+    .spike-row { padding: 22px 0 36px !important; }
+    .spike-row .lbl { font-size: 10px; }
+    .lbl-mark { font-size: 9px; }
+    .pc-cost { font-size: 9px; }
+    .pc-tag { font-size: 8px; }
+    /* Counter-pick + hero matchup: stack two-column grids */
+    .counter-results { grid-template-columns: 1fr; gap: 12px; }
+    .counter-enemies { grid-template-columns: repeat(auto-fill, minmax(46px, 1fr)); gap: 4px; }
+    .counter-enemy .lbl { font-size: 9px; }
+    .counter-panel { padding: 10px 12px; }
+    /* Annotation tooltip — on mobile, hover doesn't fire. Show
+       the tooltip when the row is tapped (toggled via a class). */
+    .item-row[data-annotation].show-tooltip .annot-tooltip { display: block; }
+    /* Order seq + chip rows wrap more aggressively */
+    .order-seq .step { font-size: 11px; padding: 3px 6px; }
+    .lineage-chain { font-size: 10px; }
+    /* Section titles — smaller margins to claw back vertical space */
+    section { margin: 18px 0; }
+    section h3 { font-size: 12px; margin: 0 0 10px; }
+    /* Matchup matrix is a wide table — let its container scroll
+       horizontally so the rest of the page doesn't get a global
+       horizontal scrollbar. */
+    .matrix-container { overflow-x: auto; -webkit-overflow-scrolling: touch; padding: 10px; }
+    .matrix { font-size: 9px; }
+    /* Hero grid in sidebar: 3 cols at 84vw works well */
+    .hero-grid { grid-template-columns: 1fr 1fr 1fr; }
+    .hero-tile .name { font-size: 10px; }
+    /* Compact code-style cooldown / imbue badges so they don't
+       blow out the meta line on narrow screens */
+    .cd-badge, .imbue-badge { font-size: 10px; padding: 1px 5px; }
+  }
+  @media (max-width: 480px) {
+    /* Phone-sized: drop max-width buttons, two-up the hero grid,
+       trim the matrix font even further. */
+    .hero-grid { grid-template-columns: 1fr 1fr; }
+    .hero-title h2 { font-size: 18px; }
+    .matrix { font-size: 8px; }
+    /* Header: title + meta on one line, controls stack below */
+    header h1 { font-size: 13px; }
+  }
 </style>
 </head>
 <body>
 <header>
-  <div>
-    <h1>DEADLOCK OPTIMAL BUILDS</h1>
-    <div class="meta" id="patch-info">loading…</div>
-    <div class="meta" style="margin-top:2px"><a href="methodology.html" style="color:var(--text-dim);text-decoration:underline" target="_blank">📖 Methodology &amp; glossary</a></div>
+  <div style="display:flex;align-items:center;gap:10px;flex:1;min-width:0">
+    <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Open hero list">☰</button>
+    <div>
+      <h1>DEADLOCK OPTIMAL BUILDS</h1>
+      <div class="meta" id="patch-info">loading…</div>
+      <div class="meta" style="margin-top:2px"><a href="methodology.html" style="color:var(--text-dim);text-decoration:underline" target="_blank">📖 Methodology &amp; glossary</a></div>
+    </div>
   </div>
-  <div style="display:flex; gap:14px; align-items:center;">
+  <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap;">
     <div class="toggle-group" id="view-toggle">
       <button data-view="detail" class="active">Detail</button>
       <button data-view="matrix">Matchup Matrix</button>
@@ -1181,6 +1347,7 @@ HTML = """<!doctype html>
     </div>
   </div>
 </header>
+<div class="mobile-backdrop" id="mobile-backdrop"></div>
 <div class="layout">
   <aside>
     <input id="hero-search" class="hero-search" type="search" placeholder="Search heroes…" autocomplete="off">
@@ -1396,6 +1563,11 @@ HTML = """<!doctype html>
     // Don't reset other heroes' archetype selections — keep state per hero
     renderHeroGrid();
     renderMain();
+    // Close the mobile drawer if it's open — picking a hero is the
+    // intent so the hero list shouldn't stay over the content.
+    document.body.classList.remove('nav-open');
+    // Scroll to top so the hero header is visible after picking
+    window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
   // Plain-text export for the active build (current hero, MMR, archetype).
@@ -1698,6 +1870,15 @@ HTML = """<!doctype html>
           category: it.category,
           upgrades_to_name: it.name,
           upgrades_to_tier: it.tier,
+          // Imbue metadata — passive imbue components (Compress Cooldown,
+          // Mystic Expansion, Duration Extender) are themselves imbuable
+          // even though their non-imbuable T3/T4 descendants are what the
+          // optimizer picks. Carry the imbue type + community-build target
+          // through so renderStageRow can show the 🔮 badge.
+          imbue: c.imbue,
+          imbue_target_id: c.imbue_target_id,
+          imbue_target_share: c.imbue_target_share,
+          imbue_target_inferred: c.imbue_target_inferred,
         });
       }
       events.push({ ...it, kind: 'final' });
@@ -1939,6 +2120,41 @@ HTML = """<!doctype html>
 
   function renderStageRow(stage) {
     const cat = stage.category;
+    // Stage rows render an imbue badge when the staged component is itself
+    // imbuable (e.g. Compress Cooldown). Mirrors the renderItemRow logic so
+    // a player sees the same 🔮 → ability info on every imbuable line.
+    let stageImbBadge = '';
+    if (stage.imbue) {
+      const IMBUE_LABEL_S = {
+        imbue_modifier_value: 'Imbue: stats',
+        imbue_active: 'Imbue: any active',
+        imbue_active_non_ult: 'Imbue: non-ult active',
+      };
+      const IMBUE_TITLE_S = {
+        imbue_modifier_value: 'Imbue this passive\\'s stats onto an ability of your choice',
+        imbue_active: 'Imbue this onto one of your active abilities (works on ultimates too)',
+        imbue_active_non_ult: 'Imbue this onto a non-ultimate active ability',
+      };
+      const lbl = IMBUE_LABEL_S[stage.imbue] || 'Imbuable';
+      let ttl = IMBUE_TITLE_S[stage.imbue] || 'Can be imbued onto an ability';
+      let target = '';
+      if (stage.imbue_target_id) {
+        const itemsDict = (activePatch.items_dict || {});
+        const info = itemsDict[stage.imbue_target_id] || itemsDict[String(stage.imbue_target_id)];
+        if (info && info.name) {
+          if (stage.imbue_target_inferred) {
+            target = ` <span style="color:var(--accent);font-weight:500;opacity:0.75">→ ${escHtml(info.name)} <span style="font-size:10px;font-weight:400">(inferred)</span></span>`;
+            ttl = ttl + ' — inferred from this hero\\'s most-common imbue target across other items';
+          } else {
+            target = ` <span style="color:var(--accent);font-weight:600">→ ${escHtml(info.name)}</span>`;
+            const sharePct = stage.imbue_target_share != null
+              ? ` (${(stage.imbue_target_share*100).toFixed(0)}% of community builds)` : '';
+            ttl = ttl + ' — most-common community target: ' + info.name + sharePct;
+          }
+        }
+      }
+      stageImbBadge = `<span class="imbue-badge" title="${escAttr(ttl)}">🔮 ${escHtml(lbl)}${target}</span>`;
+    }
     return `
       <div class="item-row is-stage" title="Pre-buy that upgrades to ${escAttr(stage.upgrades_to_name)} later in the build">
         <div class="icon"><span class="placeholder">T${stage.tier}</span></div>
@@ -1946,6 +2162,7 @@ HTML = """<!doctype html>
           <div class="name">T${stage.tier} ${escHtml(stage.name)}</div>
           <div class="meta">
             <span class="cat-pill cat-${cat}">${cat}</span>
+            ${stageImbBadge}
             buy@${stage.buy_min}min · pre-buy chip
           </div>
           <div class="upgrades-to">
@@ -2126,10 +2343,19 @@ HTML = """<!doctype html>
         const itemsDict = (activePatch.items_dict || {});
         const info = itemsDict[item.imbue_target_id] || itemsDict[String(item.imbue_target_id)];
         if (info && info.name) {
-          target = ` <span style="color:var(--accent);font-weight:600">→ ${escHtml(info.name)}</span>`;
-          const sharePct = item.imbue_target_share != null
-            ? ` (${(item.imbue_target_share*100).toFixed(0)}% of community builds)` : '';
-          ttl = ttl + ' — most-common community target: ' + info.name + sharePct;
+          // Inferred targets (no community-build evidence for THIS item;
+          // we picked the hero's most-frequent imbue target across other
+          // items) get a slightly dimmer look and a tilde prefix to flag
+          // it as a weaker signal.
+          if (item.imbue_target_inferred) {
+            target = ` <span style="color:var(--accent);font-weight:500;opacity:0.75">→ ${escHtml(info.name)} <span style="font-size:10px;font-weight:400">(inferred)</span></span>`;
+            ttl = ttl + ' — inferred from this hero\\'s most-common imbue target across other items (no community build evidence for this specific item)';
+          } else {
+            target = ` <span style="color:var(--accent);font-weight:600">→ ${escHtml(info.name)}</span>`;
+            const sharePct = item.imbue_target_share != null
+              ? ` (${(item.imbue_target_share*100).toFixed(0)}% of community builds)` : '';
+            ttl = ttl + ' — most-common community target: ' + info.name + sharePct;
+          }
         }
       }
       imbBadge = `<span class="imbue-badge" title="${escAttr(ttl)}">🔮 ${escHtml(lbl)}${target}</span>`;
@@ -2381,6 +2607,36 @@ HTML = """<!doctype html>
     sortMode = e.target.dataset.sort;
     document.querySelectorAll('#sort-buttons button').forEach(b => b.classList.toggle('active', b.dataset.sort === sortMode));
     renderHeroGrid();
+  });
+
+  // ---- Mobile nav drawer wiring ----
+  // Hamburger button toggles the slide-out hero drawer; tapping the
+  // backdrop closes it. The body class drives the CSS transform.
+  const navToggle = document.getElementById('mobile-nav-toggle');
+  const navBackdrop = document.getElementById('mobile-backdrop');
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      document.body.classList.toggle('nav-open');
+    });
+  }
+  if (navBackdrop) {
+    navBackdrop.addEventListener('click', () => {
+      document.body.classList.remove('nav-open');
+    });
+  }
+
+  // Tap-to-toggle annotation tooltips on touch devices. Hover doesn't
+  // fire on phones so we listen for taps on item rows that have an
+  // annotation, then toggle a class that mirrors the :hover style.
+  // First tap reveals the tooltip; second tap (or tapping another row)
+  // dismisses it.
+  document.addEventListener('click', e => {
+    if (!matchMedia('(max-width: 900px)').matches) return;
+    const row = e.target.closest('.item-row[data-annotation]');
+    document.querySelectorAll('.item-row.show-tooltip').forEach(r => {
+      if (r !== row) r.classList.remove('show-tooltip');
+    });
+    if (row) row.classList.toggle('show-tooltip');
   });
 
   // Initial render

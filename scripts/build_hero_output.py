@@ -429,12 +429,43 @@ def compute_item_metadata(build_stats_raw: list, build_files_dir: Path,
     stats_by_id = {b["hero_build_id"]: b for b in build_stats_raw}
     qualifying_ids = [b["hero_build_id"] for b in build_stats_raw
                       if b["matches"] >= build_match_floor]
+    # Imbue-target collection uses a LOWER floor than the rest of the
+    # metadata because imbue choice is hero-and-item specific (not
+    # skill-specific) — pulling from a wider build pool gives us a
+    # defensible target on items that only show up in 1-2 high-MMR builds
+    # (e.g. Lash's Mystic Reverb where only 2 of 4 builds chose a target
+    # and both fell below the 100-match high-MMR floor). We do this in a
+    # separate pre-pass so we don't pollute pick-rate / tag / annotation
+    # aggregation with lower-quality builds.
+    imbue_target_floor = 30
+    imbue_qualifying_ids = [b["hero_build_id"] for b in build_stats_raw
+                            if b["matches"] >= imbue_target_floor]
+
+    imbue_targets: dict[int, Counter] = defaultdict(Counter)
+    for bid in imbue_qualifying_ids:
+        f = build_files_dir / f"build_{bid}.json"
+        if not f.exists():
+            continue
+        try:
+            d = json.load(open(f))
+        except Exception:
+            continue
+        if not (isinstance(d, list) and d):
+            continue
+        b = d[0].get("hero_build")
+        if not b or "details" not in b:
+            continue
+        for cat in b["details"].get("mod_categories", []):
+            for mod in cat.get("mods", []):
+                iid = mod.get("ability_id")
+                if not iid:
+                    continue
+                tgt = mod.get("imbue_target_ability_id")
+                if tgt:
+                    imbue_targets[iid][tgt] += 1
 
     item_appearances: Counter = Counter()
     item_annotations: dict[int, list[tuple[float, int, str]]] = defaultdict(list)
-    # Community-build imbue targets: per item, count occurrences of each
-    # imbue_target_ability_id and record sample-build context.
-    imbue_targets: dict[int, Counter] = defaultdict(Counter)
     builds_processed = 0
 
     for bid in qualifying_ids:
@@ -467,11 +498,6 @@ def compute_item_metadata(build_stats_raw: list, build_files_dir: Path,
                 ann = mod.get("annotation")
                 if ann and ann.strip():
                     item_annotations[iid].append((wr, st["matches"], ann.strip()))
-                # Imbue target: count occurrences. Each build votes once per
-                # item entry, weighted by its win rate to favor proven targets.
-                tgt = mod.get("imbue_target_ability_id")
-                if tgt:
-                    imbue_targets[iid][tgt] += 1
 
     if builds_processed == 0:
         return {}
@@ -529,10 +555,18 @@ def decorate_picks(picks: list, metadata: dict) -> list:
 
 
 def attach_lineage_chain(picks: list, ancestors_of: dict,
-                         items_by_id: dict, item_stats: list) -> list:
+                         items_by_id: dict, item_stats: list,
+                         metadata: dict | None = None) -> list:
     """Decorate each pick with its lineage_chain — the lower-tier ancestors
     a player should pre-buy in the early/mid game. The chain is sorted by
     tier ascending so the earliest pre-purchase is first.
+
+    Each chain entry also carries imbue metadata (type + community-build
+    target) so the page can render imbue badges on stage rows. This
+    matters when the imbuable component is a passive (Compress Cooldown,
+    Mystic Expansion, Duration Extender) but the optimizer picks its
+    non-imbuable T3/T4 descendant — without this, the only imbue affordance
+    in the build wouldn't be visible on the chip that represents it.
     """
     stats_by_id = {s["item_id"]: s for s in item_stats}
     for p in picks:
@@ -543,6 +577,7 @@ def attach_lineage_chain(picks: list, ancestors_of: dict,
             if not it:
                 continue
             anc_stat = stats_by_id.get(anc_id)
+            anc_meta = (metadata or {}).get(anc_id, {})
             chain.append({
                 "item_id": anc_id,
                 "name": it.get("name"),
@@ -551,6 +586,9 @@ def attach_lineage_chain(picks: list, ancestors_of: dict,
                 "matches": anc_stat["matches"] if anc_stat else None,
                 "avg_buy_time_min": (round(anc_stat["avg_buy_time_s"] / 60, 1)
                                      if anc_stat else None),
+                "imbue": it.get("imbue"),
+                "imbue_target_id": anc_meta.get("imbue_target_id"),
+                "imbue_target_share": anc_meta.get("imbue_target_share"),
             })
         chain.sort(key=lambda c: (c["tier"] or 0, c["cost"] or 0))
         if chain:
@@ -666,10 +704,12 @@ def build_hero_output(
         m1 = decorate_picks(m1, metadata)
         m2 = decorate_picks(m2, metadata)
         m3 = decorate_picks(m3, metadata)
-        # Lineage chain: lower-tier ancestors a player should pre-buy
-        m1 = attach_lineage_chain(m1, ancestors_of, items_by_id, item_stats)
-        m2 = attach_lineage_chain(m2, ancestors_of, items_by_id, item_stats)
-        m3 = attach_lineage_chain(m3, ancestors_of, items_by_id, item_stats)
+        # Lineage chain: lower-tier ancestors a player should pre-buy.
+        # Pass metadata so chain entries carry imbue type + target for
+        # passive imbue components.
+        m1 = attach_lineage_chain(m1, ancestors_of, items_by_id, item_stats, metadata)
+        m2 = attach_lineage_chain(m2, ancestors_of, items_by_id, item_stats, metadata)
+        m3 = attach_lineage_chain(m3, ancestors_of, items_by_id, item_stats, metadata)
 
         item_methods[slice_label] = {
             "candidate_count": len(candidates),

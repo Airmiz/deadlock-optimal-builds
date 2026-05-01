@@ -251,6 +251,32 @@
     margin-top: 10px;
     font-style: italic;
   }
+
+  /* Mobile responsive — methodology is mostly prose, so we just need
+     to tighten paddings, prevent tables/equations from blowing the
+     viewport, and keep line lengths comfortable. */
+  @media (max-width: 700px) {
+    .container { padding: 18px 14px 60px; }
+    h1 { font-size: 24px !important; }
+    h2 { font-size: 18px !important; }
+    h3 { font-size: 15px !important; }
+    body { font-size: 14px; }
+    .toc {
+      padding: 12px 14px;
+    }
+    figure { padding: 12px 12px 10px; margin: 16px 0; overflow-x: auto; }
+    figure svg { max-width: 100%; height: auto; }
+    pre, code { font-size: 11px; word-break: break-word; white-space: pre-wrap; }
+    /* KaTeX equations: allow horizontal scroll on overflow */
+    .katex-display {
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 4px 0;
+      -webkit-overflow-scrolling: touch;
+    }
+    .katex { font-size: 0.95em !important; }
+    table { font-size: 12px; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  }
 </style>
 </head>
 <body>
