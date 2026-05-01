@@ -42,6 +42,43 @@ def item_info(iid: int) -> dict:
 
 
 # ============================================================
+# Per-patch item overrides
+# ----------------------------------------------------------------------------
+# When a Deadlock patch ships, the live asset CDN at assets.deadlock-api.com
+# can take several days to catch up — meanwhile, items like Shadow Weave can
+# show with their PRE-patch tier/cost/cooldown values in our cache. To keep
+# the page accurate as soon as the patch drops, we maintain a small
+# per-patch override map keyed by item_id. Each entry is sourced from the
+# patch notes; remove it once the asset CDN refreshes and a fresh
+# batch_fetch picks up the new values.
+# ============================================================
+ITEM_OVERRIDES_BY_PATCH: dict[str, dict[int, dict]] = {
+    "patch_129989": {
+        # 1798666702 Shadow Weave: T4 → T3, cooldown 32s → 45s
+        1798666702: {"tier": 3, "cost": 3200, "cooldown_s": 45},
+        # 3074274290 Trophy Collector: T3 → T2
+        3074274290: {"tier": 2, "cost": 1600},
+        # 1644605047 Reactive Barrier: cooldown 40s → 55s
+        1644605047: {"cooldown_s": 55},
+        # 2108215830 Heroic Aura: cooldown 25s → 22s
+        2108215830: {"cooldown_s": 22},
+        # 1414025773 Counterspell: cooldown 20s → 23s
+        1414025773: {"cooldown_s": 23},
+        # 3647584222 Split Shot: cooldown 24s → 27s
+        3647584222: {"cooldown_s": 27},
+    },
+}
+
+
+def apply_item_override(pick: dict, patch_id: str) -> dict:
+    """Apply patch-specific item attribute overrides on top of a pick. Mutates a copy."""
+    overrides = ITEM_OVERRIDES_BY_PATCH.get(patch_id, {}).get(pick.get("item_id"))
+    if not overrides:
+        return pick
+    return {**pick, **overrides}
+
+
+# ============================================================
 # Cross-hero affinity: which items does THIS hero use more often than the
 # average hero? Affinity = hero_pick_rate / cross_hero_avg_pick_rate
 # ============================================================
@@ -404,14 +441,16 @@ def hero_image(hid: int) -> str | None:
     return imgs.get("icon_hero_card_webp") or imgs.get("icon_hero_card") or imgs.get("icon_image_small_webp")
 
 
-def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None = None) -> dict:
+def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None = None,
+                 patch_id: str = "") -> dict:
     """Take a full hero output and pull just what the page needs."""
     hid = d["hero"]["id"]
     name = d["hero"]["name"]
     h = heroes_assets.get(hid, {})
 
     def with_affinity(item: dict) -> dict:
-        """Attach affinity to one item entry (mutates a copy)."""
+        """Attach affinity AND apply any patch-specific item overrides."""
+        item = apply_item_override(item, patch_id)
         if not baselines:
             return item
         score = affinity_for(item["item_id"], hid, baselines)
@@ -566,7 +605,8 @@ def build_patch_payload(patch_id: str) -> dict | None:
     n_signature = 0
     for d in raw_outputs:
         hid = d["hero"]["id"]
-        ch = compact_hero(d, baselines=baselines, archetypes=archetypes_by_hero.get(hid))
+        ch = compact_hero(d, baselines=baselines, archetypes=archetypes_by_hero.get(hid),
+                          patch_id=patch_id)
         for ph in ("early", "mid", "late"):
             for p in ch["recommended"]["items"]["phases"][ph]:
                 if p.get("signature"):
