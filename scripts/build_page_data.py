@@ -661,6 +661,8 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
                         "is_active": p.get("is_active", False),
                         "cooldown_s": p.get("cooldown_s"),
                         "imbue": p.get("imbue"),
+                        "imbue_target_id": p.get("imbue_target_id"),
+                        "imbue_target_share": p.get("imbue_target_share"),
                     }) for p in d["recommended"]["items"]["phases"][ph]]
                     for ph in ("early", "mid", "late")
                 },
@@ -698,6 +700,8 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
                 "is_active": p.get("is_active", False),
                 "cooldown_s": p.get("cooldown_s"),
                 "imbue": p.get("imbue"),
+                "imbue_target_id": p.get("imbue_target_id"),
+                "imbue_target_share": p.get("imbue_target_share"),
             }) for p in d["items"][src]["synergy_ilp"]["picks"]]
             for slice_label, src in (("all", "all_mmr"), ("high", "high_mmr"))
         },
@@ -907,13 +911,26 @@ def _build_patch_payload_inner(patch_id, raw_outputs, hero_out_dir, patch_cache_
     n_pairs = sum(len(v) for v in counters.values())
     print(f"  {patch_id}: {n_pairs} (hero,enemy) pairs with usable counter data")
 
-    # Build a shared items dict for counter-row lookups. Only includes items
-    # that actually appear in counter signals to keep the dict tight.
+    # Build a shared items dict for client-side lookups (counter rows and
+    # imbue-target ability resolution). Only includes ids actually
+    # referenced anywhere on the page to keep the dict tight.
     seen_item_ids: set[int] = set()
     for hd in counters.values():
         for lst in hd.values():
             for c in lst:
                 seen_item_ids.add(c["item_id"])
+    # Also include any imbue_target_id surfaced by picks — these are
+    # ability ids (not upgrade-item ids) but live in the same items.json
+    # under the signature1..4 slots, so the asset dict resolves them.
+    for h in heroes_data:
+        for ph in ("early", "mid", "late"):
+            for p in h["recommended"]["items"]["phases"][ph]:
+                if p.get("imbue_target_id"):
+                    seen_item_ids.add(p["imbue_target_id"])
+        for slc in ("all", "high"):
+            for p in h["items_by_slice"][slc]:
+                if p.get("imbue_target_id"):
+                    seen_item_ids.add(p["imbue_target_id"])
     items_dict: dict[int, dict] = {}
     for iid in seen_item_ids:
         it = items_assets.get(iid)

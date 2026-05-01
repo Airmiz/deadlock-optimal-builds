@@ -2118,8 +2118,21 @@ HTML = """<!doctype html>
     let imbBadge = '';
     if (item.imbue) {
       const lbl = IMBUE_LABEL[item.imbue] || 'Imbuable';
-      const ttl = IMBUE_TITLE[item.imbue] || 'Can be imbued onto an ability';
-      imbBadge = `<span class="imbue-badge" title="${escAttr(ttl)}">🔮 ${escHtml(lbl)}</span>`;
+      let ttl = IMBUE_TITLE[item.imbue] || 'Can be imbued onto an ability';
+      // Resolve community-build imbue target to an ability name via the
+      // shared items_dict (it carries hero abilities under their item_ids).
+      let target = '';
+      if (item.imbue_target_id) {
+        const itemsDict = (activePatch.items_dict || {});
+        const info = itemsDict[item.imbue_target_id] || itemsDict[String(item.imbue_target_id)];
+        if (info && info.name) {
+          target = ` <span style="color:var(--accent);font-weight:600">→ ${escHtml(info.name)}</span>`;
+          const sharePct = item.imbue_target_share != null
+            ? ` (${(item.imbue_target_share*100).toFixed(0)}% of community builds)` : '';
+          ttl = ttl + ' — most-common community target: ' + info.name + sharePct;
+        }
+      }
+      imbBadge = `<span class="imbue-badge" title="${escAttr(ttl)}">🔮 ${escHtml(lbl)}${target}</span>`;
     }
 
     return `

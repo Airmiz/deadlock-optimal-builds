@@ -432,6 +432,9 @@ def compute_item_metadata(build_stats_raw: list, build_files_dir: Path,
 
     item_appearances: Counter = Counter()
     item_annotations: dict[int, list[tuple[float, int, str]]] = defaultdict(list)
+    # Community-build imbue targets: per item, count occurrences of each
+    # imbue_target_ability_id and record sample-build context.
+    imbue_targets: dict[int, Counter] = defaultdict(Counter)
     builds_processed = 0
 
     for bid in qualifying_ids:
@@ -464,6 +467,11 @@ def compute_item_metadata(build_stats_raw: list, build_files_dir: Path,
                 ann = mod.get("annotation")
                 if ann and ann.strip():
                     item_annotations[iid].append((wr, st["matches"], ann.strip()))
+                # Imbue target: count occurrences. Each build votes once per
+                # item entry, weighted by its win rate to favor proven targets.
+                tgt = mod.get("imbue_target_ability_id")
+                if tgt:
+                    imbue_targets[iid][tgt] += 1
 
     if builds_processed == 0:
         return {}
@@ -480,12 +488,24 @@ def compute_item_metadata(build_stats_raw: list, build_files_dir: Path,
         annots = sorted(item_annotations.get(iid, []),
                         key=lambda a: (-a[0], -a[1], -len(a[2])))
         annotation = annots[0][2] if annots else ""
+        # Top imbue target across this hero's builds (if any). We surface
+        # the most-mentioned target id; the page resolves it to an ability
+        # name via the items dict at render time.
+        tgt_counter = imbue_targets.get(iid)
+        top_imbue_target_id = None
+        top_imbue_target_share = None
+        if tgt_counter:
+            (top_id, top_count), = tgt_counter.most_common(1)
+            top_imbue_target_id = top_id
+            top_imbue_target_share = round(top_count / sum(tgt_counter.values()), 3)
         out[iid] = {
             "tag": tag,
             "pick_rate": round(rate, 3),
             "annotation": annotation,
             "builds_appearing_in": count,
             "builds_total": builds_processed,
+            "imbue_target_id": top_imbue_target_id,
+            "imbue_target_share": top_imbue_target_share,
         }
     return out
 
@@ -499,6 +519,9 @@ def decorate_picks(picks: list, metadata: dict) -> list:
             p["pick_rate"] = meta["pick_rate"]
             if meta["annotation"]:
                 p["annotation"] = meta["annotation"]
+            if meta.get("imbue_target_id"):
+                p["imbue_target_id"] = meta["imbue_target_id"]
+                p["imbue_target_share"] = meta.get("imbue_target_share")
         else:
             p["tag"] = "stat"
             p["pick_rate"] = 0.0
@@ -573,6 +596,9 @@ def select_recommended(item_methods: dict, ability: dict) -> dict:
             entry["annotation"] = p["annotation"]
         if p.get("lineage_chain"):
             entry["lineage_chain"] = p["lineage_chain"]
+        if p.get("imbue_target_id"):
+            entry["imbue_target_id"] = p["imbue_target_id"]
+            entry["imbue_target_share"] = p.get("imbue_target_share")
         by_phase[p["phase"]].append(entry)
     for ph in by_phase:
         by_phase[ph].sort(key=lambda x: x["avg_buy_time_min"])
