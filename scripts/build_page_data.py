@@ -223,10 +223,13 @@ def _aggregate_cluster_build(in_builds: list[dict], hero_item_stats: list[dict],
             buy_min = round(s["avg_buy_time_s"] / 60, 1)
             wr = s["wins"] / s["matches"]
             phase = _phase_for(s["avg_buy_time_s"])
+            sell_s = s.get("avg_sell_time_s") or 0
+            sell_min = round(sell_s / 60, 1) if sell_s else None
         else:
             buy_min = 30.0  # fallback when item isn't in this hero's stats slice
             wr = 0.0
             phase = "late"
+            sell_min = None
         meta = (metadata_by_item or {}).get(iid, {})
         candidates.append({
             "item_id": iid,
@@ -235,6 +238,7 @@ def _aggregate_cluster_build(in_builds: list[dict], hero_item_stats: list[dict],
             "tier": it.get("item_tier"),
             "cost": it.get("cost", 0),
             "buy_min": buy_min,
+            "sell_min": sell_min,
             "wr": round(wr, 4),
             "phase": phase,
             "image": it.get("image"),
@@ -435,6 +439,7 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
                         "tier": p["tier"],
                         "cost": p["cost"],
                         "buy_min": p["avg_buy_time_min"],
+                        "sell_min": p.get("avg_sell_time_min"),
                         "wr": p["win_rate"],
                         "image": items_assets.get(p["item_id"], {}).get("image"),
                         "item_id": p["item_id"],
@@ -467,6 +472,8 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
                 "slot": p["slot"], "name": p["name"], "category": p["category"],
                 "tier": p["tier"], "cost": p["cost"],
                 "buy_min": round(p["avg_buy_time_s"] / 60, 1),
+                "sell_min": (round(p["avg_sell_time_s"] / 60, 1)
+                             if p.get("avg_sell_time_s") else None),
                 "wr": p["win_rate"], "phase": p["phase"],
                 "image": items_assets.get(p["item_id"], {}).get("image"),
                 "item_id": p["item_id"],

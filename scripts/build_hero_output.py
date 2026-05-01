@@ -154,6 +154,7 @@ def build_candidates(item_stats: list, items_by_id: dict, baseline_wr: float,
             continue
         wr = s["wins"] / s["matches"]
         lb = wilson_lb(s["wins"], s["matches"])
+        sell_s = s.get("avg_sell_time_s") or 0
         raw[s["item_id"]] = {
             "item_id": s["item_id"],
             "name": it["name"],
@@ -168,6 +169,7 @@ def build_candidates(item_stats: list, items_by_id: dict, baseline_wr: float,
             "wr_delta_pp": round((wr - baseline_wr) * 100, 2),
             "avg_buy_time_s": round(s["avg_buy_time_s"], 1),
             "phase": phase_for(s["avg_buy_time_s"]),
+            "avg_sell_time_s": round(sell_s, 1) if sell_s else None,
         }
 
     if not lineage_canon:
@@ -537,10 +539,12 @@ def select_recommended(item_methods: dict, ability: dict) -> dict:
     picks = item_methods["high_mmr"]["synergy_ilp"]["picks"]
     by_phase: dict[str, list] = defaultdict(list)
     for p in picks:
+        sell_s = p.get("avg_sell_time_s")
         entry = {
             "slot": p["slot"], "category": p["category"], "tier": p["tier"], "cost": p["cost"],
             "name": p["name"], "item_id": p["item_id"],
             "avg_buy_time_min": round(p["avg_buy_time_s"] / 60, 1),
+            "avg_sell_time_min": round(sell_s / 60, 1) if sell_s else None,
             "win_rate": p["win_rate"],
             "tag": p.get("tag", "stat"),
             "pick_rate": p.get("pick_rate", 0.0),

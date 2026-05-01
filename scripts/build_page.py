@@ -447,6 +447,32 @@ HTML = """<!doctype html>
   .lineage-chain .lc-arrow { color: var(--accent); margin: 0 3px; opacity: 0.7; }
   .lineage-chain .lc-when { color: var(--text-dim); margin-left: 3px; font-size: 9.5px; }
 
+  /* Sell row: an early/mid item being sold to free a slot */
+  .item-row.is-sell {
+    background: linear-gradient(90deg, rgba(211,98,98,0.06) 0%, transparent 50%);
+    border-left: 2px dashed rgba(211,98,98,0.55);
+    padding: 5px 0 5px 6px;
+    margin-left: -8px;
+    opacity: 0.85;
+  }
+  .item-row.is-sell .icon { width: 26px; height: 26px; }
+  .item-row.is-sell .name { font-size: 12px; color: var(--text-dim); }
+  .item-row.is-sell .name .sell-tag {
+    color: var(--bad);
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    margin-right: 6px;
+    border: 1px solid rgba(211,98,98,0.5);
+    border-radius: 3px;
+    padding: 1px 5px;
+    background: rgba(211,98,98,0.08);
+  }
+  .item-row.is-sell .meta { font-size: 11px; color: var(--text-dim); }
+  .item-row.is-sell .cost { color: var(--good); font-size: 11px; font-weight: 600; }
+  .item-row.is-sell .cost::before { content: '+ '; }
+
   /* Stage row: a chain ancestor placed in its actual buy-phase column */
   .item-row.is-stage {
     background: linear-gradient(90deg, rgba(240,169,59,0.04) 0%, transparent 50%);
@@ -917,6 +943,10 @@ HTML = """<!doctype html>
     // into stage events (each ancestor in its actual buy-phase) plus the
     // final-tier event in the late game. This way an early-game T1 component
     // that upgrades to a T3 in late game shows up under EARLY.
+    // We also emit "sell" events for items that the population typically
+    // sells mid-game to free a slot — anything bought early/mid with a clear
+    // sell time and a meaningful hold duration. End-of-game sells (very late
+    // sell time, very short hold) are ignored since those are just match-end.
     const phaseFromBuyMin = (m) => m < 12.5 ? 'early' : m < 25 ? 'mid' : 'late';
     const events = [];
     for (const it of items) {
@@ -934,6 +964,30 @@ HTML = """<!doctype html>
         });
       }
       events.push({ ...it, kind: 'final' });
+
+      // Sell event for this final pick? Conditions:
+      //   - has a sell time
+      //   - hold duration >= 6 min (real strategic sell, not match-end noise)
+      //   - bought before late phase (late items don't get sold to free slots)
+      //   - sell happens after the buy (sanity)
+      if (it.sell_min != null && it.buy_min != null
+          && it.sell_min > it.buy_min + 6
+          && it.phase !== 'late'
+          && it.sell_min < 38) {
+        // Refund: sell yields ~50% of item cost (Deadlock convention; the
+        // exact rate isn't critical, the user just wants to see the EVENT)
+        const refund = Math.round((it.cost || 0) * 0.5);
+        events.push({
+          kind: 'sell',
+          name: it.name, tier: it.tier, cost: refund, item_id: it.item_id,
+          buy_min: it.sell_min,  // for sort
+          sell_min: it.sell_min,
+          original_cost: it.cost,
+          phase: phaseFromBuyMin(it.sell_min),
+          category: it.category,
+          image: it.image,
+        });
+      }
     }
 
     // Group events by phase, sort within phase by buy time
@@ -1106,7 +1160,29 @@ HTML = """<!doctype html>
   const escHtml = s => (s||'').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
   function renderEvent(e) {
-    return e.kind === 'stage' ? renderStageRow(e) : renderItemRow(e);
+    if (e.kind === 'stage') return renderStageRow(e);
+    if (e.kind === 'sell')  return renderSellRow(e);
+    return renderItemRow(e);
+  }
+
+  function renderSellRow(sell) {
+    const cat = sell.category;
+    const imgPart = sell.image
+      ? `<img src="${sell.image}" style="filter:grayscale(0.6);opacity:0.7" onerror="this.style.display='none';this.parentNode.innerHTML='<span class=placeholder>T${sell.tier}</span>'">`
+      : `<span class="placeholder">T${sell.tier}</span>`;
+    return `
+      <div class="item-row is-sell" title="Population avg: this slot gets sold around minute ${sell.sell_min}, refunding roughly half the cost — frees a slot for late-game purchases">
+        <div class="icon">${imgPart}</div>
+        <div>
+          <div class="name"><span class="sell-tag">↓ Sell</span>${escHtml(sell.name)}</div>
+          <div class="meta">
+            <span class="cat-pill cat-${cat}">${cat}</span>
+            sell@${sell.sell_min}min · originally bought for ${fmtCost(sell.original_cost || 0)}
+          </div>
+        </div>
+        <div class="cost">${fmtCost(sell.cost)}</div>
+      </div>
+    `;
   }
 
   function renderStageRow(stage) {
