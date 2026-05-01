@@ -1214,7 +1214,7 @@ HTML = """<!doctype html>
     }
     lines.push('');
     lines.push(`Source: ${DATA.data_source} · spec ${DATA.spec_version}`);
-    return lines.join('\n');
+    return lines.join(String.fromCharCode(10));
   }
 
   function showToast(msg) {
