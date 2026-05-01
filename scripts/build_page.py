@@ -15,7 +15,8 @@ HTML = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Deadlock Optimal Builds — patch_125825</title>
+<title>Deadlock Optimal Builds</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <style>
   :root {
     --bg: #0e1217;
