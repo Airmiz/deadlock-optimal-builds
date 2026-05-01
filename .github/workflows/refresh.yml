@@ -53,6 +53,22 @@ jobs:
       - name: Install dependencies
         run: pip install pulp
 
+      # The pipeline is idempotent — every fetch script skips files already
+      # on disk. Persisting cache/ between scheduled runs takes the nightly
+      # job from ~20 minutes (cold cache, fetching 1,400+ matchup endpoints)
+      # down to ~2 minutes (warm cache, only re-fetches what the upstream
+      # API has changed). Cache size is well under GitHub's 10 GB/repo cap.
+      - name: Restore cache
+        id: cache-restore
+        uses: actions/cache@v4
+        with:
+          path: cache
+          # Key is bumped manually if we change cache layout / data shape.
+          # restore-keys lets a partial-match still warm-load the cache.
+          key: deadlock-cache-v1-${{ github.run_id }}
+          restore-keys: |
+            deadlock-cache-v1-
+
       - name: Refresh patch_125825 (older patch — stable counters)
         env:
           PATCH_ID: patch_125825
@@ -89,6 +105,18 @@ jobs:
             git commit -m "chore: nightly refresh $(date -u +%Y-%m-%d)"
             git push
           fi
+
+      # Save cache/ so the next scheduled run starts warm. actions/cache@v4
+      # only saves on a key MISS (i.e. cache wasn't fully restored), but
+      # we always want the latest contents persisted, so we use the
+      # always() condition — and bumping the key with run_id ensures every
+      # successful run produces a fresh cache snapshot.
+      - name: Save cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: cache
+          key: deadlock-cache-v1-${{ github.run_id }}
 
       - name: Stage Pages content
         run: |
