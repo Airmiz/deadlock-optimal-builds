@@ -447,6 +447,29 @@ HTML = """<!doctype html>
   .lineage-chain .lc-arrow { color: var(--accent); margin: 0 3px; opacity: 0.7; }
   .lineage-chain .lc-when { color: var(--text-dim); margin-left: 3px; font-size: 9.5px; }
 
+  /* Cooldown + imbue badges on item meta line */
+  .cd-badge, .imbue-badge {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 600;
+    margin-right: 4px;
+    border: 1px solid;
+    vertical-align: middle;
+  }
+  .cd-badge {
+    color: #79c4ff;
+    border-color: rgba(121,196,255,0.4);
+    background: rgba(121,196,255,0.08);
+  }
+  .imbue-badge {
+    color: #c984ff;
+    border-color: rgba(201,132,255,0.5);
+    background: rgba(201,132,255,0.08);
+    cursor: help;
+  }
+
   /* Sell row: an early/mid item being sold to free a slot */
   .item-row.is-sell {
     background: linear-gradient(90deg, rgba(211,98,98,0.06) 0%, transparent 50%);
@@ -1301,6 +1324,30 @@ HTML = """<!doctype html>
            ).join('<span class="lc-arrow">→</span>')}
          </div>`
       : '';
+    // Cooldown badge for active items, imbue badge for items that imbue an ability
+    const IMBUE_LABEL = {
+      imbue_modifier_value: 'Imbue: stats',
+      imbue_active: 'Imbue: any active',
+      imbue_active_non_ult: 'Imbue: non-ult active',
+    };
+    const IMBUE_TITLE = {
+      imbue_modifier_value: 'Imbue this passive\\'s stats onto an ability of your choice',
+      imbue_active: 'Imbue this onto one of your active abilities (works on ultimates too)',
+      imbue_active_non_ult: 'Imbue this onto a non-ultimate active ability',
+    };
+    let cdBadge = '';
+    if (item.is_active && item.cooldown_s != null && item.cooldown_s > 0) {
+      const s = item.cooldown_s;
+      const txt = s >= 60 ? `${Math.round(s/60*10)/10}m` : `${Math.round(s)}s`;
+      cdBadge = `<span class="cd-badge" title="Active item — press to use, ${s}s cooldown">⚡ CD ${txt}</span>`;
+    }
+    let imbBadge = '';
+    if (item.imbue) {
+      const lbl = IMBUE_LABEL[item.imbue] || 'Imbuable';
+      const ttl = IMBUE_TITLE[item.imbue] || 'Can be imbued onto an ability';
+      imbBadge = `<span class="imbue-badge" title="${escAttr(ttl)}">🔮 ${escHtml(lbl)}</span>`;
+    }
+
     return `
       <div class="${rowClasses.join(' ')}"${dataAnn}>
         <div class="icon">
@@ -1310,6 +1357,7 @@ HTML = """<!doctype html>
           <div class="name">${sigStar}${item.name}<span class="tag-pill tag-${tag}" title="${tagTitle}">${tagLabel}</span>${pickBar}</div>
           <div class="meta">
             <span class="cat-pill cat-${cat}">${cat}</span>
+            ${cdBadge}${imbBadge}
             ${isFlex ? '<span class="slot-flex">FLEX SLOT · </span>' : ''}
             T${item.tier} · buy@${item.buy_min}min · WR ${fmtPct(item.wr)}
           </div>

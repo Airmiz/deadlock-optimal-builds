@@ -54,6 +54,20 @@ def is_upgrade_item(it: dict) -> bool:
     return it.get("type") == "upgrade" and it.get("item_slot_type") in ("weapon", "vitality", "spirit")
 
 
+def extract_cooldown_s(item: dict) -> float | None:
+    """Pull AbilityCooldown (in seconds) from an item's properties block."""
+    props = item.get("properties") or {}
+    raw = props.get("AbilityCooldown")
+    if raw is None:
+        return None
+    val = raw.get("value") if isinstance(raw, dict) else raw
+    try:
+        cd = float(val)
+        return cd if cd > 0 else None
+    except (TypeError, ValueError):
+        return None
+
+
 # ============================================================
 # Upgrade chains: Deadlock items can have a `component_items` field
 # referencing a lower-tier item (by class_name). Buying the higher tier
@@ -170,6 +184,9 @@ def build_candidates(item_stats: list, items_by_id: dict, baseline_wr: float,
             "avg_buy_time_s": round(s["avg_buy_time_s"], 1),
             "phase": phase_for(s["avg_buy_time_s"]),
             "avg_sell_time_s": round(sell_s, 1) if sell_s else None,
+            "is_active": bool(it.get("is_active_item")),
+            "cooldown_s": extract_cooldown_s(it),
+            "imbue": it.get("imbue"),  # imbue_modifier_value, imbue_active, imbue_active_non_ult, or None
         }
 
     if not lineage_canon:
@@ -548,6 +565,9 @@ def select_recommended(item_methods: dict, ability: dict) -> dict:
             "win_rate": p["win_rate"],
             "tag": p.get("tag", "stat"),
             "pick_rate": p.get("pick_rate", 0.0),
+            "is_active": p.get("is_active", False),
+            "cooldown_s": p.get("cooldown_s"),
+            "imbue": p.get("imbue"),
         }
         if p.get("annotation"):
             entry["annotation"] = p["annotation"]

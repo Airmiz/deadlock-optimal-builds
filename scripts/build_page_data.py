@@ -231,6 +231,18 @@ def _aggregate_cluster_build(in_builds: list[dict], hero_item_stats: list[dict],
             phase = "late"
             sell_min = None
         meta = (metadata_by_item or {}).get(iid, {})
+        # Cooldown lookup straight from the item asset
+        cd_s = None
+        props = it.get("properties") or {}
+        raw_cd = props.get("AbilityCooldown")
+        if raw_cd is not None:
+            v = raw_cd.get("value") if isinstance(raw_cd, dict) else raw_cd
+            try:
+                f = float(v)
+                if f > 0:
+                    cd_s = f
+            except (TypeError, ValueError):
+                pass
         candidates.append({
             "item_id": iid,
             "name": it.get("name", "?"),
@@ -246,6 +258,9 @@ def _aggregate_cluster_build(in_builds: list[dict], hero_item_stats: list[dict],
             "tag": meta.get("tag", "stat"),
             "pick_rate": meta.get("pick_rate", 0.0),
             "annotation": meta.get("annotation", ""),
+            "is_active": bool(it.get("is_active_item")),
+            "cooldown_s": cd_s,
+            "imbue": it.get("imbue"),
         })
 
     # Lineage dedupe — keep highest cluster pick rate per lineage
@@ -447,6 +462,9 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
                         "pick_rate": p.get("pick_rate", 0.0),
                         "annotation": p.get("annotation", ""),
                         "lineage_chain": p.get("lineage_chain", []),
+                        "is_active": p.get("is_active", False),
+                        "cooldown_s": p.get("cooldown_s"),
+                        "imbue": p.get("imbue"),
                     }) for p in d["recommended"]["items"]["phases"][ph]]
                     for ph in ("early", "mid", "late")
                 },
@@ -481,6 +499,9 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
                 "pick_rate": p.get("pick_rate", 0.0),
                 "annotation": p.get("annotation", ""),
                 "lineage_chain": p.get("lineage_chain", []),
+                "is_active": p.get("is_active", False),
+                "cooldown_s": p.get("cooldown_s"),
+                "imbue": p.get("imbue"),
             }) for p in d["items"][src]["synergy_ilp"]["picks"]]
             for slice_label, src in (("all", "all_mmr"), ("high", "high_mmr"))
         },
