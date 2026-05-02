@@ -1,7 +1,14 @@
 """
 Generate per-hero combined output JSON for every playable hero.
 Reuses build_hero_output.build_hero_output() with paths pointing at the cached batch data.
-Idempotent — skips heroes whose output already exists unless FORCE=1 in env.
+
+Re-runs a hero's build whenever ANY of the underlying analytics input files
+(item-stats, build-stats, ability orders, pair synergies, hero-stats) is
+newer than the existing output. This way the scheduled refresh job naturally
+regenerates only the heroes whose data actually changed, instead of
+unconditionally skipping everything that already exists on disk.
+
+Override: FORCE=1 to regenerate every hero regardless of timestamps.
 """
 import os
 import json
@@ -22,7 +29,8 @@ from build_hero_output import build_hero_output  # noqa: E402
 
 FORCE = os.environ.get("FORCE") == "1"
 ONLY_HEROES = os.environ.get("ONLY", "")  # comma-sep ids, empty=all
-SKIP_EXISTING = not FORCE
+# We no longer use a blanket SKIP_EXISTING. Decision is per-hero based on
+# whether the inputs are newer than the output. FORCE bypasses the check.
 
 heroes = json.load(open(CACHE / "playable_heroes.json"))
 items_by_id = {i["id"]: i for i in json.load(open(CACHE / "items.json"))}
@@ -112,11 +120,37 @@ def paths_for(hid: int) -> dict:
     }
 
 
+def _output_is_fresh(out_path: Path, input_paths: list[Path]) -> bool:
+    """True iff out_path exists, is non-trivial, and is newer than every
+    existing input file. Missing inputs are ignored (the build function
+    handles missing data gracefully)."""
+    if not out_path.exists() or out_path.stat().st_size < 1000:
+        return False
+    out_mtime = out_path.stat().st_mtime
+    for p in input_paths:
+        if p.exists() and p.stat().st_mtime > out_mtime:
+            return False
+    return True
+
+
 def process_one(h):
     hid, name = h["id"], h["name"]
     out_path = HERO_OUT / f"{slug(name)}_build.json"
-    if SKIP_EXISTING and out_path.exists() and out_path.stat().st_size > 1000:
-        return (hid, name, "cached", out_path)
+    if not FORCE:
+        # Only skip if ALL the analytics inputs are older than the existing
+        # output. As soon as batch_fetch.py re-pulls a fresher itemstats /
+        # buildstats / etc. file (TTL expires every 2h), this hero will
+        # re-run automatically.
+        paths = paths_for(hid)
+        inputs = [
+            paths["hero_stats_all"], paths["hero_stats_hmmr"],
+            paths["item_stats_all"], paths["item_stats_hmmr"],
+            paths["pair_stats_all"], paths["pair_stats_hmmr"],
+            paths["build_stats_all"], paths["build_stats_hmmr"],
+            paths["abilities_all"], paths["abilities_hmmr"],
+        ]
+        if _output_is_fresh(out_path, inputs):
+            return (hid, name, "cached", out_path)
     try:
         data = build_hero_output(hid, name, paths_for(hid),
                                  items_by_id, items_by_classname, heroes_by_id)

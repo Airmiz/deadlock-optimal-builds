@@ -33,6 +33,11 @@ def collect_build_ids() -> set[int]:
 
 def fetch_build(bid: int) -> tuple[int, str]:
     dest = BUILD_FILES / f"build_{bid}.json"
+    # Individual published builds are effectively immutable — once a build
+    # author hits "publish" the contents rarely change. Cache forever (no
+    # TTL). The build's *aggregate stats* (matches/wins) live in the
+    # buildstats_*.json analytics files which DO refresh every 2h, so the
+    # build's win-rate signal stays current even if the build itself doesn't.
     if dest.exists() and dest.stat().st_size > 100:
         return bid, "cached"
     url = f"https://api.deadlock-api.com/v1/builds?build_id={bid}&limit=1&only_latest=true"

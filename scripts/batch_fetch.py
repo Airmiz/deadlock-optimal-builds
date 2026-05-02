@@ -37,18 +37,62 @@ _HEADERS = {
 }
 
 
-def fetch(url: str, dest: Path, timeout: int = 25) -> tuple[Path, str]:
-    # Even an empty `[]` (2 bytes) is a valid cached response for a brand-new
-    # patch where the API genuinely has no data yet. Cache anything ≥ 2 bytes.
+# TTL (in seconds) past which a cached file is considered stale and re-fetched.
+# Different endpoint families decay at different rates:
+#   - Asset metadata (heroes/items.json) only changes when Valve drops a patch.
+#     Re-pull weekly to catch silent CDN updates without paying every run.
+#   - Analytics endpoints (hero-stats, item-stats, build-stats, ability orders,
+#     pair synergies) are aggregated by deadlock-api with ~1 hour upstream
+#     freshness. Re-pull every 2 hours so the 3-hour cron always sees fresh
+#     numbers without slamming the API on every run.
+#   - "Always" (TTL=0) — never cache. Used when callers want a guaranteed
+#     fresh pull regardless of file age.
+#   - "Never" (TTL=None) — cache forever. Used for genuinely immutable data
+#     like an individual published build_{id}.json (handled in batch_fetch_builds.py).
+TTL_ASSETS    = 7 * 24 * 3600   # 7 days
+TTL_ANALYTICS = 2 * 3600        # 2 hours
+
+# Default TTL for fetch() when no override is given. Conservative: matches the
+# refresh cadence so the system actually pulls fresh data each cron tick.
+DEFAULT_TTL = TTL_ANALYTICS
+
+
+def fetch(url: str, dest: Path, timeout: int = 25,
+          ttl: int | None = DEFAULT_TTL) -> tuple[Path, str]:
+    """Fetch `url` to `dest`, returning ('cached'|'ok'|'error: ...').
+
+    Caching rules:
+      - Missing or empty file (<2 bytes): always fetch.
+      - File exists and ttl is None: always cached (immutable).
+      - File exists and is fresher than ttl seconds: cached.
+      - Otherwise: re-fetch. On network error, fall back to the stale cached
+        file rather than truncating it — preserves the "no diff means no
+        commit" property of the refresh workflow.
+
+    Empty `[]` responses (2 bytes) are valid cached results for brand-new
+    patches where the API genuinely has no data yet, so we don't treat
+    them as missing.
+    """
     if dest.exists() and dest.stat().st_size >= 2:
-        return dest, "cached"
+        if ttl is None:
+            return dest, "cached"
+        age = time.time() - dest.stat().st_mtime
+        if age < ttl:
+            return dest, "cached"
+        # Stale — fall through to re-fetch
     try:
         req = urllib.request.Request(url, headers=_HEADERS)
         with urllib.request.urlopen(req, timeout=timeout) as r:
             data = r.read()
+        if len(data) < 2 and dest.exists() and dest.stat().st_size >= 2:
+            # API returned empty/error but we have a previous response —
+            # prefer the stale-but-real data over an empty replacement.
+            return dest, "stale-keep"
         dest.write_bytes(data)
         return dest, "ok"
     except Exception as e:
+        # Network/API failure: keep the stale file (if any) rather than
+        # blowing it away. Caller sees "error" so it can log + continue.
         return dest, f"error: {e}"
 
 
@@ -63,9 +107,10 @@ def bootstrap_assets() -> None:
     A copy is also written to cache/ root for backwards compatibility
     with any scripts that still reference the old global path.
     """
-    # Patch-snapshot path (canonical going forward)
-    fetch("https://assets.deadlock-api.com/v2/heroes", PATCH_CACHE / "heroes.json")
-    fetch("https://assets.deadlock-api.com/v2/items",  PATCH_CACHE / "items.json")
+    # Patch-snapshot path (canonical going forward). Assets only change
+    # when Valve drops a patch, so use the longer asset TTL.
+    fetch("https://assets.deadlock-api.com/v2/heroes", PATCH_CACHE / "heroes.json", ttl=TTL_ASSETS)
+    fetch("https://assets.deadlock-api.com/v2/items",  PATCH_CACHE / "items.json",  ttl=TTL_ASSETS)
     # Mirror to cache/ root for legacy callers (build_page_data still
     # reads items_assets at module level; will migrate in a follow-up).
     if not (CACHE / "heroes.json").exists():
@@ -131,20 +176,21 @@ def main() -> None:
 
     print("[3/3] Fetching …")
     t0 = time.time()
-    cached = ok = err = 0
+    cached = ok = stale = err = 0
     # Lower parallelism (3 instead of 6) to stay under the 200 req/min IP cap
     # — important when both patches are being fetched on the same day.
     with ThreadPoolExecutor(max_workers=3) as pool:
         futures = {pool.submit(fetch, u, d): (u, d) for u, d in all_jobs}
         for i, fut in enumerate(as_completed(futures), 1):
             _, status = fut.result()
-            if status == "cached": cached += 1
-            elif status == "ok":   ok += 1
-            else:                  err += 1
+            if status == "cached":         cached += 1
+            elif status == "ok":           ok += 1
+            elif status == "stale-keep":   stale += 1
+            else:                          err += 1
             if i % 25 == 0 or i == len(all_jobs):
                 elapsed = time.time() - t0
-                print(f"  {i}/{len(all_jobs)}  cached={cached} ok={ok} err={err}  {elapsed:.1f}s")
-    print(f"\nDone in {time.time()-t0:.1f}s. cached={cached}, fetched={ok}, errors={err}")
+                print(f"  {i}/{len(all_jobs)}  cached={cached} fetched={ok} stale-kept={stale} err={err}  {elapsed:.1f}s")
+    print(f"\nDone in {time.time()-t0:.1f}s. cached={cached}, fetched={ok}, stale-kept={stale}, errors={err}")
 
 
 if __name__ == "__main__":
