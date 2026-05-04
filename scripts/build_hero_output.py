@@ -23,7 +23,8 @@ import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _paths import (
     ROOT, CACHE, HERO_OUT, HERO_DATA, BUILD_FILES, ASSETS,
-    PATCH_ID, PATCH_TITLE, PATCH_MIN_TS, HMMR_BADGE, SPEC_VERSION,
+    PATCH_ID, PATCH_TITLE, PATCH_MIN_TS,
+    HMMR_BADGE, ASCENDANT_BADGE, ETERNUS_BADGE, SPEC_VERSION,
 )
 
 import json
@@ -612,6 +613,44 @@ def get_hero_abilities(hero: dict, items_by_id: dict, items_by_classname: dict) 
     return out
 
 
+def _mmr_slices_payload(base_all: dict, base_hmmr: dict,
+                        base_asc: dict | None, base_eter: dict | None) -> dict:
+    """Compose the mmr_slices block. Always emits all_mmr + high_mmr (the
+    historical invariant). Ascendant+ and Eternus+ are added only when their
+    cached baseline file exists *and* contains this hero (otherwise the
+    higher-rank player pool was empty for this hero on this patch). The
+    page treats absent slices as 'insufficient data'."""
+    out = {
+        "all_mmr": {
+            "filter": "no MMR filter",
+            "baseline_win_rate": round(base_all["wins"] / base_all["matches"], 4),
+            "matches": base_all["matches"],
+            "players": base_all["players"],
+        },
+        "high_mmr": {
+            "filter": f"min_average_badge={HMMR_BADGE} (Phantom+)",
+            "baseline_win_rate": round(base_hmmr["wins"] / base_hmmr["matches"], 4),
+            "matches": base_hmmr["matches"],
+            "players": base_hmmr["players"],
+        },
+    }
+    if base_asc and base_asc.get("matches"):
+        out["ascendant_plus"] = {
+            "filter": f"min_average_badge={ASCENDANT_BADGE} (Ascendant+)",
+            "baseline_win_rate": round(base_asc["wins"] / base_asc["matches"], 4),
+            "matches": base_asc["matches"],
+            "players": base_asc["players"],
+        }
+    if base_eter and base_eter.get("matches"):
+        out["eternus_plus"] = {
+            "filter": f"min_average_badge={ETERNUS_BADGE} (Eternus+)",
+            "baseline_win_rate": round(base_eter["wins"] / base_eter["matches"], 4),
+            "matches": base_eter["matches"],
+            "players": base_eter["players"],
+        }
+    return out
+
+
 def select_recommended(item_methods: dict, ability: dict) -> dict:
     """Pick the headline build the user should run with: ILP at high MMR, with phased breakdown."""
     picks = item_methods["high_mmr"]["synergy_ilp"]["picks"]
@@ -674,27 +713,88 @@ def build_hero_output(
     hero = heroes_by_id[hero_id]
 
     # ---- baselines ----
-    base_all = next(h for h in json.load(open(paths["hero_stats_all"])) if h["hero_id"] == hero_id)
-    base_hmmr = next(h for h in json.load(open(paths["hero_stats_hmmr"])) if h["hero_id"] == hero_id)
+    # All-MMR + HMMR are required (legacy invariant). Ascendant+ and Eternus+
+    # are optional — if the cache file is missing or doesn't contain this
+    # hero (zero matches), we degrade gracefully rather than failing the run.
+    def _baseline_for(path_key: str) -> dict | None:
+        p = paths.get(path_key)
+        if not p or not Path(p).exists():
+            return None
+        try:
+            rows = json.load(open(p))
+        except Exception:
+            return None
+        return next((h for h in rows if h["hero_id"] == hero_id), None)
+
+    base_all = _baseline_for("hero_stats_all")
+    base_hmmr = _baseline_for("hero_stats_hmmr")
+    base_asc = _baseline_for("hero_stats_asc")
+    base_eter = _baseline_for("hero_stats_eter")
+    if base_all is None or base_hmmr is None:
+        raise RuntimeError(f"hero {hero_id} missing all_mmr or high_mmr baseline — cache out of date?")
 
     # ---- upgrade chain map (one per asset version, but cheap so we do it here) ----
     ancestors_of, lineage_canon = build_lineage_map(items_by_id)
 
-    # ---- item methods, both MMR slices ----
-    item_methods = {}
-    for slice_label, paths_key, baseline, min_match_floor, pair_floor, build_floor in (
-        ("all_mmr", "all", base_all, 500, 500, 200),
-        ("high_mmr", "hmmr", base_hmmr, 300, 200, 100),
-    ):
+    # ---- item methods, all four MMR slices ----
+    # Each tuple: (output_key, paths_key_suffix, baseline_row, candidate_floor,
+    # pair_floor, build_floor, ability_floor). Ascendant+ and Eternus+ floors
+    # are relaxed to reflect their thinner sample sizes.
+    slice_specs = [
+        ("all_mmr",        "all",  base_all,  500, 500, 200, 200),
+        ("high_mmr",       "hmmr", base_hmmr, 300, 200, 100, 100),
+        ("ascendant_plus", "asc",  base_asc,  100, 100,  50,  50),
+        ("eternus_plus",   "eter", base_eter,  30,  30,  15,  15),
+    ]
+
+    item_methods: dict = {}
+    ability: dict = {}
+    ability_id_to_name = get_hero_abilities(hero, items_by_id, items_by_classname)
+
+    for slice_label, paths_key, baseline, min_match_floor, pair_floor, build_floor, ability_floor in slice_specs:
+        # Optional slice with no usable baseline → empty placeholder so the
+        # page can show "insufficient data" without breaking layout.
+        if not baseline or not baseline.get("matches"):
+            item_methods[slice_label] = {
+                "candidate_count": 0,
+                "min_matches_filter": min_match_floor,
+                "wilson_greedy": {"picks": []},
+                "synergy_ilp": {"picks": []},
+                "build_replication": {"picks": [], "source_builds": []},
+                "item_metadata": {},
+            }
+            ability[slice_label] = {
+                "total_records": 0, "total_matches": 0,
+                "ability_priority": [], "best_full_orders": [], "best_openers_first4": [],
+            }
+            continue
+
         baseline_wr = baseline["wins"] / baseline["matches"]
-        item_stats = json.load(open(paths[f"item_stats_{paths_key}"]))
-        pair_stats = json.load(open(paths[f"pair_stats_{paths_key}"]))
-        build_stats_raw = json.load(open(paths[f"build_stats_{paths_key}"]))
+        # Tolerate per-file misses (e.g. asc/eter fetched on a thin slice
+        # where the API returned []) — treat as empty input rather than crash.
+        def _load_or_empty(key: str) -> list:
+            p = paths.get(key)
+            if not p or not Path(p).exists():
+                return []
+            try:
+                return json.load(open(p))
+            except Exception:
+                return []
+
+        item_stats = _load_or_empty(f"item_stats_{paths_key}")
+        pair_stats = _load_or_empty(f"pair_stats_{paths_key}")
+        build_stats_raw = _load_or_empty(f"build_stats_{paths_key}")
+        ability_records = _load_or_empty(f"abilities_{paths_key}")
         candidates = build_candidates(item_stats, items_by_id, baseline_wr,
                                       min_match_floor, lineage_canon=lineage_canon)
 
         m1 = method_wilson(candidates)
-        m2 = method_synergy_ilp(candidates, pair_stats, pair_floor)
+        # Synergy ILP can fail on tiny candidate pools (no feasible solution
+        # under category constraints) — fall back to the Wilson greedy picks.
+        try:
+            m2 = method_synergy_ilp(candidates, pair_stats, pair_floor) if candidates else []
+        except Exception:
+            m2 = list(m1)
         m3, builds_seen = method_build_replication(
             candidates, build_stats_raw, baseline_wr, CACHE, build_floor
         )
@@ -705,8 +805,6 @@ def build_hero_output(
         m2 = decorate_picks(m2, metadata)
         m3 = decorate_picks(m3, metadata)
         # Lineage chain: lower-tier ancestors a player should pre-buy.
-        # Pass metadata so chain entries carry imbue type + target for
-        # passive imbue components.
         m1 = attach_lineage_chain(m1, ancestors_of, items_by_id, item_stats, metadata)
         m2 = attach_lineage_chain(m2, ancestors_of, items_by_id, item_stats, metadata)
         m3 = attach_lineage_chain(m3, ancestors_of, items_by_id, item_stats, metadata)
@@ -719,17 +817,9 @@ def build_hero_output(
             "build_replication": {"picks": m3, "source_builds": builds_seen},
             "item_metadata": metadata,
         }
-
-    # ---- ability orders ----
-    ability_id_to_name = get_hero_abilities(hero, items_by_id, items_by_classname)
-    ability = {
-        "all_mmr": analyze_ability_orders(
-            json.load(open(paths["abilities_all"])), ability_id_to_name, sample_floor=200
-        ),
-        "high_mmr": analyze_ability_orders(
-            json.load(open(paths["abilities_hmmr"])), ability_id_to_name, sample_floor=100
-        ),
-    }
+        ability[slice_label] = analyze_ability_orders(
+            ability_records, ability_id_to_name, sample_floor=ability_floor
+        )
 
     # ---- recommended (the answer) ----
     recommended = select_recommended(item_methods, ability)
@@ -745,20 +835,7 @@ def build_hero_output(
             ],
         },
         "patch": {"id": PATCH_ID, "title": PATCH_TITLE, "min_unix_timestamp": PATCH_MIN_TS},
-        "mmr_slices": {
-            "all_mmr": {
-                "filter": "no MMR filter",
-                "baseline_win_rate": round(base_all["wins"] / base_all["matches"], 4),
-                "matches": base_all["matches"],
-                "players": base_all["players"],
-            },
-            "high_mmr": {
-                "filter": f"min_average_badge={HMMR_BADGE} (Phantom+)",
-                "baseline_win_rate": round(base_hmmr["wins"] / base_hmmr["matches"], 4),
-                "matches": base_hmmr["matches"],
-                "players": base_hmmr["players"],
-            },
-        },
+        "mmr_slices": _mmr_slices_payload(base_all, base_hmmr, base_asc, base_eter),
         "recommended": recommended,
         "items": item_methods,
         "ability_orders": ability,

@@ -20,7 +20,7 @@ That's it. The page loads from local files; the `assets/` folder must travel wit
 ## What's in the page
 
 - **Hero grid** with portraits, sortable A–Z or by win rate
-- **MMR toggle**: All MMR ↔ High MMR (Phantom 1+, ~top 15-20% of players)
+- **MMR toggle**: All MMR / Phantom+ (badge 91+, ~top 15-20%) / Ascendant+ (badge 101+, ~top 3-5%) / Eternus+ (badge 111+, ~top 0.1-1%). Higher-rank tabs auto-disable on patches where their sample is empty.
 - **Ability priority** ranked by winner-weighted AP investment, with a "winner premium" delta showing where successful players invest more than the average
 - **Best opener** — the highest-WR first 4 ability points
 - **Best full ability order** — the highest-WR 16-point sequence

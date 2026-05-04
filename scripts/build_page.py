@@ -1342,8 +1342,10 @@ HTML = """<!doctype html>
     </div>
     <div class="toggle-group" id="patch-toggle"></div>
     <div class="toggle-group" id="mmr-toggle">
-      <button data-mmr="all">All MMR</button>
-      <button data-mmr="high" class="active">High MMR (Phantom+)</button>
+      <button data-mmr="all" title="No MMR filter — full population">All MMR</button>
+      <button data-mmr="high" class="active" title="min_average_badge=91 — top ~15-20%">Phantom+</button>
+      <button data-mmr="asc" title="min_average_badge=101 — top ~3-5%">Ascendant+</button>
+      <button data-mmr="eter" title="min_average_badge=111 — top ~0.1-1%">Eternus+</button>
     </div>
   </div>
 </header>
@@ -1392,6 +1394,41 @@ HTML = """<!doctype html>
     return `<button data-patch="${pid}" class="${cls}" title="${p.title}">${p.title}${isNew}</button>`;
   }).join('');
 
+  // Slice short-codes ↔ display labels. Kept in one place so renderers
+  // and the empty-state messaging stay consistent.
+  const SLICE_LABELS = { all: 'All MMR', high: 'Phantom+', asc: 'Ascendant+', eter: 'Eternus+' };
+
+  // True if at least one hero on the active patch has data for this slice.
+  // Higher-rank slices are sometimes empty on a freshly-released patch.
+  function patchHasSliceData(slice) {
+    return activePatch.heroes.some(h => (h.mmr[slice] || {}).matches > 0);
+  }
+
+  // Auto-fall-back to the next-best slice if the active one has zero data on
+  // this patch. Walks left in the toggle order so e.g. an empty Eternus+ on
+  // a brand-new patch silently becomes Ascendant+, then Phantom+, etc.
+  function effectiveSlice() {
+    const order = ['eter', 'asc', 'high', 'all'];
+    if (patchHasSliceData(mmrSlice)) return mmrSlice;
+    const idx = order.indexOf(mmrSlice);
+    for (let i = idx + 1; i < order.length; i++) {
+      if (patchHasSliceData(order[i])) return order[i];
+    }
+    return 'all';  // worst case, all-MMR is always populated
+  }
+
+  // Disable MMR toggle buttons whose slice has no data on the active patch.
+  function refreshMmrToggleAvailability() {
+    document.querySelectorAll('#mmr-toggle button').forEach(b => {
+      const has = patchHasSliceData(b.dataset.mmr);
+      b.disabled = !has;
+      b.title = has ? b.title.split(' — no data')[0]
+                    : b.title.split(' — no data')[0] + ' — no data on this patch';
+      b.style.opacity = has ? '' : '0.4';
+      b.style.cursor = has ? '' : 'not-allowed';
+    });
+  }
+
   function updatePatchInfo() {
     // Compute the total match count across all heroes in this patch as a
     // freshness signal — newly-released patches have very thin data.
@@ -1404,6 +1441,7 @@ HTML = """<!doctype html>
     }
     document.getElementById('patch-info').innerHTML =
       activePatchId + ' — ' + activePatch.title + '  ·  ' + activePatch.heroes.length + ' heroes' + freshness;
+    refreshMmrToggleAvailability();
   }
   updatePatchInfo();
 
@@ -1530,10 +1568,21 @@ HTML = """<!doctype html>
     if (heroFilter) {
       order = order.filter(h => h.name.toLowerCase().includes(heroFilter));
     }
+    // For sort + grid rendering, fall back to a populated slice if the
+    // active one has no data anywhere on this patch — keeps the grid useful
+    // when someone clicks an empty Eternus+ tab on a fresh patch.
+    const gridSlice = effectiveSlice();
     if (sortMode === 'alpha') {
       order.sort((a,b) => a.name.localeCompare(b.name));
     } else {
-      order.sort((a,b) => b.mmr[mmrSlice].wr - a.mmr[mmrSlice].wr);
+      // Heroes with null WR (no data in this slice) sort to the bottom.
+      order.sort((a,b) => {
+        const aw = a.mmr[gridSlice].wr, bw = b.mmr[gridSlice].wr;
+        if (aw == null && bw == null) return 0;
+        if (aw == null) return 1;
+        if (bw == null) return -1;
+        return bw - aw;
+      });
     }
     grid.innerHTML = '';
     if (order.length === 0) {
@@ -1546,12 +1595,14 @@ HTML = """<!doctype html>
     for (const h of order) {
       const div = document.createElement('div');
       div.className = 'hero-tile' + (h.id === selectedHeroId ? ' active' : '');
-      const wr = h.mmr[mmrSlice].wr;
-      const cls = wrClass(wr);
+      const sliceData = h.mmr[gridSlice] || {};
+      const wr = sliceData.wr;
+      const cls = wr == null ? '' : wrClass(wr);
+      const hasData = sliceData.matches > 0;
       div.innerHTML = `
-        <img src="${h.image || ''}" loading="lazy" onerror="this.style.opacity=0.2">
+        <img src="${h.image || ''}" loading="lazy" onerror="this.style.opacity=0.2" ${hasData ? '' : 'style="opacity:0.4"'}>
         <div class="name">${h.name}</div>
-        <div class="wr ${cls}">${fmtPct(wr)}</div>
+        <div class="wr ${cls}">${hasData ? fmtPct(wr) : '—'}</div>
       `;
       div.addEventListener('click', () => selectHero(h.id));
       grid.appendChild(div);
@@ -1592,9 +1643,14 @@ HTML = """<!doctype html>
 
     const lines = [];
     lines.push(`${hero.name.toUpperCase()} — ${activePatchId} (${activePatch.title})`);
-    lines.push(`${variant} · ${mmrSlice === 'high' ? 'high-MMR' : 'all-MMR'} · $${total.toLocaleString()}`);
-    const wr = hero.mmr[mmrSlice].wr * 100;
-    lines.push(`Hero baseline WR: ${wr.toFixed(2)}% over ${hero.mmr[mmrSlice].matches.toLocaleString()} matches`);
+    lines.push(`${variant} · ${SLICE_LABELS[mmrSlice] || mmrSlice} · $${total.toLocaleString()}`);
+    const sliceMmr = hero.mmr[mmrSlice] || {};
+    if (sliceMmr.wr != null) {
+      const wr = sliceMmr.wr * 100;
+      lines.push(`Hero baseline WR: ${wr.toFixed(2)}% over ${sliceMmr.matches.toLocaleString()} matches`);
+    } else {
+      lines.push(`Hero baseline WR: insufficient data at ${SLICE_LABELS[mmrSlice]}`);
+    }
     lines.push('');
     for (const ph of ['EARLY','MID','LATE']) {
       lines.push(phaseLabels[ph]);
@@ -1844,8 +1900,32 @@ HTML = """<!doctype html>
     const activeArchIdx = activeArchetypeIdxByHero[h.id];
     const meaningfulArchs = (h.archetypes && h.archetypes.clusters || []).filter(c => c.build_count >= 2 && c.build);
     const activeArch = (activeArchIdx != null) ? meaningfulArchs[activeArchIdx] : null;
-    // Get build for current MMR slice (or the active archetype's composite)
-    const items = activeArch ? activeArch.build : h.items_by_slice[mmrSlice];
+    // Get build for current MMR slice (or the active archetype's composite).
+    // If the slice is empty for THIS hero (e.g. Eternus+ on a niche hero),
+    // show an explicit empty-state instead of a blank build column.
+    const sliceItems = h.items_by_slice[mmrSlice] || [];
+    const sliceMeta = h.mmr[mmrSlice] || {};
+    const sliceEmpty = !activeArch && sliceItems.length === 0;
+    if (sliceEmpty) {
+      // Pick a fallback slice with data so we can still show the hero header
+      const fallback = effectiveSlice();
+      main.innerHTML = `
+        <div class="hero-header">
+          <img src="${h.image || ''}" class="hero-portrait" onerror="this.style.opacity=0.2">
+          <div class="hero-title">
+            <h2>${h.name}</h2>
+            <div class="stats">
+              <div class="stat" style="color:var(--text-dim)">Insufficient ${SLICE_LABELS[mmrSlice]} data on ${escHtml(activePatch.title)}${sliceMeta.matches ? ` (${sliceMeta.matches.toLocaleString()} matches, below threshold)` : ''}.</div>
+            </div>
+          </div>
+        </div>
+        <div class="empty-state" style="margin-top:18px">
+          <p><strong>No build available at ${SLICE_LABELS[mmrSlice]}</strong> for ${h.name} on ${escHtml(activePatch.title)}.</p>
+          <p style="font-size:13px;margin-top:8px;color:var(--text-dim)">Higher-rank slices need a few thousand matches per hero before the optimizer has anything to chew on. Try ${SLICE_LABELS[fallback]} for now — the data tap-tap-taps in over the patch's lifetime.</p>
+        </div>`;
+      return;
+    }
+    const items = activeArch ? activeArch.build : sliceItems;
 
     // Build "events" — each phase column contains the buy events that happen
     // in its time window. A picked item with an upgrade chain is decomposed
@@ -2591,12 +2671,13 @@ HTML = """<!doctype html>
     activePatch = DATA.patches[pid];
     activeArchetypeIdxByHero = {};  // archetype refs are per-patch hero objects
     document.querySelectorAll('#patch-toggle button').forEach(b => b.classList.toggle('active', b.dataset.patch === pid));
-    updatePatchInfo();
+    updatePatchInfo();  // also refreshes MMR toggle availability for new patch
     renderHeroGrid();
     renderMain();
   });
   document.getElementById('mmr-toggle').addEventListener('click', e => {
     if (e.target.tagName !== 'BUTTON') return;
+    if (e.target.disabled) return;  // ignore clicks on slices with no data on the active patch
     mmrSlice = e.target.dataset.mmr;
     document.querySelectorAll('#mmr-toggle button').forEach(b => b.classList.toggle('active', b.dataset.mmr === mmrSlice));
     renderHeroGrid();

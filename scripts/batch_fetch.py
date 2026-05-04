@@ -20,11 +20,19 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from _paths import CACHE, HERO_DATA, PATCH_CACHE, PATCH_ID, PATCH_TITLE, PATCH_MIN_TS, HMMR_BADGE
+from _paths import (
+    CACHE, HERO_DATA, PATCH_CACHE, PATCH_ID, PATCH_TITLE, PATCH_MIN_TS,
+    HMMR_BADGE, ASCENDANT_BADGE, ETERNUS_BADGE,
+)
 
 
 HMMR_MIN_MATCHES_BUILD = 30
 ALL_MIN_MATCHES_BUILD = 50
+# Higher-rank slices have fewer matches, so we relax the build-stats floor.
+# Eternus is rare enough that even floor=10 may return very thin data on some
+# heroes — the page handles empty slices gracefully.
+ASC_MIN_MATCHES_BUILD = 15
+ETER_MIN_MATCHES_BUILD = 10
 
 
 _HEADERS = {
@@ -139,22 +147,42 @@ def hero_urls(hid: int) -> list[tuple[str, Path]]:
     base = "https://api.deadlock-api.com/v1/analytics"
     common = f"min_unix_timestamp={PATCH_MIN_TS}"
     return [
+        # All MMR — no badge filter, full population
         (f"{base}/item-stats?hero_id={hid}&{common}&min_matches=20",
          HERO_DATA / f"itemstats_all_{hid}.json"),
-        (f"{base}/item-stats?hero_id={hid}&{common}&min_matches=20&min_average_badge={HMMR_BADGE}",
-         HERO_DATA / f"itemstats_hmmr_{hid}.json"),
         (f"{base}/item-permutation-stats?hero_id={hid}&comb_size=2&{common}",
          HERO_DATA / f"perm2_all_{hid}.json"),
-        (f"{base}/item-permutation-stats?hero_id={hid}&comb_size=2&{common}&min_average_badge={HMMR_BADGE}",
-         HERO_DATA / f"perm2_hmmr_{hid}.json"),
         (f"{base}/hero-build-stats/{hid}?{common}&min_matches={ALL_MIN_MATCHES_BUILD}",
          HERO_DATA / f"buildstats_all_{hid}.json"),
-        (f"{base}/hero-build-stats/{hid}?{common}&min_matches={HMMR_MIN_MATCHES_BUILD}&min_average_badge={HMMR_BADGE}",
-         HERO_DATA / f"buildstats_hmmr_{hid}.json"),
         (f"{base}/ability-order-stats?hero_id={hid}&{common}&min_matches=50",
          HERO_DATA / f"abilityorder_all_{hid}.json"),
+        # Phantom 1+ (high MMR)
+        (f"{base}/item-stats?hero_id={hid}&{common}&min_matches=20&min_average_badge={HMMR_BADGE}",
+         HERO_DATA / f"itemstats_hmmr_{hid}.json"),
+        (f"{base}/item-permutation-stats?hero_id={hid}&comb_size=2&{common}&min_average_badge={HMMR_BADGE}",
+         HERO_DATA / f"perm2_hmmr_{hid}.json"),
+        (f"{base}/hero-build-stats/{hid}?{common}&min_matches={HMMR_MIN_MATCHES_BUILD}&min_average_badge={HMMR_BADGE}",
+         HERO_DATA / f"buildstats_hmmr_{hid}.json"),
         (f"{base}/ability-order-stats?hero_id={hid}&{common}&min_matches=20&min_average_badge={HMMR_BADGE}",
          HERO_DATA / f"abilityorder_hmmr_{hid}.json"),
+        # Ascendant 1+ — relaxed item/build floors since the slice is sparser
+        (f"{base}/item-stats?hero_id={hid}&{common}&min_matches=10&min_average_badge={ASCENDANT_BADGE}",
+         HERO_DATA / f"itemstats_asc_{hid}.json"),
+        (f"{base}/item-permutation-stats?hero_id={hid}&comb_size=2&{common}&min_average_badge={ASCENDANT_BADGE}",
+         HERO_DATA / f"perm2_asc_{hid}.json"),
+        (f"{base}/hero-build-stats/{hid}?{common}&min_matches={ASC_MIN_MATCHES_BUILD}&min_average_badge={ASCENDANT_BADGE}",
+         HERO_DATA / f"buildstats_asc_{hid}.json"),
+        (f"{base}/ability-order-stats?hero_id={hid}&{common}&min_matches=10&min_average_badge={ASCENDANT_BADGE}",
+         HERO_DATA / f"abilityorder_asc_{hid}.json"),
+        # Eternus 1+ — floors relaxed further; expect empty data on niche heroes
+        (f"{base}/item-stats?hero_id={hid}&{common}&min_matches=5&min_average_badge={ETERNUS_BADGE}",
+         HERO_DATA / f"itemstats_eter_{hid}.json"),
+        (f"{base}/item-permutation-stats?hero_id={hid}&comb_size=2&{common}&min_average_badge={ETERNUS_BADGE}",
+         HERO_DATA / f"perm2_eter_{hid}.json"),
+        (f"{base}/hero-build-stats/{hid}?{common}&min_matches={ETER_MIN_MATCHES_BUILD}&min_average_badge={ETERNUS_BADGE}",
+         HERO_DATA / f"buildstats_eter_{hid}.json"),
+        (f"{base}/ability-order-stats?hero_id={hid}&{common}&min_matches=5&min_average_badge={ETERNUS_BADGE}",
+         HERO_DATA / f"abilityorder_eter_{hid}.json"),
     ]
 
 
@@ -166,6 +194,10 @@ def main() -> None:
           PATCH_CACHE / "hero_stats_all.json")
     fetch(f"https://api.deadlock-api.com/v1/analytics/hero-stats?min_unix_timestamp={PATCH_MIN_TS}&min_average_badge={HMMR_BADGE}",
           PATCH_CACHE / "hero_stats_hmmr.json")
+    fetch(f"https://api.deadlock-api.com/v1/analytics/hero-stats?min_unix_timestamp={PATCH_MIN_TS}&min_average_badge={ASCENDANT_BADGE}",
+          PATCH_CACHE / "hero_stats_asc.json")
+    fetch(f"https://api.deadlock-api.com/v1/analytics/hero-stats?min_unix_timestamp={PATCH_MIN_TS}&min_average_badge={ETERNUS_BADGE}",
+          PATCH_CACHE / "hero_stats_eter.json")
 
     print("[2/3] Building per-hero job list …")
     heroes = json.load(open(CACHE / "playable_heroes.json"))

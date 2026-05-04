@@ -39,6 +39,8 @@ for f in hero_files:
     name_map = {p["item_id"]: p["name"] for p in methods["synergy_ilp"]["picks"]}
     consensus = sorted([name_map[i] for i in consensus_ids if i in name_map])
 
+    asc_slice = d["mmr_slices"].get("ascendant_plus")
+    eter_slice = d["mmr_slices"].get("eternus_plus")
     heroes.append({
         "id": d["hero"]["id"],
         "name": d["hero"]["name"],
@@ -49,10 +51,18 @@ for f in hero_files:
         "high_mmr_baseline_wr": d["mmr_slices"]["high_mmr"]["baseline_win_rate"],
         "high_mmr_matches": d["mmr_slices"]["high_mmr"]["matches"],
         "high_mmr_players": d["mmr_slices"]["high_mmr"]["players"],
+        "ascendant_plus_baseline_wr": (asc_slice or {}).get("baseline_win_rate"),
+        "ascendant_plus_matches": (asc_slice or {}).get("matches", 0),
+        "ascendant_plus_players": (asc_slice or {}).get("players", 0),
+        "eternus_plus_baseline_wr": (eter_slice or {}).get("baseline_win_rate"),
+        "eternus_plus_matches": (eter_slice or {}).get("matches", 0),
+        "eternus_plus_players": (eter_slice or {}).get("players", 0),
         "wr_lift_high_mmr_pp": round((d["mmr_slices"]["high_mmr"]["baseline_win_rate"]
                                      - d["mmr_slices"]["all_mmr"]["baseline_win_rate"]) * 100, 2),
         "candidates_all": d["items"]["all_mmr"]["candidate_count"],
         "candidates_hmmr": d["items"]["high_mmr"]["candidate_count"],
+        "candidates_asc": d["items"].get("ascendant_plus", {}).get("candidate_count", 0),
+        "candidates_eter": d["items"].get("eternus_plus", {}).get("candidate_count", 0),
         "recommended_total_cost": rec_items["total_cost"],
         "recommended_phases_count": {ph: len(rec_items["phases"][ph]) for ph in ("early","mid","late")},
         "ap_priority": rec_ab["ap_priority_order"],
@@ -68,9 +78,9 @@ for f in hero_files:
 heroes_sorted = sorted(heroes, key=lambda h: -h["high_mmr_baseline_wr"])
 
 index = {
-    "spec_version": "1.0.0",
-    "patch": "patch_125825",
-    "patch_title": "04-10-2026 Update",
+    "spec_version": SPEC_VERSION,
+    "patch": PATCH_ID,
+    "patch_title": PATCH_TITLE,
     "hero_count": len(heroes),
     "data_source": "api.deadlock-api.com",
     "heroes": heroes_sorted,

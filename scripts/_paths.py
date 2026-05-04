@@ -29,8 +29,12 @@ PATCH_ID = os.environ.get("PATCH_ID", "patch_125825")
 _meta = PATCH_REGISTRY.get(PATCH_ID, {})
 PATCH_TITLE = _meta.get("title", PATCH_ID)
 PATCH_MIN_TS = _meta.get("min_ts", 0)
-HMMR_BADGE = 91  # Phantom 1+
-SPEC_VERSION = "1.1.0"  # bumped — output now patch-namespaced
+# Deadlock badge_level encoding: tier * 10 + sub-tier (1..6).
+# Phantom 1 = 91, Ascendant 1 = 101, Eternus 1 = 111.
+HMMR_BADGE = 91       # Phantom 1+ — top ~15-20%
+ASCENDANT_BADGE = 101  # Ascendant 1+ — top ~3-5%
+ETERNUS_BADGE = 111    # Eternus 1+ — top ~0.1-1%
+SPEC_VERSION = "1.2.0"  # bumped — added ascendant_plus + eternus_plus MMR slices
 
 # scripts/ lives one level under the repo root.
 ROOT = Path(__file__).resolve().parent.parent

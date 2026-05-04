@@ -25,6 +25,35 @@ def slug(name: str) -> str:
     return re.sub(r"[^a-zA-Z0-9]+", "_", name).strip("_").lower()
 
 
+# Page-side slice short codes ↔ JSON slice keys produced by build_hero_output.
+# Ordered the way they appear in the MMR toggle on the page.
+SLICE_KEYS = (
+    ("all",  "all_mmr"),
+    ("high", "high_mmr"),
+    ("asc",  "ascendant_plus"),
+    ("eter", "eternus_plus"),
+)
+
+
+def _compact_mmr(mmr_slices: dict) -> dict:
+    """Compact mmr block keyed by short-code. Slices not present in the
+    per-hero JSON (e.g. zero matches at Eternus+ for a niche hero) become
+    {wr:None, matches:0, players:0} so the page JS can show 'insufficient
+    data' without null-checking each access."""
+    def _row(s: dict | None) -> dict:
+        if not s:
+            return {"wr": None, "matches": 0, "players": 0}
+        return {"wr": s.get("baseline_win_rate"),
+                "matches": s.get("matches", 0),
+                "players": s.get("players", 0)}
+    return {
+        "all":  _row(mmr_slices.get("all_mmr")),
+        "high": _row(mmr_slices.get("high_mmr")),
+        "asc":  _row(mmr_slices.get("ascendant_plus")),
+        "eter": _row(mmr_slices.get("eternus_plus")),
+    }
+
+
 # Asset look-ups (LEGACY/global — patch-aware code below loads per-patch
 # snapshots from cache/<patch_id>/ when available, falling back to these).
 heroes_assets = {h["id"]: h for h in json.load(open(CACHE / "heroes.json"))}
@@ -644,14 +673,11 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
              "image": items_assets.get(a["id"], {}).get("image")}
             for a in d["hero"]["abilities"]
         ],
-        "mmr": {
-            "all": {"wr": d["mmr_slices"]["all_mmr"]["baseline_win_rate"],
-                    "matches": d["mmr_slices"]["all_mmr"]["matches"],
-                    "players": d["mmr_slices"]["all_mmr"]["players"]},
-            "high": {"wr": d["mmr_slices"]["high_mmr"]["baseline_win_rate"],
-                     "matches": d["mmr_slices"]["high_mmr"]["matches"],
-                     "players": d["mmr_slices"]["high_mmr"]["players"]},
-        },
+        # Per-slice baseline stats. all/high are guaranteed; asc/eter are
+        # emitted as null-WR placeholders when the slice has no matches for
+        # this hero so the page JS can render "insufficient data" without
+        # null-checking everywhere.
+        "mmr": _compact_mmr(d["mmr_slices"]),
         "recommended": {
             "items": {
                 "method": d["recommended"]["items"]["method"],
@@ -684,18 +710,18 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
             },
             "abilities": d["recommended"]["abilities"],
         },
-        # Per-MMR-slice ability breakdown so the page can offer a toggle
+        # Per-MMR-slice ability breakdown so the page can offer a toggle.
+        # SLICE_KEYS keeps the four slice short-codes the page UI uses in
+        # sync with the JSON keys on disk.
         "ability_orders": {
             slice_label: {
-                "priority": d["ability_orders"][src]["ability_priority"],
-                "best_full": d["ability_orders"][src]["best_full_orders"][0]
-                    if d["ability_orders"][src]["best_full_orders"] else None,
-                "best_opener": d["ability_orders"][src]["best_openers_first4"][0]
-                    if d["ability_orders"][src]["best_openers_first4"] else None,
-                "alternate_openers": d["ability_orders"][src]["best_openers_first4"][1:4],
-                "alternate_fulls": d["ability_orders"][src]["best_full_orders"][1:4],
+                "priority": (d["ability_orders"].get(src) or {}).get("ability_priority", []),
+                "best_full": ((d["ability_orders"].get(src) or {}).get("best_full_orders") or [None])[0],
+                "best_opener": ((d["ability_orders"].get(src) or {}).get("best_openers_first4") or [None])[0],
+                "alternate_openers": (d["ability_orders"].get(src) or {}).get("best_openers_first4", [])[1:4],
+                "alternate_fulls": (d["ability_orders"].get(src) or {}).get("best_full_orders", [])[1:4],
             }
-            for slice_label, src in (("all", "all_mmr"), ("high", "high_mmr"))
+            for slice_label, src in SLICE_KEYS
         },
         # Per-MMR-slice item breakdown using the synergy ILP picks (the recommended method)
         "items_by_slice": {
@@ -717,8 +743,8 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
                 "imbue": p.get("imbue"),
                 "imbue_target_id": p.get("imbue_target_id"),
                 "imbue_target_share": p.get("imbue_target_share"),
-            }) for p in d["items"][src]["synergy_ilp"]["picks"]]
-            for slice_label, src in (("all", "all_mmr"), ("high", "high_mmr"))
+            }) for p in (d["items"].get(src, {}).get("synergy_ilp", {}).get("picks") or [])]
+            for slice_label, src in SLICE_KEYS
         },
         "archetypes": archetypes or {"clusters": [], "total_builds": 0},
     }
@@ -1240,11 +1266,37 @@ def main() -> None:
         if filled or modal_filled:
             print(f"  imbue-target fallback: {filled} cross-patch + {modal_filled} hero-modal-inferred")
 
-    # Default to the newest patch present (highest patch_id by sort)
-    default_patch = max(payloads.keys()) if payloads else None
+    # Default to the newest patch that has enough data to render meaningful
+    # builds. Patches accumulate matches over their lifetime — landing on a
+    # 3-day-old patch with 300 matches/hero shows every Ascendant+/Eternus+
+    # tab as auto-disabled and every hero in the empty-state, which is a
+    # bad first impression. Threshold = 100K total all-MMR matches across
+    # all heroes (≈3K matches/hero on a 38-hero roster), enough for the
+    # synergy ILP to produce non-empty picks for most heroes. Falls back to
+    # the absolute newest patch if none qualify (so the page never shows
+    # zero patches).
+    DATA_RICH_THRESHOLD = 100_000
+
+    def _patch_total_matches(p):
+        total = 0
+        for h in p.get("heroes", []):
+            mmr_all = (h.get("mmr") or {}).get("all") or {}
+            total += mmr_all.get("matches", 0)
+        return total
+
+    if payloads:
+        candidates = [(pid, _patch_total_matches(p)) for pid, p in payloads.items()]
+        candidates.sort(key=lambda kv: kv[0], reverse=True)  # newest first
+        rich = [(pid, n) for pid, n in candidates if n >= DATA_RICH_THRESHOLD]
+        default_patch = rich[0][0] if rich else candidates[0][0]
+        if rich and rich[0][0] != candidates[0][0]:
+            print(f"  default_patch: skipped {candidates[0][0]} ({candidates[0][1]:,} matches < "
+                  f"{DATA_RICH_THRESHOLD:,} threshold) -> {default_patch}")
+    else:
+        default_patch = None
 
     page_data = {
-        "spec_version": "1.1.0",
+        "spec_version": SPEC_VERSION,
         "data_source": "api.deadlock-api.com",
         "default_patch": default_patch,
         "patches": payloads,

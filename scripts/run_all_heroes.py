@@ -4,11 +4,14 @@ Reuses build_hero_output.build_hero_output() with paths pointing at the cached b
 
 Re-runs a hero's build whenever ANY of the underlying analytics input files
 (item-stats, build-stats, ability orders, pair synergies, hero-stats) is
-newer than the existing output. This way the scheduled refresh job naturally
-regenerates only the heroes whose data actually changed, instead of
-unconditionally skipping everything that already exists on disk.
+newer than the existing output, OR when the on-disk spec_version is older
+than the current SPEC_VERSION (so schema bumps like the 1.1.0 -> 1.2.0 jump
+that added Ascendant+/Eternus+ slices invalidate the cache automatically).
+This way the scheduled refresh job naturally regenerates only the heroes
+whose data actually changed, instead of unconditionally skipping everything
+that already exists on disk.
 
-Override: FORCE=1 to regenerate every hero regardless of timestamps.
+Override: FORCE=1 to regenerate every hero regardless of timestamps/version.
 """
 import os
 import json
@@ -30,7 +33,8 @@ from build_hero_output import build_hero_output  # noqa: E402
 FORCE = os.environ.get("FORCE") == "1"
 ONLY_HEROES = os.environ.get("ONLY", "")  # comma-sep ids, empty=all
 # We no longer use a blanket SKIP_EXISTING. Decision is per-hero based on
-# whether the inputs are newer than the output. FORCE bypasses the check.
+# spec_version + whether the inputs are newer than the output.
+# FORCE bypasses the check.
 
 heroes = json.load(open(CACHE / "playable_heroes.json"))
 items_by_id = {i["id"]: i for i in json.load(open(CACHE / "items.json"))}
@@ -107,20 +111,32 @@ bho.method_build_replication = _patched_build_replication
 
 def paths_for(hid: int) -> dict:
     return {
+        # Population baselines (per slice)
         "hero_stats_all":  PATCH_CACHE / "hero_stats_all.json",
         "hero_stats_hmmr": PATCH_CACHE / "hero_stats_hmmr.json",
+        "hero_stats_asc":  PATCH_CACHE / "hero_stats_asc.json",
+        "hero_stats_eter": PATCH_CACHE / "hero_stats_eter.json",
+        # Per-hero per-slice analytics
         "item_stats_all":  HERO_DATA / f"itemstats_all_{hid}.json",
         "item_stats_hmmr": HERO_DATA / f"itemstats_hmmr_{hid}.json",
+        "item_stats_asc":  HERO_DATA / f"itemstats_asc_{hid}.json",
+        "item_stats_eter": HERO_DATA / f"itemstats_eter_{hid}.json",
         "pair_stats_all":  HERO_DATA / f"perm2_all_{hid}.json",
         "pair_stats_hmmr": HERO_DATA / f"perm2_hmmr_{hid}.json",
+        "pair_stats_asc":  HERO_DATA / f"perm2_asc_{hid}.json",
+        "pair_stats_eter": HERO_DATA / f"perm2_eter_{hid}.json",
         "build_stats_all": HERO_DATA / f"buildstats_all_{hid}.json",
         "build_stats_hmmr":HERO_DATA / f"buildstats_hmmr_{hid}.json",
+        "build_stats_asc": HERO_DATA / f"buildstats_asc_{hid}.json",
+        "build_stats_eter":HERO_DATA / f"buildstats_eter_{hid}.json",
         "abilities_all":   HERO_DATA / f"abilityorder_all_{hid}.json",
         "abilities_hmmr":  HERO_DATA / f"abilityorder_hmmr_{hid}.json",
+        "abilities_asc":   HERO_DATA / f"abilityorder_asc_{hid}.json",
+        "abilities_eter":  HERO_DATA / f"abilityorder_eter_{hid}.json",
     }
 
 
-def _output_is_fresh(out_path: Path, input_paths: list[Path]) -> bool:
+def _output_is_fresh(out_path: Path, input_paths: list) -> bool:
     """True iff out_path exists, is non-trivial, and is newer than every
     existing input file. Missing inputs are ignored (the build function
     handles missing data gracefully)."""
@@ -137,20 +153,35 @@ def process_one(h):
     hid, name = h["id"], h["name"]
     out_path = HERO_OUT / f"{slug(name)}_build.json"
     if not FORCE:
-        # Only skip if ALL the analytics inputs are older than the existing
-        # output. As soon as batch_fetch.py re-pulls a fresher itemstats /
-        # buildstats / etc. file (TTL expires every 2h), this hero will
-        # re-run automatically.
-        paths = paths_for(hid)
-        inputs = [
-            paths["hero_stats_all"], paths["hero_stats_hmmr"],
-            paths["item_stats_all"], paths["item_stats_hmmr"],
-            paths["pair_stats_all"], paths["pair_stats_hmmr"],
-            paths["build_stats_all"], paths["build_stats_hmmr"],
-            paths["abilities_all"], paths["abilities_hmmr"],
-        ]
-        if _output_is_fresh(out_path, inputs):
-            return (hid, name, "cached", out_path)
+        # Two cache-skip gates, applied together:
+        #   1. spec_version match - a schema bump (e.g. 1.1.0 -> 1.2.0 to add
+        #      Ascendant+/Eternus+ slices) must always trigger a rebuild.
+        #   2. input-freshness - when batch_fetch.py re-pulls fresher analytics
+        #      (TTL expires every ~2h), the hero re-runs automatically.
+        # Both must say "skip" for us to skip; otherwise rebuild.
+        spec_matches = False
+        if out_path.exists() and out_path.stat().st_size > 1000:
+            try:
+                existing = json.load(open(out_path))
+                spec_matches = existing.get("spec_version") == SPEC_VERSION
+            except Exception:
+                spec_matches = False
+        if spec_matches:
+            paths = paths_for(hid)
+            inputs = [
+                paths["hero_stats_all"], paths["hero_stats_hmmr"],
+                paths["hero_stats_asc"], paths["hero_stats_eter"],
+                paths["item_stats_all"], paths["item_stats_hmmr"],
+                paths["item_stats_asc"], paths["item_stats_eter"],
+                paths["pair_stats_all"], paths["pair_stats_hmmr"],
+                paths["pair_stats_asc"], paths["pair_stats_eter"],
+                paths["build_stats_all"], paths["build_stats_hmmr"],
+                paths["build_stats_asc"], paths["build_stats_eter"],
+                paths["abilities_all"], paths["abilities_hmmr"],
+                paths["abilities_asc"], paths["abilities_eter"],
+            ]
+            if _output_is_fresh(out_path, inputs):
+                return (hid, name, "cached", out_path)
     try:
         data = build_hero_output(hid, name, paths_for(hid),
                                  items_by_id, items_by_classname, heroes_by_id)
