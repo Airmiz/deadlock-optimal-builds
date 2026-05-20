@@ -151,7 +151,8 @@ def phase_for(buy_time_s: float) -> str:
 # Item build generation (3 methods)
 # ============================================================
 def build_candidates(item_stats: list, items_by_id: dict, baseline_wr: float,
-                     min_matches: int, lineage_canon: dict | None = None) -> dict:
+                     min_matches: int, lineage_canon: dict | None = None,
+                     score_fn=None) -> dict:
     """Score each upgrade item meeting the sample floor.
 
     If lineage_canon is provided, dedupe the candidates so each upgrade-chain
@@ -159,6 +160,12 @@ def build_candidates(item_stats: list, items_by_id: dict, baseline_wr: float,
     downstream optimizers from picking, e.g., both Extra Spirit (T1) and
     Boundless Spirit (T4) in separate slots — they share an inventory slot
     when actually played because the higher tier consumes the lower.
+
+    If `score_fn` is provided, it is called as `score_fn(wins, matches, item_id)`
+    to compute the candidate's score, replacing the default `Wilson_LB(wins,
+    matches) − baseline_wr`. This lets the hierarchical-pooling scorer
+    (scripts/hierarchical.py) or any other alternative rule slot in without
+    forking the method functions downstream.
     """
     raw: dict[int, dict] = {}
     for s in item_stats:
@@ -170,6 +177,8 @@ def build_candidates(item_stats: list, items_by_id: dict, baseline_wr: float,
         wr = s["wins"] / s["matches"]
         lb = wilson_lb(s["wins"], s["matches"])
         sell_s = s.get("avg_sell_time_s") or 0
+        sc = (score_fn(s["wins"], s["matches"], s["item_id"])
+              if score_fn is not None else lb - baseline_wr)
         raw[s["item_id"]] = {
             "item_id": s["item_id"],
             "name": it["name"],
@@ -180,7 +189,7 @@ def build_candidates(item_stats: list, items_by_id: dict, baseline_wr: float,
             "wins": s["wins"],
             "win_rate": round(wr, 4),
             "wilson_lb": round(lb, 4),
-            "score": round(lb - baseline_wr, 4),
+            "score": round(sc, 4),
             "wr_delta_pp": round((wr - baseline_wr) * 100, 2),
             "avg_buy_time_s": round(s["avg_buy_time_s"], 1),
             "phase": phase_for(s["avg_buy_time_s"]),
@@ -229,7 +238,53 @@ def method_wilson(candidates: dict) -> list:
     return picks
 
 
-def method_synergy_ilp(candidates: dict, pair_stats: list, pair_min_matches: int) -> list:
+# Default cumulative soul budget by end of each phase, in souls. These are
+# rough empirical defaults for hmmr play; the soul curve in /v1/analytics/
+# player-performance-curve is the principled source if a tuning pass is
+# worth the API cost. The defaults are deliberately *loose* — they prevent
+# obviously infeasible 25k-soul-by-minute-15 builds without aggressively
+# pruning expensive items that real players still buy.
+DEFAULT_SOUL_BUDGETS = {
+    "early": 6_000,    # cumulative through minute 12.5
+    "mid":  18_000,    # cumulative through minute 25
+    "late": 32_000,    # cumulative through end-of-match
+}
+
+
+def method_synergy_ilp(candidates: dict, pair_stats: list, pair_min_matches: int,
+                       soul_budgets: dict | None = None,
+                       matchup_score_augment: dict[int, float] | None = None,
+                       matchup_weight: float = 0.5,
+                       synergy_top_k: int = 400) -> list:
+    """Synergy-aware ILP with optional per-phase cumulative cost constraints.
+
+    `soul_budgets` (methodology review §3.1): when provided, adds three
+    linear constraints to the ILP:
+
+        sum_{i: phase(i)=early}     cost[i] * x[i] <= B_early
+        sum_{i: phase(i) in {early,mid}}     cost[i] * x[i] <= B_mid
+        sum_{i: all}                cost[i] * x[i] <= B_late
+
+    These enforce temporal feasibility: a 25k-soul build that's optimal
+    in isolation is rejected if it can't be afforded by minute 25.
+    Keyed by phase name; missing keys leave that phase unconstrained.
+
+    `matchup_score_augment` (methodology review §3.4): when provided,
+    augments each item's score by `matchup_weight * matchup_delta_pp / 100`
+    (delta_pp scaled back to WR space). The augment is added into the
+    objective so the ILP picks items that are both individually strong
+    AND specifically good against the chosen enemy comp. Without this,
+    counter-pick recommendations only show as a sidebar — they don't
+    affect the headline build.
+
+    `synergy_top_k` (methodology review §5.3): cap on how many strongest
+    pairwise synergies feed the ILP. The historical 400-item cutoff was
+    a tractability heuristic; modern CBC handles 2000+ comfortably. Pass
+    a larger number to let the long tail influence the build.
+
+    Default behavior (all kwargs None / default) is unchanged from the
+    pre-§3 ILP, so production output is stable until callers opt in.
+    """
     import pulp
 
     pair_wr = {}
@@ -248,16 +303,29 @@ def method_synergy_ilp(candidates: dict, pair_stats: list, pair_min_matches: int
         weight = min(1.0, pm / max(1, pair_min_matches * 4))
         bonus = (pwr - ind_avg) * weight
         synergy_full[(a, b)] = bonus
-    # Keep only the strongest synergies (top 400) to keep the ILP tractable
-    sorted_pairs = sorted(synergy_full.items(), key=lambda kv: -abs(kv[1]))[:400]
+    # Keep only the strongest synergies. Default top-400 was a 2024-era
+    # tractability heuristic; §5.3 says modern CBC handles 2000+ fine.
+    sorted_pairs = sorted(synergy_full.items(), key=lambda kv: -abs(kv[1]))[:synergy_top_k]
     synergy = dict(sorted_pairs)
 
     prob = pulp.LpProblem("hero_optimal", pulp.LpMaximize)
     x = {iid: pulp.LpVariable(f"x_{iid}", cat="Binary") for iid in item_ids}
     pair_keys = list(synergy.keys())
     y = {k: pulp.LpVariable(f"y_{k[0]}_{k[1]}", cat="Binary") for k in pair_keys}
+
+    # Methodology review §3.4: bake the matchup delta into the per-item
+    # score when the caller passes an enemy-specific augment. delta_pp
+    # divided by 100 puts it on the same scale as the base score (which
+    # is roughly WR-delta), so matchup_weight stays interpretable
+    # (~0.5 means "matchup signal is half as strong as base lift").
+    def _effective_score(iid: int) -> float:
+        base = candidates[iid]["score"]
+        if matchup_score_augment is not None:
+            return base + matchup_weight * matchup_score_augment.get(iid, 0.0) / 100.0
+        return base
+
     prob += (
-        pulp.lpSum(candidates[i]["score"] * x[i] for i in item_ids)
+        pulp.lpSum(_effective_score(i) * x[i] for i in item_ids)
         + pulp.lpSum(synergy[k] * y[k] for k in pair_keys)
     )
     for (a, b) in pair_keys:
@@ -270,6 +338,24 @@ def method_synergy_ilp(candidates: dict, pair_stats: list, pair_min_matches: int
             prob += pulp.lpSum(x[i] for i in cat_ids) >= 4
             prob += pulp.lpSum(x[i] for i in cat_ids) <= 8
     prob += pulp.lpSum(x[i] for i in item_ids) == 16
+
+    # Optional per-phase cumulative cost constraints (methodology review §3.1).
+    # Phase membership comes from build_candidates' phase_for() which is
+    # already baked into each candidate dict.
+    if soul_budgets:
+        early_ids = [i for i in item_ids if candidates[i]["phase"] == "early"]
+        mid_ids   = [i for i in item_ids if candidates[i]["phase"] == "mid"]
+        late_ids  = [i for i in item_ids if candidates[i]["phase"] == "late"]
+        cum_early = early_ids
+        cum_mid   = early_ids + mid_ids
+        cum_late  = early_ids + mid_ids + late_ids
+        if "early" in soul_budgets:
+            prob += pulp.lpSum(candidates[i]["cost"] * x[i] for i in cum_early) <= soul_budgets["early"]
+        if "mid" in soul_budgets:
+            prob += pulp.lpSum(candidates[i]["cost"] * x[i] for i in cum_mid) <= soul_budgets["mid"]
+        if "late" in soul_budgets:
+            prob += pulp.lpSum(candidates[i]["cost"] * x[i] for i in cum_late) <= soul_budgets["late"]
+
     prob.solve(pulp.PULP_CBC_CMD(msg=False, timeLimit=4))
 
     chosen = [i for i in item_ids if pulp.value(x[i]) > 0.5]
@@ -300,7 +386,8 @@ def method_build_replication(candidates: dict, build_stats_raw: list,
         f = build_files_dir / f"build_{bid}.json"
         if not f.exists():
             continue
-        d = json.load(open(f))
+        with open(f, encoding="utf-8") as fh:
+            d = json.load(fh)
         if not (isinstance(d, list) and d):
             continue
         b = d[0]["hero_build"]
@@ -448,7 +535,8 @@ def compute_item_metadata(build_stats_raw: list, build_files_dir: Path,
         if not f.exists():
             continue
         try:
-            d = json.load(open(f))
+            with open(f, encoding="utf-8") as fh:
+                d = json.load(fh)
         except Exception:
             continue
         if not (isinstance(d, list) and d):
@@ -474,7 +562,8 @@ def compute_item_metadata(build_stats_raw: list, build_files_dir: Path,
         if not f.exists():
             continue
         try:
-            d = json.load(open(f))
+            with open(f, encoding="utf-8") as fh:
+                d = json.load(fh)
         except Exception:
             continue
         if not (isinstance(d, list) and d):
@@ -537,21 +626,64 @@ def compute_item_metadata(build_stats_raw: list, build_files_dir: Path,
     return out
 
 
+def classify_2d_tag(pick_rate: float, wr_delta_pp: float) -> str:
+    """2D tag taxonomy per methodology review §6.4.
+
+    Replaces the previous one-axis (pick_rate only) CORE/FLEX/SIT/STAT
+    with a five-class system that combines pick frequency with adjusted
+    lift. Lift here is the raw `wr_delta_pp` already on each candidate
+    (item WR minus hero baseline). Once §2.3 propensity correction is
+    real, swap in the propensity-corrected lift; until then the raw
+    lift is the best signal we have.
+
+    The 'trap_popular' tag is the highest-value addition: it's the only
+    way the page can ever tell a user "stop buying this even though
+    everyone does". Under the previous taxonomy a bad-but-popular item
+    just got tagged CORE with no signal that anything was off.
+    """
+    if pick_rate >= 0.50 and wr_delta_pp > 1.0:
+        return "core_proven"
+    if pick_rate >= 0.50 and -1.0 <= wr_delta_pp <= 1.0:
+        return "core_inherited"
+    if pick_rate >= 0.40 and wr_delta_pp < -1.0:
+        return "trap_popular"
+    if pick_rate < 0.10 and wr_delta_pp > 3.0:
+        return "stat_anomaly"
+    if pick_rate < 0.30 and wr_delta_pp > 2.0:
+        return "tech_pick"
+    # Fall through to the legacy 1D banding for the cases the 2D matrix
+    # doesn't explicitly capture (e.g. mid-pick-rate / mid-lift items).
+    if pick_rate > 0.7:
+        return "core"
+    if pick_rate > 0.3:
+        return "flex"
+    if pick_rate > 0:
+        return "situational"
+    return "stat"
+
+
 def decorate_picks(picks: list, metadata: dict) -> list:
-    """Attach tag + annotation to each pick. Items not in metadata are tagged 'stat'."""
+    """Attach tag + annotation to each pick. Items not in metadata are tagged 'stat'.
+
+    Methodology review §6.4: tags are now a 2D function of (pick_rate,
+    wr_delta_pp). The legacy 1D pick-rate band is preserved on each
+    pick as `pick_rate_tag` for backwards compatibility with downstream
+    consumers that haven't migrated to the 5-class taxonomy yet.
+    """
     for p in picks:
         meta = metadata.get(p["item_id"])
+        pick_rate = meta["pick_rate"] if meta else 0.0
+        legacy_tag = (meta["tag"] if meta else "stat")
+        lift = p.get("wr_delta_pp", 0.0)
+        p["tag"] = classify_2d_tag(pick_rate, lift)
+        p["pick_rate_tag"] = legacy_tag  # legacy 1D banding
+        p["pick_rate"] = pick_rate
         if meta:
-            p["tag"] = meta["tag"]
-            p["pick_rate"] = meta["pick_rate"]
-            if meta["annotation"]:
+            if meta.get("annotation"):
                 p["annotation"] = meta["annotation"]
             if meta.get("imbue_target_id"):
                 p["imbue_target_id"] = meta["imbue_target_id"]
                 p["imbue_target_share"] = meta.get("imbue_target_share")
-        else:
-            p["tag"] = "stat"
-            p["pick_rate"] = 0.0
     return picks
 
 
@@ -708,8 +840,17 @@ def build_hero_output(
     items_by_id: dict,
     items_by_classname: dict,
     heroes_by_id: dict,
+    score_fn_provider=None,
 ) -> dict:
-    """Assemble the full per-hero output dict."""
+    """Assemble the full per-hero output dict.
+
+    If `score_fn_provider` is given, it is called once per MMR slice as
+    `score_fn_provider(hero_id, slice_label, baseline_wr)` and is expected
+    to return a `(wins, matches, item_id) -> score` callable that
+    overrides the default Wilson-LB scoring. Used by run_all_heroes.py
+    when `DEADLOCK_SCORING=hierarchical` is set to inject pre-fitted
+    cross-hero priors (methodology review §2.4).
+    """
     hero = heroes_by_id[hero_id]
 
     # ---- baselines ----
@@ -721,7 +862,8 @@ def build_hero_output(
         if not p or not Path(p).exists():
             return None
         try:
-            rows = json.load(open(p))
+            with open(p, encoding="utf-8") as f:
+                rows = json.load(f)
         except Exception:
             return None
         return next((h for h in rows if h["hero_id"] == hero_id), None)
@@ -777,7 +919,8 @@ def build_hero_output(
             if not p or not Path(p).exists():
                 return []
             try:
-                return json.load(open(p))
+                with open(p, encoding="utf-8") as f:
+                    return json.load(f)
             except Exception:
                 return []
 
@@ -785,8 +928,15 @@ def build_hero_output(
         pair_stats = _load_or_empty(f"pair_stats_{paths_key}")
         build_stats_raw = _load_or_empty(f"build_stats_{paths_key}")
         ability_records = _load_or_empty(f"abilities_{paths_key}")
+        # Optional cross-hero EB scoring (methodology review §2.4). When
+        # the provider is omitted (default), build_candidates falls back
+        # to the original Wilson-LB-minus-baseline rule and production
+        # output is unchanged.
+        score_fn = (score_fn_provider(hero_id, slice_label, baseline_wr)
+                    if score_fn_provider is not None else None)
         candidates = build_candidates(item_stats, items_by_id, baseline_wr,
-                                      min_match_floor, lineage_canon=lineage_canon)
+                                      min_match_floor, lineage_canon=lineage_canon,
+                                      score_fn=score_fn)
 
         m1 = method_wilson(candidates)
         # Synergy ILP can fail on tiny candidate pools (no feasible solution
@@ -809,12 +959,36 @@ def build_hero_output(
         m2 = attach_lineage_chain(m2, ancestors_of, items_by_id, item_stats, metadata)
         m3 = attach_lineage_chain(m3, ancestors_of, items_by_id, item_stats, metadata)
 
+        # Joint item + ability archetypes (methodology review §3.6).
+        # Cluster the cached community builds for this slice by their
+        # ability-ladder fingerprint, then aggregate items per cluster.
+        # Each archetype ships its own (items, ability order) pair, so
+        # the page can render conditional recommendations instead of
+        # one global build that ignores the imbue / cooldown / spirit
+        # interaction with ability investment.
+        try:
+            from joint_optimization import archetypes_for_slice
+            joint_archetypes = archetypes_for_slice(
+                candidates, build_stats_raw, baseline_wr,
+                BUILD_FILES, build_floor, ability_id_to_name,
+            )
+            # Decorate per-archetype items with the same metadata + lineage
+            # the other methods get.
+            for arch in joint_archetypes:
+                arch["items"] = decorate_picks(arch["items"], metadata)
+                arch["items"] = attach_lineage_chain(
+                    arch["items"], ancestors_of, items_by_id, item_stats, metadata,
+                )
+        except Exception:
+            joint_archetypes = []
+
         item_methods[slice_label] = {
             "candidate_count": len(candidates),
             "min_matches_filter": min_match_floor,
             "wilson_greedy": {"picks": m1},
             "synergy_ilp": {"picks": m2},
             "build_replication": {"picks": m3, "source_builds": builds_seen},
+            "joint_archetypes": joint_archetypes,
             "item_metadata": metadata,
         }
         ability[slice_label] = analyze_ability_orders(

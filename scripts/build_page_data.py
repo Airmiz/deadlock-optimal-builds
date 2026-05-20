@@ -56,8 +56,10 @@ def _compact_mmr(mmr_slices: dict) -> dict:
 
 # Asset look-ups (LEGACY/global — patch-aware code below loads per-patch
 # snapshots from cache/<patch_id>/ when available, falling back to these).
-heroes_assets = {h["id"]: h for h in json.load(open(CACHE / "heroes.json"))}
-items_assets = {i["id"]: i for i in json.load(open(CACHE / "items.json"))}
+with open(CACHE / "heroes.json", encoding="utf-8") as _f:
+    heroes_assets = {h["id"]: h for h in json.load(_f)}
+with open(CACHE / "items.json", encoding="utf-8") as _f:
+    items_assets = {i["id"]: i for i in json.load(_f)}
 
 
 def load_patch_assets(patch_id: str) -> tuple[dict, dict]:
@@ -73,8 +75,10 @@ def load_patch_assets(patch_id: str) -> tuple[dict, dict]:
     heroes_src = h_path if h_path.exists() else h_global
     items_src  = i_path if i_path.exists() else i_global
 
-    h = {x["id"]: x for x in json.load(open(heroes_src))}
-    i = {x["id"]: x for x in json.load(open(items_src))}
+    with open(heroes_src, encoding="utf-8") as _f:
+        h = {x["id"]: x for x in json.load(_f)}
+    with open(items_src, encoding="utf-8") as _f:
+        i = {x["id"]: x for x in json.load(_f)}
     return h, i
 
 # Build per-item lookup with name + tier + cost + category + image
@@ -570,7 +574,9 @@ def cluster_archetypes_for_hero(hid: int, max_clusters: int = 3,
         f = HERO_DATA / f"buildstats_{slice_label}_{hid}.json"
         if not f.exists():
             continue
-        for st in json.load(open(f)):
+        with open(f, encoding="utf-8") as _fh:
+            _rows = json.load(_fh)
+        for st in _rows:
             bid = st["hero_build_id"]
             if bid in seen_ids:
                 continue
@@ -580,7 +586,8 @@ def cluster_archetypes_for_hero(hid: int, max_clusters: int = 3,
             if not bf.exists():
                 continue
             try:
-                d = json.load(open(bf))
+                with open(bf, encoding="utf-8") as _fh:
+                    d = json.load(_fh)
             except Exception:
                 continue
             if not (isinstance(d, list) and d):
@@ -663,6 +670,67 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
             if score >= 2.0 and pr >= 0.30:
                 item["signature"] = True
         return item
+
+    def _max_order_from_sequence(seq: list[int]) -> tuple[int, ...]:
+        """Extract the *max order* (tier-3 commitment order) from a 16-step
+        ability sequence.
+
+        Each ability appears exactly four times in a complete ladder:
+        once at unlock and three times for upgrades (tier 1, 2, 3). The
+        fourth occurrence of an ability is the tier-3 max spend. Order
+        abilities ascending by that fourth-occurrence position to get
+        the strategic priority.
+
+        Used to derive a max-order fingerprint from `best_full_orders`
+        sequences pulled from raw ability-order-stats data (which has no
+        accompanying item list — see match-only archetype rendering on
+        the page).
+        """
+        counts: dict[int, int] = {}
+        max_position: dict[int, int] = {}
+        for i, aid in enumerate(seq or []):
+            counts[aid] = counts.get(aid, 0) + 1
+            if counts[aid] == 4:
+                max_position[aid] = i
+        ordered = sorted(max_position.items(), key=lambda x: x[1])
+        return tuple(aid for aid, _ in ordered)[:3]
+
+    def _compact_joint_archetype(arch: dict) -> dict:
+        """Strip a joint archetype dict to the fields the page needs.
+
+        Each archetype carries its own item picks + ability ladder
+        (methodology review §3.6). The page renders a tab strip per
+        (hero, MMR slice) when 2+ joint archetypes exist; clicking a tab
+        swaps both the build and the ability priority shown below.
+        """
+        return {
+            "archetype_id": arch.get("archetype_id"),
+            "fingerprint_ability_names": arch.get("fingerprint_ability_names", []),
+            "consensus_ladder_names": arch.get("consensus_ladder_names", []),
+            "modal_full_ladder_names": arch.get("modal_full_ladder_names", []),
+            "modal_full_ladder_ids": arch.get("modal_full_ladder_ids", []),
+            "n_builds": arch.get("n_builds", 0),
+            "total_matches": arch.get("total_matches", 0),
+            "mean_win_rate": arch.get("mean_win_rate", 0),
+            "win_rate_lift_pp": arch.get("win_rate_lift_pp", 0),
+            "items": [with_affinity({
+                "slot": p["slot"], "name": p["name"], "category": p["category"],
+                "tier": p["tier"], "cost": p["cost"],
+                "buy_min": round(p["avg_buy_time_s"] / 60, 1),
+                "sell_min": (round(p["avg_sell_time_s"] / 60, 1)
+                             if p.get("avg_sell_time_s") else None),
+                "wr": p["win_rate"], "phase": p["phase"],
+                "image": items_assets.get(p["item_id"], {}).get("image"),
+                "item_id": p["item_id"],
+                "tag": p.get("tag", "stat"),
+                "pick_rate": p.get("pick_rate", 0.0),
+                "annotation": p.get("annotation", ""),
+                "lineage_chain": p.get("lineage_chain", []),
+                "is_active": p.get("is_active", False),
+                "cooldown_s": p.get("cooldown_s"),
+                "imbue": p.get("imbue"),
+            }) for p in arch.get("items", [])],
+        }
 
     out = {
         "id": hid,
@@ -747,7 +815,145 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
             for slice_label, src in SLICE_KEYS
         },
         "archetypes": archetypes or {"clusters": [], "total_builds": 0},
+        # Joint item + ability archetypes (methodology review §3.6).
+        # Per-MMR-slice list, each entry self-contained with its own
+        # ability ladder and items. Empty list when no community builds
+        # cluster cleanly (e.g. low-pick hero / thin slice).
+        "joint_archetypes_by_slice": {
+            slice_label: [
+                _compact_joint_archetype(arch)
+                for arch in (d["items"].get(src, {}).get("joint_archetypes") or [])
+            ]
+            for slice_label, src in SLICE_KEYS
+        },
     }
+
+    # Match-only ability archetypes (no template item data).
+    # Derived from `ability_orders[<slice>].best_full_orders` — these are
+    # max-order patterns observed in raw match-level data that have NO
+    # corresponding published Steam template. We surface them as
+    # additional tabs so users can see the high-WR ability priorities
+    # that the template-based clusters miss; the item column falls back
+    # to the recommended ILP build (the page makes this explicit when
+    # the tab is active).
+    abilities_meta = {a["id"]: a["name"] for a in d["hero"]["abilities"]}
+    template_fingerprints_by_slice: dict[str, set[tuple]] = {
+        slice_label: {tuple(arch.get("fingerprint_ability_ids") or [])
+                      for arch in (d["items"].get(src, {}).get("joint_archetypes") or [])}
+        for slice_label, src in SLICE_KEYS
+    }
+    baseline_wr_by_slice = {
+        slice_label: out["mmr"].get(slice_label, {}).get("wr")
+        for slice_label, _ in SLICE_KEYS
+    }
+
+    # Lazy import to avoid a hard dep when the resolver hasn't run yet.
+    import hashlib
+    resolutions_dir = CACHE / "match_archetype_resolutions" / patch_id
+
+    def _load_resolved_items(slice_label: str, fp: tuple) -> list | None:
+        """Return decorated picks from a cached resolver run, or None."""
+        if not resolutions_dir.exists():
+            return None
+        h = hashlib.sha1(",".join(str(a) for a in fp).encode()).hexdigest()[:10]
+        path = resolutions_dir / f"{hid}_{slice_label}_{h}.json"
+        if not path.exists() or path.stat().st_size < 2:
+            return None
+        try:
+            with open(path, encoding="utf-8") as f:
+                res = json.load(f)
+        except Exception:
+            return None
+        # Adapt the resolver's pick schema to the page's expected fields.
+        picks = []
+        for p in (res.get("items") or []):
+            picks.append(with_affinity({
+                "slot": p["slot"], "name": p["name"], "category": p["category"],
+                "tier": p["tier"], "cost": p["cost"],
+                "buy_min": round(p["avg_buy_time_s"] / 60, 1) if p.get("avg_buy_time_s") else None,
+                "sell_min": (round(p["avg_sell_time_s"] / 60, 1)
+                             if p.get("avg_sell_time_s") else None),
+                "wr": p["win_rate"], "phase": p["phase"],
+                "image": items_assets.get(p["item_id"], {}).get("image"),
+                "item_id": p["item_id"],
+                "tag": "stat",       # resolver doesn't have community-build metadata
+                "pick_rate": p.get("personal_pick_rate", 0.0),
+                "annotation": "",
+                "lineage_chain": [],
+                "is_active": p.get("is_active", False),
+                "cooldown_s": None,
+                "imbue": p.get("imbue"),
+            }))
+        return picks if picks else None
+
+    out["match_only_archetypes_by_slice"] = {}
+    for slice_label, src in SLICE_KEYS:
+        full_orders = (d["ability_orders"].get(src) or {}).get("best_full_orders") or []
+        # Bucket every sequence by its max-order fingerprint. The per-hero
+        # JSON renames the raw API `abilities` field to `sequence_ids`.
+        by_fp: dict[tuple, dict] = {}
+        for r in full_orders:
+            fp = _max_order_from_sequence(r.get("sequence_ids") or [])
+            if not fp or len(fp) < 3:
+                continue
+            bucket = by_fp.setdefault(fp, {
+                "fingerprint_ability_ids": list(fp),
+                "fingerprint_ability_names": [abilities_meta.get(a, "?") for a in fp],
+                "n_sequences": 0,
+                "total_matches": 0,
+                "total_wins": 0,
+                "n_players": 0,
+                # Track the highest-WR sequence in this cluster so the
+                # page can show the actual 16-step AP order, not just
+                # the 3-ability max-order fingerprint.
+                "_best_rep": None,
+            })
+            bucket["n_sequences"] += 1
+            bucket["total_matches"] += r.get("matches", 0)
+            bucket["total_wins"] += r.get("wins", 0)
+            bucket["n_players"] += r.get("players", 0)
+            seq_wr = (r.get("wins", 0) / r.get("matches", 1)) if r.get("matches") else 0
+            best_so_far = bucket["_best_rep"]
+            if best_so_far is None or seq_wr > best_so_far["wr"]:
+                bucket["_best_rep"] = {
+                    "wr": seq_wr,
+                    "matches": r.get("matches", 0),
+                    "players": r.get("players", 0),
+                    "sequence_ids": r.get("sequence_ids") or [],
+                }
+
+        baseline = baseline_wr_by_slice.get(slice_label) or 0
+        template_fps = template_fingerprints_by_slice.get(slice_label, set())
+        match_only = []
+        for fp, bucket in by_fp.items():
+            if fp in template_fps:
+                continue  # already a template cluster; skip the duplicate
+            if bucket["total_matches"] <= 0:
+                continue
+            wr = bucket["total_wins"] / bucket["total_matches"]
+            bucket["mean_win_rate"] = round(wr, 4)
+            bucket["win_rate_lift_pp"] = round((wr - baseline) * 100, 2) if baseline else None
+            # Promote the representative-full-ladder tracking from
+            # internal scratch field to the final emitted shape. The
+            # page renders this as the archetype's 16-step AP order.
+            rep = bucket.pop("_best_rep", None)
+            if rep and rep["sequence_ids"]:
+                bucket["best_full_ladder_ids"] = rep["sequence_ids"]
+                bucket["best_full_ladder_names"] = [abilities_meta.get(a, "?") for a in rep["sequence_ids"]]
+                bucket["best_full_ladder_wr"] = round(rep["wr"], 4)
+                bucket["best_full_ladder_matches"] = rep["matches"]
+                bucket["best_full_ladder_players"] = rep["players"]
+            # Attach resolved items if the resolver has run for this
+            # (hero, slice, fingerprint). Falls back to None → page
+            # shows the recommended ILP build with a caveat banner.
+            resolved = _load_resolved_items(slice_label, fp)
+            if resolved:
+                bucket["items"] = resolved
+                bucket["resolved"] = True
+            match_only.append(bucket)
+        # Sort by lift descending so the headline "alternatives" land first.
+        match_only.sort(key=lambda b: -(b.get("win_rate_lift_pp") or -999))
+        out["match_only_archetypes_by_slice"][slice_label] = match_only
 
     # Decorate each cluster's composite build with affinity/signature using
     # the same logic as the main picks, so clicking an archetype produces
@@ -773,12 +979,15 @@ def compute_counters_for_patch(patch_id: str, top_k: int = 12) -> dict:
 
     # Per-hero baselines (high-MMR slice — counters were fetched at HMMR)
     baselines: dict[int, dict[int, dict]] = {}
-    for h in json.load(open(CACHE / "playable_heroes.json")):
+    with open(CACHE / "playable_heroes.json", encoding="utf-8") as _fh:
+        _playable = json.load(_fh)
+    for h in _playable:
         f = hero_data_dir / f"itemstats_hmmr_{h['id']}.json"
         if not f.exists():
             continue
         try:
-            d = json.load(open(f))
+            with open(f, encoding="utf-8") as _fh:
+                d = json.load(_fh)
         except Exception:
             continue
         baselines[h["id"]] = {s["item_id"]: s for s in d}
@@ -791,13 +1000,23 @@ def compute_counters_for_patch(patch_id: str, top_k: int = 12) -> dict:
         except ValueError:
             continue
         try:
-            stats = json.load(open(cf))
+            with open(cf, encoding="utf-8") as _fh:
+                stats = json.load(_fh)
         except Exception:
             continue
         baseline_for_hero = baselines.get(hero_id, {})
         if not baseline_for_hero:
             continue
 
+        # Methodology review §2.8 Problem 1: replace hard thresholds
+        # (n_vs >= 100, n_base >= 200, |Δ| >= 0.4) with a continuous
+        # confidence-weighted score:
+        #     score = Δpp × min(1, n_vs/300) × min(1, n_base/500)
+        # Items with thin samples or tiny effect get attenuated rather
+        # than dropped, which removes the 0.39pp-vs-0.41pp discontinuity
+        # the review flagged. We keep a soft floor (n_vs >= 25, n_base
+        # >= 50) only to filter pure noise from heroes with one or two
+        # matchup observations — the confidence weight handles the rest.
         deltas = []
         for s in stats:
             iid = s["item_id"]
@@ -806,8 +1025,8 @@ def compute_counters_for_patch(patch_id: str, top_k: int = 12) -> dict:
                 continue
             n_vs = s.get("matches", 0)
             n_base = base.get("matches", 0)
-            if n_vs < 100 or n_base < 200:
-                continue  # need both samples to be meaningful
+            if n_vs < 25 or n_base < 50:
+                continue  # pure-noise floor only
             it = items_assets.get(iid)
             if not (it and it.get("type") == "upgrade"
                     and it.get("item_slot_type") in ("weapon", "vitality", "spirit")):
@@ -815,24 +1034,31 @@ def compute_counters_for_patch(patch_id: str, top_k: int = 12) -> dict:
             wr_vs = s["wins"] / n_vs
             wr_base = base["wins"] / n_base
             delta_pp = round((wr_vs - wr_base) * 100, 2)
-            if abs(delta_pp) < 0.4:
-                continue  # ignore tiny/noise deltas
+            conf = min(1.0, n_vs / 300.0) * min(1.0, n_base / 500.0)
+            score = round(delta_pp * conf, 3)
+            # A near-zero confidence-weighted score is below the noise
+            # floor — drop it. This collapses the old |Δ|>=0.4 threshold
+            # into a single continuous criterion.
+            if abs(score) < 0.05:
+                continue
             # Only keep id-keyed fields; UI looks up name/cat/tier/cost/image
             # from a shared items dict embedded once per patch (saves ~2 MB).
             deltas.append({
                 "item_id": iid,
                 "delta_pp": delta_pp,
+                "confidence_weighted_score": score,
                 "n_vs": n_vs,
                 "n_base": n_base,
             })
         if not deltas:
             continue
-        # Keep top-K by |delta|. Also separately keep top-3 most-positive +
-        # top-3 most-negative for guaranteed buy/avoid representation, to avoid
-        # one-sided tails dominating when matchup is wholly favorable/unfavorable.
-        deltas.sort(key=lambda x: -abs(x["delta_pp"]))
+        # Keep top-K by |confidence-weighted score| (§2.8 Problem 1).
+        # The score already attenuates thin samples and tiny effects, so
+        # ranking by it gives the cleanest signal — no separate top-3-each-side
+        # logic needed because confidence weighting handles the symmetry.
+        deltas.sort(key=lambda x: -abs(x["confidence_weighted_score"]))
         kept = deltas[:top_k]
-        kept.sort(key=lambda x: -x["delta_pp"])
+        kept.sort(key=lambda x: -x["confidence_weighted_score"])
         out.setdefault(hero_id, {})[enemy_id] = kept
     return out
 
@@ -854,7 +1080,10 @@ def build_patch_payload(patch_id: str) -> dict | None:
         print(f"  {patch_id}: no hero outputs on disk — skipped")
         return None
 
-    raw_outputs = [json.load(open(f)) for f in files]
+    def _load(p):
+        with open(p, encoding="utf-8") as _fh:
+            return json.load(_fh)
+    raw_outputs = [_load(f) for f in files]
     print(f"  {patch_id}: loaded {len(raw_outputs)} hero outputs")
 
     # Swap module-level asset dicts to this patch's snapshot for the
@@ -880,7 +1109,8 @@ def _build_patch_payload_inner(patch_id, raw_outputs, hero_out_dir, patch_cache_
 
     # Pre-load high-MMR baseline once (used per hero)
     try:
-        hero_stats_hmmr = json.load(open(patch_cache_dir / "hero_stats_hmmr.json"))
+        with open(patch_cache_dir / "hero_stats_hmmr.json", encoding="utf-8") as _fh:
+            hero_stats_hmmr = json.load(_fh)
         baseline_by_hero = {h["hero_id"]: h for h in hero_stats_hmmr}
     except Exception:
         baseline_by_hero = {}
@@ -889,12 +1119,20 @@ def _build_patch_payload_inner(patch_id, raw_outputs, hero_out_dir, patch_cache_
         hid = d["hero"]["id"]
         stats_path = patch_cache_dir / "hero_data" / f"itemstats_hmmr_{hid}.json"
         try:
-            hero_stats = json.load(open(stats_path)) if stats_path.exists() else []
+            if stats_path.exists():
+                with open(stats_path, encoding="utf-8") as _fh:
+                    hero_stats = json.load(_fh)
+            else:
+                hero_stats = []
         except Exception:
             hero_stats = []
         pair_path = patch_cache_dir / "hero_data" / f"perm2_hmmr_{hid}.json"
         try:
-            pair_stats = json.load(open(pair_path)) if pair_path.exists() else []
+            if pair_path.exists():
+                with open(pair_path, encoding="utf-8") as _fh:
+                    pair_stats = json.load(_fh)
+            else:
+                pair_stats = []
         except Exception:
             pair_stats = []
         base_h = baseline_by_hero.get(hid)
@@ -995,6 +1233,21 @@ def _build_patch_payload_inner(patch_id, raw_outputs, hero_out_dir, patch_cache_
                 "image": it.get("image"),
             }
 
+    # Methodology review §2.8 Problem 2: enemy-team trait taxonomy.
+    # The page client-side can use this map to aggregate per-enemy
+    # counter deltas with max-per-trait saturation instead of summing
+    # per-enemy (which double-counts shared traits like 'sustain' when
+    # the team has two healers). Partial coverage by class_name — heroes
+    # not in the map fall back to the old per-enemy summation, which
+    # degrades gracefully.
+    from hero_traits import HERO_TRAITS, TRAITS
+    hero_traits_by_id: dict[int, list[str]] = {}
+    for h in heroes_data:
+        cn = h.get("class_name") or h.get("name", "").lower()
+        traits = HERO_TRAITS.get(cn)
+        if traits:
+            hero_traits_by_id[h["id"]] = sorted(traits)
+
     return {
         "id": patch_id,
         "title": meta.get("title", patch_id),
@@ -1004,6 +1257,8 @@ def _build_patch_payload_inner(patch_id, raw_outputs, hero_out_dir, patch_cache_
         "heroes": heroes_data,
         "tier_order_ids": [h["id"] for h in tier],
         "counters": counters,
+        "hero_traits": hero_traits_by_id,
+        "trait_taxonomy": list(TRAITS),
         "items_dict": items_dict,
     }
 
@@ -1024,7 +1279,9 @@ def cluster_archetypes_for_hero_in(hid: int, patch_cache_dir, max_clusters: int 
         f = patch_cache_dir / "hero_data" / f"buildstats_{slice_label}_{hid}.json"
         if not f.exists():
             continue
-        for st in json.load(open(f)):
+        with open(f, encoding="utf-8") as _fh:
+            _rows = json.load(_fh)
+        for st in _rows:
             bid = st["hero_build_id"]
             if bid in seen_ids:
                 continue
@@ -1034,7 +1291,8 @@ def cluster_archetypes_for_hero_in(hid: int, patch_cache_dir, max_clusters: int 
             if not bf.exists():
                 continue
             try:
-                d = json.load(open(bf))
+                with open(bf, encoding="utf-8") as _fh:
+                    d = json.load(_fh)
             except Exception:
                 continue
             if not (isinstance(d, list) and d):
@@ -1130,7 +1388,8 @@ def main() -> None:
                 continue
             for hf in hero_dir.glob("*_build.json"):
                 try:
-                    hd = json.load(open(hf))
+                    with open(hf, encoding="utf-8") as _fh:
+                        hd = json.load(_fh)
                 except Exception:
                     continue
                 hid = hd.get("hero", {}).get("id")
@@ -1165,7 +1424,8 @@ def main() -> None:
                 continue
             for hf in hero_dir.glob("*_build.json"):
                 try:
-                    hd = json.load(open(hf))
+                    with open(hf, encoding="utf-8") as _fh:
+                        hd = json.load(_fh)
                 except Exception:
                     continue
                 hid = hd.get("hero", {}).get("id")
@@ -1303,8 +1563,8 @@ def main() -> None:
     }
 
     target = CACHE / "page_data.json"
-    with open(target, "w") as f:
-        json.dump(page_data, f, separators=(",", ":"))
+    with open(target, "w", encoding="utf-8") as f:
+        json.dump(page_data, f, separators=(",", ":"), ensure_ascii=False)
     size = target.stat().st_size
     print(f"\n[saved] {target}  {size:,} bytes  ({size/1024:.1f} KB)")
     for pid, p in payloads.items():

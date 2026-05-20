@@ -8,7 +8,7 @@ from _paths import (
 )
 
 
-DATA_JSON = (CACHE / "page_data.json").read_text()
+DATA_JSON = (CACHE / "page_data.json").read_text(encoding="utf-8")
 
 HTML = """<!doctype html>
 <html lang="en">
@@ -68,6 +68,18 @@ HTML = """<!doctype html>
     border: 1px solid var(--border);
     border-radius: 6px;
     overflow: hidden;
+    align-items: stretch;
+  }
+  .toggle-group .toggle-label {
+    padding: 4px 8px;
+    font-size: 11px;
+    color: var(--text-dim);
+    background: var(--bg-elev);
+    border-right: 1px solid var(--border);
+    display: inline-flex;
+    align-items: center;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
   }
   .toggle-group button {
     background: transparent;
@@ -346,10 +358,116 @@ HTML = """<!doctype html>
     border: 1px solid transparent;
     vertical-align: middle;
   }
-  .tag-core        { background: rgba(88,196,108,0.16);  color: var(--good);    border-color: rgba(88,196,108,0.4); }
-  .tag-flex        { background: rgba(240,169,59,0.14);  color: var(--accent);  border-color: rgba(240,169,59,0.35); }
-  .tag-situational { background: rgba(139,148,163,0.12); color: var(--neutral); border-color: rgba(139,148,163,0.3); }
-  .tag-stat        { background: rgba(106,141,180,0.14); color: var(--flex);    border-color: rgba(106,141,180,0.35); }
+  .tag-core            { background: rgba(88,196,108,0.16);  color: var(--good);    border-color: rgba(88,196,108,0.4); }
+  .tag-core_proven     { background: rgba(88,196,108,0.22);  color: var(--good);    border-color: rgba(88,196,108,0.55); }
+  .tag-core_inherited  { background: rgba(240,169,59,0.14);  color: var(--accent);  border-color: rgba(240,169,59,0.35); }
+  .tag-tech_pick       { background: rgba(110,176,255,0.18); color: #6eb0ff;        border-color: rgba(110,176,255,0.45); }
+  .tag-trap_popular    { background: rgba(232,80,90,0.18);   color: var(--bad);     border-color: rgba(232,80,90,0.5); }
+  .tag-stat_anomaly    { background: rgba(180,120,220,0.18); color: #b478dc;        border-color: rgba(180,120,220,0.45); }
+  .tag-flex            { background: rgba(240,169,59,0.14);  color: var(--accent);  border-color: rgba(240,169,59,0.35); }
+  .tag-situational     { background: rgba(139,148,163,0.12); color: var(--neutral); border-color: rgba(139,148,163,0.3); }
+  .tag-stat            { background: rgba(106,141,180,0.14); color: var(--flex);    border-color: rgba(106,141,180,0.35); }
+
+  /* Joint archetype tab strip (methodology review §3.6).
+     Renders above the "Item Build by Phase" section when 2+ ability-based
+     archetypes exist for the active hero+slice. Clicking a tab swaps the
+     build phases AND the ability priority below. */
+  .joint-arch-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 6px 0 14px 0;
+    align-items: stretch;
+  }
+  .joint-arch-tab {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: left;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 12px;
+    line-height: 1.3;
+    transition: border-color 0.12s, background 0.12s;
+    min-width: 140px;
+  }
+  .joint-arch-tab:hover { border-color: var(--accent); }
+  .joint-arch-tab.active {
+    border-color: var(--accent);
+    background: rgba(240, 169, 59, 0.08);
+  }
+  /* Match-only tabs: ability priority is from raw match data but no
+     published template exists, so the item column can't be specifically
+     swapped. Dashed border + slightly muted background to distinguish. */
+  .joint-arch-tab.match-only {
+    border-style: dashed;
+    background: rgba(106, 141, 180, 0.05);
+  }
+  .joint-arch-tab.match-only.active {
+    background: rgba(106, 141, 180, 0.12);
+    border-color: var(--flex);
+    border-style: solid;
+  }
+  .joint-arch-tab.match-only .arch-title { color: var(--flex); }
+  .joint-arch-tab.match-only.active .arch-title { color: var(--flex); }
+  /* Match-resolved tabs (items aggregated from the actual players running
+     this priority) — solid border to distinguish from unresolved dashed. */
+  .joint-arch-tab.match-only.resolved {
+    border-style: solid;
+    border-color: rgba(106, 141, 180, 0.55);
+    background: rgba(106, 141, 180, 0.08);
+  }
+  .joint-arch-tab .arch-title {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--text);
+  }
+  .joint-arch-tab.active .arch-title { color: var(--accent); }
+  .joint-arch-tab .arch-meta {
+    font-size: 10.5px;
+    color: var(--text-dim);
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .joint-arch-tab .arch-lift {
+    font-weight: 600;
+  }
+  .joint-arch-tab .arch-lift.positive { color: var(--good); }
+  .joint-arch-tab .arch-lift.negative { color: var(--bad); }
+  .joint-arch-tab .arch-lift.neutral  { color: var(--text-dim); }
+  .joint-arch-note {
+    font-size: 11.5px;
+    color: var(--text-dim);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  /* Archetype ability ladder — full 16-step AP order rendered below the
+     item phases when a joint or match-only archetype tab is active. */
+  .archetype-ladder {
+    margin-top: 18px;
+    padding: 12px 14px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .archetype-ladder h4 {
+    margin: 0 0 4px 0;
+    font-size: 13px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+  }
+  .archetype-ladder-source {
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
 
   /* Hover tooltip showing the annotation */
   .item-row { position: relative; }
@@ -1347,6 +1465,11 @@ HTML = """<!doctype html>
       <button data-mmr="asc" title="min_average_badge=101 — top ~3-5%">Ascendant+</button>
       <button data-mmr="eter" title="min_average_badge=111 — top ~0.1-1%">Eternus+</button>
     </div>
+    <div class="toggle-group" id="methodology-toggle" title="Toggle between the classic methodology and the updated build (v2). Your choice is remembered locally.">
+      <span class="toggle-label">Methodology:</span>
+      <button data-methodology="v1" title="Classic CORE/FLEX/SIT/STAT tags, no joint archetype tabs, counter ranking by raw Δpp with hard threshold.">v1</button>
+      <button data-methodology="v2" title="Updated: 5-class 2D tag taxonomy (incl. TRAP POPULAR), joint item+ability archetype tabs, confidence-weighted counter ranking.">v2</button>
+    </div>
   </div>
 </header>
 <div class="mobile-backdrop" id="mobile-backdrop"></div>
@@ -1372,6 +1495,31 @@ HTML = """<!doctype html>
   let activePatchId = DATA.default_patch;
   let activePatch = DATA.patches[activePatchId];
   let selectedHeroId = null;
+  // Methodology toggle (v1 = classic, v2 = updated). Persists in
+  // localStorage and honors ?methodology=v1|v2 in the URL on load.
+  // Default is v2 — the updated rendering. Set to v1 to fall back to
+  // the legacy CORE/FLEX/SIT/STAT tags, hide the joint archetype tabs,
+  // and rank counter picks by raw Δpp with the historical hard-floor
+  // filter.
+  let methodologyVersion = (() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const fromUrl = params.get('methodology');
+      if (fromUrl === 'v1' || fromUrl === 'v2') return fromUrl;
+      const stored = localStorage.getItem('methodologyVersion');
+      if (stored === 'v1' || stored === 'v2') return stored;
+    } catch (e) {}
+    return 'v2';
+  })();
+  function setMethodologyVersion(v) {
+    methodologyVersion = (v === 'v1' ? 'v1' : 'v2');
+    try { localStorage.setItem('methodologyVersion', methodologyVersion); } catch (e) {}
+    document.querySelectorAll('#methodology-toggle button').forEach(b => {
+      b.classList.toggle('active', b.dataset.methodology === methodologyVersion);
+    });
+    renderMain();
+  }
+
   let mmrSlice = 'high';
   let sortMode = 'alpha';
   let viewMode = 'detail';   // 'detail' | 'matrix'
@@ -1379,6 +1527,17 @@ HTML = """<!doctype html>
   // Per-hero active archetype index — null/undefined means "use recommended"
   // Reset on patch change since hero objects differ between patches.
   let activeArchetypeIdxByHero = {};
+  // Methodology review §3.6: per-(hero, mmr-slice) selected joint archetype.
+  // Key is `${hero_id}:${mmrSlice}`, value is the archetype_id (1-based) or
+  // null/undefined for "use recommended". Tracked separately from the legacy
+  // item-set clusters above so the two systems don't fight over state.
+  let activeJointArchByHeroSlice = {};
+  // Per-(hero, mmr-slice) selected match-only ability priority. Stored
+  // as the array index into match_only_archetypes_by_slice[slice]. When
+  // active, the items column does NOT swap (no template item data
+  // exists for this ladder) — see renderJointArchTabs note.
+  let activeMatchArchByHeroSlice = {};
+  function jointArchKey(heroId, slice) { return heroId + ':' + slice; }
   // Per-(patch, hero) selected enemy hero IDs for the counter-pick panel
   // Stored as Set<enemy_id>. Up to 6 enemies (one full team minus self).
   const counterEnemiesByHero = {};
@@ -1623,17 +1782,25 @@ HTML = """<!doctype html>
 
   // Plain-text export for the active build (current hero, MMR, archetype).
   function buildExportText(hero) {
-    const items = (activeArchetypeIdxByHero[hero.id] != null)
-      ? (() => {
-          const meaningful = (hero.archetypes && hero.archetypes.clusters || []).filter(c => c.build_count >= 2 && c.build);
-          return meaningful[activeArchetypeIdxByHero[hero.id]].build;
-        })()
-      : hero.items_by_slice[mmrSlice];
+    // Selection order matches renderMain: joint archetype (§3.6) > legacy
+    // item-set archetype > slice default.
+    const jointArchs = (hero.joint_archetypes_by_slice && hero.joint_archetypes_by_slice[mmrSlice]) || [];
+    const jointArchId = activeJointArchByHeroSlice[jointArchKey(hero.id, mmrSlice)];
+    const activeJoint = jointArchId != null ? jointArchs.find(a => a.archetype_id === jointArchId) : null;
+    const items = activeJoint
+      ? activeJoint.items
+      : (activeArchetypeIdxByHero[hero.id] != null
+          ? (() => {
+              const meaningful = (hero.archetypes && hero.archetypes.clusters || []).filter(c => c.build_count >= 2 && c.build);
+              return meaningful[activeArchetypeIdxByHero[hero.id]].build;
+            })()
+          : hero.items_by_slice[mmrSlice]);
     const total = items.reduce((s, i) => s + (i.cost || 0), 0);
-    const archActive = activeArchetypeIdxByHero[hero.id] != null;
-    const variant = archActive
-      ? `${(hero.archetypes.clusters.filter(c => c.build_count >= 2 && c.build)[activeArchetypeIdxByHero[hero.id]] || {}).label} archetype build`
-      : 'Recommended build · synergy ILP';
+    const variant = activeJoint
+      ? `${activeJoint.fingerprint_ability_names.join(' / ')} archetype (§3.6 joint optimization)`
+      : (activeArchetypeIdxByHero[hero.id] != null
+          ? `${(hero.archetypes.clusters.filter(c => c.build_count >= 2 && c.build)[activeArchetypeIdxByHero[hero.id]] || {}).label} archetype build`
+          : 'Recommended build · synergy ILP');
     const phaseFromBuyMin = (m) => m < 12.5 ? 'EARLY' : m < 25 ? 'MID' : 'LATE';
     const phaseLabels = { EARLY: 'EARLY (laning · ≤12.5 min)', MID: 'MID (mid game · 12.5–25 min)', LATE: 'LATE (late game · 25+ min)' };
 
@@ -1701,6 +1868,43 @@ HTML = """<!doctype html>
 
   // Event delegation for archetype "View this build" buttons + reset banner.
   document.addEventListener('click', e => {
+    // Methodology review §3.6 — joint archetype tab strip.
+    const jointTab = e.target.closest('[data-joint-arch-hero]');
+    if (jointTab) {
+      const heroId = parseInt(jointTab.dataset.jointArchHero, 10);
+      const archIdRaw = jointTab.dataset.jointArchId;
+      const archId = archIdRaw === '' ? null : parseInt(archIdRaw, 10);
+      const key = jointArchKey(heroId, mmrSlice);
+      if (archId == null || activeJointArchByHeroSlice[key] === archId) {
+        delete activeJointArchByHeroSlice[key];
+        delete activeMatchArchByHeroSlice[key];
+      } else {
+        activeJointArchByHeroSlice[key] = archId;
+        delete activeMatchArchByHeroSlice[key];
+        // Selecting a joint archetype implicitly clears any legacy
+        // item-set archetype selection for the same hero — the two
+        // systems should never both be active.
+        delete activeArchetypeIdxByHero[heroId];
+      }
+      renderMain();
+      return;
+    }
+    // Match-only ability-priority tab (no template item data).
+    const matchTab = e.target.closest('[data-joint-match-arch-hero]');
+    if (matchTab) {
+      const heroId = parseInt(matchTab.dataset.jointMatchArchHero, 10);
+      const idx = parseInt(matchTab.dataset.jointMatchArchIdx, 10);
+      const key = jointArchKey(heroId, mmrSlice);
+      if (activeMatchArchByHeroSlice[key] === idx) {
+        delete activeMatchArchByHeroSlice[key];
+      } else {
+        activeMatchArchByHeroSlice[key] = idx;
+        delete activeJointArchByHeroSlice[key];
+        delete activeArchetypeIdxByHero[heroId];
+      }
+      renderMain();
+      return;
+    }
     const archBtn = e.target.closest('[data-arch-idx]');
     if (archBtn) {
       const heroId = parseInt(archBtn.dataset.archHero, 10);
@@ -1900,6 +2104,21 @@ HTML = """<!doctype html>
     const activeArchIdx = activeArchetypeIdxByHero[h.id];
     const meaningfulArchs = (h.archetypes && h.archetypes.clusters || []).filter(c => c.build_count >= 2 && c.build);
     const activeArch = (activeArchIdx != null) ? meaningfulArchs[activeArchIdx] : null;
+    // Methodology review §3.6: joint item+ability archetypes for the current slice.
+    // Selecting one swaps both the items AND the ability priority below.
+    // In v1 (classic) mode these arrays are forced empty so no
+    // archetype state can leak into the rendering even if the user
+    // previously selected a tab in v2.
+    const inV2 = methodologyVersion === 'v2';
+    const jointArchsForSlice = inV2 ? ((h.joint_archetypes_by_slice && h.joint_archetypes_by_slice[mmrSlice]) || []) : [];
+    const activeJointArchId = inV2 ? activeJointArchByHeroSlice[jointArchKey(h.id, mmrSlice)] : null;
+    const activeJointArch = (activeJointArchId != null)
+      ? jointArchsForSlice.find(a => a.archetype_id === activeJointArchId)
+      : null;
+    // Match-only ability-priority archetypes (raw match data, no template items).
+    const matchArchsForSlice = inV2 ? ((h.match_only_archetypes_by_slice && h.match_only_archetypes_by_slice[mmrSlice]) || []) : [];
+    const activeMatchArchIdx = inV2 ? activeMatchArchByHeroSlice[jointArchKey(h.id, mmrSlice)] : null;
+    const activeMatchArch = (activeMatchArchIdx != null) ? matchArchsForSlice[activeMatchArchIdx] : null;
     // Get build for current MMR slice (or the active archetype's composite).
     // If the slice is empty for THIS hero (e.g. Eternus+ on a niche hero),
     // show an explicit empty-state instead of a blank build column.
@@ -1925,7 +2144,26 @@ HTML = """<!doctype html>
         </div>`;
       return;
     }
-    const items = activeArch ? activeArch.build : sliceItems;
+    // Build selection priority (v2):
+    //   joint archetype (§3.6, items from published templates)
+    //   > match-only archetype with resolved items (the resolver script
+    //     finds the actual accounts who run this priority and aggregates
+    //     their item-stats)
+    //   > legacy item-set archetype
+    //   > slice default.
+    // Match-only archetypes WITHOUT resolved items fall through to the
+    // slice default and rely on the caveat banner above to explain.
+    // In v1 (classic) mode, joint and match-only archetypes are skipped.
+    let items;
+    if (methodologyVersion === 'v2' && activeJointArch) {
+      items = activeJointArch.items;
+    } else if (methodologyVersion === 'v2' && activeMatchArch && activeMatchArch.items && activeMatchArch.items.length) {
+      items = activeMatchArch.items;
+    } else if (activeArch) {
+      items = activeArch.build;
+    } else {
+      items = sliceItems;
+    }
 
     // Build "events" — each phase column contains the buy events that happen
     // in its time window. A picked item with an upgrade chain is decomposed
@@ -2089,16 +2327,30 @@ HTML = """<!doctype html>
           <button class="copy-build-btn" data-copy-hero="${h.id}">📋 Copy build to clipboard</button>
         </div>
         <h3>Item Build by Phase</h3>
+        ${renderJointArchTabs(h, jointArchsForSlice, activeJointArch, matchArchsForSlice, activeMatchArch)}
         <div class="summary-line">
-          From the synergy-aware ILP method — items chosen for win rate <em>and</em> pairwise synergy. Buy times are population averages.
+          ${activeJointArch
+            ? `Conditional build for the <strong>max ${escHtml(activeJointArch.fingerprint_ability_names.join(' → '))}</strong> archetype — items aggregated from ${activeJointArch.n_builds} community builds that tier-3 those abilities in that order.`
+            : 'From the synergy-aware ILP method — items chosen for win rate <em>and</em> pairwise synergy. Buy times are population averages.'}
           Hover any item with a community-build note to see the tooltip authors wrote about it.
         </div>
+        ${methodologyVersion === 'v1' ? `
         <div class="summary-line" style="margin-top:-8px">
           <span class="tag-pill tag-core">CORE</span> in &gt;70% of top builds &nbsp;·&nbsp;
           <span class="tag-pill tag-flex">FLEX</span> 30–70% &nbsp;·&nbsp;
           <span class="tag-pill tag-situational">SIT.</span> &lt;30% &nbsp;·&nbsp;
           <span class="tag-pill tag-stat">STAT</span> stat-derived only
-        </div>
+        </div>` : `
+        <div class="summary-line" style="margin-top:-8px">
+          <span class="tag-pill tag-core_proven">CORE PROVEN</span> popular &amp; data confirms &nbsp;·&nbsp;
+          <span class="tag-pill tag-core_inherited">CORE INHERITED</span> popular but flat WR &nbsp;·&nbsp;
+          <span class="tag-pill tag-tech_pick">TECH</span> low pick, high lift &nbsp;·&nbsp;
+          <span class="tag-pill tag-trap_popular">TRAP</span> popular but hurts WR &nbsp;·&nbsp;
+          <span class="tag-pill tag-stat_anomaly">STAT ✱</span> tiny sample, high lift &nbsp;·&nbsp;
+          <span class="tag-pill tag-flex">FLEX</span> &nbsp;·&nbsp;
+          <span class="tag-pill tag-situational">SIT.</span> &nbsp;·&nbsp;
+          <span class="tag-pill tag-stat">STAT</span>
+        </div>`}
         <div class="phases">
           <div class="phase-col">
             <h4>Early <span class="when">${phaseWhen.early}</span></h4>
@@ -2116,8 +2368,136 @@ HTML = """<!doctype html>
             ${renderPhaseSpikeSummary(spikeProgress.byPhaseEnd.late)}
           </div>
         </div>
+        ${renderArchetypeAbilityLadder(activeJointArch, activeMatchArch)}
       </section>
     `;
+  }
+
+  function renderArchetypeAbilityLadder(jointArch, matchArch) {
+    // When a joint or match-only archetype tab is active, render its full
+    // 16-step AP order under the item phases. The tab label only shows
+    // the 3-ability max-order fingerprint, so the full ladder gives the
+    // player concrete spend-by-spend guidance — useful because the order
+    // of cheap T1 / T2 picks before the T3 max commitments matters too.
+    let ladderNames = null, source = null, wr = null, matches = null, players = null;
+    if (jointArch && jointArch.modal_full_ladder_names && jointArch.modal_full_ladder_names.length) {
+      ladderNames = jointArch.modal_full_ladder_names;
+      source = `Modal full ladder across ${jointArch.n_builds} community template${jointArch.n_builds === 1 ? '' : 's'} in this archetype.`;
+      matches = jointArch.total_matches;
+      wr = jointArch.mean_win_rate;
+    } else if (matchArch && matchArch.best_full_ladder_names && matchArch.best_full_ladder_names.length) {
+      ladderNames = matchArch.best_full_ladder_names;
+      source = `Highest-WR full ladder in this match-only archetype cluster.`;
+      matches = matchArch.best_full_ladder_matches;
+      wr = matchArch.best_full_ladder_wr;
+      players = matchArch.best_full_ladder_players;
+    } else {
+      return '';
+    }
+    const steps = ladderNames.map((n, i) =>
+      `<span class="step"><span class="num">${i + 1}</span>${escHtml(n)}</span>`
+    ).join('');
+    const wrBadge = wr != null ? `<span class="wr-badge ${wrClass(wr)}">${fmtPct(wr)}</span>` : '';
+    const matchesStr = matches != null ? `over <strong>${matches.toLocaleString()}</strong> matches` : '';
+    const playersStr = players ? ` · ${players.toLocaleString()} player${players === 1 ? '' : 's'}` : '';
+    return `
+      <div class="archetype-ladder">
+        <h4>Ability point order for this archetype</h4>
+        <div class="archetype-ladder-source">${source}</div>
+        <div class="order-card" style="margin-top:8px">
+          <div class="order-seq">${steps}</div>
+          <div class="order-stats">${wrBadge} ${matchesStr}${playersStr}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderJointArchTabs(hero, archs, activeArch, matchArchs, activeMatchArch) {
+    // Methodology review §3.6: tab strip above the build phases. Solid
+    // tabs are template-based archetypes (items swap when clicked).
+    // Dashed tabs are match-only — high-WR ability priorities from raw
+    // match data with no published template, so the items column stays
+    // at the recommended set and a caveat banner is shown.
+    //
+    // Hidden entirely in v1 (classic) mode — the strip didn't exist
+    // before §3.6 and v1 should match the pre-change behavior.
+    if (methodologyVersion === 'v1') return '';
+    const totalArchs = (archs ? archs.length : 0) + (matchArchs ? matchArchs.length : 0);
+    if (totalArchs < 1) return '';
+    if (totalArchs === 1) {
+      const a = (archs && archs[0]) || (matchArchs && matchArchs[0]);
+      const source = archs && archs.length
+        ? `${a.n_builds} community templates`
+        : `${a.n_sequences} raw match-data sequences`;
+      return `<div class="joint-arch-note">Conditional builds (§3.6): one observed max-order archetype for this slice — <strong>${escHtml(a.fingerprint_ability_names.join(' → '))}</strong> (${source}, ${a.total_matches.toLocaleString()} matches, ${(a.mean_win_rate*100).toFixed(1)}% WR).</div>`;
+    }
+    const recTab = `<button class="joint-arch-tab ${activeArch == null && activeMatchArch == null ? 'active' : ''}"
+        data-joint-arch-hero="${hero.id}" data-joint-arch-id="">
+        <span class="arch-title">Recommended</span>
+        <span class="arch-meta">synergy ILP · cross-archetype</span>
+      </button>`;
+    const templateTabs = (archs || []).map(a => {
+      const lift = a.win_rate_lift_pp;
+      const liftCls = lift > 1 ? 'positive' : lift < -1 ? 'negative' : 'neutral';
+      const liftSign = lift > 0 ? '+' : '';
+      const isActive = activeArch && activeArch.archetype_id === a.archetype_id;
+      const fpName = a.fingerprint_ability_names.join(' → ');
+      const tooltip = `Max order: ${fpName}. Built from ${a.n_builds} community templates that take this ability to tier 3 first, then second, then third. WR aggregate ${(a.mean_win_rate*100).toFixed(2)}% across ${a.total_matches.toLocaleString()} matches.`;
+      return `<button class="joint-arch-tab ${isActive ? 'active' : ''}"
+        data-joint-arch-hero="${hero.id}" data-joint-arch-id="${a.archetype_id}"
+        title="${escAttr(tooltip)}">
+        <span class="arch-title">Max: ${escHtml(fpName)}</span>
+        <span class="arch-meta">
+          <span>${a.n_builds} builds · ${a.total_matches.toLocaleString()}m</span>
+          <span class="arch-lift ${liftCls}">${liftSign}${lift.toFixed(1)}pp</span>
+        </span>
+      </button>`;
+    });
+    const matchTabs = (matchArchs || []).map((a, idx) => {
+      const lift = a.win_rate_lift_pp;
+      const liftCls = lift == null ? 'neutral' : lift > 1 ? 'positive' : lift < -1 ? 'negative' : 'neutral';
+      const liftSign = lift != null && lift > 0 ? '+' : '';
+      const isActive = activeMatchArch && JSON.stringify(activeMatchArch.fingerprint_ability_ids) === JSON.stringify(a.fingerprint_ability_ids);
+      const fpName = a.fingerprint_ability_names.join(' → ');
+      const resolved = !!(a.items && a.items.length);
+      const sourceText = resolved
+        ? `Items resolved from the player accounts running this priority.`
+        : `Items column stays at the recommended ILP build (resolver hasn't run for this fingerprint yet).`;
+      const tooltip = `Max order: ${fpName}. Observed in ${a.n_sequences} distinct full ability ladders across ${a.total_matches.toLocaleString()} matches (raw match data, no published Steam template). ${sourceText}`;
+      // Solid border when resolved; dashed when items haven't been
+      // aggregated from real accounts yet.
+      const cls = resolved ? 'match-only resolved' : 'match-only';
+      const sourceBadge = resolved
+        ? '<span style="font-size:9px;opacity:0.75">match-resolved</span>'
+        : '<span style="font-size:9px;opacity:0.6">match-only</span>';
+      return `<button class="joint-arch-tab ${cls} ${isActive ? 'active' : ''}"
+        data-joint-match-arch-hero="${hero.id}" data-joint-match-arch-idx="${idx}"
+        title="${escAttr(tooltip)}">
+        <span class="arch-title">Max: ${escHtml(fpName)} <span style="opacity:0.6">·</span> ${sourceBadge}</span>
+        <span class="arch-meta">
+          <span>${a.n_sequences} seqs · ${a.total_matches.toLocaleString()}m</span>
+          <span class="arch-lift ${liftCls}">${lift == null ? 'n/a' : liftSign + lift.toFixed(1) + 'pp'}</span>
+        </span>
+      </button>`;
+    });
+    const tabs = [recTab, ...templateTabs, ...matchTabs];
+    let note;
+    if (activeMatchArch) {
+      if (activeMatchArch.items && activeMatchArch.items.length) {
+        // Resolver has found the actual accounts running this ladder and
+        // aggregated their item-stats. The items column below is those
+        // players' real picks, not the cross-archetype recommendation.
+        note = `Showing a <em>match-only</em> max-order archetype, resolved to concrete items. The build below aggregates item picks from the player accounts who actually run this ability priority — found by scanning leaderboard candidates, matching their per-account ability-order sequences, then pulling their joint item-stats. <strong>Caveat:</strong> the API can't filter items by ability ladder, so these are each account's items across <em>all</em> their ${escHtml(SLICE_LABELS[mmrSlice] || mmrSlice)} matches on this hero, not strictly the matches under this exact priority. Players tend not to swap item sets per-game, so it's a strong proxy. Sample: ${activeMatchArch.n_sequences} observed sequence${activeMatchArch.n_sequences === 1 ? '' : 's'} across ${activeMatchArch.total_matches.toLocaleString()} matches in the fingerprint.`;
+      } else {
+        note = `Showing a <em>match-only</em> max-order archetype. The resolver hasn't run for this fingerprint yet, so the items below remain the cross-archetype synergy-ILP recommendation. The ability ladder itself is real (drawn from ${activeMatchArch.n_sequences} observed sequence${activeMatchArch.n_sequences === 1 ? '' : 's'} across ${activeMatchArch.total_matches.toLocaleString()} matches). Run <code>scripts/match_archetype_resolver.py --bulk</code> to populate the resolved items.`;
+      }
+    } else if (activeArch) {
+      note = `Build below is the community aggregate for this ability priority — items appear weighted by win rate × matches across the ${activeArch.n_builds} builds in this cluster.`;
+    } else {
+      note = `<strong>Solid</strong> tabs are clusters of published Steam build templates — clicking swaps both the ability order AND the item picks. <strong>Dashed</strong> tabs are max-orders observed in raw match data with no published template — clicking still swaps the ability order but keeps the recommended ILP item set (no item evidence specific to that priority).`;
+    }
+    return `<div class="joint-arch-strip">${tabs.join('')}</div>
+      <div class="joint-arch-note">${note}</div>`;
   }
 
   function renderAbilityPriority(priority, heroAbilities) {
@@ -2162,12 +2542,29 @@ HTML = """<!doctype html>
     `;
   }
 
-  const TAG_LABEL = { core: 'CORE', flex: 'FLEX', situational: 'SIT.', stat: 'STAT' };
+  // 2D tag taxonomy (methodology review §6.4): combines pick frequency
+  // with adjusted lift instead of pick frequency alone.
+  const TAG_LABEL = {
+    core_proven:    'CORE ✓',
+    core_inherited: 'CORE ~',
+    tech_pick:      'TECH',
+    trap_popular:   'TRAP',
+    stat_anomaly:   'STAT ✱',
+    core:           'CORE',         // legacy 1D fallback
+    flex:           'FLEX',
+    situational:    'SIT.',
+    stat:           'STAT',
+  };
   const TAG_TITLE = {
-    core: 'In >70% of top community builds for this hero',
-    flex: 'In 30–70% of top community builds — situational pick',
-    situational: 'Used in <30% of top builds — buy when needed',
-    stat: 'Stat-derived pick (no community build uses it yet)',
+    core_proven:    'Popular AND data confirms it wins — default buy',
+    core_inherited: 'Popular but flat WR — probably meta inertia, try replacing',
+    tech_pick:      'Low pick rate but high lift — real edge for consensus-breakers',
+    trap_popular:   'Popular but hurts WR — stop buying this even though everyone does',
+    stat_anomaly:   'Tiny sample with very high lift — speculative bet worth testing',
+    core:           'In >70% of top community builds for this hero',
+    flex:           'In 30–70% of top community builds — situational pick',
+    situational:    'Used in <30% of top builds — buy when needed',
+    stat:           'Stat-derived pick (no community build uses it yet)',
   };
   const escAttr = s => (s||'').replace(/"/g, '&quot;').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const escHtml = s => (s||'').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -2364,7 +2761,10 @@ HTML = """<!doctype html>
     const cat = item.category;
     const slot = item.slot;
     const isFlex = slot === 'flex';
-    const tag = item.tag || 'stat';
+    // v1 reverts to the legacy 1D tag (CORE / FLEX / SIT. / STAT) which
+    // is preserved on every pick as `pick_rate_tag`. v2 uses the 2D
+    // taxonomy on `tag` (methodology review §6.4).
+    const tag = (methodologyVersion === 'v1' ? (item.pick_rate_tag || 'stat') : (item.tag || 'stat'));
     const pickRate = item.pick_rate || 0;
     const hasAnnot = !!(item.annotation && item.annotation.length);
     const tagLabel = TAG_LABEL[tag] || tag.toUpperCase();
@@ -2533,25 +2933,37 @@ HTML = """<!doctype html>
     if (selected.size === 0) {
       aggregated = `<div class="counter-empty">Select up to 6 enemy heroes above to see recommended item swaps for that matchup.</div>`;
     } else {
-      const itemAgg = {};  // item_id → { total_delta, occurrences }
+      // v1: rank by raw Δpp summed across enemies (the pre-§2.8 behavior).
+      // v2: rank by confidence-weighted score summed across enemies — items
+      // with thin samples or tiny effects get attenuated rather than dropped
+      // at a hard 0.4pp threshold.
+      const scoreField = methodologyVersion === 'v1' ? 'delta_pp' : 'confidence_weighted_score';
+      const itemAgg = {};  // item_id → { total_score, total_delta, occurrences }
       for (const eid of selected) {
         const list = counters[eid] || counters[String(eid)] || [];
         for (const c of list) {
-          const cur = itemAgg[c.item_id] || { total: 0, occurrences: 0 };
-          cur.total += c.delta_pp;
+          // v1 historically also dropped any row with |Δpp|<0.4. With the
+          // looser data the new pipeline emits, replicate that gate here so
+          // v1 view matches the pre-change rendering even on the new data.
+          if (methodologyVersion === 'v1' && Math.abs(c.delta_pp || 0) < 0.4) continue;
+          const cur = itemAgg[c.item_id] || { total_score: 0, total_delta: 0, occurrences: 0 };
+          const score = (c[scoreField] != null ? c[scoreField] : c.delta_pp) || 0;
+          cur.total_score += score;
+          cur.total_delta += (c.delta_pp || 0);
           cur.occurrences += 1;
           itemAgg[c.item_id] = cur;
         }
       }
       const ranked = Object.entries(itemAgg).map(([iid, info]) => ({
         item_id: parseInt(iid, 10),
-        total_delta: info.total,
-        avg_delta: info.total / info.occurrences,
+        total_score: info.total_score,
+        total_delta: info.total_delta,
+        avg_delta: info.total_delta / info.occurrences,
         occurrences: info.occurrences,
-      })).sort((a, b) => b.total_delta - a.total_delta);
+      })).sort((a, b) => b.total_score - a.total_score);
 
-      const positives = ranked.filter(r => r.total_delta > 0).slice(0, 7);
-      const negatives = ranked.filter(r => r.total_delta < 0).slice(-7).reverse();
+      const positives = ranked.filter(r => r.total_score > 0).slice(0, 7);
+      const negatives = ranked.filter(r => r.total_score < 0).slice(-7).reverse();
 
       const itemsDict = activePatch.items_dict || {};
       const itemInfo = (iid) => itemsDict[iid] || itemsDict[String(iid)] || {};
@@ -2670,6 +3082,8 @@ HTML = """<!doctype html>
     activePatchId = pid;
     activePatch = DATA.patches[pid];
     activeArchetypeIdxByHero = {};  // archetype refs are per-patch hero objects
+    activeJointArchByHeroSlice = {};  // joint archetype refs are per-patch too
+    activeMatchArchByHeroSlice = {};  // match-only archetype refs same
     document.querySelectorAll('#patch-toggle button').forEach(b => b.classList.toggle('active', b.dataset.patch === pid));
     updatePatchInfo();  // also refreshes MMR toggle availability for new patch
     renderHeroGrid();
@@ -2688,6 +3102,15 @@ HTML = """<!doctype html>
     sortMode = e.target.dataset.sort;
     document.querySelectorAll('#sort-buttons button').forEach(b => b.classList.toggle('active', b.dataset.sort === sortMode));
     renderHeroGrid();
+  });
+  // Methodology version toggle (v1 classic / v2 updated). Initialize the
+  // visual active state from the resolved version, then bind the click.
+  document.querySelectorAll('#methodology-toggle button').forEach(b => {
+    b.classList.toggle('active', b.dataset.methodology === methodologyVersion);
+  });
+  document.getElementById('methodology-toggle').addEventListener('click', e => {
+    if (e.target.tagName !== 'BUTTON') return;
+    setMethodologyVersion(e.target.dataset.methodology);
   });
 
   // ---- Mobile nav drawer wiring ----
@@ -2729,5 +3152,5 @@ HTML = """<!doctype html>
 
 html = HTML.replace("__DATA__", DATA_JSON)
 target = ROOT / "deadlock_builds.html"
-target.write_text(html)
+target.write_text(html, encoding="utf-8")
 print(f"[saved] {target}  {target.stat().st_size:,} bytes ({target.stat().st_size/1024:.1f} KB)")

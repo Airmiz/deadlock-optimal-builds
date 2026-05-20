@@ -32,14 +32,20 @@ from build_hero_output import build_hero_output  # noqa: E402
 
 FORCE = os.environ.get("FORCE") == "1"
 ONLY_HEROES = os.environ.get("ONLY", "")  # comma-sep ids, empty=all
+SCORING = os.environ.get("DEADLOCK_SCORING", "wilson").lower()
+if SCORING not in ("wilson", "hierarchical"):
+    raise SystemExit(f"DEADLOCK_SCORING must be 'wilson' or 'hierarchical', got {SCORING!r}")
 # We no longer use a blanket SKIP_EXISTING. Decision is per-hero based on
 # spec_version + whether the inputs are newer than the output.
 # FORCE bypasses the check.
 
-heroes = json.load(open(CACHE / "playable_heroes.json"))
-items_by_id = {i["id"]: i for i in json.load(open(CACHE / "items.json"))}
+with open(CACHE / "playable_heroes.json", encoding="utf-8") as _f:
+    heroes = json.load(_f)
+with open(CACHE / "items.json", encoding="utf-8") as _f:
+    items_by_id = {i["id"]: i for i in json.load(_f)}
 items_by_classname = {i["class_name"]: i for i in items_by_id.values() if "class_name" in i}
-heroes_by_id = {h["id"]: h for h in json.load(open(CACHE / "heroes.json"))}
+with open(CACHE / "heroes.json", encoding="utf-8") as _f:
+    heroes_by_id = {h["id"]: h for h in json.load(_f)}
 
 
 def slug(name: str) -> str:
@@ -66,7 +72,8 @@ def _patched_build_replication(candidates, build_stats_raw, baseline_wr, build_f
         if not f.exists():
             continue
         try:
-            d = json.load(open(f))
+            with open(f, encoding="utf-8") as fh:
+                d = json.load(fh)
         except Exception:
             continue
         if not (isinstance(d, list) and d):
@@ -107,6 +114,89 @@ def _patched_build_replication(candidates, build_stats_raw, baseline_wr, build_f
 
 
 bho.method_build_replication = _patched_build_replication
+
+
+# ------------------------------------------------------------------
+# Optional cross-hero EB priors (methodology review §2.4).
+# ------------------------------------------------------------------
+# When DEADLOCK_SCORING=hierarchical, fit a per-(slice) item-prior dict
+# once, then bind a per-hero closure into build_hero_output via the new
+# score_fn_provider parameter. This lets the same per-hero call surface
+# work — no monkey-patching, no parallel pipeline. Default scoring
+# (wilson) is unchanged from production behavior.
+SLICE_PATHS_KEY = {
+    "all_mmr": ("all", "hero_stats_all", "item_stats_all"),
+    "high_mmr": ("hmmr", "hero_stats_hmmr", "item_stats_hmmr"),
+    "ascendant_plus": ("asc", "hero_stats_asc", "item_stats_asc"),
+    "eternus_plus": ("eter", "hero_stats_eter", "item_stats_eter"),
+}
+SLICE_PRIOR_FLOORS = {
+    # Per-hero match floor when contributing to the cross-hero pool. We
+    # keep this looser than the candidate floor (which gates *picks*) so
+    # that thin-but-real hero data still informs the prior.
+    "all_mmr": 200, "high_mmr": 100, "ascendant_plus": 40, "eternus_plus": 15,
+}
+_priors_by_slice: dict[str, dict] = {}
+
+
+def _load_slice_data(slice_label: str) -> tuple[dict, dict]:
+    """Return ({hero_id: item_stats_rows}, {hero_id: baseline_wr}) for one slice."""
+    suffix, hero_stats_key, item_stats_key = SLICE_PATHS_KEY[slice_label]
+    hs_path = PATCH_CACHE / f"hero_stats_{suffix}.json"
+    if not hs_path.exists():
+        return {}, {}
+    try:
+        with open(hs_path, encoding="utf-8") as f:
+            hero_stats = json.load(f)
+    except Exception:
+        return {}, {}
+    baselines = {h["hero_id"]: h["wins"] / h["matches"]
+                 for h in hero_stats if h.get("matches")}
+    per_hero: dict[int, list] = {}
+    for h in heroes:
+        hid = h["id"]
+        if hid not in baselines:
+            continue
+        f = HERO_DATA / f"itemstats_{suffix}_{hid}.json"
+        if not f.exists() or f.stat().st_size < 2:
+            continue
+        try:
+            with open(f, encoding="utf-8") as fh:
+                rows = json.load(fh)
+        except Exception:
+            continue
+        per_hero[hid] = rows
+    return per_hero, baselines
+
+
+def _fit_priors_for_scoring() -> None:
+    """One-time prior fit per MMR slice. No-op when scoring is 'wilson'."""
+    if SCORING != "hierarchical":
+        return
+    import hierarchical as _h  # local import — only when needed
+    for slice_label, floor in SLICE_PRIOR_FLOORS.items():
+        per_hero, baselines = _load_slice_data(slice_label)
+        if not per_hero:
+            continue
+        shrunk, cats = _h.fit_all_priors(
+            per_hero, baselines, items_by_id, min_matches_per_hero=floor,
+        )
+        _priors_by_slice[slice_label] = shrunk
+        print(f"  [hierarchical] {slice_label}: {len(shrunk)} item priors "
+              f"from {len(per_hero)} heroes, {len(cats)} category priors")
+
+
+def _score_fn_provider(hero_id: int, slice_label: str, baseline_wr: float):
+    """Closure factory passed to build_hero_output. Returns None for
+    'wilson' (preserves existing behavior) or a hierarchical scorer
+    bound to this hero's baseline for 'hierarchical'."""
+    if SCORING != "hierarchical":
+        return None
+    priors = _priors_by_slice.get(slice_label)
+    if not priors:
+        return None
+    import hierarchical as _h
+    return _h.make_score_fn(priors, baseline_wr)
 
 
 def paths_for(hid: int) -> dict:
@@ -162,7 +252,8 @@ def process_one(h):
         spec_matches = False
         if out_path.exists() and out_path.stat().st_size > 1000:
             try:
-                existing = json.load(open(out_path))
+                with open(out_path, encoding="utf-8") as _f:
+                    existing = json.load(_f)
                 spec_matches = existing.get("spec_version") == SPEC_VERSION
             except Exception:
                 spec_matches = False
@@ -184,8 +275,10 @@ def process_one(h):
                 return (hid, name, "cached", out_path)
     try:
         data = build_hero_output(hid, name, paths_for(hid),
-                                 items_by_id, items_by_classname, heroes_by_id)
-        with open(out_path, "w") as f:
+                                 items_by_id, items_by_classname, heroes_by_id,
+                                 score_fn_provider=_score_fn_provider)
+        data["scoring_mode"] = SCORING
+        with open(out_path, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2)
         return (hid, name, "ok", out_path)
     except Exception as e:
@@ -196,6 +289,8 @@ def process_one(h):
 def main():
     only = set(int(x) for x in ONLY_HEROES.split(",") if x) if ONLY_HEROES else None
     targets = [h for h in heroes if (only is None or h["id"] in only)]
+    print(f"Scoring mode: {SCORING}")
+    _fit_priors_for_scoring()
     t0 = time.time()
     results = []
     # Run 4 heroes in parallel via threads (CBC releases the GIL during native solve)
