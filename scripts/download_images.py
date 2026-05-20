@@ -73,7 +73,8 @@ def download(url: str, dest: Path) -> tuple[str, str]:
 
 
 def main() -> None:
-    data = json.load(open(CACHE / "page_data.json"))
+    with open(CACHE / "page_data.json", encoding="utf-8") as _fh:
+        data = json.load(_fh)
     urls = collect_urls(data)
     print(f"Unique image URLs: {len(urls)}")
     by_kind: dict[str, int] = {}

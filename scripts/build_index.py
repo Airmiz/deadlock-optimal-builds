@@ -23,7 +23,8 @@ print(f"Loading {len(hero_files)} hero output files...")
 
 heroes = []
 for f in hero_files:
-    d = json.load(open(f))
+    with open(f, encoding="utf-8") as fh:
+        d = json.load(fh)
     rec = d["recommended"]
     rec_items = rec["items"]
     rec_ab = rec["abilities"]
@@ -85,12 +86,12 @@ index = {
     "data_source": "api.deadlock-api.com",
     "heroes": heroes_sorted,
 }
-with open(ROOT / "all_heroes_index.json", "w") as f:
+with open(ROOT / "all_heroes_index.json", "w", encoding="utf-8") as f:
     json.dump(index, f, indent=2)
 print(f"[saved] {ROOT/'all_heroes_index.json'}")
 
 # CSV — flat tier list
-with open(ROOT / "all_heroes_tier_list.csv", "w", newline="") as f:
+with open(ROOT / "all_heroes_tier_list.csv", "w", newline="", encoding="utf-8") as f:
     w = csv.writer(f)
     w.writerow(["rank","hero","id","high_mmr_wr","all_mmr_wr","wr_lift_pp",
                 "high_mmr_matches","high_mmr_players","candidates_hmmr",

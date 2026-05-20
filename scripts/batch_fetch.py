@@ -126,7 +126,8 @@ def bootstrap_assets() -> None:
     if not (CACHE / "items.json").exists():
         (CACHE / "items.json").write_bytes((PATCH_CACHE / "items.json").read_bytes())
 
-    heroes = json.load(open(PATCH_CACHE / "heroes.json"))
+    with open(PATCH_CACHE / "heroes.json", encoding="utf-8") as f:
+        heroes = json.load(f)
     playable = [h for h in heroes
                 if h.get("player_selectable", False)
                 and not h.get("disabled", False)
@@ -134,11 +135,11 @@ def bootstrap_assets() -> None:
     payload = [{"id": h["id"], "name": h["name"], "class_name": h["class_name"]}
                for h in playable]
     dest = PATCH_CACHE / "playable_heroes.json"
-    with open(dest, "w") as f:
+    with open(dest, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2)
     # Mirror to legacy global path for backwards compat
     if not (CACHE / "playable_heroes.json").exists():
-        with open(CACHE / "playable_heroes.json", "w") as f:
+        with open(CACHE / "playable_heroes.json", "w", encoding="utf-8") as f:
             json.dump(payload, f, indent=2)
     print(f"  playable heroes: {len(playable)} -> {dest.relative_to(PATCH_CACHE.parent.parent)}")
 
