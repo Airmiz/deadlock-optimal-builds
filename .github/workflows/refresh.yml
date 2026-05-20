@@ -88,11 +88,6 @@ jobs:
           python3 scripts/batch_fetch_builds.py
           python3 scripts/batch_fetch_counters.py
           python3 scripts/run_all_heroes.py
-          # Methodology review §3.6 — resolve match-only ability-priority
-          # archetypes into concrete item lists. Honors the on-disk cache,
-          # so previously-resolved archetypes return instantly; only NEW
-          # max-order fingerprints incur API cost on subsequent runs.
-          python3 scripts/match_archetype_resolver.py --bulk --patch patch_125825 --quiet
 
       - name: Refresh patch_129989 (current patch)
         env:
@@ -102,7 +97,15 @@ jobs:
           python3 scripts/batch_fetch_builds.py
           python3 scripts/batch_fetch_counters.py
           python3 scripts/run_all_heroes.py
-          python3 scripts/match_archetype_resolver.py --bulk --patch patch_129989 --quiet
+
+      # Methodology review §3.6 — match-only archetype resolution lives in
+      # its own dedicated workflow (.github/workflows/resolve-archetypes.yml)
+      # because a full bulk pass can take hours on the first run (Eternus+
+      # uses a 1500-deep candidate sweep). Trigger that workflow manually
+      # after each new patch lands. Cache files (under
+      # cache/match_archetype_resolutions/) persist across runs and are
+      # automatically consumed by build_page_data.py below, so the refresh
+      # workflow always picks up whatever's already been resolved.
 
       - name: Compile multi-patch page payload
         run: |

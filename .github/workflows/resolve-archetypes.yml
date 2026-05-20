@@ -1,0 +1,143 @@
+name: Resolve match-only archetypes
+
+# Manual-trigger-only workflow that backfills the match-only archetype
+# resolutions (methodology review §3.6). The bulk pass can take a long
+# time on first run — Eternus+ uses a 1500-deep candidate sweep and
+# each unresolved archetype runs ~17 minutes against the deadlock-api.
+#
+# The expensive resolution lives in this dedicated workflow (not the
+# every-3-hours refresh) so:
+#   - The site refresh stays fast (~3-5 min) and reliable.
+#   - You can run this overnight or whenever without blocking deploys.
+#   - The cache it produces persists across runs — once an archetype is
+#     resolved, subsequent runs skip it instantly.
+#
+# Typical usage:
+#   - Trigger once after first deploying methodology v2.
+#   - Trigger again after each major patch drop (new heroes / new
+#     ability ladders surface in the data, so new fingerprints appear).
+#
+# Setup required: same as refresh.yml (Pages permissions etc.).
+
+on:
+  workflow_dispatch:
+    inputs:
+      patch_id:
+        description: 'Patch ID to resolve (empty = both patches)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write       # commit the resolution cache back to main
+  pages: write
+  id-token: write
+
+concurrency:
+  group: resolve-archetypes
+  cancel-in-progress: false
+
+jobs:
+  resolve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350    # GitHub Actions max is 360. Leave 10min buffer
+                            # for cache save + commit steps.
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pulp
+
+      # Share the same cache layout as refresh.yml. This ensures the
+      # resolver can read the per-hero JSONs that refresh.yml just
+      # produced, AND that resolved files land in cache/ which the
+      # refresh workflow's build_page_data.py will pick up next run.
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: cache
+          key: deadlock-cache-v1-${{ github.run_id }}
+          restore-keys: |
+            deadlock-cache-v1-
+
+      # We need the heroes/<patch>/*_build.json files (with their
+      # joint_archetypes and ability_orders fields) for the resolver
+      # to enumerate which fingerprints to resolve. The refresh
+      # workflow commits them to main, so a fresh checkout has them.
+      - name: Confirm hero JSONs are present
+        run: |
+          ls heroes/patch_125825/ | head -3
+          ls heroes/patch_129989/ | head -3
+
+      - name: Resolve patch_125825
+        if: ${{ github.event.inputs.patch_id == '' || github.event.inputs.patch_id == 'patch_125825' }}
+        run: |
+          python3 scripts/match_archetype_resolver.py --bulk --patch patch_125825
+
+      - name: Resolve patch_129989
+        if: ${{ github.event.inputs.patch_id == '' || github.event.inputs.patch_id == 'patch_129989' }}
+        run: |
+          python3 scripts/match_archetype_resolver.py --bulk --patch patch_129989
+
+      # Rebuild the page payload + HTML so the resolved items land on
+      # the live site without waiting for the next refresh cron.
+      - name: Recompile page payload
+        run: |
+          python3 scripts/build_page_data.py
+          python3 scripts/build_page.py
+
+      - name: Commit resolution cache + page rebuild
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Commit the page (which now has resolved items embedded) and
+          # the resolution cache files so future cache-restore runs
+          # immediately have the resolutions available.
+          git add -A deadlock_builds.html cache/match_archetype_resolutions/ || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit (everything was already cached)"
+          else
+            git commit -m "chore: resolve match-only archetypes $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+      - name: Save cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: cache
+          key: deadlock-cache-v1-${{ github.run_id }}
+
+      - name: Stage Pages content
+        run: |
+          mkdir -p _site
+          cp deadlock_builds.html _site/index.html
+          cp deadlock_builds.html _site/deadlock_builds.html
+          cp methodology.html     _site/methodology.html
+          cp favicon.svg          _site/favicon.svg
+          cp -r assets _site/assets
+          mkdir -p _site/docs
+          cp -r docs/*.md _site/docs/ 2>/dev/null || true
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  deploy:
+    needs: resolve
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
