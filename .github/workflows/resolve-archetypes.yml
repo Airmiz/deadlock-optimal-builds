@@ -78,20 +78,26 @@ jobs:
 
       - name: Resolve patch_125825
         if: ${{ github.event.inputs.patch_id == '' || github.event.inputs.patch_id == 'patch_125825' }}
+        env:
+          PYTHONUNBUFFERED: '1'
         run: |
-          python3 scripts/match_archetype_resolver.py --bulk --patch patch_125825
+          python3 -u scripts/match_archetype_resolver.py --bulk --patch patch_125825
 
       - name: Resolve patch_129989
         if: ${{ github.event.inputs.patch_id == '' || github.event.inputs.patch_id == 'patch_129989' }}
+        env:
+          PYTHONUNBUFFERED: '1'
         run: |
-          python3 scripts/match_archetype_resolver.py --bulk --patch patch_129989
+          python3 -u scripts/match_archetype_resolver.py --bulk --patch patch_129989
 
       # Rebuild the page payload + HTML so the resolved items land on
       # the live site without waiting for the next refresh cron.
       - name: Recompile page payload
+        env:
+          PYTHONUNBUFFERED: '1'
         run: |
-          python3 scripts/build_page_data.py
-          python3 scripts/build_page.py
+          python3 -u scripts/build_page_data.py
+          python3 -u scripts/build_page.py
 
       - name: Commit resolution cache + page rebuild
         run: |
