@@ -107,10 +107,27 @@ jobs:
           git add -A deadlock_builds.html cache/match_archetype_resolutions/ || true
           if git diff --cached --quiet; then
             echo "No changes to commit (everything was already cached)"
-          else
-            git commit -m "chore: resolve match-only archetypes $(date -u +%Y-%m-%d)"
-            git push
+            exit 0
           fi
+          git commit -m "chore: resolve match-only archetypes $(date -u +%Y-%m-%d)"
+          # Retry-on-rebase loop in case main was updated by refresh.yml
+          # or deploy.yml while this multi-hour job was running.
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "Push succeeded on attempt $attempt"
+              exit 0
+            fi
+            echo "Push rejected (attempt $attempt) — rebasing on origin/main"
+            git fetch origin main
+            git rebase --autostash origin/main || {
+              echo "Rebase failed — aborting"
+              git rebase --abort
+              exit 1
+            }
+            sleep 5
+          done
+          echo "Push still failing after 5 retries — giving up"
+          exit 1
 
       - name: Save cache
         if: always()
