@@ -36,8 +36,14 @@ on:
         default: false
 
 permissions:
-  contents: write       # push regenerated files; deploy.yml handles Pages
+  contents: write       # push regenerated files
+  pages: write          # publish to GitHub Pages from the deploy job
+  id-token: write       # OIDC for actions/deploy-pages
 
+# Workflow-level concurrency only blocks parallel REFRESH runs.
+# Don't put pages-deploy here or it'd block refresh from even starting
+# while a manual deploy.yml is in flight — we just want the deploy STEP
+# serialized, which we do at job level on the deploy job below.
 concurrency:
   group: refresh-deploy
   cancel-in-progress: false
@@ -233,8 +239,53 @@ jobs:
           path: cache
           key: deadlock-cache-v1-${{ github.run_id }}
 
-      # Pages deployment is handled by .github/workflows/deploy.yml.
-      # It auto-triggers when our `Commit changes` step above pushes the
-      # regenerated HTML / hero JSONs to main, so we don't duplicate the
-      # deploy here. Two workflows hitting the same `github-pages`
-      # environment simultaneously would race and one would get a 401.
+  # Inline the Pages deploy as a second job. Why this instead of letting
+  # deploy.yml fire on push: pushes from the default GITHUB_TOKEN don't
+  # trigger other workflows (anti-recursion), so refresh.yml's bot push
+  # never reached deploy.yml. We tried `workflow_run` as a bridge but it
+  # silently fails for schedule-triggered workflows in many setups (and
+  # gives no error feedback in the Actions UI). Inlining the deploy here
+  # is deterministic — `needs: refresh` means it only runs when refresh
+  # succeeds, and the shared concurrency group at the workflow level
+  # serializes against any manual deploy.yml runs hitting the same
+  # github-pages environment.
+  deploy:
+    needs: refresh
+    runs-on: ubuntu-latest
+    # Job-level concurrency: serialize against deploy.yml runs (which
+    # also use this group) so two workflows never race to publish to
+    # github-pages simultaneously (would 401 each other). At job scope
+    # this only blocks deploy, NOT the refresh job above.
+    concurrency:
+      group: pages-deploy
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout (post-refresh main tip)
+        uses: actions/checkout@v4
+        with:
+          # Pick up the commit that the refresh job just pushed, not the
+          # tip from when this workflow started.
+          ref: main
+
+      - name: Stage Pages content
+        run: |
+          mkdir -p _site
+          cp deadlock_builds.html _site/index.html
+          cp deadlock_builds.html _site/deadlock_builds.html
+          cp methodology.html     _site/methodology.html
+          cp favicon.svg          _site/favicon.svg
+          cp -r assets _site/assets
+          mkdir -p _site/docs
+          cp -r docs/*.md _site/docs/ 2>/dev/null || true
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
