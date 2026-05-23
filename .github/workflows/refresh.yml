@@ -36,9 +36,7 @@ on:
         default: false
 
 permissions:
-  contents: write       # push regenerated files
-  pages: write          # deploy to Pages
-  id-token: write       # OIDC for Pages deploy
+  contents: write       # push regenerated files; deploy.yml handles Pages
 
 concurrency:
   group: refresh-deploy
@@ -172,30 +170,8 @@ jobs:
           path: cache
           key: deadlock-cache-v1-${{ github.run_id }}
 
-      - name: Stage Pages content
-        run: |
-          mkdir -p _site
-          # GitHub Pages serves index.html by default
-          cp deadlock_builds.html _site/index.html
-          cp deadlock_builds.html _site/deadlock_builds.html
-          cp methodology.html     _site/methodology.html
-          cp favicon.svg          _site/favicon.svg
-          cp -r assets _site/assets
-          mkdir -p _site/docs
-          cp -r docs/*.md _site/docs/ 2>/dev/null || true
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./_site
-
-  deploy:
-    needs: refresh
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      # Pages deployment is handled by .github/workflows/deploy.yml.
+      # It auto-triggers when our `Commit changes` step above pushes the
+      # regenerated HTML / hero JSONs to main, so we don't duplicate the
+      # deploy here. Two workflows hitting the same `github-pages`
+      # environment simultaneously would race and one would get a 401.
