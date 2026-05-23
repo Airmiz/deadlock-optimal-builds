@@ -23,6 +23,22 @@ on:
       - 'all_heroes_tier_list.csv'
       - '.github/workflows/deploy.yml'
   workflow_dispatch:
+  # Run after refresh.yml / resolve-archetypes.yml commit + push their
+  # rebuilt site files. Why this is needed: pushes made by the default
+  # GITHUB_TOKEN are intentionally blocked from triggering other
+  # workflows (anti-recursion safeguard). Without this `workflow_run`,
+  # nightly data refreshes commit fresh HTML/icons to main but Pages
+  # never republishes — the live site silently lags behind main.
+  # `workflow_run` is a separate event type that IS allowed to fire
+  # from a GITHUB_TOKEN-driven workflow completion, so it bridges
+  # the gap. We gate the job on conclusion=='success' below so a
+  # failed refresh doesn't trigger a stale deploy.
+  workflow_run:
+    workflows:
+      - "Refresh + deploy"
+      - "Resolve match-only archetypes"
+    types: [completed]
+    branches: [main]
 
 permissions:
   contents: read
@@ -39,12 +55,25 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # When triggered by workflow_run, skip deploy if the upstream
+    # refresh/resolve workflow failed — we don't want to publish a
+    # partial or broken site. The other event types (push,
+    # workflow_dispatch) have no upstream so this is a vacuous pass.
+    if: >-
+      ${{ github.event_name != 'workflow_run'
+          || github.event.workflow_run.conclusion == 'success' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # When workflow_run triggers us, the default checkout is the
+          # tip of the workflow definition file — NOT the commit that
+          # refresh.yml just pushed. Explicitly checkout main to pick
+          # up the fresh site files.
+          ref: main
 
       - name: Stage Pages content
         run: |
