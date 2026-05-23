@@ -28,9 +28,7 @@ on:
         default: ''
 
 permissions:
-  contents: write       # commit the resolution cache back to main
-  pages: write
-  id-token: write
+  contents: write       # commit the resolution cache back to main; deploy.yml handles Pages
 
 concurrency:
   group: resolve-archetypes
@@ -121,29 +119,7 @@ jobs:
           path: cache
           key: deadlock-cache-v1-${{ github.run_id }}
 
-      - name: Stage Pages content
-        run: |
-          mkdir -p _site
-          cp deadlock_builds.html _site/index.html
-          cp deadlock_builds.html _site/deadlock_builds.html
-          cp methodology.html     _site/methodology.html
-          cp favicon.svg          _site/favicon.svg
-          cp -r assets _site/assets
-          mkdir -p _site/docs
-          cp -r docs/*.md _site/docs/ 2>/dev/null || true
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./_site
-
-  deploy:
-    needs: resolve
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      # Pages deployment handled by .github/workflows/deploy.yml — it
+      # auto-triggers off the commit step above pushing the rebuilt page
+      # to main. Avoids racing the github-pages environment lock with
+      # deploy.yml on the same run.
