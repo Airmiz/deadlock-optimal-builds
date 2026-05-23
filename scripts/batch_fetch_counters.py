@@ -29,7 +29,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _paths import (
     CACHE, PATCH_CACHE, PATCH_ID, PATCH_TITLE, PATCH_MIN_TS, HMMR_BADGE,
 )
-from batch_fetch import _HEADERS, fetch  # reuse the same fetch helper
+from batch_fetch import _HEADERS, fetch, is_active_patch, DEFAULT_TTL  # reuse the same fetch helper
 
 
 COUNTERS_DIR = PATCH_CACHE / "counters"
@@ -48,8 +48,12 @@ def hero_vs_enemy_url(hero_id: int, enemy_id: int) -> str:
 
 
 def main() -> None:
-    heroes = json.load(open(CACHE / "playable_heroes.json"))
-    print(f"[1/2] Patch {PATCH_ID} ({PATCH_TITLE})")
+    with open(CACHE / "playable_heroes.json", encoding="utf-8") as _f:
+        heroes = json.load(_f)
+    active = is_active_patch()
+    ttl = None if not active else DEFAULT_TTL
+    print(f"[1/2] Patch {PATCH_ID} ({PATCH_TITLE}) "
+          f"[{'ACTIVE — 2h TTL' if active else 'CLOSED — cache forever'}]")
     print(f"      {len(heroes)} heroes × {len(heroes)} enemies = {len(heroes)**2} matchups")
 
     jobs = []
@@ -66,7 +70,7 @@ def main() -> None:
     t0 = time.time()
     cached = ok = err = 0
     with ThreadPoolExecutor(max_workers=3) as pool:
-        futs = {pool.submit(fetch, u, d): (u, d) for u, d in jobs}
+        futs = {pool.submit(fetch, u, d, 25, ttl): (u, d) for u, d in jobs}
         for i, fut in enumerate(as_completed(futs), 1):
             _, status = fut.result()
             if status == "cached": cached += 1
