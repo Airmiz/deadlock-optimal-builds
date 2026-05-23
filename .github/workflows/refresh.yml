@@ -153,10 +153,32 @@ jobs:
           git add -A heroes/ assets/ deadlock_builds.html all_heroes_index.json all_heroes_tier_list.csv
           if git diff --cached --quiet; then
             echo "No changes to commit"
-          else
-            git commit -m "chore: nightly refresh $(date -u +%Y-%m-%d)"
-            git push
+            exit 0
           fi
+          git commit -m "chore: nightly refresh $(date -u +%Y-%m-%d)"
+          # Retry the push up to 5 times. While this workflow was running,
+          # another workflow (deploy.yml or a manual commit) may have
+          # pushed to main, leaving our local clone behind. On rejection,
+          # fetch + rebase our refresh commit on top of the new tip and
+          # try again. Most races resolve on the first retry.
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "Push succeeded on attempt $attempt"
+              exit 0
+            fi
+            echo "Push rejected (attempt $attempt) — rebasing on origin/main"
+            git fetch origin main
+            # --autostash protects any uncommitted leftovers; the rebase
+            # itself just moves our single commit on top of the new main.
+            git rebase --autostash origin/main || {
+              echo "Rebase failed — aborting"
+              git rebase --abort
+              exit 1
+            }
+            sleep 5
+          done
+          echo "Push still failing after 5 retries — giving up"
+          exit 1
 
       # Save cache/ so the next scheduled run starts warm. actions/cache@v4
       # only saves on a key MISS (i.e. cache wasn't fully restored), but
