@@ -112,7 +112,11 @@ def collect_urls(data: dict) -> set[tuple[str, str]]:
     else:
         walk_hero_list(data.get("heroes", []))
         walk_items_dict(data.get("items_dict") or {})
-    return urls
+    # Filter out already-local relative paths (e.g. wiki-overlay paths
+    # like 'assets/items_wiki/extra_spirit.png' applied by
+    # build_page_data._apply_wiki_overrides). Those are already on disk;
+    # trying to urllib.request them as URLs would fail and add noise.
+    return {(u, k) for (u, k) in urls if u.startswith("http")}
 
 
 def local_path(url: str, kind: str) -> Path:
@@ -171,6 +175,13 @@ def main() -> None:
 
     def rewrite(url: str | None) -> str | None:
         if not url:
+            return url
+        # Already-relative paths (wiki-overlay overrides from
+        # build_page_data._apply_wiki_overrides — e.g.
+        # 'assets/items_wiki/extra_spirit.png') are pass-through. They
+        # point at on-disk files that scrape_wiki_icons.py wrote, so
+        # we must NOT remap them to the assets/<kind>/ namespace.
+        if not url.startswith("http"):
             return url
         kind = url_to_kind.get(url, "items")
         local = local_path(url, kind)

@@ -1,37 +1,41 @@
 """
-Overlay item icons from the community-maintained Deadlock wiki on top of
-the deadlock-api assets-bucket icons.
+Build a per-item-id icon override using the community Deadlock wiki.
 
-Why:
-  The deadlock-api icon URLs are stable bucket URLs whose bytes Valve
-  occasionally lets go stale on the live game (e.g. after icon redesigns
-  shipped in a balance patch). Symptoms: new items show up in the data
-  feed with no icon yet, or existing icons silently look like the old
-  artwork. FORCE_ASSETS=1 in download_images.py forces a re-download but
-  doesn't help when the upstream bytes themselves are out of date.
+Why a separate namespace from deadlock-api icons:
+  items.json reuses asset filenames across unrelated items. Examples:
+    fire_rate_plus.png -> Mercurial Magnum, Ballistic Enchantment,
+                         Swift Striker, Quicksilver Reload
+    tech_damage.png    -> Extra Spirit, Golden Goose Egg
+    electrified_bullets.png -> Tesla Bullets, Capacitor
+  (60 such collisions in items.json as of patch_129989.)
+  If we overwrite assets/items/<basename>.png with a wiki PNG, ALL items
+  sharing that basename end up displaying the same wiki icon — which is
+  what the user reported (Mercurial Magnum showing Ballistic Enchantment).
 
-  The community wiki at https://deadlock.wiki/ is MediaWiki-backed and
-  community-maintained, so it tends to ship updated icons within hours
-  of a patch landing. We use its MediaWiki API to look up each item's
-  canonical file URL and write fresh bytes on top of the local
-  assets/items/<deadlock-api-filename>.png that page_data.json already
-  references — so no page_data rewrite is needed.
+  Solution: save each wiki icon to assets/items_wiki/<sanitized_name>.png
+  (one file per item — no collisions) and emit a manifest mapping
+  item_id -> relative path. build_page_data.py applies the manifest as
+  an in-process override to items_assets, so every downstream item
+  reference (recommended, items_by_slice, lineage_chain, archetypes,
+  match-only archetypes) picks up the right per-item icon.
 
-  Items where the wiki page is missing (or the file lookup 404s) are
-  left untouched — they keep the deadlock-api icon as a fallback.
+  Items with no wiki page (cut/beta items like Glass Cannon v2, plus a
+  handful the wiki simply hasn't catalogued yet) fall through to whatever
+  deadlock-api ships. Items with no deadlock-api image at all (e.g.
+  Cultist Sacrifice — items.json image=None) are *recovered* by this
+  pipeline because the wiki has them.
 
-When to run:
-  - Triggered automatically by refresh.yml when the user ticks the
-    `refresh_assets` workflow input. Wiki HTML is stable so we don't
-    need to re-scrape every 3 hours.
-  - Can also be run locally: `py scripts/scrape_wiki_icons.py`.
+Output:
+  - assets/items_wiki/<sanitized_name>.png  (one per resolved item)
+  - cache/wiki_icon_overrides.json          (manifest: {item_id: rel_path})
 
 Order in the pipeline:
-  download_images.py runs first (writes deadlock-api icons), then this
-  script runs and overwrites in-place. build_page.py runs after.
+  Must run BEFORE build_page_data.py so the manifest exists when the
+  payload is assembled. refresh.yml is wired accordingly.
 """
 import json
 import os
+import re
 import sys
 import time
 import urllib.parse
@@ -45,62 +49,61 @@ from _paths import CACHE, ASSETS
 
 WIKI_API = "https://deadlock.wiki/api.php"
 HEADERS = {
-    # Identify ourselves to be a polite scraper. Deadlock wiki is a
-    # community resource so be courteous in the UA string.
-    "User-Agent": "deadlock-optimal-builds icon-refresh (https://github.com/Airmiz/deadlock-optimal-builds)",
+    "User-Agent": "deadlock-optimal-builds icon-refresh "
+                  "(https://github.com/Airmiz/deadlock-optimal-builds)",
 }
-
-# MediaWiki accepts up to 50 titles per query for non-bot accounts. We
-# stay well under that — also keeps URLs short.
 API_BATCH = 40
-# Conservative — wiki is community-run, no need to hammer.
 DOWNLOAD_WORKERS = 5
+
+# Where the per-item wiki icons live on disk and how the page references
+# them. Kept separate from assets/items/ (which mirrors deadlock-api's
+# collision-prone basename scheme) so items.json collisions never cause
+# one item to display another's icon.
+WIKI_ASSET_DIR = ASSETS / "items_wiki"
+WIKI_REL_DIR = "assets/items_wiki"
+MANIFEST_PATH = CACHE / "wiki_icon_overrides.json"
 
 
 def wiki_file_title(item_name: str) -> str:
-    """Map 'Hunter's Aura' -> 'File:Hunter's Aura.png'. MediaWiki normalizes
-    underscores vs spaces and decodes percent-encoding on its end."""
-    # Some items have a trailing " - Disabled" suffix (e.g. removed in a
-    # patch). Strip it — the wiki page lives under the canonical name.
+    """'Hunter's Aura' -> 'File:Hunter's Aura.png'. MediaWiki normalizes
+    underscores vs spaces on its end. We strip the '- Disabled' suffix
+    some patches stamp onto removed items."""
     name = item_name.split(" - Disabled")[0].strip()
     return f"File:{name}.png"
 
 
-def local_path_from_api_url(api_url: str) -> Path:
-    """The destination filename matches whatever download_images.py would
-    have computed — that's the path baked into page_data.json. We just
-    write fresh bytes there."""
-    fname = Path(urllib.parse.urlparse(api_url).path).name
-    return ASSETS / "items" / fname
+def sanitize_for_filename(item_name: str) -> str:
+    """'Hunter's Aura' -> 'hunters_aura'. ASCII-safe lowercase slug we
+    use as the local filename — keeps the URL path tidy and side-steps
+    cross-platform filename issues with apostrophes / spaces."""
+    name = item_name.split(" - Disabled")[0].strip().lower()
+    # Strip apostrophes entirely so 'hunters' not 'hunter_s'
+    name = name.replace("'", "")
+    # Anything that isn't [a-z0-9] becomes a single underscore
+    name = re.sub(r"[^a-z0-9]+", "_", name).strip("_")
+    return name or "item"
 
 
 def lookup_urls_batch(titles: list[str]) -> dict[str, str | None]:
-    """Query the MediaWiki imageinfo API for a batch of File: titles.
-    Returns {title -> canonical_url_or_None}. None means 'missing'."""
+    """Query MediaWiki imageinfo for a batch of File: titles. Returns
+    {requested_title -> canonical_url_or_None}."""
     qs = urllib.parse.urlencode({
         "action": "query",
         "titles": "|".join(titles),
         "prop": "imageinfo",
         "iiprop": "url",
         "format": "json",
-        "formatversion": "2",  # v2 has cleaner page list
+        "formatversion": "2",
     })
     url = f"{WIKI_API}?{qs}"
     req = urllib.request.Request(url, headers=HEADERS)
     with urllib.request.urlopen(req, timeout=20) as r:
         data = json.loads(r.read())
-
-    # Build {requested_title -> resolved_title} so we can match results
-    # back even when MediaWiki normalizes (e.g. spaces vs underscores).
-    norm_map = {}
-    for n in data.get("query", {}).get("normalized", []) or []:
-        norm_map[n["from"]] = n["to"]
-
-    results: dict[str, str | None] = {}
-    pages = data.get("query", {}).get("pages", []) or []
-    # formatversion=2 returns pages as a list with .title
+    norm_map = {n["from"]: n["to"]
+                for n in (data.get("query", {}).get("normalized") or [])}
+    pages = data.get("query", {}).get("pages") or []
     page_by_title = {p.get("title"): p for p in pages}
-
+    results: dict[str, str | None] = {}
     for requested in titles:
         resolved = norm_map.get(requested, requested)
         page = page_by_title.get(resolved)
@@ -119,33 +122,32 @@ def download_bytes(url: str) -> bytes:
 
 
 def main() -> None:
+    WIKI_ASSET_DIR.mkdir(parents=True, exist_ok=True)
     with open(CACHE / "items.json", encoding="utf-8") as f:
         items = json.load(f)
 
-    # Filter to "real" items the player buys. Skip:
-    #   - ability/weapon entries (type != 'upgrade')
-    #   - placeholder rows where name == class_name (the items without
-    #     an `image` field — armor_upgrade_tN etc. that aren't shipped)
-    targets = []
+    # Pull EVERY real item, even those with no deadlock-api image —
+    # that's how we recover Cultist Sacrifice, which has empty image
+    # in items.json but does have a wiki page.
+    targets = []  # (item_id, name)
     for it in items:
         if it.get("type") != "upgrade":
             continue
         name = it.get("name")
-        image = it.get("image")
-        if not name or not image:
+        if not name or name == it.get("class_name"):
             continue
-        if name == it.get("class_name"):
+        if it.get("id") is None:
             continue
-        targets.append((name, image))
+        targets.append((it["id"], name))
 
     print(f"[1/3] Real items in items.json: {len(targets)}")
 
-    # ---- Batch-query the wiki API for canonical URLs ----
-    titles = [wiki_file_title(n) for n, _ in targets]
-    name_to_title = {n: wiki_file_title(n) for n, _ in targets}
+    # ---- Batch-query the wiki ----
+    titles = [wiki_file_title(n) for _, n in targets]
+    title_by_iid = {iid: wiki_file_title(n) for iid, n in targets}
 
     print(f"[2/3] Looking up wiki URLs via MediaWiki API "
-          f"({(len(titles) + API_BATCH - 1) // API_BATCH} batched requests)…")
+          f"({(len(titles) + API_BATCH - 1) // API_BATCH} batched requests)...")
     title_to_url: dict[str, str | None] = {}
     t0 = time.time()
     for i in range(0, len(titles), API_BATCH):
@@ -156,48 +158,53 @@ def main() -> None:
             print(f"  batch {i//API_BATCH + 1} failed: {e}")
             res = {t: None for t in chunk}
         title_to_url.update(res)
-    found_in_wiki = sum(1 for v in title_to_url.values() if v)
-    print(f"      wiki has icons for {found_in_wiki}/{len(titles)} items "
+    found = sum(1 for v in title_to_url.values() if v)
+    print(f"      wiki has icons for {found}/{len(titles)} items "
           f"({time.time()-t0:.1f}s)")
 
-    # ---- Download in parallel, overwrite local files ----
+    # ---- Download per-item-id files, build manifest ----
     jobs = []
-    for name, api_url in targets:
-        wiki_url = title_to_url.get(name_to_title[name])
+    for iid, name in targets:
+        wiki_url = title_to_url.get(title_by_iid[iid])
         if not wiki_url:
             continue
-        dest = local_path_from_api_url(api_url)
-        dest.parent.mkdir(parents=True, exist_ok=True)
-        jobs.append((name, wiki_url, dest))
+        slug = sanitize_for_filename(name)
+        dest = WIKI_ASSET_DIR / f"{slug}.png"
+        rel = f"{WIKI_REL_DIR}/{slug}.png"
+        jobs.append((iid, name, wiki_url, dest, rel))
 
-    print(f"[3/3] Downloading {len(jobs)} wiki icons "
-          f"(overwriting deadlock-api versions in-place)…")
+    print(f"[3/3] Downloading {len(jobs)} per-item wiki icons "
+          f"to {WIKI_REL_DIR}/ ...")
     t0 = time.time()
     ok = err = skipped_identical = 0
     misses_logged = 0
+    manifest: dict[str, str] = {}
 
-    def work(name: str, url: str, dest: Path):
+    def work(iid: int, name: str, url: str, dest: Path, rel: str):
         try:
             data = download_bytes(url)
         except Exception as e:
-            return name, f"error: {e}", False
+            return iid, name, rel, f"error: {e}"
         if len(data) < 100:
-            return name, f"too-small ({len(data)}b)", False
-        # Skip writing if the bytes are identical — saves needless
-        # filesystem churn (and reduces diff noise in the commit).
+            return iid, name, rel, f"too-small ({len(data)}b)"
         if dest.exists() and dest.read_bytes() == data:
-            return name, "identical", True
+            return iid, name, rel, "identical"
         dest.write_bytes(data)
-        return name, "ok", True
+        return iid, name, rel, "ok"
 
     with ThreadPoolExecutor(max_workers=DOWNLOAD_WORKERS) as pool:
-        futs = [pool.submit(work, n, u, d) for n, u, d in jobs]
+        futs = [pool.submit(work, *j) for j in jobs]
         for i, fut in enumerate(as_completed(futs), 1):
-            name, status, success = fut.result()
-            if status == "ok":
-                ok += 1
-            elif status == "identical":
-                skipped_identical += 1
+            iid, name, rel, status = fut.result()
+            if status in ("ok", "identical"):
+                # Manifest entry uses str(iid) so the JSON keys are plain
+                # strings (JSON doesn't have integer keys; build_page_data
+                # casts back to int on load).
+                manifest[str(iid)] = rel
+                if status == "ok":
+                    ok += 1
+                else:
+                    skipped_identical += 1
             else:
                 err += 1
                 if misses_logged < 20:
@@ -207,19 +214,27 @@ def main() -> None:
                 print(f"  {i}/{len(jobs)}  fresh={ok}  identical={skipped_identical}  "
                       f"err={err}  {time.time()-t0:.1f}s")
 
-    # Items the wiki didn't have. Log them but don't fail — they keep
-    # the deadlock-api icon.
-    missing_in_wiki = [n for n, _ in targets if not title_to_url.get(name_to_title[n])]
-    if missing_in_wiki:
-        print(f"\nNo wiki page found for {len(missing_in_wiki)} items "
-              f"(kept deadlock-api icon):")
-        for n in missing_in_wiki[:30]:
-            print(f"  - {n}")
-        if len(missing_in_wiki) > 30:
-            print(f"  … and {len(missing_in_wiki) - 30} more")
+    # ---- Save manifest ----
+    MANIFEST_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(MANIFEST_PATH, "w", encoding="utf-8") as f:
+        json.dump(manifest, f, indent=2, sort_keys=True)
+    print(f"\n[saved] {MANIFEST_PATH}  ({len(manifest)} item-id overrides)")
 
-    print(f"\nDone. fresh={ok}, identical={skipped_identical}, errors={err}, "
-          f"missing-on-wiki={len(missing_in_wiki)}")
+    # Items the wiki had nothing for (or that failed to download). They
+    # keep whatever deadlock-api ships at items.json.image — which may
+    # still be wrong (filename collision) or empty.
+    no_wiki = [n for iid, n in targets
+               if not title_to_url.get(title_by_iid[iid])]
+    if no_wiki:
+        print(f"\nNo wiki page found for {len(no_wiki)} items "
+              f"(kept deadlock-api icon as fallback):")
+        for n in no_wiki[:30]:
+            print(f"  - {n}")
+        if len(no_wiki) > 30:
+            print(f"  ... and {len(no_wiki) - 30} more")
+
+    print(f"\nDone. fresh={ok}, identical={skipped_identical}, "
+          f"errors={err}, manifest-size={len(manifest)}")
 
 
 if __name__ == "__main__":

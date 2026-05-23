@@ -133,7 +133,37 @@ jobs:
       # automatically consumed by build_page_data.py below, so the refresh
       # workflow always picks up whatever's already been resolved.
 
-      - name: Compile multi-patch page payload
+      - name: Build index (per-patch fingerprints)
+        env:
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python3 -u scripts/build_index.py
+
+      # Resolve per-item icon overrides from the community Deadlock wiki
+      # BEFORE the payload is built. Why this order:
+      #   1. items.json reuses asset filenames across unrelated items
+      #      (Mercurial Magnum + Ballistic Enchantment both ship as
+      #      fire_rate_plus.png — 60 such collisions in the live data).
+      #      Overwriting assets/items/<basename>.png would silently
+      #      cross-wire icons.
+      #   2. scrape_wiki_icons.py writes one file per item id under
+      #      assets/items_wiki/ and emits cache/wiki_icon_overrides.json.
+      #   3. build_page_data.py loads that manifest at startup and
+      #      overrides items_assets[id].image with the per-item path,
+      #      so every downstream image reference (recommended,
+      #      items_by_slice, lineage_chain, archetypes, match-only,
+      #      items_dict) gets the right icon.
+      # Gated on refresh_assets because wiki HTML is stable — no need
+      # to re-scrape every 3 hours. The manifest persists in cache/
+      # across runs so subsequent refreshes use it without re-scraping.
+      - name: Resolve wiki icon overrides (refresh_assets only)
+        if: ${{ github.event.inputs.refresh_assets == 'true' }}
+        env:
+          PYTHONUNBUFFERED: '1'
+        run: |
+          python3 -u scripts/scrape_wiki_icons.py
+
+      - name: Compile multi-patch page payload + download api icons
         env:
           PYTHONUNBUFFERED: '1'
           # When refresh_assets is set, download_images.py re-downloads
@@ -141,32 +171,8 @@ jobs:
           # icons that already exist locally — the default fast path.
           FORCE_ASSETS: ${{ github.event.inputs.refresh_assets == 'true' && '1' || '' }}
         run: |
-          python3 -u scripts/build_index.py
           python3 -u scripts/build_page_data.py
           python3 -u scripts/download_images.py
-
-      # Overlay item icons from the community Deadlock wiki on top of the
-      # deadlock-api assets-bucket icons. Why: the API icon URLs are
-      # stable bucket URLs whose bytes occasionally lag the live game —
-      # FORCE_ASSETS=1 re-downloads them but doesn't help when upstream
-      # itself is stale. The wiki (https://deadlock.wiki/) is community-
-      # maintained and tends to ship updated icons within hours of a
-      # patch landing.
-      #
-      # Gated on refresh_assets because wiki HTML is stable — no need
-      # to re-scrape every 3 hours. Items missing from the wiki keep
-      # the deadlock-api icon as a fallback (see script).
-      - name: Overlay wiki icons (refresh_assets only)
-        if: ${{ github.event.inputs.refresh_assets == 'true' }}
-        env:
-          PYTHONUNBUFFERED: '1'
-        run: |
-          python3 -u scripts/scrape_wiki_icons.py
-
-      - name: Build HTML page
-        env:
-          PYTHONUNBUFFERED: '1'
-        run: |
           python3 -u scripts/build_page.py
 
       - name: Commit changes

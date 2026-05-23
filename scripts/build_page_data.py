@@ -62,6 +62,44 @@ with open(CACHE / "items.json", encoding="utf-8") as _f:
     items_assets = {i["id"]: i for i in json.load(_f)}
 
 
+# Per-item icon overrides produced by scripts/scrape_wiki_icons.py.
+# Maps item_id -> relative path under assets/items_wiki/. Why this exists:
+# items.json reuses asset filenames across unrelated items (Mercurial
+# Magnum + Ballistic Enchantment + Swift Striker all share
+# fire_rate_plus.png), so the assets/items/ namespace can't tell them
+# apart. assets/items_wiki/ has one file per item id, no collisions.
+# If the manifest is missing (scraper hasn't run yet), this is just an
+# empty dict and every item falls through to its items.json image.
+_WIKI_OVERRIDES_PATH = CACHE / "wiki_icon_overrides.json"
+if _WIKI_OVERRIDES_PATH.exists():
+    with open(_WIKI_OVERRIDES_PATH, encoding="utf-8") as _f:
+        _wiki_overrides_raw = json.load(_f)
+    # Manifest stores str-keyed ids because JSON has no int keys.
+    # Cast back so lookups by int item_id work directly.
+    _WIKI_OVERRIDES = {int(k): v for k, v in _wiki_overrides_raw.items()}
+else:
+    _WIKI_OVERRIDES = {}
+
+
+def _apply_wiki_overrides(items_dict: dict) -> dict:
+    """Replace items_dict[id].image with the wiki override (relative
+    asset path) when one exists. Idempotent — safe to call on already-
+    overridden dicts; just no-ops if the override == current value.
+
+    Called immediately after every items.json load (global + per-patch)
+    so every downstream image lookup gets the right per-item icon
+    regardless of the api's filename-collision quirks."""
+    if not _WIKI_OVERRIDES:
+        return items_dict
+    for iid, rel in _WIKI_OVERRIDES.items():
+        if iid in items_dict:
+            items_dict[iid]["image"] = rel
+    return items_dict
+
+
+items_assets = _apply_wiki_overrides(items_assets)
+
+
 def load_patch_assets(patch_id: str) -> tuple[dict, dict]:
     """Load per-patch snapshots of heroes.json + items.json. Falls back to
     the global cache/ versions if the patch-specific snapshot doesn't exist
@@ -79,7 +117,7 @@ def load_patch_assets(patch_id: str) -> tuple[dict, dict]:
         h = {x["id"]: x for x in json.load(_f)}
     with open(items_src, encoding="utf-8") as _f:
         i = {x["id"]: x for x in json.load(_f)}
-    return h, i
+    return h, _apply_wiki_overrides(i)
 
 # Build per-item lookup with name + tier + cost + category + image
 def item_info(iid: int) -> dict:
