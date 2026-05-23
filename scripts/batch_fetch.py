@@ -22,8 +22,25 @@ from pathlib import Path
 
 from _paths import (
     CACHE, HERO_DATA, PATCH_CACHE, PATCH_ID, PATCH_TITLE, PATCH_MIN_TS,
-    HMMR_BADGE, ASCENDANT_BADGE, ETERNUS_BADGE,
+    HMMR_BADGE, ASCENDANT_BADGE, ETERNUS_BADGE, PATCH_REGISTRY,
 )
+
+
+def is_active_patch() -> bool:
+    """True iff PATCH_ID is the newest patch in PATCH_REGISTRY.
+
+    Old patches are no longer accumulating new matches (the game has
+    moved on), so their analytics aggregates are immutable in practice.
+    Callers use this to short-circuit re-fetching for closed patches —
+    once the data is on disk, it stays.
+
+    Returns True conservatively if the registry is empty or PATCH_MIN_TS
+    is unknown, so a clean first-time run still pulls fresh data.
+    """
+    if not PATCH_REGISTRY or not PATCH_MIN_TS:
+        return True
+    latest_ts = max((meta.get("min_ts", 0) for meta in PATCH_REGISTRY.values()), default=0)
+    return PATCH_MIN_TS >= latest_ts
 
 
 HMMR_MIN_MATCHES_BUILD = 30
@@ -188,20 +205,29 @@ def hero_urls(hid: int) -> list[tuple[str, Path]]:
 
 
 def main() -> None:
-    print(f"[1/3] Bootstrapping asset metadata for {PATCH_ID} ({PATCH_TITLE}) …")
+    # Old patches are frozen — once their analytics aggregates are on
+    # disk they don't change. Set ttl=None for non-active patches so
+    # every existing file is treated as a permanent cache hit. The
+    # active patch still uses the 2h analytics TTL so cron runs pick
+    # up fresh aggregates.
+    active = is_active_patch()
+    ttl = None if not active else DEFAULT_TTL
+    print(f"[1/3] Bootstrapping asset metadata for {PATCH_ID} ({PATCH_TITLE}) "
+          f"[{'ACTIVE — using 2h TTL' if active else 'CLOSED — using cache forever'}] …")
     bootstrap_assets()
 
     fetch(f"https://api.deadlock-api.com/v1/analytics/hero-stats?min_unix_timestamp={PATCH_MIN_TS}",
-          PATCH_CACHE / "hero_stats_all.json")
+          PATCH_CACHE / "hero_stats_all.json", ttl=ttl)
     fetch(f"https://api.deadlock-api.com/v1/analytics/hero-stats?min_unix_timestamp={PATCH_MIN_TS}&min_average_badge={HMMR_BADGE}",
-          PATCH_CACHE / "hero_stats_hmmr.json")
+          PATCH_CACHE / "hero_stats_hmmr.json", ttl=ttl)
     fetch(f"https://api.deadlock-api.com/v1/analytics/hero-stats?min_unix_timestamp={PATCH_MIN_TS}&min_average_badge={ASCENDANT_BADGE}",
-          PATCH_CACHE / "hero_stats_asc.json")
+          PATCH_CACHE / "hero_stats_asc.json", ttl=ttl)
     fetch(f"https://api.deadlock-api.com/v1/analytics/hero-stats?min_unix_timestamp={PATCH_MIN_TS}&min_average_badge={ETERNUS_BADGE}",
-          PATCH_CACHE / "hero_stats_eter.json")
+          PATCH_CACHE / "hero_stats_eter.json", ttl=ttl)
 
     print("[2/3] Building per-hero job list …")
-    heroes = json.load(open(CACHE / "playable_heroes.json"))
+    with open(CACHE / "playable_heroes.json", encoding="utf-8") as _f:
+        heroes = json.load(_f)
     all_jobs: list[tuple[str, Path]] = []
     for h in heroes:
         all_jobs.extend(hero_urls(h["id"]))
@@ -213,7 +239,7 @@ def main() -> None:
     # Lower parallelism (3 instead of 6) to stay under the 200 req/min IP cap
     # — important when both patches are being fetched on the same day.
     with ThreadPoolExecutor(max_workers=3) as pool:
-        futures = {pool.submit(fetch, u, d): (u, d) for u, d in all_jobs}
+        futures = {pool.submit(fetch, u, d, 25, ttl): (u, d) for u, d in all_jobs}
         for i, fut in enumerate(as_completed(futures), 1):
             _, status = fut.result()
             if status == "cached":         cached += 1

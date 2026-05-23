@@ -1,14 +1,26 @@
 """
 Collect every image URL referenced in our page output, download to a local
 assets/ folder, and rewrite page_data.json to use relative paths.
+
+Two refresh knobs:
+  - FORCE_ASSETS=1 env var: re-download every icon even if a local copy
+    already exists. Useful when Valve rotates icons silently (same URL,
+    new bytes) or when assets/items/ has stale-looking PNGs after a
+    patch.
+  - Sweep collect_urls covers every place items can appear in the
+    payload (recommended phases, items_by_slice, joint archetypes,
+    match-only resolved archetypes, legacy item-set archetypes, and
+    items_dict). A new item that only shows up under an archetype tab
+    still gets its icon pulled.
 """
 import json
+import os
 import time
 import urllib.parse
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-import sys, os
+import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _paths import (
     ROOT, CACHE, HERO_OUT, HERO_DATA, BUILD_FILES, ASSETS,
@@ -16,11 +28,19 @@ from _paths import (
 )
 
 
+FORCE_ASSETS = os.environ.get("FORCE_ASSETS", "").lower() in ("1", "true", "yes")
+
 
 def collect_urls(data: dict) -> set[tuple[str, str]]:
     """Walk the data and return (url, kind) tuples — kind = 'heroes'|'items'|'abilities'.
     Handles both the legacy single-patch shape and the multi-patch shape with a
     'patches' dict keyed by patch_id.
+
+    Walks every nested location that can hold an item image: recommended
+    phases, items_by_slice, joint_archetypes_by_slice items, match-only
+    archetype items (when resolved), legacy item-set archetypes, plus
+    the patch-level items_dict (the shared lookup table for hero ability
+    items and any item referenced only by counter-pick data).
     """
     urls: set[tuple[str, str]] = set()
 
@@ -35,16 +55,50 @@ def collect_urls(data: dict) -> set[tuple[str, str]]:
                 for it in h["recommended"]["items"]["phases"][ph]:
                     if it.get("image"):
                         urls.add((it["image"], "items"))
-            for slc in ("all", "high"):
-                for it in h["items_by_slice"][slc]:
+            for slc in ("all", "high", "asc", "eter"):
+                for it in (h.get("items_by_slice") or {}).get(slc, []):
                     if it.get("image"):
                         urls.add((it["image"], "items"))
+            # Joint item+ability archetypes (§3.6) — each archetype has
+            # its own items list that may reference icons not in the
+            # default recommended view.
+            for slc, archs in (h.get("joint_archetypes_by_slice") or {}).items():
+                for arch in archs:
+                    for it in (arch.get("items") or []):
+                        if it.get("image"):
+                            urls.add((it["image"], "items"))
+            # Match-only archetypes — populated by the resolver workflow
+            # with item picks from real player accounts.
+            for slc, archs in (h.get("match_only_archetypes_by_slice") or {}).items():
+                for arch in archs:
+                    for it in (arch.get("items") or []):
+                        if it.get("image"):
+                            urls.add((it["image"], "items"))
+            # Legacy item-set archetypes (kept alongside the new joint
+            # ones so users can compare composition-based clustering
+            # against ability-priority-based clustering).
+            for c in ((h.get("archetypes") or {}).get("clusters") or []):
+                for it in (c.get("build") or []):
+                    if it.get("image"):
+                        urls.add((it["image"], "items"))
+
+    def walk_items_dict(items_dict: dict) -> None:
+        """Patch-level items_dict has an `image` per (item_id -> info)
+        entry. Hero abilities referenced from counter data, signature
+        items, and items only present in matchup panels all come from
+        this table — so it must be covered too."""
+        for info in (items_dict or {}).values():
+            img = info.get("image") if isinstance(info, dict) else None
+            if img:
+                urls.add((img, "items"))
 
     if "patches" in data:
         for p in data["patches"].values():
             walk_hero_list(p.get("heroes", []))
+            walk_items_dict(p.get("items_dict") or {})
     else:
         walk_hero_list(data.get("heroes", []))
+        walk_items_dict(data.get("items_dict") or {})
     return urls
 
 
@@ -60,7 +114,11 @@ def relative_uri(url: str, kind: str) -> str:
 
 
 def download(url: str, dest: Path) -> tuple[str, str]:
-    if dest.exists() and dest.stat().st_size > 100:
+    # FORCE_ASSETS=1 bypasses the local-file shortcut so we re-pull every
+    # icon even if it appears cached. Use sparingly — adds ~250 HTTP
+    # requests to the run — but necessary when Valve quietly rotates
+    # icons in place (the asset URL doesn't change, just the bytes).
+    if not FORCE_ASSETS and dest.exists() and dest.stat().st_size > 100:
         return url, "cached"
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "deadlock-build-analysis/1.0"})
@@ -116,20 +174,38 @@ def main() -> None:
             for ph in ("early", "mid", "late"):
                 for it in h["recommended"]["items"]["phases"][ph]:
                     it["image"] = rewrite(it.get("image"))
-            for slc in ("all", "high"):
-                for it in h["items_by_slice"][slc]:
+            for slc in ("all", "high", "asc", "eter"):
+                for it in (h.get("items_by_slice") or {}).get(slc, []):
                     it["image"] = rewrite(it.get("image"))
+            for slc, archs in (h.get("joint_archetypes_by_slice") or {}).items():
+                for arch in archs:
+                    for it in (arch.get("items") or []):
+                        it["image"] = rewrite(it.get("image"))
+            for slc, archs in (h.get("match_only_archetypes_by_slice") or {}).items():
+                for arch in archs:
+                    for it in (arch.get("items") or []):
+                        it["image"] = rewrite(it.get("image"))
+            for c in ((h.get("archetypes") or {}).get("clusters") or []):
+                for it in (c.get("build") or []):
+                    it["image"] = rewrite(it.get("image"))
+
+    def rewrite_items_dict(items_dict: dict) -> None:
+        for info in (items_dict or {}).values():
+            if isinstance(info, dict) and info.get("image"):
+                info["image"] = rewrite(info["image"])
 
     if "patches" in data:
         for p in data["patches"].values():
             rewrite_hero_list(p.get("heroes", []))
+            rewrite_items_dict(p.get("items_dict") or {})
     else:
         rewrite_hero_list(data.get("heroes", []))
+        rewrite_items_dict(data.get("items_dict") or {})
 
     # Overwrite page_data.json so build_page.py picks up the local paths
     out = CACHE / "page_data.json"
-    with open(out, "w") as f:
-        json.dump(data, f, separators=(",", ":"))
+    with open(out, "w", encoding="utf-8") as f:
+        json.dump(data, f, separators=(",", ":"), ensure_ascii=False)
     print(f"\n[saved] {out}  {out.stat().st_size:,} bytes")
 
 

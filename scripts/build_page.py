@@ -1465,11 +1465,6 @@ HTML = """<!doctype html>
       <button data-mmr="asc" title="min_average_badge=101 — top ~3-5%">Ascendant+</button>
       <button data-mmr="eter" title="min_average_badge=111 — top ~0.1-1%">Eternus+</button>
     </div>
-    <div class="toggle-group" id="methodology-toggle" title="Toggle between the classic methodology and the updated build (v2). Your choice is remembered locally.">
-      <span class="toggle-label">Methodology:</span>
-      <button data-methodology="v1" title="Classic CORE/FLEX/SIT/STAT tags, no joint archetype tabs, counter ranking by raw Δpp with hard threshold.">v1</button>
-      <button data-methodology="v2" title="Updated: 5-class 2D tag taxonomy (incl. TRAP POPULAR), joint item+ability archetype tabs, confidence-weighted counter ranking.">v2</button>
-    </div>
   </div>
 </header>
 <div class="mobile-backdrop" id="mobile-backdrop"></div>
@@ -1495,30 +1490,10 @@ HTML = """<!doctype html>
   let activePatchId = DATA.default_patch;
   let activePatch = DATA.patches[activePatchId];
   let selectedHeroId = null;
-  // Methodology toggle (v1 = classic, v2 = updated). Persists in
-  // localStorage and honors ?methodology=v1|v2 in the URL on load.
-  // Default is v2 — the updated rendering. Set to v1 to fall back to
-  // the legacy CORE/FLEX/SIT/STAT tags, hide the joint archetype tabs,
-  // and rank counter picks by raw Δpp with the historical hard-floor
-  // filter.
-  let methodologyVersion = (() => {
-    try {
-      const params = new URLSearchParams(window.location.search);
-      const fromUrl = params.get('methodology');
-      if (fromUrl === 'v1' || fromUrl === 'v2') return fromUrl;
-      const stored = localStorage.getItem('methodologyVersion');
-      if (stored === 'v1' || stored === 'v2') return stored;
-    } catch (e) {}
-    return 'v2';
-  })();
-  function setMethodologyVersion(v) {
-    methodologyVersion = (v === 'v1' ? 'v1' : 'v2');
-    try { localStorage.setItem('methodologyVersion', methodologyVersion); } catch (e) {}
-    document.querySelectorAll('#methodology-toggle button').forEach(b => {
-      b.classList.toggle('active', b.dataset.methodology === methodologyVersion);
-    });
-    renderMain();
-  }
+  // (Methodology v1/v2 toggle was removed once v2 became the default.
+  // All renderers use the v2 path unconditionally. The 5-class 2D tag
+  // taxonomy, joint archetype tabs, and confidence-weighted counter
+  // ranking are always on.)
 
   let mmrSlice = 'high';
   let sortMode = 'alpha';
@@ -2109,15 +2084,14 @@ HTML = """<!doctype html>
     // In v1 (classic) mode these arrays are forced empty so no
     // archetype state can leak into the rendering even if the user
     // previously selected a tab in v2.
-    const inV2 = methodologyVersion === 'v2';
-    const jointArchsForSlice = inV2 ? ((h.joint_archetypes_by_slice && h.joint_archetypes_by_slice[mmrSlice]) || []) : [];
-    const activeJointArchId = inV2 ? activeJointArchByHeroSlice[jointArchKey(h.id, mmrSlice)] : null;
+    const jointArchsForSlice = (h.joint_archetypes_by_slice && h.joint_archetypes_by_slice[mmrSlice]) || [];
+    const activeJointArchId = activeJointArchByHeroSlice[jointArchKey(h.id, mmrSlice)];
     const activeJointArch = (activeJointArchId != null)
       ? jointArchsForSlice.find(a => a.archetype_id === activeJointArchId)
       : null;
     // Match-only ability-priority archetypes (raw match data, no template items).
-    const matchArchsForSlice = inV2 ? ((h.match_only_archetypes_by_slice && h.match_only_archetypes_by_slice[mmrSlice]) || []) : [];
-    const activeMatchArchIdx = inV2 ? activeMatchArchByHeroSlice[jointArchKey(h.id, mmrSlice)] : null;
+    const matchArchsForSlice = (h.match_only_archetypes_by_slice && h.match_only_archetypes_by_slice[mmrSlice]) || [];
+    const activeMatchArchIdx = activeMatchArchByHeroSlice[jointArchKey(h.id, mmrSlice)];
     const activeMatchArch = (activeMatchArchIdx != null) ? matchArchsForSlice[activeMatchArchIdx] : null;
     // Get build for current MMR slice (or the active archetype's composite).
     // If the slice is empty for THIS hero (e.g. Eternus+ on a niche hero),
@@ -2144,7 +2118,7 @@ HTML = """<!doctype html>
         </div>`;
       return;
     }
-    // Build selection priority (v2):
+    // Build selection priority:
     //   joint archetype (§3.6, items from published templates)
     //   > match-only archetype with resolved items (the resolver script
     //     finds the actual accounts who run this priority and aggregates
@@ -2153,11 +2127,10 @@ HTML = """<!doctype html>
     //   > slice default.
     // Match-only archetypes WITHOUT resolved items fall through to the
     // slice default and rely on the caveat banner above to explain.
-    // In v1 (classic) mode, joint and match-only archetypes are skipped.
     let items;
-    if (methodologyVersion === 'v2' && activeJointArch) {
+    if (activeJointArch) {
       items = activeJointArch.items;
-    } else if (methodologyVersion === 'v2' && activeMatchArch && activeMatchArch.items && activeMatchArch.items.length) {
+    } else if (activeMatchArch && activeMatchArch.items && activeMatchArch.items.length) {
       items = activeMatchArch.items;
     } else if (activeArch) {
       items = activeArch.build;
@@ -2334,13 +2307,6 @@ HTML = """<!doctype html>
             : 'From the synergy-aware ILP method — items chosen for win rate <em>and</em> pairwise synergy. Buy times are population averages.'}
           Hover any item with a community-build note to see the tooltip authors wrote about it.
         </div>
-        ${methodologyVersion === 'v1' ? `
-        <div class="summary-line" style="margin-top:-8px">
-          <span class="tag-pill tag-core">CORE</span> in &gt;70% of top builds &nbsp;·&nbsp;
-          <span class="tag-pill tag-flex">FLEX</span> 30–70% &nbsp;·&nbsp;
-          <span class="tag-pill tag-situational">SIT.</span> &lt;30% &nbsp;·&nbsp;
-          <span class="tag-pill tag-stat">STAT</span> stat-derived only
-        </div>` : `
         <div class="summary-line" style="margin-top:-8px">
           <span class="tag-pill tag-core_proven">CORE PROVEN</span> popular &amp; data confirms &nbsp;·&nbsp;
           <span class="tag-pill tag-core_inherited">CORE INHERITED</span> popular but flat WR &nbsp;·&nbsp;
@@ -2350,7 +2316,7 @@ HTML = """<!doctype html>
           <span class="tag-pill tag-flex">FLEX</span> &nbsp;·&nbsp;
           <span class="tag-pill tag-situational">SIT.</span> &nbsp;·&nbsp;
           <span class="tag-pill tag-stat">STAT</span>
-        </div>`}
+        </div>
         <div class="phases">
           <div class="phase-col">
             <h4>Early <span class="when">${phaseWhen.early}</span></h4>
@@ -2418,10 +2384,6 @@ HTML = """<!doctype html>
     // Dashed tabs are match-only — high-WR ability priorities from raw
     // match data with no published template, so the items column stays
     // at the recommended set and a caveat banner is shown.
-    //
-    // Hidden entirely in v1 (classic) mode — the strip didn't exist
-    // before §3.6 and v1 should match the pre-change behavior.
-    if (methodologyVersion === 'v1') return '';
     const totalArchs = (archs ? archs.length : 0) + (matchArchs ? matchArchs.length : 0);
     if (totalArchs < 1) return '';
     if (totalArchs === 1) {
@@ -2761,10 +2723,10 @@ HTML = """<!doctype html>
     const cat = item.category;
     const slot = item.slot;
     const isFlex = slot === 'flex';
-    // v1 reverts to the legacy 1D tag (CORE / FLEX / SIT. / STAT) which
-    // is preserved on every pick as `pick_rate_tag`. v2 uses the 2D
-    // taxonomy on `tag` (methodology review §6.4).
-    const tag = (methodologyVersion === 'v1' ? (item.pick_rate_tag || 'stat') : (item.tag || 'stat'));
+    // 5-class 2D tag taxonomy (methodology review §6.4) on item.tag.
+    // Legacy 1D pick-rate band is still emitted as item.pick_rate_tag
+    // for downstream consumers but no longer rendered in the UI.
+    const tag = item.tag || 'stat';
     const pickRate = item.pick_rate || 0;
     const hasAnnot = !!(item.annotation && item.annotation.length);
     const tagLabel = TAG_LABEL[tag] || tag.toUpperCase();
@@ -2933,21 +2895,15 @@ HTML = """<!doctype html>
     if (selected.size === 0) {
       aggregated = `<div class="counter-empty">Select up to 6 enemy heroes above to see recommended item swaps for that matchup.</div>`;
     } else {
-      // v1: rank by raw Δpp summed across enemies (the pre-§2.8 behavior).
-      // v2: rank by confidence-weighted score summed across enemies — items
-      // with thin samples or tiny effects get attenuated rather than dropped
-      // at a hard 0.4pp threshold.
-      const scoreField = methodologyVersion === 'v1' ? 'delta_pp' : 'confidence_weighted_score';
+      // Confidence-weighted score per methodology review §2.8 — items
+      // with thin samples or tiny effects get attenuated rather than
+      // dropped at the historical 0.4pp hard threshold.
       const itemAgg = {};  // item_id → { total_score, total_delta, occurrences }
       for (const eid of selected) {
         const list = counters[eid] || counters[String(eid)] || [];
         for (const c of list) {
-          // v1 historically also dropped any row with |Δpp|<0.4. With the
-          // looser data the new pipeline emits, replicate that gate here so
-          // v1 view matches the pre-change rendering even on the new data.
-          if (methodologyVersion === 'v1' && Math.abs(c.delta_pp || 0) < 0.4) continue;
           const cur = itemAgg[c.item_id] || { total_score: 0, total_delta: 0, occurrences: 0 };
-          const score = (c[scoreField] != null ? c[scoreField] : c.delta_pp) || 0;
+          const score = (c.confidence_weighted_score != null ? c.confidence_weighted_score : c.delta_pp) || 0;
           cur.total_score += score;
           cur.total_delta += (c.delta_pp || 0);
           cur.occurrences += 1;
@@ -3103,15 +3059,7 @@ HTML = """<!doctype html>
     document.querySelectorAll('#sort-buttons button').forEach(b => b.classList.toggle('active', b.dataset.sort === sortMode));
     renderHeroGrid();
   });
-  // Methodology version toggle (v1 classic / v2 updated). Initialize the
-  // visual active state from the resolved version, then bind the click.
-  document.querySelectorAll('#methodology-toggle button').forEach(b => {
-    b.classList.toggle('active', b.dataset.methodology === methodologyVersion);
-  });
-  document.getElementById('methodology-toggle').addEventListener('click', e => {
-    if (e.target.tagName !== 'BUTTON') return;
-    setMethodologyVersion(e.target.dataset.methodology);
-  });
+  // (Methodology toggle removed — v2 is unconditional.)
 
   // ---- Mobile nav drawer wiring ----
   // Hamburger button toggles the slide-out hero drawer; tapping the

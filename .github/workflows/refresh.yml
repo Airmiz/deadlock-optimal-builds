@@ -29,6 +29,11 @@ on:
         description: 'Patch ID to refresh (defaults to all patches in scripts/_paths.py)'
         required: false
         default: ''
+      refresh_assets:
+        description: 'Force-refresh asset metadata + re-download all item icons (slower)'
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write       # push regenerated files
@@ -71,6 +76,23 @@ jobs:
           key: deadlock-cache-v1-${{ github.run_id }}
           restore-keys: |
             deadlock-cache-v1-
+
+      # Optional asset-metadata bust. When the user ticks the
+      # `refresh_assets` workflow input, drop the cached items.json and
+      # heroes.json snapshots so the next batch_fetch step pulls fresh
+      # ones. Useful when Valve adds new items (e.g. Grit, Indomitable)
+      # that fall inside the 7-day TTL window and would otherwise be
+      # invisible until the next weekly refresh.
+      - name: Bust asset metadata cache (refresh_assets only)
+        if: ${{ github.event.inputs.refresh_assets == 'true' }}
+        run: |
+          echo "Deleting cached asset metadata so batch_fetch re-pulls them"
+          rm -f cache/items.json cache/heroes.json cache/playable_heroes.json
+          rm -f cache/patch_125825/items.json cache/patch_125825/heroes.json cache/patch_125825/playable_heroes.json
+          rm -f cache/patch_129989/items.json cache/patch_129989/heroes.json cache/patch_129989/playable_heroes.json
+          # Also clear local icon cache so download_images.py re-pulls every
+          # PNG/WEBP from the CDN, picking up any silently-rotated icons.
+          rm -rf assets/items assets/heroes assets/abilities
 
       # Each fetch step uses TTL-aware caching (see batch_fetch.fetch):
       #   - Asset files (heroes/items.json) refresh weekly
@@ -116,6 +138,10 @@ jobs:
       - name: Compile multi-patch page payload
         env:
           PYTHONUNBUFFERED: '1'
+          # When refresh_assets is set, download_images.py re-downloads
+          # every icon (not just missing ones). Otherwise it skips
+          # icons that already exist locally — the default fast path.
+          FORCE_ASSETS: ${{ github.event.inputs.refresh_assets == 'true' && '1' || '' }}
         run: |
           python3 -u scripts/build_index.py
           python3 -u scripts/build_page_data.py
