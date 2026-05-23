@@ -93,6 +93,27 @@ def item_info(iid: int) -> dict:
     }
 
 
+def _hydrate_chain_images(chain: list) -> list:
+    """Backfill the `image` field on every lineage_chain entry from
+    items_assets. Older per-hero JSONs on disk were written without this
+    field — without backfill the page renders T1/T2 placeholder badges
+    instead of actual icons for pre-buy chip rows. Cheap O(N) walk: each
+    chain has ~1-3 entries and we do it once per pick assembly.
+    Idempotent — if image is already populated (newer JSONs), preserves it."""
+    out = []
+    for c in (chain or []):
+        if c.get("image"):
+            out.append(c)
+            continue
+        iid = c.get("item_id")
+        img = items_assets.get(iid, {}).get("image") if iid is not None else None
+        if img:
+            out.append({**c, "image": img})
+        else:
+            out.append(c)
+    return out
+
+
 # ============================================================
 # Per-patch item overrides
 # ----------------------------------------------------------------------------
@@ -402,6 +423,11 @@ def _aggregate_cluster_build(in_builds: list[dict], hero_item_stats: list[dict],
                 "name": it.get("name"),
                 "tier": it.get("item_tier"),
                 "cost": it.get("cost"),
+                # Including image here is what lets stage rows render the
+                # real item icon instead of the T1/T2 placeholder badge.
+                # Source is items_assets (the items.json snapshot) — same
+                # field the top-level picks already use.
+                "image": it.get("image"),
                 "matches": anc_stat["matches"] if anc_stat else None,
                 "avg_buy_time_min": (round(anc_stat["avg_buy_time_s"] / 60, 1)
                                      if anc_stat else None),
@@ -545,6 +571,9 @@ def _optimize_cluster_build(in_builds: list[dict], hero_item_stats: list,
                 "name": ait.get("name"),
                 "tier": ait.get("item_tier"),
                 "cost": ait.get("cost"),
+                # Including image here is what lets stage rows render the
+                # real item icon instead of the T1/T2 placeholder badge.
+                "image": ait.get("image"),
                 "matches": anc_stat["matches"] if anc_stat else None,
                 "avg_buy_time_min": (round(anc_stat["avg_buy_time_s"] / 60, 1)
                                      if anc_stat else None),
@@ -725,7 +754,7 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
                 "tag": p.get("tag", "stat"),
                 "pick_rate": p.get("pick_rate", 0.0),
                 "annotation": p.get("annotation", ""),
-                "lineage_chain": p.get("lineage_chain", []),
+                "lineage_chain": _hydrate_chain_images(p.get("lineage_chain", [])),
                 "is_active": p.get("is_active", False),
                 "cooldown_s": p.get("cooldown_s"),
                 "imbue": p.get("imbue"),
@@ -766,7 +795,7 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
                         "tag": p.get("tag", "stat"),
                         "pick_rate": p.get("pick_rate", 0.0),
                         "annotation": p.get("annotation", ""),
-                        "lineage_chain": p.get("lineage_chain", []),
+                        "lineage_chain": _hydrate_chain_images(p.get("lineage_chain", [])),
                         "is_active": p.get("is_active", False),
                         "cooldown_s": p.get("cooldown_s"),
                         "imbue": p.get("imbue"),
@@ -805,7 +834,7 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
                 "tag": p.get("tag", "stat"),
                 "pick_rate": p.get("pick_rate", 0.0),
                 "annotation": p.get("annotation", ""),
-                "lineage_chain": p.get("lineage_chain", []),
+                "lineage_chain": _hydrate_chain_images(p.get("lineage_chain", [])),
                 "is_active": p.get("is_active", False),
                 "cooldown_s": p.get("cooldown_s"),
                 "imbue": p.get("imbue"),
@@ -1568,7 +1597,7 @@ def main() -> None:
     size = target.stat().st_size
     print(f"\n[saved] {target}  {size:,} bytes  ({size/1024:.1f} KB)")
     for pid, p in payloads.items():
-        marker = "  ← default" if pid == default_patch else ""
+        marker = "  <- default" if pid == default_patch else ""
         print(f"  {pid}: {p['hero_count']} heroes, {p['signature_picks']} signature picks{marker}")
 
 

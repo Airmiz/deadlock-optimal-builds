@@ -716,6 +716,16 @@ def attach_lineage_chain(picks: list, ancestors_of: dict,
                 "name": it.get("name"),
                 "tier": it.get("item_tier"),
                 "cost": it.get("cost"),
+                # Image URL is what lets stage rows in the page render
+                # the ancestor's real icon (Extended Magazine, Extra
+                # Spirit, Compress Cooldown, etc.) instead of the
+                # T1/T2 placeholder badge. Source is items_by_id (the
+                # items.json snapshot) — the same field top-level picks
+                # already carry. This chain is what gets written into
+                # per-hero JSONs and read back by build_page_data.py,
+                # so adding it here is what actually fixes the
+                # placeholder-badge problem the user reported.
+                "image": it.get("image"),
                 "matches": anc_stat["matches"] if anc_stat else None,
                 "avg_buy_time_min": (round(anc_stat["avg_buy_time_s"] / 60, 1)
                                      if anc_stat else None),

@@ -2156,6 +2156,11 @@ HTML = """<!doctype html>
         events.push({
           kind: 'stage',
           name: c.name, tier: c.tier, cost: c.cost, item_id: c.item_id,
+          // Propagate the ancestor's own icon so the stage row renders
+          // a real image instead of the T1/T2 placeholder badge. The
+          // image field is now populated by build_page_data.py on
+          // every lineage_chain entry.
+          image: c.image,
           buy_min: c.avg_buy_time_min,
           phase: phaseFromBuyMin(c.avg_buy_time_min),
           category: it.category,
@@ -2594,9 +2599,17 @@ HTML = """<!doctype html>
       }
       stageImbBadge = `<span class="imbue-badge" title="${escAttr(ttl)}">🔮 ${escHtml(lbl)}${target}</span>`;
     }
+    // Use the real ancestor icon (now populated on every chain entry by
+    // build_hero_output.py / build_page_data.py) instead of the legacy
+    // T${tier} placeholder span. Fall back to the placeholder only if
+    // image is missing OR fails to load — mirroring the renderItemCard
+    // (line ~2809) pattern so behavior is consistent across the page.
+    const stageIcon = stage.image
+      ? `<img src="${escAttr(stage.image)}" alt="${escAttr(stage.name)}" onerror="this.style.display='none';this.parentNode.innerHTML='<span class=placeholder>T${stage.tier||'?'}</span>'">`
+      : `<span class="placeholder">T${stage.tier||'?'}</span>`;
     return `
       <div class="item-row is-stage" title="Pre-buy that upgrades to ${escAttr(stage.upgrades_to_name)} later in the build">
-        <div class="icon"><span class="placeholder">T${stage.tier}</span></div>
+        <div class="icon">${stageIcon}</div>
         <div>
           <div class="name">T${stage.tier} ${escHtml(stage.name)}</div>
           <div class="meta">

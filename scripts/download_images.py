@@ -55,10 +55,23 @@ def collect_urls(data: dict) -> set[tuple[str, str]]:
                 for it in h["recommended"]["items"]["phases"][ph]:
                     if it.get("image"):
                         urls.add((it["image"], "items"))
+                    # Recommended-phase items also carry lineage chains —
+                    # the page renders chain ancestors as stage rows too.
+                    for c in (it.get("lineage_chain") or []):
+                        if c.get("image"):
+                            urls.add((c["image"], "items"))
             for slc in ("all", "high", "asc", "eter"):
                 for it in (h.get("items_by_slice") or {}).get(slc, []):
                     if it.get("image"):
                         urls.add((it["image"], "items"))
+                    # Lineage chain ancestors (pre-buy chips like Extra
+                    # Spirit, Extended Magazine, Compress Cooldown) —
+                    # without walking these, their icons never end up
+                    # in assets/items/ and the page falls back to
+                    # T1/T2 placeholder badges.
+                    for c in (it.get("lineage_chain") or []):
+                        if c.get("image"):
+                            urls.add((c["image"], "items"))
             # Joint item+ability archetypes (§3.6) — each archetype has
             # its own items list that may reference icons not in the
             # default recommended view.
@@ -174,9 +187,16 @@ def main() -> None:
             for ph in ("early", "mid", "late"):
                 for it in h["recommended"]["items"]["phases"][ph]:
                     it["image"] = rewrite(it.get("image"))
+                    for c in (it.get("lineage_chain") or []):
+                        c["image"] = rewrite(c.get("image"))
             for slc in ("all", "high", "asc", "eter"):
                 for it in (h.get("items_by_slice") or {}).get(slc, []):
                     it["image"] = rewrite(it.get("image"))
+                    # Mirror collect_urls: rewrite chain ancestor image
+                    # paths so stage rows render the local (potentially
+                    # wiki-overlaid) icon instead of hitting the CDN.
+                    for c in (it.get("lineage_chain") or []):
+                        c["image"] = rewrite(c.get("image"))
             for slc, archs in (h.get("joint_archetypes_by_slice") or {}).items():
                 for arch in archs:
                     for it in (arch.get("items") or []):
