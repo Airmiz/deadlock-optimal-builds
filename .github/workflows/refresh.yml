@@ -153,11 +153,23 @@ jobs:
       #      so every downstream image reference (recommended,
       #      items_by_slice, lineage_chain, archetypes, match-only,
       #      items_dict) gets the right icon.
-      # Gated on refresh_assets because wiki HTML is stable — no need
-      # to re-scrape every 3 hours. The manifest persists in cache/
-      # across runs so subsequent refreshes use it without re-scraping.
-      - name: Resolve wiki icon overrides (refresh_assets only)
-        if: ${{ github.event.inputs.refresh_assets == 'true' }}
+      #
+      # Runs on EVERY refresh (no refresh_assets gate). Why:
+      #   - The manifest (cache/wiki_icon_overrides.json) MUST exist for
+      #     build_page_data to apply overrides — otherwise items fall
+      #     through to the colliding assets/items/ namespace and the
+      #     live site cross-wires icons.
+      #   - cache/ is gitignored except for wiki_icon_overrides.json
+      #     (single-file negation in .gitignore), so the manifest is
+      #     committed back to main after each refresh and is present
+      #     on every fresh checkout.
+      #   - The script is cheap: ~5 batched MediaWiki API calls + skip
+      #     downloads when local bytes match (identical-check). Adds
+      #     ~5-15s to refresh runtime, worth it for correctness.
+      #   - Also catches newly-added items: when Valve ships a new
+      #     item and the wiki adds a page, the next refresh picks
+      #     it up without needing a manual refresh_assets trigger.
+      - name: Resolve wiki icon overrides
         env:
           PYTHONUNBUFFERED: '1'
         run: |
@@ -179,7 +191,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A heroes/ assets/ deadlock_builds.html all_heroes_index.json all_heroes_tier_list.csv
+          git add -A heroes/ assets/ deadlock_builds.html all_heroes_index.json all_heroes_tier_list.csv cache/wiki_icon_overrides.json
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0
