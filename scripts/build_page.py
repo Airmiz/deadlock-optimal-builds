@@ -3112,6 +3112,28 @@ HTML = """<!doctype html>
 """
 
 html = HTML.replace("__DATA__", DATA_JSON)
+
+# Cache-bust every `assets/...` reference (icons, images, etc.) by
+# appending ?v=<hash> derived from the page_data payload. Why this is
+# necessary: GitHub Pages serves assets with long-lived caching, AND
+# many users' browsers aggressively cache PNGs even on hard refresh —
+# so when we shipped the per-item-id wiki-overlay rearchitecture, some
+# browsers continued serving the OLD bytes from filenames like
+# `assets/items_wiki/extra_spirit.png` even though the server now had
+# the correct file. Changing the URL forces the browser to refetch.
+# The hash is stable per data payload so unchanged sites don't get
+# spurious cache misses, but any data/icon change → new hash → fresh fetch.
+import hashlib, re
+_cache_v = hashlib.sha1(DATA_JSON.encode("utf-8")).hexdigest()[:10]
+# Match both quoted attribute values (src="assets/x.png") and embedded
+# data references ("image":"assets/x.png"). The lookahead avoids
+# double-appending if a ?v= is already present.
+def _cb(m: re.Match) -> str:
+    path = m.group(1)
+    return f'{path}?v={_cache_v}'
+html = re.sub(r'(assets/[^"?\s)>]+)(?!\?)', _cb, html)
+
 target = ROOT / "deadlock_builds.html"
 target.write_text(html, encoding="utf-8")
 print(f"[saved] {target}  {target.stat().st_size:,} bytes ({target.stat().st_size/1024:.1f} KB)")
+print(f"        cache-bust version: v={_cache_v}")

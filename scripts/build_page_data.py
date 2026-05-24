@@ -132,22 +132,31 @@ def item_info(iid: int) -> dict:
 
 
 def _hydrate_chain_images(chain: list) -> list:
-    """Backfill the `image` field on every lineage_chain entry from
-    items_assets. Older per-hero JSONs on disk were written without this
-    field — without backfill the page renders T1/T2 placeholder badges
-    instead of actual icons for pre-buy chip rows. Cheap O(N) walk: each
-    chain has ~1-3 entries and we do it once per pick assembly.
-    Idempotent — if image is already populated (newer JSONs), preserves it."""
+    """Force every lineage_chain entry's `image` to whatever items_assets
+    currently says for that item_id. Two reasons we OVERRIDE rather than
+    just backfill:
+      1. Older per-hero JSONs on disk were written before the lineage
+         chain had an image field — those need backfill or stage rows
+         render T1/T2 placeholder badges.
+      2. EVEN OLDER per-hero JSONs were written with the api URL's
+         basename baked into the chain image (e.g. Extra Spirit ->
+         assets/items/tech_damage.png — colliding with Golden Goose Egg).
+         When the wiki override manifest changes the right path to
+         assets/items_wiki/extra_spirit.png, we must replace the stale
+         path, not preserve it. Just backfilling would leave the
+         cross-wired icon visible until a full hero-JSON regen.
+    Idempotent: if items_assets has no entry for the item, the existing
+    image (if any) is preserved as a fallback."""
     out = []
     for c in (chain or []):
-        if c.get("image"):
-            out.append(c)
-            continue
         iid = c.get("item_id")
-        img = items_assets.get(iid, {}).get("image") if iid is not None else None
-        if img:
-            out.append({**c, "image": img})
+        fresh_img = items_assets.get(iid, {}).get("image") if iid is not None else None
+        if fresh_img:
+            out.append({**c, "image": fresh_img})
         else:
+            # No items_assets entry — keep whatever the per-hero JSON had
+            # (could be None, in which case the page falls back to the
+            # T1/T2 placeholder badge for this stage row).
             out.append(c)
     return out
 
