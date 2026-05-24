@@ -57,9 +57,25 @@
     "items": {
       "method": "synergy_ilp",
       "mmr_slice": "high_mmr",
-      "total_cost": 73600,
+      "total_cost": 69600,
       "phases": {
         "early": [
+          {
+            "slot": "weapon",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "name": "Close Quarters",
+            "item_id": 1342610602,
+            "avg_buy_time_min": 4.8,
+            "avg_sell_time_min": 22.3,
+            "win_rate": 0.4984,
+            "tag": "situational",
+            "pick_rate": 0.091,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null
+          },
           {
             "slot": "weapon",
             "category": "weapon",
@@ -111,33 +127,19 @@
           {
             "slot": "vitality",
             "category": "vitality",
-            "tier": 3,
-            "cost": 3200,
-            "name": "Fortitude",
-            "item_id": 3585132399,
-            "avg_buy_time_min": 18.1,
-            "avg_sell_time_min": 37.8,
-            "win_rate": 0.5326,
-            "tag": "flex",
-            "pick_rate": 0.364,
+            "tier": 2,
+            "cost": 1600,
+            "name": "Enchanter's Emblem",
+            "item_id": 3970837787,
+            "avg_buy_time_min": 13.9,
+            "avg_sell_time_min": 34.5,
+            "win_rate": 0.5127,
+            "tag": "core_proven",
+            "pick_rate": 0.636,
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "annotation": "This is a great item on paige, gives you some extra health and regen.",
-            "lineage_chain": [
-              {
-                "item_id": 3633614685,
-                "name": "Extra Health",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/health.png",
-                "matches": 6413,
-                "avg_buy_time_min": 11.9,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
+            "annotation": "\u041f\u0440\u043e\u0434\u0430\u0435\u043c \u043f\u0440\u0438 \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e\u0441\u0442\u0438"
           },
           {
             "slot": "weapon",
@@ -155,23 +157,6 @@
             "cooldown_s": 22.0,
             "imbue": null,
             "annotation": "Would be wonderful if not for the fact you aren't going to be mixed in with your teammates."
-          },
-          {
-            "slot": "weapon",
-            "category": "weapon",
-            "tier": 3,
-            "cost": 3200,
-            "name": "Alchemical Fire",
-            "item_id": 1932939246,
-            "avg_buy_time_min": 22.1,
-            "avg_sell_time_min": 34.5,
-            "win_rate": 0.5274,
-            "tag": "core_proven",
-            "pick_rate": 0.636,
-            "is_active": true,
-            "cooldown_s": 30.0,
-            "imbue": null,
-            "annotation": "Can be used with your vortex combo"
           },
           {
             "slot": "flex",
@@ -198,37 +183,6 @@
                 "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/extra_charge.png",
                 "matches": 25919,
                 "avg_buy_time_min": 9.1,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
-          },
-          {
-            "slot": "flex",
-            "category": "spirit",
-            "tier": 4,
-            "cost": 6400,
-            "name": "Vortex Web",
-            "item_id": 1152158042,
-            "avg_buy_time_min": 23.5,
-            "avg_sell_time_min": 31.2,
-            "win_rate": 0.5184,
-            "tag": "core_proven",
-            "pick_rate": 0.818,
-            "is_active": true,
-            "cooldown_s": 42.0,
-            "imbue": null,
-            "annotation": "\u0415\u0441\u043b\u0438 \u0432\u044b \u043b\u044e\u0431\u0438\u0442\u0435 \u0433\u0440\u044f\u0437\u043d\u043e))",
-            "lineage_chain": [
-              {
-                "item_id": 1813726886,
-                "name": "Slowing Hex",
-                "tier": 2,
-                "cost": 1600,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/immobilize.png",
-                "matches": 21938,
-                "avg_buy_time_min": 14.5,
                 "imbue": null,
                 "imbue_target_id": null,
                 "imbue_target_share": null
@@ -331,7 +285,7 @@
             ]
           },
           {
-            "slot": "spirit",
+            "slot": "flex",
             "category": "spirit",
             "tier": 4,
             "cost": 6400,
@@ -434,6 +388,23 @@
             ]
           },
           {
+            "slot": "spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "name": "Spirit Burn",
+            "item_id": 343572757,
+            "avg_buy_time_min": 31.9,
+            "avg_sell_time_min": 35.3,
+            "win_rate": 0.5853,
+            "tag": "tech_pick",
+            "pick_rate": 0.273,
+            "is_active": false,
+            "cooldown_s": 20.0,
+            "imbue": null,
+            "annotation": "\u0423\u0440\u043e\u043d\u0447\u0438\u043a"
+          },
+          {
             "slot": "vitality",
             "category": "vitality",
             "tier": 4,
@@ -478,7 +449,7 @@
             "is_active": true,
             "cooldown_s": 300.0,
             "imbue": null,
-            "annotation": "For your ult, support role"
+            "annotation": "for midboss"
           },
           {
             "slot": "vitality",
@@ -544,11 +515,11 @@
           "Bookwyrm",
           "Bookwyrm"
         ],
-        "wins": 454,
-        "losses": 165,
-        "matches": 619,
-        "players": 352,
-        "win_rate": 0.7334
+        "wins": 466,
+        "losses": 167,
+        "matches": 633,
+        "players": 358,
+        "win_rate": 0.7362
       },
       "best_opener_first4": {
         "sequence_names": [
@@ -557,9 +528,9 @@
           "Bookwyrm",
           "Bookwyrm"
         ],
-        "wins": 363,
-        "matches": 654,
-        "win_rate": 0.555
+        "wins": 371,
+        "matches": 667,
+        "win_rate": 0.5562
       }
     }
   },
@@ -1566,7 +1537,7 @@
             "is_active": true,
             "cooldown_s": 30.0,
             "imbue": null,
-            "build_freq_weight": 153.4,
+            "build_freq_weight": 148.8,
             "slot": "weapon",
             "tag": "flex",
             "pick_rate_tag": "flex",
@@ -1591,7 +1562,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 38.1,
+            "build_freq_weight": 39.3,
             "slot": "weapon",
             "tag": "tech_pick",
             "pick_rate_tag": "situational",
@@ -1616,7 +1587,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 20.4,
+            "build_freq_weight": 18.7,
             "slot": "weapon",
             "tag": "situational",
             "pick_rate_tag": "situational",
@@ -1641,7 +1612,7 @@
             "is_active": true,
             "cooldown_s": 27.0,
             "imbue": null,
-            "build_freq_weight": 17.2,
+            "build_freq_weight": 16.3,
             "slot": "weapon",
             "tag": "situational",
             "pick_rate_tag": "situational",
@@ -1666,7 +1637,7 @@
             "is_active": true,
             "cooldown_s": 45.0,
             "imbue": null,
-            "build_freq_weight": 359.2,
+            "build_freq_weight": 353.6,
             "slot": "vitality",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1705,7 +1676,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 334.1,
+            "build_freq_weight": 330.2,
             "slot": "vitality",
             "tag": "trap_popular",
             "pick_rate_tag": "flex",
@@ -1730,7 +1701,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 334.1,
+            "build_freq_weight": 330.2,
             "slot": "vitality",
             "tag": "trap_popular",
             "pick_rate_tag": "flex",
@@ -1755,7 +1726,7 @@
             "is_active": true,
             "cooldown_s": 40.0,
             "imbue": null,
-            "build_freq_weight": 334.1,
+            "build_freq_weight": 330.2,
             "slot": "vitality",
             "tag": "trap_popular",
             "pick_rate_tag": "flex",
@@ -1780,7 +1751,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 371.7,
+            "build_freq_weight": 366.8,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1819,7 +1790,7 @@
             "is_active": true,
             "cooldown_s": 35.0,
             "imbue": null,
-            "build_freq_weight": 371.7,
+            "build_freq_weight": 366.8,
             "slot": "spirit",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1844,7 +1815,7 @@
             "is_active": true,
             "cooldown_s": 42.0,
             "imbue": null,
-            "build_freq_weight": 371.7,
+            "build_freq_weight": 366.8,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1883,7 +1854,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 371.7,
+            "build_freq_weight": 366.8,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1934,7 +1905,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 370.4,
+            "build_freq_weight": 366.8,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1985,7 +1956,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 370.4,
+            "build_freq_weight": 366.8,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -2024,7 +1995,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 341.4,
+            "build_freq_weight": 339.5,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -2063,7 +2034,7 @@
             "is_active": true,
             "cooldown_s": 35.0,
             "imbue": null,
-            "build_freq_weight": 333.2,
+            "build_freq_weight": 329.5,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -2075,98 +2046,98 @@
           {
             "build_id": 387376,
             "name": "Piggy`s Support Paige (twitch.tv/piggyxdd)",
-            "win_rate": 0.4882,
-            "matches": 6797
+            "win_rate": 0.4868,
+            "matches": 6834
           },
           {
             "build_id": 308521,
             "name": "ITw1xI | Paige Spirit Caster/AOE Enjoyer",
-            "win_rate": 0.5125,
-            "matches": 5456
+            "win_rate": 0.5112,
+            "matches": 5542
           },
           {
             "build_id": 314035,
             "name": "Just a flesh wound",
-            "win_rate": 0.531,
-            "matches": 3279
+            "win_rate": 0.5307,
+            "matches": 3341
           },
           {
             "build_id": 293539,
             "name": "THETA ZERO'S FULL SUPPORT FOR MAXIMUM SUFFERING",
-            "win_rate": 0.4488,
-            "matches": 1845
+            "win_rate": 0.454,
+            "matches": 1901
           },
           {
             "build_id": 317851,
             "name": "Paige - Bruiser-Initiator [65% WR] [tracklock.gg]",
-            "win_rate": 0.455,
-            "matches": 1323
+            "win_rate": 0.4545,
+            "matches": 1351
           },
           {
             "build_id": 495693,
             "name": "SwoleBenji YT Fast Farm MAX DPS Spell Spammer",
-            "win_rate": 0.4874,
-            "matches": 1151
+            "win_rate": 0.4871,
+            "matches": 1162
           },
           {
             "build_id": 442258,
             "name": "saintmxsm / ABRAHAMS SUPPORT",
-            "win_rate": 0.4827,
-            "matches": 1125
+            "win_rate": 0.4837,
+            "matches": 1133
           },
           {
             "build_id": 413492,
             "name": "\u041c\u0435\u0442\u043e\u0432\u044b\u0439 \u0421\u041f\u0418\u0420\u0438\u0422 \u0443\u0440\u043e\u043d \u0434\u043b\u044f \u041f\u0435\u0439\u0434\u0436",
-            "win_rate": 0.4895,
-            "matches": 760
+            "win_rate": 0.4909,
+            "matches": 766
           },
           {
             "build_id": 434793,
             "name": "Saiah Paige",
-            "win_rate": 0.4838,
-            "matches": 740
+            "win_rate": 0.4859,
+            "matches": 747
           },
           {
             "build_id": 296777,
             "name": "b3 | \u041f\u0418\u041a\u041c\u0418 \u0414\u041b\u042f \u041b\u0423\u0427\u0428\u0418\u0425 \u0421\u0410\u041f\u041f\u041e\u0412 t.tv/qtarsis",
-            "win_rate": 0.4897,
-            "matches": 731
+            "win_rate": 0.4891,
+            "matches": 736
           },
           {
             "build_id": 582050,
             "name": "\u041f\u0435\u0439\u0434\u0436 \u0447\u0435\u0440\u0435\u0437 \u0441\u043f\u0438\u0440\u0438\u0442 \u0443\u0440\u043e\u043d",
-            "win_rate": 0.5475,
-            "matches": 621
+            "win_rate": 0.5466,
+            "matches": 633
           },
           {
             "build_id": 293390,
             "name": "Mobalytics - Paige by RinaVX",
-            "win_rate": 0.5212,
-            "matches": 518
+            "win_rate": 0.5218,
+            "matches": 527
           },
           {
             "build_id": 350652,
             "name": "\u0421\u0430\u043f\u043f\u043e\u0440\u0442 \u0447\u0435\u0440\u0435\u0437 \u043c\u0443\u0440\u0447\u0430\u043d\u0438\u0435 \u0432 \u0434\u0438\u0441\u043a\u043e\u0440\u0434\u0438\u043a)",
-            "win_rate": 0.5064,
-            "matches": 466
+            "win_rate": 0.5043,
+            "matches": 468
           },
           {
             "build_id": 445243,
             "name": "\u547c\u5566\u5566\u81ea\u7528\u8f85\u52a9\u4f69\u5409\u51fa\u88c5\uff08\u5168\u6ce8\u91ca\uff09",
-            "win_rate": 0.5214,
-            "matches": 257
+            "win_rate": 0.5212,
+            "matches": 259
           },
           {
             "build_id": 532919,
             "name": "PA\u00cdGE DOMADORA DE DRAG\u00c3O - SPIRIT [ttv/dudamullen]",
-            "win_rate": 0.5356,
-            "matches": 239
+            "win_rate": 0.5331,
+            "matches": 242
           },
           {
             "build_id": 307619,
             "name": "Escudinhos UwU",
-            "win_rate": 0.5385,
-            "matches": 208
+            "win_rate": 0.5346,
+            "matches": 217
           }
         ]
       },
@@ -2184,10 +2155,10 @@
             "Plot Armor"
           ],
           "n_builds": 4,
-          "total_matches": 5983,
-          "total_wins": 3055,
-          "mean_win_rate": 0.5106,
-          "win_rate_lift_pp": 0.27,
+          "total_matches": 6091,
+          "total_wins": 3109,
+          "mean_win_rate": 0.5104,
+          "win_rate_lift_pp": 0.25,
           "consensus_ladder_ids": [
             604448162
           ],
@@ -2249,7 +2220,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 38.1,
+              "joint_freq_weight": 39.4,
               "slot": "weapon",
               "tag": "tech_pick",
               "pick_rate_tag": "situational",
@@ -2274,7 +2245,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 1.2,
+              "joint_freq_weight": 2.3,
               "slot": "weapon",
               "tag": "tech_pick",
               "pick_rate_tag": "situational",
@@ -2312,7 +2283,7 @@
               "is_active": true,
               "cooldown_s": 30.0,
               "imbue": null,
-              "joint_freq_weight": 1.2,
+              "joint_freq_weight": 2.3,
               "slot": "weapon",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -2337,7 +2308,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 179.3,
+              "joint_freq_weight": 182.2,
               "slot": "vitality",
               "tag": "core_inherited",
               "pick_rate_tag": "flex",
@@ -2362,7 +2333,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 179.3,
+              "joint_freq_weight": 182.2,
               "slot": "vitality",
               "tag": "trap_popular",
               "pick_rate_tag": "flex",
@@ -2387,7 +2358,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 179.3,
+              "joint_freq_weight": 182.2,
               "slot": "vitality",
               "tag": "trap_popular",
               "pick_rate_tag": "flex",
@@ -2412,7 +2383,7 @@
               "is_active": false,
               "cooldown_s": 1.0,
               "imbue": null,
-              "joint_freq_weight": 179.3,
+              "joint_freq_weight": 182.2,
               "slot": "vitality",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -2437,7 +2408,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 179.3,
+              "joint_freq_weight": 182.2,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -2476,7 +2447,7 @@
               "is_active": true,
               "cooldown_s": 35.0,
               "imbue": null,
-              "joint_freq_weight": 179.3,
+              "joint_freq_weight": 182.2,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -2501,7 +2472,7 @@
               "is_active": false,
               "cooldown_s": 14.0,
               "imbue": null,
-              "joint_freq_weight": 179.3,
+              "joint_freq_weight": 182.2,
               "slot": "spirit",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -2540,7 +2511,7 @@
               "is_active": false,
               "cooldown_s": 20.0,
               "imbue": null,
-              "joint_freq_weight": 179.3,
+              "joint_freq_weight": 182.2,
               "slot": "spirit",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -2565,7 +2536,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 179.3,
+              "joint_freq_weight": 182.2,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2604,7 +2575,7 @@
               "is_active": true,
               "cooldown_s": 35.0,
               "imbue": null,
-              "joint_freq_weight": 179.3,
+              "joint_freq_weight": 182.2,
               "slot": "flex",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -2629,7 +2600,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 179.3,
+              "joint_freq_weight": 182.2,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2680,7 +2651,7 @@
               "is_active": true,
               "cooldown_s": 42.0,
               "imbue": null,
-              "joint_freq_weight": 179.3,
+              "joint_freq_weight": 182.2,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2706,26 +2677,26 @@
             {
               "build_id": 314035,
               "name": "Just a flesh wound",
-              "win_rate": 0.531,
-              "matches": 3279
+              "win_rate": 0.5307,
+              "matches": 3341
             },
             {
               "build_id": 317851,
               "name": "Paige - Bruiser-Initiator [65% WR] [tracklock.gg]",
-              "win_rate": 0.455,
-              "matches": 1323
+              "win_rate": 0.4545,
+              "matches": 1351
             },
             {
               "build_id": 413492,
               "name": "\u041c\u0435\u0442\u043e\u0432\u044b\u0439 \u0421\u041f\u0418\u0420\u0438\u0422 \u0443\u0440\u043e\u043d \u0434\u043b\u044f \u041f\u0435\u0439\u0434\u0436",
-              "win_rate": 0.4895,
-              "matches": 760
+              "win_rate": 0.4909,
+              "matches": 766
             },
             {
               "build_id": 582050,
               "name": "\u041f\u0435\u0439\u0434\u0436 \u0447\u0435\u0440\u0435\u0437 \u0441\u043f\u0438\u0440\u0438\u0442 \u0443\u0440\u043e\u043d",
-              "win_rate": 0.5475,
-              "matches": 621
+              "win_rate": 0.5466,
+              "matches": 633
             }
           ]
         },
@@ -2742,10 +2713,10 @@
             "Captivating Read"
           ],
           "n_builds": 4,
-          "total_matches": 2194,
-          "total_wins": 1086,
+          "total_matches": 2210,
+          "total_wins": 1094,
           "mean_win_rate": 0.495,
-          "win_rate_lift_pp": -1.3,
+          "win_rate_lift_pp": -1.29,
           "consensus_ladder_ids": [
             3553292912,
             604448162
@@ -2841,7 +2812,7 @@
               "is_active": true,
               "cooldown_s": 27.0,
               "imbue": null,
-              "joint_freq_weight": 17.2,
+              "joint_freq_weight": 16.3,
               "slot": "weapon",
               "tag": "situational",
               "pick_rate_tag": "situational",
@@ -2941,7 +2912,7 @@
               "is_active": true,
               "cooldown_s": 45.0,
               "imbue": null,
-              "joint_freq_weight": 18.5,
+              "joint_freq_weight": 17.1,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2980,7 +2951,7 @@
               "is_active": false,
               "cooldown_s": 23.0,
               "imbue": null,
-              "joint_freq_weight": 18.5,
+              "joint_freq_weight": 17.1,
               "slot": "vitality",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -3005,7 +2976,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 17.2,
+              "joint_freq_weight": 16.3,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -3030,7 +3001,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 17.2,
+              "joint_freq_weight": 16.3,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -3069,7 +3040,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 18.5,
+              "joint_freq_weight": 17.1,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -3108,7 +3079,7 @@
               "is_active": true,
               "cooldown_s": 55.0,
               "imbue": null,
-              "joint_freq_weight": 18.5,
+              "joint_freq_weight": 17.1,
               "slot": "spirit",
               "tag": "core_inherited",
               "pick_rate_tag": "flex",
@@ -3133,7 +3104,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 18.5,
+              "joint_freq_weight": 17.1,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -3172,7 +3143,7 @@
               "is_active": true,
               "cooldown_s": 35.0,
               "imbue": null,
-              "joint_freq_weight": 18.5,
+              "joint_freq_weight": 17.1,
               "slot": "spirit",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -3197,7 +3168,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 18.5,
+              "joint_freq_weight": 17.1,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -3248,7 +3219,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 18.5,
+              "joint_freq_weight": 17.1,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -3299,7 +3270,7 @@
               "is_active": true,
               "cooldown_s": 300.0,
               "imbue": null,
-              "joint_freq_weight": 18.5,
+              "joint_freq_weight": 17.1,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -3324,7 +3295,7 @@
               "is_active": true,
               "cooldown_s": 42.0,
               "imbue": null,
-              "joint_freq_weight": 18.5,
+              "joint_freq_weight": 17.1,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -3350,26 +3321,26 @@
             {
               "build_id": 434793,
               "name": "Saiah Paige",
-              "win_rate": 0.4838,
-              "matches": 740
+              "win_rate": 0.4859,
+              "matches": 747
             },
             {
               "build_id": 296777,
               "name": "b3 | \u041f\u0418\u041a\u041c\u0418 \u0414\u041b\u042f \u041b\u0423\u0427\u0428\u0418\u0425 \u0421\u0410\u041f\u041f\u041e\u0412 t.tv/qtarsis",
-              "win_rate": 0.4897,
-              "matches": 731
+              "win_rate": 0.4891,
+              "matches": 736
             },
             {
               "build_id": 350652,
               "name": "\u0421\u0430\u043f\u043f\u043e\u0440\u0442 \u0447\u0435\u0440\u0435\u0437 \u043c\u0443\u0440\u0447\u0430\u043d\u0438\u0435 \u0432 \u0434\u0438\u0441\u043a\u043e\u0440\u0434\u0438\u043a)",
-              "win_rate": 0.5064,
-              "matches": 466
+              "win_rate": 0.5043,
+              "matches": 468
             },
             {
               "build_id": 445243,
               "name": "\u547c\u5566\u5566\u81ea\u7528\u8f85\u52a9\u4f69\u5409\u51fa\u88c5\uff08\u5168\u6ce8\u91ca\uff09",
-              "win_rate": 0.5214,
-              "matches": 257
+              "win_rate": 0.5212,
+              "matches": 259
             }
           ]
         },
@@ -3386,10 +3357,10 @@
             "Rallying Charge"
           ],
           "n_builds": 3,
-          "total_matches": 1908,
-          "total_wins": 959,
-          "mean_win_rate": 0.5026,
-          "win_rate_lift_pp": -0.53,
+          "total_matches": 1931,
+          "total_wins": 970,
+          "mean_win_rate": 0.5023,
+          "win_rate_lift_pp": -0.56,
           "consensus_ladder_ids": [
             604448162
           ],
@@ -3451,7 +3422,7 @@
               "is_active": true,
               "cooldown_s": 30.0,
               "imbue": null,
-              "joint_freq_weight": 17.2,
+              "joint_freq_weight": 17.8,
               "slot": "weapon",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -3476,7 +3447,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 28.6,
+              "joint_freq_weight": 28.8,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -3515,7 +3486,7 @@
               "is_active": false,
               "cooldown_s": 23.0,
               "imbue": null,
-              "joint_freq_weight": 28.6,
+              "joint_freq_weight": 28.8,
               "slot": "vitality",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -3540,7 +3511,7 @@
               "is_active": false,
               "cooldown_s": 90.0,
               "imbue": null,
-              "joint_freq_weight": 28.6,
+              "joint_freq_weight": 28.8,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -3565,7 +3536,7 @@
               "is_active": true,
               "cooldown_s": 45.0,
               "imbue": null,
-              "joint_freq_weight": 17.2,
+              "joint_freq_weight": 17.8,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -3604,7 +3575,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 28.6,
+              "joint_freq_weight": 28.8,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -3643,7 +3614,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 28.6,
+              "joint_freq_weight": 28.8,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -3694,7 +3665,7 @@
               "is_active": true,
               "cooldown_s": 35.0,
               "imbue": "imbue_active_non_ult",
-              "joint_freq_weight": 28.6,
+              "joint_freq_weight": 28.8,
               "slot": "spirit",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -3721,7 +3692,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 28.6,
+              "joint_freq_weight": 28.8,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -3760,7 +3731,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 28.6,
+              "joint_freq_weight": 28.8,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -3811,7 +3782,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 28.6,
+              "joint_freq_weight": 28.8,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -3850,7 +3821,7 @@
               "is_active": true,
               "cooldown_s": 35.0,
               "imbue": null,
-              "joint_freq_weight": 28.6,
+              "joint_freq_weight": 28.8,
               "slot": "flex",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -3875,7 +3846,7 @@
               "is_active": true,
               "cooldown_s": 42.0,
               "imbue": null,
-              "joint_freq_weight": 28.6,
+              "joint_freq_weight": 28.8,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -3901,20 +3872,20 @@
             {
               "build_id": 495693,
               "name": "SwoleBenji YT Fast Farm MAX DPS Spell Spammer",
-              "win_rate": 0.4874,
-              "matches": 1151
+              "win_rate": 0.4871,
+              "matches": 1162
             },
             {
               "build_id": 293390,
               "name": "Mobalytics - Paige by RinaVX",
-              "win_rate": 0.5212,
-              "matches": 518
+              "win_rate": 0.5218,
+              "matches": 527
             },
             {
               "build_id": 532919,
               "name": "PA\u00cdGE DOMADORA DE DRAG\u00c3O - SPIRIT [ttv/dudamullen]",
-              "win_rate": 0.5356,
-              "matches": 239
+              "win_rate": 0.5331,
+              "matches": 242
             }
           ]
         },
@@ -3931,10 +3902,10 @@
             "Bookwyrm"
           ],
           "n_builds": 2,
-          "total_matches": 1333,
-          "total_wins": 655,
-          "mean_win_rate": 0.4914,
-          "win_rate_lift_pp": -1.66,
+          "total_matches": 1350,
+          "total_wins": 664,
+          "mean_win_rate": 0.4919,
+          "win_rate_lift_pp": -1.61,
           "consensus_ladder_ids": [
             3553292912,
             3054993162,
@@ -4066,7 +4037,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 10.5,
+              "joint_freq_weight": 10.1,
               "slot": "weapon",
               "tag": "situational",
               "pick_rate_tag": "situational",
@@ -4091,7 +4062,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 10.5,
+              "joint_freq_weight": 10.1,
               "slot": "weapon",
               "tag": "situational",
               "pick_rate_tag": "situational",
@@ -4165,7 +4136,7 @@
               "is_active": true,
               "cooldown_s": 45.0,
               "imbue": null,
-              "joint_freq_weight": 10.5,
+              "joint_freq_weight": 10.1,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -4204,7 +4175,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 10.5,
+              "joint_freq_weight": 10.1,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -4229,7 +4200,7 @@
               "is_active": false,
               "cooldown_s": 23.0,
               "imbue": null,
-              "joint_freq_weight": 10.5,
+              "joint_freq_weight": 10.1,
               "slot": "vitality",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -4254,7 +4225,7 @@
               "is_active": false,
               "cooldown_s": 90.0,
               "imbue": null,
-              "joint_freq_weight": 10.5,
+              "joint_freq_weight": 10.1,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -4279,7 +4250,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 10.5,
+              "joint_freq_weight": 10.1,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -4318,7 +4289,7 @@
               "is_active": true,
               "cooldown_s": 300.0,
               "imbue": null,
-              "joint_freq_weight": 10.5,
+              "joint_freq_weight": 10.1,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -4343,7 +4314,7 @@
               "is_active": true,
               "cooldown_s": 35.0,
               "imbue": null,
-              "joint_freq_weight": 10.5,
+              "joint_freq_weight": 10.1,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -4368,7 +4339,7 @@
               "is_active": true,
               "cooldown_s": 55.0,
               "imbue": null,
-              "joint_freq_weight": 10.5,
+              "joint_freq_weight": 10.1,
               "slot": "spirit",
               "tag": "core_inherited",
               "pick_rate_tag": "flex",
@@ -4393,7 +4364,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 10.5,
+              "joint_freq_weight": 10.1,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -4432,7 +4403,7 @@
               "is_active": true,
               "cooldown_s": 35.0,
               "imbue": null,
-              "joint_freq_weight": 10.5,
+              "joint_freq_weight": 10.1,
               "slot": "flex",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -4457,7 +4428,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 10.5,
+              "joint_freq_weight": 10.1,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -4508,7 +4479,7 @@
               "is_active": true,
               "cooldown_s": 42.0,
               "imbue": null,
-              "joint_freq_weight": 10.5,
+              "joint_freq_weight": 10.1,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -4534,14 +4505,14 @@
             {
               "build_id": 442258,
               "name": "saintmxsm / ABRAHAMS SUPPORT",
-              "win_rate": 0.4827,
-              "matches": 1125
+              "win_rate": 0.4837,
+              "matches": 1133
             },
             {
               "build_id": 307619,
               "name": "Escudinhos UwU",
-              "win_rate": 0.5385,
-              "matches": 208
+              "win_rate": 0.5346,
+              "matches": 217
             }
           ]
         }
@@ -5518,7 +5489,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "flex",
             "pick_rate": 0.636,
-            "annotation": "Can be used with your vortex combo"
+            "annotation": "for midboss + shred"
           },
           {
             "item_id": 2064029594,
@@ -5760,7 +5731,7 @@
             "tag": "flex",
             "pick_rate_tag": "flex",
             "pick_rate": 0.455,
-            "annotation": "For your ult, support role"
+            "annotation": "for midboss"
           },
           {
             "item_id": 493591231,
@@ -5993,30 +5964,6 @@
             "annotation": "Would be wonderful if not for the fact you aren't going to be mixed in with your teammates."
           },
           {
-            "item_id": 1932939246,
-            "name": "Alchemical Fire",
-            "category": "weapon",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 2918,
-            "wins": 1539,
-            "win_rate": 0.5274,
-            "wilson_lb": 0.5093,
-            "score": 0.0171,
-            "wr_delta_pp": 3.53,
-            "avg_buy_time_s": 1325.5,
-            "phase": "mid",
-            "avg_sell_time_s": 2072.3,
-            "is_active": true,
-            "cooldown_s": 30.0,
-            "imbue": null,
-            "slot": "weapon",
-            "tag": "core_proven",
-            "pick_rate_tag": "flex",
-            "pick_rate": 0.636,
-            "annotation": "Can be used with your vortex combo"
-          },
-          {
             "item_id": 2064029594,
             "name": "Opening Rounds",
             "category": "weapon",
@@ -6075,6 +6022,29 @@
             "tag": "tech_pick",
             "pick_rate_tag": "stat",
             "pick_rate": 0.0
+          },
+          {
+            "item_id": 1342610602,
+            "name": "Close Quarters",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 1916,
+            "wins": 955,
+            "win_rate": 0.4984,
+            "wilson_lb": 0.4761,
+            "score": -0.0161,
+            "wr_delta_pp": 0.63,
+            "avg_buy_time_s": 290.7,
+            "phase": "early",
+            "avg_sell_time_s": 1338.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "situational",
+            "pick_rate_tag": "situational",
+            "pick_rate": 0.091
           },
           {
             "item_id": 3361811174,
@@ -6176,42 +6146,28 @@
             ]
           },
           {
-            "item_id": 3585132399,
-            "name": "Fortitude",
+            "item_id": 3970837787,
+            "name": "Enchanter's Emblem",
             "category": "vitality",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 2790,
-            "wins": 1486,
-            "win_rate": 0.5326,
-            "wilson_lb": 0.5141,
-            "score": 0.0219,
-            "wr_delta_pp": 4.05,
-            "avg_buy_time_s": 1087.1,
+            "tier": 2,
+            "cost": 1600,
+            "matches": 9818,
+            "wins": 5034,
+            "win_rate": 0.5127,
+            "wilson_lb": 0.5028,
+            "score": 0.0107,
+            "wr_delta_pp": 2.06,
+            "avg_buy_time_s": 833.0,
             "phase": "mid",
-            "avg_sell_time_s": 2270.1,
+            "avg_sell_time_s": 2068.6,
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
             "slot": "vitality",
-            "tag": "flex",
+            "tag": "core_proven",
             "pick_rate_tag": "flex",
-            "pick_rate": 0.364,
-            "annotation": "This is a great item on paige, gives you some extra health and regen.",
-            "lineage_chain": [
-              {
-                "item_id": 3633614685,
-                "name": "Extra Health",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/health.png",
-                "matches": 6413,
-                "avg_buy_time_min": 11.9,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
+            "pick_rate": 0.636,
+            "annotation": "\u041f\u0440\u043e\u0434\u0430\u0435\u043c \u043f\u0440\u0438 \u043d\u0435\u043e\u0431\u0445\u043e\u0434\u0438\u043c\u043e\u0441\u0442\u0438"
           },
           {
             "item_id": 2417568017,
@@ -6259,7 +6215,31 @@
             "tag": "flex",
             "pick_rate_tag": "flex",
             "pick_rate": 0.455,
-            "annotation": "For your ult, support role"
+            "annotation": "for midboss"
+          },
+          {
+            "item_id": 343572757,
+            "name": "Spirit Burn",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 4379,
+            "wins": 2563,
+            "win_rate": 0.5853,
+            "wilson_lb": 0.5706,
+            "score": 0.0785,
+            "wr_delta_pp": 9.31,
+            "avg_buy_time_s": 1917.0,
+            "phase": "late",
+            "avg_sell_time_s": 2119.3,
+            "is_active": false,
+            "cooldown_s": 20.0,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "tech_pick",
+            "pick_rate_tag": "situational",
+            "pick_rate": 0.273,
+            "annotation": "\u0423\u0440\u043e\u043d\u0447\u0438\u043a"
           },
           {
             "item_id": 2519598785,
@@ -6329,7 +6309,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "slot": "spirit",
+            "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 0.909,
@@ -6434,44 +6414,6 @@
                 "imbue": "imbue_modifier_value",
                 "imbue_target_id": 3054993162,
                 "imbue_target_share": 0.917
-              }
-            ]
-          },
-          {
-            "item_id": 1152158042,
-            "name": "Vortex Web",
-            "category": "spirit",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 14361,
-            "wins": 7445,
-            "win_rate": 0.5184,
-            "wilson_lb": 0.5102,
-            "score": 0.0181,
-            "wr_delta_pp": 2.63,
-            "avg_buy_time_s": 1407.5,
-            "phase": "mid",
-            "avg_sell_time_s": 1871.9,
-            "is_active": true,
-            "cooldown_s": 42.0,
-            "imbue": null,
-            "slot": "flex",
-            "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.818,
-            "annotation": "\u0415\u0441\u043b\u0438 \u0432\u044b \u043b\u044e\u0431\u0438\u0442\u0435 \u0433\u0440\u044f\u0437\u043d\u043e))",
-            "lineage_chain": [
-              {
-                "item_id": 1813726886,
-                "name": "Slowing Hex",
-                "tier": 2,
-                "cost": 1600,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/immobilize.png",
-                "matches": 21938,
-                "avg_buy_time_min": 14.5,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
               }
             ]
           },
@@ -6535,12 +6477,12 @@
             "is_active": true,
             "cooldown_s": 30.0,
             "imbue": null,
-            "build_freq_weight": 36.8,
+            "build_freq_weight": 35.4,
             "slot": "weapon",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
             "pick_rate": 0.636,
-            "annotation": "Can be used with your vortex combo"
+            "annotation": "for midboss + shred"
           },
           {
             "item_id": 2108215830,
@@ -6560,7 +6502,7 @@
             "is_active": true,
             "cooldown_s": 22.0,
             "imbue": null,
-            "build_freq_weight": 18.3,
+            "build_freq_weight": 20.1,
             "slot": "weapon",
             "tag": "tech_pick",
             "pick_rate_tag": "situational",
@@ -6585,7 +6527,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 14.4,
+            "build_freq_weight": 16.6,
             "slot": "weapon",
             "tag": "situational",
             "pick_rate_tag": "situational",
@@ -6609,7 +6551,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 3.9,
+            "build_freq_weight": 3.5,
             "slot": "weapon",
             "tag": "situational",
             "pick_rate_tag": "situational",
@@ -6633,7 +6575,7 @@
             "is_active": true,
             "cooldown_s": 45.0,
             "imbue": null,
-            "build_freq_weight": 55.2,
+            "build_freq_weight": 52.0,
             "slot": "vitality",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -6672,7 +6614,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 53.5,
+            "build_freq_weight": 51.9,
             "slot": "vitality",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -6697,7 +6639,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 48.5,
+            "build_freq_weight": 46.6,
             "slot": "vitality",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -6722,7 +6664,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 37.4,
+            "build_freq_weight": 31.9,
             "slot": "vitality",
             "tag": "core_inherited",
             "pick_rate_tag": "flex",
@@ -6747,7 +6689,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 61.9,
+            "build_freq_weight": 58.7,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -6786,7 +6728,7 @@
             "is_active": true,
             "cooldown_s": 35.0,
             "imbue": null,
-            "build_freq_weight": 61.9,
+            "build_freq_weight": 58.7,
             "slot": "spirit",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -6811,7 +6753,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 61.9,
+            "build_freq_weight": 58.7,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -6862,7 +6804,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 58.6,
+            "build_freq_weight": 56.9,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -6913,7 +6855,7 @@
             "is_active": true,
             "cooldown_s": 42.0,
             "imbue": null,
-            "build_freq_weight": 58.0,
+            "build_freq_weight": 55.3,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -6952,37 +6894,12 @@
             "is_active": true,
             "cooldown_s": 35.0,
             "imbue": null,
-            "build_freq_weight": 51.8,
+            "build_freq_weight": 48.4,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
             "pick_rate": 0.545,
             "annotation": "\u0422\u043e\u043f \u0440\u0435\u0437\u0438\u0441\u0442, \u0434\u043e\u043f \u0443\u0440\u043e\u043d\u0447\u0438\u043a"
-          },
-          {
-            "item_id": 2617435668,
-            "name": "Cursed Relic",
-            "category": "spirit",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 10750,
-            "wins": 5473,
-            "win_rate": 0.5091,
-            "wilson_lb": 0.4997,
-            "score": 0.0075,
-            "wr_delta_pp": 1.7,
-            "avg_buy_time_s": 1694.5,
-            "phase": "late",
-            "avg_sell_time_s": 1888.7,
-            "is_active": true,
-            "cooldown_s": 55.0,
-            "imbue": null,
-            "build_freq_weight": 49.1,
-            "slot": "flex",
-            "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.727,
-            "annotation": "This is great agaisnt victors or anyone chasing you down"
           },
           {
             "item_id": 2717651715,
@@ -7002,7 +6919,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 46.8,
+            "build_freq_weight": 45.2,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -7022,50 +6939,75 @@
                 "imbue_target_share": 0.5
               }
             ]
+          },
+          {
+            "item_id": 2617435668,
+            "name": "Cursed Relic",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 10750,
+            "wins": 5473,
+            "win_rate": 0.5091,
+            "wilson_lb": 0.4997,
+            "score": 0.0075,
+            "wr_delta_pp": 1.7,
+            "avg_buy_time_s": 1694.5,
+            "phase": "late",
+            "avg_sell_time_s": 1888.7,
+            "is_active": true,
+            "cooldown_s": 55.0,
+            "imbue": null,
+            "build_freq_weight": 45.2,
+            "slot": "flex",
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 0.727,
+            "annotation": "This is great agaisnt victors or anyone chasing you down"
           }
         ],
         "source_builds": [
           {
             "build_id": 387376,
             "name": "Piggy`s Support Paige (twitch.tv/piggyxdd)",
-            "win_rate": 0.4735,
-            "matches": 2545
+            "win_rate": 0.4729,
+            "matches": 2561
           },
           {
             "build_id": 308521,
             "name": "ITw1xI | Paige Spirit Caster/AOE Enjoyer",
-            "win_rate": 0.4741,
-            "matches": 1141
+            "win_rate": 0.472,
+            "matches": 1159
           },
           {
             "build_id": 442258,
             "name": "saintmxsm / ABRAHAMS SUPPORT",
-            "win_rate": 0.4946,
-            "matches": 643
+            "win_rate": 0.4977,
+            "matches": 649
           },
           {
             "build_id": 293539,
             "name": "THETA ZERO'S FULL SUPPORT FOR MAXIMUM SUFFERING",
-            "win_rate": 0.4345,
-            "matches": 435
+            "win_rate": 0.4392,
+            "matches": 444
           },
           {
             "build_id": 314035,
             "name": "Just a flesh wound",
-            "win_rate": 0.5301,
-            "matches": 432
+            "win_rate": 0.5248,
+            "matches": 444
           },
           {
             "build_id": 434793,
             "name": "Saiah Paige",
-            "win_rate": 0.4859,
-            "matches": 284
+            "win_rate": 0.4843,
+            "matches": 287
           },
           {
             "build_id": 317851,
             "name": "Paige - Bruiser-Initiator [65% WR] [tracklock.gg]",
-            "win_rate": 0.4269,
-            "matches": 253
+            "win_rate": 0.428,
+            "matches": 257
           },
           {
             "build_id": 296777,
@@ -7076,20 +7018,20 @@
           {
             "build_id": 350652,
             "name": "\u0421\u0430\u043f\u043f\u043e\u0440\u0442 \u0447\u0435\u0440\u0435\u0437 \u043c\u0443\u0440\u0447\u0430\u043d\u0438\u0435 \u0432 \u0434\u0438\u0441\u043a\u043e\u0440\u0434\u0438\u043a)",
-            "win_rate": 0.4729,
-            "matches": 129
+            "win_rate": 0.4656,
+            "matches": 131
+          },
+          {
+            "build_id": 293390,
+            "name": "Mobalytics - Paige by RinaVX",
+            "win_rate": 0.5294,
+            "matches": 119
           },
           {
             "build_id": 413492,
             "name": "\u041c\u0435\u0442\u043e\u0432\u044b\u0439 \u0421\u041f\u0418\u0420\u0438\u0422 \u0443\u0440\u043e\u043d \u0434\u043b\u044f \u041f\u0435\u0439\u0434\u0436",
             "win_rate": 0.5304,
             "matches": 115
-          },
-          {
-            "build_id": 293390,
-            "name": "Mobalytics - Paige by RinaVX",
-            "win_rate": 0.5263,
-            "matches": 114
           }
         ]
       },
@@ -7107,10 +7049,10 @@
             "Plot Armor"
           ],
           "n_builds": 3,
-          "total_matches": 800,
-          "total_wins": 398,
-          "mean_win_rate": 0.4975,
-          "win_rate_lift_pp": 0.53,
+          "total_matches": 816,
+          "total_wins": 404,
+          "mean_win_rate": 0.4951,
+          "win_rate_lift_pp": 0.29,
           "consensus_ladder_ids": [
             604448162
           ],
@@ -7177,7 +7119,7 @@
               "tag": "core_proven",
               "pick_rate_tag": "flex",
               "pick_rate": 0.636,
-              "annotation": "Can be used with your vortex combo"
+              "annotation": "for midboss + shred"
             },
             {
               "item_id": 2603935618,
@@ -7197,7 +7139,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 31.7,
+              "joint_freq_weight": 30.1,
               "slot": "vitality",
               "tag": "core_inherited",
               "pick_rate_tag": "flex",
@@ -7222,7 +7164,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 31.7,
+              "joint_freq_weight": 30.1,
               "slot": "vitality",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -7247,7 +7189,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 31.7,
+              "joint_freq_weight": 30.1,
               "slot": "vitality",
               "tag": "trap_popular",
               "pick_rate_tag": "flex",
@@ -7272,7 +7214,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 31.7,
+              "joint_freq_weight": 30.1,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -7297,7 +7239,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 31.7,
+              "joint_freq_weight": 30.1,
               "slot": "spirit",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -7336,7 +7278,7 @@
               "is_active": true,
               "cooldown_s": 35.0,
               "imbue": null,
-              "joint_freq_weight": 31.7,
+              "joint_freq_weight": 30.1,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -7361,7 +7303,7 @@
               "is_active": false,
               "cooldown_s": 14.0,
               "imbue": null,
-              "joint_freq_weight": 31.7,
+              "joint_freq_weight": 30.1,
               "slot": "spirit",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -7400,7 +7342,7 @@
               "is_active": false,
               "cooldown_s": 20.0,
               "imbue": null,
-              "joint_freq_weight": 31.7,
+              "joint_freq_weight": 30.1,
               "slot": "spirit",
               "tag": "tech_pick",
               "pick_rate_tag": "situational",
@@ -7425,7 +7367,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 31.7,
+              "joint_freq_weight": 30.1,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -7464,7 +7406,7 @@
               "is_active": true,
               "cooldown_s": 35.0,
               "imbue": null,
-              "joint_freq_weight": 31.7,
+              "joint_freq_weight": 30.1,
               "slot": "flex",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -7489,7 +7431,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 31.7,
+              "joint_freq_weight": 30.1,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -7528,7 +7470,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 31.7,
+              "joint_freq_weight": 30.1,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -7566,14 +7508,14 @@
             {
               "build_id": 314035,
               "name": "Just a flesh wound",
-              "win_rate": 0.5301,
-              "matches": 432
+              "win_rate": 0.5248,
+              "matches": 444
             },
             {
               "build_id": 317851,
               "name": "Paige - Bruiser-Initiator [65% WR] [tracklock.gg]",
-              "win_rate": 0.4269,
-              "matches": 253
+              "win_rate": 0.428,
+              "matches": 257
             },
             {
               "build_id": 413492,
@@ -7596,10 +7538,10 @@
             "Captivating Read"
           ],
           "n_builds": 3,
-          "total_matches": 635,
-          "total_wins": 298,
-          "mean_win_rate": 0.4693,
-          "win_rate_lift_pp": -2.29,
+          "total_matches": 640,
+          "total_wins": 299,
+          "mean_win_rate": 0.4672,
+          "win_rate_lift_pp": -2.5,
           "consensus_ladder_ids": [
             3553292912,
             604448162
@@ -7695,7 +7637,7 @@
               "is_active": true,
               "cooldown_s": 22.0,
               "imbue": null,
-              "joint_freq_weight": 3.9,
+              "joint_freq_weight": 3.5,
               "slot": "weapon",
               "tag": "tech_pick",
               "pick_rate_tag": "situational",
@@ -7720,7 +7662,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 3.9,
+              "joint_freq_weight": 3.5,
               "slot": "weapon",
               "tag": "situational",
               "pick_rate_tag": "situational",
@@ -7744,12 +7686,12 @@
               "is_active": true,
               "cooldown_s": 30.0,
               "imbue": null,
-              "joint_freq_weight": 3.9,
+              "joint_freq_weight": 3.5,
               "slot": "weapon",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
               "pick_rate": 0.636,
-              "annotation": "Can be used with your vortex combo"
+              "annotation": "for midboss + shred"
             },
             {
               "item_id": 3647584222,
@@ -7769,7 +7711,7 @@
               "is_active": true,
               "cooldown_s": 27.0,
               "imbue": null,
-              "joint_freq_weight": 0.1,
+              "joint_freq_weight": 0,
               "slot": "weapon",
               "tag": "situational",
               "pick_rate_tag": "situational",
@@ -7794,7 +7736,7 @@
               "is_active": true,
               "cooldown_s": 45.0,
               "imbue": null,
-              "joint_freq_weight": 4.0,
+              "joint_freq_weight": 3.5,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -7833,7 +7775,7 @@
               "is_active": false,
               "cooldown_s": 45.0,
               "imbue": null,
-              "joint_freq_weight": 4.0,
+              "joint_freq_weight": 3.5,
               "slot": "vitality",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -7858,7 +7800,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 4.0,
+              "joint_freq_weight": 3.5,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -7883,7 +7825,7 @@
               "is_active": true,
               "cooldown_s": 60.0,
               "imbue": null,
-              "joint_freq_weight": 3.9,
+              "joint_freq_weight": 3.5,
               "slot": "vitality",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -7922,7 +7864,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 4.0,
+              "joint_freq_weight": 3.5,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -7961,7 +7903,7 @@
               "is_active": true,
               "cooldown_s": 55.0,
               "imbue": null,
-              "joint_freq_weight": 4.0,
+              "joint_freq_weight": 3.5,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -7986,7 +7928,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 4.0,
+              "joint_freq_weight": 3.5,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -8025,12 +7967,51 @@
               "is_active": true,
               "cooldown_s": 35.0,
               "imbue": null,
-              "joint_freq_weight": 4.0,
+              "joint_freq_weight": 3.5,
               "slot": "spirit",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
               "pick_rate": 1.0,
               "annotation": "\u041a\u043e\u043d\u0442\u0440\u043e\u043b\u0438\u043c \u0412\u0438\u043d\u0434\u0438\u043a\u0442\u0443 \u0438 \u043c\u043d\u043e\u0433\u0438\u0435 \u0443\u043b\u044c\u0442\u0438\u043c\u0435\u0439\u0442\u044b"
+            },
+            {
+              "item_id": 493591231,
+              "name": "Lightning Scroll",
+              "category": "spirit",
+              "tier": 4,
+              "cost": 6400,
+              "matches": 2756,
+              "wins": 1636,
+              "win_rate": 0.5936,
+              "wilson_lb": 0.5752,
+              "score": 0.083,
+              "wr_delta_pp": 10.15,
+              "avg_buy_time_s": 2066.8,
+              "phase": "late",
+              "avg_sell_time_s": 2055.1,
+              "is_active": false,
+              "cooldown_s": null,
+              "imbue": null,
+              "joint_freq_weight": 3.5,
+              "slot": "flex",
+              "tag": "core_proven",
+              "pick_rate_tag": "flex",
+              "pick_rate": 0.636,
+              "annotation": "Item stuns after your ult, big team fight - > Horses stun, 3s later -> stun again great for countering refresh dynamo ult",
+              "lineage_chain": [
+                {
+                  "item_id": 1102081447,
+                  "name": "Mystic Slow",
+                  "tier": 2,
+                  "cost": 1600,
+                  "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/slowing_tech.png",
+                  "matches": 5447,
+                  "avg_buy_time_min": 21.4,
+                  "imbue": null,
+                  "imbue_target_id": null,
+                  "imbue_target_share": null
+                }
+              ]
             },
             {
               "item_id": 2519598785,
@@ -8050,7 +8031,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 4.0,
+              "joint_freq_weight": 3.5,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -8101,7 +8082,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 4.0,
+              "joint_freq_weight": 3.5,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -8135,45 +8116,6 @@
               ]
             },
             {
-              "item_id": 493591231,
-              "name": "Lightning Scroll",
-              "category": "spirit",
-              "tier": 4,
-              "cost": 6400,
-              "matches": 2756,
-              "wins": 1636,
-              "win_rate": 0.5936,
-              "wilson_lb": 0.5752,
-              "score": 0.083,
-              "wr_delta_pp": 10.15,
-              "avg_buy_time_s": 2066.8,
-              "phase": "late",
-              "avg_sell_time_s": 2055.1,
-              "is_active": false,
-              "cooldown_s": null,
-              "imbue": null,
-              "joint_freq_weight": 3.9,
-              "slot": "flex",
-              "tag": "core_proven",
-              "pick_rate_tag": "flex",
-              "pick_rate": 0.636,
-              "annotation": "Item stuns after your ult, big team fight - > Horses stun, 3s later -> stun again great for countering refresh dynamo ult",
-              "lineage_chain": [
-                {
-                  "item_id": 1102081447,
-                  "name": "Mystic Slow",
-                  "tier": 2,
-                  "cost": 1600,
-                  "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/slowing_tech.png",
-                  "matches": 5447,
-                  "avg_buy_time_min": 21.4,
-                  "imbue": null,
-                  "imbue_target_id": null,
-                  "imbue_target_share": null
-                }
-              ]
-            },
-            {
               "item_id": 2922054143,
               "name": "Rusted Barrel",
               "category": "spirit",
@@ -8191,7 +8133,7 @@
               "is_active": true,
               "cooldown_s": 16.0,
               "imbue": null,
-              "joint_freq_weight": 3.9,
+              "joint_freq_weight": 3.5,
               "slot": "flex",
               "tag": "trap_popular",
               "pick_rate_tag": "flex",
@@ -8203,8 +8145,8 @@
             {
               "build_id": 434793,
               "name": "Saiah Paige",
-              "win_rate": 0.4859,
-              "matches": 284
+              "win_rate": 0.4843,
+              "matches": 287
             },
             {
               "build_id": 296777,
@@ -8215,8 +8157,8 @@
             {
               "build_id": 350652,
               "name": "\u0421\u0430\u043f\u043f\u043e\u0440\u0442 \u0447\u0435\u0440\u0435\u0437 \u043c\u0443\u0440\u0447\u0430\u043d\u0438\u0435 \u0432 \u0434\u0438\u0441\u043a\u043e\u0440\u0434\u0438\u043a)",
-              "win_rate": 0.4729,
-              "matches": 129
+              "win_rate": 0.4656,
+              "matches": 131
             }
           ]
         }
@@ -8261,7 +8203,7 @@
         "4139877411": {
           "tag": "flex",
           "pick_rate": 0.455,
-          "annotation": "2 stamina = pain",
+          "annotation": "she has 2 stam",
           "builds_appearing_in": 5,
           "builds_total": 11,
           "imbue_target_id": null,
@@ -8369,7 +8311,7 @@
         "1932939246": {
           "tag": "flex",
           "pick_rate": 0.636,
-          "annotation": "Can be used with your vortex combo",
+          "annotation": "for midboss + shred",
           "builds_appearing_in": 7,
           "builds_total": 11,
           "imbue_target_id": null,
@@ -8495,7 +8437,7 @@
         "334300056": {
           "tag": "flex",
           "pick_rate": 0.545,
-          "annotation": "Good for movement",
+          "annotation": "op item, good for not dying",
           "builds_appearing_in": 6,
           "builds_total": 11,
           "imbue_target_id": null,
@@ -8513,7 +8455,7 @@
         "677738769": {
           "tag": "flex",
           "pick_rate": 0.455,
-          "annotation": "For your ult, support role",
+          "annotation": "for midboss",
           "builds_appearing_in": 5,
           "builds_total": 11,
           "imbue_target_id": null,
@@ -15894,8 +15836,8 @@
       ]
     },
     "high_mmr": {
-      "total_records": 182,
-      "total_matches": 21371,
+      "total_records": 186,
+      "total_matches": 21805,
       "ability_priority": [
         {
           "ability_id": 3553292912,
@@ -15964,11 +15906,11 @@
             "Bookwyrm",
             "Bookwyrm"
           ],
-          "wins": 454,
-          "losses": 165,
-          "matches": 619,
-          "players": 352,
-          "win_rate": 0.7334
+          "wins": 466,
+          "losses": 167,
+          "matches": 633,
+          "players": 358,
+          "win_rate": 0.7362
         },
         {
           "sequence_ids": [
@@ -16007,11 +15949,11 @@
             "Bookwyrm",
             "Bookwyrm"
           ],
-          "wins": 129,
+          "wins": 131,
           "losses": 50,
-          "matches": 179,
-          "players": 113,
-          "win_rate": 0.7207
+          "matches": 181,
+          "players": 114,
+          "win_rate": 0.7238
         },
         {
           "sequence_ids": [
@@ -16050,11 +15992,11 @@
             "Bookwyrm",
             "Bookwyrm"
           ],
-          "wins": 1359,
+          "wins": 1370,
           "losses": 568,
-          "matches": 1927,
-          "players": 1073,
-          "win_rate": 0.7052
+          "matches": 1938,
+          "players": 1076,
+          "win_rate": 0.7069
         },
         {
           "sequence_ids": [
@@ -16093,11 +16035,11 @@
             "Bookwyrm",
             "Bookwyrm"
           ],
-          "wins": 198,
-          "losses": 83,
-          "matches": 281,
-          "players": 160,
-          "win_rate": 0.7046
+          "wins": 201,
+          "losses": 85,
+          "matches": 286,
+          "players": 164,
+          "win_rate": 0.7028
         },
         {
           "sequence_ids": [
@@ -16136,11 +16078,11 @@
             "Bookwyrm",
             "Bookwyrm"
           ],
-          "wins": 228,
-          "losses": 97,
-          "matches": 325,
-          "players": 192,
-          "win_rate": 0.7015
+          "wins": 230,
+          "losses": 98,
+          "matches": 328,
+          "players": 195,
+          "win_rate": 0.7012
         }
       ],
       "best_openers_first4": [
@@ -16151,9 +16093,9 @@
             "Bookwyrm",
             "Bookwyrm"
           ],
-          "wins": 363,
-          "matches": 654,
-          "win_rate": 0.555
+          "wins": 371,
+          "matches": 667,
+          "win_rate": 0.5562
         },
         {
           "sequence_names": [
@@ -16162,9 +16104,9 @@
             "Captivating Read",
             "Plot Armor"
           ],
-          "wins": 613,
-          "matches": 1159,
-          "win_rate": 0.5289
+          "wins": 625,
+          "matches": 1182,
+          "win_rate": 0.5288
         },
         {
           "sequence_names": [
@@ -16173,9 +16115,9 @@
             "Captivating Read",
             "Captivating Read"
           ],
-          "wins": 639,
-          "matches": 1223,
-          "win_rate": 0.5225
+          "wins": 648,
+          "matches": 1247,
+          "win_rate": 0.5196
         },
         {
           "sequence_names": [
@@ -16184,9 +16126,9 @@
             "Captivating Read",
             "Bookwyrm"
           ],
-          "wins": 4025,
-          "matches": 7878,
-          "win_rate": 0.5109
+          "wins": 4114,
+          "matches": 8057,
+          "win_rate": 0.5106
         },
         {
           "sequence_names": [
@@ -16195,8 +16137,8 @@
             "Bookwyrm",
             "Captivating Read"
           ],
-          "wins": 4540,
-          "matches": 8986,
+          "wins": 4606,
+          "matches": 9117,
           "win_rate": 0.5052
         }
       ]

@@ -1097,30 +1097,6 @@
       "synergy_ilp": {
         "picks": [
           {
-            "item_id": 1113837674,
-            "name": "Silencer",
-            "category": "weapon",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 19649,
-            "wins": 11853,
-            "win_rate": 0.6032,
-            "wilson_lb": 0.5964,
-            "score": 0.07,
-            "wr_delta_pp": 7.68,
-            "avg_buy_time_s": 2065.0,
-            "phase": "late",
-            "avg_sell_time_s": 2108.2,
-            "is_active": false,
-            "cooldown_s": null,
-            "imbue": null,
-            "slot": "weapon",
-            "tag": "flex",
-            "pick_rate_tag": "flex",
-            "pick_rate": 0.375,
-            "annotation": "i never buy this but its probably best vs agile spirit nukers"
-          },
-          {
             "item_id": 3884003354,
             "name": "Crippling Headshot",
             "category": "weapon",
@@ -1157,6 +1133,30 @@
                 "imbue_target_share": null
               }
             ]
+          },
+          {
+            "item_id": 2108215830,
+            "name": "Heroic Aura",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 10351,
+            "wins": 5627,
+            "win_rate": 0.5436,
+            "wilson_lb": 0.534,
+            "score": 0.0076,
+            "wr_delta_pp": 1.72,
+            "avg_buy_time_s": 1434.4,
+            "phase": "mid",
+            "avg_sell_time_s": 2158.3,
+            "is_active": true,
+            "cooldown_s": 22.0,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.375,
+            "annotation": "only buying this if they have all walkers alive and we are behind/cant teamfight them and the bullet resist is getting value"
           },
           {
             "item_id": 98582110,
@@ -1393,49 +1393,37 @@
             "imbue_target_share": 1.0
           },
           {
-            "item_id": 2519598785,
-            "name": "Boundless Spirit",
+            "item_id": 3005970438,
+            "name": "Escalating Exposure",
             "category": "spirit",
             "tier": 4,
             "cost": 6400,
-            "matches": 54606,
-            "wins": 32111,
-            "win_rate": 0.588,
-            "wilson_lb": 0.5839,
-            "score": 0.0575,
-            "wr_delta_pp": 6.17,
-            "avg_buy_time_s": 1888.9,
+            "matches": 38592,
+            "wins": 22893,
+            "win_rate": 0.5932,
+            "wilson_lb": 0.5883,
+            "score": 0.0619,
+            "wr_delta_pp": 6.68,
+            "avg_buy_time_s": 1897.8,
             "phase": "late",
-            "avg_sell_time_s": 1987.3,
+            "avg_sell_time_s": 2067.2,
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
             "slot": "spirit",
-            "tag": "core_proven",
+            "tag": "flex",
             "pick_rate_tag": "flex",
-            "pick_rate": 0.562,
-            "annotation": "\u0422\u042b \u0425\u041e\u0427\u0415\u0428\u042c \u0415\u0429\u0415 \u0423\u0420\u041e\u041d?",
+            "pick_rate": 0.312,
+            "annotation": "\u0412\u0420\u0410\u0413\u0418 \u0423\u0416\u0415 \u041f\u041b\u0410\u0427\u0423\u0422 \u0418 \u041d\u0418\u0427\u0415\u0413\u041e \u041d\u0415 \u041c\u041e\u0413\u0423\u0422 \u0421\u0414\u0415\u041b\u0410\u0422\u042c - \u041a\u0423\u0427\u0410 \u0423\u0420\u041e\u041d\u0410 \u041e\u0411\u0415\u0421\u041f\u0415\u0427\u0415\u041d\u0410",
             "lineage_chain": [
               {
-                "item_id": 968099481,
-                "name": "Extra Spirit",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/tech_damage.png",
-                "matches": 74162,
-                "avg_buy_time_min": 11.7,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              },
-              {
-                "item_id": 7409189,
-                "name": "Improved Spirit",
+                "item_id": 2081037738,
+                "name": "Mystic Vulnerability",
                 "tier": 2,
                 "cost": 1600,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/soaring_spirit.png",
-                "matches": 87611,
-                "avg_buy_time_min": 17.2,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/tech_vulnerability.png",
+                "matches": 58728,
+                "avg_buy_time_min": 20.2,
                 "imbue": null,
                 "imbue_target_id": null,
                 "imbue_target_share": null
@@ -20157,13 +20145,13 @@
   },
   "ability_orders": {
     "all_mmr": {
-      "total_records": 425,
-      "total_matches": 128216,
+      "total_records": 432,
+      "total_matches": 131603,
       "ability_priority": [
         {
           "ability_id": 1247583368,
           "name": "Air Drop",
-          "avg_ap_all_players": 3.92,
+          "avg_ap_all_players": 3.91,
           "avg_ap_winners": 3.96,
           "winner_premium_ap": 0.04
         },
@@ -20227,11 +20215,11 @@
             "Kudzu Connection",
             "Kudzu Connection"
           ],
-          "wins": 571,
-          "losses": 186,
-          "matches": 757,
-          "players": 300,
-          "win_rate": 0.7543
+          "wins": 575,
+          "losses": 192,
+          "matches": 767,
+          "players": 304,
+          "win_rate": 0.7497
         },
         {
           "sequence_ids": [
@@ -20313,54 +20301,11 @@
             "Kudzu Connection",
             "Kudzu Connection"
           ],
-          "wins": 244,
-          "losses": 97,
-          "matches": 341,
-          "players": 217,
-          "win_rate": 0.7155
-        },
-        {
-          "sequence_ids": [
-            4111222521,
-            4111222521,
-            3642273386,
-            1531378655,
-            4111222521,
-            1247583368,
-            3642273386,
-            3642273386,
-            1247583368,
-            3642273386,
-            1247583368,
-            1247583368,
-            4111222521,
-            1531378655,
-            1531378655,
-            1531378655
-          ],
-          "sequence_names": [
-            "Entangling Thorns",
-            "Entangling Thorns",
-            "Stone Form",
-            "Kudzu Connection",
-            "Entangling Thorns",
-            "Air Drop",
-            "Stone Form",
-            "Stone Form",
-            "Air Drop",
-            "Stone Form",
-            "Air Drop",
-            "Air Drop",
-            "Entangling Thorns",
-            "Kudzu Connection",
-            "Kudzu Connection",
-            "Kudzu Connection"
-          ],
-          "wins": 699,
-          "losses": 282,
-          "matches": 981,
-          "players": 502,
-          "win_rate": 0.7125
+          "wins": 250,
+          "losses": 99,
+          "matches": 349,
+          "players": 219,
+          "win_rate": 0.7163
         },
         {
           "sequence_ids": [
@@ -20399,11 +20344,54 @@
             "Kudzu Connection",
             "Kudzu Connection"
           ],
-          "wins": 171,
+          "wins": 175,
           "losses": 70,
-          "matches": 241,
+          "matches": 245,
           "players": 106,
-          "win_rate": 0.7095
+          "win_rate": 0.7143
+        },
+        {
+          "sequence_ids": [
+            4111222521,
+            4111222521,
+            3642273386,
+            1531378655,
+            4111222521,
+            1247583368,
+            3642273386,
+            3642273386,
+            1247583368,
+            3642273386,
+            1247583368,
+            1247583368,
+            4111222521,
+            1531378655,
+            1531378655,
+            1531378655
+          ],
+          "sequence_names": [
+            "Entangling Thorns",
+            "Entangling Thorns",
+            "Stone Form",
+            "Kudzu Connection",
+            "Entangling Thorns",
+            "Air Drop",
+            "Stone Form",
+            "Stone Form",
+            "Air Drop",
+            "Stone Form",
+            "Air Drop",
+            "Air Drop",
+            "Entangling Thorns",
+            "Kudzu Connection",
+            "Kudzu Connection",
+            "Kudzu Connection"
+          ],
+          "wins": 705,
+          "losses": 287,
+          "matches": 992,
+          "players": 508,
+          "win_rate": 0.7107
         }
       ],
       "best_openers_first4": [
@@ -20414,9 +20402,9 @@
             "Kudzu Connection",
             "Stone Form"
           ],
-          "wins": 327,
-          "matches": 546,
-          "win_rate": 0.5989
+          "wins": 332,
+          "matches": 552,
+          "win_rate": 0.6014
         },
         {
           "sequence_names": [
@@ -20425,9 +20413,9 @@
             "Entangling Thorns",
             "Kudzu Connection"
           ],
-          "wins": 3128,
-          "matches": 5245,
-          "win_rate": 0.5964
+          "wins": 3222,
+          "matches": 5390,
+          "win_rate": 0.5978
         },
         {
           "sequence_names": [
@@ -20436,9 +20424,9 @@
             "Entangling Thorns",
             "Entangling Thorns"
           ],
-          "wins": 325,
-          "matches": 547,
-          "win_rate": 0.5941
+          "wins": 329,
+          "matches": 557,
+          "win_rate": 0.5907
         },
         {
           "sequence_names": [
@@ -20447,9 +20435,9 @@
             "Kudzu Connection",
             "Entangling Thorns"
           ],
-          "wins": 1281,
-          "matches": 2204,
-          "win_rate": 0.5812
+          "wins": 1310,
+          "matches": 2243,
+          "win_rate": 0.584
         },
         {
           "sequence_names": [
@@ -20458,9 +20446,9 @@
             "Stone Form",
             "Entangling Thorns"
           ],
-          "wins": 780,
-          "matches": 1353,
-          "win_rate": 0.5765
+          "wins": 800,
+          "matches": 1385,
+          "win_rate": 0.5776
         }
       ]
     },

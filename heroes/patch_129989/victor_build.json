@@ -57,9 +57,40 @@
     "items": {
       "method": "synergy_ilp",
       "mmr_slice": "high_mmr",
-      "total_cost": 88000,
+      "total_cost": 84800,
       "phases": {
         "early": [
+          {
+            "slot": "weapon",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "name": "Kinetic Dash",
+            "item_id": 3977876567,
+            "avg_buy_time_min": 7.0,
+            "avg_sell_time_min": 35.2,
+            "win_rate": 0.5582,
+            "tag": "situational",
+            "pick_rate": 0.294,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "annotation": "Fire rate is king on Victor. Helps to chase people down.",
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/improved_stamina.png",
+                "matches": 26704,
+                "avg_buy_time_min": 5.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
           {
             "slot": "flex",
             "category": "spirit",
@@ -80,23 +111,6 @@
         ],
         "mid": [
           {
-            "slot": "weapon",
-            "category": "weapon",
-            "tier": 2,
-            "cost": 1600,
-            "name": "Fleetfoot",
-            "item_id": 3403085434,
-            "avg_buy_time_min": 14.6,
-            "avg_sell_time_min": 34.4,
-            "win_rate": 0.5642,
-            "tag": "situational",
-            "pick_rate": 0.176,
-            "is_active": true,
-            "cooldown_s": 16.0,
-            "imbue": null,
-            "annotation": "Greatly boosts mobility in various situations & shines late game. When Metal Skin slows you, Fleetfoot\u2019s Active helps recover move speed. My Personal Opinion? Worth buying even in a full Spirit build."
-          },
-          {
             "slot": "vitality",
             "category": "vitality",
             "tier": 3,
@@ -114,35 +128,51 @@
             "annotation": "Default bullet resist item; makes Infuser much stronger since you can effectively reposition to hit more targets"
           },
           {
-            "slot": "flex",
-            "category": "spirit",
+            "slot": "weapon",
+            "category": "weapon",
             "tier": 3,
             "cost": 3200,
-            "name": "Rapid Recharge",
-            "item_id": 787198704,
-            "avg_buy_time_min": 23.9,
-            "avg_sell_time_min": 30.3,
-            "win_rate": 0.569,
-            "tag": "core_proven",
-            "pick_rate": 0.588,
+            "name": "Weighted Shots",
+            "item_id": 3791587546,
+            "avg_buy_time_min": 21.8,
+            "avg_sell_time_min": 31.8,
+            "win_rate": 0.5647,
+            "tag": "situational",
+            "pick_rate": 0.235,
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "annotation": "Can prio earlier against certain CC comps",
             "lineage_chain": [
               {
-                "item_id": 3776945997,
-                "name": "Extra Charge",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/extra_charge.png",
-                "matches": 29368,
-                "avg_buy_time_min": 7.1,
+                "item_id": 393974127,
+                "name": "Slowing Bullets",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_weapon/slowing_bullets.png",
+                "matches": 17199,
+                "avg_buy_time_min": 10.9,
                 "imbue": null,
                 "imbue_target_id": null,
                 "imbue_target_share": null
               }
             ]
+          },
+          {
+            "slot": "vitality",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "name": "Dispel Magic",
+            "item_id": 3731635960,
+            "avg_buy_time_min": 22.6,
+            "avg_sell_time_min": 30.7,
+            "win_rate": 0.5443,
+            "tag": "core_inherited",
+            "pick_rate": 0.765,
+            "is_active": true,
+            "cooldown_s": 40.0,
+            "imbue": null,
+            "annotation": "Very nice into debuff slop. Also an active that helps out with spellslinger."
           },
           {
             "slot": "flex",
@@ -221,6 +251,39 @@
             ]
           },
           {
+            "slot": "flex",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "name": "Mercurial Magnum",
+            "item_id": 3919289022,
+            "avg_buy_time_min": 25.5,
+            "avg_sell_time_min": 29.5,
+            "win_rate": 0.5915,
+            "tag": "flex",
+            "pick_rate": 0.471,
+            "is_active": false,
+            "cooldown_s": 15.0,
+            "imbue": "imbue_active",
+            "annotation": "Consider Category 5 Items After This",
+            "lineage_chain": [
+              {
+                "item_id": 84321454,
+                "name": "Quicksilver Reload",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_weapon/fire_rate_plus.png",
+                "matches": 28427,
+                "avg_buy_time_min": 16.0,
+                "imbue": "imbue_active",
+                "imbue_target_id": 2043074967,
+                "imbue_target_share": 1.0
+              }
+            ],
+            "imbue_target_id": 2043074967,
+            "imbue_target_share": 0.714
+          },
+          {
             "slot": "weapon",
             "category": "weapon",
             "tier": 4,
@@ -278,17 +341,43 @@
             "category": "spirit",
             "tier": 4,
             "cost": 6400,
-            "name": "Spirit Burn",
-            "item_id": 343572757,
-            "avg_buy_time_min": 30.3,
-            "avg_sell_time_min": 31.3,
-            "win_rate": 0.6797,
-            "tag": "tech_pick",
-            "pick_rate": 0.294,
+            "name": "Boundless Spirit",
+            "item_id": 2519598785,
+            "avg_buy_time_min": 30.7,
+            "avg_sell_time_min": 31.9,
+            "win_rate": 0.6549,
+            "tag": "core_proven",
+            "pick_rate": 0.588,
             "is_active": false,
-            "cooldown_s": 20.0,
+            "cooldown_s": null,
             "imbue": null,
-            "annotation": "Range And AntiHeal"
+            "annotation": "If enemy carries are not a problem, this caps your damage",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/tech_damage.png",
+                "matches": 38711,
+                "avg_buy_time_min": 5.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/soaring_spirit.png",
+                "matches": 17964,
+                "avg_buy_time_min": 15.0,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
           },
           {
             "slot": "weapon",
@@ -372,23 +461,6 @@
             "category": "vitality",
             "tier": 4,
             "cost": 6400,
-            "name": "Witchmail",
-            "item_id": 3028234315,
-            "avg_buy_time_min": 31.6,
-            "avg_sell_time_min": 33.2,
-            "win_rate": 0.6387,
-            "tag": "flex",
-            "pick_rate": 0.412,
-            "is_active": false,
-            "cooldown_s": 1.0,
-            "imbue": null,
-            "annotation": "Good Base Stats and Infinte Jumpstarts Against Right Team Comp, Make Sure To Sell Extra Charge NOT Rapid Recharge If You Have It Or Else It Will Make Your Jumpstarts Have 8 Sec Cooldown"
-          },
-          {
-            "slot": "vitality",
-            "category": "vitality",
-            "tier": 4,
-            "cost": 6400,
             "name": "Healing Tempo",
             "item_id": 1427630806,
             "avg_buy_time_min": 33.1,
@@ -426,23 +498,6 @@
                 "imbue_target_share": null
               }
             ]
-          },
-          {
-            "slot": "weapon",
-            "category": "weapon",
-            "tier": 4,
-            "cost": 6400,
-            "name": "Lucky Shot",
-            "item_id": 1396247347,
-            "avg_buy_time_min": 33.4,
-            "avg_sell_time_min": 32.0,
-            "win_rate": 0.6766,
-            "tag": "tech_pick",
-            "pick_rate": 0.294,
-            "is_active": false,
-            "cooldown_s": null,
-            "imbue": null,
-            "annotation": "go merc mag first if they have metal skin/lots of bullet res"
           }
         ]
       }
@@ -491,11 +546,11 @@
           "Aura of Suffering",
           "Jumpstart"
         ],
-        "wins": 91,
+        "wins": 92,
         "losses": 21,
-        "matches": 112,
+        "matches": 113,
         "players": 62,
-        "win_rate": 0.8125
+        "win_rate": 0.8142
       },
       "best_opener_first4": {
         "sequence_names": [
@@ -504,9 +559,9 @@
           "Aura of Suffering",
           "Shocking Reanimation"
         ],
-        "wins": 1904,
-        "matches": 3013,
-        "win_rate": 0.6319
+        "wins": 1943,
+        "matches": 3080,
+        "win_rate": 0.6308
       }
     }
   },
@@ -6123,30 +6178,6 @@
       "synergy_ilp": {
         "picks": [
           {
-            "item_id": 1396247347,
-            "name": "Lucky Shot",
-            "category": "weapon",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 1336,
-            "wins": 904,
-            "win_rate": 0.6766,
-            "wilson_lb": 0.6511,
-            "score": 0.0986,
-            "wr_delta_pp": 12.41,
-            "avg_buy_time_s": 2005.9,
-            "phase": "late",
-            "avg_sell_time_s": 1920.9,
-            "is_active": false,
-            "cooldown_s": null,
-            "imbue": null,
-            "slot": "weapon",
-            "tag": "tech_pick",
-            "pick_rate_tag": "situational",
-            "pick_rate": 0.294,
-            "annotation": "go merc mag first if they have metal skin/lots of bullet res"
-          },
-          {
             "item_id": 339443430,
             "name": "Frenzy",
             "category": "weapon",
@@ -6195,52 +6226,79 @@
             "annotation": "good when u have maxed 2 (can max 2nd instead of 3rd)"
           },
           {
-            "item_id": 3403085434,
-            "name": "Fleetfoot",
+            "item_id": 3791587546,
+            "name": "Weighted Shots",
             "category": "weapon",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 6721,
-            "wins": 3792,
-            "win_rate": 0.5642,
-            "wilson_lb": 0.5523,
-            "score": -0.0002,
-            "wr_delta_pp": 1.17,
-            "avg_buy_time_s": 877.1,
+            "tier": 3,
+            "cost": 3200,
+            "matches": 15007,
+            "wins": 8474,
+            "win_rate": 0.5647,
+            "wilson_lb": 0.5567,
+            "score": 0.0042,
+            "wr_delta_pp": 1.22,
+            "avg_buy_time_s": 1307.9,
             "phase": "mid",
-            "avg_sell_time_s": 2061.6,
-            "is_active": true,
-            "cooldown_s": 16.0,
+            "avg_sell_time_s": 1906.5,
+            "is_active": false,
+            "cooldown_s": null,
             "imbue": null,
             "slot": "weapon",
             "tag": "situational",
             "pick_rate_tag": "situational",
-            "pick_rate": 0.176,
-            "annotation": "Greatly boosts mobility in various situations & shines late game. When Metal Skin slows you, Fleetfoot\u2019s Active helps recover move speed. My Personal Opinion? Worth buying even in a full Spirit build."
+            "pick_rate": 0.235,
+            "lineage_chain": [
+              {
+                "item_id": 393974127,
+                "name": "Slowing Bullets",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_weapon/slowing_bullets.png",
+                "matches": 17199,
+                "avg_buy_time_min": 10.9,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
           },
           {
-            "item_id": 3028234315,
-            "name": "Witchmail",
-            "category": "vitality",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 4185,
-            "wins": 2673,
-            "win_rate": 0.6387,
-            "wilson_lb": 0.624,
-            "score": 0.0715,
-            "wr_delta_pp": 8.62,
-            "avg_buy_time_s": 1897.5,
-            "phase": "late",
-            "avg_sell_time_s": 1989.8,
+            "item_id": 3977876567,
+            "name": "Kinetic Dash",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 34329,
+            "wins": 19162,
+            "win_rate": 0.5582,
+            "wilson_lb": 0.5529,
+            "score": 0.0004,
+            "wr_delta_pp": 0.57,
+            "avg_buy_time_s": 421.7,
+            "phase": "early",
+            "avg_sell_time_s": 2113.5,
             "is_active": false,
-            "cooldown_s": 1.0,
+            "cooldown_s": null,
             "imbue": null,
-            "slot": "vitality",
-            "tag": "flex",
-            "pick_rate_tag": "flex",
-            "pick_rate": 0.412,
-            "annotation": "Good Base Stats and Infinte Jumpstarts Against Right Team Comp, Make Sure To Sell Extra Charge NOT Rapid Recharge If You Have It Or Else It Will Make Your Jumpstarts Have 8 Sec Cooldown"
+            "slot": "weapon",
+            "tag": "situational",
+            "pick_rate_tag": "situational",
+            "pick_rate": 0.294,
+            "annotation": "Fire rate is king on Victor. Helps to chase people down.",
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/improved_stamina.png",
+                "matches": 26704,
+                "avg_buy_time_min": 5.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
           },
           {
             "item_id": 1427630806,
@@ -6367,6 +6425,30 @@
             "annotation": "Default bullet resist item; makes Infuser much stronger since you can effectively reposition to hit more targets"
           },
           {
+            "item_id": 3731635960,
+            "name": "Dispel Magic",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 11715,
+            "wins": 6376,
+            "win_rate": 0.5443,
+            "wilson_lb": 0.5352,
+            "score": -0.0173,
+            "wr_delta_pp": -0.82,
+            "avg_buy_time_s": 1353.7,
+            "phase": "mid",
+            "avg_sell_time_s": 1843.0,
+            "is_active": true,
+            "cooldown_s": 40.0,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 0.765,
+            "annotation": "Very nice into debuff slop. Also an active that helps out with spellslinger."
+          },
+          {
             "item_id": 3577481646,
             "name": "Mystic Reverb",
             "category": "spirit",
@@ -6393,28 +6475,54 @@
             "imbue_target_share": 0.667
           },
           {
-            "item_id": 343572757,
-            "name": "Spirit Burn",
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
             "category": "spirit",
             "tier": 4,
             "cost": 6400,
-            "matches": 1951,
-            "wins": 1326,
-            "win_rate": 0.6797,
-            "wilson_lb": 0.6586,
-            "score": 0.1061,
-            "wr_delta_pp": 12.72,
-            "avg_buy_time_s": 1815.9,
+            "matches": 9639,
+            "wins": 6313,
+            "win_rate": 0.6549,
+            "wilson_lb": 0.6454,
+            "score": 0.0929,
+            "wr_delta_pp": 10.24,
+            "avg_buy_time_s": 1842.2,
             "phase": "late",
-            "avg_sell_time_s": 1878.8,
+            "avg_sell_time_s": 1914.6,
             "is_active": false,
-            "cooldown_s": 20.0,
+            "cooldown_s": null,
             "imbue": null,
             "slot": "spirit",
-            "tag": "tech_pick",
-            "pick_rate_tag": "situational",
-            "pick_rate": 0.294,
-            "annotation": "Range And AntiHeal"
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.588,
+            "annotation": "If enemy carries are not a problem, this caps your damage",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/tech_damage.png",
+                "matches": 38711,
+                "avg_buy_time_min": 5.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/soaring_spirit.png",
+                "matches": 17964,
+                "avg_buy_time_min": 15.0,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
           },
           {
             "item_id": 677738769,
@@ -6553,40 +6661,42 @@
             ]
           },
           {
-            "item_id": 787198704,
-            "name": "Rapid Recharge",
+            "item_id": 3919289022,
+            "name": "Mercurial Magnum",
             "category": "spirit",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 17768,
-            "wins": 10110,
-            "win_rate": 0.569,
-            "wilson_lb": 0.5617,
-            "score": 0.0092,
-            "wr_delta_pp": 1.65,
-            "avg_buy_time_s": 1433.6,
-            "phase": "mid",
-            "avg_sell_time_s": 1817.0,
+            "tier": 4,
+            "cost": 6400,
+            "matches": 22613,
+            "wins": 13375,
+            "win_rate": 0.5915,
+            "wilson_lb": 0.5851,
+            "score": 0.0326,
+            "wr_delta_pp": 3.9,
+            "avg_buy_time_s": 1532.9,
+            "phase": "late",
+            "avg_sell_time_s": 1770.9,
             "is_active": false,
-            "cooldown_s": null,
-            "imbue": null,
+            "cooldown_s": 15.0,
+            "imbue": "imbue_active",
             "slot": "flex",
-            "tag": "core_proven",
+            "tag": "flex",
             "pick_rate_tag": "flex",
-            "pick_rate": 0.588,
-            "annotation": "Can prio earlier against certain CC comps",
+            "pick_rate": 0.471,
+            "annotation": "Consider Category 5 Items After This",
+            "imbue_target_id": 2043074967,
+            "imbue_target_share": 0.714,
             "lineage_chain": [
               {
-                "item_id": 3776945997,
-                "name": "Extra Charge",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/extra_charge.png",
-                "matches": 29368,
-                "avg_buy_time_min": 7.1,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
+                "item_id": 84321454,
+                "name": "Quicksilver Reload",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_weapon/fire_rate_plus.png",
+                "matches": 28427,
+                "avg_buy_time_min": 16.0,
+                "imbue": "imbue_active",
+                "imbue_target_id": 2043074967,
+                "imbue_target_share": 1.0
               }
             ]
           },
@@ -16125,103 +16235,89 @@
             "annotation": "Speed And Spirit Res, Plus Gun Investment"
           },
           {
-            "item_id": 3403085434,
-            "name": "Fleetfoot",
+            "item_id": 2221211450,
+            "name": "Spellslinger",
             "category": "weapon",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 563,
-            "wins": 337,
-            "win_rate": 0.5986,
-            "wilson_lb": 0.5576,
-            "score": 0.0112,
-            "wr_delta_pp": 5.23,
-            "avg_buy_time_s": 887.0,
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2939,
+            "wins": 1835,
+            "win_rate": 0.6244,
+            "wilson_lb": 0.6067,
+            "score": 0.0604,
+            "wr_delta_pp": 7.81,
+            "avg_buy_time_s": 1587.2,
+            "phase": "late",
+            "avg_sell_time_s": 1711.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.647,
+            "annotation": "good when u have maxed 2 (can max 2nd instead of 3rd)"
+          },
+          {
+            "item_id": 3791587546,
+            "name": "Weighted Shots",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2691,
+            "wins": 1527,
+            "win_rate": 0.5674,
+            "wilson_lb": 0.5486,
+            "score": 0.0023,
+            "wr_delta_pp": 2.11,
+            "avg_buy_time_s": 1219.3,
             "phase": "mid",
-            "avg_sell_time_s": 1928.3,
-            "is_active": true,
-            "cooldown_s": 16.0,
+            "avg_sell_time_s": 1685.0,
+            "is_active": false,
+            "cooldown_s": null,
             "imbue": null,
             "slot": "weapon",
             "tag": "tech_pick",
             "pick_rate_tag": "situational",
-            "pick_rate": 0.235,
-            "annotation": "Greatly boosts mobility in various situations & shines late game. When Metal Skin slows you, Fleetfoot\u2019s Active helps recover move speed. My Personal Opinion? Worth buying even in a full Spirit build."
-          },
-          {
-            "item_id": 3977876567,
-            "name": "Kinetic Dash",
-            "category": "weapon",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 4778,
-            "wins": 2624,
-            "win_rate": 0.5492,
-            "wilson_lb": 0.535,
-            "score": -0.0113,
-            "wr_delta_pp": 0.29,
-            "avg_buy_time_s": 415.5,
-            "phase": "early",
-            "avg_sell_time_s": 2059.1,
-            "is_active": false,
-            "cooldown_s": null,
-            "imbue": null,
-            "slot": "weapon",
-            "tag": "situational",
-            "pick_rate_tag": "situational",
-            "pick_rate": 0.235,
-            "annotation": "Fire rate is king on Victor. Helps to chase people down.",
-            "lineage_chain": [
-              {
-                "item_id": 4139877411,
-                "name": "Extra Stamina",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/improved_stamina.png",
-                "matches": 3765,
-                "avg_buy_time_min": 5.8,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
-          },
-          {
-            "item_id": 2064029594,
-            "name": "Opening Rounds",
-            "category": "weapon",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 7272,
-            "wins": 3955,
-            "win_rate": 0.5439,
-            "wilson_lb": 0.5324,
-            "score": -0.0139,
-            "wr_delta_pp": -0.24,
-            "avg_buy_time_s": 265.9,
-            "phase": "early",
-            "avg_sell_time_s": 1944.3,
-            "is_active": false,
-            "cooldown_s": null,
-            "imbue": null,
-            "slot": "weapon",
-            "tag": "situational",
-            "pick_rate_tag": "situational",
             "pick_rate": 0.294,
             "lineage_chain": [
               {
-                "item_id": 3077079169,
-                "name": "High-Velocity Rounds",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_weapon/high_velocity_mag.png",
-                "matches": 7059,
-                "avg_buy_time_min": 2.1,
+                "item_id": 393974127,
+                "name": "Slowing Bullets",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_weapon/slowing_bullets.png",
+                "matches": 3288,
+                "avg_buy_time_min": 9.6,
                 "imbue": null,
                 "imbue_target_id": null,
                 "imbue_target_share": null
               }
             ]
+          },
+          {
+            "item_id": 1144549437,
+            "name": "Spirit Shredder Bullets",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 434,
+            "wins": 251,
+            "win_rate": 0.5783,
+            "wilson_lb": 0.5314,
+            "score": -0.0149,
+            "wr_delta_pp": 3.2,
+            "avg_buy_time_s": 682.7,
+            "phase": "early",
+            "avg_sell_time_s": 1362.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "tech_pick",
+            "pick_rate_tag": "situational",
+            "pick_rate": 0.118,
+            "annotation": "Only If They Have Thanos Lvl Resist"
           },
           {
             "item_id": 1282141666,
@@ -16248,54 +16344,27 @@
             "annotation": "Super Late Endgame"
           },
           {
-            "item_id": 1427630806,
-            "name": "Healing Tempo",
+            "item_id": 3970837787,
+            "name": "Enchanter's Emblem",
             "category": "vitality",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 459,
-            "wins": 296,
-            "win_rate": 0.6449,
-            "wilson_lb": 0.6001,
-            "score": 0.0538,
-            "wr_delta_pp": 9.86,
-            "avg_buy_time_s": 1943.6,
-            "phase": "late",
-            "avg_sell_time_s": 1927.9,
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1250,
+            "wins": 751,
+            "win_rate": 0.6008,
+            "wilson_lb": 0.5734,
+            "score": 0.0271,
+            "wr_delta_pp": 5.45,
+            "avg_buy_time_s": 675.8,
+            "phase": "early",
+            "avg_sell_time_s": 1738.5,
             "is_active": false,
-            "cooldown_s": 1.0,
+            "cooldown_s": null,
             "imbue": null,
             "slot": "vitality",
-            "tag": "core_proven",
-            "pick_rate_tag": "flex",
-            "pick_rate": 0.647,
-            "annotation": "Can Be Good Because Of Extra heal, Spirit Res, And Speed, But There Are Usually Better Options",
-            "lineage_chain": [
-              {
-                "item_id": 2829638276,
-                "name": "Extra Regen",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/endurance.png",
-                "matches": 6936,
-                "avg_buy_time_min": 3.2,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              },
-              {
-                "item_id": 2566692615,
-                "name": "Healing Booster",
-                "tier": 2,
-                "cost": 1600,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/healing_booster.png",
-                "matches": 4826,
-                "avg_buy_time_min": 12.1,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
           },
           {
             "item_id": 865846625,
@@ -16422,6 +16491,30 @@
             ]
           },
           {
+            "item_id": 677738769,
+            "name": "Refresher",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1525,
+            "wins": 994,
+            "win_rate": 0.6518,
+            "wilson_lb": 0.6275,
+            "score": 0.0812,
+            "wr_delta_pp": 10.55,
+            "avg_buy_time_s": 1785.2,
+            "phase": "late",
+            "avg_sell_time_s": 2106.0,
+            "is_active": true,
+            "cooldown_s": 300.0,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 0.765,
+            "annotation": "Last Fight 70K Souls"
+          },
+          {
             "item_id": 915014646,
             "name": "Transcendent Cooldown",
             "category": "spirit",
@@ -16513,7 +16606,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "slot": "spirit",
+            "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
             "pick_rate": 0.529,
@@ -16572,30 +16665,6 @@
             ]
           },
           {
-            "item_id": 2059712766,
-            "name": "Restorative Locket",
-            "category": "vitality",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 584,
-            "wins": 342,
-            "win_rate": 0.5856,
-            "wilson_lb": 0.5452,
-            "score": -0.0011,
-            "wr_delta_pp": 3.93,
-            "avg_buy_time_s": 632.3,
-            "phase": "early",
-            "avg_sell_time_s": 1819.0,
-            "is_active": true,
-            "cooldown_s": 20.0,
-            "imbue": null,
-            "slot": "flex",
-            "tag": "tech_pick",
-            "pick_rate_tag": "situational",
-            "pick_rate": 0.176,
-            "annotation": "Haven't tried it out yet but just seems like a really solid item. Worth a consideration over bullet lifesteal."
-          },
-          {
             "item_id": 2407033488,
             "name": "Intensifying Magazine",
             "category": "weapon",
@@ -16619,42 +16688,28 @@
             "pick_rate": 0.235
           },
           {
-            "item_id": 2947183272,
-            "name": "Radiant Regeneration",
-            "category": "spirit",
+            "item_id": 3731635960,
+            "name": "Dispel Magic",
+            "category": "vitality",
             "tier": 3,
             "cost": 3200,
-            "matches": 573,
-            "wins": 322,
-            "win_rate": 0.562,
-            "wilson_lb": 0.5211,
-            "score": -0.0253,
-            "wr_delta_pp": 1.56,
-            "avg_buy_time_s": 860.4,
+            "matches": 1866,
+            "wins": 1016,
+            "win_rate": 0.5445,
+            "wilson_lb": 0.5218,
+            "score": -0.0245,
+            "wr_delta_pp": -0.18,
+            "avg_buy_time_s": 1251.7,
             "phase": "mid",
-            "avg_sell_time_s": 1981.0,
-            "is_active": false,
-            "cooldown_s": 6.0,
+            "avg_sell_time_s": 1648.7,
+            "is_active": true,
+            "cooldown_s": 40.0,
             "imbue": null,
             "slot": "flex",
-            "tag": "situational",
-            "pick_rate_tag": "situational",
-            "pick_rate": 0.235,
-            "annotation": "Radiant Regen is back on the menu. After the heavy lifesteal nerf, it\u2019s now one of the key sources of sustain.",
-            "lineage_chain": [
-              {
-                "item_id": 1439347412,
-                "name": "Mystic Regeneration",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/endurance.png",
-                "matches": 462,
-                "avg_buy_time_min": 9.1,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
+            "tag": "core_inherited",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.647,
+            "annotation": "Very nice into debuff slop. Also an active that helps out with spellslinger."
           }
         ]
       },
@@ -16678,7 +16733,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 27.8,
+            "build_freq_weight": 27.1,
             "slot": "weapon",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -16703,7 +16758,7 @@
             "is_active": false,
             "cooldown_s": 16.0,
             "imbue": null,
-            "build_freq_weight": 27.2,
+            "build_freq_weight": 26.5,
             "slot": "weapon",
             "tag": "flex",
             "pick_rate_tag": "flex",
@@ -16728,7 +16783,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 23.7,
+            "build_freq_weight": 23.5,
             "slot": "weapon",
             "tag": "tech_pick",
             "pick_rate_tag": "situational",
@@ -16753,7 +16808,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 23.4,
+            "build_freq_weight": 22.6,
             "slot": "weapon",
             "tag": "core_inherited",
             "pick_rate_tag": "flex",
@@ -16778,7 +16833,7 @@
             "is_active": true,
             "cooldown_s": 16.0,
             "imbue": null,
-            "build_freq_weight": 40.9,
+            "build_freq_weight": 40.0,
             "slot": "vitality",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -16803,7 +16858,7 @@
             "is_active": false,
             "cooldown_s": 1.0,
             "imbue": null,
-            "build_freq_weight": 40.6,
+            "build_freq_weight": 39.7,
             "slot": "vitality",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -16828,7 +16883,7 @@
             "is_active": false,
             "cooldown_s": 9.0,
             "imbue": null,
-            "build_freq_weight": 40.6,
+            "build_freq_weight": 39.7,
             "slot": "vitality",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -16867,7 +16922,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 37.1,
+            "build_freq_weight": 36.7,
             "slot": "vitality",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -16892,7 +16947,7 @@
             "is_active": true,
             "cooldown_s": 300.0,
             "imbue": null,
-            "build_freq_weight": 32.7,
+            "build_freq_weight": 32.4,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -16917,7 +16972,7 @@
             "is_active": true,
             "cooldown_s": 35.0,
             "imbue": null,
-            "build_freq_weight": 24.1,
+            "build_freq_weight": 23.8,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -16942,7 +16997,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 24.1,
+            "build_freq_weight": 23.8,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -16993,7 +17048,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 19.8,
+            "build_freq_weight": 18.6,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -17032,7 +17087,7 @@
             "is_active": true,
             "cooldown_s": 40.0,
             "imbue": null,
-            "build_freq_weight": 37.1,
+            "build_freq_weight": 36.7,
             "slot": "flex",
             "tag": "core_inherited",
             "pick_rate_tag": "flex",
@@ -17057,7 +17112,7 @@
             "is_active": true,
             "cooldown_s": 24.0,
             "imbue": null,
-            "build_freq_weight": 35.0,
+            "build_freq_weight": 34.1,
             "slot": "flex",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -17082,7 +17137,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 32.6,
+            "build_freq_weight": 31.8,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -17133,7 +17188,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 30.9,
+            "build_freq_weight": 30.6,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -17145,50 +17200,50 @@
           {
             "build_id": 587735,
             "name": "Rustyy's Run It Down Vik",
-            "win_rate": 0.5394,
-            "matches": 634
-          },
-          {
-            "build_id": 608409,
-            "name": "twitch.tv/zzerial Victor (Fully Annotated)",
-            "win_rate": 0.5506,
-            "matches": 336
+            "win_rate": 0.5392,
+            "matches": 638
           },
           {
             "build_id": 611933,
             "name": "apacycle - gun",
-            "win_rate": 0.5211,
-            "matches": 332
+            "win_rate": 0.5237,
+            "matches": 338
+          },
+          {
+            "build_id": 608409,
+            "name": "twitch.tv/zzerial Victor (Fully Annotated)",
+            "win_rate": 0.549,
+            "matches": 337
           },
           {
             "build_id": 511238,
             "name": "HERESY Spirit Victor (4/12/26)",
-            "win_rate": 0.5644,
-            "matches": 101
+            "win_rate": 0.5577,
+            "matches": 104
           },
           {
             "build_id": 411712,
             "name": "RawDawg Low Cort Statue Max",
-            "win_rate": 0.5679,
-            "matches": 81
+            "win_rate": 0.5732,
+            "matches": 82
           },
           {
             "build_id": 595286,
             "name": "ZENO WALLBREAKER (WIP)",
-            "win_rate": 0.5846,
-            "matches": 65
+            "win_rate": 0.5758,
+            "matches": 66
           },
           {
             "build_id": 352387,
             "name": "apacycle",
-            "win_rate": 0.623,
-            "matches": 61
+            "win_rate": 0.6154,
+            "matches": 65
           },
           {
             "build_id": 308507,
             "name": "SN|P3R : Victor, The Unbreakable",
-            "win_rate": 0.5167,
-            "matches": 60
+            "win_rate": 0.4844,
+            "matches": 64
           },
           {
             "build_id": 616232,
@@ -17205,8 +17260,8 @@
           {
             "build_id": 606971,
             "name": "ttvcrayon_fps wallbreak victor",
-            "win_rate": 0.5714,
-            "matches": 28
+            "win_rate": 0.5862,
+            "matches": 29
           },
           {
             "build_id": 336576,
@@ -17260,10 +17315,10 @@
             "Aura of Suffering"
           ],
           "n_builds": 3,
-          "total_matches": 998,
-          "total_wins": 543,
-          "mean_win_rate": 0.5441,
-          "win_rate_lift_pp": -0.22,
+          "total_matches": 1004,
+          "total_wins": 546,
+          "mean_win_rate": 0.5438,
+          "win_rate_lift_pp": -0.25,
           "consensus_ladder_ids": [
             2043074967,
             3727084744,
@@ -17347,7 +17402,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 17.7,
+              "joint_freq_weight": 17.6,
               "slot": "weapon",
               "tag": "situational",
               "pick_rate_tag": "situational",
@@ -17371,7 +17426,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 17.7,
+              "joint_freq_weight": 17.6,
               "slot": "weapon",
               "tag": "tech_pick",
               "pick_rate_tag": "situational",
@@ -17396,7 +17451,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 17.7,
+              "joint_freq_weight": 17.6,
               "slot": "weapon",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -17421,7 +17476,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 16.5,
+              "joint_freq_weight": 15.9,
               "slot": "weapon",
               "tag": "situational",
               "pick_rate_tag": "situational",
@@ -17460,7 +17515,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 17.7,
+              "joint_freq_weight": 17.6,
               "slot": "vitality",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -17485,7 +17540,7 @@
               "is_active": true,
               "cooldown_s": 23.0,
               "imbue": null,
-              "joint_freq_weight": 17.7,
+              "joint_freq_weight": 17.6,
               "slot": "vitality",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -17510,7 +17565,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 17.7,
+              "joint_freq_weight": 17.6,
               "slot": "vitality",
               "tag": "tech_pick",
               "pick_rate_tag": "situational",
@@ -17535,7 +17590,7 @@
               "is_active": true,
               "cooldown_s": 16.0,
               "imbue": null,
-              "joint_freq_weight": 17.7,
+              "joint_freq_weight": 17.6,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -17560,7 +17615,7 @@
               "is_active": true,
               "cooldown_s": 300.0,
               "imbue": null,
-              "joint_freq_weight": 9.6,
+              "joint_freq_weight": 10.0,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -17585,7 +17640,7 @@
               "is_active": false,
               "cooldown_s": 15.0,
               "imbue": "imbue_active",
-              "joint_freq_weight": 9.6,
+              "joint_freq_weight": 10.0,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -17626,7 +17681,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 1.3,
+              "joint_freq_weight": 1.7,
               "slot": "spirit",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -17665,7 +17720,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 1.3,
+              "joint_freq_weight": 1.7,
               "slot": "spirit",
               "tag": "situational",
               "pick_rate_tag": "situational",
@@ -17690,7 +17745,7 @@
               "is_active": true,
               "cooldown_s": 24.0,
               "imbue": null,
-              "joint_freq_weight": 17.7,
+              "joint_freq_weight": 17.6,
               "slot": "flex",
               "tag": "trap_popular",
               "pick_rate_tag": "core",
@@ -17715,7 +17770,7 @@
               "is_active": false,
               "cooldown_s": 1.0,
               "imbue": null,
-              "joint_freq_weight": 17.7,
+              "joint_freq_weight": 17.6,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -17740,7 +17795,7 @@
               "is_active": false,
               "cooldown_s": 9.0,
               "imbue": null,
-              "joint_freq_weight": 17.7,
+              "joint_freq_weight": 17.6,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -17779,7 +17834,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 17.7,
+              "joint_freq_weight": 17.6,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -17791,20 +17846,20 @@
             {
               "build_id": 587735,
               "name": "Rustyy's Run It Down Vik",
-              "win_rate": 0.5394,
-              "matches": 634
+              "win_rate": 0.5392,
+              "matches": 638
             },
             {
               "build_id": 608409,
               "name": "twitch.tv/zzerial Victor (Fully Annotated)",
-              "win_rate": 0.5506,
-              "matches": 336
+              "win_rate": 0.549,
+              "matches": 337
             },
             {
               "build_id": 606971,
               "name": "ttvcrayon_fps wallbreak victor",
-              "win_rate": 0.5714,
-              "matches": 28
+              "win_rate": 0.5862,
+              "matches": 29
             }
           ]
         },
@@ -17821,10 +17876,10 @@
             "Jumpstart"
           ],
           "n_builds": 3,
-          "total_matches": 429,
-          "total_wins": 227,
-          "mean_win_rate": 0.5291,
-          "win_rate_lift_pp": -1.72,
+          "total_matches": 436,
+          "total_wins": 232,
+          "mean_win_rate": 0.5321,
+          "win_rate_lift_pp": -1.42,
           "consensus_ladder_ids": [
             2043074967,
             3727084744,
@@ -17898,7 +17953,7 @@
               "is_active": false,
               "cooldown_s": 16.0,
               "imbue": null,
-              "joint_freq_weight": 3.4,
+              "joint_freq_weight": 3.8,
               "slot": "weapon",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -17923,7 +17978,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 3.4,
+              "joint_freq_weight": 3.8,
               "slot": "weapon",
               "tag": "tech_pick",
               "pick_rate_tag": "situational",
@@ -18010,7 +18065,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 3.4,
+              "joint_freq_weight": 3.8,
               "slot": "vitality",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -18035,7 +18090,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 3.4,
+              "joint_freq_weight": 3.8,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -18086,7 +18141,7 @@
               "is_active": false,
               "cooldown_s": 1.0,
               "imbue": null,
-              "joint_freq_weight": 3.4,
+              "joint_freq_weight": 3.8,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -18137,7 +18192,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 3.4,
+              "joint_freq_weight": 3.8,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -18188,7 +18243,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 3.4,
+              "joint_freq_weight": 3.8,
               "slot": "spirit",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -18227,7 +18282,7 @@
               "is_active": true,
               "cooldown_s": 300.0,
               "imbue": null,
-              "joint_freq_weight": 3.4,
+              "joint_freq_weight": 3.8,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -18252,7 +18307,7 @@
               "is_active": true,
               "cooldown_s": 35.0,
               "imbue": null,
-              "joint_freq_weight": 3.4,
+              "joint_freq_weight": 3.8,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -18277,7 +18332,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 3.4,
+              "joint_freq_weight": 3.8,
               "slot": "spirit",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -18328,7 +18383,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 3.4,
+              "joint_freq_weight": 3.8,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -18353,7 +18408,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 3.4,
+              "joint_freq_weight": 3.8,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -18404,7 +18459,7 @@
               "is_active": true,
               "cooldown_s": 40.0,
               "imbue": null,
-              "joint_freq_weight": 3.4,
+              "joint_freq_weight": 3.8,
               "slot": "flex",
               "tag": "core_inherited",
               "pick_rate_tag": "flex",
@@ -18429,7 +18484,7 @@
               "is_active": true,
               "cooldown_s": 45.0,
               "imbue": null,
-              "joint_freq_weight": 3.4,
+              "joint_freq_weight": 3.8,
               "slot": "flex",
               "tag": "tech_pick",
               "pick_rate_tag": "situational",
@@ -18455,14 +18510,14 @@
             {
               "build_id": 611933,
               "name": "apacycle - gun",
-              "win_rate": 0.5211,
-              "matches": 332
+              "win_rate": 0.5237,
+              "matches": 338
             },
             {
               "build_id": 411712,
               "name": "RawDawg Low Cort Statue Max",
-              "win_rate": 0.5679,
-              "matches": 81
+              "win_rate": 0.5732,
+              "matches": 82
             },
             {
               "build_id": 617042,
@@ -18485,10 +18540,10 @@
             "Aura of Suffering"
           ],
           "n_builds": 6,
-          "total_matches": 333,
-          "total_wins": 178,
-          "mean_win_rate": 0.5345,
-          "win_rate_lift_pp": -1.18,
+          "total_matches": 344,
+          "total_wins": 181,
+          "mean_win_rate": 0.5262,
+          "win_rate_lift_pp": -2.01,
           "consensus_ladder_ids": [
             2043074967,
             3727084744,
@@ -18558,7 +18613,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 9.7,
+              "joint_freq_weight": 9.1,
               "slot": "weapon",
               "tag": "core_inherited",
               "pick_rate_tag": "flex",
@@ -18583,7 +18638,7 @@
               "is_active": true,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 5.9,
+              "joint_freq_weight": 5.8,
               "slot": "weapon",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -18608,7 +18663,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 5.9,
+              "joint_freq_weight": 5.8,
               "slot": "weapon",
               "tag": "tech_pick",
               "pick_rate_tag": "situational",
@@ -18646,7 +18701,7 @@
               "is_active": false,
               "cooldown_s": 16.0,
               "imbue": null,
-              "joint_freq_weight": 5.9,
+              "joint_freq_weight": 5.8,
               "slot": "weapon",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -18671,7 +18726,7 @@
               "is_active": true,
               "cooldown_s": 45.0,
               "imbue": null,
-              "joint_freq_weight": 9.7,
+              "joint_freq_weight": 9.1,
               "slot": "vitality",
               "tag": "tech_pick",
               "pick_rate_tag": "situational",
@@ -18710,7 +18765,7 @@
               "is_active": true,
               "cooldown_s": 16.0,
               "imbue": null,
-              "joint_freq_weight": 9.7,
+              "joint_freq_weight": 9.1,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -18735,7 +18790,7 @@
               "is_active": true,
               "cooldown_s": 24.0,
               "imbue": null,
-              "joint_freq_weight": 9.7,
+              "joint_freq_weight": 9.1,
               "slot": "vitality",
               "tag": "trap_popular",
               "pick_rate_tag": "core",
@@ -18760,7 +18815,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 9.7,
+              "joint_freq_weight": 9.1,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -18811,7 +18866,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 9.7,
+              "joint_freq_weight": 9.1,
               "slot": "spirit",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -18850,7 +18905,7 @@
               "is_active": true,
               "cooldown_s": 300.0,
               "imbue": null,
-              "joint_freq_weight": 9.7,
+              "joint_freq_weight": 9.1,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -18875,7 +18930,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 9.7,
+              "joint_freq_weight": 9.1,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -18914,7 +18969,7 @@
               "is_active": true,
               "cooldown_s": 35.0,
               "imbue": null,
-              "joint_freq_weight": 9.7,
+              "joint_freq_weight": 9.1,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -18939,7 +18994,7 @@
               "is_active": false,
               "cooldown_s": 1.0,
               "imbue": null,
-              "joint_freq_weight": 9.7,
+              "joint_freq_weight": 9.1,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -18964,7 +19019,7 @@
               "is_active": false,
               "cooldown_s": 9.0,
               "imbue": null,
-              "joint_freq_weight": 9.7,
+              "joint_freq_weight": 9.1,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -19003,7 +19058,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 9.7,
+              "joint_freq_weight": 9.1,
               "slot": "flex",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -19054,7 +19109,7 @@
               "is_active": false,
               "cooldown_s": 1.0,
               "imbue": null,
-              "joint_freq_weight": 9.7,
+              "joint_freq_weight": 9.1,
               "slot": "flex",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -19066,20 +19121,20 @@
             {
               "build_id": 511238,
               "name": "HERESY Spirit Victor (4/12/26)",
-              "win_rate": 0.5644,
-              "matches": 101
+              "win_rate": 0.5577,
+              "matches": 104
             },
             {
               "build_id": 352387,
               "name": "apacycle",
-              "win_rate": 0.623,
-              "matches": 61
+              "win_rate": 0.6154,
+              "matches": 65
             },
             {
               "build_id": 308507,
               "name": "SN|P3R : Victor, The Unbreakable",
-              "win_rate": 0.5167,
-              "matches": 60
+              "win_rate": 0.4844,
+              "matches": 64
             },
             {
               "build_id": 317850,
@@ -19255,7 +19310,7 @@
               "tag": "core_inherited",
               "pick_rate_tag": "core",
               "pick_rate": 0.706,
-              "annotation": "Always been a Good Gun item for Victor. Skip this if planning a Heavy Spirit Path"
+              "annotation": "this is better than Ballistic Enchantment now"
             },
             {
               "item_id": 2064029594,
@@ -19868,7 +19923,7 @@
         "1414319208": {
           "tag": "core",
           "pick_rate": 0.706,
-          "annotation": "Always been a Good Gun item for Victor. Skip this if planning a Heavy Spirit Path",
+          "annotation": "this is better than Ballistic Enchantment now",
           "builds_appearing_in": 12,
           "builds_total": 17,
           "imbue_target_id": null,
@@ -20090,128 +20145,11 @@
           "imbue_target_id": null,
           "imbue_target_share": null
         },
-        "1548066885": {
-          "tag": "situational",
-          "pick_rate": 0.059,
-          "annotation": "",
-          "builds_appearing_in": 1,
-          "builds_total": 17,
-          "imbue_target_id": null,
-          "imbue_target_share": null
-        },
-        "3862866912": {
-          "tag": "situational",
-          "pick_rate": 0.118,
-          "annotation": "",
-          "builds_appearing_in": 2,
-          "builds_total": 17,
-          "imbue_target_id": null,
-          "imbue_target_share": null
-        },
-        "1710079648": {
-          "tag": "situational",
-          "pick_rate": 0.235,
-          "annotation": "",
-          "builds_appearing_in": 4,
-          "builds_total": 17,
-          "imbue_target_id": null,
-          "imbue_target_share": null
-        },
         "2829638276": {
           "tag": "core",
           "pick_rate": 0.824,
           "annotation": "You Regen HP Overtime When You Buy This Item. Thats What It Does!",
           "builds_appearing_in": 14,
-          "builds_total": 17,
-          "imbue_target_id": null,
-          "imbue_target_share": null
-        },
-        "2059712766": {
-          "tag": "situational",
-          "pick_rate": 0.176,
-          "annotation": "Haven't tried it out yet but just seems like a really solid item. Worth a consideration over bullet lifesteal.",
-          "builds_appearing_in": 3,
-          "builds_total": 17,
-          "imbue_target_id": null,
-          "imbue_target_share": null
-        },
-        "1644605047": {
-          "tag": "situational",
-          "pick_rate": 0.176,
-          "annotation": "Quite handy into certain characters, Bebop, haze, etc.",
-          "builds_appearing_in": 3,
-          "builds_total": 17,
-          "imbue_target_id": null,
-          "imbue_target_share": null
-        },
-        "2463960640": {
-          "tag": "situational",
-          "pick_rate": 0.294,
-          "annotation": "Not green but its good.",
-          "builds_appearing_in": 5,
-          "builds_total": 17,
-          "imbue_target_id": null,
-          "imbue_target_share": null
-        },
-        "1409190604": {
-          "tag": "situational",
-          "pick_rate": 0.118,
-          "annotation": "Kind of goated but can mess you up",
-          "builds_appearing_in": 2,
-          "builds_total": 17,
-          "imbue_target_id": null,
-          "imbue_target_share": null
-        },
-        "1055679805": {
-          "tag": "situational",
-          "pick_rate": 0.294,
-          "annotation": "Buy this over leech since it is an active and gives fire rate. The spirit lifesteal on Leech isn't good.",
-          "builds_appearing_in": 5,
-          "builds_total": 17,
-          "imbue_target_id": null,
-          "imbue_target_share": null
-        },
-        "1427630806": {
-          "tag": "flex",
-          "pick_rate": 0.647,
-          "annotation": "Can Be Good Because Of Extra heal, Spirit Res, And Speed, But There Are Usually Better Options",
-          "builds_appearing_in": 11,
-          "builds_total": 17,
-          "imbue_target_id": null,
-          "imbue_target_share": null
-        },
-        "339443430": {
-          "tag": "flex",
-          "pick_rate": 0.471,
-          "annotation": "Speed And Spirit Res, Plus Gun Investment",
-          "builds_appearing_in": 8,
-          "builds_total": 17,
-          "imbue_target_id": null,
-          "imbue_target_share": null
-        },
-        "1250307611": {
-          "tag": "core",
-          "pick_rate": 0.765,
-          "annotation": "Okay Buy But Always Better Things Unless Other Team Is Heavy Gun",
-          "builds_appearing_in": 13,
-          "builds_total": 17,
-          "imbue_target_id": null,
-          "imbue_target_share": null
-        },
-        "2142980412": {
-          "tag": "situational",
-          "pick_rate": 0.118,
-          "annotation": "UNTESTED. It's a cool thought so maybe lol",
-          "builds_appearing_in": 2,
-          "builds_total": 17,
-          "imbue_target_id": null,
-          "imbue_target_share": null
-        },
-        "1152158042": {
-          "tag": "situational",
-          "pick_rate": 0.118,
-          "annotation": "UNTESTED. Vortex webbing yourself to guarantee stun on several people has potential.",
-          "builds_appearing_in": 2,
           "builds_total": 17,
           "imbue_target_id": null,
           "imbue_target_share": null
@@ -20288,6 +20226,24 @@
           "imbue_target_id": null,
           "imbue_target_share": null
         },
+        "1427630806": {
+          "tag": "flex",
+          "pick_rate": 0.647,
+          "annotation": "Can Be Good Because Of Extra heal, Spirit Res, And Speed, But There Are Usually Better Options",
+          "builds_appearing_in": 11,
+          "builds_total": 17,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1250307611": {
+          "tag": "core",
+          "pick_rate": 0.765,
+          "annotation": "Okay Buy But Always Better Things Unless Other Team Is Heavy Gun",
+          "builds_appearing_in": 13,
+          "builds_total": 17,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
         "2533252781": {
           "tag": "flex",
           "pick_rate": 0.588,
@@ -20297,11 +20253,110 @@
           "imbue_target_id": null,
           "imbue_target_share": null
         },
+        "339443430": {
+          "tag": "flex",
+          "pick_rate": 0.471,
+          "annotation": "Speed And Spirit Res, Plus Gun Investment",
+          "builds_appearing_in": 8,
+          "builds_total": 17,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
         "3005970438": {
           "tag": "flex",
           "pick_rate": 0.471,
           "annotation": "Can Get Earlier",
           "builds_appearing_in": 8,
+          "builds_total": 17,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1548066885": {
+          "tag": "situational",
+          "pick_rate": 0.059,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 17,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3862866912": {
+          "tag": "situational",
+          "pick_rate": 0.118,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 17,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1710079648": {
+          "tag": "situational",
+          "pick_rate": 0.235,
+          "annotation": "",
+          "builds_appearing_in": 4,
+          "builds_total": 17,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2059712766": {
+          "tag": "situational",
+          "pick_rate": 0.176,
+          "annotation": "Haven't tried it out yet but just seems like a really solid item. Worth a consideration over bullet lifesteal.",
+          "builds_appearing_in": 3,
+          "builds_total": 17,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1644605047": {
+          "tag": "situational",
+          "pick_rate": 0.176,
+          "annotation": "Quite handy into certain characters, Bebop, haze, etc.",
+          "builds_appearing_in": 3,
+          "builds_total": 17,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2463960640": {
+          "tag": "situational",
+          "pick_rate": 0.294,
+          "annotation": "Not green but its good.",
+          "builds_appearing_in": 5,
+          "builds_total": 17,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1409190604": {
+          "tag": "situational",
+          "pick_rate": 0.118,
+          "annotation": "Kind of goated but can mess you up",
+          "builds_appearing_in": 2,
+          "builds_total": 17,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1055679805": {
+          "tag": "situational",
+          "pick_rate": 0.294,
+          "annotation": "Buy this over leech since it is an active and gives fire rate. The spirit lifesteal on Leech isn't good.",
+          "builds_appearing_in": 5,
+          "builds_total": 17,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2142980412": {
+          "tag": "situational",
+          "pick_rate": 0.118,
+          "annotation": "UNTESTED. It's a cool thought so maybe lol",
+          "builds_appearing_in": 2,
+          "builds_total": 17,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1152158042": {
+          "tag": "situational",
+          "pick_rate": 0.118,
+          "annotation": "UNTESTED. Vortex webbing yourself to guarantee stun on several people has potential.",
+          "builds_appearing_in": 2,
           "builds_total": 17,
           "imbue_target_id": null,
           "imbue_target_share": null
@@ -20579,7 +20634,7 @@
         "3403085434": {
           "tag": "situational",
           "pick_rate": 0.235,
-          "annotation": "Greatly boosts mobility in various situations & shines late game. When Metal Skin slows you, Fleetfoot\u2019s Active helps recover move speed. My Personal Opinion? Worth buying even in a full Spirit build.",
+          "annotation": "If you buy gun item, always buy this instead of enduring speed.",
           "builds_appearing_in": 4,
           "builds_total": 17,
           "imbue_target_id": null,
@@ -20588,7 +20643,7 @@
         "3294954488": {
           "tag": "flex",
           "pick_rate": 0.353,
-          "annotation": "Excellent New item for Victor. Elevates His Aura to a Gigantic ~13M + Provides higher Damage output than Berserker in chaotic team fights. Good to pair this with Leech.",
+          "annotation": "not as good as it used to be (beserker better now)",
           "builds_appearing_in": 6,
           "builds_total": 17,
           "imbue_target_id": 1472593493,
@@ -20597,7 +20652,7 @@
         "2947183272": {
           "tag": "situational",
           "pick_rate": 0.235,
-          "annotation": "Radiant Regen is back on the menu. After the heavy lifesteal nerf, it\u2019s now one of the key sources of sustain.",
+          "annotation": "very good now, 10k+ healing a game from this item.  IF YOU HAVE A BIG LEAD BUY AFTER INFUSER, NEVER SKIP!!!",
           "builds_appearing_in": 4,
           "builds_total": 17,
           "imbue_target_id": null,
@@ -21015,8 +21070,8 @@
       ]
     },
     "high_mmr": {
-      "total_records": 355,
-      "total_matches": 43275,
+      "total_records": 364,
+      "total_matches": 44223,
       "ability_priority": [
         {
           "ability_id": 2043074967,
@@ -21035,8 +21090,8 @@
         {
           "ability_id": 1472593493,
           "name": "Aura of Suffering",
-          "avg_ap_all_players": 3.75,
-          "avg_ap_winners": 3.86,
+          "avg_ap_all_players": 3.74,
+          "avg_ap_winners": 3.85,
           "winner_premium_ap": 0.11
         },
         {
@@ -21085,11 +21140,11 @@
             "Aura of Suffering",
             "Jumpstart"
           ],
-          "wins": 91,
+          "wins": 92,
           "losses": 21,
-          "matches": 112,
+          "matches": 113,
           "players": 62,
-          "win_rate": 0.8125
+          "win_rate": 0.8142
         },
         {
           "sequence_ids": [
@@ -21128,11 +21183,11 @@
             "Aura of Suffering",
             "Aura of Suffering"
           ],
-          "wins": 121,
-          "losses": 35,
-          "matches": 156,
-          "players": 100,
-          "win_rate": 0.7756
+          "wins": 148,
+          "losses": 42,
+          "matches": 190,
+          "players": 124,
+          "win_rate": 0.7789
         },
         {
           "sequence_ids": [
@@ -21171,11 +21226,11 @@
             "Jumpstart",
             "Jumpstart"
           ],
-          "wins": 131,
-          "losses": 41,
-          "matches": 172,
-          "players": 87,
-          "win_rate": 0.7616
+          "wins": 132,
+          "losses": 42,
+          "matches": 174,
+          "players": 88,
+          "win_rate": 0.7586
         },
         {
           "sequence_ids": [
@@ -21214,54 +21269,54 @@
             "Pain Battery",
             "Jumpstart"
           ],
-          "wins": 111,
+          "wins": 112,
           "losses": 36,
-          "matches": 147,
+          "matches": 148,
           "players": 65,
-          "win_rate": 0.7551
+          "win_rate": 0.7568
         },
         {
           "sequence_ids": [
             2043074967,
-            3727084744,
-            1472593493,
-            1472593493,
-            3493884851,
-            3493884851,
-            3493884851,
-            3493884851,
-            2043074967,
-            2043074967,
             2043074967,
             3727084744,
             1472593493,
             1472593493,
+            3493884851,
+            3493884851,
+            3493884851,
+            3493884851,
+            1472593493,
+            1472593493,
+            2043074967,
+            2043074967,
+            3727084744,
             3727084744,
             3727084744
           ],
           "sequence_names": [
             "Pain Battery",
-            "Jumpstart",
-            "Aura of Suffering",
-            "Aura of Suffering",
-            "Shocking Reanimation",
-            "Shocking Reanimation",
-            "Shocking Reanimation",
-            "Shocking Reanimation",
-            "Pain Battery",
-            "Pain Battery",
             "Pain Battery",
             "Jumpstart",
             "Aura of Suffering",
             "Aura of Suffering",
+            "Shocking Reanimation",
+            "Shocking Reanimation",
+            "Shocking Reanimation",
+            "Shocking Reanimation",
+            "Aura of Suffering",
+            "Aura of Suffering",
+            "Pain Battery",
+            "Pain Battery",
+            "Jumpstart",
             "Jumpstart",
             "Jumpstart"
           ],
-          "wins": 158,
-          "losses": 53,
-          "matches": 211,
-          "players": 99,
-          "win_rate": 0.7488
+          "wins": 149,
+          "losses": 50,
+          "matches": 199,
+          "players": 124,
+          "win_rate": 0.7487
         }
       ],
       "best_openers_first4": [
@@ -21272,9 +21327,9 @@
             "Aura of Suffering",
             "Shocking Reanimation"
           ],
-          "wins": 1904,
-          "matches": 3013,
-          "win_rate": 0.6319
+          "wins": 1943,
+          "matches": 3080,
+          "win_rate": 0.6308
         },
         {
           "sequence_names": [
@@ -21283,9 +21338,9 @@
             "Jumpstart",
             "Shocking Reanimation"
           ],
-          "wins": 332,
-          "matches": 529,
-          "win_rate": 0.6276
+          "wins": 337,
+          "matches": 538,
+          "win_rate": 0.6264
         },
         {
           "sequence_names": [
@@ -21294,9 +21349,9 @@
             "Jumpstart",
             "Jumpstart"
           ],
-          "wins": 482,
-          "matches": 808,
-          "win_rate": 0.5965
+          "wins": 507,
+          "matches": 845,
+          "win_rate": 0.6
         },
         {
           "sequence_names": [
@@ -21305,9 +21360,9 @@
             "Aura of Suffering",
             "Aura of Suffering"
           ],
-          "wins": 954,
-          "matches": 1636,
-          "win_rate": 0.5831
+          "wins": 972,
+          "matches": 1665,
+          "win_rate": 0.5838
         },
         {
           "sequence_names": [
@@ -21316,15 +21371,15 @@
             "Aura of Suffering",
             "Jumpstart"
           ],
-          "wins": 6772,
-          "matches": 11738,
-          "win_rate": 0.5769
+          "wins": 6865,
+          "matches": 11917,
+          "win_rate": 0.5761
         }
       ]
     },
     "ascendant_plus": {
-      "total_records": 473,
-      "total_matches": 27978,
+      "total_records": 483,
+      "total_matches": 28525,
       "ability_priority": [
         {
           "ability_id": 2043074967,
@@ -21343,14 +21398,14 @@
         {
           "ability_id": 1472593493,
           "name": "Aura of Suffering",
-          "avg_ap_all_players": 3.73,
+          "avg_ap_all_players": 3.72,
           "avg_ap_winners": 3.84,
           "winner_premium_ap": 0.12
         },
         {
           "ability_id": 3727084744,
           "name": "Jumpstart",
-          "avg_ap_all_players": 3.44,
+          "avg_ap_all_players": 3.45,
           "avg_ap_winners": 3.63,
           "winner_premium_ap": 0.19
         }
@@ -21393,11 +21448,11 @@
             "Aura of Suffering",
             "Jumpstart"
           ],
-          "wins": 54,
+          "wins": 55,
           "losses": 12,
-          "matches": 66,
+          "matches": 67,
           "players": 38,
-          "win_rate": 0.8182
+          "win_rate": 0.8209
         },
         {
           "sequence_ids": [
@@ -21522,11 +21577,11 @@
             "Aura of Suffering",
             "Aura of Suffering"
           ],
-          "wins": 83,
-          "losses": 23,
-          "matches": 106,
-          "players": 60,
-          "win_rate": 0.783
+          "wins": 101,
+          "losses": 27,
+          "matches": 128,
+          "players": 76,
+          "win_rate": 0.7891
         },
         {
           "sequence_ids": [
@@ -21565,11 +21620,11 @@
             "Jumpstart",
             "Jumpstart"
           ],
-          "wins": 96,
-          "losses": 27,
-          "matches": 123,
-          "players": 59,
-          "win_rate": 0.7805
+          "wins": 97,
+          "losses": 28,
+          "matches": 125,
+          "players": 60,
+          "win_rate": 0.776
         }
       ],
       "best_openers_first4": [
@@ -21580,9 +21635,9 @@
             "Aura of Suffering",
             "Shocking Reanimation"
           ],
-          "wins": 1437,
-          "matches": 2299,
-          "win_rate": 0.6251
+          "wins": 1471,
+          "matches": 2359,
+          "win_rate": 0.6236
         },
         {
           "sequence_names": [
@@ -21591,9 +21646,9 @@
             "Jumpstart",
             "Shocking Reanimation"
           ],
-          "wins": 265,
-          "matches": 429,
-          "win_rate": 0.6177
+          "wins": 266,
+          "matches": 433,
+          "win_rate": 0.6143
         },
         {
           "sequence_names": [
@@ -21602,9 +21657,9 @@
             "Jumpstart",
             "Jumpstart"
           ],
-          "wins": 247,
-          "matches": 408,
-          "win_rate": 0.6054
+          "wins": 251,
+          "matches": 416,
+          "win_rate": 0.6034
         },
         {
           "sequence_names": [
@@ -21613,9 +21668,9 @@
             "Aura of Suffering",
             "Aura of Suffering"
           ],
-          "wins": 628,
-          "matches": 1068,
-          "win_rate": 0.588
+          "wins": 636,
+          "matches": 1081,
+          "win_rate": 0.5883
         },
         {
           "sequence_names": [
@@ -21624,15 +21679,15 @@
             "Aura of Suffering",
             "Jumpstart"
           ],
-          "wins": 4350,
-          "matches": 7563,
+          "wins": 4401,
+          "matches": 7651,
           "win_rate": 0.5752
         }
       ]
     },
     "eternus_plus": {
-      "total_records": 258,
-      "total_matches": 5762,
+      "total_records": 260,
+      "total_matches": 5860,
       "ability_priority": [
         {
           "ability_id": 3493884851,
@@ -21710,6 +21765,49 @@
         {
           "sequence_ids": [
             2043074967,
+            2043074967,
+            3727084744,
+            1472593493,
+            2043074967,
+            3493884851,
+            3493884851,
+            3493884851,
+            3493884851,
+            1472593493,
+            1472593493,
+            1472593493,
+            2043074967,
+            3727084744,
+            3727084744,
+            3727084744
+          ],
+          "sequence_names": [
+            "Pain Battery",
+            "Pain Battery",
+            "Jumpstart",
+            "Aura of Suffering",
+            "Pain Battery",
+            "Shocking Reanimation",
+            "Shocking Reanimation",
+            "Shocking Reanimation",
+            "Shocking Reanimation",
+            "Aura of Suffering",
+            "Aura of Suffering",
+            "Aura of Suffering",
+            "Pain Battery",
+            "Jumpstart",
+            "Jumpstart",
+            "Jumpstart"
+          ],
+          "wins": 15,
+          "losses": 3,
+          "matches": 18,
+          "players": 7,
+          "win_rate": 0.8333
+        },
+        {
+          "sequence_ids": [
+            2043074967,
             3727084744,
             1472593493,
             3493884851,
@@ -21758,49 +21856,6 @@
             1472593493,
             2043074967,
             3493884851,
-            3493884851,
-            3493884851,
-            3493884851,
-            1472593493,
-            1472593493,
-            1472593493,
-            2043074967,
-            3727084744,
-            3727084744,
-            3727084744
-          ],
-          "sequence_names": [
-            "Pain Battery",
-            "Pain Battery",
-            "Jumpstart",
-            "Aura of Suffering",
-            "Pain Battery",
-            "Shocking Reanimation",
-            "Shocking Reanimation",
-            "Shocking Reanimation",
-            "Shocking Reanimation",
-            "Aura of Suffering",
-            "Aura of Suffering",
-            "Aura of Suffering",
-            "Pain Battery",
-            "Jumpstart",
-            "Jumpstart",
-            "Jumpstart"
-          ],
-          "wins": 14,
-          "losses": 3,
-          "matches": 17,
-          "players": 7,
-          "win_rate": 0.8235
-        },
-        {
-          "sequence_ids": [
-            2043074967,
-            2043074967,
-            3727084744,
-            1472593493,
-            2043074967,
-            3493884851,
             3727084744,
             3727084744,
             2043074967,
@@ -21830,11 +21885,11 @@
             "Aura of Suffering",
             "Aura of Suffering"
           ],
-          "wins": 42,
+          "wins": 43,
           "losses": 10,
-          "matches": 52,
-          "players": 31,
-          "win_rate": 0.8077
+          "matches": 53,
+          "players": 32,
+          "win_rate": 0.8113
         },
         {
           "sequence_ids": [
@@ -21888,9 +21943,9 @@
             "Aura of Suffering",
             "Shocking Reanimation"
           ],
-          "wins": 427,
-          "matches": 689,
-          "win_rate": 0.6197
+          "wins": 432,
+          "matches": 696,
+          "win_rate": 0.6207
         },
         {
           "sequence_names": [
@@ -21899,9 +21954,9 @@
             "Jumpstart",
             "Aura of Suffering"
           ],
-          "wins": 378,
-          "matches": 634,
-          "win_rate": 0.5962
+          "wins": 397,
+          "matches": 670,
+          "win_rate": 0.5925
         },
         {
           "sequence_names": [
@@ -21910,9 +21965,9 @@
             "Aura of Suffering",
             "Aura of Suffering"
           ],
-          "wins": 166,
-          "matches": 285,
-          "win_rate": 0.5825
+          "wins": 169,
+          "matches": 290,
+          "win_rate": 0.5828
         },
         {
           "sequence_names": [
@@ -21932,9 +21987,9 @@
             "Aura of Suffering",
             "Jumpstart"
           ],
-          "wins": 911,
-          "matches": 1637,
-          "win_rate": 0.5565
+          "wins": 918,
+          "matches": 1649,
+          "win_rate": 0.5567
         }
       ]
     }
