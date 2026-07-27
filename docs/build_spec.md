@@ -33,7 +33,7 @@ Population stats for the two skill cohorts we analyze:
 - **`all_mmr`**: no MMR filter — everyone playing the patch. High sample, low signal (selection bias from low-skill noise).
 - **`high_mmr`**: `min_average_badge=91` (Phantom 1+, ~top 15–20% of player base). Lower sample, sharper signal.
 
-Each slice records `baseline_win_rate`, `matches`, and `players`. For Shiv: 47.05% over 296K matches at all-MMR vs 47.35% over 70K at high-MMR.
+Each slice records `baseline_win_rate`, `matches`, and `players`. For Shiv: 47.05% over 296K matches at all-MMR vs 47.35% over 70K at high-MMR. (`players` is `null` for data generated after 2026-06-07 — the hero-stats endpoint dropped its unique-player count in that API revision; the page omits the figure when absent.)
 
 ## `recommended` (the headline answer)
 

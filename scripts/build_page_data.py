@@ -45,7 +45,9 @@ def _compact_mmr(mmr_slices: dict) -> dict:
             return {"wr": None, "matches": 0, "players": 0}
         return {"wr": s.get("baseline_win_rate"),
                 "matches": s.get("matches", 0),
-                "players": s.get("players", 0)}
+                # `or 0` (not a .get default): since the 2026-06-07 API
+                # revision the slice can carry players=None explicitly.
+                "players": s.get("players") or 0}
     return {
         "all":  _row(mmr_slices.get("all_mmr")),
         "high": _row(mmr_slices.get("high_mmr")),
@@ -987,14 +989,14 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
             bucket["n_sequences"] += 1
             bucket["total_matches"] += r.get("matches", 0)
             bucket["total_wins"] += r.get("wins", 0)
-            bucket["n_players"] += r.get("players", 0)
+            bucket["n_players"] += r.get("players") or 0
             seq_wr = (r.get("wins", 0) / r.get("matches", 1)) if r.get("matches") else 0
             best_so_far = bucket["_best_rep"]
             if best_so_far is None or seq_wr > best_so_far["wr"]:
                 bucket["_best_rep"] = {
                     "wr": seq_wr,
                     "matches": r.get("matches", 0),
-                    "players": r.get("players", 0),
+                    "players": r.get("players") or 0,
                     "sequence_ids": r.get("sequence_ids") or [],
                 }
 

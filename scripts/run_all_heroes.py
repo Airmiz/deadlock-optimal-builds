@@ -316,6 +316,13 @@ def main():
         print(f"  errors: {len(errors)}")
         for r in errors:
             print(f"    {r[1]}: {r[2]}")
+        # Fail the run. Silent per-hero failures are how the site served
+        # frozen builds for 7 weeks after the 2026-06-07 API schema change:
+        # every hero errored, the workflow stayed green, and only the HTML
+        # timestamp kept changing. A red workflow is the feature here.
+        # (A brand-new patch with no data yet also lands here — that red is
+        # correct too: the page shouldn't pretend to have builds it lacks.)
+        sys.exit(1)
 
 
 if __name__ == "__main__":

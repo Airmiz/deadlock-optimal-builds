@@ -23,7 +23,7 @@ on:
   workflow_dispatch:
     inputs:
       patch_id:
-        description: 'Patch ID to resolve (empty = both patches)'
+        description: 'Patch ID to resolve (empty = every patch in scripts/_paths.py)'
         required: false
         default: ''
 
@@ -61,32 +61,31 @@ jobs:
         uses: actions/cache@v4
         with:
           path: cache
-          key: deadlock-cache-v1-${{ github.run_id }}
+          # Keep the key prefix in lockstep with refresh.yml — both
+          # workflows share one cache layout.
+          key: deadlock-cache-v2-${{ github.run_id }}
           restore-keys: |
-            deadlock-cache-v1-
+            deadlock-cache-v2-
 
       # We need the heroes/<patch>/*_build.json files (with their
       # joint_archetypes and ability_orders fields) for the resolver
       # to enumerate which fingerprints to resolve. The refresh
       # workflow commits them to main, so a fresh checkout has them.
-      - name: Confirm hero JSONs are present
-        run: |
-          ls heroes/patch_125825/ | head -3
-          ls heroes/patch_129989/ | head -3
-
-      - name: Resolve patch_125825
-        if: ${{ github.event.inputs.patch_id == '' || github.event.inputs.patch_id == 'patch_125825' }}
+      # Loops over scripts/_paths.py PATCH_REGISTRY (same convention as
+      # refresh.yml) so adding a patch there is the only edit needed.
+      - name: Resolve all patches in the registry
         env:
           PYTHONUNBUFFERED: '1'
+          PATCH_FILTER: ${{ github.event.inputs.patch_id }}
         run: |
-          python3 -u scripts/match_archetype_resolver.py --bulk --patch patch_125825
-
-      - name: Resolve patch_129989
-        if: ${{ github.event.inputs.patch_id == '' || github.event.inputs.patch_id == 'patch_129989' }}
-        env:
-          PYTHONUNBUFFERED: '1'
-        run: |
-          python3 -u scripts/match_archetype_resolver.py --bulk --patch patch_129989
+          PATCHES="${PATCH_FILTER:-$(python3 -c "import sys; sys.path.insert(0, 'scripts'); from _paths import PATCH_REGISTRY; print(' '.join(PATCH_REGISTRY))")}"
+          echo "Resolving patches: $PATCHES"
+          for p in $PATCHES; do
+            echo "::group::$p"
+            ls "heroes/$p/" | head -3 || { echo "no hero JSONs for $p yet — skipping"; echo "::endgroup::"; continue; }
+            python3 -u scripts/match_archetype_resolver.py --bulk --patch "$p"
+            echo "::endgroup::"
+          done
 
       # Rebuild the page payload + HTML so the resolved items land on
       # the live site without waiting for the next refresh cron.
@@ -134,7 +133,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: cache
-          key: deadlock-cache-v1-${{ github.run_id }}
+          key: deadlock-cache-v2-${{ github.run_id }}
 
       # Pages deployment handled by .github/workflows/deploy.yml — it
       # auto-triggers off the commit step above pushing the rebuilt page
