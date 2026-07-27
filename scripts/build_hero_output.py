@@ -761,19 +761,24 @@ def _mmr_slices_payload(base_all: dict, base_hmmr: dict,
     historical invariant). Ascendant+ and Eternus+ are added only when their
     cached baseline file exists *and* contains this hero (otherwise the
     higher-rank player pool was empty for this hero on this patch). The
-    page treats absent slices as 'insufficient data'."""
+    page treats absent slices as 'insufficient data'.
+
+    `players` is None when the baseline row doesn't carry it: the
+    hero-stats endpoint dropped its unique-player count in the 2026-06-07
+    API revision (rows became bucketed aggregates). The page hides the
+    players figure for slices where it's missing."""
     out = {
         "all_mmr": {
             "filter": "no MMR filter",
             "baseline_win_rate": round(base_all["wins"] / base_all["matches"], 4),
             "matches": base_all["matches"],
-            "players": base_all["players"],
+            "players": base_all.get("players"),
         },
         "high_mmr": {
             "filter": f"min_average_badge={HMMR_BADGE} (Phantom+)",
             "baseline_win_rate": round(base_hmmr["wins"] / base_hmmr["matches"], 4),
             "matches": base_hmmr["matches"],
-            "players": base_hmmr["players"],
+            "players": base_hmmr.get("players"),
         },
     }
     if base_asc and base_asc.get("matches"):
@@ -781,14 +786,14 @@ def _mmr_slices_payload(base_all: dict, base_hmmr: dict,
             "filter": f"min_average_badge={ASCENDANT_BADGE} (Ascendant+)",
             "baseline_win_rate": round(base_asc["wins"] / base_asc["matches"], 4),
             "matches": base_asc["matches"],
-            "players": base_asc["players"],
+            "players": base_asc.get("players"),
         }
     if base_eter and base_eter.get("matches"):
         out["eternus_plus"] = {
             "filter": f"min_average_badge={ETERNUS_BADGE} (Eternus+)",
             "baseline_win_rate": round(base_eter["wins"] / base_eter["matches"], 4),
             "matches": base_eter["matches"],
-            "players": base_eter["players"],
+            "players": base_eter.get("players"),
         }
     return out
 

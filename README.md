@@ -4,7 +4,7 @@ Statistically derived optimal item builds and ability point orders for every pla
 
 The headline deliverable is a single self-contained HTML page — open it in any browser, click a hero, and see the recommended build, ability priority, openers, and full ability sequence for the current patch.
 
-![patch](https://img.shields.io/badge/patch-125825%20%E2%80%94%2004--10--2026-orange)
+![patch](https://img.shields.io/badge/patch-146261%20%E2%80%94%2006--30--2026-orange)
 ![heroes](https://img.shields.io/badge/heroes-38-blue)
 ![data](https://img.shields.io/badge/data-deadlock--api.com-lightgrey)
 
@@ -71,7 +71,10 @@ See `docs/build_spec.md` for the full output schema and `docs/shiv_mmr_compariso
 
 When a new patch drops:
 
-1. Edit `scripts/_paths.py` and update `PATCH_ID`, `PATCH_TITLE`, and `PATCH_MIN_TS` to the new patch's ID and Unix start timestamp. (You can fetch the patch list from `https://api.deadlock-api.com/v1/patches` to find the new timestamp.)
+1. Add the patch to `PATCH_REGISTRY` in `scripts/_paths.py` — that one edit is all the refresh workflow needs:
+   - **id**: the forums.playdeadlock.com changelog thread id (`https://api.deadlock-api.com/v1/patches` lists threads; `.../06-30-2026-update.146261/` → `patch_146261`).
+   - **min_ts**: the patch's go-live epoch from Steam news (`https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=1422450&count=30` — match the update's title). Don't use the forum RSS `pub_date`; XenForo bumps it on hotfix edits.
+   - **Close out the previous patch** by setting its `max_ts` to the new patch's `min_ts`, so its aggregates stop absorbing matches played on the new patch.
 2. Run the pipeline in order:
 
 ```bash
@@ -125,4 +128,4 @@ MIT — see `LICENSE`.
 
 ---
 
-**Status reminder:** the data covers `patch_125825` (04-10-2026 Update). Every hero's recommended build is the highest-WR option *given current data* — Deadlock is in active development, the meta will shift, and re-running the pipeline on a new patch is one command.
+**Status reminder:** the newest tracked patch is `patch_146261` (06-30-2026 Update). Every hero's recommended build is the highest-WR option *given current data* — Deadlock is in active development, the meta will shift, and re-running the pipeline on a new patch is one command.

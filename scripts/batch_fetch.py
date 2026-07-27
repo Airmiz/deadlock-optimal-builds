@@ -15,32 +15,32 @@ Asset metadata (no rate limit, separate host):
   https://assets.deadlock-api.com/v2/items
 """
 import json
+import threading
 import time
+import urllib.error
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from _paths import (
-    CACHE, HERO_DATA, PATCH_CACHE, PATCH_ID, PATCH_TITLE, PATCH_MIN_TS,
-    HMMR_BADGE, ASCENDANT_BADGE, ETERNUS_BADGE, PATCH_REGISTRY,
+    CACHE, HERO_DATA, PATCH_CACHE, PATCH_ID, PATCH_TITLE,
+    PATCH_MAX_TS, TIME_BOUNDS_QS,
+    HMMR_BADGE, ASCENDANT_BADGE, ETERNUS_BADGE,
 )
 
 
 def is_active_patch() -> bool:
-    """True iff PATCH_ID is the newest patch in PATCH_REGISTRY.
+    """True iff PATCH_ID's match window is still open (no max_ts bound).
 
-    Old patches are no longer accumulating new matches (the game has
-    moved on), so their analytics aggregates are immutable in practice.
-    Callers use this to short-circuit re-fetching for closed patches —
-    once the data is on disk, it stays.
+    Closed patches are no longer accumulating new matches — their window
+    is bounded by max_unix_timestamp — so their analytics aggregates are
+    immutable. Callers use this to short-circuit re-fetching for closed
+    patches: once the data is on disk, it stays.
 
-    Returns True conservatively if the registry is empty or PATCH_MIN_TS
-    is unknown, so a clean first-time run still pulls fresh data.
+    An unknown PATCH_ID (not in the registry) has no max_ts and is
+    treated as active, so a first-time run still pulls fresh data.
     """
-    if not PATCH_REGISTRY or not PATCH_MIN_TS:
-        return True
-    latest_ts = max((meta.get("min_ts", 0) for meta in PATCH_REGISTRY.values()), default=0)
-    return PATCH_MIN_TS >= latest_ts
+    return PATCH_MAX_TS is None
 
 
 HMMR_MIN_MATCHES_BUILD = 30
@@ -82,6 +82,44 @@ TTL_ANALYTICS = 2 * 3600        # 2 hours
 DEFAULT_TTL = TTL_ANALYTICS
 
 
+# --- global request pacing ---------------------------------------------
+# api.deadlock-api.com allows 200 req/min per anonymous IP. Uncapped worker
+# pools burst well past that: GitHub runners get Cloudflare-banned after
+# ~50 requests and every subsequent call fails instantly (observed
+# fetched=52/errors=1354 in CI before this limiter existed). One shared
+# pacer keeps ALL fetch() callers — analytics, builds, counters — at a
+# safe aggregate rate no matter how many threads they use. Cached hits
+# never touch the pacer, so warm runs stay fast.
+_PACE_MIN_INTERVAL = 0.35          # ~170 req/min, headroom under the 200 cap
+_pace_lock = threading.Lock()
+_pace_next_slot = [0.0]            # monotonic time the next request may fire
+_RETRIABLE_HTTP = {403, 429, 503}  # Cloudflare throttle/challenge responses
+_BACKOFF_S = (10, 30, 60)          # per-attempt cooldown before retrying
+
+
+def _pace() -> None:
+    """Block until this thread may issue the next HTTP request.
+
+    Sleeping while holding the lock is deliberate: it serializes slot
+    reservation so N workers collectively never exceed the global rate.
+    """
+    with _pace_lock:
+        now = time.monotonic()
+        wait = _pace_next_slot[0] - now
+        if wait > 0:
+            time.sleep(wait)
+            now = time.monotonic()
+        _pace_next_slot[0] = now + _PACE_MIN_INTERVAL
+
+
+def _pace_penalty(seconds: float) -> None:
+    """Push the global next-request slot out — called after a 429/403 so
+    every worker backs off together instead of piling onto a tripped
+    rate limit one after another."""
+    with _pace_lock:
+        _pace_next_slot[0] = max(_pace_next_slot[0], time.monotonic() + seconds)
+
+
 def fetch(url: str, dest: Path, timeout: int = 25,
           ttl: int | None = DEFAULT_TTL) -> tuple[Path, str]:
     """Fetch `url` to `dest`, returning ('cached'|'ok'|'error: ...').
@@ -97,6 +135,10 @@ def fetch(url: str, dest: Path, timeout: int = 25,
     Empty `[]` responses (2 bytes) are valid cached results for brand-new
     patches where the API genuinely has no data yet, so we don't treat
     them as missing.
+
+    Live requests go through the global pacer above, and rate-limit
+    responses (429/403/503) get up to three retries with escalating
+    shared cooldowns before counting as an error.
     """
     if dest.exists() and dest.stat().st_size >= 2:
         if ttl is None:
@@ -105,20 +147,34 @@ def fetch(url: str, dest: Path, timeout: int = 25,
         if age < ttl:
             return dest, "cached"
         # Stale — fall through to re-fetch
-    try:
-        req = urllib.request.Request(url, headers=_HEADERS)
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            data = r.read()
-        if len(data) < 2 and dest.exists() and dest.stat().st_size >= 2:
-            # API returned empty/error but we have a previous response —
-            # prefer the stale-but-real data over an empty replacement.
-            return dest, "stale-keep"
-        dest.write_bytes(data)
-        return dest, "ok"
-    except Exception as e:
-        # Network/API failure: keep the stale file (if any) rather than
-        # blowing it away. Caller sees "error" so it can log + continue.
-        return dest, f"error: {e}"
+    last_err: Exception | None = None
+    for cooldown in (0,) + _BACKOFF_S:
+        if cooldown and isinstance(last_err, urllib.error.HTTPError) \
+                and last_err.code in _RETRIABLE_HTTP:
+            # Tripped the rate limit: push everyone's next slot out so the
+            # pool doesn't pile onto a limit that just rejected us.
+            _pace_penalty(cooldown)
+        _pace()
+        try:
+            req = urllib.request.Request(url, headers=_HEADERS)
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                data = r.read()
+            if len(data) < 2 and dest.exists() and dest.stat().st_size >= 2:
+                # API returned empty/error but we have a previous response —
+                # prefer the stale-but-real data over an empty replacement.
+                return dest, "stale-keep"
+            dest.write_bytes(data)
+            return dest, "ok"
+        except urllib.error.HTTPError as e:
+            last_err = e
+            if e.code not in _RETRIABLE_HTTP:
+                break
+        except Exception as e:
+            # Network hiccup — one paced retry via the loop is fine.
+            last_err = e
+    # Failure: keep the stale file (if any) rather than blowing it away.
+    # Caller sees "error" so it can log + continue.
+    return dest, f"error: {last_err}"
 
 
 def bootstrap_assets() -> None:
@@ -138,10 +194,15 @@ def bootstrap_assets() -> None:
     fetch("https://assets.deadlock-api.com/v2/items",  PATCH_CACHE / "items.json",  ttl=TTL_ASSETS)
     # Mirror to cache/ root for legacy callers (build_page_data still
     # reads items_assets at module level; will migrate in a follow-up).
-    if not (CACHE / "heroes.json").exists():
-        (CACHE / "heroes.json").write_bytes((PATCH_CACHE / "heroes.json").read_bytes())
-    if not (CACHE / "items.json").exists():
-        (CACHE / "items.json").write_bytes((PATCH_CACHE / "items.json").read_bytes())
+    # ALWAYS overwrite: the root mirror used to be written only when
+    # missing, which froze it forever inside the persisted CI cache — a
+    # hero or item added in a later patch would never become visible to
+    # the root readers (batch_fetch_builds, batch_fetch_counters, and the
+    # per-hero item metadata). Each patch's bootstrap now stamps its own
+    # snapshot into the root, so within one patch's pipeline pass the
+    # root always reflects that patch.
+    (CACHE / "heroes.json").write_bytes((PATCH_CACHE / "heroes.json").read_bytes())
+    (CACHE / "items.json").write_bytes((PATCH_CACHE / "items.json").read_bytes())
 
     with open(PATCH_CACHE / "heroes.json", encoding="utf-8") as f:
         heroes = json.load(f)
@@ -154,16 +215,16 @@ def bootstrap_assets() -> None:
     dest = PATCH_CACHE / "playable_heroes.json"
     with open(dest, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2)
-    # Mirror to legacy global path for backwards compat
-    if not (CACHE / "playable_heroes.json").exists():
-        with open(CACHE / "playable_heroes.json", "w", encoding="utf-8") as f:
-            json.dump(payload, f, indent=2)
+    # Mirror to legacy global path for backwards compat — always
+    # overwritten for the same staleness reason as the asset mirrors above.
+    with open(CACHE / "playable_heroes.json", "w", encoding="utf-8") as f:
+        json.dump(payload, f, indent=2)
     print(f"  playable heroes: {len(playable)} -> {dest.relative_to(PATCH_CACHE.parent.parent)}")
 
 
 def hero_urls(hid: int) -> list[tuple[str, Path]]:
     base = "https://api.deadlock-api.com/v1/analytics"
-    common = f"min_unix_timestamp={PATCH_MIN_TS}"
+    common = TIME_BOUNDS_QS
     return [
         # All MMR — no badge filter, full population
         (f"{base}/item-stats?hero_id={hid}&{common}&min_matches=20",
@@ -216,13 +277,13 @@ def main() -> None:
           f"[{'ACTIVE — using 2h TTL' if active else 'CLOSED — using cache forever'}] …")
     bootstrap_assets()
 
-    fetch(f"https://api.deadlock-api.com/v1/analytics/hero-stats?min_unix_timestamp={PATCH_MIN_TS}",
+    fetch(f"https://api.deadlock-api.com/v1/analytics/hero-stats?{TIME_BOUNDS_QS}",
           PATCH_CACHE / "hero_stats_all.json", ttl=ttl)
-    fetch(f"https://api.deadlock-api.com/v1/analytics/hero-stats?min_unix_timestamp={PATCH_MIN_TS}&min_average_badge={HMMR_BADGE}",
+    fetch(f"https://api.deadlock-api.com/v1/analytics/hero-stats?{TIME_BOUNDS_QS}&min_average_badge={HMMR_BADGE}",
           PATCH_CACHE / "hero_stats_hmmr.json", ttl=ttl)
-    fetch(f"https://api.deadlock-api.com/v1/analytics/hero-stats?min_unix_timestamp={PATCH_MIN_TS}&min_average_badge={ASCENDANT_BADGE}",
+    fetch(f"https://api.deadlock-api.com/v1/analytics/hero-stats?{TIME_BOUNDS_QS}&min_average_badge={ASCENDANT_BADGE}",
           PATCH_CACHE / "hero_stats_asc.json", ttl=ttl)
-    fetch(f"https://api.deadlock-api.com/v1/analytics/hero-stats?min_unix_timestamp={PATCH_MIN_TS}&min_average_badge={ETERNUS_BADGE}",
+    fetch(f"https://api.deadlock-api.com/v1/analytics/hero-stats?{TIME_BOUNDS_QS}&min_average_badge={ETERNUS_BADGE}",
           PATCH_CACHE / "hero_stats_eter.json", ttl=ttl)
 
     print("[2/3] Building per-hero job list …")
@@ -236,9 +297,11 @@ def main() -> None:
     print("[3/3] Fetching …")
     t0 = time.time()
     cached = ok = stale = err = 0
-    # Lower parallelism (3 instead of 6) to stay under the 200 req/min IP cap
-    # — important when both patches are being fetched on the same day.
-    with ThreadPoolExecutor(max_workers=3) as pool:
+    # Worker count only sets concurrency-vs-latency; the global pacer in
+    # fetch() is what enforces the 200 req/min IP cap. Cold analytics
+    # queries run ~3s server-side, so 6 workers ≈ 2 req/s — still under
+    # the pacer's ceiling.
+    with ThreadPoolExecutor(max_workers=6) as pool:
         futures = {pool.submit(fetch, u, d, 25, ttl): (u, d) for u, d in all_jobs}
         for i, fut in enumerate(as_completed(futures), 1):
             _, status = fut.result()

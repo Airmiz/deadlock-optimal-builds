@@ -2224,7 +2224,7 @@ HTML = """<!doctype html>
           <h2>${h.name}</h2>
           <div class="stats">
             <div class="stat"><strong>Baseline WR:</strong> <span class="wr-badge ${wrClass(wr)}">${fmtPct(wr)}</span></div>
-            <div class="stat"><strong>Sample:</strong> ${slice.matches.toLocaleString()} matches · ${slice.players.toLocaleString()} players</div>
+            <div class="stat"><strong>Sample:</strong> ${slice.matches.toLocaleString()} matches${slice.players ? ` · ${slice.players.toLocaleString()} players` : ''}</div>
             <div class="stat"><strong>Build cost:</strong> ${fmtCost(totalCost)}</div>
             ${sigCount > 0 ? `<div class="stat"><strong>Signature picks:</strong> ${sigCount} ⭐ <span style="color:var(--text-dim);font-size:11px">hero-specific items</span></div>` : ''}
           </div>

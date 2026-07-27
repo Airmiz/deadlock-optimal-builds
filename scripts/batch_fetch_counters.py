@@ -5,10 +5,9 @@ diffs each item's WR against the no-enemy-filter baseline to surface
 matchup-specific item swaps.
 
 Scope:
-  - One patch per run (PATCH_ID env var, defaults to oldest patch with
-    stable data). Counter-picks need a healthy sample size, so we use
-    the older patch by default unless the new one has accumulated enough
-    matches.
+  - One patch per run (PATCH_ID env var, defaults to the newest patch in
+    the registry). Closed patches carry a max_unix_timestamp bound so
+    their counter data stays pure after the game moves on.
   - High-MMR slice only (min_average_badge=91). Counter-picks are
     high-skill plays — averaging across all skill levels muddies the
     signal.
@@ -27,7 +26,7 @@ from pathlib import Path
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _paths import (
-    CACHE, PATCH_CACHE, PATCH_ID, PATCH_TITLE, PATCH_MIN_TS, HMMR_BADGE,
+    CACHE, PATCH_CACHE, PATCH_ID, PATCH_TITLE, TIME_BOUNDS_QS, HMMR_BADGE,
 )
 from batch_fetch import _HEADERS, fetch, is_active_patch, DEFAULT_TTL  # reuse the same fetch helper
 
@@ -41,7 +40,7 @@ def hero_vs_enemy_url(hero_id: int, enemy_id: int) -> str:
         "https://api.deadlock-api.com/v1/analytics/item-stats"
         f"?hero_id={hero_id}"
         f"&enemy_hero_ids={enemy_id}"
-        f"&min_unix_timestamp={PATCH_MIN_TS}"
+        f"&{TIME_BOUNDS_QS}"
         f"&min_average_badge={HMMR_BADGE}"
         "&min_matches=20"
     )
@@ -66,10 +65,10 @@ def main() -> None:
 
     print(f"      {len(jobs)} jobs (excluding self-mirror)")
 
-    print(f"[2/2] Fetching with 3 workers (Cloudflare-friendly) …")
+    print(f"[2/2] Fetching with 6 workers (paced under the 200/min IP cap) …")
     t0 = time.time()
     cached = ok = err = 0
-    with ThreadPoolExecutor(max_workers=3) as pool:
+    with ThreadPoolExecutor(max_workers=6) as pool:
         futs = {pool.submit(fetch, u, d, 25, ttl): (u, d) for u, d in jobs}
         for i, fut in enumerate(as_completed(futs), 1):
             _, status = fut.result()
@@ -81,6 +80,14 @@ def main() -> None:
                 rate = (cached + ok) / max(elapsed, 0.1)
                 print(f"  {i}/{len(jobs)}  cached={cached} ok={ok} err={err}  {elapsed:.1f}s  ({rate:.0f}/s)")
     print(f"\nDone in {time.time()-t0:.1f}s. cached={cached}, fetched={ok}, errors={err}")
+
+    # A few scattered errors are tolerable (stale files are kept and the
+    # matchup matrix degrades gracefully), but a majority-error run means
+    # something systemic — rate-limit ban, endpoint change, network — and
+    # must fail the workflow instead of silently shipping stale counters.
+    if err > len(jobs) / 2:
+        print(f"FATAL: {err}/{len(jobs)} counter fetches failed — systemic API failure")
+        sys.exit(1)
 
 
 if __name__ == "__main__":

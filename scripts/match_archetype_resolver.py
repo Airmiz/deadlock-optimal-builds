@@ -107,14 +107,14 @@ def _cache_path(patch_id: str, hero_id: int, slice_label: str,
     return RESOLUTIONS_DIR / patch_id / f"{hero_id}_{slice_label}_{h}.json"
 
 
-def _scoreboard_candidates(hero_id: int, patch_min_ts: int,
+def _scoreboard_candidates(hero_id: int, bounds_qs: str,
                            badge: int | None, depth: int,
                            sort_by: str = "matches") -> list[int]:
     badge_q = f"&min_average_badge={badge}" if badge is not None else ""
     url = (
         "https://api.deadlock-api.com/v1/analytics/scoreboards/players"
         f"?hero_ids={hero_id}"
-        f"&min_unix_timestamp={patch_min_ts}"
+        f"&{bounds_qs}"
         f"{badge_q}"
         f"&sort_by={sort_by}&sort_direction=desc"
         f"&limit={depth}&min_matches=5"
@@ -123,13 +123,13 @@ def _scoreboard_candidates(hero_id: int, patch_min_ts: int,
     return [r["account_id"] for r in rows if isinstance(r, dict) and r.get("account_id")]
 
 
-def _account_sequences(hero_id: int, account_id: int, patch_min_ts: int,
+def _account_sequences(hero_id: int, account_id: int, bounds_qs: str,
                        badge: int | None) -> list[dict]:
     badge_q = f"&min_average_badge={badge}" if badge is not None else ""
     url = (
         "https://api.deadlock-api.com/v1/analytics/ability-order-stats"
         f"?hero_id={hero_id}"
-        f"&min_unix_timestamp={patch_min_ts}"
+        f"&{bounds_qs}"
         f"{badge_q}"
         f"&account_ids={account_id}"
         "&min_matches=1"
@@ -137,7 +137,7 @@ def _account_sequences(hero_id: int, account_id: int, patch_min_ts: int,
     return _api_get(url) or []
 
 
-def _account_items(hero_id: int, account_ids: list[int], patch_min_ts: int,
+def _account_items(hero_id: int, account_ids: list[int], bounds_qs: str,
                    badge: int | None) -> list[dict]:
     """Single aggregated item-stats query for a population of accounts."""
     if not account_ids:
@@ -147,7 +147,7 @@ def _account_items(hero_id: int, account_ids: list[int], patch_min_ts: int,
     url = (
         "https://api.deadlock-api.com/v1/analytics/item-stats"
         f"?hero_id={hero_id}"
-        f"&min_unix_timestamp={patch_min_ts}"
+        f"&{bounds_qs}"
         f"{badge_q}"
         f"&account_ids={ids_q}"
         "&min_matches=1"
@@ -189,7 +189,11 @@ def resolve_archetype(
         except Exception:
             pass
 
-    patch_min_ts = PATCH_REGISTRY[patch_id]["min_ts"]
+    _pmeta = PATCH_REGISTRY[patch_id]
+    bounds_qs = f"min_unix_timestamp={_pmeta['min_ts']}"
+    if _pmeta.get("max_ts"):
+        # Closed patch — bound the window so archetypes stay era-pure.
+        bounds_qs += f"&max_unix_timestamp={_pmeta['max_ts']}"
     badge = SLICE_BADGE[slice_label]
     depth = SLICE_CANDIDATE_DEPTH[slice_label]
     target_fp = tuple(fingerprint)
@@ -201,8 +205,8 @@ def resolve_archetype(
     # Pool candidates from two sort orderings — "by matches" catches
     # high-volume players, "by winrate" catches outlier-WR specialists
     # like the 86.96%/23-match Warden case. Dedupe across both lists.
-    matches_candidates = _scoreboard_candidates(hero_id, patch_min_ts, badge, depth, sort_by="matches")
-    winrate_candidates = _scoreboard_candidates(hero_id, patch_min_ts, badge, depth, sort_by="winrate")
+    matches_candidates = _scoreboard_candidates(hero_id, bounds_qs, badge, depth, sort_by="matches")
+    winrate_candidates = _scoreboard_candidates(hero_id, bounds_qs, badge, depth, sort_by="winrate")
     candidates = list(dict.fromkeys(matches_candidates + winrate_candidates))
     if verbose:
         print(f"  {len(candidates)} unique candidates ({len(matches_candidates)} by matches, "
@@ -214,7 +218,7 @@ def resolve_archetype(
     t0 = time.time()
 
     def _check_account(aid: int) -> tuple[int, list[dict]]:
-        seqs = _account_sequences(hero_id, aid, patch_min_ts, badge)
+        seqs = _account_sequences(hero_id, aid, bounds_qs, badge)
         hits = [s for s in seqs
                 if _max_order_fingerprint(s.get("abilities") or []) == target_fp
                 and s.get("matches", 0) >= MIN_PLAYER_SEQUENCE_MATCHES]
@@ -241,7 +245,7 @@ def resolve_archetype(
     # Fetch aggregated item-stats for the matched accounts. account_ids
     # is a list query — the API joins them into "matches involving any
     # of these accounts" which is the right scope for the bundle.
-    items = _account_items(hero_id, matching_accounts, patch_min_ts, badge)
+    items = _account_items(hero_id, matching_accounts, bounds_qs, badge)
 
     # Aggregate into a slot-decorated 16-item bundle. Score = personal
     # pick rate (matches with item / max matches across all items for
@@ -334,7 +338,7 @@ def main() -> None:
     ap.add_argument("--hero", type=int, required=False)
     ap.add_argument("--slice", choices=tuple(SLICE_BADGE), required=False)
     ap.add_argument("--fingerprint", help="Comma-separated ability_ids of the max-order fingerprint")
-    ap.add_argument("--patch", default="patch_129989")
+    ap.add_argument("--patch", default="patch_146261")
     ap.add_argument("--bulk", action="store_true",
                     help="Resolve every match-only archetype for every hero in the patch")
     ap.add_argument("--no-cache", action="store_true")
