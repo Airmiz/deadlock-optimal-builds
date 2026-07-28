@@ -67,6 +67,12 @@ jobs:
           restore-keys: |
             deadlock-cache-v2-
 
+      # Same guard as refresh.yml: the committed wiki-icon manifest is
+      # the source of truth; don't let a stale cached copy stomp it
+      # before the page recompile below reads it.
+      - name: Prefer committed wiki-icon manifest over cached copy
+        run: git checkout -- cache/wiki_icon_overrides.json 2>/dev/null || true
+
       # We need the heroes/<patch>/*_build.json files (with their
       # joint_archetypes and ability_orders fields) for the resolver
       # to enumerate which fingerprints to resolve. The refresh

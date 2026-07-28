@@ -85,6 +85,14 @@ jobs:
           restore-keys: |
             deadlock-cache-v2-
 
+      # The wiki-icon manifest is the one cache/ file that is COMMITTED
+      # (source of truth = the repo, maintained merge-wise by
+      # scrape_wiki_icons.py). A restored cache archive may carry a
+      # stale/shrunken copy from an older run — put the committed one
+      # back before anything reads it.
+      - name: Prefer committed wiki-icon manifest over cached copy
+        run: git checkout -- cache/wiki_icon_overrides.json 2>/dev/null || true
+
       # Optional asset-metadata bust. When the user ticks the
       # `refresh_assets` workflow input, drop the cached items.json and
       # heroes.json snapshots so the next batch_fetch step pulls fresh
