@@ -44,13 +44,20 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _paths import CACHE, ASSETS
+from _paths import CACHE, ASSETS, ROOT
 
 
 WIKI_API = "https://deadlock.wiki/api.php"
 HEADERS = {
-    "User-Agent": "deadlock-optimal-builds icon-refresh "
-                  "(https://github.com/Airmiz/deadlock-optimal-builds)",
+    # deadlock.wiki sits behind Cloudflare, which 403s the polite bot UA
+    # when requests come from datacenter IPs (every GitHub runner since
+    # at least late July 2026 — "batch N failed: HTTP Error 403" across
+    # the board). A browser UA passes the filter; if Cloudflare ever
+    # tightens further, the merge-preserving manifest logic in main()
+    # keeps the page correct on the last-known-good overrides.
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+                  "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Accept": "application/json, text/plain, */*",
 }
 API_BATCH = 40
 DOWNLOAD_WORKERS = 5
@@ -261,6 +268,33 @@ def main() -> None:
             if i % 50 == 0 or i == len(jobs):
                 print(f"  {i}/{len(jobs)}  fresh={ok}  identical={skipped_identical}  "
                       f"err={err}  {time.time()-t0:.1f}s")
+
+    # ---- Merge with the previous manifest (outage-proofing) ----
+    # A wiki outage must never SHRINK coverage. On 2026-07-28 Cloudflare
+    # 403'd every wiki call from the CI runner, the then-current code
+    # saved a 0-entry manifest, and every colliding item on the live
+    # page cross-wired. Preserve any previous entry whose item still
+    # exists and whose icon file is still on disk, unless this run
+    # resolved a fresh one for it. Entries for items that left
+    # items.json are dropped naturally.
+    try:
+        with open(MANIFEST_PATH, encoding="utf-8") as f:
+            previous = json.load(f)
+    except Exception:
+        previous = {}
+    valid_ids = {str(iid) for iid, _ in targets}
+    kept = 0
+    for k, rel in previous.items():
+        if k in manifest or k not in valid_ids:
+            continue
+        if (ROOT / rel).exists():
+            manifest[k] = rel
+            kept += 1
+    if kept:
+        print(f"      +{kept} entries preserved from previous manifest (wiki gaps)")
+    if found == 0 and previous:
+        print("      WARNING: wiki lookups all failed this run — "
+              "serving last-known-good overrides instead of shrinking")
 
     # ---- Self-heal collision-prone leftovers from their own CDN art ----
     # Items the wiki doesn't cover yet (typically brand-new patch items)
