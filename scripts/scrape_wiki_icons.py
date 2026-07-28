@@ -115,6 +115,34 @@ def lookup_urls_batch(titles: list[str]) -> dict[str, str | None]:
     return results
 
 
+def search_file_variant(item_name: str) -> str | None:
+    """Find a File-namespace page whose name equals `item_name` modulo
+    case and punctuation. MediaWiki titles are case-sensitive after the
+    first character and uploader habits vary — the wiki serves
+    'File:Glass cannon v2.png' and 'File:Endless magazine.png', which the
+    exact-title imageinfo lookup misses. Accept a search hit only on an
+    exact normalized match so we never adopt a lookalike item's art."""
+    base = item_name.split(" - Disabled")[0].strip()
+    want = re.sub(r"[^a-z0-9]+", "", f"file{base}png".lower())
+    qs = urllib.parse.urlencode({
+        "action": "query",
+        "list": "search",
+        "srsearch": base,
+        "srnamespace": "6",   # File:
+        "srlimit": "5",
+        "format": "json",
+        "formatversion": "2",
+    })
+    req = urllib.request.Request(f"{WIKI_API}?{qs}", headers=HEADERS)
+    with urllib.request.urlopen(req, timeout=20) as r:
+        data = json.loads(r.read())
+    for hit in (data.get("query", {}).get("search") or []):
+        title = hit.get("title", "")
+        if re.sub(r"[^a-z0-9]+", "", title.lower()) == want:
+            return title
+    return None
+
+
 def download_bytes(url: str) -> bytes:
     req = urllib.request.Request(url, headers=HEADERS)
     with urllib.request.urlopen(req, timeout=20) as r:
@@ -161,6 +189,26 @@ def main() -> None:
     found = sum(1 for v in title_to_url.values() if v)
     print(f"      wiki has icons for {found}/{len(titles)} items "
           f"({time.time()-t0:.1f}s)")
+
+    # Salvage pass: retry exact-title misses through a File-namespace
+    # search that tolerates the wiki's case/punctuation drift. Only runs
+    # for the (few) unresolved items, so it adds seconds, not minutes.
+    salvaged = 0
+    for iid, name in targets:
+        t = title_by_iid[iid]
+        if title_to_url.get(t):
+            continue
+        try:
+            variant = search_file_variant(name)
+            if variant:
+                url = lookup_urls_batch([variant]).get(variant)
+                if url:
+                    title_to_url[t] = url
+                    salvaged += 1
+        except Exception:
+            pass
+    if salvaged:
+        print(f"      +{salvaged} recovered via case-insensitive File search")
 
     # ---- Download per-item-id files, build manifest ----
     jobs = []
@@ -214,17 +262,63 @@ def main() -> None:
                 print(f"  {i}/{len(jobs)}  fresh={ok}  identical={skipped_identical}  "
                       f"err={err}  {time.time()-t0:.1f}s")
 
+    # ---- Self-heal collision-prone leftovers from their own CDN art ----
+    # Items the wiki doesn't cover yet (typically brand-new patch items)
+    # fall back to items.json.image — the shared-basename namespace where
+    # unrelated items collide on one assets/items/<basename>.png and end
+    # up wearing each other's art (Ancient Shield showed Close Quarters,
+    # Apex Combat showed Ricochet, ... after the 05-22/06-30 patches).
+    # For any unresolved item whose basename is shared with another item,
+    # mirror its OWN CDN image into the per-item-id wiki namespace. The
+    # art matches the game files (sometimes a placeholder for fresh
+    # items), but no item can cross-wire — and the wiki lookup above
+    # still wins automatically once a page appears.
+    img_by_iid: dict[int, tuple[str, str]] = {}
+    base_count: dict[str, int] = {}
+    for it in items:
+        if it.get("type") != "upgrade" or not it.get("image"):
+            continue
+        base = it["image"].rsplit("/", 1)[-1]
+        base_count[base] = base_count.get(base, 0) + 1
+        if it.get("id") is not None:
+            img_by_iid[it["id"]] = (it["image"], base)
+
+    healed = 0
+    for iid, name in targets:
+        if title_to_url.get(title_by_iid[iid]) or str(iid) in manifest:
+            continue
+        img, base = img_by_iid.get(iid, (None, None))
+        if not img or base_count.get(base, 0) < 2:
+            continue  # unique basename → already shows its own art
+        slug = sanitize_for_filename(name)
+        dest = WIKI_ASSET_DIR / f"{slug}.png"
+        rel = f"{WIKI_REL_DIR}/{slug}.png"
+        try:
+            data = download_bytes(img)
+        except Exception as e:
+            print(f"  [cdn-fallback error: {e}] {name}")
+            continue
+        if len(data) < 100:
+            continue
+        if not (dest.exists() and dest.read_bytes() == data):
+            dest.write_bytes(data)
+        manifest[str(iid)] = rel
+        healed += 1
+    if healed:
+        print(f"      +{healed} collision-prone items self-healed from their own CDN art")
+
     # ---- Save manifest ----
     MANIFEST_PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(MANIFEST_PATH, "w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2, sort_keys=True)
     print(f"\n[saved] {MANIFEST_PATH}  ({len(manifest)} item-id overrides)")
 
-    # Items the wiki had nothing for (or that failed to download). They
-    # keep whatever deadlock-api ships at items.json.image — which may
-    # still be wrong (filename collision) or empty.
+    # Items with neither a wiki page nor a self-heal override. They keep
+    # whatever deadlock-api ships at items.json.image — safe only when
+    # the basename is unique to them.
     no_wiki = [n for iid, n in targets
-               if not title_to_url.get(title_by_iid[iid])]
+               if not title_to_url.get(title_by_iid[iid])
+               and str(iid) not in manifest]
     if no_wiki:
         print(f"\nNo wiki page found for {len(no_wiki)} items "
               f"(kept deadlock-api icon as fallback):")
