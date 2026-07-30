@@ -25,6 +25,7 @@ That's it. The page loads from local files; the `assets/` folder must travel wit
 - **Best opener** — the highest-WR first 4 ability points
 - **Best full ability order** — the highest-WR 16-point sequence
 - **Item build by phase** — Early / Mid / Late columns, item icons, category pills, tier, cost, average buy time, win rate
+- **"Updated N ago"** in the header, keyed to the data rather than the clock: the stamp only advances when the numbers actually change, so a stalled pipeline shows a visibly ageing date (amber past ~36h) instead of always claiming to be fresh
 
 ## Methodology
 
@@ -102,7 +103,7 @@ Set `PATCH_ID=patch_<id>` to target a specific patch; the default is the current
 
 ## Auto-refresh + GitHub Pages
 
-`.github/workflows/refresh.yml` runs the full pipeline every 3 hours, commits the regenerated outputs back to `main`, and deploys the site to GitHub Pages. To enable for your fork:
+`.github/workflows/refresh.yml` runs the full pipeline every 3 hours, commits the regenerated outputs back to `main`, and deploys the site to GitHub Pages. `.github/workflows/resolve-archetypes.yml` runs daily at 08:40 UTC to resolve match-only ability archetypes for the current patch — resolutions are committed and never recomputed, so it only does real work after a new patch lands, and a cold patch that can't finish in one job resumes on the next run. To enable for your fork:
 
 1. **Settings → Pages** → Source: **GitHub Actions**
 2. **Settings → Actions → General → Workflow permissions** → **Read and write**

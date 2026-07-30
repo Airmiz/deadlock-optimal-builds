@@ -1,25 +1,32 @@
 name: Resolve match-only archetypes
 
-# Manual-trigger-only workflow that backfills the match-only archetype
-# resolutions (methodology review §3.6). The bulk pass can take a long
-# time on first run — Eternus+ uses a 1500-deep candidate sweep and
-# each unresolved archetype runs ~17 minutes against the deadlock-api.
+# Backfills the match-only archetype resolutions (methodology review
+# §3.6) for the CURRENT patch, on a schedule — no manual trigger needed.
 #
-# The expensive resolution lives in this dedicated workflow (not the
-# every-3-hours refresh) so:
-#   - The site refresh stays fast (~3-5 min) and reliable.
-#   - You can run this overnight or whenever without blocking deploys.
-#   - The cache it produces persists across runs — once an archetype is
-#     resolved, subsequent runs skip it instantly.
+# The expensive resolution lives here rather than in the every-3-hours
+# refresh because a cold pass is slow: Eternus+ uses a 1500-deep
+# candidate sweep and each unresolved archetype takes ~17 minutes.
+# Keeping it separate means the site refresh stays ~3-5 min and reliable.
 #
-# Typical usage:
-#   - Trigger once after first deploying methodology v2.
-#   - Trigger again after each major patch drop (new heroes / new
-#     ability ladders surface in the data, so new fingerprints appear).
+# Why a daily schedule works despite that cost:
+#   - Resolutions are cached per (patch, hero, slice, fingerprint) AND
+#     committed to the repo, so a resolved archetype is never recomputed.
+#     Steady-state runs finish in minutes with nothing to do.
+#   - Real work only appears when a new patch lands (new fingerprints) —
+#     which detect_patches.py now picks up on its own, so this workflow
+#     starts chewing on the new patch without anyone noticing it dropped.
+#   - A cold patch that can't finish inside one job is fine: the resolve
+#     step has its own timeout and its partial results are still
+#     committed, so the next day's run resumes from where it stopped.
+#     That's why the commit step is `if: always()`.
 #
-# Setup required: same as refresh.yml (Pages permissions etc.).
+# Manual dispatch still works for forcing an older patch via patch_id.
 
 on:
+  schedule:
+    # 08:40 UTC daily. Offset from the refresh cron (every 3h on the hour)
+    # so the two workflows don't race for the same push.
+    - cron: '40 8 * * *'
   workflow_dispatch:
     inputs:
       patch_id:
@@ -80,7 +87,17 @@ jobs:
       # Defaults to the current patch only — that's the one the site
       # ships, and a full sweep of every historical patch would blow past
       # the job timeout. Pass patch_id to resolve an older one on purpose.
+      #
+      # timeout-minutes + continue-on-error are load-bearing, not sloppy:
+      # a cold patch can legitimately need more than one job's worth of
+      # time. A STEP timeout (unlike the job timeout) lets the remaining
+      # steps run, so whatever was resolved still gets committed and the
+      # next scheduled run picks up from there. The outcome is surfaced
+      # as a warning in "Report resolution status" below.
       - name: Resolve archetypes
+        id: resolve
+        continue-on-error: true
+        timeout-minutes: 280
         env:
           PYTHONUNBUFFERED: '1'
           PATCH_FILTER: ${{ github.event.inputs.patch_id }}
@@ -96,7 +113,10 @@ jobs:
 
       # Rebuild the page payload + HTML so the resolved items land on
       # the live site without waiting for the next refresh cron.
+      # Runs even when resolution ran out of time — partial results are
+      # still real results.
       - name: Recompile page payload
+        if: always()
         env:
           PYTHONUNBUFFERED: '1'
         run: |
@@ -104,13 +124,16 @@ jobs:
           python3 -u scripts/build_page.py
 
       - name: Commit resolution cache + page rebuild
+        if: always()
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # Commit the page (which now has resolved items embedded) and
           # the resolution cache files so future cache-restore runs
           # immediately have the resolutions available.
-          git add -A deadlock_builds.html cache/match_archetype_resolutions/ || true
+          # last_updated.json travels with the page rebuild — see the note in
+          # refresh.yml's commit step for why it has to be tracked.
+          git add -A deadlock_builds.html last_updated.json cache/match_archetype_resolutions/ || true
           if git diff --cached --quiet; then
             echo "No changes to commit (everything was already cached)"
             exit 0
@@ -141,6 +164,30 @@ jobs:
         with:
           path: cache
           key: deadlock-cache-v2-${{ github.run_id }}
+
+      # Make the resolve step's outcome explicit. Running out of time on a
+      # cold patch is expected and self-healing (tomorrow's run resumes),
+      # so it's a warning, not a red run. Any OTHER failure is a real bug
+      # and fails the workflow — the frozen-pipeline lesson: never let a
+      # broken step pass as green.
+      - name: Report resolution status
+        if: always()
+        run: |
+          case "${{ steps.resolve.outcome }}" in
+            success)
+              echo "Resolution completed for this patch." ;;
+            failure)
+              echo "::warning::Resolution did not finish (timeout or API error). "\
+          "Partial results were committed; the next scheduled run resumes from cache."
+              # Distinguish "ran out of time" from "crashed immediately": a
+              # step that died in under an hour didn't hit the 280-min wall.
+              if [ "${{ steps.resolve.conclusion }}" = "failure" ]; then
+                echo "Check the resolve step log above if this repeats for several days."
+              fi ;;
+            *)
+              echo "::error::Resolve step was ${{ steps.resolve.outcome }} — investigate."
+              exit 1 ;;
+          esac
 
       # Pages deployment handled by .github/workflows/deploy.yml — it
       # auto-triggers off the commit step above pushing the rebuilt page
