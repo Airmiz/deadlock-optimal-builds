@@ -1232,12 +1232,30 @@ def _build_patch_payload_inner(patch_id, raw_outputs, hero_out_dir, patch_cache_
             metadata_by_item=meta_by_int,
         )
 
-    # Parallelize across 4 threads — CBC releases the GIL during native solve
+    # SERIAL ON PURPOSE (max_workers=1). This used to run 4 threads, which
+    # made the payload non-reproducible: building twice from byte-identical
+    # inputs produced different archetype cluster builds — not merely
+    # reordered, but different items with different match counts (e.g. a
+    # slot holding Warp Stone @13,089 matches in one run and Enchanter's
+    # Emblem @22,692 in the next). So the concurrency was racing on shared
+    # state and could emit wrong numbers, which is a correctness bug, not a
+    # cosmetic one.
+    #
+    # Verified: 2 serial runs → identical sha1; 2 threaded runs → different.
+    # Cost is ~110s vs ~31s for this stage, which is noise next to the
+    # fetch phases, and it buys two things: trustworthy output, and a
+    # reproducible payload hash — which the "Updated N ago" stamp in
+    # build_page.py depends on to tell "data actually changed" from "we ran
+    # the pipeline again".
+    #
+    # Re-enabling threads requires finding the shared mutable state first
+    # (the old note claimed CBC releases the GIL; that says nothing about
+    # the Python-level state these callbacks touch).
     archetypes_by_hero: dict[int, dict] = {}
     from concurrent.futures import ThreadPoolExecutor, as_completed
     import time as _time
     t0 = _time.time()
-    with ThreadPoolExecutor(max_workers=4) as pool:
+    with ThreadPoolExecutor(max_workers=1) as pool:
         futs = {pool.submit(cluster_one, d): d for d in raw_outputs}
         done = 0
         for fut in as_completed(futs):
