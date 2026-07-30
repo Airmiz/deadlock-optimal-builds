@@ -1518,15 +1518,25 @@ HTML = """<!doctype html>
   const counterEnemiesByHero = {};
   function counterKey(heroId) { return activePatchId + ':' + heroId; }
 
-  // Build the patch-toggle buttons. Sort by recency (newer patch_id first).
-  const patchIds = Object.keys(DATA.patches).sort().reverse();
+  // Build the patch-toggle buttons, newest first. The payload normally
+  // carries a single patch (the current one) — older patches stay in the
+  // repo as data but aren't shipped — so the toggle is hidden rather than
+  // rendered as one dead button. It reappears on its own if a payload ever
+  // ships history again.
+  const patchIds = Object.keys(DATA.patches)
+    .sort((a, b) => (DATA.patches[a].min_unix_timestamp || 0) - (DATA.patches[b].min_unix_timestamp || 0))
+    .reverse();
   const patchToggle = document.getElementById('patch-toggle');
-  patchToggle.innerHTML = patchIds.map(pid => {
-    const p = DATA.patches[pid];
-    const cls = pid === activePatchId ? 'active' : '';
-    const isNew = pid === patchIds[0] ? ' <span style="color:var(--good);font-size:9px;margin-left:3px">NEW</span>' : '';
-    return `<button data-patch="${pid}" class="${cls}" title="${p.title}">${p.title}${isNew}</button>`;
-  }).join('');
+  if (patchIds.length < 2) {
+    patchToggle.style.display = 'none';
+  } else {
+    patchToggle.innerHTML = patchIds.map(pid => {
+      const p = DATA.patches[pid];
+      const cls = pid === activePatchId ? 'active' : '';
+      const isNew = pid === patchIds[0] ? ' <span style="color:var(--good);font-size:9px;margin-left:3px">NEW</span>' : '';
+      return `<button data-patch="${pid}" class="${cls}" title="${p.title}">${p.title}${isNew}</button>`;
+    }).join('');
+  }
 
   // Slice short-codes ↔ display labels. Kept in one place so renderers
   // and the empty-state messaging stay consistent.

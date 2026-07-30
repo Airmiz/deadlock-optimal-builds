@@ -1431,19 +1431,55 @@ def cluster_archetypes_for_hero_in(hid: int, patch_cache_dir, max_clusters: int 
 
 
 def main() -> None:
-    print("Building multi-patch page payload …")
-    # Discover available patches by what's on disk
+    print("Building page payload …")
+    from _paths import PATCH_IDS_BY_AGE  # local import to keep the global pure
+
+    # Patch folders are never deleted — older patches stay on disk as data
+    # (and still feed the cross-patch imbue fallback below) — but the PAGE
+    # ships exactly one patch: the current one. Ordering comes from the
+    # registry's min_ts, not folder-name sort, since patch ids are thread
+    # ids whose string order breaks when they gain a digit.
     patches_root = ROOT / "heroes"
-    patch_dirs = sorted([p for p in patches_root.iterdir() if p.is_dir()],
-                        key=lambda p: p.name, reverse=True)
-    print(f"Patch folders found: {[p.name for p in patch_dirs]}")
+    on_disk = {p.name for p in patches_root.iterdir() if p.is_dir()}
+    ordered = [pid for pid in reversed(PATCH_IDS_BY_AGE) if pid in on_disk]
+    # Anything on disk the registry doesn't know about (hand-made folder,
+    # or a patch dropped from patches.json) still counts as history for the
+    # fallback, just after everything the registry can order.
+    ordered += sorted(on_disk - set(PATCH_IDS_BY_AGE), reverse=True)
+    print(f"Patch folders on disk: {ordered}")
+
+    # A brand-new patch has almost no matches for its first hours: shipping
+    # it as the only patch would mean a page of empty builds and every
+    # high-MMR tab disabled. So walk newest-first and take the first patch
+    # with enough data to render; the next run switches automatically once
+    # the new patch crosses the line. Threshold = 100K total all-MMR matches
+    # across the roster (≈3K/hero), enough for the ILP to fill most heroes.
+    DATA_RICH_THRESHOLD = 100_000
+
+    def _patch_total_matches(p):
+        return sum(((h.get("mmr") or {}).get("all") or {}).get("matches", 0)
+                   for h in p.get("heroes", []))
 
     payloads = {}
-    for pdir in patch_dirs:
-        pid = pdir.name
+    chosen = None
+    for pid in ordered:
         payload = build_patch_payload(pid)
-        if payload:
-            payloads[pid] = payload
+        if not payload:
+            continue
+        total = _patch_total_matches(payload)
+        payloads[pid] = payload
+        if total >= DATA_RICH_THRESHOLD:
+            chosen = pid
+            break
+        print(f"  {pid}: {total:,} matches < {DATA_RICH_THRESHOLD:,} threshold — "
+              f"too thin to ship alone, checking the previous patch")
+    if chosen is None and payloads:
+        chosen = next(iter(payloads))  # nothing qualified; ship the newest anyway
+    if chosen and chosen != (ordered[0] if ordered else None):
+        print(f"  showing {chosen} until {ordered[0]} accumulates enough matches")
+    # Narrow to the single patch the site displays. Everything else stays
+    # on disk untouched.
+    payloads = {chosen: payloads[chosen]} if chosen else {}
 
     # Cross-patch imbue-target fallback. A new patch (e.g. patch_129989) often
     # has zero community-build metadata for the first few days because few
@@ -1453,13 +1489,14 @@ def main() -> None:
     # missing imbue_target_id, fall back to the same (hero, item) target
     # from a prior patch's data. This restores 🔮 → ability badges on
     # patches that haven't accumulated community builds yet.
-    if len(payloads) > 1:
+    # Reads every patch folder on disk (`ordered`), not just the one being
+    # shipped — that's the whole point of keeping old patches around.
+    if len(ordered) > 1:
         # Build a (hero_id, item_id) -> (target_id, share, source_patch) map
         # from each patch's per-hero JSON metadata (not just the picks),
         # since the metadata covers far more items than what the optimizer
         # ends up choosing. Prioritize newer patches but accept any.
         cross_imbue: dict[tuple[int, int], tuple[int, float | None, str]] = {}
-        ordered = sorted(payloads.keys(), reverse=True)
         for pid in ordered:
             hero_dir = ROOT / "heroes" / pid
             if not hero_dir.exists():
@@ -1604,34 +1641,11 @@ def main() -> None:
         if filled or modal_filled:
             print(f"  imbue-target fallback: {filled} cross-patch + {modal_filled} hero-modal-inferred")
 
-    # Default to the newest patch that has enough data to render meaningful
-    # builds. Patches accumulate matches over their lifetime — landing on a
-    # 3-day-old patch with 300 matches/hero shows every Ascendant+/Eternus+
-    # tab as auto-disabled and every hero in the empty-state, which is a
-    # bad first impression. Threshold = 100K total all-MMR matches across
-    # all heroes (≈3K matches/hero on a 38-hero roster), enough for the
-    # synergy ILP to produce non-empty picks for most heroes. Falls back to
-    # the absolute newest patch if none qualify (so the page never shows
-    # zero patches).
-    DATA_RICH_THRESHOLD = 100_000
-
-    def _patch_total_matches(p):
-        total = 0
-        for h in p.get("heroes", []):
-            mmr_all = (h.get("mmr") or {}).get("all") or {}
-            total += mmr_all.get("matches", 0)
-        return total
-
-    if payloads:
-        candidates = [(pid, _patch_total_matches(p)) for pid, p in payloads.items()]
-        candidates.sort(key=lambda kv: kv[0], reverse=True)  # newest first
-        rich = [(pid, n) for pid, n in candidates if n >= DATA_RICH_THRESHOLD]
-        default_patch = rich[0][0] if rich else candidates[0][0]
-        if rich and rich[0][0] != candidates[0][0]:
-            print(f"  default_patch: skipped {candidates[0][0]} ({candidates[0][1]:,} matches < "
-                  f"{DATA_RICH_THRESHOLD:,} threshold) -> {default_patch}")
-    else:
-        default_patch = None
+    # The shipped patch was already chosen above; `patches` has exactly one
+    # entry. The key is kept (rather than flattened) so the page's existing
+    # per-patch data model — and the option of showing history again later —
+    # stays intact.
+    default_patch = chosen
 
     page_data = {
         "spec_version": SPEC_VERSION,
