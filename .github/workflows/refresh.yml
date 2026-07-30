@@ -26,7 +26,7 @@ on:
   workflow_dispatch:
     inputs:
       patch_id:
-        description: 'Patch ID to refresh (defaults to all patches in scripts/_paths.py)'
+        description: 'Patch ID to refresh (default: the current patch from patches.json)'
         required: false
         default: ''
       refresh_assets:
@@ -117,26 +117,35 @@ jobs:
       #     their aggregate stats refresh
       # run_all_heroes.py regenerates per-hero outputs when ANY underlying
       # analytics file is newer than the existing output.
-      # One loop over every patch in scripts/_paths.py PATCH_REGISTRY —
-      # adding a new patch to the registry is the ONLY edit needed to get
-      # it refreshed and onto the page. Closed patches (max_ts set) are
-      # warm-cached and complete in seconds; only the live patch refetches
-      # analytics each run. Any script exiting non-zero fails this step —
-      # by design (see run_all_heroes.py): a red workflow beats a silently
-      # frozen site. A just-added patch with no data yet also fails until
-      # the API has matches for it — expected for the first hours.
-      - name: Refresh all patches in the registry
+      # Pick up any patch Valve shipped since the last run. This rewrites
+      # patches.json (committed below), so a new patch needs no code edit:
+      # the steps after this one immediately target it, and the page
+      # switches over as soon as it has enough matches to render.
+      - name: Detect new patches
+        env:
+          PYTHONUNBUFFERED: '1'
+        run: python3 -u scripts/detect_patches.py
+
+      # Only the CURRENT patch is refreshed. Older patches are closed
+      # (max_ts set), so their aggregates are immutable — re-fetching them
+      # every 3 hours just burned API calls and CI minutes to rewrite
+      # identical files. Their hero JSONs stay in the repo as data and
+      # still feed the cross-patch imbue fallback at page-build time.
+      # A specific patch can still be forced via the workflow_dispatch
+      # input (e.g. to backfill one after a schema change).
+      # Any script exiting non-zero fails this step — by design (see
+      # run_all_heroes.py): a red workflow beats a silently frozen site.
+      - name: Refresh the current patch
         env:
           # Force unbuffered stdout so progress lines stream to the Actions
           # log in real time. Without this, Python's block-buffered pipe
           # mode can stash 4-8 KB of output before flushing, making the
           # job look stuck when it's actually fetching normally.
           PYTHONUNBUFFERED: '1'
-          # Manual runs may target a single patch via the dispatch input.
           PATCH_FILTER: ${{ github.event.inputs.patch_id }}
         run: |
-          PATCHES="${PATCH_FILTER:-$(python3 -c "import sys; sys.path.insert(0, 'scripts'); from _paths import PATCH_REGISTRY; print(' '.join(PATCH_REGISTRY))")}"
-          echo "Refreshing patches: $PATCHES"
+          PATCHES="${PATCH_FILTER:-$(python3 -c "import sys; sys.path.insert(0, 'scripts'); from _paths import ACTIVE_PATCH_ID; print(ACTIVE_PATCH_ID)")}"
+          echo "Refreshing: $PATCHES"
           for p in $PATCHES; do
             echo "::group::$p"
             export PATCH_ID=$p
@@ -214,7 +223,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A heroes/ assets/ deadlock_builds.html all_heroes_index.json all_heroes_tier_list.csv cache/wiki_icon_overrides.json
+          git add -A heroes/ assets/ deadlock_builds.html all_heroes_index.json all_heroes_tier_list.csv cache/wiki_icon_overrides.json patches.json
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0

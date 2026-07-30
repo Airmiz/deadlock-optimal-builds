@@ -46,7 +46,8 @@ See `docs/build_spec.md` for the full output schema and `docs/shiv_mmr_compariso
 .
 ├── deadlock_builds.html        ← the deliverable, open in a browser
 ├── assets/                     ← hero/item/ability icons (4 MB)
-├── heroes/                     ← 38 per-hero spec JSONs
+├── heroes/<patch_id>/          ← 38 per-hero spec JSONs per patch (history kept)
+├── patches.json                ← patch registry, auto-maintained by detect_patches.py
 ├── all_heroes_index.json       ← aggregate index + headline stats
 ├── all_heroes_tier_list.csv    ← flat tier-list view
 ├── docs/
@@ -55,44 +56,53 @@ See `docs/build_spec.md` for the full output schema and `docs/shiv_mmr_compariso
 │   └── shiv_mmr_comparison.md  ← all-MMR vs high-MMR comparison
 ├── validation/                 ← Shiv-only intermediate files (validation evidence)
 ├── scripts/                    ← pipeline (Python 3.10+)
-│   ├── _paths.py               ← path config + patch constants
+│   ├── _paths.py               ← path config; loads patches.json
+│   ├── detect_patches.py       ← (0) adopt new patches from the changelog feed
 │   ├── batch_fetch.py          ← (1) pull per-hero analytics + assets
 │   ├── batch_fetch_builds.py   ← (2) pull per-build details
+│   ├── batch_fetch_counters.py ← (2b) per-matchup counter data
 │   ├── build_hero_output.py    ← reference per-hero generator
 │   ├── run_all_heroes.py       ← (3) generate all 38 hero JSONs in parallel
 │   ├── build_index.py          ← (4) aggregate the index + tier list
-│   ├── build_page_data.py      ← (5) compile compact page dataset
-│   ├── download_images.py      ← (6) localize image refs
-│   └── build_page.py           ← (7) assemble the HTML
+│   ├── scrape_wiki_icons.py    ← (5) per-item-id icon overrides
+│   ├── build_page_data.py      ← (6) compile the current patch's dataset
+│   ├── download_images.py      ← (7) localize image refs
+│   └── build_page.py           ← (8) assemble the HTML
 └── cache/                      ← API responses (gitignored, regenerated)
 ```
 
-## Refreshing for a new patch
+## Patches: detected automatically
 
-When a new patch drops:
+**A new patch needs no code change.** `scripts/detect_patches.py` runs at the top of every refresh and maintains `patches.json`:
 
-1. Add the patch to `PATCH_REGISTRY` in `scripts/_paths.py` — that one edit is all the refresh workflow needs:
-   - **id**: the forums.playdeadlock.com changelog thread id (`https://api.deadlock-api.com/v1/patches` lists threads; `.../06-30-2026-update.146261/` → `patch_146261`).
-   - **min_ts**: the patch's go-live epoch from Steam news (`https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=1422450&count=30` — match the update's title). Don't use the forum RSS `pub_date`; XenForo bumps it on hotfix edits.
-   - **Close out the previous patch** by setting its `max_ts` to the new patch's `min_ts`, so its aggregates stop absorbing matches played on the new patch.
-2. Run the pipeline in order:
+- Reads the changelog feed (`https://api.deadlock-api.com/v1/patches`) for which updates count as a patch and their ids — the id is the forum thread id, so `.../06-30-2026-update.146261/` → `patch_146261`.
+- Takes each patch's go-live time from the Steam announcement (`ISteamNews`, appid 1422450), matched by the date in the title. The forum RSS `pub_date` is deliberately *not* used — XenForo bumps it on every hotfix edit, which would silently blend two patches' matches.
+- Closes the outgoing patch by setting its `max_ts` to the new patch's `min_ts`, so old aggregates stop absorbing new-patch matches.
+
+Existing entries are never rewritten, so committed history stays stable. To correct a patch by hand, edit `patches.json` — detection won't overwrite it.
+
+**The site shows one patch: the current one.** Older patches stay in `heroes/<patch_id>/` as data (and still feed the cross-patch imbue fallback), but they aren't shipped in the page and aren't re-fetched — closed patches are immutable, so re-pulling them only burned API calls. A brand-new patch is held back until it has ~100K total matches (a few hours), so the page never shows a roster of empty builds; the switch then happens on its own.
+
+To run the pipeline by hand:
 
 ```bash
-cd scripts
-python3 batch_fetch.py        # ~1 min — analytics + asset metadata
-python3 batch_fetch_builds.py # ~1 min — community build details
-python3 run_all_heroes.py     # ~1 min — regenerates per-hero JSONs (parallel)
-python3 build_index.py        # ~1 sec — aggregate index + tier list
-python3 build_page_data.py    # ~1 sec — compile page dataset
-python3 download_images.py    # ~10 sec — pulls any new icons
-python3 build_page.py         # ~1 sec — emits the HTML
+python3 scripts/detect_patches.py     # ~2 sec — adopt any new patch
+python3 scripts/batch_fetch.py        # ~1 min — analytics + asset metadata
+python3 scripts/batch_fetch_builds.py # ~1 min — community build details
+python3 scripts/batch_fetch_counters.py # ~10 min cold — matchup counters
+python3 scripts/run_all_heroes.py     # ~2 min — regenerates per-hero JSONs
+python3 scripts/build_index.py        # ~1 sec — aggregate index + tier list
+python3 scripts/scrape_wiki_icons.py  # ~10 sec — per-item icon overrides
+python3 scripts/build_page_data.py    # ~40 sec — compile page dataset
+python3 scripts/download_images.py    # ~10 sec — pulls any new icons
+python3 scripts/build_page.py         # ~2 sec — emits the HTML
 ```
 
-Every script is idempotent — re-running them only fetches missing data.
+Set `PATCH_ID=patch_<id>` to target a specific patch; the default is the current one. Every script is idempotent — re-running them only fetches what's missing or stale.
 
 ## Auto-refresh + GitHub Pages
 
-`.github/workflows/refresh.yml` runs the full pipeline nightly at 06:00 UTC, commits the regenerated outputs back to `main`, and deploys the site to GitHub Pages. To enable for your fork:
+`.github/workflows/refresh.yml` runs the full pipeline every 3 hours, commits the regenerated outputs back to `main`, and deploys the site to GitHub Pages. To enable for your fork:
 
 1. **Settings → Pages** → Source: **GitHub Actions**
 2. **Settings → Actions → General → Workflow permissions** → **Read and write**

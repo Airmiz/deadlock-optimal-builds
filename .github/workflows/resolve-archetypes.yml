@@ -23,7 +23,7 @@ on:
   workflow_dispatch:
     inputs:
       patch_id:
-        description: 'Patch ID to resolve (empty = every patch in scripts/_paths.py)'
+        description: 'Patch ID to resolve (default: the current patch from patches.json)'
         required: false
         default: ''
 
@@ -77,14 +77,15 @@ jobs:
       # joint_archetypes and ability_orders fields) for the resolver
       # to enumerate which fingerprints to resolve. The refresh
       # workflow commits them to main, so a fresh checkout has them.
-      # Loops over scripts/_paths.py PATCH_REGISTRY (same convention as
-      # refresh.yml) so adding a patch there is the only edit needed.
-      - name: Resolve all patches in the registry
+      # Defaults to the current patch only — that's the one the site
+      # ships, and a full sweep of every historical patch would blow past
+      # the job timeout. Pass patch_id to resolve an older one on purpose.
+      - name: Resolve archetypes
         env:
           PYTHONUNBUFFERED: '1'
           PATCH_FILTER: ${{ github.event.inputs.patch_id }}
         run: |
-          PATCHES="${PATCH_FILTER:-$(python3 -c "import sys; sys.path.insert(0, 'scripts'); from _paths import PATCH_REGISTRY; print(' '.join(PATCH_REGISTRY))")}"
+          PATCHES="${PATCH_FILTER:-$(python3 -c "import sys; sys.path.insert(0, 'scripts'); from _paths import ACTIVE_PATCH_ID; print(ACTIVE_PATCH_ID)")}"
           echo "Resolving patches: $PATCHES"
           for p in $PATCHES; do
             echo "::group::$p"
