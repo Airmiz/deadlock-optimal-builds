@@ -1450,7 +1450,10 @@ HTML = """<!doctype html>
     <div>
       <h1>DEADLOCK OPTIMAL BUILDS</h1>
       <div class="meta" id="patch-info">loading…</div>
-      <div class="meta" style="margin-top:2px"><a href="methodology.html" style="color:var(--text-dim);text-decoration:underline" target="_blank">📖 Methodology &amp; glossary</a></div>
+      <div class="meta" style="margin-top:2px">
+        <span id="last-updated" data-generated="__GENERATED_AT__" title="__GENERATED_AT__"></span>
+        <span style="color:var(--text-dim)"> · </span><a href="methodology.html" style="color:var(--text-dim);text-decoration:underline" target="_blank">📖 Methodology &amp; glossary</a>
+      </div>
     </div>
   </div>
   <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap;">
@@ -1537,6 +1540,36 @@ HTML = """<!doctype html>
       return `<button data-patch="${pid}" class="${cls}" title="${p.title}">${p.title}${isNew}</button>`;
     }).join('');
   }
+
+  // "Updated N ago" in the header. The stamp advances only when the data
+  // changes (see build_page.py), so if the pipeline ever stalls again this
+  // number keeps climbing in plain sight instead of quietly reading "just
+  // now". Past a day and a half it turns amber as an explicit staleness
+  // signal — the refresh runs every 3 hours, so that only happens if
+  // something is broken.
+  (function renderLastUpdated() {
+    const el = document.getElementById('last-updated');
+    if (!el) return;
+    const iso = el.dataset.generated;
+    const then = Date.parse(iso || '');
+    if (!then) { el.remove(); return; }
+    const mins = Math.max(0, Math.round((Date.now() - then) / 60000));
+    let rel;
+    if (mins < 2) rel = 'just now';
+    else if (mins < 60) rel = mins + ' min ago';
+    else if (mins < 48 * 60) {
+      const h = Math.round(mins / 60);
+      rel = h + (h === 1 ? ' hour ago' : ' hours ago');
+    } else {
+      const d = Math.round(mins / 1440);
+      rel = d + (d === 1 ? ' day ago' : ' days ago');
+    }
+    const stale = mins > 36 * 60;
+    el.textContent = (stale ? '⚠ data last updated ' : 'Updated ') + rel;
+    el.title = 'Data last changed ' + iso +
+               (stale ? ' — the refresh pipeline may be stalled' : '');
+    if (stale) el.style.color = 'var(--accent)';
+  })();
 
   // Slice short-codes ↔ display labels. Kept in one place so renderers
   // and the empty-state messaging stay consistent.
@@ -3134,7 +3167,39 @@ html = HTML.replace("__DATA__", DATA_JSON)
 # The hash is stable per data payload so unchanged sites don't get
 # spurious cache misses, but any data/icon change → new hash → fresh fetch.
 import hashlib, re
-_cache_v = hashlib.sha1(DATA_JSON.encode("utf-8")).hexdigest()[:10]
+_data_fp = hashlib.sha1(DATA_JSON.encode("utf-8")).hexdigest()
+_cache_v = _data_fp[:10]
+
+# ---- "Last updated" stamp -------------------------------------------------
+# Deliberately keyed to the DATA, not the clock: the stamp only moves when
+# the payload actually changes. Two reasons.
+#   1. Honesty. A wall-clock stamp would have shown "updated 2 minutes ago"
+#      through all seven weeks the pipeline was silently frozen. Tying it to
+#      the data means a stall becomes visible ON THE SITE — the date just
+#      stops advancing.
+#   2. No churn. The asset cache-bust hash above is content-derived on
+#      purpose, so an unchanged run produces a byte-identical page (no
+#      commit, no forced asset re-download). A clock stamp would break that
+#      every 3 hours for every visitor.
+# In steady state the live patch gains matches continuously, so this
+# advances on essentially every run anyway.
+import json as _json
+from datetime import datetime, timezone
+_stamp_path = ROOT / "last_updated.json"
+try:
+    _prev = _json.loads(_stamp_path.read_text(encoding="utf-8"))
+except Exception:
+    _prev = {}
+if _prev.get("data_fingerprint") == _data_fp and _prev.get("generated_at"):
+    _generated_at = _prev["generated_at"]
+    print(f"        data unchanged — keeping last-updated {_generated_at}")
+else:
+    _generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    _stamp_path.write_text(
+        _json.dumps({"generated_at": _generated_at, "data_fingerprint": _data_fp},
+                    indent=2) + "\n", encoding="utf-8")
+    print(f"        data changed — last-updated {_generated_at}")
+html = html.replace("__GENERATED_AT__", _generated_at)
 # Match both quoted attribute values (src="assets/x.png") and embedded
 # data references ("image":"assets/x.png"). The lookahead avoids
 # double-appending if a ?v= is already present.

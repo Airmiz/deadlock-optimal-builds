@@ -223,7 +223,13 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A heroes/ assets/ deadlock_builds.html all_heroes_index.json all_heroes_tier_list.csv cache/wiki_icon_overrides.json patches.json
+          # last_updated.json MUST be committed: build_page.py compares the
+          # data fingerprint in it against the new payload to decide whether
+          # the "Updated N ago" stamp moves. Without it in the repo, every
+          # fresh CI checkout would look like a first build, re-stamp the
+          # clock, and produce a page diff (and a commit) every 3 hours even
+          # when nothing changed.
+          git add -A heroes/ assets/ deadlock_builds.html all_heroes_index.json all_heroes_tier_list.csv cache/wiki_icon_overrides.json patches.json last_updated.json
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0
