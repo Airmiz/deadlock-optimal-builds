@@ -24,9 +24,17 @@ name: Resolve match-only archetypes
 
 on:
   schedule:
-    # 08:40 UTC daily. Offset from the refresh cron (every 3h on the hour)
-    # so the two workflows don't race for the same push.
-    - cron: '40 8 * * *'
+    # Every 3 hours at :40 — offset from the refresh cron (every 3h on the
+    # hour) so the two don't race for the same push.
+    #
+    # Frequent ON PURPOSE, and it does not cost 8 full runs a day. Each run
+    # starts with a ~0.3s file-existence check; when the patch is fully
+    # populated the run ends there (~1 min of setup) and nothing else fires.
+    # When there IS work — i.e. right after a new patch lands — this keeps
+    # re-firing until the backlog is drained instead of chipping at it once
+    # a day. The concurrency group below means a pass that outlives its
+    # window isn't interrupted: the next tick simply queues behind it.
+    - cron: '40 */3 * * *'
   workflow_dispatch:
     inputs:
       patch_id:
@@ -94,62 +102,85 @@ jobs:
       # steps run, so whatever was resolved still gets committed and the
       # next scheduled run picks up from there. The outcome is surfaced
       # as a warning in "Report resolution status" below.
+      # Cheap precheck (file-existence only, no API calls, ~0.3s). Runs
+      # every 3 hours, so once the patch is fully populated this is the
+      # whole job: it reports 0 outstanding and everything below skips,
+      # which is how the schedule "backs off to idle" without needing to
+      # rewrite its own cron.
+      - name: Check for outstanding archetypes
+        id: check
+        env:
+          PATCH_FILTER: ${{ github.event.inputs.patch_id }}
+        run: |
+          PATCHES="${PATCH_FILTER:-$(python3 -c "import sys; sys.path.insert(0, 'scripts'); from _paths import ACTIVE_PATCH_ID; print(ACTIVE_PATCH_ID)")}"
+          echo "patches=$PATCHES" >> "$GITHUB_OUTPUT"
+          total=0
+          for p in $PATCHES; do
+            [ -d "heroes/$p" ] || { echo "no hero JSONs for $p yet — skipping"; continue; }
+            n=$(python3 scripts/match_archetype_resolver.py --bulk --patch "$p" --dry-run \
+                  | grep '^OUTSTANDING=' | tail -1 | cut -d= -f2)
+            echo "  $p: ${n:-0} outstanding"
+            total=$((total + ${n:-0}))
+          done
+          echo "Total outstanding: $total"
+          echo "outstanding=$total" >> "$GITHUB_OUTPUT"
+
       - name: Resolve archetypes
         id: resolve
+        if: steps.check.outputs.outstanding != '0'
         continue-on-error: true
         timeout-minutes: 280
         env:
           PYTHONUNBUFFERED: '1'
-          PATCH_FILTER: ${{ github.event.inputs.patch_id }}
         run: |
-          PATCHES="${PATCH_FILTER:-$(python3 -c "import sys; sys.path.insert(0, 'scripts'); from _paths import ACTIVE_PATCH_ID; print(ACTIVE_PATCH_ID)")}"
-          echo "Resolving patches: $PATCHES"
-          for p in $PATCHES; do
+          for p in ${{ steps.check.outputs.patches }}; do
             echo "::group::$p"
-            ls "heroes/$p/" | head -3 || { echo "no hero JSONs for $p yet — skipping"; echo "::endgroup::"; continue; }
+            [ -d "heroes/$p" ] || { echo "no hero JSONs for $p yet — skipping"; echo "::endgroup::"; continue; }
             python3 -u scripts/match_archetype_resolver.py --bulk --patch "$p"
             echo "::endgroup::"
           done
 
-      # Rebuild the page payload + HTML so the resolved items land on
-      # the live site without waiting for the next refresh cron.
-      # Runs even when resolution ran out of time — partial results are
-      # still real results.
-      - name: Recompile page payload
-        if: always()
-        env:
-          PYTHONUNBUFFERED: '1'
-        run: |
-          python3 -u scripts/build_page_data.py
-          python3 -u scripts/build_page.py
+      # NOTE: this job deliberately does NOT rebuild deadlock_builds.html.
+      # It used to, and that made the workflow structurally unable to ship
+      # its own results: a resolve pass takes hours, the every-3-hours
+      # refresh pushes its own rebuild of that same 9 MB generated file in
+      # the meantime, and the commit below then hit an unresolvable rebase
+      # conflict on it — losing the entire pass. (Seen for real on
+      # 2026-07-30: 4.7 hours of resolution discarded at the rebase.)
+      # Committing only the resolution JSONs means every push is
+      # append-only new files that nothing else writes, so it can't
+      # conflict. build_page_data.py picks the resolutions up on the next
+      # refresh, which is at most 3 hours later.
 
-      - name: Commit resolution cache + page rebuild
+      - name: Commit resolutions
         if: always()
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # Commit the page (which now has resolved items embedded) and
-          # the resolution cache files so future cache-restore runs
-          # immediately have the resolutions available.
-          # last_updated.json travels with the page rebuild — see the note in
-          # refresh.yml's commit step for why it has to be tracked.
-          git add -A deadlock_builds.html last_updated.json cache/match_archetype_resolutions/ || true
+          # ONLY the resolution JSONs. These are append-only files keyed by
+          # (patch, hero, slice, fingerprint) that no other workflow writes,
+          # so a rebase onto a main that moved underneath us can never
+          # conflict. Committing the generated page here is what broke this
+          # job before — see the note above.
+          git add -A cache/match_archetype_resolutions/ || true
           if git diff --cached --quiet; then
-            echo "No changes to commit (everything was already cached)"
+            echo "Nothing new resolved this run."
             exit 0
           fi
-          git commit -m "chore: resolve match-only archetypes $(date -u +%Y-%m-%d)"
-          # Retry-on-rebase loop in case main was updated by refresh.yml
-          # or deploy.yml while this multi-hour job was running.
+          n=$(git diff --cached --name-only | wc -l | tr -d ' ')
+          git commit -m "chore: resolve $n match-only archetypes $(date -u +%Y-%m-%d)"
+          # main almost certainly moved during a multi-hour pass (the
+          # refresh workflow pushes every 3 hours), so expect to rebase.
           for attempt in 1 2 3 4 5; do
             if git push; then
-              echo "Push succeeded on attempt $attempt"
+              echo "Push succeeded on attempt $attempt ($n files)"
               exit 0
             fi
             echo "Push rejected (attempt $attempt) — rebasing on origin/main"
             git fetch origin main
-            git rebase --autostash origin/main || {
-              echo "Rebase failed — aborting"
+            git rebase origin/main || {
+              echo "Rebase failed — this should be impossible for append-only"
+              echo "resolution files; investigate before trusting the next run."
               git rebase --abort
               exit 1
             }
@@ -172,20 +203,37 @@ jobs:
       # broken step pass as green.
       - name: Report resolution status
         if: always()
+        env:
+          BEFORE: ${{ steps.check.outputs.outstanding }}
+          OUTCOME: ${{ steps.resolve.outcome }}
         run: |
-          case "${{ steps.resolve.outcome }}" in
+          if [ "$BEFORE" = "0" ]; then
+            echo "Fully populated — nothing to resolve. Idling until a new patch lands."
+            exit 0
+          fi
+          # Recount from disk so the summary reflects reality, not intent.
+          LEFT=0
+          for p in ${{ steps.check.outputs.patches }}; do
+            n=$(python3 scripts/match_archetype_resolver.py --bulk --patch "$p" --dry-run \
+                  | grep '^OUTSTANDING=' | tail -1 | cut -d= -f2)
+            LEFT=$((LEFT + ${n:-0}))
+          done
+          echo "Outstanding: $BEFORE -> $LEFT"
+          case "$OUTCOME" in
             success)
-              echo "Resolution completed for this patch." ;;
-            failure)
-              echo "::warning::Resolution did not finish (timeout or API error). "\
-          "Partial results were committed; the next scheduled run resumes from cache."
-              # Distinguish "ran out of time" from "crashed immediately": a
-              # step that died in under an hour didn't hit the 280-min wall.
-              if [ "${{ steps.resolve.conclusion }}" = "failure" ]; then
-                echo "Check the resolve step log above if this repeats for several days."
+              if [ "$LEFT" = "0" ]; then
+                echo "Patch fully populated."
+              else
+                echo "::warning::Pass finished but $LEFT archetype(s) remain "\
+          "(individual failures). The next run retries them."
               fi ;;
+            failure)
+              # Expected on a cold patch: the step hit its 280-min wall.
+              # Progress was committed, so the next tick (3h) continues.
+              echo "::warning::Pass ran out of time with $LEFT remaining. "\
+          "Progress was committed; the next scheduled run resumes." ;;
             *)
-              echo "::error::Resolve step was ${{ steps.resolve.outcome }} — investigate."
+              echo "::error::Resolve step outcome was '$OUTCOME' — investigate."
               exit 1 ;;
           esac
 
