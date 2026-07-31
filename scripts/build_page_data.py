@@ -250,6 +250,75 @@ def _jaccard_distance(a: set, b: set) -> float:
     return 1.0 - (inter / union) if union else 1.0
 
 
+def _template_ability_order(hero_build: dict) -> list[int]:
+    """The 16-step ability ladder a published build template plans.
+
+    Deadlock stores it as `details.ability_order.currency_changes`: one
+    entry per point spent, in the order the author intends them, where
+    currency_type 2 is the unlock and type 1 the three upgrades (delta
+    -1/-2/-5 for T1/T2/T3). Four abilities × four points = the same
+    16-step sequence shape the API's ability-order-stats returns, so the
+    page can render it with the existing ladder component.
+
+    Returns [] when the template predates the field or is malformed —
+    callers treat that as "this archetype has no ladder to show".
+    """
+    changes = ((hero_build.get("details") or {}).get("ability_order") or {}).get("currency_changes")
+    if not isinstance(changes, list):
+        return []
+    # Take each ability's first four points and stop at sixteen. Plenty of
+    # templates store the ladder more than once (a 32-entry list is the
+    # same 16 steps twice — every ability appears 8×, every cost tier 8×),
+    # and the extra copies are edit history, not extra levels. Capping per
+    # ability yields the author's first complete pass either way.
+    seen: dict[int, int] = {}
+    seq: list[int] = []
+    for c in changes:
+        if not isinstance(c, dict):
+            continue
+        aid = c.get("ability_id")
+        if not aid or seen.get(aid, 0) >= 4:
+            continue
+        seen[aid] = seen.get(aid, 0) + 1
+        seq.append(aid)
+        if len(seq) == 16:
+            break
+    # A real ladder is 16 steps across exactly 4 abilities; anything short
+    # is a half-filled template and better shown as nothing than as a lie.
+    return seq if len(seq) == 16 and len(seen) == 4 else []
+
+
+def _cluster_ability_order(in_builds: list) -> dict:
+    """Pick one ladder to represent a cluster of community templates.
+
+    Prefers the ladder the most templates in the cluster agree on; ties
+    (and the common 2-build cluster where everyone differs) fall back to
+    the highest-WR template's ladder, matching how sample_build_names
+    already picks its exemplars. Returns {} when no member has one.
+    """
+    with_order = [b for b in in_builds if b.get("ability_order")]
+    if not with_order:
+        return {}
+    counts = Counter(tuple(b["ability_order"]) for b in with_order)
+    top_seq, top_n = counts.most_common(1)[0]
+    if top_n > 1:
+        agreeing = [b for b in with_order if tuple(b["ability_order"]) == top_seq]
+        return {
+            "ability_order_ids": list(top_seq),
+            "ability_order_source": "modal",
+            "ability_order_n": top_n,
+            "ability_order_wr": round(sum(b["wr"] for b in agreeing) / len(agreeing), 4),
+        }
+    best = max(with_order, key=lambda b: b["wr"])
+    return {
+        "ability_order_ids": list(best["ability_order"]),
+        "ability_order_source": "best",
+        "ability_order_n": 1,
+        "ability_order_wr": round(best["wr"], 4),
+        "ability_order_build_name": best["name"],
+    }
+
+
 def _agglomerative(builds: list, k: int) -> list[list[int]]:
     """Return k clusters as lists of build indices."""
     n = len(builds)
@@ -1039,6 +1108,12 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
     for c in out["archetypes"].get("clusters", []):
         if c.get("build"):
             c["build"] = [with_affinity(p) for p in c["build"]]
+        # Resolve the cluster's ability ladder to display names here, where
+        # the hero's ability metadata is in scope (the clustering pass only
+        # sees build templates, which carry raw ability ids).
+        if c.get("ability_order_ids"):
+            c["ability_order_names"] = [abilities_meta.get(a, "?")
+                                        for a in c["ability_order_ids"]]
 
     return out
 
@@ -1408,6 +1483,7 @@ def cluster_archetypes_for_hero_in(hid: int, patch_cache_dir, max_clusters: int 
             builds.append({
                 "id": bid, "name": b.get("name", "?"),
                 "wr": st["wins"] / st["matches"], "matches": st["matches"], "items": items,
+                "ability_order": _template_ability_order(b),
             })
 
     if not builds:
@@ -1426,6 +1502,7 @@ def cluster_archetypes_for_hero_in(hid: int, patch_cache_dir, max_clusters: int 
         meta = _label_cluster(in_b, out_b)
         meta["share"] = round(len(in_b) / len(builds), 3)
         meta["sample_build_names"] = [b["name"] for b in sorted(in_b, key=lambda x: -x["wr"])[:3]]
+        meta.update(_cluster_ability_order(in_b))
         if hero_item_stats is not None and lineage_canon is not None and ancestors_of is not None:
             # Try the synergy-ILP optimizer first (per-archetype stat optimization).
             # Fall back to frequency-based aggregation if the optimizer can't find
