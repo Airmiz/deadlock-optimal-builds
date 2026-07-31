@@ -48,7 +48,7 @@ from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _paths import (  # noqa: E402
-    ROOT, CACHE, PATCH_REGISTRY, PATCH_CACHE,
+    ROOT, CACHE, PATCH_REGISTRY, PATCH_CACHE, ACTIVE_PATCH_ID,
     HMMR_BADGE, ASCENDANT_BADGE, ETERNUS_BADGE,
 )
 from batch_fetch import _HEADERS, fetch as _http_fetch  # noqa: E402
@@ -338,15 +338,19 @@ def main() -> None:
     ap.add_argument("--hero", type=int, required=False)
     ap.add_argument("--slice", choices=tuple(SLICE_BADGE), required=False)
     ap.add_argument("--fingerprint", help="Comma-separated ability_ids of the max-order fingerprint")
-    ap.add_argument("--patch", default="patch_146261")
+    ap.add_argument("--patch", default=ACTIVE_PATCH_ID)
     ap.add_argument("--bulk", action="store_true",
                     help="Resolve every match-only archetype for every hero in the patch")
     ap.add_argument("--no-cache", action="store_true")
     ap.add_argument("--quiet", action="store_true")
+    ap.add_argument("--dry-run", action="store_true",
+                    help="With --bulk: report how many archetypes are still "
+                         "unresolved and exit without calling the API.")
     args = ap.parse_args()
 
     if args.bulk:
-        _bulk(args.patch, use_cache=not args.no_cache, verbose=not args.quiet)
+        _bulk(args.patch, use_cache=not args.no_cache, verbose=not args.quiet,
+              dry_run=args.dry_run)
         return
 
     if not (args.hero and args.slice and args.fingerprint):
@@ -369,8 +373,16 @@ def main() -> None:
     }, indent=2))
 
 
-def _bulk(patch_id: str, use_cache: bool = True, verbose: bool = True) -> None:
-    """Resolve every match-only archetype across all heroes for a patch."""
+def _bulk(patch_id: str, use_cache: bool = True, verbose: bool = True,
+          dry_run: bool = False) -> int:
+    """Resolve every match-only archetype across all heroes for a patch.
+
+    Returns the number still unresolved when the call ends (0 == fully
+    populated). With dry_run=True nothing is computed and no network calls
+    are made — it just enumerates the work and reports what's outstanding,
+    which is what the scheduled workflow uses to decide whether this run
+    has anything to do.
+    """
     heroes_out_dir = ROOT / "heroes" / patch_id
     files = sorted(heroes_out_dir.glob("*_build.json"))
     print(f"Bulk resolve: patch {patch_id}, {len(files)} hero JSONs")
@@ -398,9 +410,18 @@ def _bulk(patch_id: str, use_cache: bool = True, verbose: bool = True) -> None:
                 seen_fps.add(fp)
                 jobs.append((hid, short, fp))
 
-    print(f"  {len(jobs)} match-only archetypes across all heroes / slices")
-    if not jobs:
-        return
+    # Split resolved-vs-outstanding up front. Resolutions are cached per
+    # (patch, hero, slice, fingerprint) and committed to the repo, so this
+    # is just a file-existence check — no API calls, runs in milliseconds.
+    outstanding = [j for j in jobs
+                   if not _cache_path(patch_id, j[0], j[1], j[2]).exists()]
+    print(f"  {len(jobs)} match-only archetypes across all heroes / slices "
+          f"({len(jobs) - len(outstanding)} already resolved, "
+          f"{len(outstanding)} outstanding)")
+    # Machine-readable line for the scheduled workflow's early-exit check.
+    print(f"OUTSTANDING={len(outstanding)}")
+    if dry_run or not jobs:
+        return len(outstanding)
 
     t0 = time.time()
     for i, (hid, slice_label, fp) in enumerate(jobs, 1):
@@ -416,7 +437,15 @@ def _bulk(patch_id: str, use_cache: bool = True, verbose: bool = True) -> None:
         except Exception as e:
             print(f"  [{i:>4}/{len(jobs)}] hero={hid} slice={slice_label} FAILED: {e}")
 
-    print(f"\nDone in {time.time()-t0:.1f}s")
+    # Recount from disk rather than trusting the loop: an archetype that
+    # errored (or that the job ran out of time before reaching) is still
+    # outstanding, and the caller uses this to decide whether another pass
+    # is needed.
+    still = [j for j in jobs
+             if not _cache_path(patch_id, j[0], j[1], j[2]).exists()]
+    print(f"\nDone in {time.time()-t0:.1f}s — {len(still)} still outstanding")
+    print(f"OUTSTANDING={len(still)}")
+    return len(still)
 
 
 if __name__ == "__main__":
