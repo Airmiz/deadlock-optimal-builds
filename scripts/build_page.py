@@ -756,6 +756,41 @@ HTML = """<!doctype html>
     color: var(--text-dim);
     font-size: 12px;
   }
+  /* Ability ladder inside an archetype card. Same step chips as the
+     hero-level order cards, one size down so 16 of them sit under the
+     item rows without dominating the card. */
+  .archetype-row .arch-ability-order {
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+  }
+  .archetype-row .arch-ord-label { color: var(--text-dim); }
+  .archetype-row .arch-ord-seq {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 3px;
+  }
+  .archetype-row .arch-ord-seq .step {
+    padding: 2px 6px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 11px;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .archetype-row .arch-ord-seq .step .num {
+    color: var(--text-dim);
+    margin-right: 3px;
+    font-size: 9px;
+  }
+  .archetype-row .arch-ord-src {
+    color: var(--text-dim);
+    font-style: italic;
+    white-space: nowrap;
+  }
   .archetype-row .sig-items .name-chip {
     display: inline-block;
     background: var(--bg);
@@ -3043,6 +3078,24 @@ HTML = """<!doctype html>
         : '';
       const samples = (c.sample_build_names || []).slice(0, 2).map(escHtml).join(' · ');
       const sampleLine = samples ? `<div class="archetype-meta">Top builds: ${samples}</div>` : '';
+      // Ability ladder the templates in this archetype plan, straight from
+      // their published order. Numbered 1-16 so the sequence reads without
+      // having to count repeats.
+      const ord = c.ability_order_names || [];
+      const ordLine = ord.length
+        ? `<div class="archetype-meta arch-ability-order">
+             <span class="arch-ord-label">Ability order:</span>
+             <span class="arch-ord-seq">${ord.map((n, i) =>
+               `<span class="step"><span class="num">${i + 1}</span>${escHtml(n)}</span>`).join('')}</span>
+             <span class="arch-ord-src" title="${c.ability_order_source === 'modal'
+                 ? `The ladder ${c.ability_order_n} templates in this archetype share`
+                 : `From the highest-WR template in this archetype${c.ability_order_build_name ? ': ' + escHtml(c.ability_order_build_name) : ''}`}">${
+               c.ability_order_source === 'modal'
+                 ? `shared by ${c.ability_order_n} builds`
+                 : 'highest-WR build'}${
+               c.ability_order_wr != null ? ` · ${(c.ability_order_wr * 100).toFixed(1)}% WR` : ''}</span>
+           </div>`
+        : '';
       const hasBuild = !!(c.build && c.build.length);
       const button = hasBuild
         ? `<button class="view-btn" data-arch-hero="${heroId}" data-arch-idx="${idx}" title="${isActive ? 'Currently viewing this build' : 'Show this archetype\\'s aggregated build'}">${isActive ? 'Viewing' : 'View this build'}</button>`
@@ -3064,6 +3117,7 @@ HTML = """<!doctype html>
             <span style="color:var(--spirit)">${((mix.spirit||0)*100).toFixed(0)}%</span>
           </div>
           ${sigLine}
+          ${ordLine}
           ${sampleLine}
         </div>
       `;
