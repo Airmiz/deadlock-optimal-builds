@@ -85,6 +85,11 @@ def discover() -> dict:
         steam = []
     steam_epoch_by_date: dict[str, int] = {}
     for item in steam:
+        # Official Valve announcements only. The same feed carries press
+        # coverage (PCGamesN, PC Gamer, ...) whose headlines can mention a
+        # date without being a patch.
+        if item.get("feedname") != "steam_community_announcements":
+            continue
         key = _date_key(item.get("title", ""))
         # Several announcements can share a date (a patch plus its hotfix);
         # the earliest is the one that actually opened the patch window.
@@ -113,6 +118,40 @@ def discover() -> dict:
             if min_ts is None:
                 continue
         found[pid] = {"title": title, "min_ts": int(min_ts), "_ts_source": ts_source}
+
+    # --- Steam-only patches ------------------------------------------------
+    # Valve ships balance changes as "Minor Update - MM-DD-YYYY" Steam
+    # announcements that never get a forum changelog thread, so the feed
+    # above cannot see them. They are real patches: the 07-28-2026 minor
+    # update moved hero win rates by 0.90pp on average and 3.78pp at the
+    # extreme, while the site was still serving one blended window back to
+    # 06-30 — 79% pre-patch data. Requiring both "update" and an MM-DD-YYYY
+    # in an official announcement's title keeps this to actual patches
+    # ("Matchmaking Update" has no date and is correctly ignored, and its
+    # measured effect on win rates was 0.27pp — noise).
+    #
+    # These have no thread id, so they are keyed by date: patch_YYYYMMDD.
+    # Ordering is by min_ts everywhere, so mixing id schemes is safe.
+    dates_with_thread = {_date_key(meta["title"]) for meta in found.values()}
+    for item in steam:
+        if item.get("feedname") != "steam_community_announcements":
+            continue
+        title = (item.get("title") or "").strip()
+        key = _date_key(title)
+        if not key or "update" not in title.lower():
+            continue
+        if key in dates_with_thread:
+            continue  # the forum thread is the canonical entry for this day
+        mm, dd, yyyy = key.split("-")
+        pid = f"patch_{yyyy}{mm}{dd}"
+        if pid in found:
+            continue
+        found[pid] = {
+            # Normalised to match the forum-thread titles the page renders.
+            "title": f"{key} Update",
+            "min_ts": int(steam_epoch_by_date[key]),
+            "_ts_source": "steam",
+        }
     return found
 
 
