@@ -1572,9 +1572,27 @@ def main() -> None:
         chosen = next(iter(payloads))  # nothing qualified; ship the newest anyway
     if chosen and chosen != (ordered[0] if ordered else None):
         print(f"  showing {chosen} until {ordered[0]} accumulates enough matches")
-    # Narrow to the single patch the site displays. Everything else stays
-    # on disk untouched.
-    payloads = {chosen: payloads[chosen]} if chosen else {}
+
+    # Ship the current patch PLUS the one before it, as a deeper-sample
+    # reference. A patch is only days old for most of its life, and after a
+    # ranked reset its high-MMR slices are thin (07-28 shipped with ~1.4K
+    # Phantom+ matches/hero against the previous patch's ~36K), so the
+    # newest numbers are the most relevant but the least settled. Two tabs
+    # let a reader cross-check a noisy current-patch build against a
+    # settled one instead of having to trust a small sample.
+    reference = None
+    if chosen:
+        for pid in ordered[ordered.index(chosen) + 1:]:
+            payload = payloads.get(pid) or build_patch_payload(pid)
+            if payload:
+                payloads[pid] = payload
+                reference = pid
+                print(f"  reference patch: {pid} "
+                      f"({_patch_total_matches(payload):,} matches)")
+                break
+    # Everything older stays on disk (and still feeds the imbue fallback
+    # below) but is not shipped.
+    payloads = {pid: payloads[pid] for pid in (chosen, reference) if pid}
 
     # Cross-patch imbue-target fallback. A new patch (e.g. patch_129989) often
     # has zero community-build metadata for the first few days because few

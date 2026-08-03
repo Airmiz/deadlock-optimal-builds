@@ -15,6 +15,7 @@ on:
     paths:
       - 'deadlock_builds.html'
       - 'methodology.html'
+      - 'rank_distribution.html'
       - 'favicon.svg'
       - 'assets/**'
       - 'docs/**'
@@ -81,6 +82,7 @@ jobs:
           cp deadlock_builds.html _site/index.html
           cp deadlock_builds.html _site/deadlock_builds.html
           cp methodology.html     _site/methodology.html
+          cp rank_distribution.html _site/rank_distribution.html
           cp favicon.svg          _site/favicon.svg
           cp -r assets _site/assets
           mkdir -p _site/docs

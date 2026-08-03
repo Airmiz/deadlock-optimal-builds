@@ -1488,6 +1488,7 @@ HTML = """<!doctype html>
       <div class="meta" style="margin-top:2px">
         <span id="last-updated" data-generated="__GENERATED_AT__" title="__GENERATED_AT__"></span>
         <span style="color:var(--text-dim)"> · </span><a href="methodology.html" style="color:var(--text-dim);text-decoration:underline" target="_blank">📖 Methodology &amp; glossary</a>
+        <span style="color:var(--text-dim)"> · </span><a href="rank_distribution.html" style="color:var(--text-dim);text-decoration:underline" target="_blank">🏅 Rank distribution</a>
       </div>
     </div>
   </div>
@@ -1499,9 +1500,9 @@ HTML = """<!doctype html>
     <div class="toggle-group" id="patch-toggle"></div>
     <div class="toggle-group" id="mmr-toggle">
       <button data-mmr="all" title="No MMR filter — full population">All MMR</button>
-      <button data-mmr="high" class="active" title="min_average_badge=91 — top ~15-20%">Phantom+</button>
-      <button data-mmr="asc" title="min_average_badge=101 — top ~3-5%">Ascendant+</button>
-      <button data-mmr="eter" title="min_average_badge=111 — top ~0.1-1%">Eternus+</button>
+      <button data-mmr="high" class="active" title="min_average_badge=91 (Phantom+) — see the Rank distribution page for the measured share">Phantom+</button>
+      <button data-mmr="asc" title="min_average_badge=101 (Ascendant+) — see the Rank distribution page for the measured share">Ascendant+</button>
+      <button data-mmr="eter" title="min_average_badge=111 (Eternus+) — see the Rank distribution page for the measured share">Eternus+</button>
     </div>
   </div>
 </header>
@@ -1568,11 +1569,21 @@ HTML = """<!doctype html>
   if (patchIds.length < 2) {
     patchToggle.style.display = 'none';
   } else {
-    patchToggle.innerHTML = patchIds.map(pid => {
+    patchToggle.innerHTML = patchIds.map((pid, i) => {
       const p = DATA.patches[pid];
       const cls = pid === activePatchId ? 'active' : '';
-      const isNew = pid === patchIds[0] ? ' <span style="color:var(--good);font-size:9px;margin-left:3px">NEW</span>' : '';
-      return `<button data-patch="${pid}" class="${cls}" title="${p.title}">${p.title}${isNew}</button>`;
+      const n = (p.heroes || []).reduce((s, h) => s + ((h.mmr && h.mmr.all && h.mmr.all.matches) || 0), 0);
+      const nStr = n >= 1e6 ? (n / 1e6).toFixed(1) + 'M' : Math.round(n / 1000) + 'K';
+      // The older tab is kept deliberately: a just-released patch has the
+      // most relevant numbers but the smallest sample, so the previous one
+      // is there to sanity-check a noisy build against a settled sample.
+      const tip = i === 0
+        ? `${p.title} — current patch · ${nStr} matches`
+        : `${p.title} — previous patch, fuller sample (${nStr} matches). Use it to sanity-check thin current-patch numbers.`;
+      const tag = i === 0
+        ? ' <span style="color:var(--good);font-size:9px;margin-left:3px">NEW</span>'
+        : ' <span style="color:var(--text-dim);font-size:9px;margin-left:3px">' + nStr + '</span>';
+      return `<button data-patch="${pid}" class="${cls}" title="${tip}">${p.title}${tag}</button>`;
     }).join('');
   }
 
