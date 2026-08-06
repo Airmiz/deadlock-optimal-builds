@@ -16,34 +16,98 @@
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Inter",sans-serif; }
   .wrap { max-width:960px; margin:0 auto; padding:28px 20px 60px; }
   h1 { font-size:22px; margin:0 0 4px; color:var(--accent); letter-spacing:.5px; }
-  .sub-title { color:var(--text-dim); font-size:13px; margin-bottom:18px; }
+  h2 { font-size:15px; margin:0; }
+  .sub-title { color:var(--text-dim); font-size:13px; margin-bottom:6px; }
+  .intro { color:var(--text-dim); font-size:13px; margin:0 0 18px; max-width:720px; }
   a { color:var(--text-dim); }
   .note { background:var(--bg-elev); border:1px solid var(--border); border-radius:8px;
-    padding:12px 14px; font-size:13px; color:var(--text-dim); margin:18px 0 22px; }
+    padding:12px 14px; font-size:13px; color:var(--text-dim); margin:18px 0 8px; }
   .note.warn { border-color:var(--accent); }
   .note strong { color:var(--text); }
-  .cuts { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:26px; }
+
+  .cuts { display:flex; gap:12px; flex-wrap:wrap; }
   .cut { flex:1 1 180px; background:var(--bg-card); border:1px solid var(--border);
     border-radius:8px; padding:12px 14px; }
   .cut-name { font-weight:600; font-size:13px; }
-  .cut-pct { font-size:24px; color:var(--accent); font-weight:600; line-height:1.2; }
-  .cut-sub { font-size:11px; color:var(--text-dim); }
-  .row { display:grid; grid-template-columns:130px 1fr 52px 74px; gap:10px;
-    align-items:center; margin-bottom:7px; }
-  .rank { display:flex; align-items:center; gap:7px; font-size:13px; font-weight:600; }
-  .rank img { width:22px; height:22px; object-fit:contain; }
-  .bar-wrap { background:var(--bg-elev); border-radius:4px; height:20px; overflow:hidden; }
-  .bar { height:100%; border-radius:4px; min-width:2px; }
-  .num { font-size:12px; text-align:right; font-variant-numeric:tabular-nums; }
-  .num.dim { color:var(--text-dim); }
-  .subs { grid-column:2 / -1; display:flex; gap:3px; margin:-3px 0 4px; }
-  .sub { font-size:9px; color:var(--text-dim); background:var(--bg-elev);
-    border:1px solid var(--border); border-radius:3px; padding:0 4px; cursor:help; }
+  .cut-name span { color:var(--text-dim); font-weight:400; font-size:12px; }
+  .cut-pct { font-size:26px; color:var(--accent); font-weight:600; line-height:1.25; }
+  .cut-sub { font-size:11.5px; color:var(--text-dim); }
+
+  .chart-head { display:flex; align-items:baseline; justify-content:space-between;
+    gap:12px; margin:30px 0 4px; flex-wrap:wrap; }
+  .chart-meta { color:var(--text-dim); font-size:12px; }
+  .chart { position:relative; }
+  .plot { display:flex; align-items:flex-end; gap:10px; position:relative; }
+  .plot::after { content:""; position:absolute; left:0; right:0;
+    top:252px; height:1px; background:var(--border); }
+  .wash { position:absolute; top:0; height:252px;
+    background:rgba(240,169,59,.028); border-left:1px solid rgba(240,169,59,.28); }
+  .wash span { position:absolute; top:2px; left:7px; font-size:10.5px; letter-spacing:.4px;
+    color:rgba(240,169,59,.75); white-space:nowrap; }
+  .col { flex:1 1 0; min-width:0; display:flex; flex-direction:column; align-items:center;
+    position:relative; border-radius:4px; }
+  .col:focus-visible { outline:1px solid var(--accent); outline-offset:2px; }
+  .bar-area { height:252px; display:flex; flex-direction:column;
+    justify-content:flex-end; align-items:center; }
+  .cap { font-size:11px; color:var(--text-dim); margin-bottom:3px;
+    font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .col:hover .cap, .col:focus-visible .cap { color:var(--text); }
+  .stack { width:24px; overflow:hidden; display:flex; flex-direction:column;
+    justify-content:flex-end; }
+  .seg { width:100%; margin-top:2px; }
+  .seg:first-child { margin-top:0; }
+  .col:hover .seg { filter:brightness(1.18); }
+  .seg:hover { filter:brightness(1.45) !important; }
+  .xlab { display:flex; flex-direction:column; align-items:center; gap:2px;
+    padding-top:7px; min-height:52px; }
+  .xlab img { width:24px; height:24px; object-fit:contain; }
+  .cname { font-size:10.5px; color:var(--text-dim); white-space:nowrap; }
+
+  .chart-cap, .tbl-cap { color:var(--text-dim); font-size:12px; margin:10px 0 0;
+    max-width:720px; }
+
+  .tbl { margin-top:30px; border:1px solid var(--border); border-radius:8px;
+    overflow:hidden; font-size:13px; }
+  .thead, .trow.flat, .trow summary { display:grid;
+    grid-template-columns:22px minmax(110px,1.4fr) 1fr 1fr 1fr; gap:8px;
+    align-items:center; padding:7px 12px 7px 8px; }
+  .thead { background:var(--bg-elev); color:var(--text-dim); font-size:11px;
+    text-transform:uppercase; letter-spacing:.6px; }
+  .trow { border-top:1px solid var(--border); }
+  .trow summary { cursor:pointer; list-style:none; }
+  .trow summary::-webkit-details-marker { display:none; }
+  .trow summary:hover, .trow.flat:hover { background:var(--bg-elev); }
+  .chev { color:var(--text-dim); font-size:10px; transition:transform .12s; text-align:center; }
+  .trow[open] .chev { transform:rotate(90deg); }
+  .trow.hl { box-shadow:inset 2px 0 0 var(--accent); background:rgba(240,169,59,.04); }
+  .rname { display:flex; align-items:center; gap:8px; font-weight:600; min-width:0; }
+  .rname img { width:20px; height:20px; object-fit:contain; }
+  .tnum { text-align:right; font-variant-numeric:tabular-nums; }
+  .dim { color:var(--text-dim); font-weight:400; }
+  .subtbl { padding:2px 12px 8px 30px; }
+  .srow { display:grid; grid-template-columns:minmax(102px,1.4fr) 1fr 1fr 1fr; gap:8px;
+    padding:3px 0; color:var(--text-dim); font-size:12.5px; }
+  .srow > div:first-child { color:var(--text); }
+  .hl-key { display:inline-block; width:9px; height:9px; border-radius:2px;
+    background:rgba(240,169,59,.25); box-shadow:inset 2px 0 0 var(--accent); }
+
+  .tip { position:fixed; z-index:10; background:var(--bg-card); border:1px solid var(--border);
+    border-radius:6px; padding:6px 9px; font-size:12px; pointer-events:none; display:none;
+    max-width:260px; box-shadow:0 4px 14px rgba(0,0,0,.45); }
   .foot { color:var(--text-dim); font-size:12px; margin-top:26px;
     border-top:1px solid var(--border); padding-top:14px; }
+
   @media (max-width:640px) {
-    .row { grid-template-columns:104px 1fr 46px; }
-    .num.dim { display:none; }
+    .plot { gap:4px; }
+    .cap { font-size:9px; }
+    .cap .u { display:none; }
+    .cname { display:none; }
+    .xlab { min-height:34px; }
+    .xlab img { width:20px; height:20px; }
+    .wash span { font-size:9px; left:4px; }
+    .thead, .trow.flat, .trow summary { grid-template-columns:18px minmax(86px,1.2fr) 1fr 1fr 1fr;
+      gap:6px; }
+    .subtbl { padding-left:14px; }
   }
 </style>
 </head>
@@ -54,148 +118,164 @@
     <a href="deadlock_builds.html">← Back to builds</a> ·
     <a href="methodology.html">Methodology &amp; glossary</a>
   </div>
+  <p class="intro">Where the ranked playerbase sits, measured live from the badge
+    distribution — the same numbers the site's Phantom+/Ascendant+/Eternus+ build tabs
+    select on, re-measured on every refresh rather than estimated.</p>
 
-  <div class="cuts"><div class="cut"><div class="cut-name">Phantom+</div><div class="cut-pct">top 0.6%</div><div class="cut-sub">badge 91+ · 702 players · The site's default view</div></div><div class="cut"><div class="cut-name">Ascendant+</div><div class="cut-pct">top 0.0%</div><div class="cut-sub">badge 101+ · 13 players</div></div><div class="cut"><div class="cut-name">Eternus+</div><div class="cut-pct">top 0.0%</div><div class="cut-sub">badge 111+ · 0 players</div></div></div>
+  <div class="cuts"><div class="cut"><div class="cut-name">Phantom+ <span>· the site's default view</span></div><div class="cut-pct">top 0.6%</div><div class="cut-sub">734 players · ≈1 in 150 · badge 91+</div></div><div class="cut"><div class="cut-name">Ascendant+</div><div class="cut-pct">top 0.01%</div><div class="cut-sub">13 players · ≈1 in 8,700 · badge 101+</div></div><div class="cut"><div class="cut-name">Eternus+</div><div class="cut-pct">top —</div><div class="cut-sub">no players at this badge yet · badge 111+</div></div></div>
 
-  <div class="note warn"><strong>The ladder is still refilling.</strong> Oracle holds 19,017 players but Phantom only 689 — a cliff that big is the signature of a ranked-season reset, not the steady-state ladder. The top-tier percentages above are a correct measurement of right now, and will climb back over the coming weeks as players re-qualify. It is also why the site's Phantom+/Ascendant+/Eternus+ build samples are currently thinner than usual.</div>
-
-  <div class="note">
-    <strong>What the MMR tabs actually select.</strong> Every build on this site can be
-    filtered by badge, and the percentages above are measured from the live badge
-    distribution rather than estimated — so "Phantom+" means exactly the share shown,
-    not a rule of thumb. A ranked-season reset moves the whole population, so these
-    numbers shift; they are re-measured on every refresh.
-  </div>
-
+  <div class="note warn"><strong>The ladder is still refilling after a ranked-season reset.</strong> Oracle holds 19,070 players but Phantom only 721 — a reset empties the top tiers, and they re-fill over weeks as players re-qualify. The percentages here are a correct measurement of <em>right now</em>; it is also why the Phantom+/Ascendant+/Eternus+ build samples are currently thin.</div>
   
-        <div class="row">
-          <div class="rank">
-            <img src="assets/ranks/tier10.png" alt="" loading="lazy">
-            <span style="color:#C39751">Ascendant</span>
-          </div>
-          <div class="bar-wrap">
-            <div class="bar" style="width:0.07%;background:#C39751"></div>
-          </div>
-          <div class="num">0.0%</div>
-          <div class="num dim">13</div>
-          <div class="subs"><span class="sub" title="Badge 101 — 9 players">1</span> <span class="sub" title="Badge 102 — 1 players">2</span> <span class="sub" title="Badge 103 — 1 players">3</span> <span class="sub" title="Badge 105 — 1 players">5</span> <span class="sub" title="Badge 106 — 1 players">6</span></div>
+  <div class="chart-head">
+    <h2>Players by rank</h2>
+    <div class="chart-meta">113,502 ranked players · lowest rank on the left</div>
+  </div>
+  <div class="chart" aria-label="Histogram of ranked players by rank tier; the same numbers are in the table below.">
+    <div class="plot"><div class="wash" style="left:72.727%;width:27.273%"><span>Phantom+</span></div>
+      <div class="col" tabindex="0" data-tip="Initiate · 11,027 players · 9.7% of ranked · top 100.0%" aria-label="Initiate · 11,027 players · 9.7% of ranked · top 100.0%">
+        <div class="bar-area"><span class="cap">9.7<span class="u">%</span></span>
+          <div class="stack" style="border-radius:4px 4px 0 0"><div class="seg" style="height:41px;background:#7b5539" data-tip="Initiate 6 · badge 16 · 3,642 players"></div><div class="seg" style="height:33px;background:#7b5539" data-tip="Initiate 5 · badge 15 · 2,914 players"></div><div class="seg" style="height:23px;background:#7b5539" data-tip="Initiate 4 · badge 14 · 2,074 players"></div><div class="seg" style="height:13px;background:#7b5539" data-tip="Initiate 3 · badge 13 · 1,194 players"></div><div class="seg" style="height:8px;background:#7b5539" data-tip="Initiate 2 · badge 12 · 725 players"></div><div class="seg" style="height:5px;background:#7b5539" data-tip="Initiate 1 · badge 11 · 478 players"></div></div>
         </div>
-        <div class="row">
-          <div class="rank">
-            <img src="assets/ranks/tier09.png" alt="" loading="lazy">
-            <span style="color:#7C7C7C">Phantom</span>
-          </div>
-          <div class="bar-wrap">
-            <div class="bar" style="width:3.62%;background:#7C7C7C"></div>
-          </div>
-          <div class="num">0.6%</div>
-          <div class="num dim">689</div>
-          <div class="subs"><span class="sub" title="Badge 91 — 419 players">1</span> <span class="sub" title="Badge 92 — 144 players">2</span> <span class="sub" title="Badge 93 — 61 players">3</span> <span class="sub" title="Badge 94 — 33 players">4</span> <span class="sub" title="Badge 95 — 21 players">5</span> <span class="sub" title="Badge 96 — 11 players">6</span></div>
+        <div class="xlab"><img src="assets/ranks/tier01.png" alt="" loading="lazy">
+          <span class="cname">Initiate</span>
         </div>
-        <div class="row">
-          <div class="rank">
-            <img src="assets/ranks/tier08.png" alt="" loading="lazy">
-            <span style="color:#955138">Oracle</span>
-          </div>
-          <div class="bar-wrap">
-            <div class="bar" style="width:100.00%;background:#955138"></div>
-          </div>
-          <div class="num">16.9%</div>
-          <div class="num dim">19,017</div>
-          <div class="subs"><span class="sub" title="Badge 81 — 3,054 players">1</span> <span class="sub" title="Badge 82 — 3,298 players">2</span> <span class="sub" title="Badge 83 — 3,208 players">3</span> <span class="sub" title="Badge 84 — 3,471 players">4</span> <span class="sub" title="Badge 85 — 3,324 players">5</span> <span class="sub" title="Badge 86 — 2,662 players">6</span></div>
+      </div>
+      <div class="col" tabindex="0" data-tip="Seeker · 15,292 players · 13.5% of ranked · top 90.3%" aria-label="Seeker · 15,292 players · 13.5% of ranked · top 90.3%">
+        <div class="bar-area"><span class="cap">13.5<span class="u">%</span></span>
+          <div class="stack" style="border-radius:4px 4px 0 0"><div class="seg" style="height:39px;background:#963c69" data-tip="Seeker 6 · badge 26 · 3,381 players"></div><div class="seg" style="height:27px;background:#963c69" data-tip="Seeker 5 · badge 25 · 2,351 players"></div><div class="seg" style="height:30px;background:#963c69" data-tip="Seeker 4 · badge 24 · 2,675 players"></div><div class="seg" style="height:31px;background:#963c69" data-tip="Seeker 3 · badge 23 · 2,747 players"></div><div class="seg" style="height:26px;background:#963c69" data-tip="Seeker 2 · badge 22 · 2,277 players"></div><div class="seg" style="height:21px;background:#963c69" data-tip="Seeker 1 · badge 21 · 1,861 players"></div></div>
         </div>
-        <div class="row">
-          <div class="rank">
-            <img src="assets/ranks/tier07.png" alt="" loading="lazy">
-            <span style="color:#B47FEB">Emissary</span>
-          </div>
-          <div class="bar-wrap">
-            <div class="bar" style="width:69.46%;background:#B47FEB"></div>
-          </div>
-          <div class="num">11.7%</div>
-          <div class="num dim">13,209</div>
-          <div class="subs"><span class="sub" title="Badge 71 — 2,088 players">1</span> <span class="sub" title="Badge 72 — 2,191 players">2</span> <span class="sub" title="Badge 73 — 2,117 players">3</span> <span class="sub" title="Badge 74 — 1,999 players">4</span> <span class="sub" title="Badge 75 — 1,775 players">5</span> <span class="sub" title="Badge 76 — 3,039 players">6</span></div>
+        <div class="xlab"><img src="assets/ranks/tier02.png" alt="" loading="lazy">
+          <span class="cname">Seeker</span>
         </div>
-        <div class="row">
-          <div class="rank">
-            <img src="assets/ranks/tier06.png" alt="" loading="lazy">
-            <span style="color:#EE4F57">Ritualist</span>
-          </div>
-          <div class="bar-wrap">
-            <div class="bar" style="width:70.70%;background:#EE4F57"></div>
-          </div>
-          <div class="num">11.9%</div>
-          <div class="num dim">13,445</div>
-          <div class="subs"><span class="sub" title="Badge 61 — 2,209 players">1</span> <span class="sub" title="Badge 62 — 2,338 players">2</span> <span class="sub" title="Badge 63 — 2,382 players">3</span> <span class="sub" title="Badge 64 — 2,032 players">4</span> <span class="sub" title="Badge 65 — 1,755 players">5</span> <span class="sub" title="Badge 66 — 2,729 players">6</span></div>
+      </div>
+      <div class="col" tabindex="0" data-tip="Acolyte · 13,985 players · 12.3% of ranked · top 76.8%" aria-label="Acolyte · 13,985 players · 12.3% of ranked · top 76.8%">
+        <div class="bar-area"><span class="cap">12.3<span class="u">%</span></span>
+          <div class="stack" style="border-radius:4px 4px 0 0"><div class="seg" style="height:36px;background:#5c6dab" data-tip="Acolyte 6 · badge 36 · 3,147 players"></div><div class="seg" style="height:23px;background:#5c6dab" data-tip="Acolyte 5 · badge 35 · 1,986 players"></div><div class="seg" style="height:24px;background:#5c6dab" data-tip="Acolyte 4 · badge 34 · 2,136 players"></div><div class="seg" style="height:25px;background:#5c6dab" data-tip="Acolyte 3 · badge 33 · 2,209 players"></div><div class="seg" style="height:27px;background:#5c6dab" data-tip="Acolyte 2 · badge 32 · 2,416 players"></div><div class="seg" style="height:24px;background:#5c6dab" data-tip="Acolyte 1 · badge 31 · 2,091 players"></div></div>
         </div>
-        <div class="row">
-          <div class="rank">
-            <img src="assets/ranks/tier05.png" alt="" loading="lazy">
-            <span style="color:#DDA326">Mystic</span>
-          </div>
-          <div class="bar-wrap">
-            <div class="bar" style="width:70.58%;background:#DDA326"></div>
-          </div>
-          <div class="num">11.9%</div>
-          <div class="num dim">13,423</div>
-          <div class="subs"><span class="sub" title="Badge 51 — 1,536 players">1</span> <span class="sub" title="Badge 52 — 1,716 players">2</span> <span class="sub" title="Badge 53 — 1,963 players">3</span> <span class="sub" title="Badge 54 — 2,328 players">4</span> <span class="sub" title="Badge 55 — 2,317 players">5</span> <span class="sub" title="Badge 56 — 3,563 players">6</span></div>
+        <div class="xlab"><img src="assets/ranks/tier03.png" alt="" loading="lazy">
+          <span class="cname">Acolyte</span>
         </div>
-        <div class="row">
-          <div class="rank">
-            <img src="assets/ranks/tier04.png" alt="" loading="lazy">
-            <span style="color:#719C47">Sentinel</span>
-          </div>
-          <div class="bar-wrap">
-            <div class="bar" style="width:67.96%;background:#719C47"></div>
-          </div>
-          <div class="num">11.5%</div>
-          <div class="num dim">12,924</div>
-          <div class="subs"><span class="sub" title="Badge 41 — 1,878 players">1</span> <span class="sub" title="Badge 42 — 2,109 players">2</span> <span class="sub" title="Badge 43 — 2,136 players">3</span> <span class="sub" title="Badge 44 — 2,085 players">4</span> <span class="sub" title="Badge 45 — 2,005 players">5</span> <span class="sub" title="Badge 46 — 2,711 players">6</span></div>
+      </div>
+      <div class="col" tabindex="0" data-tip="Sentinel · 13,043 players · 11.5% of ranked · top 64.5%" aria-label="Sentinel · 13,043 players · 11.5% of ranked · top 64.5%">
+        <div class="bar-area"><span class="cap">11.5<span class="u">%</span></span>
+          <div class="stack" style="border-radius:4px 4px 0 0"><div class="seg" style="height:31px;background:#719c47" data-tip="Sentinel 6 · badge 46 · 2,749 players"></div><div class="seg" style="height:23px;background:#719c47" data-tip="Sentinel 5 · badge 45 · 2,039 players"></div><div class="seg" style="height:24px;background:#719c47" data-tip="Sentinel 4 · badge 44 · 2,089 players"></div><div class="seg" style="height:24px;background:#719c47" data-tip="Sentinel 3 · badge 43 · 2,153 players"></div><div class="seg" style="height:24px;background:#719c47" data-tip="Sentinel 2 · badge 42 · 2,113 players"></div><div class="seg" style="height:21px;background:#719c47" data-tip="Sentinel 1 · badge 41 · 1,900 players"></div></div>
         </div>
-        <div class="row">
-          <div class="rank">
-            <img src="assets/ranks/tier03.png" alt="" loading="lazy">
-            <span style="color:#5C6DAB">Acolyte</span>
-          </div>
-          <div class="bar-wrap">
-            <div class="bar" style="width:72.95%;background:#5C6DAB"></div>
-          </div>
-          <div class="num">12.3%</div>
-          <div class="num dim">13,873</div>
-          <div class="subs"><span class="sub" title="Badge 31 — 2,067 players">1</span> <span class="sub" title="Badge 32 — 2,402 players">2</span> <span class="sub" title="Badge 33 — 2,189 players">3</span> <span class="sub" title="Badge 34 — 2,127 players">4</span> <span class="sub" title="Badge 35 — 1,964 players">5</span> <span class="sub" title="Badge 36 — 3,124 players">6</span></div>
+        <div class="xlab"><img src="assets/ranks/tier04.png" alt="" loading="lazy">
+          <span class="cname">Sentinel</span>
         </div>
-        <div class="row">
-          <div class="rank">
-            <img src="assets/ranks/tier02.png" alt="" loading="lazy">
-            <span style="color:#882355">Seeker</span>
-          </div>
-          <div class="bar-wrap">
-            <div class="bar" style="width:79.60%;background:#882355"></div>
-          </div>
-          <div class="num">13.4%</div>
-          <div class="num dim">15,138</div>
-          <div class="subs"><span class="sub" title="Badge 21 — 1,836 players">1</span> <span class="sub" title="Badge 22 — 2,258 players">2</span> <span class="sub" title="Badge 23 — 2,729 players">3</span> <span class="sub" title="Badge 24 — 2,657 players">4</span> <span class="sub" title="Badge 25 — 2,308 players">5</span> <span class="sub" title="Badge 26 — 3,350 players">6</span></div>
+      </div>
+      <div class="col" tabindex="0" data-tip="Mystic · 13,520 players · 11.9% of ranked · top 53.0%" aria-label="Mystic · 13,520 players · 11.9% of ranked · top 53.0%">
+        <div class="bar-area"><span class="cap">11.9<span class="u">%</span></span>
+          <div class="stack" style="border-radius:4px 4px 0 0"><div class="seg" style="height:41px;background:#cc9725" data-tip="Mystic 6 · badge 56 · 3,588 players"></div><div class="seg" style="height:26px;background:#cc9725" data-tip="Mystic 5 · badge 55 · 2,340 players"></div><div class="seg" style="height:27px;background:#cc9725" data-tip="Mystic 4 · badge 54 · 2,348 players"></div><div class="seg" style="height:22px;background:#cc9725" data-tip="Mystic 3 · badge 53 · 1,979 players"></div><div class="seg" style="height:19px;background:#cc9725" data-tip="Mystic 2 · badge 52 · 1,718 players"></div><div class="seg" style="height:18px;background:#cc9725" data-tip="Mystic 1 · badge 51 · 1,547 players"></div></div>
         </div>
-        <div class="row">
-          <div class="rank">
-            <img src="assets/ranks/tier01.png" alt="" loading="lazy">
-            <span style="color:#6A3E1E">Initiate</span>
-          </div>
-          <div class="bar-wrap">
-            <div class="bar" style="width:57.38%;background:#6A3E1E"></div>
-          </div>
-          <div class="num">9.7%</div>
-          <div class="num dim">10,912</div>
-          <div class="subs"><span class="sub" title="Badge 11 — 479 players">1</span> <span class="sub" title="Badge 12 — 713 players">2</span> <span class="sub" title="Badge 13 — 1,184 players">3</span> <span class="sub" title="Badge 14 — 2,048 players">4</span> <span class="sub" title="Badge 15 — 2,898 players">5</span> <span class="sub" title="Badge 16 — 3,590 players">6</span></div>
+        <div class="xlab"><img src="assets/ranks/tier05.png" alt="" loading="lazy">
+          <span class="cname">Mystic</span>
         </div>
+      </div>
+      <div class="col" tabindex="0" data-tip="Ritualist · 13,551 players · 11.9% of ranked · top 41.1%" aria-label="Ritualist · 13,551 players · 11.9% of ranked · top 41.1%">
+        <div class="bar-area"><span class="cap">11.9<span class="u">%</span></span>
+          <div class="stack" style="border-radius:4px 4px 0 0"><div class="seg" style="height:31px;background:#ee4f57" data-tip="Ritualist 6 · badge 66 · 2,750 players"></div><div class="seg" style="height:20px;background:#ee4f57" data-tip="Ritualist 5 · badge 65 · 1,771 players"></div><div class="seg" style="height:23px;background:#ee4f57" data-tip="Ritualist 4 · badge 64 · 2,052 players"></div><div class="seg" style="height:27px;background:#ee4f57" data-tip="Ritualist 3 · badge 63 · 2,391 players"></div><div class="seg" style="height:27px;background:#ee4f57" data-tip="Ritualist 2 · badge 62 · 2,364 players"></div><div class="seg" style="height:25px;background:#ee4f57" data-tip="Ritualist 1 · badge 61 · 2,223 players"></div></div>
+        </div>
+        <div class="xlab"><img src="assets/ranks/tier06.png" alt="" loading="lazy">
+          <span class="cname">Ritualist</span>
+        </div>
+      </div>
+      <div class="col" tabindex="0" data-tip="Emissary · 13,280 players · 11.7% of ranked · top 29.1%" aria-label="Emissary · 13,280 players · 11.7% of ranked · top 29.1%">
+        <div class="bar-area"><span class="cap">11.7<span class="u">%</span></span>
+          <div class="stack" style="border-radius:4px 4px 0 0"><div class="seg" style="height:34px;background:#b47feb" data-tip="Emissary 6 · badge 76 · 3,057 players"></div><div class="seg" style="height:20px;background:#b47feb" data-tip="Emissary 5 · badge 75 · 1,799 players"></div><div class="seg" style="height:23px;background:#b47feb" data-tip="Emissary 4 · badge 74 · 2,002 players"></div><div class="seg" style="height:24px;background:#b47feb" data-tip="Emissary 3 · badge 73 · 2,132 players"></div><div class="seg" style="height:25px;background:#b47feb" data-tip="Emissary 2 · badge 72 · 2,206 players"></div><div class="seg" style="height:24px;background:#b47feb" data-tip="Emissary 1 · badge 71 · 2,084 players"></div></div>
+        </div>
+        <div class="xlab"><img src="assets/ranks/tier07.png" alt="" loading="lazy">
+          <span class="cname">Emissary</span>
+        </div>
+      </div>
+      <div class="col" tabindex="0" data-tip="Oracle · 19,070 players · 16.8% of ranked · top 17.4%" aria-label="Oracle · 19,070 players · 16.8% of ranked · top 17.4%">
+        <div class="bar-area"><span class="cap">16.8<span class="u">%</span></span>
+          <div class="stack" style="border-radius:4px 4px 0 0"><div class="seg" style="height:31px;background:#955138" data-tip="Oracle 6 · badge 86 · 2,676 players"></div><div class="seg" style="height:38px;background:#955138" data-tip="Oracle 5 · badge 85 · 3,334 players"></div><div class="seg" style="height:41px;background:#955138" data-tip="Oracle 4 · badge 84 · 3,478 players"></div><div class="seg" style="height:37px;background:#955138" data-tip="Oracle 3 · badge 83 · 3,223 players"></div><div class="seg" style="height:38px;background:#955138" data-tip="Oracle 2 · badge 82 · 3,305 players"></div><div class="seg" style="height:35px;background:#955138" data-tip="Oracle 1 · badge 81 · 3,054 players"></div></div>
+        </div>
+        <div class="xlab"><img src="assets/ranks/tier08.png" alt="" loading="lazy">
+          <span class="cname">Oracle</span>
+        </div>
+      </div>
+      <div class="col" tabindex="0" data-tip="Phantom · 721 players · 0.6% of ranked · top 0.6%" aria-label="Phantom · 721 players · 0.6% of ranked · top 0.6%">
+        <div class="bar-area"><span class="cap">0.6<span class="u">%</span></span>
+          <div class="stack" style="border-radius:1px 1px 0 0"><div class="seg" style="height:9px;background:#7c7c7c"></div></div>
+        </div>
+        <div class="xlab"><img src="assets/ranks/tier09.png" alt="" loading="lazy">
+          <span class="cname">Phantom</span>
+        </div>
+      </div>
+      <div class="col" tabindex="0" data-tip="Ascendant · 13 players · 0.01% of ranked · top 0.01%" aria-label="Ascendant · 13 players · 0.01% of ranked · top 0.01%">
+        <div class="bar-area"><span class="cap">&lt;0.1<span class="u">%</span></span>
+          <div class="stack" style="border-radius:1px 1px 0 0"><div class="seg" style="height:2px;background:#c39751"></div></div>
+        </div>
+        <div class="xlab"><img src="assets/ranks/tier10.png" alt="" loading="lazy">
+          <span class="cname">Ascendant</span>
+        </div>
+      </div>
+      <div class="col" tabindex="0" data-tip="Eternus · no players yet" aria-label="Eternus · no players yet">
+        <div class="bar-area"><span class="cap">0</span>
+          <div class="stack" style="border-radius:1px 1px 0 0"></div>
+        </div>
+        <div class="xlab"><img src="assets/ranks/tier11.png" alt="" loading="lazy">
+          <span class="cname">Eternus</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chart-cap">Column = share of all ranked players at that rank. Big columns are
+    split into sub-ranks 1–6, bottom to top — hover one, or use the table below, for exact
+    counts. The tinted zone is what the site's Phantom+ filter selects.</div>
+  
+  <div class="tbl" role="table" aria-label="Rank distribution, exact numbers">
+    <div class="thead"><span class="chev"></span><div>Rank</div><div class="tnum">Players</div>
+      <div class="tnum">Share</div><div class="tnum" title="Players at this rank or higher">Top</div></div>
+    <div class="trow flat hl"><span class="chev"></span><span class="rname"><img src="assets/ranks/tier11.png" alt="">Eternus</span><span class="tnum">0</span><span class="tnum">0%</span><span class="tnum">—</span></div><details class="trow hl"><summary><span class="chev">▸</span><span class="rname"><img src="assets/ranks/tier10.png" alt="">Ascendant</span><span class="tnum">13</span><span class="tnum">0.01%</span><span class="tnum">0.01%</span></summary><div class="subtbl"><div class="srow"><div>Ascendant 6<span class="dim"> · badge 106</span></div><div class="tnum">1</div><div class="tnum"><0.01%</div><div class="tnum dim"><0.01%</div></div><div class="srow"><div>Ascendant 5<span class="dim"> · badge 105</span></div><div class="tnum">1</div><div class="tnum"><0.01%</div><div class="tnum dim"><0.01%</div></div><div class="srow"><div>Ascendant 3<span class="dim"> · badge 103</span></div><div class="tnum">1</div><div class="tnum"><0.01%</div><div class="tnum dim"><0.01%</div></div><div class="srow"><div>Ascendant 2<span class="dim"> · badge 102</span></div><div class="tnum">3</div><div class="tnum"><0.01%</div><div class="tnum dim"><0.01%</div></div><div class="srow"><div>Ascendant 1<span class="dim"> · badge 101</span></div><div class="tnum">7</div><div class="tnum"><0.01%</div><div class="tnum dim">0.01%</div></div></div></details><details class="trow hl"><summary><span class="chev">▸</span><span class="rname"><img src="assets/ranks/tier09.png" alt="">Phantom</span><span class="tnum">721</span><span class="tnum">0.6%</span><span class="tnum">0.6%</span></summary><div class="subtbl"><div class="srow"><div>Phantom 6<span class="dim"> · badge 96</span></div><div class="tnum">11</div><div class="tnum"><0.01%</div><div class="tnum dim">0.02%</div></div><div class="srow"><div>Phantom 5<span class="dim"> · badge 95</span></div><div class="tnum">25</div><div class="tnum">0.02%</div><div class="tnum dim">0.04%</div></div><div class="srow"><div>Phantom 4<span class="dim"> · badge 94</span></div><div class="tnum">31</div><div class="tnum">0.03%</div><div class="tnum dim">0.07%</div></div><div class="srow"><div>Phantom 3<span class="dim"> · badge 93</span></div><div class="tnum">68</div><div class="tnum">0.06%</div><div class="tnum dim">0.1%</div></div><div class="srow"><div>Phantom 2<span class="dim"> · badge 92</span></div><div class="tnum">149</div><div class="tnum">0.1%</div><div class="tnum dim">0.3%</div></div><div class="srow"><div>Phantom 1<span class="dim"> · badge 91</span></div><div class="tnum">437</div><div class="tnum">0.4%</div><div class="tnum dim">0.6%</div></div></div></details><details class="trow"><summary><span class="chev">▸</span><span class="rname"><img src="assets/ranks/tier08.png" alt="">Oracle</span><span class="tnum">19,070</span><span class="tnum">16.8%</span><span class="tnum">17.4%</span></summary><div class="subtbl"><div class="srow"><div>Oracle 6<span class="dim"> · badge 86</span></div><div class="tnum">2,676</div><div class="tnum">2.4%</div><div class="tnum dim">3.0%</div></div><div class="srow"><div>Oracle 5<span class="dim"> · badge 85</span></div><div class="tnum">3,334</div><div class="tnum">2.9%</div><div class="tnum dim">5.9%</div></div><div class="srow"><div>Oracle 4<span class="dim"> · badge 84</span></div><div class="tnum">3,478</div><div class="tnum">3.1%</div><div class="tnum dim">9.0%</div></div><div class="srow"><div>Oracle 3<span class="dim"> · badge 83</span></div><div class="tnum">3,223</div><div class="tnum">2.8%</div><div class="tnum dim">11.8%</div></div><div class="srow"><div>Oracle 2<span class="dim"> · badge 82</span></div><div class="tnum">3,305</div><div class="tnum">2.9%</div><div class="tnum dim">14.8%</div></div><div class="srow"><div>Oracle 1<span class="dim"> · badge 81</span></div><div class="tnum">3,054</div><div class="tnum">2.7%</div><div class="tnum dim">17.4%</div></div></div></details><details class="trow"><summary><span class="chev">▸</span><span class="rname"><img src="assets/ranks/tier07.png" alt="">Emissary</span><span class="tnum">13,280</span><span class="tnum">11.7%</span><span class="tnum">29.1%</span></summary><div class="subtbl"><div class="srow"><div>Emissary 6<span class="dim"> · badge 76</span></div><div class="tnum">3,057</div><div class="tnum">2.7%</div><div class="tnum dim">20.1%</div></div><div class="srow"><div>Emissary 5<span class="dim"> · badge 75</span></div><div class="tnum">1,799</div><div class="tnum">1.6%</div><div class="tnum dim">21.7%</div></div><div class="srow"><div>Emissary 4<span class="dim"> · badge 74</span></div><div class="tnum">2,002</div><div class="tnum">1.8%</div><div class="tnum dim">23.5%</div></div><div class="srow"><div>Emissary 3<span class="dim"> · badge 73</span></div><div class="tnum">2,132</div><div class="tnum">1.9%</div><div class="tnum dim">25.4%</div></div><div class="srow"><div>Emissary 2<span class="dim"> · badge 72</span></div><div class="tnum">2,206</div><div class="tnum">1.9%</div><div class="tnum dim">27.3%</div></div><div class="srow"><div>Emissary 1<span class="dim"> · badge 71</span></div><div class="tnum">2,084</div><div class="tnum">1.8%</div><div class="tnum dim">29.1%</div></div></div></details><details class="trow"><summary><span class="chev">▸</span><span class="rname"><img src="assets/ranks/tier06.png" alt="">Ritualist</span><span class="tnum">13,551</span><span class="tnum">11.9%</span><span class="tnum">41.1%</span></summary><div class="subtbl"><div class="srow"><div>Ritualist 6<span class="dim"> · badge 66</span></div><div class="tnum">2,750</div><div class="tnum">2.4%</div><div class="tnum dim">31.6%</div></div><div class="srow"><div>Ritualist 5<span class="dim"> · badge 65</span></div><div class="tnum">1,771</div><div class="tnum">1.6%</div><div class="tnum dim">33.1%</div></div><div class="srow"><div>Ritualist 4<span class="dim"> · badge 64</span></div><div class="tnum">2,052</div><div class="tnum">1.8%</div><div class="tnum dim">34.9%</div></div><div class="srow"><div>Ritualist 3<span class="dim"> · badge 63</span></div><div class="tnum">2,391</div><div class="tnum">2.1%</div><div class="tnum dim">37.0%</div></div><div class="srow"><div>Ritualist 2<span class="dim"> · badge 62</span></div><div class="tnum">2,364</div><div class="tnum">2.1%</div><div class="tnum dim">39.1%</div></div><div class="srow"><div>Ritualist 1<span class="dim"> · badge 61</span></div><div class="tnum">2,223</div><div class="tnum">2.0%</div><div class="tnum dim">41.1%</div></div></div></details><details class="trow"><summary><span class="chev">▸</span><span class="rname"><img src="assets/ranks/tier05.png" alt="">Mystic</span><span class="tnum">13,520</span><span class="tnum">11.9%</span><span class="tnum">53.0%</span></summary><div class="subtbl"><div class="srow"><div>Mystic 6<span class="dim"> · badge 56</span></div><div class="tnum">3,588</div><div class="tnum">3.2%</div><div class="tnum dim">44.2%</div></div><div class="srow"><div>Mystic 5<span class="dim"> · badge 55</span></div><div class="tnum">2,340</div><div class="tnum">2.1%</div><div class="tnum dim">46.3%</div></div><div class="srow"><div>Mystic 4<span class="dim"> · badge 54</span></div><div class="tnum">2,348</div><div class="tnum">2.1%</div><div class="tnum dim">48.4%</div></div><div class="srow"><div>Mystic 3<span class="dim"> · badge 53</span></div><div class="tnum">1,979</div><div class="tnum">1.7%</div><div class="tnum dim">50.1%</div></div><div class="srow"><div>Mystic 2<span class="dim"> · badge 52</span></div><div class="tnum">1,718</div><div class="tnum">1.5%</div><div class="tnum dim">51.6%</div></div><div class="srow"><div>Mystic 1<span class="dim"> · badge 51</span></div><div class="tnum">1,547</div><div class="tnum">1.4%</div><div class="tnum dim">53.0%</div></div></div></details><details class="trow"><summary><span class="chev">▸</span><span class="rname"><img src="assets/ranks/tier04.png" alt="">Sentinel</span><span class="tnum">13,043</span><span class="tnum">11.5%</span><span class="tnum">64.5%</span></summary><div class="subtbl"><div class="srow"><div>Sentinel 6<span class="dim"> · badge 46</span></div><div class="tnum">2,749</div><div class="tnum">2.4%</div><div class="tnum dim">55.4%</div></div><div class="srow"><div>Sentinel 5<span class="dim"> · badge 45</span></div><div class="tnum">2,039</div><div class="tnum">1.8%</div><div class="tnum dim">57.2%</div></div><div class="srow"><div>Sentinel 4<span class="dim"> · badge 44</span></div><div class="tnum">2,089</div><div class="tnum">1.8%</div><div class="tnum dim">59.1%</div></div><div class="srow"><div>Sentinel 3<span class="dim"> · badge 43</span></div><div class="tnum">2,153</div><div class="tnum">1.9%</div><div class="tnum dim">61.0%</div></div><div class="srow"><div>Sentinel 2<span class="dim"> · badge 42</span></div><div class="tnum">2,113</div><div class="tnum">1.9%</div><div class="tnum dim">62.8%</div></div><div class="srow"><div>Sentinel 1<span class="dim"> · badge 41</span></div><div class="tnum">1,900</div><div class="tnum">1.7%</div><div class="tnum dim">64.5%</div></div></div></details><details class="trow"><summary><span class="chev">▸</span><span class="rname"><img src="assets/ranks/tier03.png" alt="">Acolyte</span><span class="tnum">13,985</span><span class="tnum">12.3%</span><span class="tnum">76.8%</span></summary><div class="subtbl"><div class="srow"><div>Acolyte 6<span class="dim"> · badge 36</span></div><div class="tnum">3,147</div><div class="tnum">2.8%</div><div class="tnum dim">67.3%</div></div><div class="srow"><div>Acolyte 5<span class="dim"> · badge 35</span></div><div class="tnum">1,986</div><div class="tnum">1.7%</div><div class="tnum dim">69.0%</div></div><div class="srow"><div>Acolyte 4<span class="dim"> · badge 34</span></div><div class="tnum">2,136</div><div class="tnum">1.9%</div><div class="tnum dim">70.9%</div></div><div class="srow"><div>Acolyte 3<span class="dim"> · badge 33</span></div><div class="tnum">2,209</div><div class="tnum">1.9%</div><div class="tnum dim">72.8%</div></div><div class="srow"><div>Acolyte 2<span class="dim"> · badge 32</span></div><div class="tnum">2,416</div><div class="tnum">2.1%</div><div class="tnum dim">75.0%</div></div><div class="srow"><div>Acolyte 1<span class="dim"> · badge 31</span></div><div class="tnum">2,091</div><div class="tnum">1.8%</div><div class="tnum dim">76.8%</div></div></div></details><details class="trow"><summary><span class="chev">▸</span><span class="rname"><img src="assets/ranks/tier02.png" alt="">Seeker</span><span class="tnum">15,292</span><span class="tnum">13.5%</span><span class="tnum">90.3%</span></summary><div class="subtbl"><div class="srow"><div>Seeker 6<span class="dim"> · badge 26</span></div><div class="tnum">3,381</div><div class="tnum">3.0%</div><div class="tnum dim">79.8%</div></div><div class="srow"><div>Seeker 5<span class="dim"> · badge 25</span></div><div class="tnum">2,351</div><div class="tnum">2.1%</div><div class="tnum dim">81.9%</div></div><div class="srow"><div>Seeker 4<span class="dim"> · badge 24</span></div><div class="tnum">2,675</div><div class="tnum">2.4%</div><div class="tnum dim">84.2%</div></div><div class="srow"><div>Seeker 3<span class="dim"> · badge 23</span></div><div class="tnum">2,747</div><div class="tnum">2.4%</div><div class="tnum dim">86.6%</div></div><div class="srow"><div>Seeker 2<span class="dim"> · badge 22</span></div><div class="tnum">2,277</div><div class="tnum">2.0%</div><div class="tnum dim">88.6%</div></div><div class="srow"><div>Seeker 1<span class="dim"> · badge 21</span></div><div class="tnum">1,861</div><div class="tnum">1.6%</div><div class="tnum dim">90.3%</div></div></div></details><details class="trow"><summary><span class="chev">▸</span><span class="rname"><img src="assets/ranks/tier01.png" alt="">Initiate</span><span class="tnum">11,027</span><span class="tnum">9.7%</span><span class="tnum">100.0%</span></summary><div class="subtbl"><div class="srow"><div>Initiate 6<span class="dim"> · badge 16</span></div><div class="tnum">3,642</div><div class="tnum">3.2%</div><div class="tnum dim">93.5%</div></div><div class="srow"><div>Initiate 5<span class="dim"> · badge 15</span></div><div class="tnum">2,914</div><div class="tnum">2.6%</div><div class="tnum dim">96.1%</div></div><div class="srow"><div>Initiate 4<span class="dim"> · badge 14</span></div><div class="tnum">2,074</div><div class="tnum">1.8%</div><div class="tnum dim">97.9%</div></div><div class="srow"><div>Initiate 3<span class="dim"> · badge 13</span></div><div class="tnum">1,194</div><div class="tnum">1.1%</div><div class="tnum dim">98.9%</div></div><div class="srow"><div>Initiate 2<span class="dim"> · badge 12</span></div><div class="tnum">725</div><div class="tnum">0.6%</div><div class="tnum dim">99.6%</div></div><div class="srow"><div>Initiate 1<span class="dim"> · badge 11</span></div><div class="tnum">478</div><div class="tnum">0.4%</div><div class="tnum dim">100.0%</div></div></div></details>
+  </div>
+  <div class="tbl-cap">Click a rank for its sub-ranks 1–6. <span class="hl-key"></span> = included in
+    the site's Phantom+ sample. "Top" = players at that rank <em>or higher</em>.</div>
 
   <div class="foot">
-    112,643 ranked players across 99,690 matches ·
-    badge = tier x 10 + sub-tier (the small numbers are sub-tiers 1-6) ·
+    113,502 ranked players across 100,872 matches ·
+    ranked accounts only (unranked Obscurus players aren't counted) ·
+    badge = tier × 10 + sub-rank (Phantom 1 = badge 91) ·
     source: <a href="https://api.deadlock-api.com">deadlock-api.com</a>
     /v1/analytics/badge-distribution ·
-    snapshot of the current playerbase, not per patch · generated 2026-08-06 11:39 UTC
+    snapshot of the current playerbase, not per patch · generated 2026-08-06 14:42 UTC
   </div>
 </div>
+<div class="tip" id="tip" aria-hidden="true"></div>
+<script>
+(function () {
+  var tip = document.getElementById('tip');
+  function show(text, x, y) {
+    tip.textContent = text;               // data-tip holds API-derived names — textContent only
+    tip.style.display = 'block';
+    var r = tip.getBoundingClientRect();
+    var left = Math.min(Math.max(6, x + 12), window.innerWidth - r.width - 6);
+    var top = y - r.height - 10;
+    if (top < 6) top = y + 16;
+    tip.style.left = left + 'px';
+    tip.style.top = top + 'px';
+  }
+  function hide() { tip.style.display = 'none'; }
+  function follow(e) {
+    var el = e.target.closest && e.target.closest('[data-tip]');
+    if (el) show(el.dataset.tip, e.clientX, e.clientY); else hide();
+  }
+  document.addEventListener('pointerover', follow);
+  document.addEventListener('pointermove', follow);
+  document.addEventListener('pointerdown', function (e) {
+    if (!e.target.closest('[data-tip]')) hide();
+  });
+  document.addEventListener('focusin', function (e) {
+    var el = e.target.closest('[data-tip]');
+    if (el) {
+      var r = el.getBoundingClientRect();
+      show(el.dataset.tip, r.left + r.width / 2, r.top);
+    } else hide();
+  });
+  window.addEventListener('scroll', hide, true);
+})();
+</script>
 </body>
 </html>
