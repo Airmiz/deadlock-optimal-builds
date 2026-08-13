@@ -1,0 +1,1336 @@
+{
+  "spec_version": "1.2.1",
+  "hero": {
+    "id": 13,
+    "name": "Haze",
+    "abilities": [
+      {
+        "id": 2948410412,
+        "name": "Sleep Dagger"
+      },
+      {
+        "id": 2414191464,
+        "name": "Smoke Bomb"
+      },
+      {
+        "id": 1080948381,
+        "name": "Fixation"
+      },
+      {
+        "id": 731943444,
+        "name": "Bullet Dance"
+      }
+    ]
+  },
+  "patch": {
+    "id": "patch_20260812",
+    "title": "08-12-2026 Update",
+    "min_unix_timestamp": 1786575464
+  },
+  "mmr_slices": {
+    "all_mmr": {
+      "filter": "no MMR filter",
+      "baseline_win_rate": 0.4932,
+      "matches": 11245,
+      "players": null
+    },
+    "high_mmr": {
+      "filter": "min_average_badge=91 (Phantom+)",
+      "baseline_win_rate": 0.5043,
+      "matches": 234,
+      "players": null
+    },
+    "ascendant_plus": {
+      "filter": "min_average_badge=101 (Ascendant+)",
+      "baseline_win_rate": 0.0,
+      "matches": 1,
+      "players": null
+    }
+  },
+  "recommended": {
+    "items": {
+      "method": "synergy_ilp",
+      "mmr_slice": "high_mmr",
+      "total_cost": 0,
+      "phases": {
+        "early": [],
+        "mid": [],
+        "late": []
+      }
+    },
+    "abilities": {
+      "ap_priority_order": [
+        "Sleep Dagger",
+        "Smoke Bomb",
+        "Fixation",
+        "Bullet Dance"
+      ],
+      "best_full_order": null,
+      "best_opener_first4": null
+    }
+  },
+  "items": {
+    "all_mmr": {
+      "candidate_count": 42,
+      "min_matches_filter": 500,
+      "wilson_greedy": {
+        "picks": [
+          {
+            "item_id": 1396247347,
+            "name": "Lucky Shot",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1735,
+            "wins": 1057,
+            "win_rate": 0.6092,
+            "wilson_lb": 0.586,
+            "score": 0.0928,
+            "wr_delta_pp": 11.6,
+            "avg_buy_time_s": 2057.1,
+            "phase": "late",
+            "avg_sell_time_s": 2182.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 365620721,
+            "name": "Glass Cannon",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 996,
+            "wins": 610,
+            "win_rate": 0.6124,
+            "wilson_lb": 0.5818,
+            "score": 0.0886,
+            "wr_delta_pp": 11.93,
+            "avg_buy_time_s": 1918.3,
+            "phase": "late",
+            "avg_sell_time_s": 2258.9,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1113837674,
+            "name": "Silencer",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 4694,
+            "wins": 2760,
+            "win_rate": 0.588,
+            "wilson_lb": 0.5738,
+            "score": 0.0806,
+            "wr_delta_pp": 9.48,
+            "avg_buy_time_s": 1911.3,
+            "phase": "late",
+            "avg_sell_time_s": 2069.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 339443430,
+            "name": "Frenzy",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 601,
+            "wins": 368,
+            "win_rate": 0.6123,
+            "wilson_lb": 0.5728,
+            "score": 0.0796,
+            "wr_delta_pp": 11.91,
+            "avg_buy_time_s": 2171.1,
+            "phase": "late",
+            "avg_sell_time_s": 2078.2,
+            "is_active": false,
+            "cooldown_s": 16.0,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2037039379,
+            "name": "Inhibitor",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1861,
+            "wins": 1092,
+            "win_rate": 0.5868,
+            "wilson_lb": 0.5643,
+            "score": 0.0711,
+            "wr_delta_pp": 9.36,
+            "avg_buy_time_s": 2104.9,
+            "phase": "late",
+            "avg_sell_time_s": 2195.9,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 951866250,
+            "name": "Indomitable",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 955,
+            "wins": 559,
+            "win_rate": 0.5853,
+            "wilson_lb": 0.5538,
+            "score": 0.0606,
+            "wr_delta_pp": 9.21,
+            "avg_buy_time_s": 2048.5,
+            "phase": "late",
+            "avg_sell_time_s": 2502.7,
+            "is_active": false,
+            "cooldown_s": 55.0,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 1672893796,
+                "name": "Grit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/bullet_shield.png",
+                "matches": 679,
+                "avg_buy_time_min": 17.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 1644605047,
+                "name": "Reactive Barrier",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/last_stand.png",
+                "matches": 841,
+                "avg_buy_time_min": 23.2,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1282141666,
+            "name": "Siphon Bullets",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1610,
+            "wins": 927,
+            "win_rate": 0.5758,
+            "wilson_lb": 0.5515,
+            "score": 0.0583,
+            "wr_delta_pp": 8.26,
+            "avg_buy_time_s": 2029.5,
+            "phase": "late",
+            "avg_sell_time_s": 2390.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1955841979,
+            "name": "Spellbreaker",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 520,
+            "wins": 301,
+            "win_rate": 0.5788,
+            "wilson_lb": 0.536,
+            "score": 0.0428,
+            "wr_delta_pp": 8.56,
+            "avg_buy_time_s": 2231.4,
+            "phase": "late",
+            "avg_sell_time_s": 2218.1,
+            "is_active": false,
+            "cooldown_s": 9.0,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 1047818222,
+                "name": "Debuff Reducer",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/debuff_reducer.png",
+                "matches": 1385,
+                "avg_buy_time_min": 29.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3919289022,
+            "name": "Mercurial Magnum",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1622,
+            "wins": 942,
+            "win_rate": 0.5808,
+            "wilson_lb": 0.5566,
+            "score": 0.0634,
+            "wr_delta_pp": 8.76,
+            "avg_buy_time_s": 1919.1,
+            "phase": "late",
+            "avg_sell_time_s": 2245.5,
+            "is_active": false,
+            "cooldown_s": 15.0,
+            "imbue": "imbue_active",
+            "slot": "spirit",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 84321454,
+                "name": "Quicksilver Reload",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_weapon/fire_rate_plus.png",
+                "matches": 2187,
+                "avg_buy_time_min": 14.6,
+                "imbue": "imbue_active",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 886,
+            "wins": 508,
+            "win_rate": 0.5734,
+            "wilson_lb": 0.5405,
+            "score": 0.0474,
+            "wr_delta_pp": 8.02,
+            "avg_buy_time_s": 1973.2,
+            "phase": "late",
+            "avg_sell_time_s": 2096.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/tech_damage.png",
+                "matches": 9395,
+                "avg_buy_time_min": 4.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/soaring_spirit.png",
+                "matches": 1448,
+                "avg_buy_time_min": 15.5,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 787198704,
+            "name": "Rapid Recharge",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 738,
+            "wins": 408,
+            "win_rate": 0.5528,
+            "wilson_lb": 0.5168,
+            "score": 0.0236,
+            "wr_delta_pp": 5.96,
+            "avg_buy_time_s": 1617.8,
+            "phase": "late",
+            "avg_sell_time_s": 2244.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 3776945997,
+                "name": "Extra Charge",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/extra_charge.png",
+                "matches": 909,
+                "avg_buy_time_min": 19.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2717651715,
+            "name": "Superior Duration",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1355,
+            "wins": 724,
+            "win_rate": 0.5343,
+            "wilson_lb": 0.5077,
+            "score": 0.0145,
+            "wr_delta_pp": 4.11,
+            "avg_buy_time_s": 1734.2,
+            "phase": "late",
+            "avg_sell_time_s": 2327.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 2951612397,
+                "name": "Duration Extender",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/duration_extender.png",
+                "matches": 745,
+                "avg_buy_time_min": 23.5,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2226497419,
+            "name": "Spiritual Overflow",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1444,
+            "wins": 863,
+            "win_rate": 0.5976,
+            "wilson_lb": 0.5721,
+            "score": 0.0789,
+            "wr_delta_pp": 10.44,
+            "avg_buy_time_s": 1898.9,
+            "phase": "late",
+            "avg_sell_time_s": 2143.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 876563814,
+                "name": "Spirit Lifesteal",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/health_stealing_tech.png",
+                "matches": 1225,
+                "avg_buy_time_min": 26.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3884003354,
+            "name": "Crippling Headshot",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2631,
+            "wins": 1543,
+            "win_rate": 0.5865,
+            "wilson_lb": 0.5675,
+            "score": 0.0743,
+            "wr_delta_pp": 9.33,
+            "avg_buy_time_s": 2005.9,
+            "phase": "late",
+            "avg_sell_time_s": 2042.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 1770441818,
+                "name": "Weakening Headshot",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_weapon/headshot_booster.png",
+                "matches": 3769,
+                "avg_buy_time_min": 17.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 673001892,
+            "name": "Armor Piercing Rounds",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 652,
+            "wins": 375,
+            "win_rate": 0.5752,
+            "wilson_lb": 0.5369,
+            "score": 0.0437,
+            "wr_delta_pp": 8.2,
+            "avg_buy_time_s": 2340.0,
+            "phase": "late",
+            "avg_sell_time_s": 2581.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 3077079169,
+                "name": "High-Velocity Rounds",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_weapon/high_velocity_mag.png",
+                "matches": 721,
+                "avg_buy_time_min": 13.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 710436191,
+            "name": "Capacitor",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 3674,
+            "wins": 2002,
+            "win_rate": 0.5449,
+            "wilson_lb": 0.5288,
+            "score": 0.0356,
+            "wr_delta_pp": 5.17,
+            "avg_buy_time_s": 1625.2,
+            "phase": "late",
+            "avg_sell_time_s": 2124.8,
+            "is_active": true,
+            "cooldown_s": 40.0,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 811521119,
+                "name": "Tesla Bullets",
+                "tier": 3,
+                "cost": 3200,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_weapon/electrified_bullets.png",
+                "matches": 4351,
+                "avg_buy_time_min": 20.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          }
+        ]
+      },
+      "synergy_ilp": {
+        "picks": [
+          {
+            "item_id": 1396247347,
+            "name": "Lucky Shot",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1735,
+            "wins": 1057,
+            "win_rate": 0.6092,
+            "wilson_lb": 0.586,
+            "score": 0.0928,
+            "wr_delta_pp": 11.6,
+            "avg_buy_time_s": 2057.1,
+            "phase": "late",
+            "avg_sell_time_s": 2182.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 365620721,
+            "name": "Glass Cannon",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 996,
+            "wins": 610,
+            "win_rate": 0.6124,
+            "wilson_lb": 0.5818,
+            "score": 0.0886,
+            "wr_delta_pp": 11.93,
+            "avg_buy_time_s": 1918.3,
+            "phase": "late",
+            "avg_sell_time_s": 2258.9,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1113837674,
+            "name": "Silencer",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 4694,
+            "wins": 2760,
+            "win_rate": 0.588,
+            "wilson_lb": 0.5738,
+            "score": 0.0806,
+            "wr_delta_pp": 9.48,
+            "avg_buy_time_s": 1911.3,
+            "phase": "late",
+            "avg_sell_time_s": 2069.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 339443430,
+            "name": "Frenzy",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 601,
+            "wins": 368,
+            "win_rate": 0.6123,
+            "wilson_lb": 0.5728,
+            "score": 0.0796,
+            "wr_delta_pp": 11.91,
+            "avg_buy_time_s": 2171.1,
+            "phase": "late",
+            "avg_sell_time_s": 2078.2,
+            "is_active": false,
+            "cooldown_s": 16.0,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2037039379,
+            "name": "Inhibitor",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1861,
+            "wins": 1092,
+            "win_rate": 0.5868,
+            "wilson_lb": 0.5643,
+            "score": 0.0711,
+            "wr_delta_pp": 9.36,
+            "avg_buy_time_s": 2104.9,
+            "phase": "late",
+            "avg_sell_time_s": 2195.9,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 951866250,
+            "name": "Indomitable",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 955,
+            "wins": 559,
+            "win_rate": 0.5853,
+            "wilson_lb": 0.5538,
+            "score": 0.0606,
+            "wr_delta_pp": 9.21,
+            "avg_buy_time_s": 2048.5,
+            "phase": "late",
+            "avg_sell_time_s": 2502.7,
+            "is_active": false,
+            "cooldown_s": 55.0,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 1672893796,
+                "name": "Grit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/bullet_shield.png",
+                "matches": 679,
+                "avg_buy_time_min": 17.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 1644605047,
+                "name": "Reactive Barrier",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/last_stand.png",
+                "matches": 841,
+                "avg_buy_time_min": 23.2,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1282141666,
+            "name": "Siphon Bullets",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1610,
+            "wins": 927,
+            "win_rate": 0.5758,
+            "wilson_lb": 0.5515,
+            "score": 0.0583,
+            "wr_delta_pp": 8.26,
+            "avg_buy_time_s": 2029.5,
+            "phase": "late",
+            "avg_sell_time_s": 2390.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1955841979,
+            "name": "Spellbreaker",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 520,
+            "wins": 301,
+            "win_rate": 0.5788,
+            "wilson_lb": 0.536,
+            "score": 0.0428,
+            "wr_delta_pp": 8.56,
+            "avg_buy_time_s": 2231.4,
+            "phase": "late",
+            "avg_sell_time_s": 2218.1,
+            "is_active": false,
+            "cooldown_s": 9.0,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 1047818222,
+                "name": "Debuff Reducer",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/debuff_reducer.png",
+                "matches": 1385,
+                "avg_buy_time_min": 29.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3919289022,
+            "name": "Mercurial Magnum",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1622,
+            "wins": 942,
+            "win_rate": 0.5808,
+            "wilson_lb": 0.5566,
+            "score": 0.0634,
+            "wr_delta_pp": 8.76,
+            "avg_buy_time_s": 1919.1,
+            "phase": "late",
+            "avg_sell_time_s": 2245.5,
+            "is_active": false,
+            "cooldown_s": 15.0,
+            "imbue": "imbue_active",
+            "slot": "spirit",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 84321454,
+                "name": "Quicksilver Reload",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_weapon/fire_rate_plus.png",
+                "matches": 2187,
+                "avg_buy_time_min": 14.6,
+                "imbue": "imbue_active",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 886,
+            "wins": 508,
+            "win_rate": 0.5734,
+            "wilson_lb": 0.5405,
+            "score": 0.0474,
+            "wr_delta_pp": 8.02,
+            "avg_buy_time_s": 1973.2,
+            "phase": "late",
+            "avg_sell_time_s": 2096.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/tech_damage.png",
+                "matches": 9395,
+                "avg_buy_time_min": 4.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/soaring_spirit.png",
+                "matches": 1448,
+                "avg_buy_time_min": 15.5,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 787198704,
+            "name": "Rapid Recharge",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 738,
+            "wins": 408,
+            "win_rate": 0.5528,
+            "wilson_lb": 0.5168,
+            "score": 0.0236,
+            "wr_delta_pp": 5.96,
+            "avg_buy_time_s": 1617.8,
+            "phase": "late",
+            "avg_sell_time_s": 2244.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 3776945997,
+                "name": "Extra Charge",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/extra_charge.png",
+                "matches": 909,
+                "avg_buy_time_min": 19.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2717651715,
+            "name": "Superior Duration",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1355,
+            "wins": 724,
+            "win_rate": 0.5343,
+            "wilson_lb": 0.5077,
+            "score": 0.0145,
+            "wr_delta_pp": 4.11,
+            "avg_buy_time_s": 1734.2,
+            "phase": "late",
+            "avg_sell_time_s": 2327.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 2951612397,
+                "name": "Duration Extender",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/duration_extender.png",
+                "matches": 745,
+                "avg_buy_time_min": 23.5,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2226497419,
+            "name": "Spiritual Overflow",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1444,
+            "wins": 863,
+            "win_rate": 0.5976,
+            "wilson_lb": 0.5721,
+            "score": 0.0789,
+            "wr_delta_pp": 10.44,
+            "avg_buy_time_s": 1898.9,
+            "phase": "late",
+            "avg_sell_time_s": 2143.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 876563814,
+                "name": "Spirit Lifesteal",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/health_stealing_tech.png",
+                "matches": 1225,
+                "avg_buy_time_min": 26.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3884003354,
+            "name": "Crippling Headshot",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2631,
+            "wins": 1543,
+            "win_rate": 0.5865,
+            "wilson_lb": 0.5675,
+            "score": 0.0743,
+            "wr_delta_pp": 9.33,
+            "avg_buy_time_s": 2005.9,
+            "phase": "late",
+            "avg_sell_time_s": 2042.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 1770441818,
+                "name": "Weakening Headshot",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_weapon/headshot_booster.png",
+                "matches": 3769,
+                "avg_buy_time_min": 17.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 673001892,
+            "name": "Armor Piercing Rounds",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 652,
+            "wins": 375,
+            "win_rate": 0.5752,
+            "wilson_lb": 0.5369,
+            "score": 0.0437,
+            "wr_delta_pp": 8.2,
+            "avg_buy_time_s": 2340.0,
+            "phase": "late",
+            "avg_sell_time_s": 2581.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 3077079169,
+                "name": "High-Velocity Rounds",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_weapon/high_velocity_mag.png",
+                "matches": 721,
+                "avg_buy_time_min": 13.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 710436191,
+            "name": "Capacitor",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 3674,
+            "wins": 2002,
+            "win_rate": 0.5449,
+            "wilson_lb": 0.5288,
+            "score": 0.0356,
+            "wr_delta_pp": 5.17,
+            "avg_buy_time_s": 1625.2,
+            "phase": "late",
+            "avg_sell_time_s": 2124.8,
+            "is_active": true,
+            "cooldown_s": 40.0,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 811521119,
+                "name": "Tesla Bullets",
+                "tier": 3,
+                "cost": 3200,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_weapon/electrified_bullets.png",
+                "matches": 4351,
+                "avg_buy_time_min": 20.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          }
+        ]
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "high_mmr": {
+      "candidate_count": 0,
+      "min_matches_filter": 300,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "ascendant_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 100,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "eternus_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 30,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "item_metadata": {}
+    }
+  },
+  "ability_orders": {
+    "all_mmr": {
+      "total_records": 4,
+      "total_matches": 259,
+      "ability_priority": [
+        {
+          "ability_id": 2414191464,
+          "name": "Smoke Bomb",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 1080948381,
+          "name": "Fixation",
+          "avg_ap_all_players": 3.76,
+          "avg_ap_winners": 3.75,
+          "winner_premium_ap": -0.01
+        },
+        {
+          "ability_id": 731943444,
+          "name": "Bullet Dance",
+          "avg_ap_all_players": 3.74,
+          "avg_ap_winners": 3.75,
+          "winner_premium_ap": 0.01
+        },
+        {
+          "ability_id": 2948410412,
+          "name": "Sleep Dagger",
+          "avg_ap_all_players": 3.69,
+          "avg_ap_winners": 3.7,
+          "winner_premium_ap": 0.01
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "high_mmr": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 2948410412,
+          "name": "Sleep Dagger",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 2414191464,
+          "name": "Smoke Bomb",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1080948381,
+          "name": "Fixation",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 731943444,
+          "name": "Bullet Dance",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "ascendant_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 2948410412,
+          "name": "Sleep Dagger",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 2414191464,
+          "name": "Smoke Bomb",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1080948381,
+          "name": "Fixation",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 731943444,
+          "name": "Bullet Dance",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "eternus_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    }
+  },
+  "provenance": {
+    "data_source": "api.deadlock-api.com",
+    "endpoints_used": [
+      "/v1/analytics/hero-stats",
+      "/v1/analytics/item-stats",
+      "/v1/analytics/item-permutation-stats?comb_size=2",
+      "/v1/analytics/hero-build-stats/{hero_id}",
+      "/v1/analytics/ability-order-stats",
+      "/v1/builds (per-build details)"
+    ],
+    "asset_sources": [
+      "https://assets.deadlock-api.com/v2/heroes",
+      "https://assets.deadlock-api.com/v2/items"
+    ]
+  },
+  "scoring_mode": "wilson"
+}
