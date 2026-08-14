@@ -30,14 +30,14 @@
   "mmr_slices": {
     "all_mmr": {
       "filter": "no MMR filter",
-      "baseline_win_rate": 0.458,
-      "matches": 31449,
+      "baseline_win_rate": 0.4581,
+      "matches": 33518,
       "players": null
     },
     "high_mmr": {
       "filter": "min_average_badge=91 (Phantom+)",
-      "baseline_win_rate": 0.4567,
-      "matches": 600,
+      "baseline_win_rate": 0.4599,
+      "matches": 648,
       "players": null
     },
     "ascendant_plus": {
@@ -210,7 +210,17 @@
         "Gutshot"
       ],
       "best_full_order": null,
-      "best_opener_first4": null
+      "best_opener_first4": {
+        "sequence_names": [
+          "Gutshot",
+          "Gutshot",
+          "Consecrating Grenade",
+          "Hex-Lined Snap Trap"
+        ],
+        "wins": 93,
+        "matches": 200,
+        "win_rate": 0.465
+      }
     }
   },
   "items": {
@@ -253,7 +263,7 @@
             "wins": 5625,
             "win_rate": 0.5333,
             "wilson_lb": 0.5238,
-            "score": 0.0658,
+            "score": 0.0657,
             "wr_delta_pp": 7.53,
             "avg_buy_time_s": 2004.4,
             "phase": "late",
@@ -277,7 +287,7 @@
             "wins": 1757,
             "win_rate": 0.5395,
             "wilson_lb": 0.5223,
-            "score": 0.0643,
+            "score": 0.0642,
             "wr_delta_pp": 8.14,
             "avg_buy_time_s": 2141.8,
             "phase": "late",
@@ -716,30 +726,6 @@
       "synergy_ilp": {
         "picks": [
           {
-            "item_id": 2221211450,
-            "name": "Spellslinger",
-            "category": "weapon",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 6966,
-            "wins": 3837,
-            "win_rate": 0.5508,
-            "wilson_lb": 0.5391,
-            "score": 0.0811,
-            "wr_delta_pp": 9.28,
-            "avg_buy_time_s": 1920.4,
-            "phase": "late",
-            "avg_sell_time_s": 2147.9,
-            "is_active": false,
-            "cooldown_s": null,
-            "imbue": null,
-            "slot": "weapon",
-            "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8,
-            "annotation": "MASSIVE dps boost and stacks very fast on ven with how spammable our nades and traps are. Insane powerspike, can get earlier if snowballing"
-          },
-          {
             "item_id": 1113837674,
             "name": "Silencer",
             "category": "weapon",
@@ -749,7 +735,7 @@
             "wins": 5625,
             "win_rate": 0.5333,
             "wilson_lb": 0.5238,
-            "score": 0.0658,
+            "score": 0.0657,
             "wr_delta_pp": 7.53,
             "avg_buy_time_s": 2004.4,
             "phase": "late",
@@ -762,6 +748,30 @@
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
             "annotation": "Lovely sexy gorgeous. We apply it easily and it's super useful vs heavy spirit shitting comps"
+          },
+          {
+            "item_id": 1396247347,
+            "name": "Lucky Shot",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 3257,
+            "wins": 1757,
+            "win_rate": 0.5395,
+            "wilson_lb": 0.5223,
+            "score": 0.0642,
+            "wr_delta_pp": 8.14,
+            "avg_buy_time_s": 2141.8,
+            "phase": "late",
+            "avg_sell_time_s": 2089.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.6,
+            "annotation": "Replacement for Intensifying Magazine"
           },
           {
             "item_id": 365620721,
@@ -788,20 +798,20 @@
             "annotation": "Great damage item, but risky. Colossus helps mitigate the HP loss"
           },
           {
-            "item_id": 2463960640,
-            "name": "Escalating Resilience",
+            "item_id": 2480592370,
+            "name": "Ricochet",
             "category": "weapon",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 8269,
-            "wins": 3976,
-            "win_rate": 0.4808,
-            "wilson_lb": 0.4701,
-            "score": 0.012,
-            "wr_delta_pp": 2.28,
-            "avg_buy_time_s": 1357.3,
-            "phase": "mid",
-            "avg_sell_time_s": 2271.1,
+            "tier": 4,
+            "cost": 6400,
+            "matches": 3609,
+            "wins": 1869,
+            "win_rate": 0.5179,
+            "wilson_lb": 0.5016,
+            "score": 0.0435,
+            "wr_delta_pp": 5.98,
+            "avg_buy_time_s": 2013.5,
+            "phase": "late",
+            "avg_sell_time_s": 2319.1,
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
@@ -809,20 +819,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "flex",
             "pick_rate": 0.6,
-            "lineage_chain": [
-              {
-                "item_id": 1548066885,
-                "name": "Extended Magazine",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_weapon/clip_size.png",
-                "matches": 10544,
-                "avg_buy_time_min": 6.8,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
+            "annotation": "No joke, with siphon bullets and silencer/inhib this is a team wiping item for venator."
           },
           {
             "item_id": 1282141666,
@@ -899,6 +896,44 @@
             ]
           },
           {
+            "item_id": 1955841979,
+            "name": "Spellbreaker",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2234,
+            "wins": 1106,
+            "win_rate": 0.4951,
+            "wilson_lb": 0.4744,
+            "score": 0.0163,
+            "wr_delta_pp": 3.7,
+            "avg_buy_time_s": 2280.9,
+            "phase": "late",
+            "avg_sell_time_s": 2383.7,
+            "is_active": false,
+            "cooldown_s": 9.0,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Mass spirit nuking",
+            "lineage_chain": [
+              {
+                "item_id": 1047818222,
+                "name": "Debuff Reducer",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/debuff_reducer.png",
+                "matches": 2088,
+                "avg_buy_time_min": 28.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
             "item_id": 2163598980,
             "name": "Spirit Resilience",
             "category": "vitality",
@@ -921,30 +956,6 @@
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
             "annotation": "buy almost always"
-          },
-          {
-            "item_id": 1235347618,
-            "name": "Battle Vest",
-            "category": "vitality",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 25873,
-            "wins": 11944,
-            "win_rate": 0.4616,
-            "wilson_lb": 0.4556,
-            "score": -0.0025,
-            "wr_delta_pp": 0.36,
-            "avg_buy_time_s": 597.4,
-            "phase": "early",
-            "avg_sell_time_s": 2239.9,
-            "is_active": false,
-            "cooldown_s": null,
-            "imbue": null,
-            "slot": "vitality",
-            "tag": "core_inherited",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8,
-            "annotation": "Resist, regen, dmg. Swap for a t2 optional if needed and Sell later for better defensive items"
           },
           {
             "item_id": 630839635,
@@ -1072,6 +1083,43 @@
             ]
           },
           {
+            "item_id": 2463960640,
+            "name": "Escalating Resilience",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 8269,
+            "wins": 3976,
+            "win_rate": 0.4808,
+            "wilson_lb": 0.4701,
+            "score": 0.012,
+            "wr_delta_pp": 2.28,
+            "avg_buy_time_s": 1357.3,
+            "phase": "mid",
+            "avg_sell_time_s": 2271.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.6,
+            "lineage_chain": [
+              {
+                "item_id": 1548066885,
+                "name": "Extended Magazine",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_weapon/clip_size.png",
+                "matches": 10544,
+                "avg_buy_time_min": 6.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
             "item_id": 1342610602,
             "name": "Close Quarters",
             "category": "weapon",
@@ -1120,44 +1168,6 @@
             "annotation": "Compi spellslinger value"
           },
           {
-            "item_id": 3791587546,
-            "name": "Weighted Shots",
-            "category": "weapon",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 16871,
-            "wins": 7963,
-            "win_rate": 0.472,
-            "wilson_lb": 0.4645,
-            "score": 0.0064,
-            "wr_delta_pp": 1.4,
-            "avg_buy_time_s": 1230.2,
-            "phase": "mid",
-            "avg_sell_time_s": 2539.5,
-            "is_active": false,
-            "cooldown_s": null,
-            "imbue": null,
-            "slot": "flex",
-            "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 1.0,
-            "annotation": "W/ the new update I'd only get this if you're getting stunned quite a bit. Otherwise get spirit resist as replacement.",
-            "lineage_chain": [
-              {
-                "item_id": 393974127,
-                "name": "Slowing Bullets",
-                "tier": 2,
-                "cost": 1600,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_weapon/slowing_bullets.png",
-                "matches": 10466,
-                "avg_buy_time_min": 16.3,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
-          },
-          {
             "item_id": 2407033488,
             "name": "Intensifying Magazine",
             "category": "weapon",
@@ -1203,7 +1213,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 42.0,
+            "build_freq_weight": 48.1,
             "slot": "weapon",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1234,7 +1244,7 @@
             "wins": 1757,
             "win_rate": 0.5395,
             "wilson_lb": 0.5223,
-            "score": 0.0643,
+            "score": 0.0642,
             "wr_delta_pp": 8.14,
             "avg_buy_time_s": 2141.8,
             "phase": "late",
@@ -1242,7 +1252,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 42.0,
+            "build_freq_weight": 48.1,
             "slot": "weapon",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -1267,7 +1277,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 42.0,
+            "build_freq_weight": 48.1,
             "slot": "weapon",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -1305,7 +1315,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 42.0,
+            "build_freq_weight": 48.1,
             "slot": "weapon",
             "tag": "trap_popular",
             "pick_rate_tag": "flex",
@@ -1329,7 +1339,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 42.0,
+            "build_freq_weight": 48.1,
             "slot": "vitality",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1354,7 +1364,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 42.0,
+            "build_freq_weight": 48.1,
             "slot": "vitality",
             "tag": "trap_popular",
             "pick_rate_tag": "flex",
@@ -1379,7 +1389,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 42.0,
+            "build_freq_weight": 48.1,
             "slot": "vitality",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1404,7 +1414,7 @@
             "is_active": true,
             "cooldown_s": 24.0,
             "imbue": null,
-            "build_freq_weight": 42.0,
+            "build_freq_weight": 48.1,
             "slot": "vitality",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -1429,7 +1439,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 42.0,
+            "build_freq_weight": 48.1,
             "slot": "spirit",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1454,7 +1464,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 3.8,
+            "build_freq_weight": 7.4,
             "slot": "spirit",
             "tag": "situational",
             "pick_rate_tag": "situational",
@@ -1558,7 +1568,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 42.0,
+            "build_freq_weight": 48.1,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1609,7 +1619,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 42.0,
+            "build_freq_weight": 48.1,
             "slot": "flex",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1634,7 +1644,7 @@
             "is_active": false,
             "cooldown_s": 1.0,
             "imbue": null,
-            "build_freq_weight": 42.0,
+            "build_freq_weight": 48.1,
             "slot": "flex",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1651,7 +1661,7 @@
             "wins": 1749,
             "win_rate": 0.4474,
             "wilson_lb": 0.4319,
-            "score": -0.0261,
+            "score": -0.0262,
             "wr_delta_pp": -1.06,
             "avg_buy_time_s": 1573.5,
             "phase": "late",
@@ -1659,7 +1669,7 @@
             "is_active": false,
             "cooldown_s": 23.0,
             "imbue": null,
-            "build_freq_weight": 42.0,
+            "build_freq_weight": 48.1,
             "slot": "flex",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -1671,32 +1681,32 @@
           {
             "build_id": 470928,
             "name": "Renon's Eternus Venator (twitch.tv/renonfps)",
-            "win_rate": 0.5251,
-            "matches": 438
+            "win_rate": 0.523,
+            "matches": 478
           },
           {
             "build_id": 478715,
             "name": "Possibly Solved Venator Dopamine Maxxing",
-            "win_rate": 0.4329,
-            "matches": 432
+            "win_rate": 0.4261,
+            "matches": 460
           },
           {
             "build_id": 538997,
             "name": "twitch.tv/oses7",
-            "win_rate": 0.4069,
-            "matches": 376
+            "win_rate": 0.4079,
+            "matches": 407
           },
           {
             "build_id": 448301,
             "name": "TOP 1 PRIEST NA - SHMUCK",
-            "win_rate": 0.4507,
-            "matches": 304
+            "win_rate": 0.4606,
+            "matches": 330
           },
           {
             "build_id": 471671,
             "name": "ftFades Chudator (Updated July 25th)",
-            "win_rate": 0.4093,
-            "matches": 215
+            "win_rate": 0.4043,
+            "matches": 235
           }
         ]
       },
@@ -2412,8 +2422,8 @@
             "wins": 180,
             "win_rate": 0.4639,
             "wilson_lb": 0.4149,
-            "score": -0.0418,
-            "wr_delta_pp": 0.73,
+            "score": -0.045,
+            "wr_delta_pp": 0.4,
             "avg_buy_time_s": 514.3,
             "phase": "early",
             "avg_sell_time_s": 1842.4,
@@ -2435,8 +2445,8 @@
             "wins": 197,
             "win_rate": 0.4477,
             "wilson_lb": 0.4019,
-            "score": -0.0548,
-            "wr_delta_pp": -0.89,
+            "score": -0.058,
+            "wr_delta_pp": -1.21,
             "avg_buy_time_s": 439.8,
             "phase": "early",
             "avg_sell_time_s": 1993.3,
@@ -2458,8 +2468,8 @@
             "wins": 195,
             "win_rate": 0.4362,
             "wilson_lb": 0.391,
-            "score": -0.0657,
-            "wr_delta_pp": -2.04,
+            "score": -0.0689,
+            "wr_delta_pp": -2.36,
             "avg_buy_time_s": 186.4,
             "phase": "early",
             "avg_sell_time_s": 1464.3,
@@ -2481,8 +2491,8 @@
             "wins": 183,
             "win_rate": 0.4347,
             "wilson_lb": 0.3881,
-            "score": -0.0685,
-            "wr_delta_pp": -2.2,
+            "score": -0.0717,
+            "wr_delta_pp": -2.52,
             "avg_buy_time_s": 105.4,
             "phase": "early",
             "avg_sell_time_s": 1330.4,
@@ -2504,8 +2514,8 @@
             "wins": 195,
             "win_rate": 0.4851,
             "wilson_lb": 0.4366,
-            "score": -0.0201,
-            "wr_delta_pp": 2.84,
+            "score": -0.0233,
+            "wr_delta_pp": 2.52,
             "avg_buy_time_s": 1474.5,
             "phase": "mid",
             "avg_sell_time_s": 1670.8,
@@ -2541,8 +2551,8 @@
             "wins": 152,
             "win_rate": 0.4903,
             "wilson_lb": 0.4351,
-            "score": -0.0215,
-            "wr_delta_pp": 3.37,
+            "score": -0.0247,
+            "wr_delta_pp": 3.04,
             "avg_buy_time_s": 829.5,
             "phase": "mid",
             "avg_sell_time_s": 2065.2,
@@ -2578,8 +2588,8 @@
             "wins": 255,
             "win_rate": 0.4497,
             "wilson_lb": 0.4093,
-            "score": -0.0474,
-            "wr_delta_pp": -0.69,
+            "score": -0.0506,
+            "wr_delta_pp": -1.01,
             "avg_buy_time_s": 515.8,
             "phase": "early",
             "avg_sell_time_s": 1931.5,
@@ -2601,8 +2611,8 @@
             "wins": 139,
             "win_rate": 0.4633,
             "wilson_lb": 0.4077,
-            "score": -0.0489,
-            "wr_delta_pp": 0.67,
+            "score": -0.0522,
+            "wr_delta_pp": 0.35,
             "avg_buy_time_s": 1402.0,
             "phase": "mid",
             "avg_sell_time_s": 2126.3,
@@ -2624,8 +2634,8 @@
             "wins": 175,
             "win_rate": 0.4279,
             "wilson_lb": 0.3808,
-            "score": -0.0759,
-            "wr_delta_pp": -2.88,
+            "score": -0.0791,
+            "wr_delta_pp": -3.2,
             "avg_buy_time_s": 787.9,
             "phase": "mid",
             "avg_sell_time_s": 2040.2,
@@ -2651,8 +2661,8 @@
             "wins": 180,
             "win_rate": 0.4639,
             "wilson_lb": 0.4149,
-            "score": -0.0418,
-            "wr_delta_pp": 0.73,
+            "score": -0.045,
+            "wr_delta_pp": 0.4,
             "avg_buy_time_s": 514.3,
             "phase": "early",
             "avg_sell_time_s": 1842.4,
@@ -2674,8 +2684,8 @@
             "wins": 197,
             "win_rate": 0.4477,
             "wilson_lb": 0.4019,
-            "score": -0.0548,
-            "wr_delta_pp": -0.89,
+            "score": -0.058,
+            "wr_delta_pp": -1.21,
             "avg_buy_time_s": 439.8,
             "phase": "early",
             "avg_sell_time_s": 1993.3,
@@ -2697,8 +2707,8 @@
             "wins": 195,
             "win_rate": 0.4362,
             "wilson_lb": 0.391,
-            "score": -0.0657,
-            "wr_delta_pp": -2.04,
+            "score": -0.0689,
+            "wr_delta_pp": -2.36,
             "avg_buy_time_s": 186.4,
             "phase": "early",
             "avg_sell_time_s": 1464.3,
@@ -2720,8 +2730,8 @@
             "wins": 183,
             "win_rate": 0.4347,
             "wilson_lb": 0.3881,
-            "score": -0.0685,
-            "wr_delta_pp": -2.2,
+            "score": -0.0717,
+            "wr_delta_pp": -2.52,
             "avg_buy_time_s": 105.4,
             "phase": "early",
             "avg_sell_time_s": 1330.4,
@@ -2743,8 +2753,8 @@
             "wins": 152,
             "win_rate": 0.4903,
             "wilson_lb": 0.4351,
-            "score": -0.0215,
-            "wr_delta_pp": 3.37,
+            "score": -0.0247,
+            "wr_delta_pp": 3.04,
             "avg_buy_time_s": 829.5,
             "phase": "mid",
             "avg_sell_time_s": 2065.2,
@@ -2780,8 +2790,8 @@
             "wins": 255,
             "win_rate": 0.4497,
             "wilson_lb": 0.4093,
-            "score": -0.0474,
-            "wr_delta_pp": -0.69,
+            "score": -0.0506,
+            "wr_delta_pp": -1.01,
             "avg_buy_time_s": 515.8,
             "phase": "early",
             "avg_sell_time_s": 1931.5,
@@ -2803,8 +2813,8 @@
             "wins": 139,
             "win_rate": 0.4633,
             "wilson_lb": 0.4077,
-            "score": -0.0489,
-            "wr_delta_pp": 0.67,
+            "score": -0.0522,
+            "wr_delta_pp": 0.35,
             "avg_buy_time_s": 1402.0,
             "phase": "mid",
             "avg_sell_time_s": 2126.3,
@@ -2826,8 +2836,8 @@
             "wins": 175,
             "win_rate": 0.4279,
             "wilson_lb": 0.3808,
-            "score": -0.0759,
-            "wr_delta_pp": -2.88,
+            "score": -0.0791,
+            "wr_delta_pp": -3.2,
             "avg_buy_time_s": 787.9,
             "phase": "mid",
             "avg_sell_time_s": 2040.2,
@@ -2882,8 +2892,8 @@
   },
   "ability_orders": {
     "all_mmr": {
-      "total_records": 37,
-      "total_matches": 10426,
+      "total_records": 38,
+      "total_matches": 11359,
       "ability_priority": [
         {
           "ability_id": 2918874166,
@@ -2895,7 +2905,7 @@
         {
           "ability_id": 911307831,
           "name": "Consecrating Grenade",
-          "avg_ap_all_players": 3.87,
+          "avg_ap_all_players": 3.86,
           "avg_ap_winners": 3.89,
           "winner_premium_ap": 0.03
         },
@@ -2952,11 +2962,11 @@
             "Hex-Lined Snap Trap",
             "Gutshot"
           ],
-          "wins": 398,
-          "losses": 226,
-          "matches": 624,
-          "players": 556,
-          "win_rate": 0.6378
+          "wins": 433,
+          "losses": 242,
+          "matches": 675,
+          "players": 601,
+          "win_rate": 0.6415
         },
         {
           "sequence_ids": [
@@ -2995,11 +3005,11 @@
             "Hex-Lined Snap Trap",
             "Gutshot"
           ],
-          "wins": 444,
-          "losses": 285,
-          "matches": 729,
-          "players": 657,
-          "win_rate": 0.6091
+          "wins": 486,
+          "losses": 306,
+          "matches": 792,
+          "players": 708,
+          "win_rate": 0.6136
         },
         {
           "sequence_ids": [
@@ -3038,11 +3048,11 @@
             "Consecrating Grenade",
             "Consecrating Grenade"
           ],
-          "wins": 170,
-          "losses": 113,
-          "matches": 283,
-          "players": 258,
-          "win_rate": 0.6007
+          "wins": 188,
+          "losses": 120,
+          "matches": 308,
+          "players": 282,
+          "win_rate": 0.6104
         },
         {
           "sequence_ids": [
@@ -3081,11 +3091,11 @@
             "Hex-Lined Snap Trap",
             "Hex-Lined Snap Trap"
           ],
-          "wins": 231,
-          "losses": 158,
-          "matches": 389,
-          "players": 361,
-          "win_rate": 0.5938
+          "wins": 254,
+          "losses": 172,
+          "matches": 426,
+          "players": 392,
+          "win_rate": 0.5962
         },
         {
           "sequence_ids": [
@@ -3124,11 +3134,11 @@
             "Hex-Lined Snap Trap",
             "Hex-Lined Snap Trap"
           ],
-          "wins": 153,
-          "losses": 108,
-          "matches": 261,
-          "players": 237,
-          "win_rate": 0.5862
+          "wins": 162,
+          "losses": 114,
+          "matches": 276,
+          "players": 248,
+          "win_rate": 0.587
         }
       ],
       "best_openers_first4": [
@@ -3139,15 +3149,15 @@
             "Consecrating Grenade",
             "Hex-Lined Snap Trap"
           ],
-          "wins": 4913,
-          "matches": 10291,
-          "win_rate": 0.4774
+          "wins": 5347,
+          "matches": 11212,
+          "win_rate": 0.4769
         }
       ]
     },
     "high_mmr": {
       "total_records": 5,
-      "total_matches": 184,
+      "total_matches": 200,
       "ability_priority": [
         {
           "ability_id": 2918874166,
@@ -3159,27 +3169,39 @@
         {
           "ability_id": 11154161,
           "name": "Hex-Lined Snap Trap",
-          "avg_ap_all_players": 3.78,
+          "avg_ap_all_players": 3.79,
           "avg_ap_winners": 3.87,
           "winner_premium_ap": 0.09
         },
         {
           "ability_id": 911307831,
           "name": "Consecrating Grenade",
-          "avg_ap_all_players": 3.76,
-          "avg_ap_winners": 3.77,
-          "winner_premium_ap": 0.02
+          "avg_ap_all_players": 3.75,
+          "avg_ap_winners": 3.76,
+          "winner_premium_ap": 0.01
         },
         {
           "ability_id": 1764146857,
           "name": "Gutshot",
-          "avg_ap_all_players": 3.24,
-          "avg_ap_winners": 3.23,
-          "winner_premium_ap": -0.02
+          "avg_ap_all_players": 3.25,
+          "avg_ap_winners": 3.24,
+          "winner_premium_ap": -0.01
         }
       ],
       "best_full_orders": [],
-      "best_openers_first4": []
+      "best_openers_first4": [
+        {
+          "sequence_names": [
+            "Gutshot",
+            "Gutshot",
+            "Consecrating Grenade",
+            "Hex-Lined Snap Trap"
+          ],
+          "wins": 93,
+          "matches": 200,
+          "win_rate": 0.465
+        }
+      ]
     },
     "ascendant_plus": {
       "total_records": 0,
