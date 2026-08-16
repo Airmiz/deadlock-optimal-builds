@@ -31,13 +31,13 @@
     "all_mmr": {
       "filter": "no MMR filter",
       "baseline_win_rate": 0.5011,
-      "matches": 61807,
+      "matches": 63345,
       "players": null
     },
     "high_mmr": {
       "filter": "min_average_badge=91 (Phantom+)",
-      "baseline_win_rate": 0.5105,
-      "matches": 1140,
+      "baseline_win_rate": 0.5086,
+      "matches": 1164,
       "players": null
     },
     "ascendant_plus": {
@@ -51,7 +51,7 @@
     "items": {
       "method": "synergy_ilp",
       "mmr_slice": "high_mmr",
-      "total_cost": 31200,
+      "total_cost": 28000,
       "phases": {
         "early": [
           {
@@ -119,36 +119,6 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null
-          },
-          {
-            "slot": "spirit",
-            "category": "spirit",
-            "tier": 3,
-            "cost": 3200,
-            "name": "Surge of Power",
-            "item_id": 1292979587,
-            "avg_buy_time_min": 13.7,
-            "avg_sell_time_min": 35.3,
-            "win_rate": 0.5211,
-            "tag": "stat",
-            "pick_rate": 0.0,
-            "is_active": false,
-            "cooldown_s": 14.0,
-            "imbue": "imbue_active",
-            "lineage_chain": [
-              {
-                "item_id": 968099481,
-                "name": "Extra Spirit",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/tech_damage.png",
-                "matches": 989,
-                "avg_buy_time_min": 4.4,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
           },
           {
             "slot": "vitality",
@@ -222,7 +192,7 @@
             "avg_buy_time_min": 19.4,
             "avg_sell_time_min": 30.0,
             "win_rate": 0.5298,
-            "tag": "stat",
+            "tag": "tech_pick",
             "pick_rate": 0.0,
             "is_active": false,
             "cooldown_s": 9.0,
@@ -580,7 +550,7 @@
             "wins": 1043,
             "win_rate": 0.593,
             "wilson_lb": 0.5698,
-            "score": 0.0688,
+            "score": 0.0687,
             "wr_delta_pp": 9.19,
             "avg_buy_time_s": 2203.6,
             "phase": "late",
@@ -1131,41 +1101,27 @@
             ]
           },
           {
-            "item_id": 2717651715,
-            "name": "Superior Duration",
+            "item_id": 3776945997,
+            "name": "Extra Charge",
             "category": "spirit",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 7029,
-            "wins": 3836,
-            "win_rate": 0.5457,
-            "wilson_lb": 0.5341,
-            "score": 0.033,
-            "wr_delta_pp": 4.47,
-            "avg_buy_time_s": 1750.8,
-            "phase": "late",
-            "avg_sell_time_s": 2426.3,
+            "tier": 1,
+            "cost": 800,
+            "matches": 4730,
+            "wins": 2559,
+            "win_rate": 0.541,
+            "wilson_lb": 0.5268,
+            "score": 0.0257,
+            "wr_delta_pp": 3.99,
+            "avg_buy_time_s": 1176.0,
+            "phase": "mid",
+            "avg_sell_time_s": 1645.3,
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
             "slot": "spirit",
             "tag": "stat_anomaly",
             "pick_rate_tag": "stat",
-            "pick_rate": 0.0,
-            "lineage_chain": [
-              {
-                "item_id": 2951612397,
-                "name": "Duration Extender",
-                "tier": 2,
-                "cost": 1600,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/duration_extender.png",
-                "matches": 3875,
-                "avg_buy_time_min": 23.9,
-                "imbue": "imbue_modifier_value",
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
+            "pick_rate": 0.0
           },
           {
             "item_id": 2971868509,
@@ -1357,8 +1313,8 @@
             "wins": 274,
             "win_rate": 0.5768,
             "wilson_lb": 0.532,
-            "score": 0.0214,
-            "wr_delta_pp": 6.63,
+            "score": 0.0234,
+            "wr_delta_pp": 6.83,
             "avg_buy_time_s": 1361.0,
             "phase": "mid",
             "avg_sell_time_s": 1656.0,
@@ -1394,8 +1350,8 @@
             "wins": 227,
             "win_rate": 0.5591,
             "wilson_lb": 0.5105,
-            "score": -0.0,
-            "wr_delta_pp": 4.86,
+            "score": 0.0019,
+            "wr_delta_pp": 5.05,
             "avg_buy_time_s": 1086.2,
             "phase": "mid",
             "avg_sell_time_s": 1883.9,
@@ -1417,8 +1373,8 @@
             "wins": 506,
             "win_rate": 0.5298,
             "wilson_lb": 0.4981,
-            "score": -0.0124,
-            "wr_delta_pp": 1.93,
+            "score": -0.0105,
+            "wr_delta_pp": 2.13,
             "avg_buy_time_s": 1163.9,
             "phase": "mid",
             "avg_sell_time_s": 1802.5,
@@ -1426,7 +1382,7 @@
             "cooldown_s": 9.0,
             "imbue": null,
             "slot": "weapon",
-            "tag": "stat",
+            "tag": "tech_pick",
             "pick_rate_tag": "stat",
             "pick_rate": 0.0,
             "lineage_chain": [
@@ -1454,8 +1410,8 @@
             "wins": 373,
             "win_rate": 0.511,
             "wilson_lb": 0.4747,
-            "score": -0.0358,
-            "wr_delta_pp": 0.04,
+            "score": -0.0339,
+            "wr_delta_pp": 0.24,
             "avg_buy_time_s": 396.5,
             "phase": "early",
             "avg_sell_time_s": 2159.3,
@@ -1477,8 +1433,8 @@
             "wins": 182,
             "win_rate": 0.567,
             "wilson_lb": 0.5123,
-            "score": 0.0018,
-            "wr_delta_pp": 5.65,
+            "score": 0.0037,
+            "wr_delta_pp": 5.84,
             "avg_buy_time_s": 921.4,
             "phase": "mid",
             "avg_sell_time_s": 2175.0,
@@ -1514,8 +1470,8 @@
             "wins": 258,
             "win_rate": 0.5019,
             "wilson_lb": 0.4589,
-            "score": -0.0517,
-            "wr_delta_pp": -0.86,
+            "score": -0.0497,
+            "wr_delta_pp": -0.66,
             "avg_buy_time_s": 923.1,
             "phase": "mid",
             "avg_sell_time_s": 1127.4,
@@ -1537,8 +1493,8 @@
             "wins": 164,
             "win_rate": 0.4955,
             "wilson_lb": 0.442,
-            "score": -0.0686,
-            "wr_delta_pp": -1.51,
+            "score": -0.0666,
+            "wr_delta_pp": -1.31,
             "avg_buy_time_s": 309.5,
             "phase": "early",
             "avg_sell_time_s": 1344.0,
@@ -1560,8 +1516,8 @@
             "wins": 283,
             "win_rate": 0.5626,
             "wilson_lb": 0.519,
-            "score": 0.0084,
-            "wr_delta_pp": 5.21,
+            "score": 0.0104,
+            "wr_delta_pp": 5.4,
             "avg_buy_time_s": 801.9,
             "phase": "mid",
             "avg_sell_time_s": 1968.6,
@@ -1583,8 +1539,8 @@
             "wins": 518,
             "win_rate": 0.5211,
             "wilson_lb": 0.49,
-            "score": -0.0205,
-            "wr_delta_pp": 1.06,
+            "score": -0.0185,
+            "wr_delta_pp": 1.25,
             "avg_buy_time_s": 822.6,
             "phase": "mid",
             "avg_sell_time_s": 2119.0,
@@ -1620,8 +1576,8 @@
             "wins": 291,
             "win_rate": 0.5061,
             "wilson_lb": 0.4653,
-            "score": -0.0452,
-            "wr_delta_pp": -0.44,
+            "score": -0.0433,
+            "wr_delta_pp": -0.25,
             "avg_buy_time_s": 771.6,
             "phase": "mid",
             "avg_sell_time_s": 1841.8,
@@ -1643,8 +1599,8 @@
             "wins": 269,
             "win_rate": 0.5114,
             "wilson_lb": 0.4688,
-            "score": -0.0418,
-            "wr_delta_pp": 0.09,
+            "score": -0.0398,
+            "wr_delta_pp": 0.28,
             "avg_buy_time_s": 1332.3,
             "phase": "mid",
             "avg_sell_time_s": 1520.5,
@@ -1670,8 +1626,8 @@
             "wins": 274,
             "win_rate": 0.5768,
             "wilson_lb": 0.532,
-            "score": 0.0214,
-            "wr_delta_pp": 6.63,
+            "score": 0.0234,
+            "wr_delta_pp": 6.83,
             "avg_buy_time_s": 1361.0,
             "phase": "mid",
             "avg_sell_time_s": 1656.0,
@@ -1707,8 +1663,8 @@
             "wins": 227,
             "win_rate": 0.5591,
             "wilson_lb": 0.5105,
-            "score": -0.0,
-            "wr_delta_pp": 4.86,
+            "score": 0.0019,
+            "wr_delta_pp": 5.05,
             "avg_buy_time_s": 1086.2,
             "phase": "mid",
             "avg_sell_time_s": 1883.9,
@@ -1730,8 +1686,8 @@
             "wins": 506,
             "win_rate": 0.5298,
             "wilson_lb": 0.4981,
-            "score": -0.0124,
-            "wr_delta_pp": 1.93,
+            "score": -0.0105,
+            "wr_delta_pp": 2.13,
             "avg_buy_time_s": 1163.9,
             "phase": "mid",
             "avg_sell_time_s": 1802.5,
@@ -1739,7 +1695,7 @@
             "cooldown_s": 9.0,
             "imbue": null,
             "slot": "weapon",
-            "tag": "stat",
+            "tag": "tech_pick",
             "pick_rate_tag": "stat",
             "pick_rate": 0.0,
             "lineage_chain": [
@@ -1767,8 +1723,8 @@
             "wins": 373,
             "win_rate": 0.511,
             "wilson_lb": 0.4747,
-            "score": -0.0358,
-            "wr_delta_pp": 0.04,
+            "score": -0.0339,
+            "wr_delta_pp": 0.24,
             "avg_buy_time_s": 396.5,
             "phase": "early",
             "avg_sell_time_s": 2159.3,
@@ -1790,8 +1746,8 @@
             "wins": 182,
             "win_rate": 0.567,
             "wilson_lb": 0.5123,
-            "score": 0.0018,
-            "wr_delta_pp": 5.65,
+            "score": 0.0037,
+            "wr_delta_pp": 5.84,
             "avg_buy_time_s": 921.4,
             "phase": "mid",
             "avg_sell_time_s": 2175.0,
@@ -1827,8 +1783,8 @@
             "wins": 258,
             "win_rate": 0.5019,
             "wilson_lb": 0.4589,
-            "score": -0.0517,
-            "wr_delta_pp": -0.86,
+            "score": -0.0497,
+            "wr_delta_pp": -0.66,
             "avg_buy_time_s": 923.1,
             "phase": "mid",
             "avg_sell_time_s": 1127.4,
@@ -1850,8 +1806,8 @@
             "wins": 164,
             "win_rate": 0.4955,
             "wilson_lb": 0.442,
-            "score": -0.0686,
-            "wr_delta_pp": -1.51,
+            "score": -0.0666,
+            "wr_delta_pp": -1.31,
             "avg_buy_time_s": 309.5,
             "phase": "early",
             "avg_sell_time_s": 1344.0,
@@ -1873,8 +1829,8 @@
             "wins": 283,
             "win_rate": 0.5626,
             "wilson_lb": 0.519,
-            "score": 0.0084,
-            "wr_delta_pp": 5.21,
+            "score": 0.0104,
+            "wr_delta_pp": 5.4,
             "avg_buy_time_s": 801.9,
             "phase": "mid",
             "avg_sell_time_s": 1968.6,
@@ -1887,43 +1843,6 @@
             "pick_rate": 0.0
           },
           {
-            "item_id": 1292979587,
-            "name": "Surge of Power",
-            "category": "spirit",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 994,
-            "wins": 518,
-            "win_rate": 0.5211,
-            "wilson_lb": 0.49,
-            "score": -0.0205,
-            "wr_delta_pp": 1.06,
-            "avg_buy_time_s": 822.6,
-            "phase": "mid",
-            "avg_sell_time_s": 2119.0,
-            "is_active": false,
-            "cooldown_s": 14.0,
-            "imbue": "imbue_active",
-            "slot": "spirit",
-            "tag": "stat",
-            "pick_rate_tag": "stat",
-            "pick_rate": 0.0,
-            "lineage_chain": [
-              {
-                "item_id": 968099481,
-                "name": "Extra Spirit",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/tech_damage.png",
-                "matches": 989,
-                "avg_buy_time_min": 4.4,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
-          },
-          {
             "item_id": 1813726886,
             "name": "Slowing Hex",
             "category": "spirit",
@@ -1933,8 +1852,8 @@
             "wins": 291,
             "win_rate": 0.5061,
             "wilson_lb": 0.4653,
-            "score": -0.0452,
-            "wr_delta_pp": -0.44,
+            "score": -0.0433,
+            "wr_delta_pp": -0.25,
             "avg_buy_time_s": 771.6,
             "phase": "mid",
             "avg_sell_time_s": 1841.8,
@@ -1956,8 +1875,8 @@
             "wins": 269,
             "win_rate": 0.5114,
             "wilson_lb": 0.4688,
-            "score": -0.0418,
-            "wr_delta_pp": 0.09,
+            "score": -0.0398,
+            "wr_delta_pp": 0.28,
             "avg_buy_time_s": 1332.3,
             "phase": "mid",
             "avg_sell_time_s": 1520.5,
@@ -2013,7 +1932,7 @@
   "ability_orders": {
     "all_mmr": {
       "total_records": 65,
-      "total_matches": 17933,
+      "total_matches": 18531,
       "ability_priority": [
         {
           "ability_id": 2414191464,
@@ -2082,11 +2001,11 @@
             "Bullet Dance",
             "Bullet Dance"
           ],
-          "wins": 169,
-          "losses": 74,
-          "matches": 243,
-          "players": 200,
-          "win_rate": 0.6955
+          "wins": 175,
+          "losses": 78,
+          "matches": 253,
+          "players": 208,
+          "win_rate": 0.6917
         },
         {
           "sequence_ids": [
@@ -2125,54 +2044,11 @@
             "Bullet Dance",
             "Bullet Dance"
           ],
-          "wins": 859,
-          "losses": 401,
-          "matches": 1260,
-          "players": 1080,
-          "win_rate": 0.6817
-        },
-        {
-          "sequence_ids": [
-            1080948381,
-            1080948381,
-            2948410412,
-            2948410412,
-            2414191464,
-            2948410412,
-            731943444,
-            2948410412,
-            2414191464,
-            2414191464,
-            2414191464,
-            1080948381,
-            1080948381,
-            731943444,
-            731943444,
-            731943444
-          ],
-          "sequence_names": [
-            "Fixation",
-            "Fixation",
-            "Sleep Dagger",
-            "Sleep Dagger",
-            "Smoke Bomb",
-            "Sleep Dagger",
-            "Bullet Dance",
-            "Sleep Dagger",
-            "Smoke Bomb",
-            "Smoke Bomb",
-            "Smoke Bomb",
-            "Fixation",
-            "Fixation",
-            "Bullet Dance",
-            "Bullet Dance",
-            "Bullet Dance"
-          ],
-          "wins": 275,
-          "losses": 130,
-          "matches": 405,
-          "players": 330,
-          "win_rate": 0.679
+          "wins": 883,
+          "losses": 412,
+          "matches": 1295,
+          "players": 1107,
+          "win_rate": 0.6819
         },
         {
           "sequence_ids": [
@@ -2211,11 +2087,54 @@
             "Bullet Dance",
             "Bullet Dance"
           ],
-          "wins": 135,
-          "losses": 65,
-          "matches": 200,
-          "players": 184,
-          "win_rate": 0.675
+          "wins": 142,
+          "losses": 67,
+          "matches": 209,
+          "players": 192,
+          "win_rate": 0.6794
+        },
+        {
+          "sequence_ids": [
+            1080948381,
+            1080948381,
+            2948410412,
+            2948410412,
+            2414191464,
+            2948410412,
+            731943444,
+            2948410412,
+            2414191464,
+            2414191464,
+            2414191464,
+            1080948381,
+            1080948381,
+            731943444,
+            731943444,
+            731943444
+          ],
+          "sequence_names": [
+            "Fixation",
+            "Fixation",
+            "Sleep Dagger",
+            "Sleep Dagger",
+            "Smoke Bomb",
+            "Sleep Dagger",
+            "Bullet Dance",
+            "Sleep Dagger",
+            "Smoke Bomb",
+            "Smoke Bomb",
+            "Smoke Bomb",
+            "Fixation",
+            "Fixation",
+            "Bullet Dance",
+            "Bullet Dance",
+            "Bullet Dance"
+          ],
+          "wins": 291,
+          "losses": 139,
+          "matches": 430,
+          "players": 348,
+          "win_rate": 0.6767
         },
         {
           "sequence_ids": [
@@ -2254,11 +2173,11 @@
             "Smoke Bomb",
             "Fixation"
           ],
-          "wins": 599,
-          "losses": 298,
-          "matches": 897,
-          "players": 738,
-          "win_rate": 0.6678
+          "wins": 622,
+          "losses": 307,
+          "matches": 929,
+          "players": 760,
+          "win_rate": 0.6695
         }
       ],
       "best_openers_first4": [
@@ -2269,9 +2188,9 @@
             "Sleep Dagger",
             "Sleep Dagger"
           ],
-          "wins": 3723,
-          "matches": 7011,
-          "win_rate": 0.531
+          "wins": 3846,
+          "matches": 7241,
+          "win_rate": 0.5311
         },
         {
           "sequence_names": [
@@ -2280,15 +2199,15 @@
             "Sleep Dagger",
             "Smoke Bomb"
           ],
-          "wins": 5607,
-          "matches": 10922,
-          "win_rate": 0.5134
+          "wins": 5787,
+          "matches": 11290,
+          "win_rate": 0.5126
         }
       ]
     },
     "high_mmr": {
       "total_records": 5,
-      "total_matches": 164,
+      "total_matches": 171,
       "ability_priority": [
         {
           "ability_id": 2948410412,
@@ -2307,14 +2226,14 @@
         {
           "ability_id": 1080948381,
           "name": "Fixation",
-          "avg_ap_all_players": 3.85,
+          "avg_ap_all_players": 3.84,
           "avg_ap_winners": 3.84,
           "winner_premium_ap": -0.01
         },
         {
           "ability_id": 731943444,
           "name": "Bullet Dance",
-          "avg_ap_all_players": 3.0,
+          "avg_ap_all_players": 3.01,
           "avg_ap_winners": 3.06,
           "winner_premium_ap": 0.06
         }
