@@ -31,19 +31,25 @@
     "all_mmr": {
       "filter": "no MMR filter",
       "baseline_win_rate": 0.542,
-      "matches": 70753,
+      "matches": 73292,
       "players": null
     },
     "high_mmr": {
       "filter": "min_average_badge=91 (Phantom+)",
-      "baseline_win_rate": 0.515,
-      "matches": 2998,
+      "baseline_win_rate": 0.5127,
+      "matches": 3099,
       "players": null
     },
     "ascendant_plus": {
       "filter": "min_average_badge=101 (Ascendant+)",
-      "baseline_win_rate": 0.5013,
-      "matches": 393,
+      "baseline_win_rate": 0.4951,
+      "matches": 408,
+      "players": null
+    },
+    "eternus_plus": {
+      "filter": "min_average_badge=111 (Eternus+)",
+      "baseline_win_rate": 0.0,
+      "matches": 1,
       "players": null
     }
   },
@@ -422,9 +428,9 @@
           "Arctic Beam",
           "Ice Path"
         ],
-        "wins": 246,
-        "matches": 425,
-        "win_rate": 0.5788
+        "wins": 252,
+        "matches": 438,
+        "win_rate": 0.5753
       }
     }
   },
@@ -453,9 +459,10 @@
             "cooldown_s": 22.0,
             "imbue": null,
             "slot": "weapon",
-            "tag": "stat",
-            "pick_rate_tag": "stat",
-            "pick_rate": 0.0
+            "tag": "core_inherited",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "Gives fire rate and bullet resist to everyone"
           },
           {
             "item_id": 1932939246,
@@ -476,9 +483,10 @@
             "cooldown_s": 30.0,
             "imbue": null,
             "slot": "weapon",
-            "tag": "stat",
-            "pick_rate_tag": "stat",
-            "pick_rate": 0.0
+            "tag": "core_inherited",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "Recommended for contesting Rift or thunderdome if you also have a gunner with you."
           },
           {
             "item_id": 3077079169,
@@ -513,7 +521,7 @@
             "wins": 1957,
             "win_rate": 0.518,
             "wilson_lb": 0.5021,
-            "score": -0.0399,
+            "score": -0.04,
             "wr_delta_pp": -2.4,
             "avg_buy_time_s": 303.7,
             "phase": "early",
@@ -537,7 +545,7 @@
             "win_rate": 0.6218,
             "wilson_lb": 0.6077,
             "score": 0.0657,
-            "wr_delta_pp": 7.99,
+            "wr_delta_pp": 7.98,
             "avg_buy_time_s": 2204.3,
             "phase": "late",
             "avg_sell_time_s": 2333.4,
@@ -548,7 +556,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "OP against teams with consistent spirit damage from heroes like Infernus, Abrams, Shiv, etc... otherwise go Infuser or Spellbreaker against Spirit burst damage"
+            "annotation": "OP against comps with consistent spirit damage source like Infernus, Abrams, Victor,... Otherwise pick a different green."
           },
           {
             "item_id": 1797283378,
@@ -572,7 +580,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Slight power boost, big heal, can't go wrong with this especially if you already bought Spirit Lifesteal",
+            "annotation": "In the scenario where you need a ton of heal right away....",
             "lineage_chain": [
               {
                 "item_id": 876563814,
@@ -660,7 +668,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Great on teams full of gunners or you're slot locked",
+            "annotation": "Great for boosting your gunner teammates or when slot-locked",
             "lineage_chain": [
               {
                 "item_id": 2829638276,
@@ -710,7 +718,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Can replace Healbane or added on top, great for nuking enemies' heal and deal even more damage"
+            "annotation": "Significantly reduces heal and deal damage enmass"
           },
           {
             "item_id": 3577481646,
@@ -722,7 +730,7 @@
             "wins": 5536,
             "win_rate": 0.624,
             "wilson_lb": 0.6139,
-            "score": 0.0719,
+            "score": 0.0718,
             "wr_delta_pp": 8.2,
             "avg_buy_time_s": 2051.3,
             "phase": "late",
@@ -734,9 +742,9 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "This one is for grenade, ironically but will help supplement your beam's damage and sustain",
+            "annotation": "One of the holy grails of Kelvin's grenade, 50% more current damage, lifesteal and slow.",
             "imbue_target_id": 18921423,
-            "imbue_target_share": 1.0
+            "imbue_target_share": 0.8
           },
           {
             "item_id": 2717651715,
@@ -760,7 +768,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Extends duration for dome, beam and items",
+            "annotation": "Helps with Ice Path's duration for better tempo or Dome to buy your team more time.",
             "lineage_chain": [
               {
                 "item_id": 2951612397,
@@ -772,7 +780,7 @@
                 "avg_buy_time_min": 21.9,
                 "imbue": "imbue_modifier_value",
                 "imbue_target_id": 2351041382,
-                "imbue_target_share": 0.667
+                "imbue_target_share": 0.75
               }
             ]
           },
@@ -798,7 +806,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Great for frontliners, huge damage."
+            "annotation": "Great to put on your frontliners or yourself and deal a huge chunk of damage."
           },
           {
             "item_id": 2519598785,
@@ -810,8 +818,8 @@
             "wins": 28439,
             "win_rate": 0.5828,
             "wilson_lb": 0.5784,
-            "score": 0.0365,
-            "wr_delta_pp": 4.09,
+            "score": 0.0364,
+            "wr_delta_pp": 4.08,
             "avg_buy_time_s": 1731.8,
             "phase": "late",
             "avg_sell_time_s": 1989.0,
@@ -822,7 +830,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Try to rush this after selling egg, the appetizer of your beam's power spike",
+            "annotation": "Moderately increase your damage and heal",
             "lineage_chain": [
               {
                 "item_id": 968099481,
@@ -860,8 +868,8 @@
             "wins": 26919,
             "win_rate": 0.5815,
             "wilson_lb": 0.577,
-            "score": 0.0351,
-            "wr_delta_pp": 3.96,
+            "score": 0.035,
+            "wr_delta_pp": 3.95,
             "avg_buy_time_s": 1609.8,
             "phase": "late",
             "avg_sell_time_s": 1960.3,
@@ -872,7 +880,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "The 2nd power spike and the main course of the build, they no longer views you as a problem, but a REAL THREAT.",
+            "annotation": "THE Kelvin's damage item, buy this when you're fully pivoting for damage",
             "lineage_chain": [
               {
                 "item_id": 2081037738,
@@ -899,7 +907,7 @@
             "win_rate": 0.5802,
             "wilson_lb": 0.5737,
             "score": 0.0317,
-            "wr_delta_pp": 3.83,
+            "wr_delta_pp": 3.82,
             "avg_buy_time_s": 2104.5,
             "phase": "late",
             "avg_sell_time_s": 2127.7,
@@ -910,7 +918,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Reduces all your abilities AND items' cooldown, consider this when you're slot locked or have many actives.",
+            "annotation": "GIGA CORE! Reduces your items' cooldown alongside, crucial for support-oriented playstyle",
             "lineage_chain": [
               {
                 "item_id": 380806748,
@@ -922,7 +930,7 @@
                 "avg_buy_time_min": 21.4,
                 "imbue": "imbue_modifier_value",
                 "imbue_target_id": 3826390464,
-                "imbue_target_share": 0.4
+                "imbue_target_share": 0.5
               },
               {
                 "item_id": 3261353684,
@@ -948,7 +956,7 @@
             "wins": 12787,
             "win_rate": 0.5798,
             "wilson_lb": 0.5733,
-            "score": 0.0313,
+            "score": 0.0312,
             "wr_delta_pp": 3.78,
             "avg_buy_time_s": 909.9,
             "phase": "mid",
@@ -985,9 +993,10 @@
             "cooldown_s": 22.0,
             "imbue": null,
             "slot": "weapon",
-            "tag": "stat",
-            "pick_rate_tag": "stat",
-            "pick_rate": 0.0
+            "tag": "core_inherited",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "Gives fire rate and bullet resist to everyone"
           },
           {
             "item_id": 1932939246,
@@ -1008,9 +1017,10 @@
             "cooldown_s": 30.0,
             "imbue": null,
             "slot": "weapon",
-            "tag": "stat",
-            "pick_rate_tag": "stat",
-            "pick_rate": 0.0
+            "tag": "core_inherited",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "Recommended for contesting Rift or thunderdome if you also have a gunner with you."
           },
           {
             "item_id": 3077079169,
@@ -1045,7 +1055,7 @@
             "wins": 1957,
             "win_rate": 0.518,
             "wilson_lb": 0.5021,
-            "score": -0.0399,
+            "score": -0.04,
             "wr_delta_pp": -2.4,
             "avg_buy_time_s": 303.7,
             "phase": "early",
@@ -1069,7 +1079,7 @@
             "win_rate": 0.6218,
             "wilson_lb": 0.6077,
             "score": 0.0657,
-            "wr_delta_pp": 7.99,
+            "wr_delta_pp": 7.98,
             "avg_buy_time_s": 2204.3,
             "phase": "late",
             "avg_sell_time_s": 2333.4,
@@ -1080,7 +1090,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "OP against teams with consistent spirit damage from heroes like Infernus, Abrams, Shiv, etc... otherwise go Infuser or Spellbreaker against Spirit burst damage"
+            "annotation": "OP against comps with consistent spirit damage source like Infernus, Abrams, Victor,... Otherwise pick a different green."
           },
           {
             "item_id": 1797283378,
@@ -1104,7 +1114,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Slight power boost, big heal, can't go wrong with this especially if you already bought Spirit Lifesteal",
+            "annotation": "In the scenario where you need a ton of heal right away....",
             "lineage_chain": [
               {
                 "item_id": 876563814,
@@ -1142,7 +1152,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Great on teams full of gunners or you're slot locked",
+            "annotation": "Great for boosting your gunner teammates or when slot-locked",
             "lineage_chain": [
               {
                 "item_id": 2829638276,
@@ -1180,7 +1190,7 @@
             "wins": 8409,
             "win_rate": 0.5366,
             "wilson_lb": 0.5287,
-            "score": -0.0132,
+            "score": -0.0133,
             "wr_delta_pp": -0.54,
             "avg_buy_time_s": 784.8,
             "phase": "mid",
@@ -1192,7 +1202,7 @@
             "tag": "core_inherited",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "If your lane have spirit nukers, this will help you ease off some of their pressure"
+            "annotation": "Boost your grenade and toughen you up a little bit against spirit users."
           },
           {
             "item_id": 343572757,
@@ -1216,7 +1226,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Can replace Healbane or added on top, great for nuking enemies' heal and deal even more damage"
+            "annotation": "Significantly reduces heal and deal damage enmass"
           },
           {
             "item_id": 3577481646,
@@ -1228,7 +1238,7 @@
             "wins": 5536,
             "win_rate": 0.624,
             "wilson_lb": 0.6139,
-            "score": 0.0719,
+            "score": 0.0718,
             "wr_delta_pp": 8.2,
             "avg_buy_time_s": 2051.3,
             "phase": "late",
@@ -1240,9 +1250,9 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "This one is for grenade, ironically but will help supplement your beam's damage and sustain",
+            "annotation": "One of the holy grails of Kelvin's grenade, 50% more current damage, lifesteal and slow.",
             "imbue_target_id": 18921423,
-            "imbue_target_share": 1.0
+            "imbue_target_share": 0.8
           },
           {
             "item_id": 2717651715,
@@ -1266,7 +1276,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Extends duration for dome, beam and items",
+            "annotation": "Helps with Ice Path's duration for better tempo or Dome to buy your team more time.",
             "lineage_chain": [
               {
                 "item_id": 2951612397,
@@ -1278,7 +1288,7 @@
                 "avg_buy_time_min": 21.9,
                 "imbue": "imbue_modifier_value",
                 "imbue_target_id": 2351041382,
-                "imbue_target_share": 0.667
+                "imbue_target_share": 0.75
               }
             ]
           },
@@ -1292,8 +1302,8 @@
             "wins": 26919,
             "win_rate": 0.5815,
             "wilson_lb": 0.577,
-            "score": 0.0351,
-            "wr_delta_pp": 3.96,
+            "score": 0.035,
+            "wr_delta_pp": 3.95,
             "avg_buy_time_s": 1609.8,
             "phase": "late",
             "avg_sell_time_s": 1960.3,
@@ -1304,7 +1314,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "The 2nd power spike and the main course of the build, they no longer views you as a problem, but a REAL THREAT.",
+            "annotation": "THE Kelvin's damage item, buy this when you're fully pivoting for damage",
             "lineage_chain": [
               {
                 "item_id": 2081037738,
@@ -1331,7 +1341,7 @@
             "win_rate": 0.5802,
             "wilson_lb": 0.5737,
             "score": 0.0317,
-            "wr_delta_pp": 3.83,
+            "wr_delta_pp": 3.82,
             "avg_buy_time_s": 2104.5,
             "phase": "late",
             "avg_sell_time_s": 2127.7,
@@ -1342,7 +1352,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Reduces all your abilities AND items' cooldown, consider this when you're slot locked or have many actives.",
+            "annotation": "GIGA CORE! Reduces your items' cooldown alongside, crucial for support-oriented playstyle",
             "lineage_chain": [
               {
                 "item_id": 380806748,
@@ -1354,7 +1364,7 @@
                 "avg_buy_time_min": 21.4,
                 "imbue": "imbue_modifier_value",
                 "imbue_target_id": 3826390464,
-                "imbue_target_share": 0.4
+                "imbue_target_share": 0.5
               },
               {
                 "item_id": 3261353684,
@@ -1380,7 +1390,7 @@
             "wins": 12787,
             "win_rate": 0.5798,
             "wilson_lb": 0.5733,
-            "score": 0.0313,
+            "score": 0.0312,
             "wr_delta_pp": 3.78,
             "avg_buy_time_s": 909.9,
             "phase": "mid",
@@ -1405,7 +1415,7 @@
             "win_rate": 0.5772,
             "wilson_lb": 0.5726,
             "score": 0.0306,
-            "wr_delta_pp": 3.53,
+            "wr_delta_pp": 3.52,
             "avg_buy_time_s": 1719.7,
             "phase": "late",
             "avg_sell_time_s": 2118.8,
@@ -1416,7 +1426,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "For larger dome and longer beam",
+            "annotation": "Expands your grenade and dome's AoE radius.",
             "lineage_chain": [
               {
                 "item_id": 754480263,
@@ -1452,14 +1462,89 @@
             "imbue": null,
             "slot": "flex",
             "tag": "core_inherited",
-            "pick_rate_tag": "core",
-            "pick_rate": 1.0,
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
             "annotation": "There ain't much happening early game so you can run this, sell at around 15 mins in then rush Escalating Exposure"
           }
         ]
       },
       "build_replication": {
         "picks": [
+          {
+            "item_id": 2108215830,
+            "name": "Heroic Aura",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1427,
+            "wins": 787,
+            "win_rate": 0.5515,
+            "wilson_lb": 0.5256,
+            "score": -0.0164,
+            "wr_delta_pp": 0.95,
+            "avg_buy_time_s": 1265.9,
+            "phase": "mid",
+            "avg_sell_time_s": 2033.3,
+            "is_active": true,
+            "cooldown_s": 22.0,
+            "imbue": null,
+            "build_freq_weight": 0.1,
+            "slot": "weapon",
+            "tag": "core_inherited",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "Gives fire rate and bullet resist to everyone"
+          },
+          {
+            "item_id": 1932939246,
+            "name": "Alchemical Fire",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 3429,
+            "wins": 1839,
+            "win_rate": 0.5363,
+            "wilson_lb": 0.5196,
+            "score": -0.0224,
+            "wr_delta_pp": -0.57,
+            "avg_buy_time_s": 1365.0,
+            "phase": "mid",
+            "avg_sell_time_s": 2313.1,
+            "is_active": true,
+            "cooldown_s": 30.0,
+            "imbue": null,
+            "build_freq_weight": 0.1,
+            "slot": "weapon",
+            "tag": "core_inherited",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "Recommended for contesting Rift or thunderdome if you also have a gunner with you."
+          },
+          {
+            "item_id": 1763073141,
+            "name": "Recharging Rush",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 703,
+            "wins": 378,
+            "win_rate": 0.5377,
+            "wilson_lb": 0.5007,
+            "score": -0.0413,
+            "wr_delta_pp": -0.43,
+            "avg_buy_time_s": 1082.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2237.1,
+            "is_active": false,
+            "cooldown_s": 25.0,
+            "imbue": null,
+            "build_freq_weight": 0.1,
+            "slot": "weapon",
+            "tag": "core_inherited",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "An extra grenade just by hitting a couple of shots? Intriguing"
+          },
           {
             "item_id": 2603935618,
             "name": "Healbane",
@@ -1478,12 +1563,12 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 0,
+            "build_freq_weight": 0.1,
             "slot": "vitality",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Let your beam out-damage enemy's lifesteal or heal, also gives heal on kills and assists."
+            "annotation": "Great against lifesteal bruisers and healers."
           },
           {
             "item_id": 2163598980,
@@ -1503,7 +1588,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 0,
+            "build_freq_weight": 0.1,
             "slot": "vitality",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -1528,12 +1613,12 @@
             "is_active": true,
             "cooldown_s": 23.0,
             "imbue": null,
-            "build_freq_weight": 0,
+            "build_freq_weight": 0.1,
             "slot": "vitality",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Gun heroes' deterrent."
+            "annotation": "Buy this when enemy team have strong gunners such as Venator, Silver, etc. This will discourage them from shooting at you"
           },
           {
             "item_id": 951866250,
@@ -1553,7 +1638,7 @@
             "is_active": false,
             "cooldown_s": 55.0,
             "imbue": null,
-            "build_freq_weight": 0,
+            "build_freq_weight": 0.1,
             "slot": "vitality",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1596,7 +1681,7 @@
             "wins": 13534,
             "win_rate": 0.535,
             "wilson_lb": 0.5288,
-            "score": -0.0131,
+            "score": -0.0132,
             "wr_delta_pp": -0.7,
             "avg_buy_time_s": 554.1,
             "phase": "early",
@@ -1604,7 +1689,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 0,
+            "build_freq_weight": 0.1,
             "slot": "spirit",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1643,12 +1728,12 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 0,
+            "build_freq_weight": 0.1,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Extends duration for dome, beam and items",
+            "annotation": "Helps with Ice Path's duration for better tempo or Dome to buy your team more time.",
             "lineage_chain": [
               {
                 "item_id": 2951612397,
@@ -1660,7 +1745,7 @@
                 "avg_buy_time_min": 21.9,
                 "imbue": "imbue_modifier_value",
                 "imbue_target_id": 2351041382,
-                "imbue_target_share": 0.667
+                "imbue_target_share": 0.75
               }
             ]
           },
@@ -1674,20 +1759,20 @@
             "wins": 26919,
             "win_rate": 0.5815,
             "wilson_lb": 0.577,
-            "score": 0.0351,
-            "wr_delta_pp": 3.96,
+            "score": 0.035,
+            "wr_delta_pp": 3.95,
             "avg_buy_time_s": 1609.8,
             "phase": "late",
             "avg_sell_time_s": 1960.3,
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 0,
+            "build_freq_weight": 0.1,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "The 2nd power spike and the main course of the build, they no longer views you as a problem, but a REAL THREAT.",
+            "annotation": "THE Kelvin's damage item, buy this when you're fully pivoting for damage",
             "lineage_chain": [
               {
                 "item_id": 2081037738,
@@ -1721,12 +1806,12 @@
             "is_active": true,
             "cooldown_s": 300.0,
             "imbue": null,
-            "build_freq_weight": 0,
+            "build_freq_weight": 0.1,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "A second dome can turn around a fight quickly, but hugely depend on the situation."
+            "annotation": "A second dome can turn the tide around, especially when your dome is maxxed."
           },
           {
             "item_id": 3140772621,
@@ -1738,20 +1823,20 @@
             "wins": 1621,
             "win_rate": 0.5019,
             "wilson_lb": 0.4846,
-            "score": -0.0573,
-            "wr_delta_pp": -4.01,
+            "score": -0.0574,
+            "wr_delta_pp": -4.02,
             "avg_buy_time_s": 1699.5,
             "phase": "late",
             "avg_sell_time_s": 2356.2,
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 0,
+            "build_freq_weight": 0.1,
             "slot": "flex",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Great against huge, chunky damage from the likes of Venator, Silver, etc..."
+            "annotation": "If there're huge chunky gun damage, this is a good choice"
           },
           {
             "item_id": 3357231760,
@@ -1763,20 +1848,20 @@
             "wins": 916,
             "win_rate": 0.5747,
             "wilson_lb": 0.5502,
-            "score": 0.0083,
-            "wr_delta_pp": 3.27,
+            "score": 0.0082,
+            "wr_delta_pp": 3.26,
             "avg_buy_time_s": 2261.1,
             "phase": "late",
             "avg_sell_time_s": 2461.7,
             "is_active": true,
             "cooldown_s": 60.0,
             "imbue": null,
-            "build_freq_weight": 0,
+            "build_freq_weight": 0.1,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Great against CC-heavy team or Knockdown/Curse stacking.",
+            "annotation": "This might help tremendously when you're facing against a CC team",
             "lineage_chain": [
               {
                 "item_id": 1047818222,
@@ -1810,12 +1895,12 @@
             "is_active": true,
             "cooldown_s": 35.0,
             "imbue": null,
-            "build_freq_weight": 0,
+            "build_freq_weight": 0.1,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "Great for frontliners, huge damage."
+            "annotation": "Great to put on your frontliners or yourself and deal a huge chunk of damage."
           },
           {
             "item_id": 2617435668,
@@ -1835,31 +1920,37 @@
             "is_active": true,
             "cooldown_s": 55.0,
             "imbue": null,
-            "build_freq_weight": 0,
+            "build_freq_weight": 0.1,
             "slot": "flex",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
-            "annotation": "If nothing else works against a particular foe, this is the last resort."
+            "annotation": "If nothing else works against a foe, this is your last resort."
           }
         ],
         "source_builds": [
           {
             "build_id": 241631,
             "name": "Cirno's Medi-Beam",
-            "win_rate": 0.495,
-            "matches": 303
+            "win_rate": 0.5031,
+            "matches": 324
+          },
+          {
+            "build_id": 229306,
+            "name": "Cirno's Healnade",
+            "win_rate": 0.5224,
+            "matches": 201
           }
         ]
       },
       "joint_archetypes": [],
       "item_metadata": {
         "2462046703": {
-          "tag": "core",
-          "pick_rate": 1.0,
+          "tag": "flex",
+          "pick_rate": 0.5,
           "annotation": "There ain't much happening early game so you can run this, sell at around 15 mins in then rush Escalating Exposure",
           "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
@@ -1867,8 +1958,8 @@
           "tag": "core",
           "pick_rate": 1.0,
           "annotation": "",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
@@ -1876,80 +1967,80 @@
           "tag": "core",
           "pick_rate": 1.0,
           "annotation": "Can be sold late-game for better items",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2566692615": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Boosts all of your heal by a decent margin",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "Let your grenade heal more",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2603935618": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Let your beam out-damage enemy's lifesteal or heal, also gives heal on kills and assists.",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "Great against lifesteal bruisers and healers.",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2447176615": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Lets you run faster and resisting slow.",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "Suffering from slows? Grab this",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1102081447": {
-          "tag": "core",
-          "pick_rate": 1.0,
+          "tag": "flex",
+          "pick_rate": 0.5,
           "annotation": "Slow enemies down, ruin their day even more! Can be sold for slots late-game",
           "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2519598785": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Try to rush this after selling egg, the appetizer of your beam's power spike",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "Moderately increase your damage and heal",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "876563814": {
-          "tag": "core",
-          "pick_rate": 1.0,
+          "tag": "flex",
+          "pick_rate": 0.5,
           "annotation": "Gives you some lee way on the tanky department.",
           "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3970837787": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "If your lane have spirit nukers, this will help you ease off some of their pressure",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "Boost your grenade and toughen you up a little bit against spirit users.",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3074274290": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "If you managed to stomp a lane, buy this instead of Enduring Speed and get stacks by helping other lanes.",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "Bad team = Do not buy, instead get either Battle Vest or Enduring Speed.",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
@@ -1957,8 +2048,8 @@
           "tag": "core",
           "pick_rate": 1.0,
           "annotation": "Helps you farm faster and stack Escalating Exposure. If enemy team have too much Spirit Resist, buy Tankbuster instead.",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
@@ -1966,62 +2057,62 @@
           "tag": "core",
           "pick_rate": 1.0,
           "annotation": "Can be skipped if you aren't interested in extra grenades at 20 mins .",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "380806748": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Imbue on Ice Path so it'll be available sooner and enhance your tempo, a stepping stone to Superior Cooldown",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "Helps reduce grenade's cooldown, you can imbue on dome or ice path if needed",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": 3826390464,
-          "imbue_target_share": 0.4
+          "imbue_target_share": 0.5
         },
         "3261353684": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Reduces all your abilities' cooldown for better uptime which also means better tempo",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "MEGA CORE! Reduces all of your abilities' cooldown.",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3005970438": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "The 2nd power spike and the main course of the build, they no longer views you as a problem, but a REAL THREAT.",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "THE Kelvin's damage item, buy this when you're fully pivoting for damage",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1193964439": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "For larger dome and longer beam",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "Expands your grenade and dome's AoE radius.",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "787198704": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Gives you 2 extra healnades for big damage burst.",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "Rush this if you have the money available right away, otherwise rush 4.8k green first.",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1804594021": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "More support-pivoting, allows you to save teammates who stepped into the deathball quicksand",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "Highly recommended as this allow you to pull someone out of their certain death.",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
@@ -2029,8 +2120,8 @@
           "tag": "core",
           "pick_rate": 1.0,
           "annotation": "Against a spirit heavy team comp you might want a bit more armor",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
@@ -2038,8 +2129,8 @@
           "tag": "core",
           "pick_rate": 1.0,
           "annotation": "Enemy team have too many debuffs? This will at least help you breathe better",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
@@ -2047,143 +2138,143 @@
           "tag": "core",
           "pick_rate": 1.0,
           "annotation": "If enemy team has a ton of burst spirit damage or predictable CC like Lash, this can be really useful",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2717651715": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Extends duration for dome, beam and items",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "Helps with Ice Path's duration for better tempo or Dome to buy your team more time.",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "343572757": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Can replace Healbane or added on top, great for nuking enemies' heal and deal even more damage",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "Significantly reduces heal and deal damage enmass",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3577481646": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "This one is for grenade, ironically but will help supplement your beam's damage and sustain",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "One of the holy grails of Kelvin's grenade, 50% more current damage, lifesteal and slow.",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": 18921423,
-          "imbue_target_share": 1.0
+          "imbue_target_share": 0.8
         },
         "915014646": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Reduces all your abilities AND items' cooldown, consider this when you're slot locked or have many actives.",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "GIGA CORE! Reduces your items' cooldown alongside, crucial for support-oriented playstyle",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1797283378": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Slight power boost, big heal, can't go wrong with this especially if you already bought Spirit Lifesteal",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "In the scenario where you need a ton of heal right away....",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3028234315": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "OP against teams with consistent spirit damage from heroes like Infernus, Abrams, Shiv, etc... otherwise go Infuser or Spellbreaker against Spirit burst damage",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "OP against comps with consistent spirit damage source like Infernus, Abrams, Victor,... Otherwise pick a different green.",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1427630806": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Great on teams full of gunners or you're slot locked",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "Great for boosting your gunner teammates or when slot-locked",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1662311306": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Buy this against ult debuffers like Pocket",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "You don't really need to rush this most of the time, best bought against debuff-heavy teams and against ult debuffs like Pocket.",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "677738769": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "A second dome can turn around a fight quickly, but hugely depend on the situation.",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "A second dome can turn the tide around, especially when your dome is maxxed.",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2417568017": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Great for frontliners, huge damage.",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "Great to put on your frontliners or yourself and deal a huge chunk of damage.",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2617435668": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "If nothing else works against a particular foe, this is the last resort.",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "If nothing else works against a foe, this is your last resort.",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2081037738": {
-          "tag": "core",
-          "pick_rate": 1.0,
+          "tag": "flex",
+          "pick_rate": 0.5,
           "annotation": "If you need spirit shred earlier i guess this can be an option",
           "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1925087134": {
-          "tag": "core",
-          "pick_rate": 1.0,
+          "tag": "flex",
+          "pick_rate": 0.5,
           "annotation": "Buy this against gun-heavy teams.",
           "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2951612397": {
-          "tag": "core",
-          "pick_rate": 1.0,
+          "tag": "flex",
+          "pick_rate": 0.5,
           "annotation": "Imbue on either Dome or Ice Path so they last longer",
           "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_total": 2,
           "imbue_target_id": 2351041382,
-          "imbue_target_share": 0.667
+          "imbue_target_share": 0.75
         },
         "709540378": {
-          "tag": "core",
-          "pick_rate": 1.0,
+          "tag": "flex",
+          "pick_rate": 0.5,
           "annotation": "Greed-maxxing item, buy if you want to hoard as much soul as possible.",
           "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
@@ -2191,71 +2282,71 @@
           "tag": "core",
           "pick_rate": 1.0,
           "annotation": "Buy this to keep ability spammer down a tad or to proc enemy's Indomitable.",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2061878743": {
-          "tag": "core",
-          "pick_rate": 1.0,
+          "tag": "flex",
+          "pick_rate": 0.5,
           "annotation": "This is a proactive counter to keep an enemy gunner in check, not a passive answer to an already fed gunner.",
           "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1254091416": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Disable flyers such as Vindicta, Gray Talon, can also be bought to interrupt channeling abilities like Seven's Ult and Bebop's Ult.",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "Main way to disable flyers such as Vindicta, Gray Talon, Seven's Ult and Bebop's Ult. Can also be bought to stop hyper mobile heroes like Lash.",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2121044373": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Counters Spirit Resist and high HP damage sponge such as Mo & Krill, Abrams, Billy, etc...",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "Busts Spirit Resist and high HP damage sponge.",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1644605047": {
-          "tag": "core",
-          "pick_rate": 1.0,
+          "tag": "flex",
+          "pick_rate": 0.5,
           "annotation": "",
           "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1047818222": {
-          "tag": "core",
-          "pick_rate": 1.0,
+          "tag": "flex",
+          "pick_rate": 0.5,
           "annotation": "",
           "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3361075077": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Gun heroes' deterrent.",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "Buy this when enemy team have strong gunners such as Venator, Silver, etc. This will discourage them from shooting at you",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3270001687": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "You can use this to warp yourself out of dome mid-casting, trapping enemies inside while you escape elsewhere",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "Bullet Resilience's alternative",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
@@ -2263,53 +2354,53 @@
           "tag": "core",
           "pick_rate": 1.0,
           "annotation": "Better than Bullet Resilience in most cases. Great for disengaging and fighting against M1 heroes like Haze, Venator, etc.",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3140772621": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Great against huge, chunky damage from the likes of Venator, Silver, etc...",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "If there're huge chunky gun damage, this is a good choice",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1955841979": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "This one spirit guy kept nuking your HP bar?",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "If you're fighting against spirit burst enemies, this will help alot",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3491236900": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Bullet hell and gun debuffers really grind your gear?",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "Best to buy against on-hit effect gun carries like Infernus and Mina",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3357231760": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Great against CC-heavy team or Knockdown/Curse stacking.",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "This might help tremendously when you're facing against a CC team",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1250307611": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Too many guns, too much slow",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "annotation": "Dampen gun carries' DPS by slowing their guns to a crawl",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
@@ -2317,17 +2408,206 @@
           "tag": "core",
           "pick_rate": 1.0,
           "annotation": "Safety net against occassional CCs like Knockdown or Cursed Relic",
-          "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_appearing_in": 2,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2407781327": {
           "tag": "core",
           "pick_rate": 1.0,
-          "annotation": "Tankmaxxing so you can screw them up even more",
+          "annotation": "For Tankmaxxing so you become difficult to kill",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1998374645": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
           "builds_appearing_in": 1,
-          "builds_total": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1710079648": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Quick patch up after a lane trade, you'll get this eventually anyway for Rescue Beam or Healing Nova",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1235347618": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Boosts your gun a tad more and toughen you a little bit against guns.",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2956256701": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Great for teamfights and emergency heals.",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "857669956": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Buy this early in lane to keep your lane partner alive.",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "7409189": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1932939246": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Recommended for contesting Rift or thunderdome if you also have a gunner with you.",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2108215830": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Gives fire rate and bullet resist to everyone",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2481177645": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Passive bullet resist shred and fire rate drop source, can also be used if you have a teammates to get picks on loners.",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1813726886": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Allows you to hold someone back until your team arrives, also good counters for some hyper mobile heroes",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "4204808176": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Oh you see that goathead Billy or that big and chonky Abrams? Buy this.",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2064029594": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "This can help alot in laning phase if you want to pivot a bit into gun I guess....",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1763073141": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "An extra grenade just by hitting a couple of shots? Intriguing",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "395867183": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "This sound good in theory because of your insane amount of spirit investment.",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2226497419": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2221211450": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "This in theory can combo well with your kit from how much your gonna spam your abilities and actives.",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "112198670": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "805079544": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3361811174": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Well your dome might be able to out heal the penalty this gives.",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "630839635": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "Allows you to toss an extra grenade immediately for more burst damage or heal",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": 18921423,
+          "imbue_target_share": 1.0
+        },
+        "3812615317": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
           "imbue_target_id": null,
           "imbue_target_share": null
         }
@@ -2348,8 +2628,8 @@
             "wins": 176,
             "win_rate": 0.5366,
             "wilson_lb": 0.4825,
-            "score": -0.0325,
-            "wr_delta_pp": 2.16,
+            "score": -0.0302,
+            "wr_delta_pp": 2.38,
             "avg_buy_time_s": 1277.7,
             "phase": "mid",
             "avg_sell_time_s": 1818.6,
@@ -2371,8 +2651,8 @@
             "wins": 440,
             "win_rate": 0.4933,
             "wilson_lb": 0.4606,
-            "score": -0.0544,
-            "wr_delta_pp": -2.17,
+            "score": -0.0522,
+            "wr_delta_pp": -1.95,
             "avg_buy_time_s": 104.2,
             "phase": "early",
             "avg_sell_time_s": 482.6,
@@ -2394,8 +2674,8 @@
             "wins": 339,
             "win_rate": 0.6152,
             "wilson_lb": 0.574,
-            "score": 0.0589,
-            "wr_delta_pp": 10.02,
+            "score": 0.0612,
+            "wr_delta_pp": 10.25,
             "avg_buy_time_s": 1280.4,
             "phase": "mid",
             "avg_sell_time_s": 1956.4,
@@ -2417,8 +2697,8 @@
             "wins": 220,
             "win_rate": 0.5528,
             "wilson_lb": 0.5036,
-            "score": -0.0114,
-            "wr_delta_pp": 3.78,
+            "score": -0.0091,
+            "wr_delta_pp": 4.0,
             "avg_buy_time_s": 951.8,
             "phase": "mid",
             "avg_sell_time_s": 1666.3,
@@ -2454,8 +2734,8 @@
             "wins": 1129,
             "win_rate": 0.522,
             "wilson_lb": 0.5009,
-            "score": -0.0141,
-            "wr_delta_pp": 0.7,
+            "score": -0.0119,
+            "wr_delta_pp": 0.92,
             "avg_buy_time_s": 767.1,
             "phase": "mid",
             "avg_sell_time_s": 1939.1,
@@ -2491,8 +2771,8 @@
             "wins": 770,
             "win_rate": 0.521,
             "wilson_lb": 0.4955,
-            "score": -0.0195,
-            "wr_delta_pp": 0.6,
+            "score": -0.0173,
+            "wr_delta_pp": 0.82,
             "avg_buy_time_s": 493.4,
             "phase": "early",
             "avg_sell_time_s": 2093.7,
@@ -2528,8 +2808,8 @@
             "wins": 471,
             "win_rate": 0.6238,
             "wilson_lb": 0.5887,
-            "score": 0.0737,
-            "wr_delta_pp": 10.88,
+            "score": 0.076,
+            "wr_delta_pp": 11.11,
             "avg_buy_time_s": 1805.9,
             "phase": "late",
             "avg_sell_time_s": 1976.6,
@@ -2551,8 +2831,8 @@
             "wins": 301,
             "win_rate": 0.6143,
             "wilson_lb": 0.5705,
-            "score": 0.0554,
-            "wr_delta_pp": 9.93,
+            "score": 0.0577,
+            "wr_delta_pp": 10.15,
             "avg_buy_time_s": 1943.6,
             "phase": "late",
             "avg_sell_time_s": 1643.0,
@@ -2600,8 +2880,8 @@
             "wins": 640,
             "win_rate": 0.5937,
             "wilson_lb": 0.5641,
-            "score": 0.0491,
-            "wr_delta_pp": 7.87,
+            "score": 0.0513,
+            "wr_delta_pp": 8.09,
             "avg_buy_time_s": 1633.1,
             "phase": "late",
             "avg_sell_time_s": 1886.2,
@@ -2637,8 +2917,8 @@
             "wins": 940,
             "win_rate": 0.576,
             "wilson_lb": 0.5519,
-            "score": 0.0368,
-            "wr_delta_pp": 6.1,
+            "score": 0.0391,
+            "wr_delta_pp": 6.32,
             "avg_buy_time_s": 1611.9,
             "phase": "late",
             "avg_sell_time_s": 1904.3,
@@ -2686,8 +2966,8 @@
             "wins": 885,
             "win_rate": 0.5754,
             "wilson_lb": 0.5506,
-            "score": 0.0356,
-            "wr_delta_pp": 6.04,
+            "score": 0.0378,
+            "wr_delta_pp": 6.27,
             "avg_buy_time_s": 1629.4,
             "phase": "late",
             "avg_sell_time_s": 1672.8,
@@ -2723,8 +3003,8 @@
             "wins": 920,
             "win_rate": 0.5535,
             "wilson_lb": 0.5296,
-            "score": 0.0145,
-            "wr_delta_pp": 3.85,
+            "score": 0.0168,
+            "wr_delta_pp": 4.08,
             "avg_buy_time_s": 1456.0,
             "phase": "mid",
             "avg_sell_time_s": 2220.0,
@@ -2760,8 +3040,8 @@
             "wins": 1136,
             "win_rate": 0.5351,
             "wilson_lb": 0.5138,
-            "score": -0.0012,
-            "wr_delta_pp": 2.01,
+            "score": 0.0011,
+            "wr_delta_pp": 2.23,
             "avg_buy_time_s": 1082.4,
             "phase": "mid",
             "avg_sell_time_s": 1787.0,
@@ -2797,8 +3077,8 @@
             "wins": 179,
             "win_rate": 0.5683,
             "wilson_lb": 0.5131,
-            "score": -0.002,
-            "wr_delta_pp": 5.32,
+            "score": 0.0003,
+            "wr_delta_pp": 5.55,
             "avg_buy_time_s": 1452.7,
             "phase": "mid",
             "avg_sell_time_s": null,
@@ -2824,8 +3104,8 @@
             "wins": 176,
             "win_rate": 0.5366,
             "wilson_lb": 0.4825,
-            "score": -0.0325,
-            "wr_delta_pp": 2.16,
+            "score": -0.0302,
+            "wr_delta_pp": 2.38,
             "avg_buy_time_s": 1277.7,
             "phase": "mid",
             "avg_sell_time_s": 1818.6,
@@ -2847,8 +3127,8 @@
             "wins": 440,
             "win_rate": 0.4933,
             "wilson_lb": 0.4606,
-            "score": -0.0544,
-            "wr_delta_pp": -2.17,
+            "score": -0.0522,
+            "wr_delta_pp": -1.95,
             "avg_buy_time_s": 104.2,
             "phase": "early",
             "avg_sell_time_s": 482.6,
@@ -2870,8 +3150,8 @@
             "wins": 339,
             "win_rate": 0.6152,
             "wilson_lb": 0.574,
-            "score": 0.0589,
-            "wr_delta_pp": 10.02,
+            "score": 0.0612,
+            "wr_delta_pp": 10.25,
             "avg_buy_time_s": 1280.4,
             "phase": "mid",
             "avg_sell_time_s": 1956.4,
@@ -2893,8 +3173,8 @@
             "wins": 220,
             "win_rate": 0.5528,
             "wilson_lb": 0.5036,
-            "score": -0.0114,
-            "wr_delta_pp": 3.78,
+            "score": -0.0091,
+            "wr_delta_pp": 4.0,
             "avg_buy_time_s": 951.8,
             "phase": "mid",
             "avg_sell_time_s": 1666.3,
@@ -2930,8 +3210,8 @@
             "wins": 770,
             "win_rate": 0.521,
             "wilson_lb": 0.4955,
-            "score": -0.0195,
-            "wr_delta_pp": 0.6,
+            "score": -0.0173,
+            "wr_delta_pp": 0.82,
             "avg_buy_time_s": 493.4,
             "phase": "early",
             "avg_sell_time_s": 2093.7,
@@ -2967,8 +3247,8 @@
             "wins": 921,
             "win_rate": 0.518,
             "wilson_lb": 0.4948,
-            "score": -0.0203,
-            "wr_delta_pp": 0.3,
+            "score": -0.018,
+            "wr_delta_pp": 0.53,
             "avg_buy_time_s": 828.2,
             "phase": "mid",
             "avg_sell_time_s": 2069.3,
@@ -2990,8 +3270,8 @@
             "wins": 471,
             "win_rate": 0.6238,
             "wilson_lb": 0.5887,
-            "score": 0.0737,
-            "wr_delta_pp": 10.88,
+            "score": 0.076,
+            "wr_delta_pp": 11.11,
             "avg_buy_time_s": 1805.9,
             "phase": "late",
             "avg_sell_time_s": 1976.6,
@@ -3013,8 +3293,8 @@
             "wins": 301,
             "win_rate": 0.6143,
             "wilson_lb": 0.5705,
-            "score": 0.0554,
-            "wr_delta_pp": 9.93,
+            "score": 0.0577,
+            "wr_delta_pp": 10.15,
             "avg_buy_time_s": 1943.6,
             "phase": "late",
             "avg_sell_time_s": 1643.0,
@@ -3062,8 +3342,8 @@
             "wins": 640,
             "win_rate": 0.5937,
             "wilson_lb": 0.5641,
-            "score": 0.0491,
-            "wr_delta_pp": 7.87,
+            "score": 0.0513,
+            "wr_delta_pp": 8.09,
             "avg_buy_time_s": 1633.1,
             "phase": "late",
             "avg_sell_time_s": 1886.2,
@@ -3099,8 +3379,8 @@
             "wins": 940,
             "win_rate": 0.576,
             "wilson_lb": 0.5519,
-            "score": 0.0368,
-            "wr_delta_pp": 6.1,
+            "score": 0.0391,
+            "wr_delta_pp": 6.32,
             "avg_buy_time_s": 1611.9,
             "phase": "late",
             "avg_sell_time_s": 1904.3,
@@ -3148,8 +3428,8 @@
             "wins": 885,
             "win_rate": 0.5754,
             "wilson_lb": 0.5506,
-            "score": 0.0356,
-            "wr_delta_pp": 6.04,
+            "score": 0.0378,
+            "wr_delta_pp": 6.27,
             "avg_buy_time_s": 1629.4,
             "phase": "late",
             "avg_sell_time_s": 1672.8,
@@ -3185,8 +3465,8 @@
             "wins": 1136,
             "win_rate": 0.5351,
             "wilson_lb": 0.5138,
-            "score": -0.0012,
-            "wr_delta_pp": 2.01,
+            "score": 0.0011,
+            "wr_delta_pp": 2.23,
             "avg_buy_time_s": 1082.4,
             "phase": "mid",
             "avg_sell_time_s": 1787.0,
@@ -3222,8 +3502,8 @@
             "wins": 179,
             "win_rate": 0.5683,
             "wilson_lb": 0.5131,
-            "score": -0.002,
-            "wr_delta_pp": 5.32,
+            "score": 0.0003,
+            "wr_delta_pp": 5.55,
             "avg_buy_time_s": 1452.7,
             "phase": "mid",
             "avg_sell_time_s": null,
@@ -3245,8 +3525,8 @@
             "wins": 365,
             "win_rate": 0.5489,
             "wilson_lb": 0.5109,
-            "score": -0.0041,
-            "wr_delta_pp": 3.39,
+            "score": -0.0019,
+            "wr_delta_pp": 3.61,
             "avg_buy_time_s": 737.7,
             "phase": "early",
             "avg_sell_time_s": 1767.3,
@@ -3282,8 +3562,8 @@
             "wins": 92,
             "win_rate": 0.4532,
             "wilson_lb": 0.3862,
-            "score": -0.115,
-            "wr_delta_pp": -4.81,
+            "score": -0.1089,
+            "wr_delta_pp": -4.19,
             "avg_buy_time_s": 80.8,
             "phase": "early",
             "avg_sell_time_s": 392.2,
@@ -3305,8 +3585,8 @@
             "wins": 57,
             "win_rate": 0.5644,
             "wilson_lb": 0.4671,
-            "score": -0.0342,
-            "wr_delta_pp": 6.31,
+            "score": -0.028,
+            "wr_delta_pp": 6.93,
             "avg_buy_time_s": 782.8,
             "phase": "mid",
             "avg_sell_time_s": 1921.2,
@@ -3342,8 +3622,8 @@
             "wins": 166,
             "win_rate": 0.5076,
             "wilson_lb": 0.4537,
-            "score": -0.0476,
-            "wr_delta_pp": 0.64,
+            "score": -0.0414,
+            "wr_delta_pp": 1.25,
             "avg_buy_time_s": 765.6,
             "phase": "mid",
             "avg_sell_time_s": 2036.9,
@@ -3379,8 +3659,8 @@
             "wins": 142,
             "win_rate": 0.4897,
             "wilson_lb": 0.4326,
-            "score": -0.0686,
-            "wr_delta_pp": -1.16,
+            "score": -0.0625,
+            "wr_delta_pp": -0.54,
             "avg_buy_time_s": 837.2,
             "phase": "mid",
             "avg_sell_time_s": 2110.6,
@@ -3402,8 +3682,8 @@
             "wins": 87,
             "win_rate": 0.4416,
             "wilson_lb": 0.3741,
-            "score": -0.1272,
-            "wr_delta_pp": -5.96,
+            "score": -0.121,
+            "wr_delta_pp": -5.35,
             "avg_buy_time_s": 594.5,
             "phase": "early",
             "avg_sell_time_s": 1983.6,
@@ -3425,8 +3705,8 @@
             "wins": 85,
             "win_rate": 0.6967,
             "wilson_lb": 0.6102,
-            "score": 0.1089,
-            "wr_delta_pp": 19.54,
+            "score": 0.1151,
+            "wr_delta_pp": 20.16,
             "avg_buy_time_s": 1710.4,
             "phase": "late",
             "avg_sell_time_s": null,
@@ -3462,8 +3742,8 @@
             "wins": 119,
             "win_rate": 0.5862,
             "wilson_lb": 0.5175,
-            "score": 0.0162,
-            "wr_delta_pp": 8.49,
+            "score": 0.0224,
+            "wr_delta_pp": 9.11,
             "avg_buy_time_s": 1642.5,
             "phase": "late",
             "avg_sell_time_s": 1581.5,
@@ -3499,8 +3779,8 @@
             "wins": 109,
             "win_rate": 0.5737,
             "wilson_lb": 0.5026,
-            "score": 0.0013,
-            "wr_delta_pp": 7.24,
+            "score": 0.0075,
+            "wr_delta_pp": 7.86,
             "avg_buy_time_s": 1038.8,
             "phase": "mid",
             "avg_sell_time_s": 1536.0,
@@ -3536,8 +3816,8 @@
             "wins": 79,
             "win_rate": 0.5852,
             "wilson_lb": 0.5008,
-            "score": -0.0004,
-            "wr_delta_pp": 8.39,
+            "score": 0.0057,
+            "wr_delta_pp": 9.01,
             "avg_buy_time_s": 1493.1,
             "phase": "mid",
             "avg_sell_time_s": 2042.8,
@@ -3573,8 +3853,8 @@
             "wins": 115,
             "win_rate": 0.5476,
             "wilson_lb": 0.48,
-            "score": -0.0212,
-            "wr_delta_pp": 4.63,
+            "score": -0.0151,
+            "wr_delta_pp": 5.25,
             "avg_buy_time_s": 1581.3,
             "phase": "late",
             "avg_sell_time_s": null,
@@ -3622,8 +3902,8 @@
             "wins": 147,
             "win_rate": 0.49,
             "wilson_lb": 0.4339,
-            "score": -0.0674,
-            "wr_delta_pp": -1.13,
+            "score": -0.0612,
+            "wr_delta_pp": -0.51,
             "avg_buy_time_s": 1106.0,
             "phase": "mid",
             "avg_sell_time_s": 1380.4,
@@ -3645,8 +3925,8 @@
             "wins": 76,
             "win_rate": 0.4578,
             "wilson_lb": 0.3838,
-            "score": -0.1174,
-            "wr_delta_pp": -4.34,
+            "score": -0.1112,
+            "wr_delta_pp": -3.73,
             "avg_buy_time_s": 776.9,
             "phase": "mid",
             "avg_sell_time_s": null,
@@ -3686,8 +3966,8 @@
             "wins": 92,
             "win_rate": 0.4532,
             "wilson_lb": 0.3862,
-            "score": -0.115,
-            "wr_delta_pp": -4.81,
+            "score": -0.1089,
+            "wr_delta_pp": -4.19,
             "avg_buy_time_s": 80.8,
             "phase": "early",
             "avg_sell_time_s": 392.2,
@@ -3709,8 +3989,8 @@
             "wins": 57,
             "win_rate": 0.5644,
             "wilson_lb": 0.4671,
-            "score": -0.0342,
-            "wr_delta_pp": 6.31,
+            "score": -0.028,
+            "wr_delta_pp": 6.93,
             "avg_buy_time_s": 782.8,
             "phase": "mid",
             "avg_sell_time_s": 1921.2,
@@ -3746,8 +4026,8 @@
             "wins": 166,
             "win_rate": 0.5076,
             "wilson_lb": 0.4537,
-            "score": -0.0476,
-            "wr_delta_pp": 0.64,
+            "score": -0.0414,
+            "wr_delta_pp": 1.25,
             "avg_buy_time_s": 765.6,
             "phase": "mid",
             "avg_sell_time_s": 2036.9,
@@ -3783,8 +4063,8 @@
             "wins": 142,
             "win_rate": 0.4897,
             "wilson_lb": 0.4326,
-            "score": -0.0686,
-            "wr_delta_pp": -1.16,
+            "score": -0.0625,
+            "wr_delta_pp": -0.54,
             "avg_buy_time_s": 837.2,
             "phase": "mid",
             "avg_sell_time_s": 2110.6,
@@ -3806,8 +4086,8 @@
             "wins": 87,
             "win_rate": 0.4416,
             "wilson_lb": 0.3741,
-            "score": -0.1272,
-            "wr_delta_pp": -5.96,
+            "score": -0.121,
+            "wr_delta_pp": -5.35,
             "avg_buy_time_s": 594.5,
             "phase": "early",
             "avg_sell_time_s": 1983.6,
@@ -3829,8 +4109,8 @@
             "wins": 85,
             "win_rate": 0.6967,
             "wilson_lb": 0.6102,
-            "score": 0.1089,
-            "wr_delta_pp": 19.54,
+            "score": 0.1151,
+            "wr_delta_pp": 20.16,
             "avg_buy_time_s": 1710.4,
             "phase": "late",
             "avg_sell_time_s": null,
@@ -3866,8 +4146,8 @@
             "wins": 119,
             "win_rate": 0.5862,
             "wilson_lb": 0.5175,
-            "score": 0.0162,
-            "wr_delta_pp": 8.49,
+            "score": 0.0224,
+            "wr_delta_pp": 9.11,
             "avg_buy_time_s": 1642.5,
             "phase": "late",
             "avg_sell_time_s": 1581.5,
@@ -3903,8 +4183,8 @@
             "wins": 109,
             "win_rate": 0.5737,
             "wilson_lb": 0.5026,
-            "score": 0.0013,
-            "wr_delta_pp": 7.24,
+            "score": 0.0075,
+            "wr_delta_pp": 7.86,
             "avg_buy_time_s": 1038.8,
             "phase": "mid",
             "avg_sell_time_s": 1536.0,
@@ -3940,8 +4220,8 @@
             "wins": 79,
             "win_rate": 0.5852,
             "wilson_lb": 0.5008,
-            "score": -0.0004,
-            "wr_delta_pp": 8.39,
+            "score": 0.0057,
+            "wr_delta_pp": 9.01,
             "avg_buy_time_s": 1493.1,
             "phase": "mid",
             "avg_sell_time_s": 2042.8,
@@ -3977,8 +4257,8 @@
             "wins": 115,
             "win_rate": 0.5476,
             "wilson_lb": 0.48,
-            "score": -0.0212,
-            "wr_delta_pp": 4.63,
+            "score": -0.0151,
+            "wr_delta_pp": 5.25,
             "avg_buy_time_s": 1581.3,
             "phase": "late",
             "avg_sell_time_s": null,
@@ -4026,8 +4306,8 @@
             "wins": 147,
             "win_rate": 0.49,
             "wilson_lb": 0.4339,
-            "score": -0.0674,
-            "wr_delta_pp": -1.13,
+            "score": -0.0612,
+            "wr_delta_pp": -0.51,
             "avg_buy_time_s": 1106.0,
             "phase": "mid",
             "avg_sell_time_s": 1380.4,
@@ -4049,8 +4329,8 @@
             "wins": 76,
             "win_rate": 0.4578,
             "wilson_lb": 0.3838,
-            "score": -0.1174,
-            "wr_delta_pp": -4.34,
+            "score": -0.1112,
+            "wr_delta_pp": -3.73,
             "avg_buy_time_s": 776.9,
             "phase": "mid",
             "avg_sell_time_s": null,
@@ -4098,13 +4378,14 @@
         "picks": [],
         "source_builds": []
       },
+      "joint_archetypes": [],
       "item_metadata": {}
     }
   },
   "ability_orders": {
     "all_mmr": {
-      "total_records": 107,
-      "total_matches": 26279,
+      "total_records": 113,
+      "total_matches": 27642,
       "ability_priority": [
         {
           "ability_id": 18921423,
@@ -4130,9 +4411,9 @@
         {
           "ability_id": 3826390464,
           "name": "Frozen Shelter",
-          "avg_ap_all_players": 3.31,
+          "avg_ap_all_players": 3.3,
           "avg_ap_winners": 3.43,
-          "winner_premium_ap": 0.12
+          "winner_premium_ap": 0.13
         }
       ],
       "best_full_orders": [
@@ -4173,54 +4454,11 @@
             "Frozen Shelter",
             "Frozen Shelter"
           ],
-          "wins": 749,
-          "losses": 251,
-          "matches": 1000,
-          "players": 677,
-          "win_rate": 0.749
-        },
-        {
-          "sequence_ids": [
-            18921423,
-            18921423,
-            2351041382,
-            2351041382,
-            1963397252,
-            2351041382,
-            3826390464,
-            1963397252,
-            1963397252,
-            3826390464,
-            18921423,
-            2351041382,
-            18921423,
-            1963397252,
-            3826390464,
-            3826390464
-          ],
-          "sequence_names": [
-            "Frost Grenade",
-            "Frost Grenade",
-            "Arctic Beam",
-            "Arctic Beam",
-            "Ice Path",
-            "Arctic Beam",
-            "Frozen Shelter",
-            "Ice Path",
-            "Ice Path",
-            "Frozen Shelter",
-            "Frost Grenade",
-            "Arctic Beam",
-            "Frost Grenade",
-            "Ice Path",
-            "Frozen Shelter",
-            "Frozen Shelter"
-          ],
-          "wins": 231,
-          "losses": 86,
-          "matches": 317,
-          "players": 227,
-          "win_rate": 0.7287
+          "wins": 779,
+          "losses": 260,
+          "matches": 1039,
+          "players": 700,
+          "win_rate": 0.7498
         },
         {
           "sequence_ids": [
@@ -4259,11 +4497,54 @@
             "Frozen Shelter",
             "Frozen Shelter"
           ],
-          "wins": 176,
+          "wins": 185,
           "losses": 66,
-          "matches": 242,
-          "players": 171,
-          "win_rate": 0.7273
+          "matches": 251,
+          "players": 177,
+          "win_rate": 0.7371
+        },
+        {
+          "sequence_ids": [
+            18921423,
+            18921423,
+            2351041382,
+            2351041382,
+            1963397252,
+            2351041382,
+            3826390464,
+            1963397252,
+            1963397252,
+            3826390464,
+            18921423,
+            2351041382,
+            18921423,
+            1963397252,
+            3826390464,
+            3826390464
+          ],
+          "sequence_names": [
+            "Frost Grenade",
+            "Frost Grenade",
+            "Arctic Beam",
+            "Arctic Beam",
+            "Ice Path",
+            "Arctic Beam",
+            "Frozen Shelter",
+            "Ice Path",
+            "Ice Path",
+            "Frozen Shelter",
+            "Frost Grenade",
+            "Arctic Beam",
+            "Frost Grenade",
+            "Ice Path",
+            "Frozen Shelter",
+            "Frozen Shelter"
+          ],
+          "wins": 237,
+          "losses": 89,
+          "matches": 326,
+          "players": 231,
+          "win_rate": 0.727
         },
         {
           "sequence_ids": [
@@ -4302,10 +4583,10 @@
             "Frozen Shelter",
             "Frozen Shelter"
           ],
-          "wins": 427,
-          "losses": 169,
-          "matches": 596,
-          "players": 406,
+          "wins": 442,
+          "losses": 175,
+          "matches": 617,
+          "players": 418,
           "win_rate": 0.7164
         },
         {
@@ -4345,11 +4626,11 @@
             "Frozen Shelter",
             "Frozen Shelter"
           ],
-          "wins": 996,
-          "losses": 414,
-          "matches": 1410,
-          "players": 1038,
-          "win_rate": 0.7064
+          "wins": 1035,
+          "losses": 440,
+          "matches": 1475,
+          "players": 1081,
+          "win_rate": 0.7017
         }
       ],
       "best_openers_first4": [
@@ -4360,9 +4641,9 @@
             "Arctic Beam",
             "Arctic Beam"
           ],
-          "wins": 3650,
-          "matches": 5943,
-          "win_rate": 0.6142
+          "wins": 3816,
+          "matches": 6235,
+          "win_rate": 0.612
         },
         {
           "sequence_names": [
@@ -4371,9 +4652,9 @@
             "Frost Grenade",
             "Ice Path"
           ],
-          "wins": 275,
-          "matches": 480,
-          "win_rate": 0.5729
+          "wins": 278,
+          "matches": 484,
+          "win_rate": 0.5744
         },
         {
           "sequence_names": [
@@ -4382,43 +4663,43 @@
             "Arctic Beam",
             "Ice Path"
           ],
-          "wins": 10789,
-          "matches": 19191,
-          "win_rate": 0.5622
+          "wins": 11332,
+          "matches": 20197,
+          "win_rate": 0.5611
         }
       ]
     },
     "high_mmr": {
-      "total_records": 12,
-      "total_matches": 525,
+      "total_records": 13,
+      "total_matches": 560,
       "ability_priority": [
         {
           "ability_id": 1963397252,
           "name": "Ice Path",
-          "avg_ap_all_players": 3.93,
+          "avg_ap_all_players": 3.94,
           "avg_ap_winners": 3.97,
           "winner_premium_ap": 0.04
         },
         {
           "ability_id": 2351041382,
           "name": "Arctic Beam",
-          "avg_ap_all_players": 3.82,
+          "avg_ap_all_players": 3.83,
           "avg_ap_winners": 3.84,
-          "winner_premium_ap": 0.02
+          "winner_premium_ap": 0.01
         },
         {
           "ability_id": 18921423,
           "name": "Frost Grenade",
-          "avg_ap_all_players": 3.78,
-          "avg_ap_winners": 3.8,
-          "winner_premium_ap": 0.02
+          "avg_ap_all_players": 3.75,
+          "avg_ap_winners": 3.79,
+          "winner_premium_ap": 0.04
         },
         {
           "ability_id": 3826390464,
           "name": "Frozen Shelter",
-          "avg_ap_all_players": 3.36,
-          "avg_ap_winners": 3.37,
-          "winner_premium_ap": 0.01
+          "avg_ap_all_players": 3.34,
+          "avg_ap_winners": 3.36,
+          "winner_premium_ap": 0.02
         }
       ],
       "best_full_orders": [],
@@ -4430,43 +4711,43 @@
             "Arctic Beam",
             "Ice Path"
           ],
-          "wins": 246,
-          "matches": 425,
-          "win_rate": 0.5788
+          "wins": 252,
+          "matches": 438,
+          "win_rate": 0.5753
         }
       ]
     },
     "ascendant_plus": {
       "total_records": 5,
-      "total_matches": 58,
+      "total_matches": 60,
       "ability_priority": [
         {
           "ability_id": 1963397252,
           "name": "Ice Path",
-          "avg_ap_all_players": 3.79,
+          "avg_ap_all_players": 3.8,
           "avg_ap_winners": 3.89,
-          "winner_premium_ap": 0.1
+          "winner_premium_ap": 0.09
         },
         {
           "ability_id": 3826390464,
           "name": "Frozen Shelter",
-          "avg_ap_all_players": 3.79,
+          "avg_ap_all_players": 3.78,
           "avg_ap_winners": 3.78,
-          "winner_premium_ap": -0.02
+          "winner_premium_ap": -0.01
         },
         {
           "ability_id": 2351041382,
           "name": "Arctic Beam",
-          "avg_ap_all_players": 3.81,
+          "avg_ap_all_players": 3.82,
           "avg_ap_winners": 3.75,
-          "winner_premium_ap": -0.06
+          "winner_premium_ap": -0.07
         },
         {
           "ability_id": 18921423,
           "name": "Frost Grenade",
           "avg_ap_all_players": 3.4,
           "avg_ap_winners": 3.47,
-          "winner_premium_ap": 0.08
+          "winner_premium_ap": 0.07
         }
       ],
       "best_full_orders": [],
@@ -4475,7 +4756,36 @@
     "eternus_plus": {
       "total_records": 0,
       "total_matches": 0,
-      "ability_priority": [],
+      "ability_priority": [
+        {
+          "ability_id": 18921423,
+          "name": "Frost Grenade",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1963397252,
+          "name": "Ice Path",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 2351041382,
+          "name": "Arctic Beam",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3826390464,
+          "name": "Frozen Shelter",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
       "best_full_orders": [],
       "best_openers_first4": []
     }
