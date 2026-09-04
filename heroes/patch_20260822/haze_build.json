@@ -30,20 +30,20 @@
   "mmr_slices": {
     "all_mmr": {
       "filter": "no MMR filter",
-      "baseline_win_rate": 0.5043,
-      "matches": 221423,
+      "baseline_win_rate": 0.5044,
+      "matches": 224242,
       "players": null
     },
     "high_mmr": {
       "filter": "min_average_badge=91 (Phantom+)",
-      "baseline_win_rate": 0.468,
-      "matches": 7287,
+      "baseline_win_rate": 0.4685,
+      "matches": 7452,
       "players": null
     },
     "ascendant_plus": {
       "filter": "min_average_badge=101 (Ascendant+)",
-      "baseline_win_rate": 0.4715,
-      "matches": 859,
+      "baseline_win_rate": 0.4685,
+      "matches": 890,
       "players": null
     },
     "eternus_plus": {
@@ -57,9 +57,25 @@
     "items": {
       "method": "synergy_ilp",
       "mmr_slice": "high_mmr",
-      "total_cost": 80000,
+      "total_cost": 76000,
       "phases": {
         "early": [
+          {
+            "slot": "spirit",
+            "category": "spirit",
+            "tier": 1,
+            "cost": 800,
+            "name": "Golden Goose Egg",
+            "item_id": 2462046703,
+            "avg_buy_time_min": 1.6,
+            "avg_sell_time_min": 15.8,
+            "win_rate": 0.4795,
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "is_active": true,
+            "cooldown_s": null,
+            "imbue": null
+          },
           {
             "slot": "flex",
             "category": "weapon",
@@ -78,6 +94,22 @@
           }
         ],
         "mid": [
+          {
+            "slot": "vitality",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "name": "Enchanter's Emblem",
+            "item_id": 3970837787,
+            "avg_buy_time_min": 13.5,
+            "avg_sell_time_min": 33.5,
+            "win_rate": 0.4983,
+            "tag": "tech_pick",
+            "pick_rate": 0.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null
+          },
           {
             "slot": "spirit",
             "category": "spirit",
@@ -125,36 +157,6 @@
             ]
           },
           {
-            "slot": "vitality",
-            "category": "vitality",
-            "tier": 3,
-            "cost": 3200,
-            "name": "Veil Walker",
-            "item_id": 865958998,
-            "avg_buy_time_min": 15.0,
-            "avg_sell_time_min": 38.2,
-            "win_rate": 0.4982,
-            "tag": "stat_anomaly",
-            "pick_rate": 0.0,
-            "is_active": false,
-            "cooldown_s": 15.0,
-            "imbue": null,
-            "lineage_chain": [
-              {
-                "item_id": 3399065363,
-                "name": "Sprint Boots",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/sprint_booster.png",
-                "matches": 3463,
-                "avg_buy_time_min": 11.3,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
-          },
-          {
             "slot": "flex",
             "category": "weapon",
             "tier": 3,
@@ -164,7 +166,7 @@
             "avg_buy_time_min": 19.7,
             "avg_sell_time_min": 26.7,
             "win_rate": 0.4884,
-            "tag": "tech_pick",
+            "tag": "stat",
             "pick_rate": 0.0,
             "is_active": false,
             "cooldown_s": 9.0,
@@ -247,36 +249,6 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null
-          },
-          {
-            "slot": "spirit",
-            "category": "spirit",
-            "tier": 3,
-            "cost": 3200,
-            "name": "Rapid Recharge",
-            "item_id": 787198704,
-            "avg_buy_time_min": 27.9,
-            "avg_sell_time_min": 30.8,
-            "win_rate": 0.543,
-            "tag": "stat_anomaly",
-            "pick_rate": 0.0,
-            "is_active": false,
-            "cooldown_s": null,
-            "imbue": null,
-            "lineage_chain": [
-              {
-                "item_id": 3776945997,
-                "name": "Extra Charge",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/extra_charge.png",
-                "matches": 1347,
-                "avg_buy_time_min": 19.5,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
           },
           {
             "slot": "weapon",
@@ -493,11 +465,11 @@
           "Bullet Dance",
           "Bullet Dance"
         ],
-        "wins": 101,
+        "wins": 103,
         "losses": 42,
-        "matches": 143,
-        "players": 77,
-        "win_rate": 0.7063
+        "matches": 145,
+        "players": 78,
+        "win_rate": 0.7103
       },
       "best_opener_first4": {
         "sequence_names": [
@@ -506,9 +478,9 @@
           "Sleep Dagger",
           "Sleep Dagger"
         ],
-        "wins": 779,
-        "matches": 1535,
-        "win_rate": 0.5075
+        "wins": 793,
+        "matches": 1557,
+        "win_rate": 0.5093
       }
     }
   },
@@ -539,7 +511,7 @@
             "slot": "weapon",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
-            "pick_rate": 0.6
+            "pick_rate": 0.5
           },
           {
             "item_id": 339443430,
@@ -562,7 +534,7 @@
             "slot": "weapon",
             "tag": "flex",
             "pick_rate_tag": "flex",
-            "pick_rate": 0.4
+            "pick_rate": 0.333
           },
           {
             "item_id": 2226497419,
@@ -585,7 +557,7 @@
             "slot": "weapon",
             "tag": "core_proven",
             "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate": 0.833,
             "annotation": "Excellent consistent Fire Rate once activated, Elevates your Spirit Power by 40 & makes your dagger even more powerful with Boundless.",
             "lineage_chain": [
               {
@@ -613,7 +585,7 @@
             "win_rate": 0.6115,
             "wilson_lb": 0.6049,
             "score": 0.1005,
-            "wr_delta_pp": 10.72,
+            "wr_delta_pp": 10.71,
             "avg_buy_time_s": 1902.4,
             "phase": "late",
             "avg_sell_time_s": 2306.3,
@@ -646,7 +618,7 @@
             "slot": "vitality",
             "tag": "flex",
             "pick_rate_tag": "flex",
-            "pick_rate": 0.4,
+            "pick_rate": 0.333,
             "annotation": "To be paired with Siphon Bullets. DO *NOT* buy this as an exclusive item, it will not trigger & the item will be a waste.",
             "lineage_chain": [
               {
@@ -685,7 +657,7 @@
             "wins": 20341,
             "win_rate": 0.5944,
             "wilson_lb": 0.5892,
-            "score": 0.0849,
+            "score": 0.0848,
             "wr_delta_pp": 9.01,
             "avg_buy_time_s": 2014.0,
             "phase": "late",
@@ -695,8 +667,8 @@
             "imbue": null,
             "slot": "vitality",
             "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667,
             "annotation": "Can get as a late game item for Haze, can be paired with Healing Tempo for additional Fire Rate"
           },
           {
@@ -709,7 +681,7 @@
             "wins": 22237,
             "win_rate": 0.5934,
             "wilson_lb": 0.5884,
-            "score": 0.0841,
+            "score": 0.084,
             "wr_delta_pp": 8.9,
             "avg_buy_time_s": 2111.4,
             "phase": "late",
@@ -719,8 +691,8 @@
             "imbue": null,
             "slot": "vitality",
             "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667,
             "annotation": "Best against strong gun heroes to reduce their dps by 30% while also applying heal cut, allows you make 1v1s/teamfights easier if you apply on important targets"
           },
           {
@@ -744,7 +716,7 @@
             "slot": "vitality",
             "tag": "flex",
             "pick_rate_tag": "flex",
-            "pick_rate": 0.4,
+            "pick_rate": 0.333,
             "lineage_chain": [
               {
                 "item_id": 3399065363,
@@ -793,7 +765,7 @@
             "slot": "spirit",
             "tag": "tech_pick",
             "pick_rate_tag": "situational",
-            "pick_rate": 0.2,
+            "pick_rate": 0.167,
             "lineage_chain": [
               {
                 "item_id": 380806748,
@@ -832,7 +804,7 @@
             "win_rate": 0.5975,
             "wilson_lb": 0.5921,
             "score": 0.0877,
-            "wr_delta_pp": 9.32,
+            "wr_delta_pp": 9.31,
             "avg_buy_time_s": 1903.2,
             "phase": "late",
             "avg_sell_time_s": 2284.1,
@@ -842,7 +814,7 @@
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
-            "pick_rate": 0.6,
+            "pick_rate": 0.667,
             "annotation": "Can Skip & get Lucky Shot / Inhibitor / Unstop *IF* enemies aren\u2019t stacking Metal Skin. With Metal Skin being common, this is a strong late-game pick, providing Spirit Damage to counter them.",
             "imbue_target_id": 2948410412,
             "imbue_target_share": 1.0,
@@ -919,7 +891,7 @@
             "slot": "spirit",
             "tag": "tech_pick",
             "pick_rate_tag": "situational",
-            "pick_rate": 0.2
+            "pick_rate": 0.167
           },
           {
             "item_id": 1113837674,
@@ -941,8 +913,8 @@
             "imbue": null,
             "slot": "flex",
             "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667
           },
           {
             "item_id": 3884003354,
@@ -954,8 +926,8 @@
             "wins": 28508,
             "win_rate": 0.5952,
             "wilson_lb": 0.5908,
-            "score": 0.0865,
-            "wr_delta_pp": 9.09,
+            "score": 0.0864,
+            "wr_delta_pp": 9.08,
             "avg_buy_time_s": 2005.6,
             "phase": "late",
             "avg_sell_time_s": 2130.4,
@@ -964,8 +936,8 @@
             "imbue": null,
             "slot": "flex",
             "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667,
             "annotation": "Best Shred/healcut item in all scenarios, buy when enemies have tons of resist. Silencer and inhib normally come first to help reduce dps from important threats.",
             "lineage_chain": [
               {
@@ -1002,8 +974,8 @@
             "imbue": null,
             "slot": "flex",
             "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667,
             "annotation": "Anti-armor and Anti-plated armor",
             "lineage_chain": [
               {
@@ -1041,7 +1013,7 @@
             "slot": "flex",
             "tag": "flex",
             "pick_rate_tag": "flex",
-            "pick_rate": 0.4,
+            "pick_rate": 0.333,
             "lineage_chain": [
               {
                 "item_id": 1672893796,
@@ -1094,30 +1066,7 @@
             "slot": "weapon",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
-            "pick_rate": 0.6
-          },
-          {
-            "item_id": 339443430,
-            "name": "Frenzy",
-            "category": "weapon",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 12499,
-            "wins": 7759,
-            "win_rate": 0.6208,
-            "wilson_lb": 0.6122,
-            "score": 0.1079,
-            "wr_delta_pp": 11.64,
-            "avg_buy_time_s": 2159.1,
-            "phase": "late",
-            "avg_sell_time_s": 2284.7,
-            "is_active": false,
-            "cooldown_s": 16.0,
-            "imbue": null,
-            "slot": "weapon",
-            "tag": "flex",
-            "pick_rate_tag": "flex",
-            "pick_rate": 0.4
+            "pick_rate": 0.5
           },
           {
             "item_id": 2226497419,
@@ -1140,7 +1089,7 @@
             "slot": "weapon",
             "tag": "core_proven",
             "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate": 0.833,
             "annotation": "Excellent consistent Fire Rate once activated, Elevates your Spirit Power by 40 & makes your dagger even more powerful with Boundless.",
             "lineage_chain": [
               {
@@ -1156,6 +1105,29 @@
                 "imbue_target_share": null
               }
             ]
+          },
+          {
+            "item_id": 365620721,
+            "name": "Glass Cannon",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 20940,
+            "wins": 12805,
+            "win_rate": 0.6115,
+            "wilson_lb": 0.6049,
+            "score": 0.1005,
+            "wr_delta_pp": 10.71,
+            "avg_buy_time_s": 1902.4,
+            "phase": "late",
+            "avg_sell_time_s": 2306.3,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
           },
           {
             "item_id": 1113837674,
@@ -1177,8 +1149,8 @@
             "imbue": null,
             "slot": "weapon",
             "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667
           },
           {
             "item_id": 1282141666,
@@ -1190,7 +1162,7 @@
             "wins": 20341,
             "win_rate": 0.5944,
             "wilson_lb": 0.5892,
-            "score": 0.0849,
+            "score": 0.0848,
             "wr_delta_pp": 9.01,
             "avg_buy_time_s": 2014.0,
             "phase": "late",
@@ -1200,8 +1172,8 @@
             "imbue": null,
             "slot": "vitality",
             "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667,
             "annotation": "Can get as a late game item for Haze, can be paired with Healing Tempo for additional Fire Rate"
           },
           {
@@ -1214,7 +1186,7 @@
             "wins": 22237,
             "win_rate": 0.5934,
             "wilson_lb": 0.5884,
-            "score": 0.0841,
+            "score": 0.084,
             "wr_delta_pp": 8.9,
             "avg_buy_time_s": 2111.4,
             "phase": "late",
@@ -1224,8 +1196,8 @@
             "imbue": null,
             "slot": "vitality",
             "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667,
             "annotation": "Best against strong gun heroes to reduce their dps by 30% while also applying heal cut, allows you make 1v1s/teamfights easier if you apply on important targets"
           },
           {
@@ -1248,8 +1220,8 @@
             "imbue": null,
             "slot": "vitality",
             "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667,
             "annotation": "A crucial item in the Mid/Late game.",
             "lineage_chain": [
               {
@@ -1287,7 +1259,7 @@
             "slot": "vitality",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
-            "pick_rate": 0.6,
+            "pick_rate": 0.5,
             "annotation": "Insane value for a 1600 item : Provides +18% Spirit Resistance, 5% Reduction of Cooldowns, +15 Extra Spirit Power for Dagger & Provides Extra Ammo. Can upgrade to Spirit Resilience in the late game"
           },
           {
@@ -1301,7 +1273,7 @@
             "win_rate": 0.5975,
             "wilson_lb": 0.5921,
             "score": 0.0877,
-            "wr_delta_pp": 9.32,
+            "wr_delta_pp": 9.31,
             "avg_buy_time_s": 1903.2,
             "phase": "late",
             "avg_sell_time_s": 2284.1,
@@ -1311,7 +1283,7 @@
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
-            "pick_rate": 0.6,
+            "pick_rate": 0.667,
             "annotation": "Can Skip & get Lucky Shot / Inhibitor / Unstop *IF* enemies aren\u2019t stacking Metal Skin. With Metal Skin being common, this is a strong late-game pick, providing Spirit Damage to counter them.",
             "imbue_target_id": 2948410412,
             "imbue_target_share": 1.0,
@@ -1331,6 +1303,56 @@
             ]
           },
           {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 15529,
+            "wins": 8948,
+            "win_rate": 0.5762,
+            "wilson_lb": 0.5684,
+            "score": 0.0641,
+            "wr_delta_pp": 7.18,
+            "avg_buy_time_s": 1968.0,
+            "phase": "late",
+            "avg_sell_time_s": 2153.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 0.833,
+            "annotation": "A critical component to massively boost your Dagger Damage, Ammo & more importantly increases Wake up Delay to 1 sec. (Besides increasing your ULT Duration & other advantages with the Spirit Pump)",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/tech_damage.png",
+                "matches": 174617,
+                "avg_buy_time_min": 4.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/soaring_spirit.png",
+                "matches": 25449,
+                "avg_buy_time_min": 15.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
             "item_id": 2717651715,
             "name": "Superior Duration",
             "category": "spirit",
@@ -1341,7 +1363,7 @@
             "win_rate": 0.5583,
             "wilson_lb": 0.5519,
             "score": 0.0475,
-            "wr_delta_pp": 5.4,
+            "wr_delta_pp": 5.39,
             "avg_buy_time_s": 1755.8,
             "phase": "late",
             "avg_sell_time_s": 2368.0,
@@ -1351,7 +1373,7 @@
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
-            "pick_rate": 0.6,
+            "pick_rate": 0.667,
             "annotation": "Makes all your debuffs last longer and your ult last longer. Very strong item synergizes with everything",
             "lineage_chain": [
               {
@@ -1389,30 +1411,7 @@
             "slot": "spirit",
             "tag": "situational",
             "pick_rate_tag": "situational",
-            "pick_rate": 0.2
-          },
-          {
-            "item_id": 2462046703,
-            "name": "Golden Goose Egg",
-            "category": "spirit",
-            "tier": 1,
-            "cost": 800,
-            "matches": 12669,
-            "wins": 6570,
-            "win_rate": 0.5186,
-            "wilson_lb": 0.5099,
-            "score": 0.0055,
-            "wr_delta_pp": 1.42,
-            "avg_buy_time_s": 159.0,
-            "phase": "early",
-            "avg_sell_time_s": 1192.1,
-            "is_active": true,
-            "cooldown_s": null,
-            "imbue": null,
-            "slot": "spirit",
-            "tag": "stat",
-            "pick_rate_tag": "stat",
-            "pick_rate": 0.0
+            "pick_rate": 0.167
           },
           {
             "item_id": 3884003354,
@@ -1424,8 +1423,8 @@
             "wins": 28508,
             "win_rate": 0.5952,
             "wilson_lb": 0.5908,
-            "score": 0.0865,
-            "wr_delta_pp": 9.09,
+            "score": 0.0864,
+            "wr_delta_pp": 9.08,
             "avg_buy_time_s": 2005.6,
             "phase": "late",
             "avg_sell_time_s": 2130.4,
@@ -1434,8 +1433,8 @@
             "imbue": null,
             "slot": "flex",
             "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667,
             "annotation": "Best Shred/healcut item in all scenarios, buy when enemies have tons of resist. Silencer and inhib normally come first to help reduce dps from important threats.",
             "lineage_chain": [
               {
@@ -1472,8 +1471,8 @@
             "imbue": null,
             "slot": "flex",
             "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667,
             "annotation": "Slow enemies heavily with the active, then finish them with your ult. Excellent for 1v1s and strong late game, adding Spirit Damage vs. Metal Skin users.",
             "lineage_chain": [
               {
@@ -1489,6 +1488,29 @@
                 "imbue_target_share": null
               }
             ]
+          },
+          {
+            "item_id": 2462046703,
+            "name": "Golden Goose Egg",
+            "category": "spirit",
+            "tier": 1,
+            "cost": 800,
+            "matches": 12669,
+            "wins": 6570,
+            "win_rate": 0.5186,
+            "wilson_lb": 0.5099,
+            "score": 0.0055,
+            "wr_delta_pp": 1.42,
+            "avg_buy_time_s": 159.0,
+            "phase": "early",
+            "avg_sell_time_s": 1192.1,
+            "is_active": true,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
           },
           {
             "item_id": 381961617,
@@ -1511,31 +1533,8 @@
             "slot": "flex",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate": 0.833,
             "annotation": "Really good for actively trading in lane and being aggressive, also helps for when you start doing camps for easy sustain."
-          },
-          {
-            "item_id": 1235347618,
-            "name": "Battle Vest",
-            "category": "vitality",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 52176,
-            "wins": 25966,
-            "win_rate": 0.4977,
-            "wilson_lb": 0.4934,
-            "score": -0.011,
-            "wr_delta_pp": -0.67,
-            "avg_buy_time_s": 745.4,
-            "phase": "early",
-            "avg_sell_time_s": 2208.1,
-            "is_active": false,
-            "cooldown_s": null,
-            "imbue": null,
-            "slot": "flex",
-            "tag": "situational",
-            "pick_rate_tag": "situational",
-            "pick_rate": 0.2
           }
         ]
       },
@@ -1559,7 +1558,7 @@
             "is_active": false,
             "cooldown_s": 9.0,
             "imbue": null,
-            "build_freq_weight": 51.4,
+            "build_freq_weight": 52.9,
             "slot": "weapon",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1590,19 +1589,19 @@
             "wins": 28508,
             "win_rate": 0.5952,
             "wilson_lb": 0.5908,
-            "score": 0.0865,
-            "wr_delta_pp": 9.09,
+            "score": 0.0864,
+            "wr_delta_pp": 9.08,
             "avg_buy_time_s": 2005.6,
             "phase": "late",
             "avg_sell_time_s": 2130.4,
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 46.5,
+            "build_freq_weight": 48.0,
             "slot": "weapon",
             "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667,
             "annotation": "Best Shred/healcut item in all scenarios, buy when enemies have tons of resist. Silencer and inhib normally come first to help reduce dps from important threats.",
             "lineage_chain": [
               {
@@ -1637,11 +1636,11 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 46.5,
+            "build_freq_weight": 48.0,
             "slot": "weapon",
             "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667,
             "annotation": "Anti-armor and Anti-plated armor",
             "lineage_chain": [
               {
@@ -1676,11 +1675,11 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 46.5,
+            "build_freq_weight": 48.0,
             "slot": "weapon",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
-            "pick_rate": 0.6
+            "pick_rate": 0.5
           },
           {
             "item_id": 3357231760,
@@ -1700,11 +1699,11 @@
             "is_active": true,
             "cooldown_s": 60.0,
             "imbue": null,
-            "build_freq_weight": 46.5,
+            "build_freq_weight": 48.0,
             "slot": "vitality",
             "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667,
             "annotation": "A crucial item in the Mid/Late game.",
             "lineage_chain": [
               {
@@ -1731,7 +1730,7 @@
             "wins": 22237,
             "win_rate": 0.5934,
             "wilson_lb": 0.5884,
-            "score": 0.0841,
+            "score": 0.084,
             "wr_delta_pp": 8.9,
             "avg_buy_time_s": 2111.4,
             "phase": "late",
@@ -1739,11 +1738,11 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 46.5,
+            "build_freq_weight": 48.0,
             "slot": "vitality",
             "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667,
             "annotation": "Best against strong gun heroes to reduce their dps by 30% while also applying heal cut, allows you make 1v1s/teamfights easier if you apply on important targets"
           },
           {
@@ -1756,7 +1755,7 @@
             "wins": 20341,
             "win_rate": 0.5944,
             "wilson_lb": 0.5892,
-            "score": 0.0849,
+            "score": 0.0848,
             "wr_delta_pp": 9.01,
             "avg_buy_time_s": 2014.0,
             "phase": "late",
@@ -1764,11 +1763,11 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 46.5,
+            "build_freq_weight": 48.0,
             "slot": "vitality",
             "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667,
             "annotation": "Can get as a late game item for Haze, can be paired with Healing Tempo for additional Fire Rate"
           },
           {
@@ -1789,11 +1788,11 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 38.5,
+            "build_freq_weight": 40.0,
             "slot": "vitality",
             "tag": "core_inherited",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667,
             "annotation": "An important Item from Mid Game onward (Flexible Timing of Purchase). Can skip Fortitude & get this item."
           },
           {
@@ -1807,18 +1806,18 @@
             "win_rate": 0.5583,
             "wilson_lb": 0.5519,
             "score": 0.0475,
-            "wr_delta_pp": 5.4,
+            "wr_delta_pp": 5.39,
             "avg_buy_time_s": 1755.8,
             "phase": "late",
             "avg_sell_time_s": 2368.0,
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 38.5,
+            "build_freq_weight": 40.0,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
-            "pick_rate": 0.6,
+            "pick_rate": 0.667,
             "annotation": "Makes all your debuffs last longer and your ult last longer. Very strong item synergizes with everything",
             "lineage_chain": [
               {
@@ -1853,11 +1852,11 @@
             "is_active": true,
             "cooldown_s": 55.0,
             "imbue": null,
-            "build_freq_weight": 33.5,
+            "build_freq_weight": 35.0,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
-            "pick_rate": 0.6,
+            "pick_rate": 0.5,
             "annotation": "Really good for looking for picks with ult if you want easy kills for isolated targets. Good when people start stacking metal skins, doesn't effect fixation damage."
           },
           {
@@ -1871,18 +1870,18 @@
             "win_rate": 0.5762,
             "wilson_lb": 0.5684,
             "score": 0.0641,
-            "wr_delta_pp": 7.19,
+            "wr_delta_pp": 7.18,
             "avg_buy_time_s": 1968.0,
             "phase": "late",
             "avg_sell_time_s": 2153.1,
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 31.1,
+            "build_freq_weight": 32.7,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate": 0.833,
             "annotation": "A critical component to massively boost your Dagger Damage, Ammo & more importantly increases Wake up Delay to 1 sec. (Besides increasing your ULT Duration & other advantages with the Spirit Pump)",
             "lineage_chain": [
               {
@@ -1929,11 +1928,11 @@
             "is_active": true,
             "cooldown_s": 30.0,
             "imbue": "imbue_active_non_ult",
-            "build_freq_weight": 31.1,
+            "build_freq_weight": 32.7,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate": 0.833,
             "annotation": "Pick Rate: 61%\nWR: +3%",
             "imbue_target_id": 2948410412,
             "imbue_target_share": 1.0
@@ -1956,11 +1955,11 @@
             "is_active": true,
             "cooldown_s": 40.0,
             "imbue": null,
-            "build_freq_weight": 46.5,
+            "build_freq_weight": 48.0,
             "slot": "flex",
             "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667,
             "annotation": "Slow enemies heavily with the active, then finish them with your ult. Excellent for 1v1s and strong late game, adding Spirit Damage vs. Metal Skin users.",
             "lineage_chain": [
               {
@@ -1995,11 +1994,11 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 46.5,
+            "build_freq_weight": 48.0,
             "slot": "flex",
             "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667
           },
           {
             "item_id": 2480592370,
@@ -2012,18 +2011,18 @@
             "win_rate": 0.5438,
             "wilson_lb": 0.5412,
             "score": 0.0369,
-            "wr_delta_pp": 3.95,
+            "wr_delta_pp": 3.94,
             "avg_buy_time_s": 1513.2,
             "phase": "late",
             "avg_sell_time_s": 1995.3,
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 46.5,
+            "build_freq_weight": 48.0,
             "slot": "flex",
             "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667,
             "annotation": "Get if you're getting lots of debuff items like toxic, inhib, and silencer"
           },
           {
@@ -2044,11 +2043,11 @@
             "is_active": false,
             "cooldown_s": 12.0,
             "imbue": null,
-            "build_freq_weight": 38.5,
+            "build_freq_weight": 40.0,
             "slot": "flex",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
-            "pick_rate": 0.8,
+            "pick_rate": 0.833,
             "annotation": "Really good for actively trading in lane and being aggressive, also helps for when you start doing camps for easy sustain."
           }
         ],
@@ -2056,8 +2055,8 @@
           {
             "build_id": 262104,
             "name": "SN|P3R : Dance of Death",
-            "win_rate": 0.4984,
-            "matches": 941
+            "win_rate": 0.5,
+            "matches": 944
           },
           {
             "build_id": 211035,
@@ -2068,8 +2067,8 @@
           {
             "build_id": 239009,
             "name": "Renon's Gun Haze (twitch.tv/renonfps)",
-            "win_rate": 0.4757,
-            "matches": 658
+            "win_rate": 0.475,
+            "matches": 659
           },
           {
             "build_id": 317831,
@@ -2082,6 +2081,12 @@
             "name": "ABL (twitch ablkz)",
             "win_rate": 0.5434,
             "matches": 219
+          },
+          {
+            "build_id": 514170,
+            "name": "twitch.tv/oses7",
+            "win_rate": 0.45,
+            "matches": 200
           }
         ]
       },
@@ -2099,10 +2104,10 @@
             "Sleep Dagger"
           ],
           "n_builds": 2,
-          "total_matches": 1040,
+          "total_matches": 1041,
           "total_wins": 503,
-          "mean_win_rate": 0.4837,
-          "win_rate_lift_pp": -2.07,
+          "mean_win_rate": 0.4832,
+          "win_rate_lift_pp": -2.12,
           "consensus_ladder_ids": [
             1080948381,
             2948410412,
@@ -2178,7 +2183,7 @@
               "slot": "weapon",
               "tag": "core_proven",
               "pick_rate_tag": "core",
-              "pick_rate": 0.8,
+              "pick_rate": 0.833,
               "annotation": "Excellent consistent Fire Rate once activated, Elevates your Spirit Power by 40 & makes your dagger even more powerful with Boundless.",
               "lineage_chain": [
                 {
@@ -2217,7 +2222,7 @@
               "slot": "weapon",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
-              "pick_rate": 0.8,
+              "pick_rate": 0.833,
               "annotation": "Really good for actively trading in lane and being aggressive, also helps for when you start doing camps for easy sustain."
             },
             {
@@ -2279,9 +2284,9 @@
               "imbue": null,
               "joint_freq_weight": 5.0,
               "slot": "weapon",
-              "tag": "trap_popular",
+              "tag": "flex",
               "pick_rate_tag": "flex",
-              "pick_rate": 0.4,
+              "pick_rate": 0.333,
               "annotation": "Pick Rate: 30%\nWR: +1%"
             },
             {
@@ -2305,8 +2310,8 @@
               "joint_freq_weight": 5.0,
               "slot": "vitality",
               "tag": "core_inherited",
-              "pick_rate_tag": "core",
-              "pick_rate": 0.8,
+              "pick_rate_tag": "flex",
+              "pick_rate": 0.667,
               "annotation": "An important Item from Mid Game onward (Flexible Timing of Purchase). Can skip Fortitude & get this item."
             },
             {
@@ -2320,7 +2325,7 @@
               "win_rate": 0.5008,
               "wilson_lb": 0.4903,
               "score": -0.0141,
-              "wr_delta_pp": -0.35,
+              "wr_delta_pp": -0.36,
               "avg_buy_time_s": 1414.2,
               "phase": "mid",
               "avg_sell_time_s": 2302.2,
@@ -2330,8 +2335,8 @@
               "joint_freq_weight": 5.0,
               "slot": "vitality",
               "tag": "core_inherited",
-              "pick_rate_tag": "core",
-              "pick_rate": 0.8,
+              "pick_rate_tag": "flex",
+              "pick_rate": 0.667,
               "annotation": "An excellent tool if the enemy tries to run away from your Bullet Dance"
             },
             {
@@ -2356,7 +2361,7 @@
               "slot": "vitality",
               "tag": "trap_popular",
               "pick_rate_tag": "flex",
-              "pick_rate": 0.6,
+              "pick_rate": 0.667,
               "annotation": "vs casters\nPick Rate: 8%\nWR: -3%"
             },
             {
@@ -2369,7 +2374,7 @@
               "wins": 30916,
               "win_rate": 0.5206,
               "wilson_lb": 0.5166,
-              "score": 0.0123,
+              "score": 0.0122,
               "wr_delta_pp": 1.63,
               "avg_buy_time_s": 1246.5,
               "phase": "mid",
@@ -2381,7 +2386,7 @@
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
-              "pick_rate": 0.6,
+              "pick_rate": 0.667,
               "annotation": "You can upgrade from Extra Health to Fortitude .OR. can skip this and get Spirit Resilience (if Spirit stacked opponents)",
               "lineage_chain": [
                 {
@@ -2409,7 +2414,7 @@
               "win_rate": 0.5975,
               "wilson_lb": 0.5921,
               "score": 0.0877,
-              "wr_delta_pp": 9.32,
+              "wr_delta_pp": 9.31,
               "avg_buy_time_s": 1903.2,
               "phase": "late",
               "avg_sell_time_s": 2284.1,
@@ -2420,7 +2425,7 @@
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
-              "pick_rate": 0.6,
+              "pick_rate": 0.667,
               "annotation": "Can Skip & get Lucky Shot / Inhibitor / Unstop *IF* enemies aren\u2019t stacking Metal Skin. With Metal Skin being common, this is a strong late-game pick, providing Spirit Damage to counter them.",
               "imbue_target_id": 2948410412,
               "imbue_target_share": 1.0,
@@ -2450,7 +2455,7 @@
               "win_rate": 0.5762,
               "wilson_lb": 0.5684,
               "score": 0.0641,
-              "wr_delta_pp": 7.19,
+              "wr_delta_pp": 7.18,
               "avg_buy_time_s": 1968.0,
               "phase": "late",
               "avg_sell_time_s": 2153.1,
@@ -2461,7 +2466,7 @@
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
-              "pick_rate": 0.8,
+              "pick_rate": 0.833,
               "annotation": "A critical component to massively boost your Dagger Damage, Ammo & more importantly increases Wake up Delay to 1 sec. (Besides increasing your ULT Duration & other advantages with the Spirit Pump)",
               "lineage_chain": [
                 {
@@ -2512,7 +2517,7 @@
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
-              "pick_rate": 0.8,
+              "pick_rate": 0.833,
               "annotation": "Pick Rate: 61%\nWR: +3%",
               "imbue_target_id": 2948410412,
               "imbue_target_share": 1.0
@@ -2539,7 +2544,7 @@
               "slot": "spirit",
               "tag": "trap_popular",
               "pick_rate_tag": "flex",
-              "pick_rate": 0.4,
+              "pick_rate": 0.5,
               "annotation": "vs casters\nPick Rate: 6%\nWR: -1%"
             },
             {
@@ -2553,7 +2558,7 @@
               "win_rate": 0.5583,
               "wilson_lb": 0.5519,
               "score": 0.0475,
-              "wr_delta_pp": 5.4,
+              "wr_delta_pp": 5.39,
               "avg_buy_time_s": 1755.8,
               "phase": "late",
               "avg_sell_time_s": 2368.0,
@@ -2564,7 +2569,7 @@
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
-              "pick_rate": 0.6,
+              "pick_rate": 0.667,
               "annotation": "Makes all your debuffs last longer and your ult last longer. Very strong item synergizes with everything",
               "lineage_chain": [
                 {
@@ -2601,9 +2606,9 @@
               "imbue": null,
               "joint_freq_weight": 5.0,
               "slot": "flex",
-              "tag": "situational",
-              "pick_rate_tag": "situational",
-              "pick_rate": 0.2,
+              "tag": "flex",
+              "pick_rate_tag": "flex",
+              "pick_rate": 0.333,
               "annotation": "vs tanks\nPick Rate: 6%\nWR: +6%",
               "lineage_chain": [
                 {
@@ -2642,7 +2647,7 @@
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
-              "pick_rate": 0.6,
+              "pick_rate": 0.5,
               "annotation": "Insane value for a 1600 item : Provides +18% Spirit Resistance, 5% Reduction of Cooldowns, +15 Extra Spirit Power for Dagger & Provides Extra Ammo. Can upgrade to Spirit Resilience in the late game"
             },
             {
@@ -2667,7 +2672,7 @@
               "slot": "flex",
               "tag": "flex",
               "pick_rate_tag": "flex",
-              "pick_rate": 0.4,
+              "pick_rate": 0.333,
               "annotation": "Pick Rate: 5%\nWR: +8%",
               "lineage_chain": [
                 {
@@ -2689,8 +2694,8 @@
             {
               "build_id": 239009,
               "name": "Renon's Gun Haze (twitch.tv/renonfps)",
-              "win_rate": 0.4757,
-              "matches": 658
+              "win_rate": 0.475,
+              "matches": 659
             },
             {
               "build_id": 317831,
@@ -2704,46 +2709,46 @@
       "item_metadata": {
         "968099481": {
           "tag": "core",
-          "pick_rate": 0.8,
+          "pick_rate": 0.833,
           "annotation": "Increases your Ammo & Dagger Damage. For Haze, Bullets count increase with Spirit Investment. Sell this as 1st item for slot management (OR) Can upgrade to Surge of Power if needed",
-          "builds_appearing_in": 4,
-          "builds_total": 5,
+          "builds_appearing_in": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "4104549924": {
           "tag": "core",
-          "pick_rate": 0.8,
+          "pick_rate": 0.833,
           "annotation": "Do not sell this, unless really necessary / ultra late game. This is Haze's staple item along with Burst Fire for Fire Rate.",
-          "builds_appearing_in": 4,
-          "builds_total": 5,
+          "builds_appearing_in": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3633614685": {
           "tag": "core",
-          "pick_rate": 0.8,
+          "pick_rate": 0.833,
           "annotation": "Strong early Haze item vs high-HP tanks",
-          "builds_appearing_in": 4,
-          "builds_total": 5,
+          "builds_appearing_in": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "381961617": {
           "tag": "core",
-          "pick_rate": 0.8,
+          "pick_rate": 0.833,
           "annotation": "Really good for actively trading in lane and being aggressive, also helps for when you start doing camps for easy sustain.",
-          "builds_appearing_in": 4,
-          "builds_total": 5,
+          "builds_appearing_in": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1770441818": {
           "tag": "flex",
-          "pick_rate": 0.6,
+          "pick_rate": 0.5,
           "annotation": "",
           "builds_appearing_in": 3,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
@@ -2751,17 +2756,17 @@
           "tag": "core",
           "pick_rate": 1.0,
           "annotation": "Pick Rate: 94%\nWR: +0%",
-          "builds_appearing_in": 5,
-          "builds_total": 5,
+          "builds_appearing_in": 6,
+          "builds_total": 6,
           "imbue_target_id": 2948410412,
           "imbue_target_share": 1.0
         },
         "3970837787": {
           "tag": "flex",
-          "pick_rate": 0.6,
+          "pick_rate": 0.5,
           "annotation": "Insane value for a 1600 item : Provides +18% Spirit Resistance, 5% Reduction of Cooldowns, +15 Extra Spirit Power for Dagger & Provides Extra Ammo. Can upgrade to Spirit Resilience in the late game",
           "builds_appearing_in": 3,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
@@ -2769,8 +2774,8 @@
           "tag": "core",
           "pick_rate": 1.0,
           "annotation": "Your staple item to cripple Movement Heroes. You can sell this in the ultra late game to accomodate Tier 4 / Other Items.",
-          "builds_appearing_in": 5,
-          "builds_total": 5,
+          "builds_appearing_in": 6,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
@@ -2778,656 +2783,710 @@
           "tag": "core",
           "pick_rate": 1.0,
           "annotation": "Pick Rate: 88%\nWR: +2%",
-          "builds_appearing_in": 5,
-          "builds_total": 5,
+          "builds_appearing_in": 6,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "393974127": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.333,
           "annotation": "Great item for persistently slowing enemies down & easily secure your kill via Bullet Dance. If you want to silence movement based items / abilities, then use \"Slowing Hex\".",
           "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "865958998": {
           "tag": "flex",
-          "pick_rate": 0.6,
+          "pick_rate": 0.667,
           "annotation": "Pick Rate: 25%\nWR: +0%",
-          "builds_appearing_in": 3,
-          "builds_total": 5,
+          "builds_appearing_in": 4,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3585132399": {
           "tag": "flex",
-          "pick_rate": 0.6,
+          "pick_rate": 0.667,
           "annotation": "You can upgrade from Extra Health to Fortitude .OR. can skip this and get Spirit Resilience (if Spirit stacked opponents)",
-          "builds_appearing_in": 3,
-          "builds_total": 5,
+          "builds_appearing_in": 4,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2226497419": {
           "tag": "core",
-          "pick_rate": 0.8,
+          "pick_rate": 0.833,
           "annotation": "Excellent consistent Fire Rate once activated, Elevates your Spirit Power by 40 & makes your dagger even more powerful with Boundless.",
-          "builds_appearing_in": 4,
-          "builds_total": 5,
+          "builds_appearing_in": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2717651715": {
           "tag": "flex",
-          "pick_rate": 0.6,
+          "pick_rate": 0.667,
           "annotation": "Makes all your debuffs last longer and your ult last longer. Very strong item synergizes with everything",
-          "builds_appearing_in": 3,
-          "builds_total": 5,
+          "builds_appearing_in": 4,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2519598785": {
           "tag": "core",
-          "pick_rate": 0.8,
+          "pick_rate": 0.833,
           "annotation": "A critical component to massively boost your Dagger Damage, Ammo & more importantly increases Wake up Delay to 1 sec. (Besides increasing your ULT Duration & other advantages with the Spirit Pump)",
-          "builds_appearing_in": 4,
-          "builds_total": 5,
+          "builds_appearing_in": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3884003354": {
-          "tag": "core",
-          "pick_rate": 0.8,
+          "tag": "flex",
+          "pick_rate": 0.667,
           "annotation": "Best Shred/healcut item in all scenarios, buy when enemies have tons of resist. Silencer and inhib normally come first to help reduce dps from important threats.",
           "builds_appearing_in": 4,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2480592370": {
-          "tag": "core",
-          "pick_rate": 0.8,
+          "tag": "flex",
+          "pick_rate": 0.667,
           "annotation": "Get if you're getting lots of debuff items like toxic, inhib, and silencer",
           "builds_appearing_in": 4,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1113837674": {
-          "tag": "core",
-          "pick_rate": 0.8,
+          "tag": "flex",
+          "pick_rate": 0.667,
           "annotation": "",
           "builds_appearing_in": 4,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2037039379": {
-          "tag": "core",
-          "pick_rate": 0.8,
+          "tag": "flex",
+          "pick_rate": 0.667,
           "annotation": "Best against strong gun heroes to reduce their dps by 30% while also applying heal cut, allows you make 1v1s/teamfights easier if you apply on important targets",
           "builds_appearing_in": 4,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3919289022": {
           "tag": "flex",
-          "pick_rate": 0.6,
+          "pick_rate": 0.667,
           "annotation": "Can Skip & get Lucky Shot / Inhibitor / Unstop *IF* enemies aren\u2019t stacking Metal Skin. With Metal Skin being common, this is a strong late-game pick, providing Spirit Damage to counter them.",
-          "builds_appearing_in": 3,
-          "builds_total": 5,
+          "builds_appearing_in": 4,
+          "builds_total": 6,
           "imbue_target_id": 2948410412,
           "imbue_target_share": 1.0
         },
         "2163598980": {
-          "tag": "core",
-          "pick_rate": 0.8,
+          "tag": "flex",
+          "pick_rate": 0.667,
           "annotation": "An important Item from Mid Game onward (Flexible Timing of Purchase). Can skip Fortitude & get this item.",
           "builds_appearing_in": 4,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3140772621": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.333,
           "annotation": "",
           "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3357231760": {
-          "tag": "core",
-          "pick_rate": 0.8,
+          "tag": "flex",
+          "pick_rate": 0.667,
           "annotation": "A crucial item in the Mid/Late game.",
           "builds_appearing_in": 4,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "951866250": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.333,
           "annotation": "",
           "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "710436191": {
-          "tag": "core",
-          "pick_rate": 0.8,
+          "tag": "flex",
+          "pick_rate": 0.667,
           "annotation": "Slow enemies heavily with the active, then finish them with your ult. Excellent for 1v1s and strong late game, adding Spirit Damage vs. Metal Skin users.",
           "builds_appearing_in": 4,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3696726732": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.333,
           "annotation": "Best against high HP heroes for when you need a cheap healcut option, does a lot of damage",
           "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "630839635": {
           "tag": "core",
-          "pick_rate": 0.8,
+          "pick_rate": 0.833,
           "annotation": "Pick Rate: 61%\nWR: +3%",
-          "builds_appearing_in": 4,
-          "builds_total": 5,
+          "builds_appearing_in": 5,
+          "builds_total": 6,
           "imbue_target_id": 2948410412,
           "imbue_target_share": 1.0
         },
         "1955841979": {
-          "tag": "core",
-          "pick_rate": 0.8,
+          "tag": "flex",
+          "pick_rate": 0.667,
           "annotation": "",
           "builds_appearing_in": 4,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3491236900": {
           "tag": "flex",
-          "pick_rate": 0.6,
+          "pick_rate": 0.5,
           "annotation": "",
           "builds_appearing_in": 3,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3731635960": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.333,
           "annotation": "",
           "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3270001687": {
-          "tag": "core",
-          "pick_rate": 0.8,
+          "tag": "flex",
+          "pick_rate": 0.667,
           "annotation": "An excellent tool if the enemy tries to run away from your Bullet Dance",
           "builds_appearing_in": 4,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1414025773": {
           "tag": "flex",
-          "pick_rate": 0.6,
+          "pick_rate": 0.667,
           "annotation": "vs casters\nPick Rate: 8%\nWR: -3%",
-          "builds_appearing_in": 3,
-          "builds_total": 5,
+          "builds_appearing_in": 4,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1378931225": {
           "tag": "flex",
-          "pick_rate": 0.6,
+          "pick_rate": 0.5,
           "annotation": "Buy against gun heavy team, OP ITEM",
           "builds_appearing_in": 3,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3977876567": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.333,
           "annotation": "",
           "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3403085434": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.333,
           "annotation": "",
           "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1396247347": {
           "tag": "flex",
-          "pick_rate": 0.6,
+          "pick_rate": 0.5,
           "annotation": "",
           "builds_appearing_in": 3,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "673001892": {
-          "tag": "core",
-          "pick_rate": 0.8,
+          "tag": "flex",
+          "pick_rate": 0.667,
           "annotation": "Anti-armor and Anti-plated armor",
           "builds_appearing_in": 4,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1055679805": {
           "tag": "flex",
-          "pick_rate": 0.6,
+          "pick_rate": 0.5,
           "annotation": "",
           "builds_appearing_in": 3,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2617435668": {
           "tag": "flex",
-          "pick_rate": 0.6,
+          "pick_rate": 0.5,
           "annotation": "Really good for looking for picks with ult if you want easy kills for isolated targets. Good when people start stacking metal skins, doesn't effect fixation damage.",
           "builds_appearing_in": 3,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2142980412": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.333,
           "annotation": "Pick Rate: 5%\nWR: +8%",
           "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2447176615": {
           "tag": "flex",
-          "pick_rate": 0.6,
+          "pick_rate": 0.5,
           "annotation": "Always an excellent item",
           "builds_appearing_in": 3,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1250307611": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.333,
           "annotation": "",
           "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1282141666": {
-          "tag": "core",
-          "pick_rate": 0.8,
+          "tag": "flex",
+          "pick_rate": 0.667,
           "annotation": "Can get as a late game item for Haze, can be paired with Healing Tempo for additional Fire Rate",
           "builds_appearing_in": 4,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1427630806": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.333,
           "annotation": "To be paired with Siphon Bullets. DO *NOT* buy this as an exclusive item, it will not trigger & the item will be a waste.",
           "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2829638276": {
           "tag": "flex",
-          "pick_rate": 0.6,
+          "pick_rate": 0.667,
           "annotation": "Pick Rate: 39%\nWR: -2%",
-          "builds_appearing_in": 3,
-          "builds_total": 5,
+          "builds_appearing_in": 4,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "499683006": {
           "tag": "situational",
-          "pick_rate": 0.2,
+          "pick_rate": 0.167,
           "annotation": "",
           "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1409190604": {
           "tag": "situational",
-          "pick_rate": 0.2,
+          "pick_rate": 0.167,
           "annotation": "",
           "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3399065363": {
           "tag": "flex",
-          "pick_rate": 0.6,
+          "pick_rate": 0.667,
           "annotation": "Pick Rate: 37%\nWR: +0%",
-          "builds_appearing_in": 3,
-          "builds_total": 5,
+          "builds_appearing_in": 4,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "112198670": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.333,
           "annotation": "Strong against burst heavy spirit heroes can look to buy 2nd/3rd in lane for survivablity if needed.",
           "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1644605047": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.333,
           "annotation": "Can be bought during lane. Strong against CC heavy heroes that can proc Reactive, Abrams, Bebop, Paradox, Holliday, Wraith. Stronger purchase when you're worried about being stunned.",
           "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "380806748": {
-          "tag": "situational",
-          "pick_rate": 0.2,
+          "tag": "flex",
+          "pick_rate": 0.333,
           "annotation": "",
-          "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_appearing_in": 2,
+          "builds_total": 6,
           "imbue_target_id": 731943444,
           "imbue_target_share": 0.5
         },
         "811521119": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.333,
           "annotation": "",
           "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2010028405": {
           "tag": "situational",
-          "pick_rate": 0.2,
+          "pick_rate": 0.167,
           "annotation": "Strong laning item against heroes that are easy to poke and create small hp lead between each wave. Look to use off CD. Bad against heroes with good sustain, Abrams, Calico etc.",
           "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2108215830": {
           "tag": "situational",
-          "pick_rate": 0.2,
+          "pick_rate": 0.167,
           "annotation": "Most slept on item. Hard to slot when you want more actives. If you buy get it shortly after Burst Fire. If you want more fire rate and resist for your team never a bad item to slot.",
           "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2463960640": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.333,
           "annotation": "Best against heavy weapon damage, never a bad buy.",
           "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "915014646": {
           "tag": "situational",
-          "pick_rate": 0.2,
+          "pick_rate": 0.167,
           "annotation": "",
           "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1371725689": {
           "tag": "situational",
-          "pick_rate": 0.2,
+          "pick_rate": 0.167,
           "annotation": "",
           "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3791587546": {
           "tag": "situational",
-          "pick_rate": 0.2,
+          "pick_rate": 0.167,
           "annotation": "",
           "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "339443430": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.333,
           "annotation": "",
           "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2064029594": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.5,
           "annotation": "Pick Rate: 25%\nWR: -2%",
-          "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_appearing_in": 3,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3862866912": {
           "tag": "situational",
-          "pick_rate": 0.2,
+          "pick_rate": 0.167,
           "annotation": "",
           "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2971868509": {
           "tag": "situational",
-          "pick_rate": 0.2,
+          "pick_rate": 0.167,
           "annotation": "",
           "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2356412290": {
           "tag": "situational",
-          "pick_rate": 0.2,
+          "pick_rate": 0.167,
           "annotation": "",
           "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1710079648": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.333,
           "annotation": "OPOPOP",
           "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "668299740": {
           "tag": "flex",
-          "pick_rate": 0.6,
+          "pick_rate": 0.5,
           "annotation": "Pick Rate: 81%\nWR: +1%",
           "builds_appearing_in": 3,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "1235347618": {
           "tag": "situational",
-          "pick_rate": 0.2,
+          "pick_rate": 0.167,
           "annotation": "",
           "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "619484391": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.5,
           "annotation": "vs casters\nPick Rate: 6%\nWR: -1%",
-          "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_appearing_in": 3,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "7409189": {
           "tag": "flex",
-          "pick_rate": 0.6,
+          "pick_rate": 0.667,
           "annotation": "Pick Rate: 56%\nWR: +1%",
-          "builds_appearing_in": 3,
-          "builds_total": 5,
+          "builds_appearing_in": 4,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "787198704": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.5,
           "annotation": "",
-          "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_appearing_in": 3,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2947183272": {
           "tag": "situational",
-          "pick_rate": 0.2,
+          "pick_rate": 0.167,
           "annotation": "Procs Tempo + Active gives MS | Get Tesla to keep procing Tempo",
           "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "4053935515": {
           "tag": "situational",
-          "pick_rate": 0.2,
+          "pick_rate": 0.167,
           "annotation": "",
           "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "865846625": {
           "tag": "situational",
-          "pick_rate": 0.2,
+          "pick_rate": 0.167,
           "annotation": "Keeps HP up for Fort Movespeed",
           "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3077079169": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.5,
           "annotation": "Pick Rate: 24%\nWR: -3%",
-          "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_appearing_in": 3,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "989206714": {
           "tag": "situational",
-          "pick_rate": 0.2,
+          "pick_rate": 0.167,
           "annotation": "",
           "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "84321454": {
           "tag": "situational",
-          "pick_rate": 0.2,
+          "pick_rate": 0.167,
           "annotation": "Pick Rate: 32%\nWR: +2%",
           "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": 2948410412,
           "imbue_target_share": 1.0
         },
         "395867183": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.333,
           "annotation": "Pick Rate: 30%\nWR: +1%",
           "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2951612397": {
-          "tag": "situational",
-          "pick_rate": 0.2,
+          "tag": "flex",
+          "pick_rate": 0.333,
           "annotation": "Pick Rate: 26%\nWR: +3%",
-          "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_appearing_in": 2,
+          "builds_total": 6,
           "imbue_target_id": 2948410412,
           "imbue_target_share": 1.0
         },
         "876563814": {
           "tag": "flex",
-          "pick_rate": 0.4,
+          "pick_rate": 0.333,
           "annotation": "Pick Rate: 35%\nWR: +9%",
           "builds_appearing_in": 2,
-          "builds_total": 5,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "2121044373": {
-          "tag": "situational",
-          "pick_rate": 0.2,
+          "tag": "flex",
+          "pick_rate": 0.333,
           "annotation": "vs tanks\nPick Rate: 6%\nWR: +6%",
-          "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_appearing_in": 2,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "3776945997": {
-          "tag": "situational",
-          "pick_rate": 0.2,
+          "tag": "flex",
+          "pick_rate": 0.333,
           "annotation": "",
-          "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_appearing_in": 2,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         },
         "343572757": {
           "tag": "situational",
-          "pick_rate": 0.2,
+          "pick_rate": 0.167,
           "annotation": "",
           "builds_appearing_in": 1,
-          "builds_total": 5,
+          "builds_total": 6,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2800629741": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2820116164": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2061878743": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2603935618": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3074274290": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2059712766": {
+          "tag": "situational",
+          "pick_rate": 0.167,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 6,
           "imbue_target_id": null,
           "imbue_target_share": null
         }
@@ -3448,8 +3507,8 @@
             "wins": 432,
             "win_rate": 0.6467,
             "wilson_lb": 0.6097,
-            "score": 0.1418,
-            "wr_delta_pp": 17.87,
+            "score": 0.1412,
+            "wr_delta_pp": 17.82,
             "avg_buy_time_s": 1887.0,
             "phase": "late",
             "avg_sell_time_s": 1917.8,
@@ -3471,8 +3530,8 @@
             "wins": 200,
             "win_rate": 0.6211,
             "wilson_lb": 0.567,
-            "score": 0.099,
-            "wr_delta_pp": 15.32,
+            "score": 0.0985,
+            "wr_delta_pp": 15.27,
             "avg_buy_time_s": 1894.0,
             "phase": "late",
             "avg_sell_time_s": 1738.0,
@@ -3494,8 +3553,8 @@
             "wins": 1241,
             "win_rate": 0.5759,
             "wilson_lb": 0.5549,
-            "score": 0.0869,
-            "wr_delta_pp": 10.79,
+            "score": 0.0864,
+            "wr_delta_pp": 10.74,
             "avg_buy_time_s": 1790.6,
             "phase": "late",
             "avg_sell_time_s": 1749.5,
@@ -3517,8 +3576,8 @@
             "wins": 762,
             "win_rate": 0.5808,
             "wilson_lb": 0.5539,
-            "score": 0.0859,
-            "wr_delta_pp": 11.28,
+            "score": 0.0854,
+            "wr_delta_pp": 11.23,
             "avg_buy_time_s": 1681.6,
             "phase": "late",
             "avg_sell_time_s": 1848.2,
@@ -3554,8 +3613,8 @@
             "wins": 410,
             "win_rate": 0.5916,
             "wilson_lb": 0.5546,
-            "score": 0.0867,
-            "wr_delta_pp": 12.37,
+            "score": 0.0862,
+            "wr_delta_pp": 12.32,
             "avg_buy_time_s": 1944.2,
             "phase": "late",
             "avg_sell_time_s": 1917.0,
@@ -3577,8 +3636,8 @@
             "wins": 867,
             "win_rate": 0.5526,
             "wilson_lb": 0.5279,
-            "score": 0.0599,
-            "wr_delta_pp": 8.46,
+            "score": 0.0594,
+            "wr_delta_pp": 8.41,
             "avg_buy_time_s": 1673.4,
             "phase": "late",
             "avg_sell_time_s": 1963.3,
@@ -3600,8 +3659,8 @@
             "wins": 1001,
             "win_rate": 0.547,
             "wilson_lb": 0.5241,
-            "score": 0.0562,
-            "wr_delta_pp": 7.9,
+            "score": 0.0556,
+            "wr_delta_pp": 7.85,
             "avg_buy_time_s": 1842.3,
             "phase": "late",
             "avg_sell_time_s": 1765.8,
@@ -3637,8 +3696,8 @@
             "wins": 971,
             "win_rate": 0.4982,
             "wilson_lb": 0.476,
-            "score": 0.0081,
-            "wr_delta_pp": 3.02,
+            "score": 0.0076,
+            "wr_delta_pp": 2.97,
             "avg_buy_time_s": 902.6,
             "phase": "mid",
             "avg_sell_time_s": 2293.3,
@@ -3646,7 +3705,7 @@
             "cooldown_s": 15.0,
             "imbue": null,
             "slot": "vitality",
-            "tag": "stat_anomaly",
+            "tag": "tech_pick",
             "pick_rate_tag": "stat",
             "pick_rate": 0.0,
             "lineage_chain": [
@@ -3674,8 +3733,8 @@
             "wins": 383,
             "win_rate": 0.5892,
             "wilson_lb": 0.551,
-            "score": 0.083,
-            "wr_delta_pp": 12.13,
+            "score": 0.0825,
+            "wr_delta_pp": 12.08,
             "avg_buy_time_s": 1748.0,
             "phase": "late",
             "avg_sell_time_s": 1767.0,
@@ -3711,8 +3770,8 @@
             "wins": 590,
             "win_rate": 0.5339,
             "wilson_lb": 0.5045,
-            "score": 0.0365,
-            "wr_delta_pp": 6.6,
+            "score": 0.036,
+            "wr_delta_pp": 6.55,
             "avg_buy_time_s": 1695.2,
             "phase": "late",
             "avg_sell_time_s": 1477.7,
@@ -3734,8 +3793,8 @@
             "wins": 347,
             "win_rate": 0.543,
             "wilson_lb": 0.5043,
-            "score": 0.0363,
-            "wr_delta_pp": 7.51,
+            "score": 0.0358,
+            "wr_delta_pp": 7.46,
             "avg_buy_time_s": 1672.1,
             "phase": "late",
             "avg_sell_time_s": 1847.3,
@@ -3771,8 +3830,8 @@
             "wins": 1488,
             "win_rate": 0.4939,
             "wilson_lb": 0.476,
-            "score": 0.0081,
-            "wr_delta_pp": 2.59,
+            "score": 0.0076,
+            "wr_delta_pp": 2.54,
             "avg_buy_time_s": 856.2,
             "phase": "mid",
             "avg_sell_time_s": 2054.6,
@@ -3794,8 +3853,8 @@
             "wins": 568,
             "win_rate": 0.5635,
             "wilson_lb": 0.5327,
-            "score": 0.0647,
-            "wr_delta_pp": 9.55,
+            "score": 0.0642,
+            "wr_delta_pp": 9.5,
             "avg_buy_time_s": 1885.1,
             "phase": "late",
             "avg_sell_time_s": 2106.9,
@@ -3831,8 +3890,8 @@
             "wins": 1437,
             "win_rate": 0.5141,
             "wilson_lb": 0.4956,
-            "score": 0.0276,
-            "wr_delta_pp": 4.62,
+            "score": 0.0271,
+            "wr_delta_pp": 4.57,
             "avg_buy_time_s": 1387.5,
             "phase": "mid",
             "avg_sell_time_s": 1837.6,
@@ -3868,8 +3927,8 @@
             "wins": 407,
             "win_rate": 0.5126,
             "wilson_lb": 0.4778,
-            "score": 0.0099,
-            "wr_delta_pp": 4.46,
+            "score": 0.0094,
+            "wr_delta_pp": 4.41,
             "avg_buy_time_s": 1313.5,
             "phase": "mid",
             "avg_sell_time_s": 2049.6,
@@ -3891,8 +3950,8 @@
             "wins": 1874,
             "win_rate": 0.4915,
             "wilson_lb": 0.4756,
-            "score": 0.0077,
-            "wr_delta_pp": 2.35,
+            "score": 0.0072,
+            "wr_delta_pp": 2.3,
             "avg_buy_time_s": 1314.8,
             "phase": "mid",
             "avg_sell_time_s": 1681.5,
@@ -3918,8 +3977,8 @@
             "wins": 432,
             "win_rate": 0.6467,
             "wilson_lb": 0.6097,
-            "score": 0.1418,
-            "wr_delta_pp": 17.87,
+            "score": 0.1412,
+            "wr_delta_pp": 17.82,
             "avg_buy_time_s": 1887.0,
             "phase": "late",
             "avg_sell_time_s": 1917.8,
@@ -3941,8 +4000,8 @@
             "wins": 1241,
             "win_rate": 0.5759,
             "wilson_lb": 0.5549,
-            "score": 0.0869,
-            "wr_delta_pp": 10.79,
+            "score": 0.0864,
+            "wr_delta_pp": 10.74,
             "avg_buy_time_s": 1790.6,
             "phase": "late",
             "avg_sell_time_s": 1749.5,
@@ -3964,8 +4023,8 @@
             "wins": 762,
             "win_rate": 0.5808,
             "wilson_lb": 0.5539,
-            "score": 0.0859,
-            "wr_delta_pp": 11.28,
+            "score": 0.0854,
+            "wr_delta_pp": 11.23,
             "avg_buy_time_s": 1681.6,
             "phase": "late",
             "avg_sell_time_s": 1848.2,
@@ -4001,8 +4060,8 @@
             "wins": 568,
             "win_rate": 0.5635,
             "wilson_lb": 0.5327,
-            "score": 0.0647,
-            "wr_delta_pp": 9.55,
+            "score": 0.0642,
+            "wr_delta_pp": 9.5,
             "avg_buy_time_s": 1885.1,
             "phase": "late",
             "avg_sell_time_s": 2106.9,
@@ -4038,8 +4097,8 @@
             "wins": 410,
             "win_rate": 0.5916,
             "wilson_lb": 0.5546,
-            "score": 0.0867,
-            "wr_delta_pp": 12.37,
+            "score": 0.0862,
+            "wr_delta_pp": 12.32,
             "avg_buy_time_s": 1944.2,
             "phase": "late",
             "avg_sell_time_s": 1917.0,
@@ -4061,8 +4120,8 @@
             "wins": 867,
             "win_rate": 0.5526,
             "wilson_lb": 0.5279,
-            "score": 0.0599,
-            "wr_delta_pp": 8.46,
+            "score": 0.0594,
+            "wr_delta_pp": 8.41,
             "avg_buy_time_s": 1673.4,
             "phase": "late",
             "avg_sell_time_s": 1963.3,
@@ -4084,8 +4143,8 @@
             "wins": 1001,
             "win_rate": 0.547,
             "wilson_lb": 0.5241,
-            "score": 0.0562,
-            "wr_delta_pp": 7.9,
+            "score": 0.0556,
+            "wr_delta_pp": 7.85,
             "avg_buy_time_s": 1842.3,
             "phase": "late",
             "avg_sell_time_s": 1765.8,
@@ -4112,41 +4171,27 @@
             ]
           },
           {
-            "item_id": 865958998,
-            "name": "Veil Walker",
+            "item_id": 3970837787,
+            "name": "Enchanter's Emblem",
             "category": "vitality",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 1949,
-            "wins": 971,
-            "win_rate": 0.4982,
-            "wilson_lb": 0.476,
-            "score": 0.0081,
-            "wr_delta_pp": 3.02,
-            "avg_buy_time_s": 902.6,
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1730,
+            "wins": 862,
+            "win_rate": 0.4983,
+            "wilson_lb": 0.4747,
+            "score": 0.0063,
+            "wr_delta_pp": 2.98,
+            "avg_buy_time_s": 811.7,
             "phase": "mid",
-            "avg_sell_time_s": 2293.3,
+            "avg_sell_time_s": 2008.4,
             "is_active": false,
-            "cooldown_s": 15.0,
+            "cooldown_s": null,
             "imbue": null,
             "slot": "vitality",
-            "tag": "stat_anomaly",
+            "tag": "tech_pick",
             "pick_rate_tag": "stat",
-            "pick_rate": 0.0,
-            "lineage_chain": [
-              {
-                "item_id": 3399065363,
-                "name": "Sprint Boots",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/sprint_booster.png",
-                "matches": 3463,
-                "avg_buy_time_min": 11.3,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
+            "pick_rate": 0.0
           },
           {
             "item_id": 3919289022,
@@ -4158,8 +4203,8 @@
             "wins": 383,
             "win_rate": 0.5892,
             "wilson_lb": 0.551,
-            "score": 0.083,
-            "wr_delta_pp": 12.13,
+            "score": 0.0825,
+            "wr_delta_pp": 12.08,
             "avg_buy_time_s": 1748.0,
             "phase": "late",
             "avg_sell_time_s": 1767.0,
@@ -4186,43 +4231,6 @@
             ]
           },
           {
-            "item_id": 787198704,
-            "name": "Rapid Recharge",
-            "category": "spirit",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 639,
-            "wins": 347,
-            "win_rate": 0.543,
-            "wilson_lb": 0.5043,
-            "score": 0.0363,
-            "wr_delta_pp": 7.51,
-            "avg_buy_time_s": 1672.1,
-            "phase": "late",
-            "avg_sell_time_s": 1847.3,
-            "is_active": false,
-            "cooldown_s": null,
-            "imbue": null,
-            "slot": "spirit",
-            "tag": "stat_anomaly",
-            "pick_rate_tag": "stat",
-            "pick_rate": 0.0,
-            "lineage_chain": [
-              {
-                "item_id": 3776945997,
-                "name": "Extra Charge",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/extra_charge.png",
-                "matches": 1347,
-                "avg_buy_time_min": 19.5,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
-          },
-          {
             "item_id": 2971868509,
             "name": "Bullet Resist Shredder",
             "category": "spirit",
@@ -4232,8 +4240,8 @@
             "wins": 1488,
             "win_rate": 0.4939,
             "wilson_lb": 0.476,
-            "score": 0.0081,
-            "wr_delta_pp": 2.59,
+            "score": 0.0076,
+            "wr_delta_pp": 2.54,
             "avg_buy_time_s": 856.2,
             "phase": "mid",
             "avg_sell_time_s": 2054.6,
@@ -4255,8 +4263,8 @@
             "wins": 2973,
             "win_rate": 0.4724,
             "wilson_lb": 0.46,
-            "score": -0.0079,
-            "wr_delta_pp": 0.44,
+            "score": -0.0084,
+            "wr_delta_pp": 0.39,
             "avg_buy_time_s": 859.3,
             "phase": "mid",
             "avg_sell_time_s": 2176.0,
@@ -4283,6 +4291,29 @@
             ]
           },
           {
+            "item_id": 2462046703,
+            "name": "Golden Goose Egg",
+            "category": "spirit",
+            "tier": 1,
+            "cost": 800,
+            "matches": 1266,
+            "wins": 607,
+            "win_rate": 0.4795,
+            "wilson_lb": 0.452,
+            "score": -0.0164,
+            "wr_delta_pp": 1.1,
+            "avg_buy_time_s": 97.3,
+            "phase": "early",
+            "avg_sell_time_s": 947.4,
+            "is_active": true,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
             "item_id": 710436191,
             "name": "Capacitor",
             "category": "weapon",
@@ -4292,8 +4323,8 @@
             "wins": 1437,
             "win_rate": 0.5141,
             "wilson_lb": 0.4956,
-            "score": 0.0276,
-            "wr_delta_pp": 4.62,
+            "score": 0.0271,
+            "wr_delta_pp": 4.57,
             "avg_buy_time_s": 1387.5,
             "phase": "mid",
             "avg_sell_time_s": 1837.6,
@@ -4329,8 +4360,8 @@
             "wins": 1874,
             "win_rate": 0.4915,
             "wilson_lb": 0.4756,
-            "score": 0.0077,
-            "wr_delta_pp": 2.35,
+            "score": 0.0072,
+            "wr_delta_pp": 2.3,
             "avg_buy_time_s": 1314.8,
             "phase": "mid",
             "avg_sell_time_s": 1681.5,
@@ -4352,8 +4383,8 @@
             "wins": 2833,
             "win_rate": 0.4884,
             "wilson_lb": 0.4756,
-            "score": 0.0076,
-            "wr_delta_pp": 2.05,
+            "score": 0.0071,
+            "wr_delta_pp": 2.0,
             "avg_buy_time_s": 1181.3,
             "phase": "mid",
             "avg_sell_time_s": 1604.0,
@@ -4361,7 +4392,7 @@
             "cooldown_s": 9.0,
             "imbue": null,
             "slot": "flex",
-            "tag": "tech_pick",
+            "tag": "stat",
             "pick_rate_tag": "stat",
             "pick_rate": 0.0,
             "lineage_chain": [
@@ -4389,8 +4420,8 @@
             "wins": 2326,
             "win_rate": 0.4613,
             "wilson_lb": 0.4476,
-            "score": -0.0204,
-            "wr_delta_pp": -0.66,
+            "score": -0.0209,
+            "wr_delta_pp": -0.71,
             "avg_buy_time_s": 408.6,
             "phase": "early",
             "avg_sell_time_s": 2112.2,
@@ -4426,8 +4457,8 @@
             "wins": 112,
             "win_rate": 0.5895,
             "wilson_lb": 0.5184,
-            "score": 0.0469,
-            "wr_delta_pp": 11.8,
+            "score": 0.0499,
+            "wr_delta_pp": 12.09,
             "avg_buy_time_s": 1637.2,
             "phase": "late",
             "avg_sell_time_s": 2129.0,
@@ -4463,8 +4494,8 @@
             "wins": 104,
             "win_rate": 0.5778,
             "wilson_lb": 0.5047,
-            "score": 0.0333,
-            "wr_delta_pp": 10.63,
+            "score": 0.0362,
+            "wr_delta_pp": 10.92,
             "avg_buy_time_s": 1822.2,
             "phase": "late",
             "avg_sell_time_s": 1815.0,
@@ -4486,8 +4517,8 @@
             "wins": 186,
             "win_rate": 0.5345,
             "wilson_lb": 0.482,
-            "score": 0.0105,
-            "wr_delta_pp": 6.3,
+            "score": 0.0134,
+            "wr_delta_pp": 6.59,
             "avg_buy_time_s": 1404.2,
             "phase": "mid",
             "avg_sell_time_s": 2053.5,
@@ -4523,8 +4554,8 @@
             "wins": 93,
             "win_rate": 0.5439,
             "wilson_lb": 0.4691,
-            "score": -0.0024,
-            "wr_delta_pp": 7.24,
+            "score": 0.0005,
+            "wr_delta_pp": 7.53,
             "avg_buy_time_s": 1309.0,
             "phase": "mid",
             "avg_sell_time_s": 2119.4,
@@ -4546,8 +4577,8 @@
             "wins": 93,
             "win_rate": 0.5706,
             "wilson_lb": 0.4938,
-            "score": 0.0223,
-            "wr_delta_pp": 9.91,
+            "score": 0.0253,
+            "wr_delta_pp": 10.2,
             "avg_buy_time_s": 1793.2,
             "phase": "late",
             "avg_sell_time_s": null,
@@ -4583,8 +4614,8 @@
             "wins": 126,
             "win_rate": 0.5502,
             "wilson_lb": 0.4855,
-            "score": 0.014,
-            "wr_delta_pp": 7.87,
+            "score": 0.0169,
+            "wr_delta_pp": 8.17,
             "avg_buy_time_s": 1560.2,
             "phase": "late",
             "avg_sell_time_s": 1932.0,
@@ -4606,8 +4637,8 @@
             "wins": 145,
             "win_rate": 0.5273,
             "wilson_lb": 0.4683,
-            "score": -0.0032,
-            "wr_delta_pp": 5.58,
+            "score": -0.0002,
+            "wr_delta_pp": 5.87,
             "avg_buy_time_s": 1022.9,
             "phase": "mid",
             "avg_sell_time_s": 2050.7,
@@ -4643,8 +4674,8 @@
             "wins": 152,
             "win_rate": 0.481,
             "wilson_lb": 0.4265,
-            "score": -0.045,
-            "wr_delta_pp": 0.95,
+            "score": -0.0421,
+            "wr_delta_pp": 1.25,
             "avg_buy_time_s": 264.4,
             "phase": "early",
             "avg_sell_time_s": 1251.2,
@@ -4666,8 +4697,8 @@
             "wins": 69,
             "win_rate": 0.5349,
             "wilson_lb": 0.449,
-            "score": -0.0224,
-            "wr_delta_pp": 6.34,
+            "score": -0.0195,
+            "wr_delta_pp": 6.63,
             "avg_buy_time_s": 1672.0,
             "phase": "late",
             "avg_sell_time_s": 1840.0,
@@ -4689,8 +4720,8 @@
             "wins": 373,
             "win_rate": 0.4801,
             "wilson_lb": 0.4451,
-            "score": -0.0264,
-            "wr_delta_pp": 0.86,
+            "score": -0.0234,
+            "wr_delta_pp": 1.15,
             "avg_buy_time_s": 265.6,
             "phase": "early",
             "avg_sell_time_s": 839.2,
@@ -4712,8 +4743,8 @@
             "wins": 190,
             "win_rate": 0.4872,
             "wilson_lb": 0.4379,
-            "score": -0.0335,
-            "wr_delta_pp": 1.57,
+            "score": -0.0306,
+            "wr_delta_pp": 1.86,
             "avg_buy_time_s": 788.5,
             "phase": "mid",
             "avg_sell_time_s": 1954.2,
@@ -4735,8 +4766,8 @@
             "wins": 221,
             "win_rate": 0.4753,
             "wilson_lb": 0.4303,
-            "score": -0.0412,
-            "wr_delta_pp": 0.38,
+            "score": -0.0383,
+            "wr_delta_pp": 0.67,
             "avg_buy_time_s": 839.5,
             "phase": "mid",
             "avg_sell_time_s": 1940.3,
@@ -4758,8 +4789,8 @@
             "wins": 311,
             "win_rate": 0.4875,
             "wilson_lb": 0.4489,
-            "score": -0.0226,
-            "wr_delta_pp": 1.6,
+            "score": -0.0197,
+            "wr_delta_pp": 1.89,
             "avg_buy_time_s": 1160.3,
             "phase": "mid",
             "avg_sell_time_s": 1278.4,
@@ -4795,8 +4826,8 @@
             "wins": 266,
             "win_rate": 0.4828,
             "wilson_lb": 0.4413,
-            "score": -0.0302,
-            "wr_delta_pp": 1.13,
+            "score": -0.0272,
+            "wr_delta_pp": 1.42,
             "avg_buy_time_s": 381.7,
             "phase": "early",
             "avg_sell_time_s": 2094.3,
@@ -4818,8 +4849,8 @@
             "wins": 132,
             "win_rate": 0.5,
             "wilson_lb": 0.4401,
-            "score": -0.0314,
-            "wr_delta_pp": 2.85,
+            "score": -0.0284,
+            "wr_delta_pp": 3.15,
             "avg_buy_time_s": 1097.5,
             "phase": "mid",
             "avg_sell_time_s": 1940.4,
@@ -4827,7 +4858,7 @@
             "cooldown_s": null,
             "imbue": null,
             "slot": "flex",
-            "tag": "tech_pick",
+            "tag": "stat_anomaly",
             "pick_rate_tag": "stat",
             "pick_rate": 0.0
           },
@@ -4841,8 +4872,8 @@
             "wins": 168,
             "win_rate": 0.4884,
             "wilson_lb": 0.436,
-            "score": -0.0355,
-            "wr_delta_pp": 1.69,
+            "score": -0.0326,
+            "wr_delta_pp": 1.98,
             "avg_buy_time_s": 1118.0,
             "phase": "mid",
             "avg_sell_time_s": 1682.0,
@@ -4868,8 +4899,8 @@
             "wins": 112,
             "win_rate": 0.5895,
             "wilson_lb": 0.5184,
-            "score": 0.0469,
-            "wr_delta_pp": 11.8,
+            "score": 0.0499,
+            "wr_delta_pp": 12.09,
             "avg_buy_time_s": 1637.2,
             "phase": "late",
             "avg_sell_time_s": 2129.0,
@@ -4905,8 +4936,8 @@
             "wins": 104,
             "win_rate": 0.5778,
             "wilson_lb": 0.5047,
-            "score": 0.0333,
-            "wr_delta_pp": 10.63,
+            "score": 0.0362,
+            "wr_delta_pp": 10.92,
             "avg_buy_time_s": 1822.2,
             "phase": "late",
             "avg_sell_time_s": 1815.0,
@@ -4928,8 +4959,8 @@
             "wins": 186,
             "win_rate": 0.5345,
             "wilson_lb": 0.482,
-            "score": 0.0105,
-            "wr_delta_pp": 6.3,
+            "score": 0.0134,
+            "wr_delta_pp": 6.59,
             "avg_buy_time_s": 1404.2,
             "phase": "mid",
             "avg_sell_time_s": 2053.5,
@@ -4965,8 +4996,8 @@
             "wins": 93,
             "win_rate": 0.5439,
             "wilson_lb": 0.4691,
-            "score": -0.0024,
-            "wr_delta_pp": 7.24,
+            "score": 0.0005,
+            "wr_delta_pp": 7.53,
             "avg_buy_time_s": 1309.0,
             "phase": "mid",
             "avg_sell_time_s": 2119.4,
@@ -4988,8 +5019,8 @@
             "wins": 93,
             "win_rate": 0.5706,
             "wilson_lb": 0.4938,
-            "score": 0.0223,
-            "wr_delta_pp": 9.91,
+            "score": 0.0253,
+            "wr_delta_pp": 10.2,
             "avg_buy_time_s": 1793.2,
             "phase": "late",
             "avg_sell_time_s": null,
@@ -5025,8 +5056,8 @@
             "wins": 126,
             "win_rate": 0.5502,
             "wilson_lb": 0.4855,
-            "score": 0.014,
-            "wr_delta_pp": 7.87,
+            "score": 0.0169,
+            "wr_delta_pp": 8.17,
             "avg_buy_time_s": 1560.2,
             "phase": "late",
             "avg_sell_time_s": 1932.0,
@@ -5048,8 +5079,8 @@
             "wins": 145,
             "win_rate": 0.5273,
             "wilson_lb": 0.4683,
-            "score": -0.0032,
-            "wr_delta_pp": 5.58,
+            "score": -0.0002,
+            "wr_delta_pp": 5.87,
             "avg_buy_time_s": 1022.9,
             "phase": "mid",
             "avg_sell_time_s": 2050.7,
@@ -5085,8 +5116,8 @@
             "wins": 152,
             "win_rate": 0.481,
             "wilson_lb": 0.4265,
-            "score": -0.045,
-            "wr_delta_pp": 0.95,
+            "score": -0.0421,
+            "wr_delta_pp": 1.25,
             "avg_buy_time_s": 264.4,
             "phase": "early",
             "avg_sell_time_s": 1251.2,
@@ -5108,8 +5139,8 @@
             "wins": 69,
             "win_rate": 0.5349,
             "wilson_lb": 0.449,
-            "score": -0.0224,
-            "wr_delta_pp": 6.34,
+            "score": -0.0195,
+            "wr_delta_pp": 6.63,
             "avg_buy_time_s": 1672.0,
             "phase": "late",
             "avg_sell_time_s": 1840.0,
@@ -5131,8 +5162,8 @@
             "wins": 373,
             "win_rate": 0.4801,
             "wilson_lb": 0.4451,
-            "score": -0.0264,
-            "wr_delta_pp": 0.86,
+            "score": -0.0234,
+            "wr_delta_pp": 1.15,
             "avg_buy_time_s": 265.6,
             "phase": "early",
             "avg_sell_time_s": 839.2,
@@ -5154,8 +5185,8 @@
             "wins": 190,
             "win_rate": 0.4872,
             "wilson_lb": 0.4379,
-            "score": -0.0335,
-            "wr_delta_pp": 1.57,
+            "score": -0.0306,
+            "wr_delta_pp": 1.86,
             "avg_buy_time_s": 788.5,
             "phase": "mid",
             "avg_sell_time_s": 1954.2,
@@ -5177,8 +5208,8 @@
             "wins": 221,
             "win_rate": 0.4753,
             "wilson_lb": 0.4303,
-            "score": -0.0412,
-            "wr_delta_pp": 0.38,
+            "score": -0.0383,
+            "wr_delta_pp": 0.67,
             "avg_buy_time_s": 839.5,
             "phase": "mid",
             "avg_sell_time_s": 1940.3,
@@ -5200,8 +5231,8 @@
             "wins": 311,
             "win_rate": 0.4875,
             "wilson_lb": 0.4489,
-            "score": -0.0226,
-            "wr_delta_pp": 1.6,
+            "score": -0.0197,
+            "wr_delta_pp": 1.89,
             "avg_buy_time_s": 1160.3,
             "phase": "mid",
             "avg_sell_time_s": 1278.4,
@@ -5237,8 +5268,8 @@
             "wins": 266,
             "win_rate": 0.4828,
             "wilson_lb": 0.4413,
-            "score": -0.0302,
-            "wr_delta_pp": 1.13,
+            "score": -0.0272,
+            "wr_delta_pp": 1.42,
             "avg_buy_time_s": 381.7,
             "phase": "early",
             "avg_sell_time_s": 2094.3,
@@ -5260,8 +5291,8 @@
             "wins": 132,
             "win_rate": 0.5,
             "wilson_lb": 0.4401,
-            "score": -0.0314,
-            "wr_delta_pp": 2.85,
+            "score": -0.0284,
+            "wr_delta_pp": 3.15,
             "avg_buy_time_s": 1097.5,
             "phase": "mid",
             "avg_sell_time_s": 1940.4,
@@ -5269,7 +5300,7 @@
             "cooldown_s": null,
             "imbue": null,
             "slot": "flex",
-            "tag": "tech_pick",
+            "tag": "stat_anomaly",
             "pick_rate_tag": "stat",
             "pick_rate": 0.0
           },
@@ -5283,8 +5314,8 @@
             "wins": 168,
             "win_rate": 0.4884,
             "wilson_lb": 0.436,
-            "score": -0.0355,
-            "wr_delta_pp": 1.69,
+            "score": -0.0326,
+            "wr_delta_pp": 1.98,
             "avg_buy_time_s": 1118.0,
             "phase": "mid",
             "avg_sell_time_s": 1682.0,
@@ -5324,8 +5355,8 @@
   },
   "ability_orders": {
     "all_mmr": {
-      "total_records": 268,
-      "total_matches": 93612,
+      "total_records": 271,
+      "total_matches": 95161,
       "ability_priority": [
         {
           "ability_id": 2414191464,
@@ -5338,7 +5369,7 @@
           "ability_id": 1080948381,
           "name": "Fixation",
           "avg_ap_all_players": 3.89,
-          "avg_ap_winners": 3.91,
+          "avg_ap_winners": 3.92,
           "winner_premium_ap": 0.02
         },
         {
@@ -5394,11 +5425,11 @@
             "Bullet Dance",
             "Bullet Dance"
           ],
-          "wins": 421,
-          "losses": 144,
-          "matches": 565,
-          "players": 414,
-          "win_rate": 0.7451
+          "wins": 429,
+          "losses": 148,
+          "matches": 577,
+          "players": 421,
+          "win_rate": 0.7435
         },
         {
           "sequence_ids": [
@@ -5437,11 +5468,11 @@
             "Bullet Dance",
             "Bullet Dance"
           ],
-          "wins": 476,
-          "losses": 171,
-          "matches": 647,
-          "players": 541,
-          "win_rate": 0.7357
+          "wins": 485,
+          "losses": 179,
+          "matches": 664,
+          "players": 556,
+          "win_rate": 0.7304
         },
         {
           "sequence_ids": [
@@ -5480,10 +5511,10 @@
             "Bullet Dance",
             "Bullet Dance"
           ],
-          "wins": 1351,
-          "losses": 526,
-          "matches": 1877,
-          "players": 1147,
+          "wins": 1390,
+          "losses": 541,
+          "matches": 1931,
+          "players": 1168,
           "win_rate": 0.7198
         },
         {
@@ -5523,11 +5554,11 @@
             "Bullet Dance",
             "Bullet Dance"
           ],
-          "wins": 187,
+          "wins": 188,
           "losses": 76,
-          "matches": 263,
-          "players": 181,
-          "win_rate": 0.711
+          "matches": 264,
+          "players": 182,
+          "win_rate": 0.7121
         },
         {
           "sequence_ids": [
@@ -5566,11 +5597,11 @@
             "Bullet Dance",
             "Bullet Dance"
           ],
-          "wins": 179,
-          "losses": 73,
-          "matches": 252,
-          "players": 195,
-          "win_rate": 0.7103
+          "wins": 184,
+          "losses": 75,
+          "matches": 259,
+          "players": 199,
+          "win_rate": 0.7104
         }
       ],
       "best_openers_first4": [
@@ -5581,9 +5612,9 @@
             "Sleep Dagger",
             "Sleep Dagger"
           ],
-          "wins": 16981,
-          "matches": 32409,
-          "win_rate": 0.524
+          "wins": 17232,
+          "matches": 32865,
+          "win_rate": 0.5243
         },
         {
           "sequence_names": [
@@ -5592,21 +5623,21 @@
             "Sleep Dagger",
             "Smoke Bomb"
           ],
-          "wins": 31652,
-          "matches": 61103,
-          "win_rate": 0.518
+          "wins": 32234,
+          "matches": 62196,
+          "win_rate": 0.5183
         }
       ]
     },
     "high_mmr": {
       "total_records": 35,
-      "total_matches": 2481,
+      "total_matches": 2523,
       "ability_priority": [
         {
           "ability_id": 2414191464,
           "name": "Smoke Bomb",
           "avg_ap_all_players": 3.89,
-          "avg_ap_winners": 3.94,
+          "avg_ap_winners": 3.95,
           "winner_premium_ap": 0.06
         },
         {
@@ -5627,7 +5658,7 @@
           "ability_id": 731943444,
           "name": "Bullet Dance",
           "avg_ap_all_players": 3.29,
-          "avg_ap_winners": 3.42,
+          "avg_ap_winners": 3.41,
           "winner_premium_ap": 0.12
         }
       ],
@@ -5669,11 +5700,11 @@
             "Bullet Dance",
             "Bullet Dance"
           ],
-          "wins": 101,
+          "wins": 103,
           "losses": 42,
-          "matches": 143,
-          "players": 77,
-          "win_rate": 0.7063
+          "matches": 145,
+          "players": 78,
+          "win_rate": 0.7103
         },
         {
           "sequence_ids": [
@@ -5751,11 +5782,11 @@
             "Bullet Dance",
             "Bullet Dance"
           ],
-          "wins": 222,
-          "losses": 167,
-          "matches": 389,
-          "players": 153,
-          "win_rate": 0.5707
+          "wins": 228,
+          "losses": 168,
+          "matches": 396,
+          "players": 158,
+          "win_rate": 0.5758
         },
         {
           "sequence_ids": [
@@ -5792,11 +5823,11 @@
             "Smoke Bomb",
             "Smoke Bomb"
           ],
-          "wins": 71,
+          "wins": 73,
           "losses": 78,
-          "matches": 149,
-          "players": 94,
-          "win_rate": 0.4765
+          "matches": 151,
+          "players": 95,
+          "win_rate": 0.4834
         },
         {
           "sequence_ids": [
@@ -5831,11 +5862,11 @@
             "Fixation",
             "Bullet Dance"
           ],
-          "wins": 33,
+          "wins": 35,
           "losses": 81,
-          "matches": 114,
-          "players": 74,
-          "win_rate": 0.2895
+          "matches": 116,
+          "players": 76,
+          "win_rate": 0.3017
         }
       ],
       "best_openers_first4": [
@@ -5846,9 +5877,9 @@
             "Sleep Dagger",
             "Sleep Dagger"
           ],
-          "wins": 779,
-          "matches": 1535,
-          "win_rate": 0.5075
+          "wins": 793,
+          "matches": 1557,
+          "win_rate": 0.5093
         },
         {
           "sequence_names": [
@@ -5857,15 +5888,15 @@
             "Sleep Dagger",
             "Smoke Bomb"
           ],
-          "wins": 451,
-          "matches": 946,
-          "win_rate": 0.4767
+          "wins": 461,
+          "matches": 966,
+          "win_rate": 0.4772
         }
       ]
     },
     "ascendant_plus": {
       "total_records": 10,
-      "total_matches": 196,
+      "total_matches": 200,
       "ability_priority": [
         {
           "ability_id": 2948410412,
@@ -5891,9 +5922,9 @@
         {
           "ability_id": 731943444,
           "name": "Bullet Dance",
-          "avg_ap_all_players": 2.87,
+          "avg_ap_all_players": 2.88,
           "avg_ap_winners": 3.13,
-          "winner_premium_ap": 0.26
+          "winner_premium_ap": 0.25
         }
       ],
       "best_full_orders": [],
@@ -5905,9 +5936,9 @@
             "Sleep Dagger",
             "Sleep Dagger"
           ],
-          "wins": 92,
-          "matches": 167,
-          "win_rate": 0.5509
+          "wins": 94,
+          "matches": 170,
+          "win_rate": 0.5529
         }
       ]
     },
