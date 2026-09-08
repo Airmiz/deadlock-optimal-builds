@@ -31,25 +31,25 @@
     "all_mmr": {
       "filter": "no MMR filter",
       "baseline_win_rate": 0.4851,
-      "matches": 192008,
+      "matches": 194181,
       "players": null
     },
     "high_mmr": {
       "filter": "min_average_badge=91 (Phantom+)",
-      "baseline_win_rate": 0.5119,
-      "matches": 7797,
+      "baseline_win_rate": 0.5117,
+      "matches": 7911,
       "players": null
     },
     "ascendant_plus": {
       "filter": "min_average_badge=101 (Ascendant+)",
       "baseline_win_rate": 0.5004,
-      "matches": 1279,
+      "matches": 1307,
       "players": null
     },
     "eternus_plus": {
       "filter": "min_average_badge=111 (Eternus+)",
-      "baseline_win_rate": 0.5517,
-      "matches": 29,
+      "baseline_win_rate": 0.5333,
+      "matches": 30,
       "players": null
     }
   },
@@ -57,11 +57,11 @@
     "items": {
       "method": "synergy_ilp",
       "mmr_slice": "high_mmr",
-      "total_cost": 64000,
+      "total_cost": 59200,
       "phases": {
         "early": [
           {
-            "slot": "flex",
+            "slot": "weapon",
             "category": "weapon",
             "tier": 1,
             "cost": 800,
@@ -81,15 +81,15 @@
             "category": "vitality",
             "tier": 1,
             "cost": 800,
-            "name": "Melee Lifesteal",
-            "item_id": 1437614329,
-            "avg_buy_time_min": 3.5,
-            "avg_sell_time_min": 26.3,
-            "win_rate": 0.518,
+            "name": "Extra Regen",
+            "item_id": 2829638276,
+            "avg_buy_time_min": 6.1,
+            "avg_sell_time_min": 14.8,
+            "win_rate": 0.504,
             "tag": "stat",
             "pick_rate": 0.0,
             "is_active": false,
-            "cooldown_s": 8.0,
+            "cooldown_s": null,
             "imbue": null
           },
           {
@@ -156,6 +156,22 @@
             "pick_rate": 0.0,
             "is_active": true,
             "cooldown_s": 20.0,
+            "imbue": null
+          },
+          {
+            "slot": "flex",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "name": "Bullet Resist Shredder",
+            "item_id": 2971868509,
+            "avg_buy_time_min": 18.1,
+            "avg_sell_time_min": 32.1,
+            "win_rate": 0.5617,
+            "tag": "stat_anomaly",
+            "pick_rate": 0.0,
+            "is_active": false,
+            "cooldown_s": null,
             "imbue": null
           },
           {
@@ -274,36 +290,6 @@
                 "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/soaring_spirit.png",
                 "matches": 4512,
                 "avg_buy_time_min": 15.4,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
-          },
-          {
-            "slot": "weapon",
-            "category": "weapon",
-            "tier": 4,
-            "cost": 6400,
-            "name": "Crushing Fists",
-            "item_id": 800008313,
-            "avg_buy_time_min": 28.9,
-            "avg_sell_time_min": 34.8,
-            "win_rate": 0.6431,
-            "tag": "stat_anomaly",
-            "pick_rate": 0.0,
-            "is_active": false,
-            "cooldown_s": 5.0,
-            "imbue": null,
-            "lineage_chain": [
-              {
-                "item_id": 26002154,
-                "name": "Melee Charge",
-                "tier": 2,
-                "cost": 1600,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_weapon/melee_charge.png",
-                "matches": 657,
-                "avg_buy_time_min": 19.5,
                 "imbue": null,
                 "imbue_target_id": null,
                 "imbue_target_share": null
@@ -446,9 +432,9 @@
           "Flying Slash",
           "Power Slash"
         ],
-        "wins": 875,
-        "matches": 1554,
-        "win_rate": 0.5631
+        "wins": 898,
+        "matches": 1598,
+        "win_rate": 0.562
       }
     }
   },
@@ -591,7 +577,7 @@
             "win_rate": 0.5809,
             "wilson_lb": 0.5713,
             "score": 0.0862,
-            "wr_delta_pp": 9.57,
+            "wr_delta_pp": 9.58,
             "avg_buy_time_s": 2396.9,
             "phase": "late",
             "avg_sell_time_s": 2381.0,
@@ -950,7 +936,7 @@
             "win_rate": 0.5499,
             "wilson_lb": 0.5205,
             "score": 0.0354,
-            "wr_delta_pp": 6.47,
+            "wr_delta_pp": 6.48,
             "avg_buy_time_s": 2292.1,
             "phase": "late",
             "avg_sell_time_s": 2437.4,
@@ -1037,7 +1023,7 @@
             "wins": 17068,
             "win_rate": 0.5045,
             "wilson_lb": 0.4992,
-            "score": 0.014,
+            "score": 0.0141,
             "wr_delta_pp": 1.94,
             "avg_buy_time_s": 978.0,
             "phase": "mid",
@@ -1085,7 +1071,7 @@
             "win_rate": 0.5809,
             "wilson_lb": 0.5713,
             "score": 0.0862,
-            "wr_delta_pp": 9.57,
+            "wr_delta_pp": 9.58,
             "avg_buy_time_s": 2396.9,
             "phase": "late",
             "avg_sell_time_s": 2381.0,
@@ -1123,52 +1109,65 @@
             "annotation": "OR REFRESHER"
           },
           {
-            "item_id": 1437614329,
-            "name": "Melee Lifesteal",
+            "item_id": 2407781327,
+            "name": "Colossus",
             "category": "vitality",
-            "tier": 1,
-            "cost": 800,
-            "matches": 102653,
-            "wins": 49784,
-            "win_rate": 0.485,
-            "wilson_lb": 0.4819,
-            "score": -0.0032,
-            "wr_delta_pp": -0.01,
-            "avg_buy_time_s": 251.3,
-            "phase": "early",
-            "avg_sell_time_s": 1715.8,
-            "is_active": false,
-            "cooldown_s": 8.0,
+            "tier": 4,
+            "cost": 6400,
+            "matches": 16392,
+            "wins": 9088,
+            "win_rate": 0.5544,
+            "wilson_lb": 0.5468,
+            "score": 0.0617,
+            "wr_delta_pp": 6.93,
+            "avg_buy_time_s": 1987.5,
+            "phase": "late",
+            "avg_sell_time_s": 2306.0,
+            "is_active": true,
+            "cooldown_s": 37.0,
             "imbue": null,
             "slot": "vitality",
-            "tag": "core_inherited",
+            "tag": "core_proven",
             "pick_rate_tag": "core",
-            "pick_rate": 0.714,
-            "annotation": "generally your first sold item DO NOT UPGRADE LIFESTRIKE FUCKING SUCKS"
+            "pick_rate": 0.857,
+            "annotation": "good amount of extra health, buy if you need to be more frontliney and other green counter items arent as strong",
+            "lineage_chain": [
+              {
+                "item_id": 3633614685,
+                "name": "Extra Health",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/health.png",
+                "matches": 18441,
+                "avg_buy_time_min": 17.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
           },
           {
-            "item_id": 3970837787,
-            "name": "Enchanter's Emblem",
+            "item_id": 2059712766,
+            "name": "Restorative Locket",
             "category": "vitality",
             "tier": 2,
             "cost": 1600,
-            "matches": 14845,
-            "wins": 7192,
-            "win_rate": 0.4845,
-            "wilson_lb": 0.4764,
-            "score": -0.0087,
-            "wr_delta_pp": -0.06,
-            "avg_buy_time_s": 976.6,
+            "matches": 77812,
+            "wins": 38974,
+            "win_rate": 0.5009,
+            "wilson_lb": 0.4974,
+            "score": 0.0122,
+            "wr_delta_pp": 1.58,
+            "avg_buy_time_s": 909.4,
             "phase": "mid",
-            "avg_sell_time_s": 2197.1,
-            "is_active": false,
-            "cooldown_s": null,
+            "avg_sell_time_s": 2298.1,
+            "is_active": true,
+            "cooldown_s": 20.0,
             "imbue": null,
             "slot": "vitality",
-            "tag": "core_inherited",
+            "tag": "flex",
             "pick_rate_tag": "flex",
-            "pick_rate": 0.571,
-            "annotation": "good resist into spirit teams, if you want this consider buying it early"
+            "pick_rate": 0.429
           },
           {
             "item_id": 677738769,
@@ -1283,44 +1282,6 @@
             "imbue_target_share": 1.0
           },
           {
-            "item_id": 3812615317,
-            "name": "Arctic Blast",
-            "category": "spirit",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 12745,
-            "wins": 6842,
-            "win_rate": 0.5368,
-            "wilson_lb": 0.5282,
-            "score": 0.0431,
-            "wr_delta_pp": 5.17,
-            "avg_buy_time_s": 2050.5,
-            "phase": "late",
-            "avg_sell_time_s": 2314.8,
-            "is_active": true,
-            "cooldown_s": 24.0,
-            "imbue": null,
-            "slot": "flex",
-            "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.714,
-            "annotation": "just a consistently great item, stops mobile characters and makes it very hard to run from you",
-            "lineage_chain": [
-              {
-                "item_id": 1976391348,
-                "name": "Cold Front",
-                "tier": 2,
-                "cost": 1600,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_utility/ice_blast.png",
-                "matches": 50039,
-                "avg_buy_time_min": 15.0,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
-          },
-          {
             "item_id": 915014646,
             "name": "Transcendent Cooldown",
             "category": "spirit",
@@ -1394,6 +1355,30 @@
             "pick_rate": 0.286
           },
           {
+            "item_id": 2603935618,
+            "name": "Healbane",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 139832,
+            "wins": 69182,
+            "win_rate": 0.4948,
+            "wilson_lb": 0.4921,
+            "score": 0.007,
+            "wr_delta_pp": 0.96,
+            "avg_buy_time_s": 862.1,
+            "phase": "mid",
+            "avg_sell_time_s": 2440.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 0.857,
+            "annotation": "Most op early through midgame Vit item on this character"
+          },
+          {
             "item_id": 3862866912,
             "name": "Restorative Shot",
             "category": "weapon",
@@ -1439,7 +1424,7 @@
             "is_active": false,
             "cooldown_s": 8.0,
             "imbue": null,
-            "build_freq_weight": 71.8,
+            "build_freq_weight": 72.4,
             "slot": "weapon",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1463,7 +1448,7 @@
             "is_active": false,
             "cooldown_s": 6.0,
             "imbue": null,
-            "build_freq_weight": 71.8,
+            "build_freq_weight": 72.4,
             "slot": "weapon",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1488,7 +1473,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 67.3,
+            "build_freq_weight": 67.9,
             "slot": "weapon",
             "tag": "flex",
             "pick_rate_tag": "flex",
@@ -1527,7 +1512,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 67.3,
+            "build_freq_weight": 67.9,
             "slot": "weapon",
             "tag": "trap_popular",
             "pick_rate_tag": "flex",
@@ -1551,7 +1536,7 @@
             "is_active": false,
             "cooldown_s": 1.0,
             "imbue": null,
-            "build_freq_weight": 71.8,
+            "build_freq_weight": 72.4,
             "slot": "vitality",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1569,14 +1554,14 @@
             "win_rate": 0.5809,
             "wilson_lb": 0.5713,
             "score": 0.0862,
-            "wr_delta_pp": 9.57,
+            "wr_delta_pp": 9.58,
             "avg_buy_time_s": 2396.9,
             "phase": "late",
             "avg_sell_time_s": 2381.0,
             "is_active": false,
             "cooldown_s": 40.0,
             "imbue": null,
-            "build_freq_weight": 71.8,
+            "build_freq_weight": 72.4,
             "slot": "vitality",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1601,7 +1586,7 @@
             "is_active": true,
             "cooldown_s": 37.0,
             "imbue": null,
-            "build_freq_weight": 71.8,
+            "build_freq_weight": 72.4,
             "slot": "vitality",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1640,7 +1625,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 67.3,
+            "build_freq_weight": 67.9,
             "slot": "vitality",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1665,7 +1650,7 @@
             "is_active": true,
             "cooldown_s": 300.0,
             "imbue": null,
-            "build_freq_weight": 71.8,
+            "build_freq_weight": 72.4,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1690,7 +1675,7 @@
             "is_active": true,
             "cooldown_s": 35.0,
             "imbue": null,
-            "build_freq_weight": 71.8,
+            "build_freq_weight": 72.4,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1714,7 +1699,7 @@
             "is_active": false,
             "cooldown_s": 6.0,
             "imbue": null,
-            "build_freq_weight": 71.8,
+            "build_freq_weight": 72.4,
             "slot": "spirit",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1753,7 +1738,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 71.8,
+            "build_freq_weight": 72.4,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1804,7 +1789,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 67.3,
+            "build_freq_weight": 67.9,
             "slot": "flex",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -1829,7 +1814,7 @@
             "is_active": true,
             "cooldown_s": 24.0,
             "imbue": null,
-            "build_freq_weight": 67.3,
+            "build_freq_weight": 67.9,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1868,7 +1853,7 @@
             "is_active": true,
             "cooldown_s": 24.0,
             "imbue": null,
-            "build_freq_weight": 67.3,
+            "build_freq_weight": 67.9,
             "slot": "flex",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -1893,7 +1878,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 67.3,
+            "build_freq_weight": 67.9,
             "slot": "flex",
             "tag": "core_inherited",
             "pick_rate_tag": "flex",
@@ -1905,8 +1890,8 @@
           {
             "build_id": 541388,
             "name": "RONALD (TTV FREDTHEFINCH)",
-            "win_rate": 0.4878,
-            "matches": 779
+            "win_rate": 0.4885,
+            "matches": 780
           },
           {
             "build_id": 391293,
@@ -1963,7 +1948,7 @@
           "total_matches": 662,
           "total_wins": 290,
           "mean_win_rate": 0.4381,
-          "win_rate_lift_pp": -4.71,
+          "win_rate_lift_pp": -4.7,
           "consensus_ladder_ids": [
             2366960452,
             2566573207,
@@ -2816,7 +2801,7 @@
               "win_rate": 0.5809,
               "wilson_lb": 0.5713,
               "score": 0.0862,
-              "wr_delta_pp": 9.57,
+              "wr_delta_pp": 9.58,
               "avg_buy_time_s": 2396.9,
               "phase": "late",
               "avg_sell_time_s": 2381.0,
@@ -4057,8 +4042,8 @@
             "wins": 227,
             "win_rate": 0.6431,
             "wilson_lb": 0.5918,
-            "score": 0.0799,
-            "wr_delta_pp": 13.12,
+            "score": 0.0801,
+            "wr_delta_pp": 13.14,
             "avg_buy_time_s": 1735.0,
             "phase": "late",
             "avg_sell_time_s": 2087.1,
@@ -4094,8 +4079,8 @@
             "wins": 477,
             "win_rate": 0.6243,
             "wilson_lb": 0.5895,
-            "score": 0.0776,
-            "wr_delta_pp": 11.25,
+            "score": 0.0778,
+            "wr_delta_pp": 11.27,
             "avg_buy_time_s": 1800.8,
             "phase": "late",
             "avg_sell_time_s": 1949.1,
@@ -4131,8 +4116,8 @@
             "wins": 1033,
             "win_rate": 0.5457,
             "wilson_lb": 0.5232,
-            "score": 0.0113,
-            "wr_delta_pp": 3.38,
+            "score": 0.0115,
+            "wr_delta_pp": 3.4,
             "avg_buy_time_s": 807.2,
             "phase": "mid",
             "avg_sell_time_s": 2034.8,
@@ -4154,8 +4139,8 @@
             "wins": 1587,
             "win_rate": 0.5371,
             "wilson_lb": 0.519,
-            "score": 0.0072,
-            "wr_delta_pp": 2.52,
+            "score": 0.0073,
+            "wr_delta_pp": 2.54,
             "avg_buy_time_s": 451.2,
             "phase": "early",
             "avg_sell_time_s": 1919.2,
@@ -4177,8 +4162,8 @@
             "wins": 572,
             "win_rate": 0.619,
             "wilson_lb": 0.5873,
-            "score": 0.0754,
-            "wr_delta_pp": 10.72,
+            "score": 0.0756,
+            "wr_delta_pp": 10.74,
             "avg_buy_time_s": 1624.7,
             "phase": "late",
             "avg_sell_time_s": 1795.4,
@@ -4214,8 +4199,8 @@
             "wins": 192,
             "win_rate": 0.6174,
             "wilson_lb": 0.5622,
-            "score": 0.0504,
-            "wr_delta_pp": 10.55,
+            "score": 0.0505,
+            "wr_delta_pp": 10.57,
             "avg_buy_time_s": 1938.0,
             "phase": "late",
             "avg_sell_time_s": 1809.6,
@@ -4237,8 +4222,8 @@
             "wins": 199,
             "win_rate": 0.5751,
             "wilson_lb": 0.5225,
-            "score": 0.0106,
-            "wr_delta_pp": 6.33,
+            "score": 0.0108,
+            "wr_delta_pp": 6.35,
             "avg_buy_time_s": 1994.5,
             "phase": "late",
             "avg_sell_time_s": 1998.6,
@@ -4260,8 +4245,8 @@
             "wins": 1020,
             "win_rate": 0.5446,
             "wilson_lb": 0.522,
-            "score": 0.0101,
-            "wr_delta_pp": 3.27,
+            "score": 0.0103,
+            "wr_delta_pp": 3.29,
             "avg_buy_time_s": 1341.9,
             "phase": "mid",
             "avg_sell_time_s": 1575.2,
@@ -4283,8 +4268,8 @@
             "wins": 940,
             "win_rate": 0.6156,
             "wilson_lb": 0.5909,
-            "score": 0.0791,
-            "wr_delta_pp": 10.37,
+            "score": 0.0792,
+            "wr_delta_pp": 10.39,
             "avg_buy_time_s": 1985.1,
             "phase": "late",
             "avg_sell_time_s": 2128.0,
@@ -4306,8 +4291,8 @@
             "wins": 702,
             "win_rate": 0.6094,
             "wilson_lb": 0.5809,
-            "score": 0.069,
-            "wr_delta_pp": 9.75,
+            "score": 0.0692,
+            "wr_delta_pp": 9.77,
             "avg_buy_time_s": 1845.7,
             "phase": "late",
             "avg_sell_time_s": 1954.3,
@@ -4329,8 +4314,8 @@
             "wins": 482,
             "win_rate": 0.6125,
             "wilson_lb": 0.5779,
-            "score": 0.0661,
-            "wr_delta_pp": 10.06,
+            "score": 0.0663,
+            "wr_delta_pp": 10.08,
             "avg_buy_time_s": 1870.5,
             "phase": "late",
             "avg_sell_time_s": 1877.5,
@@ -4352,8 +4337,8 @@
             "wins": 933,
             "win_rate": 0.5905,
             "wilson_lb": 0.5661,
-            "score": 0.0542,
-            "wr_delta_pp": 7.86,
+            "score": 0.0544,
+            "wr_delta_pp": 7.88,
             "avg_buy_time_s": 1471.5,
             "phase": "mid",
             "avg_sell_time_s": 1599.5,
@@ -4375,8 +4360,8 @@
             "wins": 1684,
             "win_rate": 0.5785,
             "wilson_lb": 0.5605,
-            "score": 0.0486,
-            "wr_delta_pp": 6.66,
+            "score": 0.0488,
+            "wr_delta_pp": 6.68,
             "avg_buy_time_s": 1549.5,
             "phase": "late",
             "avg_sell_time_s": 1983.7,
@@ -4398,8 +4383,8 @@
             "wins": 1572,
             "win_rate": 0.5704,
             "wilson_lb": 0.5518,
-            "score": 0.04,
-            "wr_delta_pp": 5.85,
+            "score": 0.0401,
+            "wr_delta_pp": 5.87,
             "avg_buy_time_s": 1647.5,
             "phase": "late",
             "avg_sell_time_s": 1913.0,
@@ -4447,8 +4432,8 @@
             "wins": 279,
             "win_rate": 0.5949,
             "wilson_lb": 0.5499,
-            "score": 0.038,
-            "wr_delta_pp": 8.3,
+            "score": 0.0382,
+            "wr_delta_pp": 8.32,
             "avg_buy_time_s": 1922.0,
             "phase": "late",
             "avg_sell_time_s": 1913.5,
@@ -4484,8 +4469,8 @@
             "wins": 756,
             "win_rate": 0.5617,
             "wilson_lb": 0.535,
-            "score": 0.0232,
-            "wr_delta_pp": 4.98,
+            "score": 0.0233,
+            "wr_delta_pp": 5.0,
             "avg_buy_time_s": 1083.1,
             "phase": "mid",
             "avg_sell_time_s": 1925.4,
@@ -4502,43 +4487,6 @@
       "synergy_ilp": {
         "picks": [
           {
-            "item_id": 800008313,
-            "name": "Crushing Fists",
-            "category": "weapon",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 353,
-            "wins": 227,
-            "win_rate": 0.6431,
-            "wilson_lb": 0.5918,
-            "score": 0.0799,
-            "wr_delta_pp": 13.12,
-            "avg_buy_time_s": 1735.0,
-            "phase": "late",
-            "avg_sell_time_s": 2087.1,
-            "is_active": false,
-            "cooldown_s": 5.0,
-            "imbue": null,
-            "slot": "weapon",
-            "tag": "stat_anomaly",
-            "pick_rate_tag": "stat",
-            "pick_rate": 0.0,
-            "lineage_chain": [
-              {
-                "item_id": 26002154,
-                "name": "Melee Charge",
-                "tier": 2,
-                "cost": 1600,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_weapon/melee_charge.png",
-                "matches": 657,
-                "avg_buy_time_min": 19.5,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
-          },
-          {
             "item_id": 2226497419,
             "name": "Spiritual Overflow",
             "category": "weapon",
@@ -4548,8 +4496,8 @@
             "wins": 477,
             "win_rate": 0.6243,
             "wilson_lb": 0.5895,
-            "score": 0.0776,
-            "wr_delta_pp": 11.25,
+            "score": 0.0778,
+            "wr_delta_pp": 11.27,
             "avg_buy_time_s": 1800.8,
             "phase": "late",
             "avg_sell_time_s": 1949.1,
@@ -4585,8 +4533,8 @@
             "wins": 1587,
             "win_rate": 0.5371,
             "wilson_lb": 0.519,
-            "score": 0.0072,
-            "wr_delta_pp": 2.52,
+            "score": 0.0073,
+            "wr_delta_pp": 2.54,
             "avg_buy_time_s": 451.2,
             "phase": "early",
             "avg_sell_time_s": 1919.2,
@@ -4608,13 +4556,36 @@
             "wins": 3530,
             "win_rate": 0.5203,
             "wilson_lb": 0.5084,
-            "score": -0.0035,
-            "wr_delta_pp": 0.84,
+            "score": -0.0033,
+            "wr_delta_pp": 0.86,
             "avg_buy_time_s": 617.6,
             "phase": "early",
             "avg_sell_time_s": 2140.5,
             "is_active": false,
             "cooldown_s": 8.0,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3862866912,
+            "name": "Restorative Shot",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 6775,
+            "wins": 3499,
+            "win_rate": 0.5165,
+            "wilson_lb": 0.5046,
+            "score": -0.0071,
+            "wr_delta_pp": 0.48,
+            "avg_buy_time_s": 79.5,
+            "phase": "early",
+            "avg_sell_time_s": 1428.1,
+            "is_active": false,
+            "cooldown_s": 6.0,
             "imbue": null,
             "slot": "weapon",
             "tag": "stat",
@@ -4631,8 +4602,8 @@
             "wins": 572,
             "win_rate": 0.619,
             "wilson_lb": 0.5873,
-            "score": 0.0754,
-            "wr_delta_pp": 10.72,
+            "score": 0.0756,
+            "wr_delta_pp": 10.74,
             "avg_buy_time_s": 1624.7,
             "phase": "late",
             "avg_sell_time_s": 1795.4,
@@ -4668,8 +4639,8 @@
             "wins": 3506,
             "win_rate": 0.5155,
             "wilson_lb": 0.5036,
-            "score": -0.0082,
-            "wr_delta_pp": 0.36,
+            "score": -0.0081,
+            "wr_delta_pp": 0.38,
             "avg_buy_time_s": 786.4,
             "phase": "mid",
             "avg_sell_time_s": 2185.4,
@@ -4691,8 +4662,8 @@
             "wins": 2400,
             "win_rate": 0.5172,
             "wilson_lb": 0.5029,
-            "score": -0.009,
-            "wr_delta_pp": 0.54,
+            "score": -0.0088,
+            "wr_delta_pp": 0.55,
             "avg_buy_time_s": 828.4,
             "phase": "mid",
             "avg_sell_time_s": 2033.7,
@@ -4705,22 +4676,22 @@
             "pick_rate": 0.0
           },
           {
-            "item_id": 1437614329,
-            "name": "Melee Lifesteal",
+            "item_id": 2829638276,
+            "name": "Extra Regen",
             "category": "vitality",
             "tier": 1,
             "cost": 800,
-            "matches": 3450,
-            "wins": 1787,
-            "win_rate": 0.518,
-            "wilson_lb": 0.5013,
-            "score": -0.0106,
-            "wr_delta_pp": 0.61,
-            "avg_buy_time_s": 209.8,
+            "matches": 4046,
+            "wins": 2039,
+            "win_rate": 0.504,
+            "wilson_lb": 0.4886,
+            "score": -0.0231,
+            "wr_delta_pp": -0.77,
+            "avg_buy_time_s": 366.5,
             "phase": "early",
-            "avg_sell_time_s": 1577.7,
+            "avg_sell_time_s": 889.2,
             "is_active": false,
-            "cooldown_s": 8.0,
+            "cooldown_s": null,
             "imbue": null,
             "slot": "vitality",
             "tag": "stat",
@@ -4737,8 +4708,8 @@
             "wins": 940,
             "win_rate": 0.6156,
             "wilson_lb": 0.5909,
-            "score": 0.0791,
-            "wr_delta_pp": 10.37,
+            "score": 0.0792,
+            "wr_delta_pp": 10.39,
             "avg_buy_time_s": 1985.1,
             "phase": "late",
             "avg_sell_time_s": 2128.0,
@@ -4760,8 +4731,8 @@
             "wins": 702,
             "win_rate": 0.6094,
             "wilson_lb": 0.5809,
-            "score": 0.069,
-            "wr_delta_pp": 9.75,
+            "score": 0.0692,
+            "wr_delta_pp": 9.77,
             "avg_buy_time_s": 1845.7,
             "phase": "late",
             "avg_sell_time_s": 1954.3,
@@ -4783,8 +4754,8 @@
             "wins": 482,
             "win_rate": 0.6125,
             "wilson_lb": 0.5779,
-            "score": 0.0661,
-            "wr_delta_pp": 10.06,
+            "score": 0.0663,
+            "wr_delta_pp": 10.08,
             "avg_buy_time_s": 1870.5,
             "phase": "late",
             "avg_sell_time_s": 1877.5,
@@ -4806,8 +4777,8 @@
             "wins": 933,
             "win_rate": 0.5905,
             "wilson_lb": 0.5661,
-            "score": 0.0542,
-            "wr_delta_pp": 7.86,
+            "score": 0.0544,
+            "wr_delta_pp": 7.88,
             "avg_buy_time_s": 1471.5,
             "phase": "mid",
             "avg_sell_time_s": 1599.5,
@@ -4829,8 +4800,8 @@
             "wins": 1684,
             "win_rate": 0.5785,
             "wilson_lb": 0.5605,
-            "score": 0.0486,
-            "wr_delta_pp": 6.66,
+            "score": 0.0488,
+            "wr_delta_pp": 6.68,
             "avg_buy_time_s": 1549.5,
             "phase": "late",
             "avg_sell_time_s": 1983.7,
@@ -4852,8 +4823,8 @@
             "wins": 1572,
             "win_rate": 0.5704,
             "wilson_lb": 0.5518,
-            "score": 0.04,
-            "wr_delta_pp": 5.85,
+            "score": 0.0401,
+            "wr_delta_pp": 5.87,
             "avg_buy_time_s": 1647.5,
             "phase": "late",
             "avg_sell_time_s": 1913.0,
@@ -4892,6 +4863,29 @@
             ]
           },
           {
+            "item_id": 2971868509,
+            "name": "Bullet Resist Shredder",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1346,
+            "wins": 756,
+            "win_rate": 0.5617,
+            "wilson_lb": 0.535,
+            "score": 0.0233,
+            "wr_delta_pp": 5.0,
+            "avg_buy_time_s": 1083.1,
+            "phase": "mid",
+            "avg_sell_time_s": 1925.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
             "item_id": 395944548,
             "name": "Torment Pulse",
             "category": "spirit",
@@ -4901,36 +4895,13 @@
             "wins": 2056,
             "win_rate": 0.5279,
             "wilson_lb": 0.5122,
-            "score": 0.0003,
-            "wr_delta_pp": 1.6,
+            "score": 0.0005,
+            "wr_delta_pp": 1.62,
             "avg_buy_time_s": 1154.9,
             "phase": "mid",
             "avg_sell_time_s": 1536.9,
             "is_active": false,
             "cooldown_s": 1.4,
-            "imbue": null,
-            "slot": "flex",
-            "tag": "stat",
-            "pick_rate_tag": "stat",
-            "pick_rate": 0.0
-          },
-          {
-            "item_id": 3862866912,
-            "name": "Restorative Shot",
-            "category": "weapon",
-            "tier": 1,
-            "cost": 800,
-            "matches": 6775,
-            "wins": 3499,
-            "win_rate": 0.5165,
-            "wilson_lb": 0.5046,
-            "score": -0.0073,
-            "wr_delta_pp": 0.46,
-            "avg_buy_time_s": 79.5,
-            "phase": "early",
-            "avg_sell_time_s": 1428.1,
-            "is_active": false,
-            "cooldown_s": 6.0,
             "imbue": null,
             "slot": "flex",
             "tag": "stat",
@@ -5196,7 +5167,7 @@
             "wins": 94,
             "win_rate": 0.6483,
             "wilson_lb": 0.5676,
-            "score": 0.0672,
+            "score": 0.0673,
             "wr_delta_pp": 14.79,
             "avg_buy_time_s": 1847.3,
             "phase": "late",
@@ -5314,7 +5285,7 @@
             "wins": 191,
             "win_rate": 0.5701,
             "wilson_lb": 0.5166,
-            "score": 0.0162,
+            "score": 0.0163,
             "wr_delta_pp": 6.98,
             "avg_buy_time_s": 1060.2,
             "phase": "mid",
@@ -5360,7 +5331,7 @@
             "wins": 248,
             "win_rate": 0.5299,
             "wilson_lb": 0.4846,
-            "score": -0.0158,
+            "score": -0.0157,
             "wr_delta_pp": 2.95,
             "avg_buy_time_s": 1490.4,
             "phase": "mid",
@@ -5558,25 +5529,25 @@
             "pick_rate": 0.0
           },
           {
-            "item_id": 2163598980,
-            "name": "Spirit Resilience",
+            "item_id": 1672893796,
+            "name": "Grit",
             "category": "vitality",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 205,
-            "wins": 109,
-            "win_rate": 0.5317,
-            "wilson_lb": 0.4634,
-            "score": -0.0369,
-            "wr_delta_pp": 3.13,
-            "avg_buy_time_s": 1607.6,
-            "phase": "late",
-            "avg_sell_time_s": 1680.0,
-            "is_active": false,
-            "cooldown_s": null,
+            "tier": 1,
+            "cost": 800,
+            "matches": 317,
+            "wins": 166,
+            "win_rate": 0.5237,
+            "wilson_lb": 0.4687,
+            "score": -0.0317,
+            "wr_delta_pp": 2.33,
+            "avg_buy_time_s": 375.0,
+            "phase": "early",
+            "avg_sell_time_s": 850.6,
+            "is_active": true,
+            "cooldown_s": 60.0,
             "imbue": null,
             "slot": "vitality",
-            "tag": "stat_anomaly",
+            "tag": "tech_pick",
             "pick_rate_tag": "stat",
             "pick_rate": 0.0
           },
@@ -5636,7 +5607,7 @@
             "wins": 94,
             "win_rate": 0.6483,
             "wilson_lb": 0.5676,
-            "score": 0.0672,
+            "score": 0.0673,
             "wr_delta_pp": 14.79,
             "avg_buy_time_s": 1847.3,
             "phase": "late",
@@ -5754,7 +5725,7 @@
             "wins": 191,
             "win_rate": 0.5701,
             "wilson_lb": 0.5166,
-            "score": 0.0162,
+            "score": 0.0163,
             "wr_delta_pp": 6.98,
             "avg_buy_time_s": 1060.2,
             "phase": "mid",
@@ -5800,7 +5771,7 @@
             "wins": 601,
             "win_rate": 0.5038,
             "wilson_lb": 0.4754,
-            "score": -0.025,
+            "score": -0.0249,
             "wr_delta_pp": 0.34,
             "avg_buy_time_s": 914.7,
             "phase": "mid",
@@ -5855,8 +5826,8 @@
   },
   "ability_orders": {
     "all_mmr": {
-      "total_records": 306,
-      "total_matches": 96744,
+      "total_records": 308,
+      "total_matches": 97903,
       "ability_priority": [
         {
           "ability_id": 3255651252,
@@ -5882,7 +5853,7 @@
         {
           "ability_id": 3319782965,
           "name": "Shadow Transformation",
-          "avg_ap_all_players": 3.6,
+          "avg_ap_all_players": 3.59,
           "avg_ap_winners": 3.72,
           "winner_premium_ap": 0.12
         }
@@ -5925,11 +5896,11 @@
             "Shadow Transformation",
             "Flying Slash"
           ],
-          "wins": 152,
+          "wins": 153,
           "losses": 67,
-          "matches": 219,
-          "players": 175,
-          "win_rate": 0.6941
+          "matches": 220,
+          "players": 176,
+          "win_rate": 0.6955
         },
         {
           "sequence_ids": [
@@ -5968,11 +5939,11 @@
             "Shadow Transformation",
             "Flying Slash"
           ],
-          "wins": 166,
-          "losses": 76,
-          "matches": 242,
-          "players": 224,
-          "win_rate": 0.686
+          "wins": 168,
+          "losses": 78,
+          "matches": 246,
+          "players": 228,
+          "win_rate": 0.6829
         },
         {
           "sequence_ids": [
@@ -6012,10 +5983,10 @@
             "Crimson Slash"
           ],
           "wins": 153,
-          "losses": 71,
-          "matches": 224,
-          "players": 176,
-          "win_rate": 0.683
+          "losses": 72,
+          "matches": 225,
+          "players": 177,
+          "win_rate": 0.68
         },
         {
           "sequence_ids": [
@@ -6097,11 +6068,11 @@
             "Shadow Transformation",
             "Shadow Transformation"
           ],
-          "wins": 1370,
-          "losses": 674,
-          "matches": 2044,
-          "players": 1359,
-          "win_rate": 0.6703
+          "wins": 1387,
+          "losses": 687,
+          "matches": 2074,
+          "players": 1378,
+          "win_rate": 0.6688
         }
       ],
       "best_openers_first4": [
@@ -6112,9 +6083,9 @@
             "Flying Slash",
             "Power Slash"
           ],
-          "wins": 343,
-          "matches": 615,
-          "win_rate": 0.5577
+          "wins": 346,
+          "matches": 622,
+          "win_rate": 0.5563
         },
         {
           "sequence_names": [
@@ -6123,9 +6094,9 @@
             "Flying Slash",
             "Flying Slash"
           ],
-          "wins": 7256,
-          "matches": 13786,
-          "win_rate": 0.5263
+          "wins": 7317,
+          "matches": 13921,
+          "win_rate": 0.5256
         },
         {
           "sequence_names": [
@@ -6134,9 +6105,9 @@
             "Power Slash",
             "Power Slash"
           ],
-          "wins": 212,
-          "matches": 416,
-          "win_rate": 0.5096
+          "wins": 217,
+          "matches": 425,
+          "win_rate": 0.5106
         },
         {
           "sequence_names": [
@@ -6145,9 +6116,9 @@
             "Crimson Slash",
             "Flying Slash"
           ],
-          "wins": 1336,
-          "matches": 2633,
-          "win_rate": 0.5074
+          "wins": 1360,
+          "matches": 2673,
+          "win_rate": 0.5088
         },
         {
           "sequence_names": [
@@ -6156,15 +6127,15 @@
             "Power Slash",
             "Flying Slash"
           ],
-          "wins": 7825,
-          "matches": 15478,
-          "win_rate": 0.5056
+          "wins": 7925,
+          "matches": 15665,
+          "win_rate": 0.5059
         }
       ]
     },
     "high_mmr": {
-      "total_records": 46,
-      "total_matches": 3863,
+      "total_records": 47,
+      "total_matches": 3935,
       "ability_priority": [
         {
           "ability_id": 2366960452,
@@ -6176,7 +6147,7 @@
         {
           "ability_id": 3255651252,
           "name": "Power Slash",
-          "avg_ap_all_players": 3.63,
+          "avg_ap_all_players": 3.64,
           "avg_ap_winners": 3.68,
           "winner_premium_ap": 0.04
         },
@@ -6240,6 +6211,47 @@
         {
           "sequence_ids": [
             2366960452,
+            2566573207,
+            2566573207,
+            3255651252,
+            2566573207,
+            3255651252,
+            3319782965,
+            3255651252,
+            3255651252,
+            2366960452,
+            2366960452,
+            2366960452,
+            3319782965,
+            3319782965,
+            3319782965
+          ],
+          "sequence_names": [
+            "Crimson Slash",
+            "Flying Slash",
+            "Flying Slash",
+            "Power Slash",
+            "Flying Slash",
+            "Power Slash",
+            "Shadow Transformation",
+            "Power Slash",
+            "Power Slash",
+            "Crimson Slash",
+            "Crimson Slash",
+            "Crimson Slash",
+            "Shadow Transformation",
+            "Shadow Transformation",
+            "Shadow Transformation"
+          ],
+          "wins": 83,
+          "losses": 41,
+          "matches": 124,
+          "players": 58,
+          "win_rate": 0.6694
+        },
+        {
+          "sequence_ids": [
+            2366960452,
             3255651252,
             2566573207,
             2566573207,
@@ -6281,47 +6293,6 @@
         {
           "sequence_ids": [
             2366960452,
-            2566573207,
-            2566573207,
-            3255651252,
-            2566573207,
-            3255651252,
-            3319782965,
-            3255651252,
-            3255651252,
-            2366960452,
-            2366960452,
-            2366960452,
-            3319782965,
-            3319782965,
-            3319782965
-          ],
-          "sequence_names": [
-            "Crimson Slash",
-            "Flying Slash",
-            "Flying Slash",
-            "Power Slash",
-            "Flying Slash",
-            "Power Slash",
-            "Shadow Transformation",
-            "Power Slash",
-            "Power Slash",
-            "Crimson Slash",
-            "Crimson Slash",
-            "Crimson Slash",
-            "Shadow Transformation",
-            "Shadow Transformation",
-            "Shadow Transformation"
-          ],
-          "wins": 82,
-          "losses": 41,
-          "matches": 123,
-          "players": 58,
-          "win_rate": 0.6667
-        },
-        {
-          "sequence_ids": [
-            2366960452,
             3255651252,
             3255651252,
             2566573207,
@@ -6354,11 +6325,11 @@
             "Shadow Transformation",
             "Shadow Transformation"
           ],
-          "wins": 398,
-          "losses": 223,
-          "matches": 621,
-          "players": 230,
-          "win_rate": 0.6409
+          "wins": 399,
+          "losses": 227,
+          "matches": 626,
+          "players": 231,
+          "win_rate": 0.6374
         },
         {
           "sequence_ids": [
@@ -6395,11 +6366,11 @@
             "Shadow Transformation",
             "Shadow Transformation"
           ],
-          "wins": 96,
-          "losses": 54,
-          "matches": 150,
-          "players": 89,
-          "win_rate": 0.64
+          "wins": 101,
+          "losses": 59,
+          "matches": 160,
+          "players": 92,
+          "win_rate": 0.6312
         }
       ],
       "best_openers_first4": [
@@ -6410,9 +6381,9 @@
             "Flying Slash",
             "Power Slash"
           ],
-          "wins": 875,
-          "matches": 1554,
-          "win_rate": 0.5631
+          "wins": 898,
+          "matches": 1598,
+          "win_rate": 0.562
         },
         {
           "sequence_names": [
@@ -6421,9 +6392,9 @@
             "Flying Slash",
             "Flying Slash"
           ],
-          "wins": 559,
-          "matches": 1004,
-          "win_rate": 0.5568
+          "wins": 565,
+          "matches": 1018,
+          "win_rate": 0.555
         },
         {
           "sequence_names": [
@@ -6432,15 +6403,15 @@
             "Power Slash",
             "Flying Slash"
           ],
-          "wins": 627,
-          "matches": 1216,
-          "win_rate": 0.5156
+          "wins": 634,
+          "matches": 1230,
+          "win_rate": 0.5154
         }
       ]
     },
     "ascendant_plus": {
       "total_records": 21,
-      "total_matches": 652,
+      "total_matches": 664,
       "ability_priority": [
         {
           "ability_id": 2366960452,
@@ -6452,7 +6423,7 @@
         {
           "ability_id": 3319782965,
           "name": "Shadow Transformation",
-          "avg_ap_all_players": 3.51,
+          "avg_ap_all_players": 3.5,
           "avg_ap_winners": 3.68,
           "winner_premium_ap": 0.17
         },
@@ -6467,7 +6438,7 @@
           "ability_id": 3255651252,
           "name": "Power Slash",
           "avg_ap_all_players": 3.47,
-          "avg_ap_winners": 3.47,
+          "avg_ap_winners": 3.48,
           "winner_premium_ap": 0.0
         }
       ],
@@ -6549,10 +6520,10 @@
             "Shadow Transformation"
           ],
           "wins": 102,
-          "losses": 46,
-          "matches": 148,
+          "losses": 47,
+          "matches": 149,
           "players": 52,
-          "win_rate": 0.6892
+          "win_rate": 0.6846
         },
         {
           "sequence_ids": [
@@ -6588,10 +6559,10 @@
             "Shadow Transformation"
           ],
           "wins": 32,
-          "losses": 62,
-          "matches": 94,
+          "losses": 63,
+          "matches": 95,
           "players": 49,
-          "win_rate": 0.3404
+          "win_rate": 0.3368
         }
       ],
       "best_openers_first4": [
@@ -6602,9 +6573,9 @@
             "Flying Slash",
             "Flying Slash"
           ],
-          "wins": 105,
-          "matches": 174,
-          "win_rate": 0.6034
+          "wins": 106,
+          "matches": 177,
+          "win_rate": 0.5989
         },
         {
           "sequence_names": [
@@ -6613,9 +6584,9 @@
             "Flying Slash",
             "Power Slash"
           ],
-          "wins": 120,
-          "matches": 201,
-          "win_rate": 0.597
+          "wins": 121,
+          "matches": 207,
+          "win_rate": 0.5845
         },
         {
           "sequence_names": [
@@ -6624,9 +6595,9 @@
             "Power Slash",
             "Flying Slash"
           ],
-          "wins": 148,
-          "matches": 277,
-          "win_rate": 0.5343
+          "wins": 149,
+          "matches": 280,
+          "win_rate": 0.5321
         }
       ]
     },
