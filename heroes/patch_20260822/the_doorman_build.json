@@ -31,19 +31,19 @@
     "all_mmr": {
       "filter": "no MMR filter",
       "baseline_win_rate": 0.4621,
-      "matches": 180671,
+      "matches": 182024,
       "players": null
     },
     "high_mmr": {
       "filter": "min_average_badge=91 (Phantom+)",
       "baseline_win_rate": 0.4789,
-      "matches": 5375,
+      "matches": 5421,
       "players": null
     },
     "ascendant_plus": {
       "filter": "min_average_badge=101 (Ascendant+)",
-      "baseline_win_rate": 0.5,
-      "matches": 898,
+      "baseline_win_rate": 0.4994,
+      "matches": 903,
       "players": null
     },
     "eternus_plus": {
@@ -57,7 +57,7 @@
     "items": {
       "method": "synergy_ilp",
       "mmr_slice": "high_mmr",
-      "total_cost": 51200,
+      "total_cost": 50400,
       "phases": {
         "early": [
           {
@@ -167,6 +167,22 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null
+          },
+          {
+            "slot": "vitality",
+            "category": "vitality",
+            "tier": 1,
+            "cost": 800,
+            "name": "Grit",
+            "item_id": 1672893796,
+            "avg_buy_time_min": 10.2,
+            "avg_sell_time_min": 14.7,
+            "win_rate": 0.4853,
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "is_active": true,
+            "cooldown_s": 60.0,
+            "imbue": null
           }
         ],
         "mid": [
@@ -181,22 +197,6 @@
             "avg_sell_time_min": 33.9,
             "win_rate": 0.5086,
             "tag": "tech_pick",
-            "pick_rate": 0.0,
-            "is_active": false,
-            "cooldown_s": null,
-            "imbue": null
-          },
-          {
-            "slot": "vitality",
-            "category": "vitality",
-            "tier": 2,
-            "cost": 1600,
-            "name": "Healbane",
-            "item_id": 2603935618,
-            "avg_buy_time_min": 15.5,
-            "avg_sell_time_min": 33.5,
-            "win_rate": 0.4896,
-            "tag": "stat",
             "pick_rate": 0.0,
             "is_active": false,
             "cooldown_s": null,
@@ -489,11 +489,11 @@
           "Hotel Guest",
           "Hotel Guest"
         ],
-        "wins": 92,
+        "wins": 94,
         "losses": 76,
-        "matches": 168,
-        "players": 72,
-        "win_rate": 0.5476
+        "matches": 170,
+        "players": 73,
+        "win_rate": 0.5529
       },
       "best_opener_first4": {
         "sequence_names": [
@@ -502,9 +502,9 @@
           "Luggage Cart",
           "Doorway"
         ],
-        "wins": 266,
-        "matches": 484,
-        "win_rate": 0.5496
+        "wins": 271,
+        "matches": 490,
+        "win_rate": 0.5531
       }
     }
   },
@@ -570,7 +570,7 @@
             "wins": 1335,
             "win_rate": 0.517,
             "wilson_lb": 0.4978,
-            "score": 0.0356,
+            "score": 0.0357,
             "wr_delta_pp": 5.49,
             "avg_buy_time_s": 1875.1,
             "phase": "late",
@@ -885,7 +885,7 @@
             "wins": 932,
             "win_rate": 0.5369,
             "wilson_lb": 0.5134,
-            "score": 0.0512,
+            "score": 0.0513,
             "wr_delta_pp": 7.48,
             "avg_buy_time_s": 1554.2,
             "phase": "late",
@@ -978,7 +978,7 @@
             "win_rate": 0.4975,
             "wilson_lb": 0.4884,
             "score": 0.0263,
-            "wr_delta_pp": 3.53,
+            "wr_delta_pp": 3.54,
             "avg_buy_time_s": 1655.6,
             "phase": "late",
             "avg_sell_time_s": 2480.3,
@@ -1464,7 +1464,7 @@
             "win_rate": 0.4554,
             "wilson_lb": 0.4496,
             "score": -0.0125,
-            "wr_delta_pp": -0.68,
+            "wr_delta_pp": -0.67,
             "avg_buy_time_s": 141.7,
             "phase": "early",
             "avg_sell_time_s": 1503.9,
@@ -1491,7 +1491,7 @@
             "win_rate": 0.4975,
             "wilson_lb": 0.4884,
             "score": 0.0263,
-            "wr_delta_pp": 3.53,
+            "wr_delta_pp": 3.54,
             "avg_buy_time_s": 1655.6,
             "phase": "late",
             "avg_sell_time_s": 2480.3,
@@ -1587,7 +1587,7 @@
             "is_active": false,
             "cooldown_s": 25.0,
             "imbue": null,
-            "build_freq_weight": 27.6,
+            "build_freq_weight": 27.7,
             "slot": "weapon",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1604,7 +1604,7 @@
             "wins": 2924,
             "win_rate": 0.4612,
             "wilson_lb": 0.449,
-            "score": -0.0132,
+            "score": -0.0131,
             "wr_delta_pp": -0.09,
             "avg_buy_time_s": 1443.7,
             "phase": "mid",
@@ -1630,7 +1630,7 @@
             "win_rate": 0.4652,
             "wilson_lb": 0.457,
             "score": -0.0051,
-            "wr_delta_pp": 0.3,
+            "wr_delta_pp": 0.31,
             "avg_buy_time_s": 1686.8,
             "phase": "late",
             "avg_sell_time_s": 2401.8,
@@ -1943,7 +1943,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 27.6,
+            "build_freq_weight": 27.7,
             "slot": "flex",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -3065,7 +3065,7 @@
             "win_rate": 0.5391,
             "wilson_lb": 0.4864,
             "score": 0.0075,
-            "wr_delta_pp": 6.02,
+            "wr_delta_pp": 6.03,
             "avg_buy_time_s": 1362.5,
             "phase": "mid",
             "avg_sell_time_s": 1802.7,
@@ -3111,7 +3111,7 @@
             "win_rate": 0.5103,
             "wilson_lb": 0.4659,
             "score": -0.013,
-            "wr_delta_pp": 3.14,
+            "wr_delta_pp": 3.15,
             "avg_buy_time_s": 1472.6,
             "phase": "mid",
             "avg_sell_time_s": 1848.2,
@@ -3252,7 +3252,7 @@
             "win_rate": 0.5178,
             "wilson_lb": 0.4959,
             "score": 0.017,
-            "wr_delta_pp": 3.89,
+            "wr_delta_pp": 3.9,
             "avg_buy_time_s": 1752.4,
             "phase": "late",
             "avg_sell_time_s": 2069.0,
@@ -3583,22 +3583,22 @@
             "pick_rate": 0.0
           },
           {
-            "item_id": 2603935618,
-            "name": "Healbane",
+            "item_id": 1672893796,
+            "name": "Grit",
             "category": "vitality",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 1007,
-            "wins": 493,
-            "win_rate": 0.4896,
-            "wilson_lb": 0.4588,
-            "score": -0.0201,
-            "wr_delta_pp": 1.07,
-            "avg_buy_time_s": 929.7,
-            "phase": "mid",
-            "avg_sell_time_s": 2008.2,
-            "is_active": false,
-            "cooldown_s": null,
+            "tier": 1,
+            "cost": 800,
+            "matches": 1568,
+            "wins": 761,
+            "win_rate": 0.4853,
+            "wilson_lb": 0.4607,
+            "score": -0.0182,
+            "wr_delta_pp": 0.65,
+            "avg_buy_time_s": 610.0,
+            "phase": "early",
+            "avg_sell_time_s": 883.3,
+            "is_active": true,
+            "cooldown_s": 60.0,
             "imbue": null,
             "slot": "vitality",
             "tag": "stat",
@@ -3711,7 +3711,7 @@
             "win_rate": 0.5178,
             "wilson_lb": 0.4959,
             "score": 0.017,
-            "wr_delta_pp": 3.89,
+            "wr_delta_pp": 3.9,
             "avg_buy_time_s": 1752.4,
             "phase": "late",
             "avg_sell_time_s": 2069.0,
@@ -3909,8 +3909,8 @@
             "wins": 314,
             "win_rate": 0.5268,
             "wilson_lb": 0.4867,
-            "score": -0.0133,
-            "wr_delta_pp": 2.68,
+            "score": -0.0127,
+            "wr_delta_pp": 2.74,
             "avg_buy_time_s": 269.3,
             "phase": "early",
             "avg_sell_time_s": 2102.3,
@@ -3946,8 +3946,8 @@
             "wins": 113,
             "win_rate": 0.5459,
             "wilson_lb": 0.4778,
-            "score": -0.0222,
-            "wr_delta_pp": 4.59,
+            "score": -0.0216,
+            "wr_delta_pp": 4.64,
             "avg_buy_time_s": 522.7,
             "phase": "early",
             "avg_sell_time_s": 2237.2,
@@ -3969,8 +3969,8 @@
             "wins": 120,
             "win_rate": 0.5021,
             "wilson_lb": 0.4392,
-            "score": -0.0608,
-            "wr_delta_pp": 0.21,
+            "score": -0.0603,
+            "wr_delta_pp": 0.26,
             "avg_buy_time_s": 680.0,
             "phase": "early",
             "avg_sell_time_s": 1855.4,
@@ -3992,8 +3992,8 @@
             "wins": 54,
             "win_rate": 0.5192,
             "wilson_lb": 0.4242,
-            "score": -0.0758,
-            "wr_delta_pp": 1.92,
+            "score": -0.0752,
+            "wr_delta_pp": 1.98,
             "avg_buy_time_s": 113.9,
             "phase": "early",
             "avg_sell_time_s": 1396.1,
@@ -4015,8 +4015,8 @@
             "wins": 62,
             "win_rate": 0.5905,
             "wilson_lb": 0.4948,
-            "score": -0.0052,
-            "wr_delta_pp": 9.05,
+            "score": -0.0046,
+            "wr_delta_pp": 9.1,
             "avg_buy_time_s": 1342.0,
             "phase": "mid",
             "avg_sell_time_s": 1569.5,
@@ -4038,8 +4038,8 @@
             "wins": 137,
             "win_rate": 0.5569,
             "wilson_lb": 0.4944,
-            "score": -0.0056,
-            "wr_delta_pp": 5.69,
+            "score": -0.005,
+            "wr_delta_pp": 5.75,
             "avg_buy_time_s": 1818.7,
             "phase": "late",
             "avg_sell_time_s": 2267.0,
@@ -4061,8 +4061,8 @@
             "wins": 128,
             "win_rate": 0.5447,
             "wilson_lb": 0.4808,
-            "score": -0.0192,
-            "wr_delta_pp": 4.47,
+            "score": -0.0186,
+            "wr_delta_pp": 4.52,
             "avg_buy_time_s": 943.4,
             "phase": "mid",
             "avg_sell_time_s": 1794.2,
@@ -4084,8 +4084,8 @@
             "wins": 117,
             "win_rate": 0.5417,
             "wilson_lb": 0.4751,
-            "score": -0.0249,
-            "wr_delta_pp": 4.17,
+            "score": -0.0244,
+            "wr_delta_pp": 4.22,
             "avg_buy_time_s": 174.1,
             "phase": "early",
             "avg_sell_time_s": 1421.3,
@@ -4107,8 +4107,8 @@
             "wins": 228,
             "win_rate": 0.5772,
             "wilson_lb": 0.528,
-            "score": 0.028,
-            "wr_delta_pp": 7.72,
+            "score": 0.0285,
+            "wr_delta_pp": 7.78,
             "avg_buy_time_s": 1703.5,
             "phase": "late",
             "avg_sell_time_s": 1893.6,
@@ -4156,8 +4156,8 @@
             "wins": 136,
             "win_rate": 0.5812,
             "wilson_lb": 0.5172,
-            "score": 0.0172,
-            "wr_delta_pp": 8.12,
+            "score": 0.0177,
+            "wr_delta_pp": 8.18,
             "avg_buy_time_s": 1829.4,
             "phase": "late",
             "avg_sell_time_s": 1663.0,
@@ -4179,8 +4179,8 @@
             "wins": 66,
             "win_rate": 0.5893,
             "wilson_lb": 0.4967,
-            "score": -0.0033,
-            "wr_delta_pp": 8.93,
+            "score": -0.0028,
+            "wr_delta_pp": 8.98,
             "avg_buy_time_s": 2017.4,
             "phase": "late",
             "avg_sell_time_s": 1706.5,
@@ -4202,8 +4202,8 @@
             "wins": 409,
             "win_rate": 0.5237,
             "wilson_lb": 0.4886,
-            "score": -0.0114,
-            "wr_delta_pp": 2.37,
+            "score": -0.0108,
+            "wr_delta_pp": 2.42,
             "avg_buy_time_s": 1341.2,
             "phase": "mid",
             "avg_sell_time_s": 2066.8,
@@ -4239,8 +4239,8 @@
             "wins": 132,
             "win_rate": 0.5432,
             "wilson_lb": 0.4804,
-            "score": -0.0196,
-            "wr_delta_pp": 4.32,
+            "score": -0.0191,
+            "wr_delta_pp": 4.38,
             "avg_buy_time_s": 1860.1,
             "phase": "late",
             "avg_sell_time_s": 2212.4,
@@ -4276,8 +4276,8 @@
             "wins": 279,
             "win_rate": 0.5215,
             "wilson_lb": 0.4792,
-            "score": -0.0208,
-            "wr_delta_pp": 2.15,
+            "score": -0.0203,
+            "wr_delta_pp": 2.2,
             "avg_buy_time_s": 1555.0,
             "phase": "late",
             "avg_sell_time_s": 1762.0,
@@ -4313,8 +4313,8 @@
             "wins": 327,
             "win_rate": 0.5125,
             "wilson_lb": 0.4738,
-            "score": -0.0262,
-            "wr_delta_pp": 1.25,
+            "score": -0.0257,
+            "wr_delta_pp": 1.31,
             "avg_buy_time_s": 681.3,
             "phase": "early",
             "avg_sell_time_s": 811.1,
@@ -4336,8 +4336,8 @@
             "wins": 404,
             "win_rate": 0.5082,
             "wilson_lb": 0.4735,
-            "score": -0.0265,
-            "wr_delta_pp": 0.82,
+            "score": -0.026,
+            "wr_delta_pp": 0.87,
             "avg_buy_time_s": 1025.9,
             "phase": "mid",
             "avg_sell_time_s": 1761.2,
@@ -4377,8 +4377,8 @@
             "wins": 314,
             "win_rate": 0.5268,
             "wilson_lb": 0.4867,
-            "score": -0.0133,
-            "wr_delta_pp": 2.68,
+            "score": -0.0127,
+            "wr_delta_pp": 2.74,
             "avg_buy_time_s": 269.3,
             "phase": "early",
             "avg_sell_time_s": 2102.3,
@@ -4414,8 +4414,8 @@
             "wins": 113,
             "win_rate": 0.5459,
             "wilson_lb": 0.4778,
-            "score": -0.0222,
-            "wr_delta_pp": 4.59,
+            "score": -0.0216,
+            "wr_delta_pp": 4.64,
             "avg_buy_time_s": 522.7,
             "phase": "early",
             "avg_sell_time_s": 2237.2,
@@ -4437,8 +4437,8 @@
             "wins": 120,
             "win_rate": 0.5021,
             "wilson_lb": 0.4392,
-            "score": -0.0608,
-            "wr_delta_pp": 0.21,
+            "score": -0.0603,
+            "wr_delta_pp": 0.26,
             "avg_buy_time_s": 680.0,
             "phase": "early",
             "avg_sell_time_s": 1855.4,
@@ -4460,8 +4460,8 @@
             "wins": 71,
             "win_rate": 0.4931,
             "wilson_lb": 0.4126,
-            "score": -0.0874,
-            "wr_delta_pp": -0.69,
+            "score": -0.0868,
+            "wr_delta_pp": -0.64,
             "avg_buy_time_s": 578.7,
             "phase": "early",
             "avg_sell_time_s": 1900.8,
@@ -4497,8 +4497,8 @@
             "wins": 137,
             "win_rate": 0.5569,
             "wilson_lb": 0.4944,
-            "score": -0.0056,
-            "wr_delta_pp": 5.69,
+            "score": -0.005,
+            "wr_delta_pp": 5.75,
             "avg_buy_time_s": 1818.7,
             "phase": "late",
             "avg_sell_time_s": 2267.0,
@@ -4520,8 +4520,8 @@
             "wins": 128,
             "win_rate": 0.5447,
             "wilson_lb": 0.4808,
-            "score": -0.0192,
-            "wr_delta_pp": 4.47,
+            "score": -0.0186,
+            "wr_delta_pp": 4.52,
             "avg_buy_time_s": 943.4,
             "phase": "mid",
             "avg_sell_time_s": 1794.2,
@@ -4543,8 +4543,8 @@
             "wins": 117,
             "win_rate": 0.5417,
             "wilson_lb": 0.4751,
-            "score": -0.0249,
-            "wr_delta_pp": 4.17,
+            "score": -0.0244,
+            "wr_delta_pp": 4.22,
             "avg_buy_time_s": 174.1,
             "phase": "early",
             "avg_sell_time_s": 1421.3,
@@ -4566,8 +4566,8 @@
             "wins": 327,
             "win_rate": 0.5125,
             "wilson_lb": 0.4738,
-            "score": -0.0262,
-            "wr_delta_pp": 1.25,
+            "score": -0.0257,
+            "wr_delta_pp": 1.31,
             "avg_buy_time_s": 681.3,
             "phase": "early",
             "avg_sell_time_s": 811.1,
@@ -4589,8 +4589,8 @@
             "wins": 228,
             "win_rate": 0.5772,
             "wilson_lb": 0.528,
-            "score": 0.028,
-            "wr_delta_pp": 7.72,
+            "score": 0.0285,
+            "wr_delta_pp": 7.78,
             "avg_buy_time_s": 1703.5,
             "phase": "late",
             "avg_sell_time_s": 1893.6,
@@ -4638,8 +4638,8 @@
             "wins": 136,
             "win_rate": 0.5812,
             "wilson_lb": 0.5172,
-            "score": 0.0172,
-            "wr_delta_pp": 8.12,
+            "score": 0.0177,
+            "wr_delta_pp": 8.18,
             "avg_buy_time_s": 1829.4,
             "phase": "late",
             "avg_sell_time_s": 1663.0,
@@ -4661,8 +4661,8 @@
             "wins": 409,
             "win_rate": 0.5237,
             "wilson_lb": 0.4886,
-            "score": -0.0114,
-            "wr_delta_pp": 2.37,
+            "score": -0.0108,
+            "wr_delta_pp": 2.42,
             "avg_buy_time_s": 1341.2,
             "phase": "mid",
             "avg_sell_time_s": 2066.8,
@@ -4698,8 +4698,8 @@
             "wins": 132,
             "win_rate": 0.5432,
             "wilson_lb": 0.4804,
-            "score": -0.0196,
-            "wr_delta_pp": 4.32,
+            "score": -0.0191,
+            "wr_delta_pp": 4.38,
             "avg_buy_time_s": 1860.1,
             "phase": "late",
             "avg_sell_time_s": 2212.4,
@@ -4735,8 +4735,8 @@
             "wins": 279,
             "win_rate": 0.5215,
             "wilson_lb": 0.4792,
-            "score": -0.0208,
-            "wr_delta_pp": 2.15,
+            "score": -0.0203,
+            "wr_delta_pp": 2.2,
             "avg_buy_time_s": 1555.0,
             "phase": "late",
             "avg_sell_time_s": 1762.0,
@@ -4772,8 +4772,8 @@
             "wins": 404,
             "win_rate": 0.5082,
             "wilson_lb": 0.4735,
-            "score": -0.0265,
-            "wr_delta_pp": 0.82,
+            "score": -0.026,
+            "wr_delta_pp": 0.87,
             "avg_buy_time_s": 1025.9,
             "phase": "mid",
             "avg_sell_time_s": 1761.2,
@@ -4809,8 +4809,8 @@
             "wins": 150,
             "win_rate": 0.5034,
             "wilson_lb": 0.4469,
-            "score": -0.0531,
-            "wr_delta_pp": 0.34,
+            "score": -0.0525,
+            "wr_delta_pp": 0.39,
             "avg_buy_time_s": 599.9,
             "phase": "early",
             "avg_sell_time_s": 829.8,
@@ -4832,8 +4832,8 @@
             "wins": 303,
             "win_rate": 0.4825,
             "wilson_lb": 0.4436,
-            "score": -0.0564,
-            "wr_delta_pp": -1.75,
+            "score": -0.0558,
+            "wr_delta_pp": -1.7,
             "avg_buy_time_s": 1035.4,
             "phase": "mid",
             "avg_sell_time_s": 1456.2,
@@ -5064,8 +5064,8 @@
   },
   "ability_orders": {
     "all_mmr": {
-      "total_records": 247,
-      "total_matches": 72327,
+      "total_records": 248,
+      "total_matches": 72922,
       "ability_priority": [
         {
           "ability_id": 103496908,
@@ -5134,11 +5134,11 @@
             "Call Bell",
             "Call Bell"
           ],
-          "wins": 217,
-          "losses": 126,
-          "matches": 343,
-          "players": 188,
-          "win_rate": 0.6327
+          "wins": 220,
+          "losses": 128,
+          "matches": 348,
+          "players": 190,
+          "win_rate": 0.6322
         },
         {
           "sequence_ids": [
@@ -5220,11 +5220,11 @@
             "Hotel Guest",
             "Luggage Cart"
           ],
-          "wins": 2005,
-          "losses": 1265,
-          "matches": 3270,
-          "players": 2194,
-          "win_rate": 0.6131
+          "wins": 2020,
+          "losses": 1270,
+          "matches": 3290,
+          "players": 2202,
+          "win_rate": 0.614
         },
         {
           "sequence_ids": [
@@ -5263,11 +5263,11 @@
             "Call Bell",
             "Call Bell"
           ],
-          "wins": 350,
-          "losses": 224,
-          "matches": 574,
-          "players": 485,
-          "win_rate": 0.6098
+          "wins": 351,
+          "losses": 225,
+          "matches": 576,
+          "players": 487,
+          "win_rate": 0.6094
         },
         {
           "sequence_ids": [
@@ -5306,11 +5306,11 @@
             "Hotel Guest",
             "Hotel Guest"
           ],
-          "wins": 345,
-          "losses": 224,
-          "matches": 569,
-          "players": 341,
-          "win_rate": 0.6063
+          "wins": 349,
+          "losses": 225,
+          "matches": 574,
+          "players": 343,
+          "win_rate": 0.608
         }
       ],
       "best_openers_first4": [
@@ -5321,9 +5321,9 @@
             "Luggage Cart",
             "Luggage Cart"
           ],
-          "wins": 235,
-          "matches": 452,
-          "win_rate": 0.5199
+          "wins": 238,
+          "matches": 457,
+          "win_rate": 0.5208
         },
         {
           "sequence_names": [
@@ -5332,9 +5332,9 @@
             "Doorway",
             "Doorway"
           ],
-          "wins": 6843,
-          "matches": 14079,
-          "win_rate": 0.486
+          "wins": 6907,
+          "matches": 14202,
+          "win_rate": 0.4863
         },
         {
           "sequence_names": [
@@ -5343,9 +5343,9 @@
             "Luggage Cart",
             "Doorway"
           ],
-          "wins": 14699,
-          "matches": 30594,
-          "win_rate": 0.4805
+          "wins": 14804,
+          "matches": 30826,
+          "win_rate": 0.4802
         },
         {
           "sequence_names": [
@@ -5354,9 +5354,9 @@
             "Doorway",
             "Luggage Cart"
           ],
-          "wins": 6487,
-          "matches": 13592,
-          "win_rate": 0.4773
+          "wins": 6527,
+          "matches": 13673,
+          "win_rate": 0.4774
         },
         {
           "sequence_names": [
@@ -5365,15 +5365,15 @@
             "Doorway",
             "Luggage Cart"
           ],
-          "wins": 4890,
-          "matches": 10785,
-          "win_rate": 0.4534
+          "wins": 4956,
+          "matches": 10920,
+          "win_rate": 0.4538
         }
       ]
     },
     "high_mmr": {
       "total_records": 32,
-      "total_matches": 1409,
+      "total_matches": 1418,
       "ability_priority": [
         {
           "ability_id": 103496908,
@@ -5399,7 +5399,7 @@
         {
           "ability_id": 1703045691,
           "name": "Hotel Guest",
-          "avg_ap_all_players": 3.01,
+          "avg_ap_all_players": 3.02,
           "avg_ap_winners": 3.16,
           "winner_premium_ap": 0.14
         }
@@ -5440,11 +5440,11 @@
             "Hotel Guest",
             "Hotel Guest"
           ],
-          "wins": 92,
+          "wins": 94,
           "losses": 76,
-          "matches": 168,
-          "players": 72,
-          "win_rate": 0.5476
+          "matches": 170,
+          "players": 73,
+          "win_rate": 0.5529
         },
         {
           "sequence_ids": [
@@ -5496,9 +5496,9 @@
             "Luggage Cart",
             "Doorway"
           ],
-          "wins": 266,
-          "matches": 484,
-          "win_rate": 0.5496
+          "wins": 271,
+          "matches": 490,
+          "win_rate": 0.5531
         },
         {
           "sequence_names": [
@@ -5507,9 +5507,9 @@
             "Doorway",
             "Luggage Cart"
           ],
-          "wins": 363,
-          "matches": 745,
-          "win_rate": 0.4872
+          "wins": 365,
+          "matches": 747,
+          "win_rate": 0.4886
         }
       ]
     },
