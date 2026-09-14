@@ -491,11 +491,11 @@
           "Crackshot",
           "Crackshot"
         ],
-        "wins": 162,
+        "wins": 163,
         "losses": 95,
-        "matches": 257,
+        "matches": 258,
         "players": 160,
-        "win_rate": 0.6304
+        "win_rate": 0.6318
       },
       "best_opener_first4": {
         "sequence_names": [
@@ -504,9 +504,9 @@
           "Bounce Pad",
           "Crackshot"
         ],
-        "wins": 264,
-        "matches": 505,
-        "win_rate": 0.5228
+        "wins": 265,
+        "matches": 508,
+        "win_rate": 0.5217
       }
     }
   },
@@ -972,7 +972,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "flex",
             "pick_rate": 0.5,
-            "annotation": "If you're the carry or your team needs gun. If you go this path don't max Bounce Pad and insted go Crackshot"
+            "annotation": "You only want to buy this past 30k souls. The multiplicative weapon damage + investment scales INSANE with these stats."
           },
           {
             "item_id": 3812615317,
@@ -1016,6 +1016,30 @@
       },
       "synergy_ilp": {
         "picks": [
+          {
+            "item_id": 1396247347,
+            "name": "Lucky Shot",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 16361,
+            "wins": 9146,
+            "win_rate": 0.559,
+            "wilson_lb": 0.5514,
+            "score": 0.0791,
+            "wr_delta_pp": 8.68,
+            "avg_buy_time_s": 2174.4,
+            "phase": "late",
+            "avg_sell_time_s": 2420.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "weapon",
+            "tag": "flex",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.333,
+            "annotation": "With this and GC alone you fry. If you can aim in general it can be better to put 2 poitns into Crackshot before you max your 2 but it's very aim relient"
+          },
           {
             "item_id": 2226497419,
             "name": "Spiritual Overflow",
@@ -1117,54 +1141,6 @@
             "annotation": "This item will carry you in fights use it off cooldown. Buy before mystic if low on charges."
           },
           {
-            "item_id": 395867183,
-            "name": "Mystic Shot",
-            "category": "weapon",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 63677,
-            "wins": 30040,
-            "win_rate": 0.4718,
-            "wilson_lb": 0.4679,
-            "score": -0.0044,
-            "wr_delta_pp": -0.05,
-            "avg_buy_time_s": 595.8,
-            "phase": "early",
-            "avg_sell_time_s": 2309.4,
-            "is_active": false,
-            "cooldown_s": 8.0,
-            "imbue": null,
-            "slot": "weapon",
-            "tag": "core_inherited",
-            "pick_rate_tag": "flex",
-            "pick_rate": 0.5,
-            "annotation": "Amazing damage item, late game this procs tank buster + spirit burn."
-          },
-          {
-            "item_id": 3361811174,
-            "name": "Cheat Death",
-            "category": "vitality",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 4709,
-            "wins": 2580,
-            "win_rate": 0.5479,
-            "wilson_lb": 0.5336,
-            "score": 0.0614,
-            "wr_delta_pp": 7.56,
-            "avg_buy_time_s": 2431.2,
-            "phase": "late",
-            "avg_sell_time_s": 2778.6,
-            "is_active": false,
-            "cooldown_s": 90.0,
-            "imbue": null,
-            "slot": "vitality",
-            "tag": "flex",
-            "pick_rate_tag": "flex",
-            "pick_rate": 0.333,
-            "annotation": "Generally good past 45+ minutes."
-          },
-          {
             "item_id": 865958998,
             "name": "Veil Walker",
             "category": "vitality",
@@ -1263,6 +1239,30 @@
             "pick_rate_tag": "flex",
             "pick_rate": 0.5,
             "annotation": "Solid Trophy Replacement if lane went bad."
+          },
+          {
+            "item_id": 2829638276,
+            "name": "Extra Regen",
+            "category": "vitality",
+            "tier": 1,
+            "cost": 800,
+            "matches": 15843,
+            "wins": 7408,
+            "win_rate": 0.4676,
+            "wilson_lb": 0.4598,
+            "score": -0.0124,
+            "wr_delta_pp": -0.47,
+            "avg_buy_time_s": 309.9,
+            "phase": "early",
+            "avg_sell_time_s": 1664.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "flex",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.333,
+            "annotation": "Solid regen option."
           },
           {
             "item_id": 3577481646,
@@ -1504,42 +1504,28 @@
             ]
           },
           {
-            "item_id": 2121044373,
-            "name": "Tankbuster",
-            "category": "spirit",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 113489,
-            "wins": 54939,
-            "win_rate": 0.4841,
-            "wilson_lb": 0.4812,
-            "score": 0.0089,
-            "wr_delta_pp": 1.18,
-            "avg_buy_time_s": 1425.3,
-            "phase": "mid",
-            "avg_sell_time_s": 2549.7,
+            "item_id": 395867183,
+            "name": "Mystic Shot",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 63677,
+            "wins": 30040,
+            "win_rate": 0.4718,
+            "wilson_lb": 0.4679,
+            "score": -0.0044,
+            "wr_delta_pp": -0.05,
+            "avg_buy_time_s": 595.8,
+            "phase": "early",
+            "avg_sell_time_s": 2309.4,
             "is_active": false,
-            "cooldown_s": 14.0,
+            "cooldown_s": 8.0,
             "imbue": null,
             "slot": "flex",
-            "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.833,
-            "annotation": "More burst damage = good, everyone stacks spirit res late game and this helps proc spirit burn easier.",
-            "lineage_chain": [
-              {
-                "item_id": 1998374645,
-                "name": "Mystic Burst",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/magic_burst.png",
-                "matches": 96147,
-                "avg_buy_time_min": 13.1,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
+            "tag": "core_inherited",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "Amazing damage item, late game this procs tank buster + spirit burn."
           }
         ]
       },
@@ -1563,7 +1549,7 @@
             "is_active": true,
             "cooldown_s": 30.0,
             "imbue": null,
-            "build_freq_weight": 44.2,
+            "build_freq_weight": 47.0,
             "slot": "weapon",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1588,7 +1574,7 @@
             "is_active": false,
             "cooldown_s": 25.0,
             "imbue": null,
-            "build_freq_weight": 44.2,
+            "build_freq_weight": 47.0,
             "slot": "weapon",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1613,7 +1599,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 34.7,
+            "build_freq_weight": 35.2,
             "slot": "weapon",
             "tag": "trap_popular",
             "pick_rate_tag": "flex",
@@ -1638,7 +1624,7 @@
             "is_active": false,
             "cooldown_s": 8.0,
             "imbue": null,
-            "build_freq_weight": 29.5,
+            "build_freq_weight": 31.1,
             "slot": "weapon",
             "tag": "core_inherited",
             "pick_rate_tag": "flex",
@@ -1663,7 +1649,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 53.3,
+            "build_freq_weight": 55.3,
             "slot": "vitality",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1702,7 +1688,7 @@
             "is_active": false,
             "cooldown_s": 23.0,
             "imbue": null,
-            "build_freq_weight": 53.3,
+            "build_freq_weight": 55.3,
             "slot": "vitality",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1727,7 +1713,7 @@
             "is_active": true,
             "cooldown_s": 45.0,
             "imbue": null,
-            "build_freq_weight": 53.3,
+            "build_freq_weight": 55.3,
             "slot": "vitality",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1752,7 +1738,7 @@
             "is_active": false,
             "cooldown_s": 9.0,
             "imbue": null,
-            "build_freq_weight": 49.4,
+            "build_freq_weight": 51.1,
             "slot": "vitality",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1791,7 +1777,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 53.3,
+            "build_freq_weight": 55.3,
             "slot": "spirit",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1830,7 +1816,7 @@
             "is_active": true,
             "cooldown_s": 55.0,
             "imbue": null,
-            "build_freq_weight": 44.2,
+            "build_freq_weight": 47.0,
             "slot": "spirit",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1855,7 +1841,7 @@
             "is_active": false,
             "cooldown_s": 14.0,
             "imbue": null,
-            "build_freq_weight": 44.2,
+            "build_freq_weight": 47.0,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1894,7 +1880,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 44.2,
+            "build_freq_weight": 47.0,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1919,7 +1905,7 @@
             "is_active": true,
             "cooldown_s": 16.0,
             "imbue": null,
-            "build_freq_weight": 44.2,
+            "build_freq_weight": 47.0,
             "slot": "flex",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1944,7 +1930,7 @@
             "is_active": true,
             "cooldown_s": 27.0,
             "imbue": null,
-            "build_freq_weight": 44.2,
+            "build_freq_weight": 47.0,
             "slot": "flex",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1969,7 +1955,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 44.2,
+            "build_freq_weight": 47.0,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -2020,7 +2006,7 @@
             "is_active": false,
             "cooldown_s": 15.0,
             "imbue": null,
-            "build_freq_weight": 44.2,
+            "build_freq_weight": 47.0,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -2046,38 +2032,38 @@
           {
             "build_id": 658359,
             "name": "Luentii Gun Holliday ( NEW PATCH )",
-            "win_rate": 0.4707,
-            "matches": 495
+            "win_rate": 0.4689,
+            "matches": 499
           },
           {
             "build_id": 551435,
             "name": "illaryaa NEW PATCH",
-            "win_rate": 0.4615,
-            "matches": 429
+            "win_rate": 0.4619,
+            "matches": 433
           },
           {
             "build_id": 335077,
             "name": "Midknight Holiday",
-            "win_rate": 0.4815,
-            "matches": 378
+            "win_rate": 0.4817,
+            "matches": 382
           },
           {
             "build_id": 656157,
             "name": "Jean's Spirit Holliday (w/ Guide & Annotations)",
-            "win_rate": 0.51,
-            "matches": 251
+            "win_rate": 0.5137,
+            "matches": 255
           },
           {
             "build_id": 322255,
             "name": "twitch.tv/oses7",
             "win_rate": 0.4954,
-            "matches": 216
+            "matches": 218
           },
           {
             "build_id": 507533,
             "name": "wrthcrw Hybrid Holliday [NEW PATCH]",
-            "win_rate": 0.4783,
-            "matches": 207
+            "win_rate": 0.4833,
+            "matches": 209
           }
         ]
       },
@@ -2095,10 +2081,10 @@
             "Bounce Pad"
           ],
           "n_builds": 2,
-          "total_matches": 807,
-          "total_wins": 380,
-          "mean_win_rate": 0.4709,
-          "win_rate_lift_pp": -0.14,
+          "total_matches": 815,
+          "total_wins": 384,
+          "mean_win_rate": 0.4712,
+          "win_rate_lift_pp": -0.11,
           "consensus_ladder_ids": [
             1235098866,
             4179229681,
@@ -2172,7 +2158,7 @@
               "is_active": false,
               "cooldown_s": 8.0,
               "imbue": null,
-              "joint_freq_weight": 15.0,
+              "joint_freq_weight": 15.4,
               "slot": "weapon",
               "tag": "core_inherited",
               "pick_rate_tag": "flex",
@@ -2197,7 +2183,7 @@
               "is_active": true,
               "cooldown_s": 30.0,
               "imbue": null,
-              "joint_freq_weight": 15.0,
+              "joint_freq_weight": 15.4,
               "slot": "weapon",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2222,7 +2208,7 @@
               "is_active": false,
               "cooldown_s": 25.0,
               "imbue": null,
-              "joint_freq_weight": 15.0,
+              "joint_freq_weight": 15.4,
               "slot": "weapon",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -2247,7 +2233,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 11.1,
+              "joint_freq_weight": 11.2,
               "slot": "weapon",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -2272,12 +2258,12 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 15.0,
+              "joint_freq_weight": 15.4,
               "slot": "vitality",
               "tag": "trap_popular",
               "pick_rate_tag": "flex",
               "pick_rate": 0.5,
-              "annotation": "This item is really good when ahead for ear;y rifts. It just gives you so much hp."
+              "annotation": "Good early anti-heal investment, sell later for Crippling Headshot/Spirit Burn."
             },
             {
               "item_id": 1662311306,
@@ -2297,7 +2283,7 @@
               "is_active": true,
               "cooldown_s": 45.0,
               "imbue": null,
-              "joint_freq_weight": 15.0,
+              "joint_freq_weight": 15.4,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -2348,7 +2334,7 @@
               "is_active": true,
               "cooldown_s": 16.0,
               "imbue": null,
-              "joint_freq_weight": 15.0,
+              "joint_freq_weight": 15.4,
               "slot": "vitality",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -2373,7 +2359,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 15.0,
+              "joint_freq_weight": 15.4,
               "slot": "vitality",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -2412,7 +2398,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 15.0,
+              "joint_freq_weight": 15.4,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -2451,7 +2437,7 @@
               "is_active": true,
               "cooldown_s": 55.0,
               "imbue": null,
-              "joint_freq_weight": 15.0,
+              "joint_freq_weight": 15.4,
               "slot": "spirit",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -2476,7 +2462,7 @@
               "is_active": false,
               "cooldown_s": 14.0,
               "imbue": null,
-              "joint_freq_weight": 15.0,
+              "joint_freq_weight": 15.4,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2515,7 +2501,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 15.0,
+              "joint_freq_weight": 15.4,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2540,7 +2526,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 15.0,
+              "joint_freq_weight": 15.4,
               "slot": "flex",
               "tag": "core_inherited",
               "pick_rate_tag": "flex",
@@ -2565,7 +2551,7 @@
               "is_active": true,
               "cooldown_s": 35.0,
               "imbue": null,
-              "joint_freq_weight": 15.0,
+              "joint_freq_weight": 15.4,
               "slot": "flex",
               "tag": "trap_popular",
               "pick_rate_tag": "flex",
@@ -2590,7 +2576,7 @@
               "is_active": true,
               "cooldown_s": 27.0,
               "imbue": null,
-              "joint_freq_weight": 15.0,
+              "joint_freq_weight": 15.4,
               "slot": "flex",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -2615,7 +2601,7 @@
               "is_active": false,
               "cooldown_s": 23.0,
               "imbue": null,
-              "joint_freq_weight": 15.0,
+              "joint_freq_weight": 15.4,
               "slot": "flex",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -2627,14 +2613,14 @@
             {
               "build_id": 551435,
               "name": "illaryaa NEW PATCH",
-              "win_rate": 0.4615,
-              "matches": 429
+              "win_rate": 0.4619,
+              "matches": 433
             },
             {
               "build_id": 335077,
               "name": "Midknight Holiday",
-              "win_rate": 0.4815,
-              "matches": 378
+              "win_rate": 0.4817,
+              "matches": 382
             }
           ]
         }
@@ -2796,7 +2782,7 @@
         "365620721": {
           "tag": "flex",
           "pick_rate": 0.5,
-          "annotation": "If you're the carry or your team needs gun. If you go this path don't max Bounce Pad and insted go Crackshot",
+          "annotation": "You only want to buy this past 30k souls. The multiplicative weapon damage + investment scales INSANE with these stats.",
           "builds_appearing_in": 3,
           "builds_total": 6,
           "imbue_target_id": null,
@@ -3057,7 +3043,7 @@
         "3074274290": {
           "tag": "flex",
           "pick_rate": 0.667,
-          "annotation": "Yes, you can now buy this item on her, buy over Enchanter's (if you're roaming early you could get it before Rapid Recharge). No, I am not happy about it.",
+          "annotation": "BUY EARLY IF YOU CAN GET KILLS IN LANE OR ROAMING!!! Skip Mystic Burst and rush this + Surge of Power after Rapid Recharge.",
           "builds_appearing_in": 4,
           "builds_total": 6,
           "imbue_target_id": null,
@@ -3066,7 +3052,7 @@
         "2603935618": {
           "tag": "flex",
           "pick_rate": 0.5,
-          "annotation": "This item is really good when ahead for ear;y rifts. It just gives you so much hp.",
+          "annotation": "Good early anti-heal investment, sell later for Crippling Headshot/Spirit Burn.",
           "builds_appearing_in": 3,
           "builds_total": 6,
           "imbue_target_id": null,
@@ -5926,8 +5912,8 @@
   },
   "ability_orders": {
     "all_mmr": {
-      "total_records": 228,
-      "total_matches": 114901,
+      "total_records": 233,
+      "total_matches": 117965,
       "ability_priority": [
         {
           "ability_id": 1235098866,
@@ -5947,14 +5933,14 @@
           "ability_id": 3190606822,
           "name": "Spirit Lasso",
           "avg_ap_all_players": 3.82,
-          "avg_ap_winners": 3.87,
+          "avg_ap_winners": 3.86,
           "winner_premium_ap": 0.05
         },
         {
           "ability_id": 4179229681,
           "name": "Crackshot",
-          "avg_ap_all_players": 3.26,
-          "avg_ap_winners": 3.41,
+          "avg_ap_all_players": 3.27,
+          "avg_ap_winners": 3.42,
           "winner_premium_ap": 0.15
         }
       ],
@@ -5996,11 +5982,54 @@
             "Spirit Lasso",
             "Spirit Lasso"
           ],
-          "wins": 268,
-          "losses": 153,
-          "matches": 421,
-          "players": 324,
-          "win_rate": 0.6366
+          "wins": 272,
+          "losses": 156,
+          "matches": 428,
+          "players": 329,
+          "win_rate": 0.6355
+        },
+        {
+          "sequence_ids": [
+            1235098866,
+            1235098866,
+            4179229681,
+            2240607294,
+            1235098866,
+            2240607294,
+            3190606822,
+            1235098866,
+            3190606822,
+            3190606822,
+            3190606822,
+            2240607294,
+            2240607294,
+            4179229681,
+            4179229681,
+            4179229681
+          ],
+          "sequence_names": [
+            "Powder Keg",
+            "Powder Keg",
+            "Crackshot",
+            "Bounce Pad",
+            "Powder Keg",
+            "Bounce Pad",
+            "Spirit Lasso",
+            "Powder Keg",
+            "Spirit Lasso",
+            "Spirit Lasso",
+            "Spirit Lasso",
+            "Bounce Pad",
+            "Bounce Pad",
+            "Crackshot",
+            "Crackshot",
+            "Crackshot"
+          ],
+          "wins": 281,
+          "losses": 169,
+          "matches": 450,
+          "players": 295,
+          "win_rate": 0.6244
         },
         {
           "sequence_ids": [
@@ -6039,11 +6068,11 @@
             "Spirit Lasso",
             "Spirit Lasso"
           ],
-          "wins": 182,
-          "losses": 107,
-          "matches": 289,
-          "players": 273,
-          "win_rate": 0.6298
+          "wins": 186,
+          "losses": 112,
+          "matches": 298,
+          "players": 281,
+          "win_rate": 0.6242
         },
         {
           "sequence_ids": [
@@ -6082,11 +6111,11 @@
             "Crackshot",
             "Crackshot"
           ],
-          "wins": 560,
-          "losses": 340,
-          "matches": 900,
-          "players": 528,
-          "win_rate": 0.6222
+          "wins": 568,
+          "losses": 349,
+          "matches": 917,
+          "players": 537,
+          "win_rate": 0.6194
         },
         {
           "sequence_ids": [
@@ -6094,49 +6123,6 @@
             1235098866,
             4179229681,
             2240607294,
-            1235098866,
-            2240607294,
-            3190606822,
-            1235098866,
-            3190606822,
-            3190606822,
-            3190606822,
-            2240607294,
-            2240607294,
-            4179229681,
-            4179229681,
-            4179229681
-          ],
-          "sequence_names": [
-            "Powder Keg",
-            "Powder Keg",
-            "Crackshot",
-            "Bounce Pad",
-            "Powder Keg",
-            "Bounce Pad",
-            "Spirit Lasso",
-            "Powder Keg",
-            "Spirit Lasso",
-            "Spirit Lasso",
-            "Spirit Lasso",
-            "Bounce Pad",
-            "Bounce Pad",
-            "Crackshot",
-            "Crackshot",
-            "Crackshot"
-          ],
-          "wins": 273,
-          "losses": 166,
-          "matches": 439,
-          "players": 287,
-          "win_rate": 0.6219
-        },
-        {
-          "sequence_ids": [
-            1235098866,
-            1235098866,
-            2240607294,
-            4179229681,
             1235098866,
             3190606822,
             1235098866,
@@ -6153,8 +6139,8 @@
           "sequence_names": [
             "Powder Keg",
             "Powder Keg",
-            "Bounce Pad",
             "Crackshot",
+            "Bounce Pad",
             "Powder Keg",
             "Spirit Lasso",
             "Powder Keg",
@@ -6168,11 +6154,11 @@
             "Crackshot",
             "Crackshot"
           ],
-          "wins": 1089,
-          "losses": 696,
-          "matches": 1785,
-          "players": 1039,
-          "win_rate": 0.6101
+          "wins": 159,
+          "losses": 101,
+          "matches": 260,
+          "players": 159,
+          "win_rate": 0.6115
         }
       ],
       "best_openers_first4": [
@@ -6183,9 +6169,9 @@
             "Powder Keg",
             "Bounce Pad"
           ],
-          "wins": 453,
-          "matches": 825,
-          "win_rate": 0.5491
+          "wins": 465,
+          "matches": 840,
+          "win_rate": 0.5536
         },
         {
           "sequence_names": [
@@ -6194,9 +6180,9 @@
             "Crackshot",
             "Crackshot"
           ],
-          "wins": 381,
-          "matches": 724,
-          "win_rate": 0.5262
+          "wins": 397,
+          "matches": 750,
+          "win_rate": 0.5293
         },
         {
           "sequence_names": [
@@ -6205,20 +6191,9 @@
             "Bounce Pad",
             "Crackshot"
           ],
-          "wins": 6394,
-          "matches": 12899,
-          "win_rate": 0.4957
-        },
-        {
-          "sequence_names": [
-            "Powder Keg",
-            "Powder Keg",
-            "Bounce Pad",
-            "Bounce Pad"
-          ],
-          "wins": 709,
-          "matches": 1464,
-          "win_rate": 0.4843
+          "wins": 6590,
+          "matches": 13276,
+          "win_rate": 0.4964
         },
         {
           "sequence_names": [
@@ -6227,15 +6202,26 @@
             "Crackshot",
             "Bounce Pad"
           ],
-          "wins": 37678,
-          "matches": 77903,
-          "win_rate": 0.4837
+          "wins": 38539,
+          "matches": 79716,
+          "win_rate": 0.4835
+        },
+        {
+          "sequence_names": [
+            "Powder Keg",
+            "Powder Keg",
+            "Bounce Pad",
+            "Bounce Pad"
+          ],
+          "wins": 727,
+          "matches": 1508,
+          "win_rate": 0.4821
         }
       ]
     },
     "high_mmr": {
       "total_records": 41,
-      "total_matches": 4768,
+      "total_matches": 4803,
       "ability_priority": [
         {
           "ability_id": 1235098866,
@@ -6304,11 +6290,11 @@
             "Crackshot",
             "Crackshot"
           ],
-          "wins": 162,
+          "wins": 163,
           "losses": 95,
-          "matches": 257,
+          "matches": 258,
           "players": 160,
-          "win_rate": 0.6304
+          "win_rate": 0.6318
         },
         {
           "sequence_ids": [
@@ -6345,11 +6331,11 @@
             "Crackshot",
             "Crackshot"
           ],
-          "wins": 863,
-          "losses": 555,
-          "matches": 1418,
-          "players": 420,
-          "win_rate": 0.6086
+          "wins": 872,
+          "losses": 562,
+          "matches": 1434,
+          "players": 423,
+          "win_rate": 0.6081
         },
         {
           "sequence_ids": [
@@ -6386,11 +6372,11 @@
             "Crackshot",
             "Crackshot"
           ],
-          "wins": 60,
+          "wins": 61,
           "losses": 40,
-          "matches": 100,
+          "matches": 101,
           "players": 38,
-          "win_rate": 0.6
+          "win_rate": 0.604
         },
         {
           "sequence_ids": [
@@ -6427,11 +6413,11 @@
             "Bounce Pad",
             "Bounce Pad"
           ],
-          "wins": 244,
+          "wins": 248,
           "losses": 185,
-          "matches": 429,
-          "players": 161,
-          "win_rate": 0.5688
+          "matches": 433,
+          "players": 162,
+          "win_rate": 0.5727
         },
         {
           "sequence_ids": [
@@ -6485,9 +6471,9 @@
             "Bounce Pad",
             "Crackshot"
           ],
-          "wins": 264,
-          "matches": 505,
-          "win_rate": 0.5228
+          "wins": 265,
+          "matches": 508,
+          "win_rate": 0.5217
         },
         {
           "sequence_names": [
@@ -6496,15 +6482,15 @@
             "Crackshot",
             "Bounce Pad"
           ],
-          "wins": 2126,
-          "matches": 4149,
-          "win_rate": 0.5124
+          "wins": 2144,
+          "matches": 4179,
+          "win_rate": 0.513
         }
       ]
     },
     "ascendant_plus": {
       "total_records": 20,
-      "total_matches": 818,
+      "total_matches": 823,
       "ability_priority": [
         {
           "ability_id": 1235098866,
@@ -6572,10 +6558,10 @@
             "Crackshot"
           ],
           "wins": 180,
-          "losses": 99,
-          "matches": 279,
+          "losses": 100,
+          "matches": 280,
           "players": 94,
-          "win_rate": 0.6452
+          "win_rate": 0.6429
         },
         {
           "sequence_ids": [
@@ -6610,9 +6596,9 @@
             "Bounce Pad",
             "Crackshot"
           ],
-          "wins": 60,
-          "losses": 61,
-          "matches": 121,
+          "wins": 61,
+          "losses": 62,
+          "matches": 123,
           "players": 70,
           "win_rate": 0.4959
         },
@@ -6660,15 +6646,15 @@
             "Crackshot",
             "Bounce Pad"
           ],
-          "wins": 394,
-          "matches": 751,
-          "win_rate": 0.5246
+          "wins": 397,
+          "matches": 756,
+          "win_rate": 0.5251
         }
       ]
     },
     "eternus_plus": {
       "total_records": 2,
-      "total_matches": 21,
+      "total_matches": 22,
       "ability_priority": [
         {
           "ability_id": 1235098866,
@@ -6694,9 +6680,9 @@
         {
           "ability_id": 4179229681,
           "name": "Crackshot",
-          "avg_ap_all_players": 2.52,
+          "avg_ap_all_players": 2.5,
           "avg_ap_winners": 2.78,
-          "winner_premium_ap": 0.25
+          "winner_premium_ap": 0.28
         }
       ],
       "best_full_orders": [],

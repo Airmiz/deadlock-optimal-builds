@@ -57,25 +57,9 @@
     "items": {
       "method": "synergy_ilp",
       "mmr_slice": "high_mmr",
-      "total_cost": 53600,
+      "total_cost": 67200,
       "phases": {
         "early": [
-          {
-            "slot": "flex",
-            "category": "spirit",
-            "tier": 1,
-            "cost": 800,
-            "name": "Golden Goose Egg",
-            "item_id": 2462046703,
-            "avg_buy_time_min": 1.5,
-            "avg_sell_time_min": 21.1,
-            "win_rate": 0.538,
-            "tag": "tech_pick",
-            "pick_rate": 0.0,
-            "is_active": true,
-            "cooldown_s": null,
-            "imbue": null
-          },
           {
             "slot": "weapon",
             "category": "weapon",
@@ -141,19 +125,19 @@
         ],
         "mid": [
           {
-            "slot": "vitality",
-            "category": "vitality",
-            "tier": 2,
-            "cost": 1600,
-            "name": "Healbane",
-            "item_id": 2603935618,
-            "avg_buy_time_min": 13.8,
-            "avg_sell_time_min": 35.2,
-            "win_rate": 0.5178,
-            "tag": "stat",
+            "slot": "flex",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "name": "Torment Pulse",
+            "item_id": 395944548,
+            "avg_buy_time_min": 12.8,
+            "avg_sell_time_min": 32.4,
+            "win_rate": 0.5437,
+            "tag": "tech_pick",
             "pick_rate": 0.0,
             "is_active": false,
-            "cooldown_s": null,
+            "cooldown_s": 1.4,
             "imbue": null
           },
           {
@@ -180,36 +164,6 @@
                 "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/extra_charge.png",
                 "matches": 6375,
                 "avg_buy_time_min": 4.6,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
-          },
-          {
-            "slot": "flex",
-            "category": "spirit",
-            "tier": 3,
-            "cost": 3200,
-            "name": "Tankbuster",
-            "item_id": 2121044373,
-            "avg_buy_time_min": 21.9,
-            "avg_sell_time_min": 30.4,
-            "win_rate": 0.5439,
-            "tag": "tech_pick",
-            "pick_rate": 0.0,
-            "is_active": false,
-            "cooldown_s": 14.0,
-            "imbue": null,
-            "lineage_chain": [
-              {
-                "item_id": 1998374645,
-                "name": "Mystic Burst",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/magic_burst.png",
-                "matches": 2323,
-                "avg_buy_time_min": 10.7,
                 "imbue": null,
                 "imbue_target_id": null,
                 "imbue_target_share": null
@@ -311,34 +265,78 @@
             ]
           },
           {
-            "slot": "spirit",
-            "category": "spirit",
-            "tier": 3,
-            "cost": 3200,
-            "name": "Greater Expansion",
-            "item_id": 1193964439,
-            "avg_buy_time_min": 27.3,
-            "avg_sell_time_min": 30.5,
-            "win_rate": 0.5735,
+            "slot": "vitality",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "name": "Divine Barrier",
+            "item_id": 1662311306,
+            "avg_buy_time_min": 28.4,
+            "avg_sell_time_min": 37.0,
+            "win_rate": 0.6126,
             "tag": "stat_anomaly",
             "pick_rate": 0.0,
-            "is_active": false,
-            "cooldown_s": null,
+            "is_active": true,
+            "cooldown_s": 45.0,
             "imbue": null,
             "lineage_chain": [
               {
-                "item_id": 754480263,
-                "name": "Mystic Expansion",
+                "item_id": 1672893796,
+                "name": "Grit",
                 "tier": 1,
                 "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/tech_range.png",
-                "matches": 5249,
-                "avg_buy_time_min": 16.1,
-                "imbue": "imbue_modifier_value",
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/bullet_shield.png",
+                "matches": 842,
+                "avg_buy_time_min": 16.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 857669956,
+                "name": "Guardian Ward",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/savior.png",
+                "matches": 911,
+                "avg_buy_time_min": 17.5,
+                "imbue": null,
                 "imbue_target_id": null,
                 "imbue_target_share": null
               }
             ]
+          },
+          {
+            "slot": "spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "name": "Spirit Burn",
+            "item_id": 343572757,
+            "avg_buy_time_min": 30.0,
+            "avg_sell_time_min": 31.9,
+            "win_rate": 0.6168,
+            "tag": "stat_anomaly",
+            "pick_rate": 0.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null
+          },
+          {
+            "slot": "flex",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "name": "Refresher",
+            "item_id": 677738769,
+            "avg_buy_time_min": 32.3,
+            "avg_sell_time_min": 36.1,
+            "win_rate": 0.5702,
+            "tag": "stat_anomaly",
+            "pick_rate": 0.0,
+            "is_active": true,
+            "cooldown_s": 300.0,
+            "imbue": null
           },
           {
             "slot": "vitality",
@@ -460,8 +458,8 @@
     "abilities": {
       "ap_priority_order": [
         "Ice Path",
-        "Frost Grenade",
         "Arctic Beam",
+        "Frost Grenade",
         "Frozen Shelter"
       ],
       "best_full_order": {
@@ -513,8 +511,8 @@
           "Arctic Beam"
         ],
         "wins": 139,
-        "matches": 235,
-        "win_rate": 0.5915
+        "matches": 236,
+        "win_rate": 0.589
       }
     }
   },
@@ -1635,7 +1633,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 15.0,
+            "build_freq_weight": 14.5,
             "slot": "vitality",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1660,7 +1658,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 15.0,
+            "build_freq_weight": 14.5,
             "slot": "vitality",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -1685,7 +1683,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 11.5,
+            "build_freq_weight": 10.0,
             "slot": "vitality",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -1710,7 +1708,7 @@
             "is_active": true,
             "cooldown_s": 24.0,
             "imbue": null,
-            "build_freq_weight": 11.5,
+            "build_freq_weight": 10.0,
             "slot": "vitality",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -1735,7 +1733,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 15.0,
+            "build_freq_weight": 14.5,
             "slot": "spirit",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1774,7 +1772,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 15.0,
+            "build_freq_weight": 14.5,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1813,7 +1811,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 15.0,
+            "build_freq_weight": 14.5,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1852,7 +1850,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 15.0,
+            "build_freq_weight": 14.5,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1877,7 +1875,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 15.0,
+            "build_freq_weight": 14.5,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1916,7 +1914,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 15.0,
+            "build_freq_weight": 14.5,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1967,7 +1965,7 @@
             "is_active": false,
             "cooldown_s": 1.4,
             "imbue": null,
-            "build_freq_weight": 15.0,
+            "build_freq_weight": 14.5,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1992,7 +1990,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 15.0,
+            "build_freq_weight": 14.5,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -2018,26 +2016,26 @@
           {
             "build_id": 241631,
             "name": "Cirno's Medi-Beam",
-            "win_rate": 0.524,
-            "matches": 542
+            "win_rate": 0.522,
+            "matches": 546
           },
           {
             "build_id": 722326,
             "name": "Kelvin - THE CARRY MACHINE - deadlocked.gg",
-            "win_rate": 0.5474,
-            "matches": 380
+            "win_rate": 0.5452,
+            "matches": 398
           },
           {
             "build_id": 229306,
             "name": "Cirno's Healnade",
-            "win_rate": 0.5096,
-            "matches": 365
+            "win_rate": 0.5095,
+            "matches": 369
           },
           {
             "build_id": 317830,
             "name": "Kelvin - Spirit-Initiator [57% WR] [tracklock.gg]",
-            "win_rate": 0.5381,
-            "matches": 210
+            "win_rate": 0.5421,
+            "matches": 214
           }
         ]
       },
@@ -2055,10 +2053,10 @@
             "Ice Path"
           ],
           "n_builds": 2,
-          "total_matches": 590,
-          "total_wins": 321,
+          "total_matches": 612,
+          "total_wins": 333,
           "mean_win_rate": 0.5441,
-          "win_rate_lift_pp": 0.29,
+          "win_rate_lift_pp": 0.3,
           "consensus_ladder_ids": [
             18921423,
             2351041382,
@@ -2134,7 +2132,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 13.5,
+              "joint_freq_weight": 14.0,
               "slot": "vitality",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -2159,7 +2157,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 13.5,
+              "joint_freq_weight": 14.0,
               "slot": "vitality",
               "tag": "trap_popular",
               "pick_rate_tag": "core",
@@ -2184,7 +2182,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 10.0,
+              "joint_freq_weight": 9.6,
               "slot": "vitality",
               "tag": "trap_popular",
               "pick_rate_tag": "core",
@@ -2209,7 +2207,7 @@
               "is_active": true,
               "cooldown_s": 24.0,
               "imbue": null,
-              "joint_freq_weight": 10.0,
+              "joint_freq_weight": 9.6,
               "slot": "vitality",
               "tag": "trap_popular",
               "pick_rate_tag": "core",
@@ -2234,7 +2232,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 13.5,
+              "joint_freq_weight": 14.0,
               "slot": "spirit",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -2273,7 +2271,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 13.5,
+              "joint_freq_weight": 14.0,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2312,7 +2310,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 13.5,
+              "joint_freq_weight": 14.0,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2351,7 +2349,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 13.5,
+              "joint_freq_weight": 14.0,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2376,7 +2374,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 13.5,
+              "joint_freq_weight": 14.0,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2415,7 +2413,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 13.5,
+              "joint_freq_weight": 14.0,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2466,7 +2464,7 @@
               "is_active": false,
               "cooldown_s": 1.4,
               "imbue": null,
-              "joint_freq_weight": 13.5,
+              "joint_freq_weight": 14.0,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2491,7 +2489,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 13.5,
+              "joint_freq_weight": 14.0,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2517,14 +2515,14 @@
             {
               "build_id": 722326,
               "name": "Kelvin - THE CARRY MACHINE - deadlocked.gg",
-              "win_rate": 0.5474,
-              "matches": 380
+              "win_rate": 0.5452,
+              "matches": 398
             },
             {
               "build_id": 317830,
               "name": "Kelvin - Spirit-Initiator [57% WR] [tracklock.gg]",
-              "win_rate": 0.5381,
-              "matches": 210
+              "win_rate": 0.5421,
+              "matches": 214
             }
           ]
         }
@@ -3869,6 +3867,55 @@
             ]
           },
           {
+            "item_id": 1662311306,
+            "name": "Divine Barrier",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 666,
+            "wins": 408,
+            "win_rate": 0.6126,
+            "wilson_lb": 0.5751,
+            "score": 0.0602,
+            "wr_delta_pp": 9.78,
+            "avg_buy_time_s": 1706.9,
+            "phase": "late",
+            "avg_sell_time_s": 2222.4,
+            "is_active": true,
+            "cooldown_s": 45.0,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 1672893796,
+                "name": "Grit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/bullet_shield.png",
+                "matches": 842,
+                "avg_buy_time_min": 16.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 857669956,
+                "name": "Guardian Ward",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/savior.png",
+                "matches": 911,
+                "avg_buy_time_min": 17.5,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
             "item_id": 1427630806,
             "name": "Healing Tempo",
             "category": "vitality",
@@ -3955,25 +4002,25 @@
             ]
           },
           {
-            "item_id": 2603935618,
-            "name": "Healbane",
-            "category": "vitality",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 4884,
-            "wins": 2529,
-            "win_rate": 0.5178,
-            "wilson_lb": 0.5038,
-            "score": -0.011,
-            "wr_delta_pp": 0.3,
-            "avg_buy_time_s": 828.5,
-            "phase": "mid",
-            "avg_sell_time_s": 2112.0,
+            "item_id": 343572757,
+            "name": "Spirit Burn",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1905,
+            "wins": 1175,
+            "win_rate": 0.6168,
+            "wilson_lb": 0.5948,
+            "score": 0.0799,
+            "wr_delta_pp": 10.2,
+            "avg_buy_time_s": 1801.7,
+            "phase": "late",
+            "avg_sell_time_s": 1915.9,
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "slot": "vitality",
-            "tag": "stat",
+            "slot": "spirit",
+            "tag": "stat_anomaly",
             "pick_rate_tag": "stat",
             "pick_rate": 0.0
           },
@@ -4087,43 +4134,6 @@
             "pick_rate": 0.0
           },
           {
-            "item_id": 1193964439,
-            "name": "Greater Expansion",
-            "category": "spirit",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 3794,
-            "wins": 2176,
-            "win_rate": 0.5735,
-            "wilson_lb": 0.5577,
-            "score": 0.0429,
-            "wr_delta_pp": 5.87,
-            "avg_buy_time_s": 1638.9,
-            "phase": "late",
-            "avg_sell_time_s": 1828.5,
-            "is_active": false,
-            "cooldown_s": null,
-            "imbue": null,
-            "slot": "spirit",
-            "tag": "stat_anomaly",
-            "pick_rate_tag": "stat",
-            "pick_rate": 0.0,
-            "lineage_chain": [
-              {
-                "item_id": 754480263,
-                "name": "Mystic Expansion",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/tech_range.png",
-                "matches": 5249,
-                "avg_buy_time_min": 16.1,
-                "imbue": "imbue_modifier_value",
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
-          },
-          {
             "item_id": 3005970438,
             "name": "Escalating Exposure",
             "category": "spirit",
@@ -4159,6 +4169,29 @@
                 "imbue_target_share": null
               }
             ]
+          },
+          {
+            "item_id": 677738769,
+            "name": "Refresher",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 584,
+            "wins": 333,
+            "win_rate": 0.5702,
+            "wilson_lb": 0.5297,
+            "score": 0.0149,
+            "wr_delta_pp": 5.54,
+            "avg_buy_time_s": 1938.9,
+            "phase": "late",
+            "avg_sell_time_s": 2167.5,
+            "is_active": true,
+            "cooldown_s": 300.0,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
           },
           {
             "item_id": 787198704,
@@ -4198,59 +4231,22 @@
             ]
           },
           {
-            "item_id": 2121044373,
-            "name": "Tankbuster",
+            "item_id": 395944548,
+            "name": "Torment Pulse",
             "category": "spirit",
             "tier": 3,
             "cost": 3200,
-            "matches": 2219,
-            "wins": 1207,
-            "win_rate": 0.5439,
-            "wilson_lb": 0.5232,
-            "score": 0.0083,
-            "wr_delta_pp": 2.91,
-            "avg_buy_time_s": 1313.1,
+            "matches": 1613,
+            "wins": 877,
+            "win_rate": 0.5437,
+            "wilson_lb": 0.5193,
+            "score": 0.0045,
+            "wr_delta_pp": 2.89,
+            "avg_buy_time_s": 770.3,
             "phase": "mid",
-            "avg_sell_time_s": 1824.8,
+            "avg_sell_time_s": 1946.4,
             "is_active": false,
-            "cooldown_s": 14.0,
-            "imbue": null,
-            "slot": "flex",
-            "tag": "tech_pick",
-            "pick_rate_tag": "stat",
-            "pick_rate": 0.0,
-            "lineage_chain": [
-              {
-                "item_id": 1998374645,
-                "name": "Mystic Burst",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/magic_burst.png",
-                "matches": 2323,
-                "avg_buy_time_min": 10.7,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
-          },
-          {
-            "item_id": 2462046703,
-            "name": "Golden Goose Egg",
-            "category": "spirit",
-            "tier": 1,
-            "cost": 800,
-            "matches": 1223,
-            "wins": 658,
-            "win_rate": 0.538,
-            "wilson_lb": 0.51,
-            "score": -0.0048,
-            "wr_delta_pp": 2.32,
-            "avg_buy_time_s": 90.2,
-            "phase": "early",
-            "avg_sell_time_s": 1263.8,
-            "is_active": true,
-            "cooldown_s": null,
+            "cooldown_s": 1.4,
             "imbue": null,
             "slot": "flex",
             "tag": "tech_pick",
@@ -4904,6 +4900,43 @@
             "pick_rate": 0.0
           },
           {
+            "item_id": 2717651715,
+            "name": "Superior Duration",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 350,
+            "wins": 211,
+            "win_rate": 0.6029,
+            "wilson_lb": 0.5507,
+            "score": 0.0757,
+            "wr_delta_pp": 12.78,
+            "avg_buy_time_s": 1690.9,
+            "phase": "late",
+            "avg_sell_time_s": 1730.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 2951612397,
+                "name": "Duration Extender",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/duration_extender.png",
+                "matches": 267,
+                "avg_buy_time_min": 24.2,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
             "item_id": 915014646,
             "name": "Transcendent Cooldown",
             "category": "spirit",
@@ -4976,6 +5009,55 @@
             "pick_rate": 0.0
           },
           {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 582,
+            "wins": 326,
+            "win_rate": 0.5601,
+            "wilson_lb": 0.5195,
+            "score": 0.0445,
+            "wr_delta_pp": 8.51,
+            "avg_buy_time_s": 1644.3,
+            "phase": "late",
+            "avg_sell_time_s": 1536.8,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/tech_damage.png",
+                "matches": 970,
+                "avg_buy_time_min": 8.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/soaring_spirit.png",
+                "matches": 913,
+                "avg_buy_time_min": 18.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
             "item_id": 1925087134,
             "name": "Suppressor",
             "category": "spirit",
@@ -4993,30 +5075,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "slot": "spirit",
-            "tag": "stat_anomaly",
-            "pick_rate_tag": "stat",
-            "pick_rate": 0.0
-          },
-          {
-            "item_id": 3577481646,
-            "name": "Mystic Reverb",
-            "category": "spirit",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 104,
-            "wins": 59,
-            "win_rate": 0.5673,
-            "wilson_lb": 0.4714,
-            "score": -0.0037,
-            "wr_delta_pp": 9.23,
-            "avg_buy_time_s": 1486.9,
-            "phase": "mid",
-            "avg_sell_time_s": null,
-            "is_active": false,
-            "cooldown_s": 6.25,
-            "imbue": "imbue_active",
-            "slot": "spirit",
+            "slot": "flex",
             "tag": "stat_anomaly",
             "pick_rate_tag": "stat",
             "pick_rate": 0.0
@@ -5536,8 +5595,8 @@
   },
   "ability_orders": {
     "all_mmr": {
-      "total_records": 277,
-      "total_matches": 83049,
+      "total_records": 284,
+      "total_matches": 85399,
       "ability_priority": [
         {
           "ability_id": 18921423,
@@ -5564,7 +5623,7 @@
           "ability_id": 3826390464,
           "name": "Frozen Shelter",
           "avg_ap_all_players": 3.3,
-          "avg_ap_winners": 3.43,
+          "avg_ap_winners": 3.44,
           "winner_premium_ap": 0.13
         }
       ],
@@ -5574,6 +5633,49 @@
             18921423,
             18921423,
             2351041382,
+            2351041382,
+            1963397252,
+            18921423,
+            3826390464,
+            1963397252,
+            1963397252,
+            18921423,
+            2351041382,
+            2351041382,
+            1963397252,
+            3826390464,
+            3826390464,
+            3826390464
+          ],
+          "sequence_names": [
+            "Frost Grenade",
+            "Frost Grenade",
+            "Arctic Beam",
+            "Arctic Beam",
+            "Ice Path",
+            "Frost Grenade",
+            "Frozen Shelter",
+            "Ice Path",
+            "Ice Path",
+            "Frost Grenade",
+            "Arctic Beam",
+            "Arctic Beam",
+            "Ice Path",
+            "Frozen Shelter",
+            "Frozen Shelter",
+            "Frozen Shelter"
+          ],
+          "wins": 1502,
+          "losses": 541,
+          "matches": 2043,
+          "players": 1188,
+          "win_rate": 0.7352
+        },
+        {
+          "sequence_ids": [
+            18921423,
+            18921423,
+            2351041382,
             1963397252,
             18921423,
             1963397252,
@@ -5606,140 +5708,97 @@
             "Frozen Shelter",
             "Frozen Shelter"
           ],
-          "wins": 170,
+          "wins": 174,
+          "losses": 63,
+          "matches": 237,
+          "players": 156,
+          "win_rate": 0.7342
+        },
+        {
+          "sequence_ids": [
+            18921423,
+            18921423,
+            2351041382,
+            2351041382,
+            1963397252,
+            2351041382,
+            3826390464,
+            2351041382,
+            1963397252,
+            1963397252,
+            1963397252,
+            18921423,
+            18921423,
+            3826390464,
+            3826390464,
+            3826390464
+          ],
+          "sequence_names": [
+            "Frost Grenade",
+            "Frost Grenade",
+            "Arctic Beam",
+            "Arctic Beam",
+            "Ice Path",
+            "Arctic Beam",
+            "Frozen Shelter",
+            "Arctic Beam",
+            "Ice Path",
+            "Ice Path",
+            "Ice Path",
+            "Frost Grenade",
+            "Frost Grenade",
+            "Frozen Shelter",
+            "Frozen Shelter",
+            "Frozen Shelter"
+          ],
+          "wins": 169,
+          "losses": 65,
+          "matches": 234,
+          "players": 140,
+          "win_rate": 0.7222
+        },
+        {
+          "sequence_ids": [
+            18921423,
+            18921423,
+            2351041382,
+            2351041382,
+            1963397252,
+            2351041382,
+            3826390464,
+            2351041382,
+            18921423,
+            18921423,
+            1963397252,
+            1963397252,
+            1963397252,
+            3826390464,
+            3826390464,
+            3826390464
+          ],
+          "sequence_names": [
+            "Frost Grenade",
+            "Frost Grenade",
+            "Arctic Beam",
+            "Arctic Beam",
+            "Ice Path",
+            "Arctic Beam",
+            "Frozen Shelter",
+            "Arctic Beam",
+            "Frost Grenade",
+            "Frost Grenade",
+            "Ice Path",
+            "Ice Path",
+            "Ice Path",
+            "Frozen Shelter",
+            "Frozen Shelter",
+            "Frozen Shelter"
+          ],
+          "wins": 154,
           "losses": 60,
-          "matches": 230,
-          "players": 152,
-          "win_rate": 0.7391
-        },
-        {
-          "sequence_ids": [
-            18921423,
-            18921423,
-            2351041382,
-            2351041382,
-            1963397252,
-            18921423,
-            3826390464,
-            1963397252,
-            1963397252,
-            18921423,
-            2351041382,
-            2351041382,
-            1963397252,
-            3826390464,
-            3826390464,
-            3826390464
-          ],
-          "sequence_names": [
-            "Frost Grenade",
-            "Frost Grenade",
-            "Arctic Beam",
-            "Arctic Beam",
-            "Ice Path",
-            "Frost Grenade",
-            "Frozen Shelter",
-            "Ice Path",
-            "Ice Path",
-            "Frost Grenade",
-            "Arctic Beam",
-            "Arctic Beam",
-            "Ice Path",
-            "Frozen Shelter",
-            "Frozen Shelter",
-            "Frozen Shelter"
-          ],
-          "wins": 1487,
-          "losses": 530,
-          "matches": 2017,
-          "players": 1177,
-          "win_rate": 0.7372
-        },
-        {
-          "sequence_ids": [
-            18921423,
-            18921423,
-            2351041382,
-            2351041382,
-            1963397252,
-            2351041382,
-            3826390464,
-            2351041382,
-            18921423,
-            18921423,
-            1963397252,
-            1963397252,
-            1963397252,
-            3826390464,
-            3826390464,
-            3826390464
-          ],
-          "sequence_names": [
-            "Frost Grenade",
-            "Frost Grenade",
-            "Arctic Beam",
-            "Arctic Beam",
-            "Ice Path",
-            "Arctic Beam",
-            "Frozen Shelter",
-            "Arctic Beam",
-            "Frost Grenade",
-            "Frost Grenade",
-            "Ice Path",
-            "Ice Path",
-            "Ice Path",
-            "Frozen Shelter",
-            "Frozen Shelter",
-            "Frozen Shelter"
-          ],
-          "wins": 150,
-          "losses": 58,
-          "matches": 208,
-          "players": 138,
-          "win_rate": 0.7212
-        },
-        {
-          "sequence_ids": [
-            18921423,
-            18921423,
-            2351041382,
-            2351041382,
-            1963397252,
-            2351041382,
-            3826390464,
-            2351041382,
-            1963397252,
-            1963397252,
-            1963397252,
-            18921423,
-            18921423,
-            3826390464,
-            3826390464,
-            3826390464
-          ],
-          "sequence_names": [
-            "Frost Grenade",
-            "Frost Grenade",
-            "Arctic Beam",
-            "Arctic Beam",
-            "Ice Path",
-            "Arctic Beam",
-            "Frozen Shelter",
-            "Arctic Beam",
-            "Ice Path",
-            "Ice Path",
-            "Ice Path",
-            "Frost Grenade",
-            "Frost Grenade",
-            "Frozen Shelter",
-            "Frozen Shelter",
-            "Frozen Shelter"
-          ],
-          "wins": 164,
-          "losses": 64,
-          "matches": 228,
-          "players": 138,
-          "win_rate": 0.7193
+          "matches": 214,
+          "players": 141,
+          "win_rate": 0.7196
         },
         {
           "sequence_ids": [
@@ -5778,11 +5837,11 @@
             "Frozen Shelter",
             "Frozen Shelter"
           ],
-          "wins": 453,
-          "losses": 180,
-          "matches": 633,
-          "players": 389,
-          "win_rate": 0.7156
+          "wins": 463,
+          "losses": 181,
+          "matches": 644,
+          "players": 393,
+          "win_rate": 0.7189
         }
       ],
       "best_openers_first4": [
@@ -5793,9 +5852,9 @@
             "Frost Grenade",
             "Ice Path"
           ],
-          "wins": 795,
-          "matches": 1294,
-          "win_rate": 0.6144
+          "wins": 812,
+          "matches": 1321,
+          "win_rate": 0.6147
         },
         {
           "sequence_names": [
@@ -5804,9 +5863,9 @@
             "Frost Grenade",
             "Ice Path"
           ],
-          "wins": 511,
-          "matches": 841,
-          "win_rate": 0.6076
+          "wins": 522,
+          "matches": 856,
+          "win_rate": 0.6098
         },
         {
           "sequence_names": [
@@ -5815,9 +5874,9 @@
             "Arctic Beam",
             "Arctic Beam"
           ],
-          "wins": 9266,
-          "matches": 15442,
-          "win_rate": 0.6001
+          "wins": 9449,
+          "matches": 15758,
+          "win_rate": 0.5996
         },
         {
           "sequence_names": [
@@ -5826,9 +5885,9 @@
             "Frost Grenade",
             "Frost Grenade"
           ],
-          "wins": 499,
-          "matches": 876,
-          "win_rate": 0.5696
+          "wins": 517,
+          "matches": 902,
+          "win_rate": 0.5732
         },
         {
           "sequence_names": [
@@ -5837,43 +5896,43 @@
             "Arctic Beam",
             "Ice Path"
           ],
-          "wins": 35272,
-          "matches": 63232,
-          "win_rate": 0.5578
+          "wins": 36363,
+          "matches": 65169,
+          "win_rate": 0.558
         }
       ]
     },
     "high_mmr": {
-      "total_records": 43,
-      "total_matches": 2068,
+      "total_records": 46,
+      "total_matches": 2147,
       "ability_priority": [
         {
           "ability_id": 1963397252,
           "name": "Ice Path",
           "avg_ap_all_players": 3.85,
-          "avg_ap_winners": 3.91,
+          "avg_ap_winners": 3.92,
           "winner_premium_ap": 0.07
-        },
-        {
-          "ability_id": 18921423,
-          "name": "Frost Grenade",
-          "avg_ap_all_players": 3.78,
-          "avg_ap_winners": 3.81,
-          "winner_premium_ap": 0.03
         },
         {
           "ability_id": 2351041382,
           "name": "Arctic Beam",
           "avg_ap_all_players": 3.8,
+          "avg_ap_winners": 3.82,
+          "winner_premium_ap": 0.02
+        },
+        {
+          "ability_id": 18921423,
+          "name": "Frost Grenade",
+          "avg_ap_all_players": 3.79,
           "avg_ap_winners": 3.81,
           "winner_premium_ap": 0.02
         },
         {
           "ability_id": 3826390464,
           "name": "Frozen Shelter",
-          "avg_ap_all_players": 3.25,
-          "avg_ap_winners": 3.34,
-          "winner_premium_ap": 0.09
+          "avg_ap_all_players": 3.22,
+          "avg_ap_winners": 3.32,
+          "winner_premium_ap": 0.1
         }
       ],
       "best_full_orders": [
@@ -5994,11 +6053,11 @@
             "Frozen Shelter",
             "Frozen Shelter"
           ],
-          "wins": 106,
+          "wins": 107,
           "losses": 62,
-          "matches": 168,
+          "matches": 169,
           "players": 50,
-          "win_rate": 0.631
+          "win_rate": 0.6331
         },
         {
           "sequence_ids": [
@@ -6035,11 +6094,11 @@
             "Frozen Shelter",
             "Frozen Shelter"
           ],
-          "wins": 76,
+          "wins": 78,
           "losses": 46,
-          "matches": 122,
-          "players": 42,
-          "win_rate": 0.623
+          "matches": 124,
+          "players": 44,
+          "win_rate": 0.629
         },
         {
           "sequence_ids": [
@@ -6076,11 +6135,11 @@
             "Frozen Shelter",
             "Frozen Shelter"
           ],
-          "wins": 76,
+          "wins": 77,
           "losses": 50,
-          "matches": 126,
+          "matches": 127,
           "players": 63,
-          "win_rate": 0.6032
+          "win_rate": 0.6063
         }
       ],
       "best_openers_first4": [
@@ -6092,8 +6151,8 @@
             "Arctic Beam"
           ],
           "wins": 139,
-          "matches": 235,
-          "win_rate": 0.5915
+          "matches": 236,
+          "win_rate": 0.589
         },
         {
           "sequence_names": [
@@ -6102,21 +6161,21 @@
             "Arctic Beam",
             "Ice Path"
           ],
-          "wins": 944,
-          "matches": 1704,
-          "win_rate": 0.554
+          "wins": 984,
+          "matches": 1782,
+          "win_rate": 0.5522
         }
       ]
     },
     "ascendant_plus": {
       "total_records": 17,
-      "total_matches": 310,
+      "total_matches": 314,
       "ability_priority": [
         {
           "ability_id": 1963397252,
           "name": "Ice Path",
           "avg_ap_all_players": 3.81,
-          "avg_ap_winners": 3.89,
+          "avg_ap_winners": 3.9,
           "winner_premium_ap": 0.09
         },
         {
@@ -6129,15 +6188,15 @@
         {
           "ability_id": 18921423,
           "name": "Frost Grenade",
-          "avg_ap_all_players": 3.64,
+          "avg_ap_all_players": 3.65,
           "avg_ap_winners": 3.71,
           "winner_premium_ap": 0.07
         },
         {
           "ability_id": 3826390464,
           "name": "Frozen Shelter",
-          "avg_ap_all_players": 3.18,
-          "avg_ap_winners": 3.22,
+          "avg_ap_all_players": 3.16,
+          "avg_ap_winners": 3.2,
           "winner_premium_ap": 0.04
         }
       ],
@@ -6150,9 +6209,9 @@
             "Arctic Beam",
             "Ice Path"
           ],
-          "wins": 134,
-          "matches": 255,
-          "win_rate": 0.5255
+          "wins": 136,
+          "matches": 259,
+          "win_rate": 0.5251
         }
       ]
     },

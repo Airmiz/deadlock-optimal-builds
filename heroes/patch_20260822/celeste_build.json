@@ -65,22 +65,6 @@
             "category": "spirit",
             "tier": 1,
             "cost": 800,
-            "name": "Golden Goose Egg",
-            "item_id": 2462046703,
-            "avg_buy_time_min": 1.4,
-            "avg_sell_time_min": 18.2,
-            "win_rate": 0.5531,
-            "tag": "stat",
-            "pick_rate": 0.0,
-            "is_active": true,
-            "cooldown_s": null,
-            "imbue": null
-          },
-          {
-            "slot": "flex",
-            "category": "spirit",
-            "tier": 1,
-            "cost": 800,
             "name": "Mystic Regeneration",
             "item_id": 1439347412,
             "avg_buy_time_min": 6.1,
@@ -90,6 +74,22 @@
             "pick_rate": 0.0,
             "is_active": false,
             "cooldown_s": null,
+            "imbue": null
+          },
+          {
+            "slot": "flex",
+            "category": "spirit",
+            "tier": 1,
+            "cost": 800,
+            "name": "Mystic Burst",
+            "item_id": 1998374645,
+            "avg_buy_time_min": 6.9,
+            "avg_sell_time_min": 23.2,
+            "win_rate": 0.5519,
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "is_active": false,
+            "cooldown_s": 14.0,
             "imbue": null
           },
           {
@@ -476,11 +476,11 @@
           "Shining Wonder",
           "Radiant Daggers"
         ],
-        "wins": 91,
-        "losses": 33,
-        "matches": 124,
-        "players": 76,
-        "win_rate": 0.7339
+        "wins": 94,
+        "losses": 35,
+        "matches": 129,
+        "players": 80,
+        "win_rate": 0.7287
       },
       "best_opener_first4": {
         "sequence_names": [
@@ -489,9 +489,9 @@
           "Radiant Daggers",
           "Radiant Daggers"
         ],
-        "wins": 815,
-        "matches": 1432,
-        "win_rate": 0.5691
+        "wins": 823,
+        "matches": 1445,
+        "win_rate": 0.5696
       }
     }
   },
@@ -1264,6 +1264,30 @@
             "annotation": "works with 3 now crazy huh"
           },
           {
+            "item_id": 343572757,
+            "name": "Spirit Burn",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 29486,
+            "wins": 16728,
+            "win_rate": 0.5673,
+            "wilson_lb": 0.5617,
+            "score": 0.0414,
+            "wr_delta_pp": 4.71,
+            "avg_buy_time_s": 2271.6,
+            "phase": "late",
+            "avg_sell_time_s": 2427.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "spirit",
+            "tag": "flex",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.375,
+            "annotation": "Anti-heal"
+          },
+          {
             "item_id": 3005970438,
             "name": "Escalating Exposure",
             "category": "spirit",
@@ -1319,7 +1343,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "slot": "spirit",
+            "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
             "pick_rate": 0.625,
@@ -1388,30 +1412,6 @@
                 "imbue_target_share": 0.778
               }
             ]
-          },
-          {
-            "item_id": 395944548,
-            "name": "Torment Pulse",
-            "category": "spirit",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 283002,
-            "wins": 151806,
-            "win_rate": 0.5364,
-            "wilson_lb": 0.5346,
-            "score": 0.0144,
-            "wr_delta_pp": 1.62,
-            "avg_buy_time_s": 1122.8,
-            "phase": "mid",
-            "avg_sell_time_s": 2699.1,
-            "is_active": false,
-            "cooldown_s": 1.4,
-            "imbue": null,
-            "slot": "flex",
-            "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.75,
-            "annotation": "Diddy rush but it works so whatever (You can also go for two 1.6k Spirit items and get this later)"
           },
           {
             "item_id": 2462046703,
@@ -1499,7 +1499,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 180.2,
+            "build_freq_weight": 180.7,
             "slot": "weapon",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1524,7 +1524,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 135.3,
+            "build_freq_weight": 134.3,
             "slot": "weapon",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1563,7 +1563,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 135.3,
+            "build_freq_weight": 134.3,
             "slot": "weapon",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -1602,7 +1602,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 135.3,
+            "build_freq_weight": 134.3,
             "slot": "weapon",
             "tag": "trap_popular",
             "pick_rate_tag": "flex",
@@ -1627,7 +1627,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 180.2,
+            "build_freq_weight": 180.7,
             "slot": "vitality",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -1652,7 +1652,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 180.2,
+            "build_freq_weight": 180.7,
             "slot": "vitality",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -1677,7 +1677,7 @@
             "is_active": true,
             "cooldown_s": 60.0,
             "imbue": null,
-            "build_freq_weight": 180.2,
+            "build_freq_weight": 180.7,
             "slot": "vitality",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1716,7 +1716,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 180.2,
+            "build_freq_weight": 180.7,
             "slot": "vitality",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1755,7 +1755,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 180.2,
+            "build_freq_weight": 180.7,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1794,7 +1794,7 @@
             "is_active": true,
             "cooldown_s": 300.0,
             "imbue": null,
-            "build_freq_weight": 180.2,
+            "build_freq_weight": 180.7,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1819,7 +1819,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 180.2,
+            "build_freq_weight": 180.7,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1858,7 +1858,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 180.2,
+            "build_freq_weight": 180.7,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1883,7 +1883,7 @@
             "is_active": true,
             "cooldown_s": 24.0,
             "imbue": null,
-            "build_freq_weight": 180.2,
+            "build_freq_weight": 180.7,
             "slot": "flex",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -1908,7 +1908,7 @@
             "is_active": false,
             "cooldown_s": 23.0,
             "imbue": null,
-            "build_freq_weight": 180.2,
+            "build_freq_weight": 180.7,
             "slot": "flex",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1933,7 +1933,7 @@
             "is_active": true,
             "cooldown_s": 37.0,
             "imbue": null,
-            "build_freq_weight": 180.2,
+            "build_freq_weight": 180.7,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1958,7 +1958,7 @@
             "is_active": true,
             "cooldown_s": 45.0,
             "imbue": null,
-            "build_freq_weight": 180.2,
+            "build_freq_weight": 180.7,
             "slot": "flex",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1970,50 +1970,50 @@
           {
             "build_id": 487722,
             "name": "Dew",
-            "win_rate": 0.551,
-            "matches": 1717
+            "win_rate": 0.5514,
+            "matches": 1732
           },
           {
             "build_id": 683397,
             "name": "twitch.tv/oses7",
-            "win_rate": 0.5414,
-            "matches": 918
+            "win_rate": 0.5395,
+            "matches": 925
           },
           {
             "build_id": 470300,
             "name": "Yamakasi God, i.e going Disco(Virtuoso) mode",
-            "win_rate": 0.5526,
-            "matches": 856
+            "win_rate": 0.5539,
+            "matches": 863
           },
           {
             "build_id": 448516,
             "name": "TOP 1 CELESTE NA - SHMUCK",
-            "win_rate": 0.4875,
-            "matches": 638
+            "win_rate": 0.4862,
+            "matches": 650
           },
           {
             "build_id": 459214,
             "name": "Celeste - Bruiser-Initiator [57% WR] [tracklock.gg]",
-            "win_rate": 0.4636,
-            "matches": 494
+            "win_rate": 0.4639,
+            "matches": 498
           },
           {
             "build_id": 438915,
             "name": "Horn Sounding",
-            "win_rate": 0.5247,
-            "matches": 425
+            "win_rate": 0.522,
+            "matches": 431
           },
           {
             "build_id": 609237,
             "name": "HYPER CARRY CELESTE 3000 DPS BUILD",
-            "win_rate": 0.4871,
-            "matches": 271
+            "win_rate": 0.4872,
+            "matches": 273
           },
           {
             "build_id": 596263,
             "name": "Fletcher195 Celeste [Fully Annotated]",
-            "win_rate": 0.4752,
-            "matches": 242
+            "win_rate": 0.4754,
+            "matches": 244
           }
         ]
       },
@@ -2031,10 +2031,10 @@
             "Shining Wonder"
           ],
           "n_builds": 5,
-          "total_matches": 2935,
-          "total_wins": 1537,
-          "mean_win_rate": 0.5237,
-          "win_rate_lift_pp": 0.35,
+          "total_matches": 2961,
+          "total_wins": 1549,
+          "mean_win_rate": 0.5231,
+          "win_rate_lift_pp": 0.29,
           "consensus_ladder_ids": [
             3443575800,
             1950738949
@@ -2130,7 +2130,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 93.1,
+              "joint_freq_weight": 92.1,
               "slot": "weapon",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2155,7 +2155,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 48.2,
+              "joint_freq_weight": 45.7,
               "slot": "weapon",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2194,7 +2194,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 48.2,
+              "joint_freq_weight": 45.7,
               "slot": "weapon",
               "tag": "trap_popular",
               "pick_rate_tag": "core",
@@ -2233,7 +2233,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 48.2,
+              "joint_freq_weight": 45.7,
               "slot": "weapon",
               "tag": "core_inherited",
               "pick_rate_tag": "flex",
@@ -2258,7 +2258,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 93.1,
+              "joint_freq_weight": 92.1,
               "slot": "vitality",
               "tag": "trap_popular",
               "pick_rate_tag": "core",
@@ -2283,7 +2283,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 93.1,
+              "joint_freq_weight": 92.1,
               "slot": "vitality",
               "tag": "trap_popular",
               "pick_rate_tag": "core",
@@ -2308,7 +2308,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 93.1,
+              "joint_freq_weight": 92.1,
               "slot": "vitality",
               "tag": "trap_popular",
               "pick_rate_tag": "core",
@@ -2333,7 +2333,7 @@
               "is_active": true,
               "cooldown_s": 60.0,
               "imbue": null,
-              "joint_freq_weight": 93.1,
+              "joint_freq_weight": 92.1,
               "slot": "vitality",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -2372,7 +2372,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 93.1,
+              "joint_freq_weight": 92.1,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2411,7 +2411,7 @@
               "is_active": true,
               "cooldown_s": 300.0,
               "imbue": null,
-              "joint_freq_weight": 93.1,
+              "joint_freq_weight": 92.1,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2436,7 +2436,7 @@
               "is_active": true,
               "cooldown_s": 35.0,
               "imbue": null,
-              "joint_freq_weight": 93.1,
+              "joint_freq_weight": 92.1,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -2461,7 +2461,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 93.1,
+              "joint_freq_weight": 92.1,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2500,7 +2500,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 93.1,
+              "joint_freq_weight": 92.1,
               "slot": "flex",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -2539,7 +2539,7 @@
               "is_active": true,
               "cooldown_s": 24.0,
               "imbue": null,
-              "joint_freq_weight": 93.1,
+              "joint_freq_weight": 92.1,
               "slot": "flex",
               "tag": "trap_popular",
               "pick_rate_tag": "core",
@@ -2564,7 +2564,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 93.1,
+              "joint_freq_weight": 92.1,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2589,7 +2589,7 @@
               "is_active": false,
               "cooldown_s": 23.0,
               "imbue": null,
-              "joint_freq_weight": 93.1,
+              "joint_freq_weight": 92.1,
               "slot": "flex",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -2601,32 +2601,32 @@
             {
               "build_id": 683397,
               "name": "twitch.tv/oses7",
-              "win_rate": 0.5414,
-              "matches": 918
+              "win_rate": 0.5395,
+              "matches": 925
             },
             {
               "build_id": 470300,
               "name": "Yamakasi God, i.e going Disco(Virtuoso) mode",
-              "win_rate": 0.5526,
-              "matches": 856
+              "win_rate": 0.5539,
+              "matches": 863
             },
             {
               "build_id": 459214,
               "name": "Celeste - Bruiser-Initiator [57% WR] [tracklock.gg]",
-              "win_rate": 0.4636,
-              "matches": 494
+              "win_rate": 0.4639,
+              "matches": 498
             },
             {
               "build_id": 438915,
               "name": "Horn Sounding",
-              "win_rate": 0.5247,
-              "matches": 425
+              "win_rate": 0.522,
+              "matches": 431
             },
             {
               "build_id": 596263,
               "name": "Fletcher195 Celeste [Fully Annotated]",
-              "win_rate": 0.4752,
-              "matches": 242
+              "win_rate": 0.4754,
+              "matches": 244
             }
           ]
         }
@@ -2698,7 +2698,7 @@
         "754480263": {
           "tag": "core",
           "pick_rate": 0.875,
-          "annotation": "hit those daggers",
+          "annotation": "you need 3 stacks as much as possible and this item helps a lot",
           "builds_appearing_in": 7,
           "builds_total": 8,
           "imbue_target_id": 1011349580,
@@ -4466,22 +4466,22 @@
             "pick_rate": 1.0
           },
           {
-            "item_id": 2462046703,
-            "name": "Golden Goose Egg",
+            "item_id": 1998374645,
+            "name": "Mystic Burst",
             "category": "spirit",
             "tier": 1,
             "cost": 800,
-            "matches": 1506,
-            "wins": 833,
-            "win_rate": 0.5531,
-            "wilson_lb": 0.5279,
-            "score": -0.0225,
-            "wr_delta_pp": 0.27,
-            "avg_buy_time_s": 82.8,
+            "matches": 2245,
+            "wins": 1239,
+            "win_rate": 0.5519,
+            "wilson_lb": 0.5313,
+            "score": -0.0192,
+            "wr_delta_pp": 0.15,
+            "avg_buy_time_s": 413.3,
             "phase": "early",
-            "avg_sell_time_s": 1092.1,
-            "is_active": true,
-            "cooldown_s": null,
+            "avg_sell_time_s": 1389.8,
+            "is_active": false,
+            "cooldown_s": 14.0,
             "imbue": null,
             "slot": "flex",
             "tag": "stat",
@@ -7670,43 +7670,6 @@
             "pick_rate": 0.0
           },
           {
-            "item_id": 112198670,
-            "name": "Spirit Shielding",
-            "category": "vitality",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 79,
-            "wins": 44,
-            "win_rate": 0.557,
-            "wilson_lb": 0.4473,
-            "score": -0.0678,
-            "wr_delta_pp": 4.18,
-            "avg_buy_time_s": 756.5,
-            "phase": "mid",
-            "avg_sell_time_s": 1843.8,
-            "is_active": false,
-            "cooldown_s": 45.0,
-            "imbue": null,
-            "slot": "vitality",
-            "tag": "stat_anomaly",
-            "pick_rate_tag": "stat",
-            "pick_rate": 0.0,
-            "lineage_chain": [
-              {
-                "item_id": 1672893796,
-                "name": "Grit",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/bullet_shield.png",
-                "matches": 63,
-                "avg_buy_time_min": 10.0,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
-          },
-          {
             "item_id": 2566692615,
             "name": "Healing Booster",
             "category": "vitality",
@@ -7887,43 +7850,6 @@
             "pick_rate": 0.0
           },
           {
-            "item_id": 2947183272,
-            "name": "Radiant Regeneration",
-            "category": "spirit",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 99,
-            "wins": 51,
-            "win_rate": 0.5152,
-            "wilson_lb": 0.418,
-            "score": -0.0972,
-            "wr_delta_pp": 0.0,
-            "avg_buy_time_s": 540.2,
-            "phase": "early",
-            "avg_sell_time_s": null,
-            "is_active": false,
-            "cooldown_s": 6.0,
-            "imbue": null,
-            "slot": "flex",
-            "tag": "stat",
-            "pick_rate_tag": "stat",
-            "pick_rate": 0.0,
-            "lineage_chain": [
-              {
-                "item_id": 1439347412,
-                "name": "Mystic Regeneration",
-                "tier": 1,
-                "cost": 800,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/endurance.png",
-                "matches": 91,
-                "avg_buy_time_min": 6.4,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
-          },
-          {
             "item_id": 1925087134,
             "name": "Suppressor",
             "category": "spirit",
@@ -7945,6 +7871,29 @@
             "tag": "stat",
             "pick_rate_tag": "stat",
             "pick_rate": 0.0
+          },
+          {
+            "item_id": 2462046703,
+            "name": "Golden Goose Egg",
+            "category": "spirit",
+            "tier": 1,
+            "cost": 800,
+            "matches": 35,
+            "wins": 17,
+            "win_rate": 0.4857,
+            "wilson_lb": 0.3299,
+            "score": -0.1852,
+            "wr_delta_pp": -2.94,
+            "avg_buy_time_s": 78.3,
+            "phase": "early",
+            "avg_sell_time_s": 1202.0,
+            "is_active": true,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
           }
         ]
       },
@@ -7958,8 +7907,8 @@
   },
   "ability_orders": {
     "all_mmr": {
-      "total_records": 402,
-      "total_matches": 205266,
+      "total_records": 416,
+      "total_matches": 212971,
       "ability_priority": [
         {
           "ability_id": 3443575800,
@@ -7985,7 +7934,7 @@
         {
           "ability_id": 1011349580,
           "name": "Radiant Daggers",
-          "avg_ap_all_players": 3.44,
+          "avg_ap_all_players": 3.45,
           "avg_ap_winners": 3.49,
           "winner_premium_ap": 0.04
         }
@@ -8000,6 +7949,49 @@
             3443575800,
             1011349580,
             2590796390,
+            3443575800,
+            1011349580,
+            1950738949,
+            1950738949,
+            1950738949,
+            2590796390,
+            2590796390,
+            2590796390,
+            1011349580
+          ],
+          "sequence_names": [
+            "Light Eater",
+            "Light Eater",
+            "Dazzling Trick",
+            "Radiant Daggers",
+            "Light Eater",
+            "Radiant Daggers",
+            "Shining Wonder",
+            "Light Eater",
+            "Radiant Daggers",
+            "Dazzling Trick",
+            "Dazzling Trick",
+            "Dazzling Trick",
+            "Shining Wonder",
+            "Shining Wonder",
+            "Shining Wonder",
+            "Radiant Daggers"
+          ],
+          "wins": 143,
+          "losses": 61,
+          "matches": 204,
+          "players": 152,
+          "win_rate": 0.701
+        },
+        {
+          "sequence_ids": [
+            3443575800,
+            3443575800,
+            1950738949,
+            1011349580,
+            3443575800,
+            1011349580,
+            2590796390,
             1011349580,
             3443575800,
             2590796390,
@@ -8028,11 +8020,11 @@
             "Dazzling Trick",
             "Radiant Daggers"
           ],
-          "wins": 231,
-          "losses": 92,
-          "matches": 323,
-          "players": 279,
-          "win_rate": 0.7152
+          "wins": 268,
+          "losses": 116,
+          "matches": 384,
+          "players": 324,
+          "win_rate": 0.6979
         },
         {
           "sequence_ids": [
@@ -8071,97 +8063,11 @@
             "Shining Wonder",
             "Radiant Daggers"
           ],
-          "wins": 292,
-          "losses": 137,
-          "matches": 429,
+          "wins": 297,
+          "losses": 138,
+          "matches": 435,
           "players": 286,
-          "win_rate": 0.6807
-        },
-        {
-          "sequence_ids": [
-            3443575800,
-            3443575800,
-            1950738949,
-            1011349580,
-            3443575800,
-            2590796390,
-            3443575800,
-            1011349580,
-            1011349580,
-            2590796390,
-            2590796390,
-            1950738949,
-            1950738949,
-            1950738949,
-            1011349580,
-            2590796390
-          ],
-          "sequence_names": [
-            "Light Eater",
-            "Light Eater",
-            "Dazzling Trick",
-            "Radiant Daggers",
-            "Light Eater",
-            "Shining Wonder",
-            "Light Eater",
-            "Radiant Daggers",
-            "Radiant Daggers",
-            "Shining Wonder",
-            "Shining Wonder",
-            "Dazzling Trick",
-            "Dazzling Trick",
-            "Dazzling Trick",
-            "Radiant Daggers",
-            "Shining Wonder"
-          ],
-          "wins": 1054,
-          "losses": 514,
-          "matches": 1568,
-          "players": 1025,
-          "win_rate": 0.6722
-        },
-        {
-          "sequence_ids": [
-            3443575800,
-            3443575800,
-            1950738949,
-            1011349580,
-            3443575800,
-            1011349580,
-            2590796390,
-            3443575800,
-            1011349580,
-            1950738949,
-            1950738949,
-            1950738949,
-            1011349580,
-            2590796390,
-            2590796390,
-            2590796390
-          ],
-          "sequence_names": [
-            "Light Eater",
-            "Light Eater",
-            "Dazzling Trick",
-            "Radiant Daggers",
-            "Light Eater",
-            "Radiant Daggers",
-            "Shining Wonder",
-            "Light Eater",
-            "Radiant Daggers",
-            "Dazzling Trick",
-            "Dazzling Trick",
-            "Dazzling Trick",
-            "Radiant Daggers",
-            "Shining Wonder",
-            "Shining Wonder",
-            "Shining Wonder"
-          ],
-          "wins": 200,
-          "losses": 98,
-          "matches": 298,
-          "players": 213,
-          "win_rate": 0.6711
+          "win_rate": 0.6828
         },
         {
           "sequence_ids": [
@@ -8200,11 +8106,54 @@
             "Dazzling Trick",
             "Radiant Daggers"
           ],
-          "wins": 1970,
-          "losses": 966,
-          "matches": 2936,
-          "players": 1766,
-          "win_rate": 0.671
+          "wins": 2033,
+          "losses": 988,
+          "matches": 3021,
+          "players": 1797,
+          "win_rate": 0.673
+        },
+        {
+          "sequence_ids": [
+            3443575800,
+            1011349580,
+            1011349580,
+            1950738949,
+            1011349580,
+            3443575800,
+            2590796390,
+            3443575800,
+            1950738949,
+            1950738949,
+            1950738949,
+            3443575800,
+            2590796390,
+            2590796390,
+            2590796390,
+            1011349580
+          ],
+          "sequence_names": [
+            "Light Eater",
+            "Radiant Daggers",
+            "Radiant Daggers",
+            "Dazzling Trick",
+            "Radiant Daggers",
+            "Light Eater",
+            "Shining Wonder",
+            "Light Eater",
+            "Dazzling Trick",
+            "Dazzling Trick",
+            "Dazzling Trick",
+            "Light Eater",
+            "Shining Wonder",
+            "Shining Wonder",
+            "Shining Wonder",
+            "Radiant Daggers"
+          ],
+          "wins": 1549,
+          "losses": 757,
+          "matches": 2306,
+          "players": 1602,
+          "win_rate": 0.6717
         }
       ],
       "best_openers_first4": [
@@ -8215,9 +8164,9 @@
             "Light Eater",
             "Radiant Daggers"
           ],
-          "wins": 760,
-          "matches": 1328,
-          "win_rate": 0.5723
+          "wins": 780,
+          "matches": 1367,
+          "win_rate": 0.5706
         },
         {
           "sequence_names": [
@@ -8226,9 +8175,9 @@
             "Radiant Daggers",
             "Radiant Daggers"
           ],
-          "wins": 11968,
-          "matches": 21188,
-          "win_rate": 0.5648
+          "wins": 12252,
+          "matches": 21702,
+          "win_rate": 0.5646
         },
         {
           "sequence_names": [
@@ -8237,20 +8186,9 @@
             "Radiant Daggers",
             "Dazzling Trick"
           ],
-          "wins": 8179,
-          "matches": 14691,
-          "win_rate": 0.5567
-        },
-        {
-          "sequence_names": [
-            "Light Eater",
-            "Light Eater",
-            "Radiant Daggers",
-            "Radiant Daggers"
-          ],
-          "wins": 3211,
-          "matches": 5928,
-          "win_rate": 0.5417
+          "wins": 8591,
+          "matches": 15401,
+          "win_rate": 0.5578
         },
         {
           "sequence_names": [
@@ -8259,15 +8197,26 @@
             "Dazzling Trick",
             "Dazzling Trick"
           ],
-          "wins": 566,
-          "matches": 1046,
-          "win_rate": 0.5411
+          "wins": 592,
+          "matches": 1085,
+          "win_rate": 0.5456
+        },
+        {
+          "sequence_names": [
+            "Light Eater",
+            "Light Eater",
+            "Radiant Daggers",
+            "Radiant Daggers"
+          ],
+          "wins": 3399,
+          "matches": 6307,
+          "win_rate": 0.5389
         }
       ]
     },
     "high_mmr": {
-      "total_records": 48,
-      "total_matches": 5366,
+      "total_records": 49,
+      "total_matches": 5491,
       "ability_priority": [
         {
           "ability_id": 3443575800,
@@ -8279,7 +8228,7 @@
         {
           "ability_id": 1950738949,
           "name": "Dazzling Trick",
-          "avg_ap_all_players": 3.97,
+          "avg_ap_all_players": 3.96,
           "avg_ap_winners": 3.98,
           "winner_premium_ap": 0.01
         },
@@ -8336,11 +8285,11 @@
             "Shining Wonder",
             "Radiant Daggers"
           ],
-          "wins": 91,
-          "losses": 33,
-          "matches": 124,
-          "players": 76,
-          "win_rate": 0.7339
+          "wins": 94,
+          "losses": 35,
+          "matches": 129,
+          "players": 80,
+          "win_rate": 0.7287
         },
         {
           "sequence_ids": [
@@ -8379,11 +8328,11 @@
             "Shining Wonder",
             "Radiant Daggers"
           ],
-          "wins": 173,
-          "losses": 83,
-          "matches": 256,
-          "players": 163,
-          "win_rate": 0.6758
+          "wins": 177,
+          "losses": 84,
+          "matches": 261,
+          "players": 164,
+          "win_rate": 0.6782
         },
         {
           "sequence_ids": [
@@ -8420,11 +8369,11 @@
             "Shining Wonder",
             "Shining Wonder"
           ],
-          "wins": 186,
-          "losses": 97,
-          "matches": 283,
-          "players": 118,
-          "win_rate": 0.6572
+          "wins": 188,
+          "losses": 98,
+          "matches": 286,
+          "players": 120,
+          "win_rate": 0.6573
         },
         {
           "sequence_ids": [
@@ -8461,11 +8410,11 @@
             "Shining Wonder",
             "Dazzling Trick"
           ],
-          "wins": 230,
+          "wins": 233,
           "losses": 132,
-          "matches": 362,
-          "players": 106,
-          "win_rate": 0.6354
+          "matches": 365,
+          "players": 107,
+          "win_rate": 0.6384
         },
         {
           "sequence_ids": [
@@ -8502,11 +8451,11 @@
             "Shining Wonder",
             "Shining Wonder"
           ],
-          "wins": 763,
-          "losses": 480,
-          "matches": 1243,
-          "players": 375,
-          "win_rate": 0.6138
+          "wins": 778,
+          "losses": 489,
+          "matches": 1267,
+          "players": 379,
+          "win_rate": 0.614
         }
       ],
       "best_openers_first4": [
@@ -8517,9 +8466,9 @@
             "Radiant Daggers",
             "Radiant Daggers"
           ],
-          "wins": 815,
-          "matches": 1432,
-          "win_rate": 0.5691
+          "wins": 823,
+          "matches": 1445,
+          "win_rate": 0.5696
         },
         {
           "sequence_names": [
@@ -8528,9 +8477,9 @@
             "Dazzling Trick",
             "Radiant Daggers"
           ],
-          "wins": 1525,
-          "matches": 2718,
-          "win_rate": 0.5611
+          "wins": 1561,
+          "matches": 2788,
+          "win_rate": 0.5599
         },
         {
           "sequence_names": [
@@ -8539,15 +8488,15 @@
             "Radiant Daggers",
             "Dazzling Trick"
           ],
-          "wins": 626,
-          "matches": 1116,
-          "win_rate": 0.5609
+          "wins": 648,
+          "matches": 1158,
+          "win_rate": 0.5596
         }
       ]
     },
     "ascendant_plus": {
-      "total_records": 28,
-      "total_matches": 947,
+      "total_records": 29,
+      "total_matches": 978,
       "ability_priority": [
         {
           "ability_id": 3443575800,
@@ -8573,8 +8522,8 @@
         {
           "ability_id": 1011349580,
           "name": "Radiant Daggers",
-          "avg_ap_all_players": 3.14,
-          "avg_ap_winners": 3.17,
+          "avg_ap_all_players": 3.13,
+          "avg_ap_winners": 3.16,
           "winner_premium_ap": 0.03
         }
       ],
@@ -8614,11 +8563,11 @@
             "Shining Wonder",
             "Shining Wonder"
           ],
-          "wins": 36,
+          "wins": 37,
           "losses": 15,
-          "matches": 51,
-          "players": 28,
-          "win_rate": 0.7059
+          "matches": 52,
+          "players": 29,
+          "win_rate": 0.7115
         },
         {
           "sequence_ids": [
@@ -8655,11 +8604,11 @@
             "Shining Wonder",
             "Dazzling Trick"
           ],
-          "wins": 34,
+          "wins": 35,
           "losses": 17,
-          "matches": 51,
-          "players": 23,
-          "win_rate": 0.6667
+          "matches": 52,
+          "players": 24,
+          "win_rate": 0.6731
         },
         {
           "sequence_ids": [
@@ -8696,11 +8645,11 @@
             "Shining Wonder",
             "Shining Wonder"
           ],
-          "wins": 140,
-          "losses": 81,
-          "matches": 221,
+          "wins": 142,
+          "losses": 83,
+          "matches": 225,
           "players": 75,
-          "win_rate": 0.6335
+          "win_rate": 0.6311
         },
         {
           "sequence_ids": [
@@ -8737,11 +8686,11 @@
             "Shining Wonder",
             "Shining Wonder"
           ],
-          "wins": 49,
-          "losses": 40,
-          "matches": 89,
-          "players": 46,
-          "win_rate": 0.5506
+          "wins": 52,
+          "losses": 42,
+          "matches": 94,
+          "players": 48,
+          "win_rate": 0.5532
         },
         {
           "sequence_ids": [
@@ -8777,10 +8726,10 @@
             "Shining Wonder"
           ],
           "wins": 40,
-          "losses": 44,
-          "matches": 84,
+          "losses": 45,
+          "matches": 85,
           "players": 41,
-          "win_rate": 0.4762
+          "win_rate": 0.4706
         }
       ],
       "best_openers_first4": [
@@ -8791,9 +8740,9 @@
             "Dazzling Trick",
             "Radiant Daggers"
           ],
-          "wins": 293,
-          "matches": 482,
-          "win_rate": 0.6079
+          "wins": 296,
+          "matches": 490,
+          "win_rate": 0.6041
         },
         {
           "sequence_names": [
@@ -8802,9 +8751,9 @@
             "Radiant Daggers",
             "Dazzling Trick"
           ],
-          "wins": 128,
-          "matches": 219,
-          "win_rate": 0.5845
+          "wins": 133,
+          "matches": 229,
+          "win_rate": 0.5808
         },
         {
           "sequence_names": [
@@ -8813,15 +8762,15 @@
             "Radiant Daggers",
             "Radiant Daggers"
           ],
-          "wins": 130,
-          "matches": 232,
-          "win_rate": 0.5603
+          "wins": 140,
+          "matches": 245,
+          "win_rate": 0.5714
         }
       ]
     },
     "eternus_plus": {
       "total_records": 2,
-      "total_matches": 25,
+      "total_matches": 27,
       "ability_priority": [
         {
           "ability_id": 3443575800,
@@ -8852,7 +8801,49 @@
           "winner_premium_ap": 0.0
         }
       ],
-      "best_full_orders": [],
+      "best_full_orders": [
+        {
+          "sequence_ids": [
+            3443575800,
+            1011349580,
+            1011349580,
+            1950738949,
+            1011349580,
+            3443575800,
+            2590796390,
+            3443575800,
+            1950738949,
+            1950738949,
+            1950738949,
+            3443575800,
+            2590796390,
+            2590796390,
+            2590796390
+          ],
+          "sequence_names": [
+            "Light Eater",
+            "Radiant Daggers",
+            "Radiant Daggers",
+            "Dazzling Trick",
+            "Radiant Daggers",
+            "Light Eater",
+            "Shining Wonder",
+            "Light Eater",
+            "Dazzling Trick",
+            "Dazzling Trick",
+            "Dazzling Trick",
+            "Light Eater",
+            "Shining Wonder",
+            "Shining Wonder",
+            "Shining Wonder"
+          ],
+          "wins": 8,
+          "losses": 7,
+          "matches": 15,
+          "players": 9,
+          "win_rate": 0.5333
+        }
+      ],
       "best_openers_first4": []
     }
   },

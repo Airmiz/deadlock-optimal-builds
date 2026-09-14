@@ -439,11 +439,11 @@
           "Binding Word",
           "Binding Word"
         ],
-        "wins": 267,
-        "losses": 108,
-        "matches": 375,
+        "wins": 268,
+        "losses": 109,
+        "matches": 377,
         "players": 207,
-        "win_rate": 0.712
+        "win_rate": 0.7109
       },
       "best_opener_first4": {
         "sequence_names": [
@@ -452,9 +452,9 @@
           "Binding Word",
           "Willpower"
         ],
-        "wins": 940,
-        "matches": 1643,
-        "win_rate": 0.5721
+        "wins": 949,
+        "matches": 1657,
+        "win_rate": 0.5727
       }
     }
   },
@@ -1123,6 +1123,44 @@
             "annotation": "Can skip this if enemy doesn't have a tank. Which is very rare..."
           },
           {
+            "item_id": 2407781327,
+            "name": "Colossus",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 17334,
+            "wins": 10030,
+            "win_rate": 0.5786,
+            "wilson_lb": 0.5713,
+            "score": 0.041,
+            "wr_delta_pp": 4.84,
+            "avg_buy_time_s": 2142.5,
+            "phase": "late",
+            "avg_sell_time_s": 2335.3,
+            "is_active": true,
+            "cooldown_s": 37.0,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.667,
+            "annotation": "Makes you really tanky and less burstable.",
+            "lineage_chain": [
+              {
+                "item_id": 3633614685,
+                "name": "Extra Health",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_armor/health.png",
+                "matches": 39092,
+                "avg_buy_time_min": 15.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
             "item_id": 865958998,
             "name": "Veil Walker",
             "category": "vitality",
@@ -1159,30 +1197,6 @@
                 "imbue_target_share": null
               }
             ]
-          },
-          {
-            "item_id": 1235347618,
-            "name": "Battle Vest",
-            "category": "vitality",
-            "tier": 2,
-            "cost": 1600,
-            "matches": 102780,
-            "wins": 55438,
-            "win_rate": 0.5394,
-            "wilson_lb": 0.5363,
-            "score": 0.0061,
-            "wr_delta_pp": 0.91,
-            "avg_buy_time_s": 708.8,
-            "phase": "early",
-            "avg_sell_time_s": 2146.8,
-            "is_active": false,
-            "cooldown_s": null,
-            "imbue": null,
-            "slot": "vitality",
-            "tag": "core_inherited",
-            "pick_rate_tag": "flex",
-            "pick_rate": 0.667,
-            "annotation": "Can swap out with whatever"
           },
           {
             "item_id": 2519598785,
@@ -1331,44 +1345,6 @@
             "pick_rate": 0.0
           },
           {
-            "item_id": 2226497419,
-            "name": "Spiritual Overflow",
-            "category": "weapon",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 220870,
-            "wins": 127083,
-            "win_rate": 0.5754,
-            "wilson_lb": 0.5733,
-            "score": 0.0431,
-            "wr_delta_pp": 4.51,
-            "avg_buy_time_s": 1657.2,
-            "phase": "late",
-            "avg_sell_time_s": 1948.3,
-            "is_active": false,
-            "cooldown_s": null,
-            "imbue": null,
-            "slot": "flex",
-            "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 0.778,
-            "annotation": "Can go Indomitable before this or sell Opening Rounds",
-            "lineage_chain": [
-              {
-                "item_id": 876563814,
-                "name": "Spirit Lifesteal",
-                "tier": 2,
-                "cost": 1600,
-                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/upgrades/mods_tech/health_stealing_tech.png",
-                "matches": 162654,
-                "avg_buy_time_min": 23.7,
-                "imbue": null,
-                "imbue_target_id": null,
-                "imbue_target_share": null
-              }
-            ]
-          },
-          {
             "item_id": 3403085434,
             "name": "Fleetfoot",
             "category": "weapon",
@@ -1438,6 +1414,30 @@
             "pick_rate_tag": "situational",
             "pick_rate": 0.222,
             "annotation": "Buy for 4.8k power spike."
+          },
+          {
+            "item_id": 1009965641,
+            "name": "Monster Rounds",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 166235,
+            "wins": 87236,
+            "win_rate": 0.5248,
+            "wilson_lb": 0.5224,
+            "score": -0.0079,
+            "wr_delta_pp": -0.55,
+            "avg_buy_time_s": 336.3,
+            "phase": "early",
+            "avg_sell_time_s": 1472.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "slot": "flex",
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 0.778,
+            "annotation": "Pick Rate: 48%\nWR: -2%"
           }
         ]
       },
@@ -1461,7 +1461,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 51.7,
+            "build_freq_weight": 54.5,
             "slot": "weapon",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1486,7 +1486,7 @@
             "is_active": false,
             "cooldown_s": 16.0,
             "imbue": null,
-            "build_freq_weight": 51.7,
+            "build_freq_weight": 54.5,
             "slot": "weapon",
             "tag": "flex",
             "pick_rate_tag": "flex",
@@ -1511,7 +1511,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 50.1,
+            "build_freq_weight": 54.0,
             "slot": "weapon",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -1549,7 +1549,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 50.1,
+            "build_freq_weight": 54.0,
             "slot": "weapon",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1574,7 +1574,7 @@
             "is_active": true,
             "cooldown_s": 45.0,
             "imbue": null,
-            "build_freq_weight": 51.7,
+            "build_freq_weight": 54.5,
             "slot": "vitality",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -1599,7 +1599,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 50.1,
+            "build_freq_weight": 54.0,
             "slot": "vitality",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1624,7 +1624,7 @@
             "is_active": true,
             "cooldown_s": 60.0,
             "imbue": null,
-            "build_freq_weight": 50.1,
+            "build_freq_weight": 54.0,
             "slot": "vitality",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1663,7 +1663,7 @@
             "is_active": false,
             "cooldown_s": 23.0,
             "imbue": null,
-            "build_freq_weight": 50.1,
+            "build_freq_weight": 54.0,
             "slot": "vitality",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -1688,7 +1688,7 @@
             "is_active": false,
             "cooldown_s": 15.0,
             "imbue": "imbue_active",
-            "build_freq_weight": 44.4,
+            "build_freq_weight": 44.8,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1729,7 +1729,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 44.4,
+            "build_freq_weight": 44.8,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -1780,7 +1780,7 @@
             "is_active": true,
             "cooldown_s": 37.0,
             "imbue": null,
-            "build_freq_weight": 44.4,
+            "build_freq_weight": 44.8,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -1805,7 +1805,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 42.8,
+            "build_freq_weight": 44.2,
             "slot": "spirit",
             "tag": "flex",
             "pick_rate_tag": "flex",
@@ -1855,7 +1855,7 @@
             "is_active": true,
             "cooldown_s": 37.0,
             "imbue": null,
-            "build_freq_weight": 50.1,
+            "build_freq_weight": 54.0,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -1894,7 +1894,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 44.4,
+            "build_freq_weight": 44.8,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1933,7 +1933,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 44.4,
+            "build_freq_weight": 44.8,
             "slot": "flex",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1958,7 +1958,7 @@
             "is_active": false,
             "cooldown_s": 1.0,
             "imbue": null,
-            "build_freq_weight": 44.4,
+            "build_freq_weight": 44.8,
             "slot": "flex",
             "tag": "trap_popular",
             "pick_rate_tag": "flex",
@@ -1969,56 +1969,56 @@
           {
             "build_id": 779996,
             "name": "LIGHTBRINGERxSITUATION WARDEN BUILD",
-            "win_rate": 0.5031,
-            "matches": 1145
+            "win_rate": 0.5043,
+            "matches": 1160
           },
           {
             "build_id": 706685,
             "name": "Renon's Rank 1 Warden (Twitch.tv/RenonFPS)",
-            "win_rate": 0.5418,
-            "matches": 932
+            "win_rate": 0.5437,
+            "matches": 938
           },
           {
             "build_id": 357243,
             "name": "oses",
-            "win_rate": 0.5207,
-            "matches": 701
+            "win_rate": 0.524,
+            "matches": 708
           },
           {
             "build_id": 383481,
             "name": "FaxFox Warden",
-            "win_rate": 0.5028,
-            "matches": 543
+            "win_rate": 0.5055,
+            "matches": 550
           },
           {
             "build_id": 375371,
             "name": "Leo - Hybrid Warden",
-            "win_rate": 0.5432,
-            "matches": 405
+            "win_rate": 0.5419,
+            "matches": 406
           },
           {
             "build_id": 317839,
             "name": "Warden - Hybrid-Initiator [53% WR] [tracklock.gg]",
-            "win_rate": 0.4799,
-            "matches": 398
+            "win_rate": 0.4838,
+            "matches": 401
           },
           {
             "build_id": 222738,
             "name": "Rey's Hybrid Flask",
-            "win_rate": 0.4941,
-            "matches": 340
+            "win_rate": 0.4927,
+            "matches": 341
           },
           {
             "build_id": 223080,
             "name": "geigster",
-            "win_rate": 0.5152,
-            "matches": 328
+            "win_rate": 0.5119,
+            "matches": 336
           },
           {
             "build_id": 544832,
             "name": "Walter Warden // Annotated",
-            "win_rate": 0.4981,
-            "matches": 269
+            "win_rate": 0.4964,
+            "matches": 274
           }
         ]
       },
@@ -2036,10 +2036,10 @@
             "Last Stand"
           ],
           "n_builds": 4,
-          "total_matches": 2004,
-          "total_wins": 1050,
-          "mean_win_rate": 0.524,
-          "win_rate_lift_pp": -0.63,
+          "total_matches": 2019,
+          "total_wins": 1060,
+          "mean_win_rate": 0.525,
+          "win_rate_lift_pp": -0.52,
           "consensus_ladder_ids": [
             2656490109,
             2751689917,
@@ -2131,7 +2131,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 42.7,
+              "joint_freq_weight": 44.2,
               "slot": "weapon",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2170,7 +2170,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 42.7,
+              "joint_freq_weight": 44.2,
               "slot": "weapon",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -2208,7 +2208,7 @@
               "is_active": true,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 42.7,
+              "joint_freq_weight": 44.2,
               "slot": "weapon",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -2233,7 +2233,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 42.7,
+              "joint_freq_weight": 44.2,
               "slot": "weapon",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2258,7 +2258,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 42.7,
+              "joint_freq_weight": 44.2,
               "slot": "vitality",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -2283,7 +2283,7 @@
               "is_active": false,
               "cooldown_s": 55.0,
               "imbue": null,
-              "joint_freq_weight": 42.7,
+              "joint_freq_weight": 44.2,
               "slot": "vitality",
               "tag": "flex",
               "pick_rate_tag": "flex",
@@ -2334,7 +2334,7 @@
               "is_active": true,
               "cooldown_s": 60.0,
               "imbue": null,
-              "joint_freq_weight": 42.7,
+              "joint_freq_weight": 44.2,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2373,7 +2373,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 42.7,
+              "joint_freq_weight": 44.2,
               "slot": "vitality",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -2398,7 +2398,7 @@
               "is_active": true,
               "cooldown_s": 35.0,
               "imbue": null,
-              "joint_freq_weight": 42.7,
+              "joint_freq_weight": 44.2,
               "slot": "spirit",
               "tag": "tech_pick",
               "pick_rate_tag": "situational",
@@ -2422,7 +2422,7 @@
               "is_active": true,
               "cooldown_s": 37.0,
               "imbue": null,
-              "joint_freq_weight": 42.7,
+              "joint_freq_weight": 44.2,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -2447,7 +2447,7 @@
               "is_active": false,
               "cooldown_s": 15.0,
               "imbue": "imbue_active",
-              "joint_freq_weight": 42.7,
+              "joint_freq_weight": 44.2,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2488,7 +2488,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 42.7,
+              "joint_freq_weight": 44.2,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
@@ -2539,7 +2539,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 42.7,
+              "joint_freq_weight": 44.2,
               "slot": "flex",
               "tag": "trap_popular",
               "pick_rate_tag": "flex",
@@ -2564,7 +2564,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 42.7,
+              "joint_freq_weight": 44.2,
               "slot": "flex",
               "tag": "core_inherited",
               "pick_rate_tag": "flex",
@@ -2589,7 +2589,7 @@
               "is_active": false,
               "cooldown_s": 1.0,
               "imbue": null,
-              "joint_freq_weight": 42.7,
+              "joint_freq_weight": 44.2,
               "slot": "flex",
               "tag": "trap_popular",
               "pick_rate_tag": "flex",
@@ -2613,7 +2613,7 @@
               "is_active": false,
               "cooldown_s": 23.0,
               "imbue": null,
-              "joint_freq_weight": 42.7,
+              "joint_freq_weight": 44.2,
               "slot": "flex",
               "tag": "trap_popular",
               "pick_rate_tag": "core",
@@ -2625,26 +2625,26 @@
             {
               "build_id": 706685,
               "name": "Renon's Rank 1 Warden (Twitch.tv/RenonFPS)",
-              "win_rate": 0.5418,
-              "matches": 932
+              "win_rate": 0.5437,
+              "matches": 938
             },
             {
               "build_id": 375371,
               "name": "Leo - Hybrid Warden",
-              "win_rate": 0.5432,
-              "matches": 405
+              "win_rate": 0.5419,
+              "matches": 406
             },
             {
               "build_id": 317839,
               "name": "Warden - Hybrid-Initiator [53% WR] [tracklock.gg]",
-              "win_rate": 0.4799,
-              "matches": 398
+              "win_rate": 0.4838,
+              "matches": 401
             },
             {
               "build_id": 544832,
               "name": "Walter Warden // Annotated",
-              "win_rate": 0.4981,
-              "matches": 269
+              "win_rate": 0.4964,
+              "matches": 274
             }
           ]
         },
@@ -2661,10 +2661,10 @@
             "Last Stand"
           ],
           "n_builds": 2,
-          "total_matches": 883,
-          "total_wins": 441,
-          "mean_win_rate": 0.4994,
-          "win_rate_lift_pp": -3.08,
+          "total_matches": 891,
+          "total_wins": 446,
+          "mean_win_rate": 0.5006,
+          "win_rate_lift_pp": -2.97,
           "consensus_ladder_ids": [
             2656490109,
             2751689917,
@@ -3244,14 +3244,14 @@
             {
               "build_id": 383481,
               "name": "FaxFox Warden",
-              "win_rate": 0.5028,
-              "matches": 543
+              "win_rate": 0.5055,
+              "matches": 550
             },
             {
               "build_id": 222738,
               "name": "Rey's Hybrid Flask",
-              "win_rate": 0.4941,
-              "matches": 340
+              "win_rate": 0.4927,
+              "matches": 341
             }
           ]
         }
@@ -5133,7 +5133,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 0.3,
+            "build_freq_weight": 0.8,
             "slot": "weapon",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -5171,7 +5171,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 0.3,
+            "build_freq_weight": 0.8,
             "slot": "weapon",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -5196,7 +5196,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 0.3,
+            "build_freq_weight": 0.8,
             "slot": "weapon",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -5220,7 +5220,7 @@
             "is_active": true,
             "cooldown_s": 16.0,
             "imbue": null,
-            "build_freq_weight": 0.3,
+            "build_freq_weight": 0.8,
             "slot": "weapon",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -5244,7 +5244,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 0.3,
+            "build_freq_weight": 0.8,
             "slot": "vitality",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -5268,7 +5268,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 0.3,
+            "build_freq_weight": 0.8,
             "slot": "vitality",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -5292,7 +5292,7 @@
             "is_active": true,
             "cooldown_s": 60.0,
             "imbue": null,
-            "build_freq_weight": 0.3,
+            "build_freq_weight": 0.8,
             "slot": "vitality",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -5330,7 +5330,7 @@
             "is_active": false,
             "cooldown_s": 23.0,
             "imbue": null,
-            "build_freq_weight": 0.3,
+            "build_freq_weight": 0.8,
             "slot": "vitality",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -5354,7 +5354,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 0.3,
+            "build_freq_weight": 0.8,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -5492,7 +5492,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 0.3,
+            "build_freq_weight": 0.8,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -5516,7 +5516,7 @@
             "is_active": true,
             "cooldown_s": 45.0,
             "imbue": null,
-            "build_freq_weight": 0.3,
+            "build_freq_weight": 0.8,
             "slot": "flex",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -5540,7 +5540,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 0.3,
+            "build_freq_weight": 0.8,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -5564,7 +5564,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 0.3,
+            "build_freq_weight": 0.8,
             "slot": "flex",
             "tag": "core_inherited",
             "pick_rate_tag": "flex",
@@ -5575,14 +5575,14 @@
           {
             "build_id": 779996,
             "name": "LIGHTBRINGERxSITUATION WARDEN BUILD",
-            "win_rate": 0.4734,
-            "matches": 207
+            "win_rate": 0.4712,
+            "matches": 208
           },
           {
             "build_id": 357243,
             "name": "oses",
-            "win_rate": 0.513,
-            "matches": 154
+            "win_rate": 0.5161,
+            "matches": 155
           }
         ]
       },
@@ -7088,7 +7088,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 1.1,
+            "build_freq_weight": 1.6,
             "slot": "weapon",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -7113,7 +7113,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 1.1,
+            "build_freq_weight": 1.6,
             "slot": "weapon",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -7137,7 +7137,7 @@
             "is_active": true,
             "cooldown_s": 16.0,
             "imbue": null,
-            "build_freq_weight": 1.1,
+            "build_freq_weight": 1.6,
             "slot": "weapon",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -7161,7 +7161,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 1.1,
+            "build_freq_weight": 1.6,
             "slot": "weapon",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -7185,7 +7185,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 1.1,
+            "build_freq_weight": 1.6,
             "slot": "vitality",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -7209,7 +7209,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 1.1,
+            "build_freq_weight": 1.6,
             "slot": "vitality",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -7233,7 +7233,7 @@
             "is_active": true,
             "cooldown_s": 60.0,
             "imbue": null,
-            "build_freq_weight": 1.1,
+            "build_freq_weight": 1.6,
             "slot": "vitality",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -7271,7 +7271,7 @@
             "is_active": false,
             "cooldown_s": 23.0,
             "imbue": null,
-            "build_freq_weight": 1.1,
+            "build_freq_weight": 1.6,
             "slot": "vitality",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -7295,7 +7295,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 1.1,
+            "build_freq_weight": 1.6,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -7433,7 +7433,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 1.1,
+            "build_freq_weight": 1.6,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -7457,7 +7457,7 @@
             "is_active": true,
             "cooldown_s": 45.0,
             "imbue": null,
-            "build_freq_weight": 1.1,
+            "build_freq_weight": 1.6,
             "slot": "flex",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -7481,7 +7481,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 1.1,
+            "build_freq_weight": 1.6,
             "slot": "flex",
             "tag": "core_inherited",
             "pick_rate_tag": "flex",
@@ -7505,7 +7505,7 @@
             "is_active": true,
             "cooldown_s": 37.0,
             "imbue": null,
-            "build_freq_weight": 1.1,
+            "build_freq_weight": 1.6,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -7536,8 +7536,8 @@
           {
             "build_id": 357243,
             "name": "oses",
-            "win_rate": 0.5429,
-            "matches": 70
+            "win_rate": 0.5493,
+            "matches": 71
           }
         ]
       },
@@ -8989,8 +8989,8 @@
   },
   "ability_orders": {
     "all_mmr": {
-      "total_records": 335,
-      "total_matches": 223528,
+      "total_records": 342,
+      "total_matches": 230111,
       "ability_priority": [
         {
           "ability_id": 2656490109,
@@ -9009,7 +9009,7 @@
         {
           "ability_id": 1656913918,
           "name": "Binding Word",
-          "avg_ap_all_players": 3.72,
+          "avg_ap_all_players": 3.73,
           "avg_ap_winners": 3.77,
           "winner_premium_ap": 0.05
         },
@@ -9017,7 +9017,7 @@
           "ability_id": 2702908623,
           "name": "Last Stand",
           "avg_ap_all_players": 3.42,
-          "avg_ap_winners": 3.55,
+          "avg_ap_winners": 3.54,
           "winner_premium_ap": 0.13
         }
       ],
@@ -9059,54 +9059,11 @@
             "Last Stand",
             "Last Stand"
           ],
-          "wins": 150,
-          "losses": 64,
-          "matches": 214,
-          "players": 211,
-          "win_rate": 0.7009
-        },
-        {
-          "sequence_ids": [
-            2656490109,
-            2656490109,
-            2751689917,
-            1656913918,
-            2656490109,
-            2702908623,
-            2656490109,
-            2702908623,
-            2702908623,
-            2751689917,
-            2751689917,
-            2751689917,
-            2702908623,
-            1656913918,
-            1656913918,
-            1656913918
-          ],
-          "sequence_names": [
-            "Alchemical Flask",
-            "Alchemical Flask",
-            "Willpower",
-            "Binding Word",
-            "Alchemical Flask",
-            "Last Stand",
-            "Alchemical Flask",
-            "Last Stand",
-            "Last Stand",
-            "Willpower",
-            "Willpower",
-            "Willpower",
-            "Last Stand",
-            "Binding Word",
-            "Binding Word",
-            "Binding Word"
-          ],
-          "wins": 524,
-          "losses": 234,
-          "matches": 758,
-          "players": 538,
-          "win_rate": 0.6913
+          "wins": 157,
+          "losses": 66,
+          "matches": 223,
+          "players": 219,
+          "win_rate": 0.704
         },
         {
           "sequence_ids": [
@@ -9145,11 +9102,11 @@
             "Last Stand",
             "Last Stand"
           ],
-          "wins": 2100,
-          "losses": 945,
-          "matches": 3045,
-          "players": 2121,
-          "win_rate": 0.6897
+          "wins": 2165,
+          "losses": 964,
+          "matches": 3129,
+          "players": 2183,
+          "win_rate": 0.6919
         },
         {
           "sequence_ids": [
@@ -9160,15 +9117,15 @@
             2656490109,
             2702908623,
             2656490109,
+            2702908623,
+            2702908623,
             2751689917,
-            1656913918,
-            1656913918,
-            1656913918,
             2751689917,
             2751689917,
             2702908623,
-            2702908623,
-            2702908623
+            1656913918,
+            1656913918,
+            1656913918
           ],
           "sequence_names": [
             "Alchemical Flask",
@@ -9178,21 +9135,21 @@
             "Alchemical Flask",
             "Last Stand",
             "Alchemical Flask",
+            "Last Stand",
+            "Last Stand",
             "Willpower",
-            "Binding Word",
-            "Binding Word",
-            "Binding Word",
             "Willpower",
             "Willpower",
             "Last Stand",
-            "Last Stand",
-            "Last Stand"
+            "Binding Word",
+            "Binding Word",
+            "Binding Word"
           ],
-          "wins": 195,
-          "losses": 89,
-          "matches": 284,
-          "players": 244,
-          "win_rate": 0.6866
+          "wins": 529,
+          "losses": 236,
+          "matches": 765,
+          "players": 543,
+          "win_rate": 0.6915
         },
         {
           "sequence_ids": [
@@ -9231,11 +9188,54 @@
             "Binding Word",
             "Binding Word"
           ],
-          "wins": 198,
-          "losses": 91,
-          "matches": 289,
-          "players": 277,
-          "win_rate": 0.6851
+          "wins": 208,
+          "losses": 93,
+          "matches": 301,
+          "players": 288,
+          "win_rate": 0.691
+        },
+        {
+          "sequence_ids": [
+            2656490109,
+            2656490109,
+            2751689917,
+            1656913918,
+            2656490109,
+            2702908623,
+            2656490109,
+            2751689917,
+            1656913918,
+            1656913918,
+            1656913918,
+            2751689917,
+            2751689917,
+            2702908623,
+            2702908623,
+            2702908623
+          ],
+          "sequence_names": [
+            "Alchemical Flask",
+            "Alchemical Flask",
+            "Willpower",
+            "Binding Word",
+            "Alchemical Flask",
+            "Last Stand",
+            "Alchemical Flask",
+            "Willpower",
+            "Binding Word",
+            "Binding Word",
+            "Binding Word",
+            "Willpower",
+            "Willpower",
+            "Last Stand",
+            "Last Stand",
+            "Last Stand"
+          ],
+          "wins": 205,
+          "losses": 92,
+          "matches": 297,
+          "players": 254,
+          "win_rate": 0.6902
         }
       ],
       "best_openers_first4": [
@@ -9246,9 +9246,9 @@
             "Willpower",
             "Alchemical Flask"
           ],
-          "wins": 413,
-          "matches": 684,
-          "win_rate": 0.6038
+          "wins": 426,
+          "matches": 703,
+          "win_rate": 0.606
         },
         {
           "sequence_names": [
@@ -9257,9 +9257,9 @@
             "Alchemical Flask",
             "Binding Word"
           ],
-          "wins": 575,
-          "matches": 974,
-          "win_rate": 0.5903
+          "wins": 626,
+          "matches": 1058,
+          "win_rate": 0.5917
         },
         {
           "sequence_names": [
@@ -9268,9 +9268,9 @@
             "Binding Word",
             "Alchemical Flask"
           ],
-          "wins": 559,
-          "matches": 957,
-          "win_rate": 0.5841
+          "wins": 573,
+          "matches": 977,
+          "win_rate": 0.5865
         },
         {
           "sequence_names": [
@@ -9279,9 +9279,9 @@
             "Binding Word",
             "Willpower"
           ],
-          "wins": 11113,
-          "matches": 19986,
-          "win_rate": 0.556
+          "wins": 11411,
+          "matches": 20478,
+          "win_rate": 0.5572
         },
         {
           "sequence_names": [
@@ -9290,15 +9290,15 @@
             "Willpower",
             "Binding Word"
           ],
-          "wins": 108079,
-          "matches": 197139,
-          "win_rate": 0.5482
+          "wins": 111195,
+          "matches": 202971,
+          "win_rate": 0.5478
         }
       ]
     },
     "high_mmr": {
       "total_records": 50,
-      "total_matches": 14464,
+      "total_matches": 14567,
       "ability_priority": [
         {
           "ability_id": 2656490109,
@@ -9367,11 +9367,11 @@
             "Binding Word",
             "Binding Word"
           ],
-          "wins": 267,
-          "losses": 108,
-          "matches": 375,
+          "wins": 268,
+          "losses": 109,
+          "matches": 377,
           "players": 207,
-          "win_rate": 0.712
+          "win_rate": 0.7109
         },
         {
           "sequence_ids": [
@@ -9410,11 +9410,11 @@
             "Last Stand",
             "Last Stand"
           ],
-          "wins": 1105,
-          "losses": 481,
-          "matches": 1586,
-          "players": 837,
-          "win_rate": 0.6967
+          "wins": 1114,
+          "losses": 483,
+          "matches": 1597,
+          "players": 839,
+          "win_rate": 0.6976
         },
         {
           "sequence_ids": [
@@ -9453,11 +9453,11 @@
             "Last Stand",
             "Last Stand"
           ],
-          "wins": 167,
+          "wins": 169,
           "losses": 83,
-          "matches": 250,
-          "players": 169,
-          "win_rate": 0.668
+          "matches": 252,
+          "players": 170,
+          "win_rate": 0.6706
         },
         {
           "sequence_ids": [
@@ -9465,47 +9465,6 @@
             2656490109,
             1656913918,
             2751689917,
-            2656490109,
-            2702908623,
-            2656490109,
-            1656913918,
-            1656913918,
-            1656913918,
-            2751689917,
-            2751689917,
-            2751689917,
-            2702908623,
-            2702908623
-          ],
-          "sequence_names": [
-            "Alchemical Flask",
-            "Alchemical Flask",
-            "Binding Word",
-            "Willpower",
-            "Alchemical Flask",
-            "Last Stand",
-            "Alchemical Flask",
-            "Binding Word",
-            "Binding Word",
-            "Binding Word",
-            "Willpower",
-            "Willpower",
-            "Willpower",
-            "Last Stand",
-            "Last Stand"
-          ],
-          "wins": 547,
-          "losses": 300,
-          "matches": 847,
-          "players": 356,
-          "win_rate": 0.6458
-        },
-        {
-          "sequence_ids": [
-            2656490109,
-            2656490109,
-            2751689917,
-            1656913918,
             2656490109,
             2702908623,
             2656490109,
@@ -9521,8 +9480,8 @@
           "sequence_names": [
             "Alchemical Flask",
             "Alchemical Flask",
-            "Willpower",
             "Binding Word",
+            "Willpower",
             "Alchemical Flask",
             "Last Stand",
             "Alchemical Flask",
@@ -9535,11 +9494,52 @@
             "Binding Word",
             "Binding Word"
           ],
-          "wins": 814,
-          "losses": 499,
-          "matches": 1313,
-          "players": 435,
-          "win_rate": 0.62
+          "wins": 67,
+          "losses": 33,
+          "matches": 100,
+          "players": 56,
+          "win_rate": 0.67
+        },
+        {
+          "sequence_ids": [
+            2656490109,
+            2656490109,
+            1656913918,
+            2751689917,
+            2656490109,
+            2702908623,
+            2656490109,
+            1656913918,
+            1656913918,
+            1656913918,
+            2751689917,
+            2751689917,
+            2751689917,
+            2702908623,
+            2702908623
+          ],
+          "sequence_names": [
+            "Alchemical Flask",
+            "Alchemical Flask",
+            "Binding Word",
+            "Willpower",
+            "Alchemical Flask",
+            "Last Stand",
+            "Alchemical Flask",
+            "Binding Word",
+            "Binding Word",
+            "Binding Word",
+            "Willpower",
+            "Willpower",
+            "Willpower",
+            "Last Stand",
+            "Last Stand"
+          ],
+          "wins": 550,
+          "losses": 304,
+          "matches": 854,
+          "players": 360,
+          "win_rate": 0.644
         }
       ],
       "best_openers_first4": [
@@ -9550,9 +9550,9 @@
             "Binding Word",
             "Willpower"
           ],
-          "wins": 940,
-          "matches": 1643,
-          "win_rate": 0.5721
+          "wins": 949,
+          "matches": 1657,
+          "win_rate": 0.5727
         },
         {
           "sequence_names": [
@@ -9561,15 +9561,15 @@
             "Willpower",
             "Binding Word"
           ],
-          "wins": 6846,
-          "matches": 12694,
-          "win_rate": 0.5393
+          "wins": 6895,
+          "matches": 12783,
+          "win_rate": 0.5394
         }
       ]
     },
     "ascendant_plus": {
       "total_records": 25,
-      "total_matches": 3231,
+      "total_matches": 3259,
       "ability_priority": [
         {
           "ability_id": 2656490109,
@@ -9638,11 +9638,11 @@
             "Binding Word",
             "Binding Word"
           ],
-          "wins": 52,
+          "wins": 53,
           "losses": 10,
-          "matches": 62,
-          "players": 38,
-          "win_rate": 0.8387
+          "matches": 63,
+          "players": 39,
+          "win_rate": 0.8413
         },
         {
           "sequence_ids": [
@@ -9682,10 +9682,10 @@
             "Last Stand"
           ],
           "wins": 230,
-          "losses": 80,
-          "matches": 310,
+          "losses": 81,
+          "matches": 311,
           "players": 174,
-          "win_rate": 0.7419
+          "win_rate": 0.7395
         },
         {
           "sequence_ids": [
@@ -9724,11 +9724,11 @@
             "Last Stand",
             "Last Stand"
           ],
-          "wins": 47,
+          "wins": 48,
           "losses": 20,
-          "matches": 67,
-          "players": 34,
-          "win_rate": 0.7015
+          "matches": 68,
+          "players": 35,
+          "win_rate": 0.7059
         },
         {
           "sequence_ids": [
@@ -9766,10 +9766,10 @@
             "Binding Word"
           ],
           "wins": 175,
-          "losses": 82,
-          "matches": 257,
+          "losses": 83,
+          "matches": 258,
           "players": 84,
-          "win_rate": 0.6809
+          "win_rate": 0.6783
         },
         {
           "sequence_ids": [
@@ -9806,11 +9806,11 @@
             "Last Stand",
             "Last Stand"
           ],
-          "wins": 208,
-          "losses": 105,
-          "matches": 313,
+          "wins": 209,
+          "losses": 106,
+          "matches": 315,
           "players": 119,
-          "win_rate": 0.6645
+          "win_rate": 0.6635
         }
       ],
       "best_openers_first4": [
@@ -9821,9 +9821,9 @@
             "Binding Word",
             "Willpower"
           ],
-          "wins": 318,
-          "matches": 532,
-          "win_rate": 0.5977
+          "wins": 322,
+          "matches": 538,
+          "win_rate": 0.5985
         },
         {
           "sequence_names": [
@@ -9832,15 +9832,15 @@
             "Willpower",
             "Binding Word"
           ],
-          "wins": 1507,
-          "matches": 2687,
-          "win_rate": 0.5608
+          "wins": 1516,
+          "matches": 2709,
+          "win_rate": 0.5596
         }
       ]
     },
     "eternus_plus": {
       "total_records": 7,
-      "total_matches": 115,
+      "total_matches": 116,
       "ability_priority": [
         {
           "ability_id": 2656490109,
@@ -9868,7 +9868,7 @@
           "name": "Last Stand",
           "avg_ap_all_players": 3.23,
           "avg_ap_winners": 3.3,
-          "winner_premium_ap": 0.07
+          "winner_premium_ap": 0.06
         }
       ],
       "best_full_orders": [
@@ -9907,11 +9907,11 @@
             "Last Stand",
             "Last Stand"
           ],
-          "wins": 38,
+          "wins": 39,
           "losses": 22,
-          "matches": 60,
-          "players": 36,
-          "win_rate": 0.6333
+          "matches": 61,
+          "players": 37,
+          "win_rate": 0.6393
         }
       ],
       "best_openers_first4": [
@@ -9922,9 +9922,9 @@
             "Willpower",
             "Binding Word"
           ],
-          "wins": 58,
-          "matches": 96,
-          "win_rate": 0.6042
+          "wins": 59,
+          "matches": 97,
+          "win_rate": 0.6082
         }
       ]
     }

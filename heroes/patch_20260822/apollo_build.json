@@ -57,7 +57,7 @@
     "items": {
       "method": "synergy_ilp",
       "mmr_slice": "high_mmr",
-      "total_cost": 53600,
+      "total_cost": 52000,
       "phases": {
         "early": [
           {
@@ -90,6 +90,22 @@
             "pick_rate": 0.0,
             "is_active": false,
             "cooldown_s": 6.0,
+            "imbue": null
+          },
+          {
+            "slot": "flex",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "name": "Cold Front",
+            "item_id": 1976391348,
+            "avg_buy_time_min": 8.9,
+            "avg_sell_time_min": 33.5,
+            "win_rate": 0.4845,
+            "tag": "stat",
+            "pick_rate": 0.0,
+            "is_active": true,
+            "cooldown_s": 25.0,
             "imbue": null
           },
           {
@@ -141,7 +157,7 @@
             "imbue": null
           },
           {
-            "slot": "flex",
+            "slot": "vitality",
             "category": "vitality",
             "tier": 2,
             "cost": 1600,
@@ -266,22 +282,6 @@
           }
         ],
         "late": [
-          {
-            "slot": "vitality",
-            "category": "vitality",
-            "tier": 3,
-            "cost": 3200,
-            "name": "Spirit Resilience",
-            "item_id": 2163598980,
-            "avg_buy_time_min": 26.4,
-            "avg_sell_time_min": 28.2,
-            "win_rate": 0.5221,
-            "tag": "stat_anomaly",
-            "pick_rate": 0.0,
-            "is_active": false,
-            "cooldown_s": null,
-            "imbue": null
-          },
           {
             "slot": "flex",
             "category": "spirit",
@@ -461,11 +461,11 @@
           "Disengaging Sigil",
           "Disengaging Sigil"
         ],
-        "wins": 257,
-        "losses": 153,
-        "matches": 410,
-        "players": 155,
-        "win_rate": 0.6268
+        "wins": 259,
+        "losses": 155,
+        "matches": 414,
+        "players": 156,
+        "win_rate": 0.6256
       },
       "best_opener_first4": {
         "sequence_names": [
@@ -474,9 +474,9 @@
           "Flawless Advance",
           "Riposte"
         ],
-        "wins": 1032,
-        "matches": 2062,
-        "win_rate": 0.5005
+        "wins": 1037,
+        "matches": 2070,
+        "win_rate": 0.501
       }
     }
   },
@@ -763,7 +763,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 0.857,
-            "annotation": "Pick Rate: 48%\nWR: +8%"
+            "annotation": "ton of antiheal"
           },
           {
             "item_id": 3005970438,
@@ -787,7 +787,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 0.857,
-            "annotation": "vs tanks\nPick Rate: 13%\nWR: +9%",
+            "annotation": "if youre already tanky and sitting on people for a long time",
             "lineage_chain": [
               {
                 "item_id": 2081037738,
@@ -935,7 +935,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 0.857,
-            "annotation": "Pick Rate: 10%\nWR: +6%"
+            "annotation": "CAREFUL BUYING AGAINST GRAVES (zombies surround you and pop when you come out)"
           }
         ]
       },
@@ -1257,7 +1257,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 0.857,
-            "annotation": "Pick Rate: 48%\nWR: +8%"
+            "annotation": "ton of antiheal"
           },
           {
             "item_id": 3005970438,
@@ -1281,7 +1281,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 0.857,
-            "annotation": "vs tanks\nPick Rate: 13%\nWR: +9%",
+            "annotation": "if youre already tanky and sitting on people for a long time",
             "lineage_chain": [
               {
                 "item_id": 2081037738,
@@ -1342,7 +1342,7 @@
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 0.857,
-            "annotation": "Pick Rate: 73%\nWR: +1%",
+            "annotation": "RUSH ASAP can delay a bit if you need but spirit power so op on this hero",
             "lineage_chain": [
               {
                 "item_id": 968099481,
@@ -1491,7 +1491,7 @@
             "is_active": false,
             "cooldown_s": 8.0,
             "imbue": null,
-            "build_freq_weight": 23.6,
+            "build_freq_weight": 24.7,
             "slot": "weapon",
             "tag": "situational",
             "pick_rate_tag": "situational",
@@ -1515,7 +1515,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 14.9,
+            "build_freq_weight": 13.5,
             "slot": "weapon",
             "tag": "situational",
             "pick_rate_tag": "situational",
@@ -1554,7 +1554,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 7.8,
+            "build_freq_weight": 7.9,
             "slot": "weapon",
             "tag": "tech_pick",
             "pick_rate_tag": "situational",
@@ -1579,7 +1579,7 @@
             "is_active": false,
             "cooldown_s": 5.0,
             "imbue": null,
-            "build_freq_weight": 6.7,
+            "build_freq_weight": 5.8,
             "slot": "weapon",
             "tag": "tech_pick",
             "pick_rate_tag": "situational",
@@ -1617,7 +1617,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 41.0,
+            "build_freq_weight": 42.0,
             "slot": "vitality",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1642,12 +1642,12 @@
             "is_active": false,
             "cooldown_s": 23.0,
             "imbue": null,
-            "build_freq_weight": 41.0,
+            "build_freq_weight": 42.0,
             "slot": "vitality",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
             "pick_rate": 0.857,
-            "annotation": "vs casters\nPick Rate: 8%\nWR: -3%"
+            "annotation": "counterspell is op"
           },
           {
             "item_id": 3731635960,
@@ -1667,7 +1667,7 @@
             "is_active": true,
             "cooldown_s": 45.0,
             "imbue": null,
-            "build_freq_weight": 41.0,
+            "build_freq_weight": 42.0,
             "slot": "vitality",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1692,7 +1692,7 @@
             "is_active": true,
             "cooldown_s": 24.0,
             "imbue": null,
-            "build_freq_weight": 39.6,
+            "build_freq_weight": 40.5,
             "slot": "vitality",
             "tag": "trap_popular",
             "pick_rate_tag": "core",
@@ -1717,7 +1717,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 41.0,
+            "build_freq_weight": 42.0,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1756,7 +1756,7 @@
             "is_active": false,
             "cooldown_s": 1.4,
             "imbue": null,
-            "build_freq_weight": 41.0,
+            "build_freq_weight": 42.0,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
@@ -1781,7 +1781,7 @@
             "is_active": true,
             "cooldown_s": 30.0,
             "imbue": null,
-            "build_freq_weight": 38.5,
+            "build_freq_weight": 38.3,
             "slot": "spirit",
             "tag": "trap_popular",
             "pick_rate_tag": "flex",
@@ -1805,12 +1805,12 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 34.3,
+            "build_freq_weight": 36.2,
             "slot": "spirit",
             "tag": "core_proven",
             "pick_rate_tag": "core",
             "pick_rate": 0.857,
-            "annotation": "vs tanks\nPick Rate: 13%\nWR: +9%",
+            "annotation": "if youre already tanky and sitting on people for a long time",
             "lineage_chain": [
               {
                 "item_id": 2081037738,
@@ -1844,7 +1844,7 @@
             "is_active": false,
             "cooldown_s": 1.0,
             "imbue": null,
-            "build_freq_weight": 39.6,
+            "build_freq_weight": 40.5,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -1869,7 +1869,7 @@
             "is_active": false,
             "cooldown_s": 1.0,
             "imbue": null,
-            "build_freq_weight": 39.6,
+            "build_freq_weight": 40.5,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -1894,7 +1894,7 @@
             "is_active": false,
             "cooldown_s": 55.0,
             "imbue": null,
-            "build_freq_weight": 38.5,
+            "build_freq_weight": 38.3,
             "slot": "flex",
             "tag": "core_proven",
             "pick_rate_tag": "flex",
@@ -1945,7 +1945,7 @@
             "is_active": false,
             "cooldown_s": null,
             "imbue": null,
-            "build_freq_weight": 34.3,
+            "build_freq_weight": 36.2,
             "slot": "flex",
             "tag": "core_inherited",
             "pick_rate_tag": "core",
@@ -1957,44 +1957,44 @@
           {
             "build_id": 467560,
             "name": "SN|P3R : \u03df Devil May Care \u03df",
-            "win_rate": 0.4951,
-            "matches": 721
+            "win_rate": 0.4945,
+            "matches": 728
           },
           {
             "build_id": 471411,
             "name": "Ronald (ttv FredTheFinch)",
-            "win_rate": 0.4859,
-            "matches": 533
+            "win_rate": 0.4879,
+            "matches": 537
           },
           {
             "build_id": 353960,
             "name": "twitch.tv/oses7",
-            "win_rate": 0.4523,
-            "matches": 482
+            "win_rate": 0.4515,
+            "matches": 485
           },
           {
             "build_id": 448546,
             "name": "TOP 1 FENCER NA - SHMUCK",
-            "win_rate": 0.5339,
-            "matches": 472
+            "win_rate": 0.5356,
+            "matches": 478
           },
           {
             "build_id": 469013,
             "name": "Apollo - Spirit-Initiator [53% WR] [tracklock.gg]",
-            "win_rate": 0.4871,
-            "matches": 425
+            "win_rate": 0.4873,
+            "matches": 433
           },
           {
             "build_id": 489481,
             "name": "SunnyDriveApollo",
-            "win_rate": 0.4816,
-            "matches": 272
+            "win_rate": 0.4799,
+            "matches": 273
           },
           {
             "build_id": 531387,
             "name": "Infest Melee Apollo",
-            "win_rate": 0.513,
-            "matches": 230
+            "win_rate": 0.5086,
+            "matches": 232
           }
         ]
       },
@@ -2012,10 +2012,10 @@
             "Itani Lo Sahn"
           ],
           "n_builds": 4,
-          "total_matches": 1712,
-          "total_wins": 815,
-          "mean_win_rate": 0.4761,
-          "win_rate_lift_pp": -2.78,
+          "total_matches": 1728,
+          "total_wins": 823,
+          "mean_win_rate": 0.4763,
+          "win_rate_lift_pp": -2.75,
           "consensus_ladder_ids": [
             147493976
           ],
@@ -2083,7 +2083,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 1.1,
+              "joint_freq_weight": 2.2,
               "slot": "weapon",
               "tag": "tech_pick",
               "pick_rate_tag": "situational",
@@ -2122,7 +2122,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 1.1,
+              "joint_freq_weight": 2.2,
               "slot": "weapon",
               "tag": "tech_pick",
               "pick_rate_tag": "situational",
@@ -2147,7 +2147,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 2.5,
+              "joint_freq_weight": 3.7,
               "slot": "vitality",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -2172,7 +2172,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 2.5,
+              "joint_freq_weight": 3.7,
               "slot": "vitality",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -2197,7 +2197,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 2.5,
+              "joint_freq_weight": 3.7,
               "slot": "vitality",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2236,7 +2236,7 @@
               "is_active": true,
               "cooldown_s": 16.0,
               "imbue": null,
-              "joint_freq_weight": 2.5,
+              "joint_freq_weight": 3.7,
               "slot": "vitality",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -2261,12 +2261,12 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 2.5,
+              "joint_freq_weight": 3.7,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
               "pick_rate": 0.857,
-              "annotation": "vs tanks\nPick Rate: 13%\nWR: +9%",
+              "annotation": "if youre already tanky and sitting on people for a long time",
               "lineage_chain": [
                 {
                   "item_id": 2081037738,
@@ -2300,7 +2300,7 @@
               "is_active": false,
               "cooldown_s": 14.0,
               "imbue": null,
-              "joint_freq_weight": 2.5,
+              "joint_freq_weight": 3.7,
               "slot": "spirit",
               "tag": "core_inherited",
               "pick_rate_tag": "core",
@@ -2339,12 +2339,12 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 2.5,
+              "joint_freq_weight": 3.7,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
               "pick_rate": 0.857,
-              "annotation": "Pick Rate: 48%\nWR: +8%"
+              "annotation": "ton of antiheal"
             },
             {
               "item_id": 1193964439,
@@ -2364,7 +2364,7 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 2.5,
+              "joint_freq_weight": 3.7,
               "slot": "spirit",
               "tag": "core_proven",
               "pick_rate_tag": "core",
@@ -2403,12 +2403,12 @@
               "is_active": false,
               "cooldown_s": null,
               "imbue": null,
-              "joint_freq_weight": 2.5,
+              "joint_freq_weight": 3.7,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "flex",
               "pick_rate": 0.571,
-              "annotation": "Pick Rate: 33%\nWR: +1%"
+              "annotation": "CRAZY RES AND GREAT STATS"
             },
             {
               "item_id": 1813726886,
@@ -2428,7 +2428,7 @@
               "is_active": true,
               "cooldown_s": 27.0,
               "imbue": null,
-              "joint_freq_weight": 2.5,
+              "joint_freq_weight": 3.7,
               "slot": "flex",
               "tag": "trap_popular",
               "pick_rate_tag": "flex",
@@ -2453,12 +2453,12 @@
               "is_active": true,
               "cooldown_s": 37.0,
               "imbue": null,
-              "joint_freq_weight": 2.5,
+              "joint_freq_weight": 3.7,
               "slot": "flex",
               "tag": "core_proven",
               "pick_rate_tag": "core",
               "pick_rate": 0.857,
-              "annotation": "Pick Rate: 10%\nWR: +6%"
+              "annotation": "CAREFUL BUYING AGAINST GRAVES (zombies surround you and pop when you come out)"
             },
             {
               "item_id": 1414025773,
@@ -2478,38 +2478,38 @@
               "is_active": false,
               "cooldown_s": 23.0,
               "imbue": null,
-              "joint_freq_weight": 2.5,
+              "joint_freq_weight": 3.7,
               "slot": "flex",
               "tag": "trap_popular",
               "pick_rate_tag": "core",
               "pick_rate": 0.857,
-              "annotation": "vs casters\nPick Rate: 8%\nWR: -3%"
+              "annotation": "counterspell is op"
             }
           ],
           "source_builds": [
             {
               "build_id": 471411,
               "name": "Ronald (ttv FredTheFinch)",
-              "win_rate": 0.4859,
-              "matches": 533
+              "win_rate": 0.4879,
+              "matches": 537
             },
             {
               "build_id": 353960,
               "name": "twitch.tv/oses7",
-              "win_rate": 0.4523,
-              "matches": 482
+              "win_rate": 0.4515,
+              "matches": 485
             },
             {
               "build_id": 469013,
               "name": "Apollo - Spirit-Initiator [53% WR] [tracklock.gg]",
-              "win_rate": 0.4871,
-              "matches": 425
+              "win_rate": 0.4873,
+              "matches": 433
             },
             {
               "build_id": 489481,
               "name": "SunnyDriveApollo",
-              "win_rate": 0.4816,
-              "matches": 272
+              "win_rate": 0.4799,
+              "matches": 273
             }
           ]
         }
@@ -2617,7 +2617,7 @@
         "2519598785": {
           "tag": "core",
           "pick_rate": 0.857,
-          "annotation": "Pick Rate: 73%\nWR: +1%",
+          "annotation": "RUSH ASAP can delay a bit if you need but spirit power so op on this hero",
           "builds_appearing_in": 6,
           "builds_total": 7,
           "imbue_target_id": null,
@@ -2653,7 +2653,7 @@
         "343572757": {
           "tag": "core",
           "pick_rate": 0.857,
-          "annotation": "Pick Rate: 48%\nWR: +8%",
+          "annotation": "ton of antiheal",
           "builds_appearing_in": 6,
           "builds_total": 7,
           "imbue_target_id": null,
@@ -2689,7 +2689,7 @@
         "3005970438": {
           "tag": "core",
           "pick_rate": 0.857,
-          "annotation": "vs tanks\nPick Rate: 13%\nWR: +9%",
+          "annotation": "if youre already tanky and sitting on people for a long time",
           "builds_appearing_in": 6,
           "builds_total": 7,
           "imbue_target_id": null,
@@ -2743,7 +2743,7 @@
         "2533252781": {
           "tag": "core",
           "pick_rate": 0.857,
-          "annotation": "Pick Rate: 10%\nWR: +6%",
+          "annotation": "CAREFUL BUYING AGAINST GRAVES (zombies surround you and pop when you come out)",
           "builds_appearing_in": 6,
           "builds_total": 7,
           "imbue_target_id": null,
@@ -2869,7 +2869,7 @@
         "1414025773": {
           "tag": "core",
           "pick_rate": 0.857,
-          "annotation": "vs casters\nPick Rate: 8%\nWR: -3%",
+          "annotation": "counterspell is op",
           "builds_appearing_in": 6,
           "builds_total": 7,
           "imbue_target_id": null,
@@ -2950,7 +2950,7 @@
         "3970837787": {
           "tag": "flex",
           "pick_rate": 0.571,
-          "annotation": "Pick Rate: 33%\nWR: +1%",
+          "annotation": "CRAZY RES AND GREAT STATS",
           "builds_appearing_in": 4,
           "builds_total": 7,
           "imbue_target_id": null,
@@ -2959,7 +2959,7 @@
         "1644605047": {
           "tag": "core",
           "pick_rate": 0.714,
-          "annotation": "Pick Rate: 15%\nWR: +2%",
+          "annotation": "too much cc in your game get this",
           "builds_appearing_in": 5,
           "builds_total": 7,
           "imbue_target_id": null,
@@ -2977,7 +2977,7 @@
         "1047818222": {
           "tag": "flex",
           "pick_rate": 0.429,
-          "annotation": "vs debuffs\nPick Rate: 9%\nWR: +0%",
+          "annotation": "esp against teams you wanna go unstop into with debuffs and stuns",
           "builds_appearing_in": 3,
           "builds_total": 7,
           "imbue_target_id": null,
@@ -3909,29 +3909,6 @@
             "pick_rate": 0.0
           },
           {
-            "item_id": 2163598980,
-            "name": "Spirit Resilience",
-            "category": "vitality",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 1379,
-            "wins": 720,
-            "win_rate": 0.5221,
-            "wilson_lb": 0.4957,
-            "score": 0.005,
-            "wr_delta_pp": 3.13,
-            "avg_buy_time_s": 1585.1,
-            "phase": "late",
-            "avg_sell_time_s": 1694.9,
-            "is_active": false,
-            "cooldown_s": null,
-            "imbue": null,
-            "slot": "vitality",
-            "tag": "stat_anomaly",
-            "pick_rate_tag": "stat",
-            "pick_rate": 0.0
-          },
-          {
             "item_id": 2566692615,
             "name": "Healing Booster",
             "category": "vitality",
@@ -3985,6 +3962,29 @@
             "avg_sell_time_s": 1993.2,
             "is_active": true,
             "cooldown_s": 20.0,
+            "imbue": null,
+            "slot": "vitality",
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2603935618,
+            "name": "Healbane",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 5444,
+            "wins": 2649,
+            "win_rate": 0.4866,
+            "wilson_lb": 0.4733,
+            "score": -0.0174,
+            "wr_delta_pp": -0.42,
+            "avg_buy_time_s": 815.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2127.2,
+            "is_active": false,
+            "cooldown_s": null,
             "imbue": null,
             "slot": "vitality",
             "tag": "stat",
@@ -4235,22 +4235,22 @@
             ]
           },
           {
-            "item_id": 2603935618,
-            "name": "Healbane",
-            "category": "vitality",
+            "item_id": 1976391348,
+            "name": "Cold Front",
+            "category": "spirit",
             "tier": 2,
             "cost": 1600,
-            "matches": 5444,
-            "wins": 2649,
-            "win_rate": 0.4866,
-            "wilson_lb": 0.4733,
-            "score": -0.0174,
-            "wr_delta_pp": -0.42,
-            "avg_buy_time_s": 815.7,
-            "phase": "mid",
-            "avg_sell_time_s": 2127.2,
-            "is_active": false,
-            "cooldown_s": null,
+            "matches": 4151,
+            "wins": 2011,
+            "win_rate": 0.4845,
+            "wilson_lb": 0.4693,
+            "score": -0.0215,
+            "wr_delta_pp": -0.63,
+            "avg_buy_time_s": 531.6,
+            "phase": "early",
+            "avg_sell_time_s": 2010.2,
+            "is_active": true,
+            "cooldown_s": 25.0,
             "imbue": null,
             "slot": "flex",
             "tag": "stat",
@@ -5699,8 +5699,8 @@
   },
   "ability_orders": {
     "all_mmr": {
-      "total_records": 366,
-      "total_matches": 127417,
+      "total_records": 377,
+      "total_matches": 131254,
       "ability_priority": [
         {
           "ability_id": 147493976,
@@ -5720,7 +5720,7 @@
           "ability_id": 2006773718,
           "name": "Riposte",
           "avg_ap_all_players": 3.72,
-          "avg_ap_winners": 3.77,
+          "avg_ap_winners": 3.76,
           "winner_premium_ap": 0.04
         },
         {
@@ -5728,7 +5728,7 @@
           "name": "Disengaging Sigil",
           "avg_ap_all_players": 3.38,
           "avg_ap_winners": 3.5,
-          "winner_premium_ap": 0.12
+          "winner_premium_ap": 0.11
         }
       ],
       "best_full_orders": [
@@ -5769,11 +5769,11 @@
             "Riposte",
             "Riposte"
           ],
-          "wins": 150,
-          "losses": 68,
-          "matches": 218,
-          "players": 162,
-          "win_rate": 0.6881
+          "wins": 154,
+          "losses": 69,
+          "matches": 223,
+          "players": 163,
+          "win_rate": 0.6906
         },
         {
           "sequence_ids": [
@@ -5812,11 +5812,11 @@
             "Flawless Advance",
             "Itani Lo Sahn"
           ],
-          "wins": 603,
-          "losses": 287,
-          "matches": 890,
-          "players": 646,
-          "win_rate": 0.6775
+          "wins": 606,
+          "losses": 289,
+          "matches": 895,
+          "players": 648,
+          "win_rate": 0.6771
         },
         {
           "sequence_ids": [
@@ -5855,11 +5855,11 @@
             "Disengaging Sigil",
             "Disengaging Sigil"
           ],
-          "wins": 458,
-          "losses": 220,
-          "matches": 678,
-          "players": 522,
-          "win_rate": 0.6755
+          "wins": 465,
+          "losses": 223,
+          "matches": 688,
+          "players": 530,
+          "win_rate": 0.6759
         },
         {
           "sequence_ids": [
@@ -5898,11 +5898,11 @@
             "Disengaging Sigil",
             "Disengaging Sigil"
           ],
-          "wins": 172,
-          "losses": 86,
-          "matches": 258,
-          "players": 186,
-          "win_rate": 0.6667
+          "wins": 174,
+          "losses": 88,
+          "matches": 262,
+          "players": 187,
+          "win_rate": 0.6641
         },
         {
           "sequence_ids": [
@@ -5941,11 +5941,11 @@
             "Riposte",
             "Riposte"
           ],
-          "wins": 1091,
-          "losses": 557,
-          "matches": 1648,
-          "players": 1323,
-          "win_rate": 0.662
+          "wins": 1143,
+          "losses": 582,
+          "matches": 1725,
+          "players": 1379,
+          "win_rate": 0.6626
         }
       ],
       "best_openers_first4": [
@@ -5956,9 +5956,20 @@
             "Disengaging Sigil",
             "Disengaging Sigil"
           ],
-          "wins": 643,
-          "matches": 1127,
-          "win_rate": 0.5705
+          "wins": 658,
+          "matches": 1157,
+          "win_rate": 0.5687
+        },
+        {
+          "sequence_names": [
+            "Disengaging Sigil",
+            "Disengaging Sigil",
+            "Flawless Advance",
+            "Riposte"
+          ],
+          "wins": 459,
+          "matches": 824,
+          "win_rate": 0.557
         },
         {
           "sequence_names": [
@@ -5967,20 +5978,9 @@
             "Disengaging Sigil",
             "Flawless Advance"
           ],
-          "wins": 370,
-          "matches": 668,
-          "win_rate": 0.5539
-        },
-        {
-          "sequence_names": [
-            "Disengaging Sigil",
-            "Disengaging Sigil",
-            "Flawless Advance",
-            "Riposte"
-          ],
-          "wins": 409,
-          "matches": 744,
-          "win_rate": 0.5497
+          "wins": 374,
+          "matches": 675,
+          "win_rate": 0.5541
         },
         {
           "sequence_names": [
@@ -5989,9 +5989,9 @@
             "Riposte",
             "Riposte"
           ],
-          "wins": 4006,
-          "matches": 7608,
-          "win_rate": 0.5266
+          "wins": 4113,
+          "matches": 7827,
+          "win_rate": 0.5255
         },
         {
           "sequence_names": [
@@ -6000,22 +6000,22 @@
             "Flawless Advance",
             "Riposte"
           ],
-          "wins": 23747,
-          "matches": 45791,
-          "win_rate": 0.5186
+          "wins": 24472,
+          "matches": 47129,
+          "win_rate": 0.5193
         }
       ]
     },
     "high_mmr": {
-      "total_records": 54,
-      "total_matches": 3498,
+      "total_records": 55,
+      "total_matches": 3536,
       "ability_priority": [
         {
           "ability_id": 147493976,
           "name": "Flawless Advance",
-          "avg_ap_all_players": 3.95,
-          "avg_ap_winners": 3.95,
-          "winner_premium_ap": 0.0
+          "avg_ap_all_players": 3.93,
+          "avg_ap_winners": 3.94,
+          "winner_premium_ap": 0.01
         },
         {
           "ability_id": 494112189,
@@ -6034,7 +6034,7 @@
         {
           "ability_id": 725153709,
           "name": "Disengaging Sigil",
-          "avg_ap_all_players": 2.83,
+          "avg_ap_all_players": 2.84,
           "avg_ap_winners": 3.03,
           "winner_premium_ap": 0.19
         }
@@ -6075,11 +6075,11 @@
             "Disengaging Sigil",
             "Disengaging Sigil"
           ],
-          "wins": 257,
-          "losses": 153,
-          "matches": 410,
-          "players": 155,
-          "win_rate": 0.6268
+          "wins": 259,
+          "losses": 155,
+          "matches": 414,
+          "players": 156,
+          "win_rate": 0.6256
         },
         {
           "sequence_ids": [
@@ -6117,10 +6117,10 @@
             "Disengaging Sigil"
           ],
           "wins": 297,
-          "losses": 194,
-          "matches": 491,
+          "losses": 196,
+          "matches": 493,
           "players": 201,
-          "win_rate": 0.6049
+          "win_rate": 0.6024
         },
         {
           "sequence_ids": [
@@ -6157,11 +6157,11 @@
             "Itani Lo Sahn",
             "Disengaging Sigil"
           ],
-          "wins": 132,
+          "wins": 134,
           "losses": 96,
-          "matches": 228,
+          "matches": 230,
           "players": 82,
-          "win_rate": 0.5789
+          "win_rate": 0.5826
         },
         {
           "sequence_ids": [
@@ -6196,11 +6196,11 @@
             "Itani Lo Sahn",
             "Disengaging Sigil"
           ],
-          "wins": 106,
+          "wins": 108,
           "losses": 145,
-          "matches": 251,
+          "matches": 253,
           "players": 132,
-          "win_rate": 0.4223
+          "win_rate": 0.4269
         },
         {
           "sequence_ids": [
@@ -6250,9 +6250,9 @@
             "Flawless Advance",
             "Riposte"
           ],
-          "wins": 1032,
-          "matches": 2062,
-          "win_rate": 0.5005
+          "wins": 1037,
+          "matches": 2070,
+          "win_rate": 0.501
         },
         {
           "sequence_names": [
@@ -6261,15 +6261,15 @@
             "Disengaging Sigil",
             "Riposte"
           ],
-          "wins": 508,
-          "matches": 1042,
-          "win_rate": 0.4875
+          "wins": 511,
+          "matches": 1051,
+          "win_rate": 0.4862
         }
       ]
     },
     "ascendant_plus": {
-      "total_records": 29,
-      "total_matches": 682,
+      "total_records": 30,
+      "total_matches": 698,
       "ability_priority": [
         {
           "ability_id": 494112189,
@@ -6289,15 +6289,15 @@
           "ability_id": 147493976,
           "name": "Flawless Advance",
           "avg_ap_all_players": 3.76,
-          "avg_ap_winners": 3.79,
-          "winner_premium_ap": 0.03
+          "avg_ap_winners": 3.8,
+          "winner_premium_ap": 0.04
         },
         {
           "ability_id": 725153709,
           "name": "Disengaging Sigil",
-          "avg_ap_all_players": 2.89,
-          "avg_ap_winners": 3.06,
-          "winner_premium_ap": 0.17
+          "avg_ap_all_players": 2.88,
+          "avg_ap_winners": 3.04,
+          "winner_premium_ap": 0.16
         }
       ],
       "best_full_orders": [
@@ -6336,11 +6336,11 @@
             "Disengaging Sigil",
             "Disengaging Sigil"
           ],
-          "wins": 52,
+          "wins": 54,
           "losses": 29,
-          "matches": 81,
-          "players": 36,
-          "win_rate": 0.642
+          "matches": 83,
+          "players": 37,
+          "win_rate": 0.6506
         },
         {
           "sequence_ids": [
@@ -6392,9 +6392,9 @@
             "Disengaging Sigil",
             "Riposte"
           ],
-          "wins": 111,
-          "matches": 214,
-          "win_rate": 0.5187
+          "wins": 113,
+          "matches": 216,
+          "win_rate": 0.5231
         },
         {
           "sequence_names": [
@@ -6403,9 +6403,9 @@
             "Flawless Advance",
             "Riposte"
           ],
-          "wins": 151,
-          "matches": 337,
-          "win_rate": 0.4481
+          "wins": 159,
+          "matches": 350,
+          "win_rate": 0.4543
         }
       ]
     },
