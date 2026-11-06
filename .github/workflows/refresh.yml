@@ -133,7 +133,9 @@ jobs:
       # A specific patch can still be forced via the workflow_dispatch
       # input (e.g. to backfill one after a schema change). The only other
       # patch fetched is the one the page ships as its reference, and only
-      # when it has no hero JSONs yet (see patches_to_refresh).
+      # when its data is incomplete (see patches_to_refresh). That pass can
+      # hit the API's hourly limit and wait it out, so a backfill run can
+      # take over an hour.
       # Any script exiting non-zero fails this step — by design (see
       # run_all_heroes.py): a red workflow beats a silently frozen site.
       - name: Refresh the current patch
