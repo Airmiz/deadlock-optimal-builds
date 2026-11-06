@@ -44,13 +44,28 @@ Every analysis stage requires a minimum match count for an item to be considered
 
 The recommended build is produced by one of three methods, each surfacing different signals:
 
-1. **Wilson Greedy** — Rank items by `Wilson_LB(item) − baseline_WR`, pick top 4 per category + 4 flex. Simple, defensible. Bias: prefers high-win-rate late-game items because they have tighter confidence intervals.
+1. **Wilson Greedy** — Rank items by `Wilson_LB(item) − baseline_WR`, take the best 12 that fit the hero's category bands. Simple, defensible. Bias: prefers high-win-rate late-game items because they have tighter confidence intervals.
 
-2. **Synergy-aware ILP** *(the default "Recommended" build)* — Linear program that maximizes the sum of individual scores PLUS a pairwise-synergy bonus from `/v1/analytics/item-permutation-stats`, subject to the slot constraints (≥4 per category, total = 16, per-lineage uniqueness). The pair bonus weights items that *combine* well, not just items good in isolation.
+2. **Synergy-aware ILP** *(the default "Recommended" build)* — Linear program that maximizes the sum of individual scores PLUS a pairwise-synergy bonus from `/v1/analytics/item-permutation-stats`, subject to the slot constraints (total = 12, each category inside the hero's band, per-lineage uniqueness). The pair bonus weights items that *combine* well, not just items good in isolation.
 
 3. **Build Replication** — Aggregate items across the highest-WR community builds, weighted by `matches × max(0, win_rate − baseline + 0.02)`. Surfaces utility/defense items the win-rate-driven methods miss (Counter Spell, Dispel Magic, Metal Skin etc.).
 
 The page shows the synergy-ILP build by default. The full per-hero JSON in `heroes/<patch_id>/` carries all three for inspection.
+
+## Inventory slots and category bands
+
+A hero holds at most **12 items**, and any slot takes any category. That has been the rule since the [May 8, 2025 update](https://deadlock.wiki/Update:May_8,_2025), which replaced 16 category-specific slots. Since the [November 21, 2025 update](https://forums.playdeadlock.com/threads/11-21-2025-update.90383/), that's 9 slots from the start plus 1 for each enemy Walker destroyed. Match data agrees: over 3,500 players per sampled window, nobody ended on more than 16 before the change and more than 12 after, and on recent patches peak held items step through 9, 10, 11 and 12 as Walkers fall. A build on the page is the 12 items to end on.
+
+The game has no per-category limit, but real inventories have strong shapes. Of 3,651 full inventories from long matches in Sep–Nov 2026, 2.7% were 4/4/4, and mean weapon count ran from 0.1 (Kelvin) to 7.0 (Venator). Win rate alone doesn't capture that: left unconstrained, the optimizer leaves some heroes with no vitality at all. So each build stays inside a per-hero **category band**:
+
+- `band = floor(mean − 1.5) .. ceil(mean + 1.5)`, where `mean` is the hero's mean holding in that category, scaled to 12 items.
+- `mean` comes from `/v1/analytics/item-stats` over matches of at least 35 minutes, counting `matches − sold` for each item: how often it was still held at match end. An item absorbed into an upgrade counts as sold.
+- Bands are per hero, not per rank slice. A hero with fewer than about 30 full inventories of data gets a wide default band.
+- Thin slices can have too few candidates in a category. Floors then drop to what exists and ceilings widen, so a build only comes up short when there are fewer than 12 candidates overall.
+
+This is a judgement call. Bands keep builds recognisable at a small cost in summed score, and they limit how far a build can correct the community if the community is wrong about a category. The rules live in [scripts/inventory.py](../scripts/inventory.py), and each hero's bands are in its JSON as `category_bands`.
+
+Early 2026 match data needs care if you recount this: from about January 27 to April 5, 2026, roughly 8% of players have duplicate open rows for an item they already hold, which looks like 13–15 held items.
 
 ## Item tags (CORE / FLEX / SIT. / STAT)
 
@@ -89,16 +104,9 @@ The optimizer uses **lineage dedup** — within the same upgrade family, only on
 
 The page renders chain ancestors as their own *stage rows* in the phase column matching their actual buy time, with a "↑ upgrades into X in late game" footer. So you see when to buy Extra Spirit (~10 min) AND when it becomes Boundless Spirit (~30 min).
 
-## Sell events (red-dashed rows)
+## No sell rows
 
-The API returns an `avg_sell_time_s` for every item, indicating when the population typically sells it. Real Deadlock builds are buy timelines, not snapshots — early/mid items get sold to free slots for late-game purchases.
-
-The page surfaces a **↓ Sell** event in the destination phase column when:
-- Hold time ≥ 6 minutes (real strategic sell, not match-end noise)
-- Item was bought in early or mid phase (T4 picks aren't sold)
-- Sell time < minute 38 (otherwise it's just match-end)
-
-Refund estimate is ~50% of cost, the Deadlock convention.
+The page used to show a "sell" event for items with an early `avg_sell_time_s`. That average includes items absorbed into an upgrade, so most builds were told to sell around half their items, ending well short of a full inventory. A build is now the end state, and each chain's cheaper components still appear as stage rows.
 
 ## Cooldown + imbue badges
 
@@ -116,9 +124,9 @@ Each cluster gets:
 - **Label** — derived from the most-distinguishing item (high in this cluster, low in others)
 - **Distinguishing items** — top 4 items by `(in_cluster_rate − outside_rate)`
 - **Sample build names** — the top 2-3 highest-WR community builds in the cluster
-- **Composite build** — 16-item build either:
+- **Composite build** — 12-item build either:
   - **synergy_ilp** (the good kind) — re-runs the synergy ILP scoped to items appearing in ≥30% of cluster builds. Stat-optimized for that archetype.
-  - **frequency** (fallback) — tiny clusters where the optimizer can't find 16 viable picks; aggregated by community pick rate.
+  - **frequency** (fallback) — tiny clusters where the optimizer can't find 12 viable picks; aggregated by community pick rate.
 
 The build_method label appears in the "Viewing X build" banner so you know which kind you're looking at.
 
@@ -167,7 +175,7 @@ Top to bottom:
 4. **Ability priority** — winner-weighted AP, best opener, best full sequence.
 5. **Build Archetypes** — clusters with category mix, distinguishing items, "View this build" toggle.
 6. **Investment Spike Progression** — three category bars with thresholds and the ⚡ major-spike marker.
-7. **Item Build by Phase** — the 16-item recommended build (or active archetype build) split into Early / Mid / Late columns. Stage rows for chain pre-buys, sell events for inventory churn.
+7. **Item Build by Phase** — the 12-item recommended build (or active archetype build) split into Early / Mid / Late columns. Stage rows for chain pre-buys.
 8. **Matchup Counter Picks** — easiest/hardest rankings + enemy multi-select + aggregated buy/avoid recommendations.
 
 ## Pipeline reproducibility

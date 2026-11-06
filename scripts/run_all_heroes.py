@@ -28,6 +28,7 @@ from _paths import (
 )
 
 from build_hero_output import build_hero_output  # noqa: E402
+from inventory import select_picks  # noqa: E402
 
 
 FORCE = os.environ.get("FORCE") == "1"
@@ -58,7 +59,8 @@ def slug(name: str) -> str:
 import build_hero_output as bho
 
 
-def _patched_build_replication(candidates, build_stats_raw, baseline_wr, build_files_dir, build_match_floor):
+def _patched_build_replication(candidates, build_stats_raw, baseline_wr, build_files_dir, build_match_floor,
+                               category_bands=None):
     # Re-implement here so we use BUILD_FILES, not the passed dir.
     from collections import Counter, defaultdict
     stats_by_id = {b["hero_build_id"]: b for b in build_stats_raw}
@@ -99,18 +101,7 @@ def _patched_build_replication(candidates, build_stats_raw, baseline_wr, build_f
         if iid in candidates:
             ranked.append({**candidates[iid], "build_freq_weight": round(w, 1)})
     ranked.sort(key=lambda x: -x["build_freq_weight"])
-    by_cat = {}
-    for c in ranked:
-        by_cat.setdefault(c["category"], []).append(c)
-    picks, used = [], set()
-    for cat in ("weapon", "vitality", "spirit"):
-        for c in by_cat.get(cat, [])[:4]:
-            picks.append({**c, "slot": cat})
-            used.add(c["item_id"])
-    pool = [c for c in ranked if c["item_id"] not in used][:4]
-    for c in pool:
-        picks.append({**c, "slot": "flex"})
-    return picks, builds_seen
+    return select_picks(ranked, category_bands), builds_seen
 
 
 bho.method_build_replication = _patched_build_replication
@@ -206,6 +197,8 @@ def paths_for(hid: int) -> dict:
         "hero_stats_hmmr": PATCH_CACHE / "hero_stats_hmmr.json",
         "hero_stats_asc":  PATCH_CACHE / "hero_stats_asc.json",
         "hero_stats_eter": PATCH_CACHE / "hero_stats_eter.json",
+        # Long-match item stats, for the hero's category bands
+        "item_mix":        HERO_DATA / f"itemmix_{hid}.json",
         # Per-hero per-slice analytics
         "item_stats_all":  HERO_DATA / f"itemstats_all_{hid}.json",
         "item_stats_hmmr": HERO_DATA / f"itemstats_hmmr_{hid}.json",
@@ -262,6 +255,7 @@ def process_one(h):
             inputs = [
                 paths["hero_stats_all"], paths["hero_stats_hmmr"],
                 paths["hero_stats_asc"], paths["hero_stats_eter"],
+                paths["item_mix"],
                 paths["item_stats_all"], paths["item_stats_hmmr"],
                 paths["item_stats_asc"], paths["item_stats_eter"],
                 paths["pair_stats_all"], paths["pair_stats_hmmr"],

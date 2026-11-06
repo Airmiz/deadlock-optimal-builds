@@ -26,6 +26,7 @@ from _paths import (
     PATCH_ID, PATCH_TITLE, PATCH_MIN_TS,
     HMMR_BADGE, ASCENDANT_BADGE, ETERNUS_BADGE, SPEC_VERSION,
 )
+from inventory import INVENTORY_SLOTS, CATEGORIES, bands_from_item_stats, fit_bounds, select_picks
 
 import json
 import math
@@ -218,24 +219,9 @@ def build_candidates(item_stats: list, items_by_id: dict, baseline_wr: float,
     return {c["item_id"]: c for c in best_per_lineage.values()}
 
 
-def method_wilson(candidates: dict) -> list:
-    by_cat: dict[str, list] = defaultdict(list)
-    for c in candidates.values():
-        by_cat[c["category"]].append(c)
-    for cat in by_cat:
-        by_cat[cat].sort(key=lambda x: -x["score"])
-    picks, used = [], set()
-    for cat in ("weapon", "vitality", "spirit"):
-        for c in by_cat[cat][:4]:
-            picks.append({**c, "slot": cat})
-            used.add(c["item_id"])
-    flex = sorted(
-        [c for c in candidates.values() if c["item_id"] not in used],
-        key=lambda x: -x["score"],
-    )[:4]
-    for c in flex:
-        picks.append({**c, "slot": "flex"})
-    return picks
+def method_wilson(candidates: dict, category_bands: dict | None = None) -> list:
+    ranked = sorted(candidates.values(), key=lambda x: -x["score"])
+    return [dict(c) for c in select_picks(ranked, category_bands)]
 
 
 # Default cumulative soul budget by end of each phase, in souls. These are
@@ -255,8 +241,13 @@ def method_synergy_ilp(candidates: dict, pair_stats: list, pair_min_matches: int
                        soul_budgets: dict | None = None,
                        matchup_score_augment: dict[int, float] | None = None,
                        matchup_weight: float = 0.5,
-                       synergy_top_k: int = 400) -> list:
+                       synergy_top_k: int = 400,
+                       category_bands: dict | None = None) -> list:
     """Synergy-aware ILP with optional per-phase cumulative cost constraints.
+
+    Picks INVENTORY_SLOTS items, with each category inside `category_bands`.
+    Raises ValueError when the solver finds no solution, so callers can fall
+    back rather than ship a partial build.
 
     `soul_budgets` (methodology review §3.1): when provided, adds three
     linear constraints to the ILP:
@@ -332,12 +323,14 @@ def method_synergy_ilp(candidates: dict, pair_stats: list, pair_min_matches: int
         prob += y[(a, b)] <= x[a]
         prob += y[(a, b)] <= x[b]
         prob += y[(a, b)] >= x[a] + x[b] - 1
-    for cat in ("weapon", "vitality", "spirit"):
+    available = Counter(candidates[i]["category"] for i in item_ids)
+    floors, ceilings, target = fit_bounds(category_bands, available)
+    for cat in CATEGORIES:
         cat_ids = [i for i in item_ids if candidates[i]["category"] == cat]
         if cat_ids:
-            prob += pulp.lpSum(x[i] for i in cat_ids) >= 4
-            prob += pulp.lpSum(x[i] for i in cat_ids) <= 8
-    prob += pulp.lpSum(x[i] for i in item_ids) == 16
+            prob += pulp.lpSum(x[i] for i in cat_ids) >= floors[cat]
+            prob += pulp.lpSum(x[i] for i in cat_ids) <= ceilings[cat]
+    prob += pulp.lpSum(x[i] for i in item_ids) == target
 
     # Optional per-phase cumulative cost constraints (methodology review §3.1).
     # Phase membership comes from build_candidates' phase_for() which is
@@ -357,27 +350,19 @@ def method_synergy_ilp(candidates: dict, pair_stats: list, pair_min_matches: int
             prob += pulp.lpSum(candidates[i]["cost"] * x[i] for i in cum_late) <= soul_budgets["late"]
 
     prob.solve(pulp.PULP_CBC_CMD(msg=False, timeLimit=4))
+    if pulp.LpStatus[prob.status] != "Optimal":
+        raise ValueError(f"no ILP solution ({pulp.LpStatus[prob.status]})")
 
-    chosen = [i for i in item_ids if pulp.value(x[i]) > 0.5]
-    by_cat: dict[str, list] = defaultdict(list)
-    for i in chosen:
-        by_cat[candidates[i]["category"]].append(i)
-    for cat in by_cat:
-        by_cat[cat].sort(key=lambda i: -candidates[i]["score"])
-    picks, used = [], set()
-    for cat in ("weapon", "vitality", "spirit"):
-        for i in by_cat[cat][:4]:
-            picks.append({**candidates[i], "slot": cat})
-            used.add(i)
-    flex_ids = sorted([i for i in chosen if i not in used], key=lambda i: -candidates[i]["score"])[:4]
-    for i in flex_ids:
-        picks.append({**candidates[i], "slot": "flex"})
-    return picks
+    chosen = [i for i in item_ids if (pulp.value(x[i]) or 0) > 0.5]
+    if len(chosen) != target:
+        raise ValueError(f"ILP chose {len(chosen)} items, expected {target}")
+    return [dict(candidates[i]) for i in sorted(chosen, key=lambda i: -candidates[i]["score"])]
 
 
 def method_build_replication(candidates: dict, build_stats_raw: list,
                              baseline_wr: float, build_files_dir: Path,
-                             build_match_floor: int) -> tuple[list, list]:
+                             build_match_floor: int,
+                             category_bands: dict | None = None) -> tuple[list, list]:
     stats_by_id = {b["hero_build_id"]: b for b in build_stats_raw}
     item_weight: Counter = Counter()
     builds_seen = []
@@ -414,19 +399,7 @@ def method_build_replication(candidates: dict, build_stats_raw: list,
         if iid in candidates:
             ranked.append({**candidates[iid], "build_freq_weight": round(w, 1)})
     ranked.sort(key=lambda x: -x["build_freq_weight"])
-
-    by_cat: dict[str, list] = defaultdict(list)
-    for c in ranked:
-        by_cat[c["category"]].append(c)
-    picks, used = [], set()
-    for cat in ("weapon", "vitality", "spirit"):
-        for c in by_cat[cat][:4]:
-            picks.append({**c, "slot": cat})
-            used.add(c["item_id"])
-    pool = [c for c in ranked if c["item_id"] not in used][:4]
-    for c in pool:
-        picks.append({**c, "slot": "flex"})
-    return picks, builds_seen
+    return select_picks(ranked, category_bands), builds_seen
 
 
 # ============================================================
@@ -805,7 +778,7 @@ def select_recommended(item_methods: dict, ability: dict) -> dict:
     for p in picks:
         sell_s = p.get("avg_sell_time_s")
         entry = {
-            "slot": p["slot"], "category": p["category"], "tier": p["tier"], "cost": p["cost"],
+            "category": p["category"], "tier": p["tier"], "cost": p["cost"],
             "name": p["name"], "item_id": p["item_id"],
             "avg_buy_time_min": round(p["avg_buy_time_s"] / 60, 1),
             "avg_sell_time_min": round(sell_s / 60, 1) if sell_s else None,
@@ -908,6 +881,24 @@ def build_hero_output(
     ability: dict = {}
     ability_id_to_name = get_hero_abilities(hero, items_by_id, items_by_classname)
 
+    # Tolerate per-file misses (e.g. asc/eter fetched on a thin slice
+    # where the API returned []) — treat as empty input rather than crash.
+    def _load_or_empty(key: str) -> list:
+        p = paths.get(key)
+        if not p or not Path(p).exists():
+            return []
+        try:
+            with open(p, encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            return []
+
+    # One set of category bands per hero, shared by every slice. A closed patch
+    # rebuilt without the long-match fetch falls back to its all-MMR item stats.
+    category_bands = bands_from_item_stats(_load_or_empty("item_mix"), items_by_id)
+    if category_bands["source"] == "default":
+        category_bands = bands_from_item_stats(_load_or_empty("item_stats_all"), items_by_id)
+
     for slice_label, paths_key, baseline, min_match_floor, pair_floor, build_floor, ability_floor in slice_specs:
         # Optional slice with no usable baseline → empty placeholder so the
         # page can show "insufficient data" without breaking layout.
@@ -927,18 +918,6 @@ def build_hero_output(
             continue
 
         baseline_wr = baseline["wins"] / baseline["matches"]
-        # Tolerate per-file misses (e.g. asc/eter fetched on a thin slice
-        # where the API returned []) — treat as empty input rather than crash.
-        def _load_or_empty(key: str) -> list:
-            p = paths.get(key)
-            if not p or not Path(p).exists():
-                return []
-            try:
-                with open(p, encoding="utf-8") as f:
-                    return json.load(f)
-            except Exception:
-                return []
-
         item_stats = _load_or_empty(f"item_stats_{paths_key}")
         pair_stats = _load_or_empty(f"pair_stats_{paths_key}")
         build_stats_raw = _load_or_empty(f"build_stats_{paths_key}")
@@ -953,15 +932,21 @@ def build_hero_output(
                                       min_match_floor, lineage_canon=lineage_canon,
                                       score_fn=score_fn)
 
-        m1 = method_wilson(candidates)
+        m1 = method_wilson(candidates, category_bands)
         # Synergy ILP can fail on tiny candidate pools (no feasible solution
         # under category constraints) — fall back to the Wilson greedy picks.
         try:
-            m2 = method_synergy_ilp(candidates, pair_stats, pair_floor) if candidates else []
-        except Exception:
+            m2 = (method_synergy_ilp(candidates, pair_stats, pair_floor,
+                                     category_bands=category_bands)
+                  if candidates else [])
+        except Exception as e:
+            # Printed because the fallback looks like a normal build. PuLP 4 dropping
+            # its bundled solver once turned a whole patch into Wilson with no sign.
+            print(f"  [{hero_name} {slice_label}] ILP failed, using Wilson: {e!r}")
             m2 = list(m1)
         m3, builds_seen = method_build_replication(
-            candidates, build_stats_raw, baseline_wr, CACHE, build_floor
+            candidates, build_stats_raw, baseline_wr, CACHE, build_floor,
+            category_bands=category_bands,
         )
 
         # Per-slice item metadata (pick rate + best annotation across community builds)
@@ -986,6 +971,7 @@ def build_hero_output(
             joint_archetypes = archetypes_for_slice(
                 candidates, build_stats_raw, baseline_wr,
                 BUILD_FILES, build_floor, ability_id_to_name,
+                category_bands=category_bands,
             )
             # Decorate per-archetype items with the same metadata + lineage
             # the other methods get.
@@ -1025,6 +1011,7 @@ def build_hero_output(
         },
         "patch": {"id": PATCH_ID, "title": PATCH_TITLE, "min_unix_timestamp": PATCH_MIN_TS},
         "mmr_slices": _mmr_slices_payload(base_all, base_hmmr, base_asc, base_eter),
+        "category_bands": category_bands,
         "recommended": recommended,
         "items": item_methods,
         "ability_orders": ability,
@@ -1091,7 +1078,7 @@ def main() -> None:
         items_in_phase = rec["items"]["phases"][ph]
         print(f"  {ph.upper()} ({len(items_in_phase)} items)")
         for p in items_in_phase:
-            print(f"    [{p['slot']:7s}] {p['name']:28s} t{p['tier']} ${p['cost']:>4} buy@{p['avg_buy_time_min']:4.1f}min  WR {p['win_rate']*100:.2f}%")
+            print(f"    [{p['category']:8s}] {p['name']:28s} t{p['tier']} ${p['cost']:>4} buy@{p['avg_buy_time_min']:4.1f}min  WR {p['win_rate']*100:.2f}%")
     print(f"\nAP priority (winner-weighted): {' > '.join(rec['abilities']['ap_priority_order'])}")
     if rec["abilities"]["best_opener_first4"]:
         op = rec["abilities"]["best_opener_first4"]

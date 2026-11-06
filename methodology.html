@@ -300,7 +300,7 @@
   <a href="#signature">8. Signature items (hero affinity)</a>
   <a href="#spikes">9. Investment-spike progression</a>
   <a href="#lineage">10. Lineage chains</a>
-  <a href="#sell">11. Sell events</a>
+  <a href="#slots">11. Inventory slots &amp; category bands</a>
   <a href="#cd-imbue">12. Cooldown &amp; imbue badges</a>
   <a href="#archetypes">13. Archetype clustering</a>
   <a href="#counters">14. Counter-pick panel</a>
@@ -422,10 +422,10 @@ $$
 <p>The page surfaces the synergy-aware ILP as the default <em>Recommended</em> build. The full per-hero JSON in <code>heroes/&lt;patch_id&gt;/</code> carries all three for inspection.</p>
 
 <h3>Method 1: Wilson Greedy</h3>
-<p>Rank items by score, take top 4 per category + 4 flex. Simple and defensible.</p>
+<p>Rank items by score and take the best 12 that fit the hero's category bands (see §11). Simple and defensible.</p>
 <pre><code>for cat in (weapon, vitality, spirit):
-    pick top 4 candidates by score in this category
-flex = top 4 from remaining pool by score</code></pre>
+    pick the top candidates by score until this category reaches its floor
+fill the remaining slots from the best items whose category is under its ceiling</code></pre>
 <p><strong>Bias:</strong> prefers high-WR late-game items because they have tighter confidence intervals.</p>
 
 <h3>Method 2: Synergy-aware ILP <em>(default)</em></h3>
@@ -439,8 +439,8 @@ $$
 <ul>
   <li>$x_i \in \{0,1\}$ — pick decision per item</li>
   <li>$y_{ij} \in \{0,1\}$ — pair-active when both picked: $y_{ij} \le x_i$, $y_{ij} \le x_j$, $y_{ij} \ge x_i + x_j - 1$</li>
-  <li>$\sum_{i \in C_k} x_i \ge 4$ for each category $C_k$ (weapon / vitality / spirit)</li>
-  <li>$\sum_{i} x_i = 16$ (16-slot inventory)</li>
+  <li>$L_k \le \sum_{i \in C_k} x_i \le U_k$ for each category $C_k$ (weapon / vitality / spirit), using the hero's category band (see §11)</li>
+  <li>$\sum_{i} x_i = 12$ (the inventory cap)</li>
   <li>at most one $x_i$ per upgrade-chain lineage (lineage dedup, see §10)</li>
 </ul>
 <p>The pairwise synergy bonus comes from <code>/v1/analytics/item-permutation-stats</code> with <code>comb_size=2</code>:</p>
@@ -459,7 +459,7 @@ $$
 w_{\text{build}} = \text{matches} \cdot \max\!\left(0,\; \text{WR}_{\text{build}} - \text{baseline\_WR} + 0.02\right)
 $$
 </div>
-<p>Then pick top 4 per category by build-frequency-weight + 4 flex from remaining.</p>
+<p>Then take the best 12 by build-frequency-weight that fit the hero's category bands (see §11).</p>
 <p><strong>What this captures that Wilson and ILP miss:</strong> situational utility items (Counter Spell, Dispel Magic, Metal Skin, Healbane) that don't have impressive standalone win rates but appear in every winning build because they're how high-MMR players survive long enough to use the rest of their kit.</p>
 
 <div class="callout example">
@@ -566,23 +566,24 @@ Boundless Spirit (T4, $6,400)</code></pre>
 <p>Lineages are computed by union-find on the directed component-edge graph extracted from the asset metadata's <code>component_items</code> field. Items in the same union are forbidden from co-occurring in a build.</p>
 
 <div class="callout example">
-  <strong>Audit before/after the fix.</strong> Before lineage dedup, 35 of 38 heroes had at least one chain conflict in their recommended build (78 conflict pairs total). After dedup, every recommended build holds 16 distinct lineages.
+  <strong>Audit before/after the fix.</strong> Before lineage dedup, 35 of 38 heroes had at least one chain conflict in their recommended build (78 conflict pairs total). After dedup, every item in a recommended build comes from a distinct lineage.
 </div>
 
 <p>The page surfaces the chain visually: each lower-tier ancestor renders as its own <em>stage row</em> in the phase column matching its actual buy time, with a "↑ upgrades into X in late game" footer. So you see when to buy Extra Spirit (~10 min) AND when it becomes Boundless Spirit (~30 min) — same slot, different items in time.</p>
 
-<h2 id="sell">11. Sell events</h2>
-<p>The API returns an <code>avg_sell_time_s</code> for every item. Real Deadlock builds are buy timelines, not snapshots — early/mid items get sold to free slots for late-game purchases.</p>
-<p>The page surfaces a <strong>↓ Sell</strong> event in the destination phase column when all of the following hold:</p>
-<ul>
-  <li>$\text{sell\_min} - \text{buy\_min} \ge 6$ minutes (real strategic sell, not match-end noise)</li>
-  <li>item was bought in early or mid phase (T4 picks aren't sold)</li>
-  <li>$\text{sell\_min} \lt 38$ (otherwise it's just match-end)</li>
-</ul>
-<p>Refund estimate is ~50% of cost — the Deadlock convention. Sell rows have a red dashed border to distinguish them from buy rows.</p>
+<h2 id="slots">11. Inventory slots &amp; category bands</h2>
+<p>A hero holds at most <span class="number">12</span> items, and any slot takes any category. That has been the rule since the <a href="https://deadlock.wiki/Update:May_8,_2025">May 8, 2025 update</a>. Since the <a href="https://forums.playdeadlock.com/threads/11-21-2025-update.90383/">November 21, 2025 update</a>, that's <span class="number">9</span> slots from the start plus <span class="number">1</span> for each enemy Walker destroyed. Match data confirms it: on recent patches peak held items step through 9, 10, 11 and 12 as Walkers fall. A build on this page is the 12 items to end on.</p>
+<p>The game has no per-category limit, but real inventories have strong shapes. Only about <span class="number">3%</span> of full inventories are 4/4/4, and a hero's mean weapon count runs from about 0 (Kelvin) to 7 (Venator). Win rate alone doesn't capture that: left unconstrained, the optimizer leaves some heroes with no vitality at all. So each hero gets a <strong>category band</strong> around what their players actually hold:</p>
+<div class="eq">
+$$
+L_k = \lfloor m_k - 1.5 \rfloor \qquad U_k = \lceil m_k + 1.5 \rceil
+$$
+</div>
+<p>where $m_k$ is the hero's mean holding in category $k$, scaled to 12 items. It comes from <code>/v1/analytics/item-stats</code> over matches of at least 35 minutes, counting $\text{matches} - \text{sold}$ for each item: how often it was still held at match end, since an item absorbed into an upgrade counts as sold. Bands are per hero, not per rank slice. A hero with too little data gets a wide default band.</p>
+<p><strong>What this trades off.</strong> Bands keep builds recognisable, at a small cost in summed score. They also limit how far a build can correct the community if the community is wrong about a category.</p>
 
 <div class="callout example">
-  <strong>Shiv example.</strong> <em>Restorative Shot</em> (T1 weapon, $800) is bought at minute 1.8 and sold at minute 24.4 — held 22.6 minutes. Hits all three filters → renders a sell event in the late phase column. <em>Witchmail</em> (T4 vitality, $6,400) is bought at minute 31.8 and "sold" at minute 32.1 — that's match-end noise, filtered out.
+  <strong>Why the page has no sell rows.</strong> It used to show a "sell" event for items with an early average sell time. That average includes items absorbed into an upgrade, so most builds were told to sell around half their items, ending well short of a full inventory. A build is now the end state, and each chain's cheaper components still appear as stage rows.
 </div>
 
 <h2 id="cd-imbue">12. Cooldown &amp; imbue badges</h2>
@@ -611,7 +612,7 @@ $$
 <p>where $A$ and $B$ are the item-id sets of two builds. Average-linkage agglomerative clustering merges the closest pairs until we hit a target $k$ ($k \in \{1,2,3\}$ depending on build count).</p>
 
 <h3>Per-cluster optimization (the synergy_ilp build_method)</h3>
-<p>Each meaningful cluster (≥2 builds) gets its own stat-optimized build. The synergy ILP is re-run with the candidate pool restricted to items appearing in ≥30% of the cluster's builds (relaxes to 15% if no feasible 16-slot build exists otherwise).</p>
+<p>Each meaningful cluster (≥2 builds) gets its own stat-optimized build. The synergy ILP is re-run with the candidate pool restricted to items appearing in ≥30% of the cluster's builds (relaxes step-wise to 10% if too few items qualify for a full inventory otherwise).</p>
 <p>Result: each archetype produces a build that's both <em>stat-optimized</em> AND <em>archetype-coherent</em>, instead of the popularity-aggregate fallback.</p>
 
 <div class="callout example">

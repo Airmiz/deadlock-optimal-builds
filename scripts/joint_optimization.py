@@ -38,9 +38,11 @@ ability order directly from the cluster.
 from __future__ import annotations
 
 import json
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
 from typing import Iterable
+
+from inventory import select_picks
 
 
 # How many "first upgrade" abilities form the cluster fingerprint.
@@ -217,6 +219,7 @@ def aggregate_cluster_items(
     cluster: dict,
     candidates: dict,
     baseline_wr: float,
+    category_bands: dict | None = None,
 ) -> list[dict]:
     """Roll up items across builds in one cluster, weighted by lift × matches.
 
@@ -238,19 +241,7 @@ def aggregate_cluster_items(
         if iid in candidates:
             ranked.append({**candidates[iid], "joint_freq_weight": round(w, 1)})
     ranked.sort(key=lambda x: -x["joint_freq_weight"])
-
-    by_cat: dict[str, list] = defaultdict(list)
-    for c in ranked:
-        by_cat[c["category"]].append(c)
-    picks, used = [], set()
-    for cat in ("weapon", "vitality", "spirit"):
-        for c in by_cat[cat][:4]:
-            picks.append({**c, "slot": cat})
-            used.add(c["item_id"])
-    flex_pool = [c for c in ranked if c["item_id"] not in used][:4]
-    for c in flex_pool:
-        picks.append({**c, "slot": "flex"})
-    return picks
+    return select_picks(ranked, category_bands)
 
 
 def archetypes_for_slice(
@@ -260,6 +251,7 @@ def archetypes_for_slice(
     build_files_dir: Path,
     build_match_floor: int,
     ability_id_to_name: dict,
+    category_bands: dict | None = None,
 ) -> list[dict]:
     """Top-level entry: return a list of joint archetypes for one MMR slice.
 
@@ -304,7 +296,7 @@ def archetypes_for_slice(
             "modal_full_ladder_names": [
                 ability_id_to_name.get(aid, "?") for aid in modal_ladder
             ],
-            "items": aggregate_cluster_items(cluster, candidates, baseline_wr),
+            "items": aggregate_cluster_items(cluster, candidates, baseline_wr, category_bands),
             "source_builds": [
                 {"build_id": b["build_id"], "name": b["name"],
                  "win_rate": b["win_rate"], "matches": b["matches"]}

@@ -24,7 +24,7 @@ That's it. The page loads from local files; the `assets/` folder must travel wit
 - **Ability priority** ranked by winner-weighted AP investment, with a "winner premium" delta showing where successful players invest more than the average
 - **Best opener** — the highest-WR first 4 ability points
 - **Best full ability order** — the highest-WR 16-point sequence
-- **Item build by phase** — Early / Mid / Late columns, item icons, category pills, tier, cost, average buy time, win rate
+- **Item build by phase** — the 12 items to end on, in Early / Mid / Late columns, with item icons, category pills, tier, cost, average buy time, win rate
 - **"Updated N ago"** in the header, keyed to the data rather than the clock: the stamp only advances when the numbers actually change, so a stalled pipeline shows a visibly ageing date (amber past ~36h) instead of always claiming to be fresh
 
 ## Methodology
@@ -33,9 +33,11 @@ Each hero's build is derived three independent ways. The page surfaces the syner
 
 | Method | What it captures | What it misses |
 |---|---|---|
-| **Wilson 95% LB greedy** | Items with the highest confidence-bounded win rate, 4 per category | Item synergies; tends toward all-T4 endgame items |
-| **Synergy-aware ILP** | Item win rates *plus* pairwise synergy bonuses, slot-constrained | Triple-and-higher interactions |
+| **Wilson 95% LB greedy** | Items with the highest confidence-bounded win rate | Item synergies; tends toward all-T4 endgame items |
+| **Synergy-aware ILP** | Item win rates *plus* pairwise synergy bonuses | Triple-and-higher interactions |
 | **Top-build replication** | What real high-WR community builds use | Rewards meta-popularity, may miss strict-WR optima |
+
+Every build fits the game's real inventory: 12 items in any category, held near what that hero's players actually carry in weapon, vitality and spirit. See `docs/methodology.md`.
 
 For ability orders we rank each hero's 4 abilities by **winner-weighted average AP** (how much skill points winners spend on each ability vs the population average). The top full 16-point sequence and the top first-4 opener are surfaced separately, each with their sample size.
 

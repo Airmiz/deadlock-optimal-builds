@@ -62,7 +62,8 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install pulp
+        # PuLP 4 no longer bundles a solver, which sends every ILP build to its fallback
+        run: pip install "pulp<4"
 
       # The pipeline is idempotent — every fetch script skips files already
       # on disk. Persisting cache/ between scheduled runs takes the nightly
