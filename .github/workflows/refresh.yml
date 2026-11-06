@@ -5,7 +5,7 @@ name: Refresh + deploy
 # main, and deploys the static site to GitHub Pages.
 #
 # Triggers:
-#   - Nightly at 06:00 UTC
+#   - Twice a day, at 00:00 and 12:00 UTC
 #   - Manual via Actions tab → "Run workflow"
 #
 # Setup required (one-time, in repo settings):
@@ -17,12 +17,11 @@ name: Refresh + deploy
 
 on:
   schedule:
-    # Every 3 hours, on the hour: 00, 03, 06, 09, 12, 15, 18, 21 UTC.
-    # 8 runs/day. Each warm run is ~2-3 min so this is well under
-    # GitHub's free-tier compute (and free for public repos anyway).
-    # The deadlock-api caches analytics for 1 hour so 3-hour cadence
-    # always pulls fresh data; faster than that mostly hits the cache.
-    - cron: '0 */3 * * *'
+    # Every 12 hours: 00 and 12 UTC. A new patch is picked up by the next
+    # run, so it can take up to 12 hours to appear, and at 1,200 matchups
+    # per run (see batch_fetch_counters.py) the matchup matrix turns over
+    # about once a day. Use "Run workflow" to refresh sooner.
+    - cron: '0 */12 * * *'
   workflow_dispatch:
     inputs:
       patch_id:
@@ -112,7 +111,7 @@ jobs:
       # Each fetch step uses TTL-aware caching (see batch_fetch.fetch):
       #   - Asset files (heroes/items.json) refresh weekly
       #   - Analytics files (item-stats, build-stats, counters, etc.) refresh
-      #     every 2h, so the 3h cron always pulls fresh data
+      #     every 2h, so each scheduled run always pulls fresh data
       #   - Individual published builds (build_*.json) cache forever — only
       #     their aggregate stats refresh
       # run_all_heroes.py regenerates per-hero outputs when ANY underlying
@@ -128,7 +127,7 @@ jobs:
 
       # Only the CURRENT patch is refreshed. Older patches are closed
       # (max_ts set), so their aggregates are immutable — re-fetching them
-      # every 3 hours just burned API calls and CI minutes to rewrite
+      # on every run just burned API calls and CI minutes to rewrite
       # identical files. Their hero JSONs stay in the repo as data and
       # still feed the cross-patch imbue fallback at page-build time.
       # A specific patch can still be forced via the workflow_dispatch
@@ -230,7 +229,7 @@ jobs:
           # data fingerprint in it against the new payload to decide whether
           # the "Updated N ago" stamp moves. Without it in the repo, every
           # fresh CI checkout would look like a first build, re-stamp the
-          # clock, and produce a page diff (and a commit) every 3 hours even
+          # clock, and produce a page diff (and a commit) on every run even
           # when nothing changed.
           git add -A heroes/ assets/ deadlock_builds.html rank_distribution.html all_heroes_index.json all_heroes_tier_list.csv cache/wiki_icon_overrides.json patches.json last_updated.json
           if git diff --cached --quiet; then

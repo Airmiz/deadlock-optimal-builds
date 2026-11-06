@@ -3,7 +3,7 @@ name: Resolve match-only archetypes
 # Backfills the match-only archetype resolutions (methodology review
 # §3.6) for the CURRENT patch, on a schedule — no manual trigger needed.
 #
-# The expensive resolution lives here rather than in the every-3-hours
+# The expensive resolution lives here rather than in the scheduled
 # refresh because a cold pass is slow: Eternus+ uses a 1500-deep
 # candidate sweep and each unresolved archetype takes ~17 minutes.
 # Keeping it separate means the site refresh stays ~3-5 min and reliable.
@@ -24,8 +24,8 @@ name: Resolve match-only archetypes
 
 on:
   schedule:
-    # Every 3 hours at :40 — offset from the refresh cron (every 3h on the
-    # hour) so the two don't race for the same push.
+    # Every 3 hours at :40 — offset from the refresh cron (on the hour, at
+    # 00 and 12 UTC) so the two don't race for the same push.
     #
     # Frequent ON PURPOSE, and it does not cost 8 full runs a day. Each run
     # starts with a ~0.3s file-existence check; when the patch is fully
@@ -142,7 +142,7 @@ jobs:
 
       # NOTE: this job deliberately does NOT rebuild deadlock_builds.html.
       # It used to, and that made the workflow structurally unable to ship
-      # its own results: a resolve pass takes hours, the every-3-hours
+      # its own results: a resolve pass takes hours, the scheduled
       # refresh pushes its own rebuild of that same 9 MB generated file in
       # the meantime, and the commit below then hit an unresolvable rebase
       # conflict on it — losing the entire pass. (Seen for real on
@@ -150,7 +150,7 @@ jobs:
       # Committing only the resolution JSONs means every push is
       # append-only new files that nothing else writes, so it can't
       # conflict. build_page_data.py picks the resolutions up on the next
-      # refresh, which is at most 3 hours later.
+      # refresh, which is at most 12 hours later.
 
       - name: Commit resolutions
         if: always()
@@ -169,8 +169,8 @@ jobs:
           fi
           n=$(git diff --cached --name-only | wc -l | tr -d ' ')
           git commit -m "chore: resolve $n match-only archetypes $(date -u +%Y-%m-%d)"
-          # main almost certainly moved during a multi-hour pass (the
-          # refresh workflow pushes every 3 hours), so expect to rebase.
+          # main may well have moved during a multi-hour pass (the refresh
+          # workflow pushes every 12 hours), so expect to rebase.
           for attempt in 1 2 3 4 5; do
             if git push; then
               echo "Push succeeded on attempt $attempt ($n files)"

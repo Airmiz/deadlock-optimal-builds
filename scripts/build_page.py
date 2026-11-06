@@ -1591,7 +1591,7 @@ HTML = """<!doctype html>
   // changes (see build_page.py), so if the pipeline ever stalls again this
   // number keeps climbing in plain sight instead of quietly reading "just
   // now". Past a day and a half it turns amber as an explicit staleness
-  // signal — the refresh runs every 3 hours, so that only happens if
+  // signal — the refresh runs every 12 hours, so that only happens if
   // something is broken.
   (function renderLastUpdated() {
     const el = document.getElementById('last-updated');
@@ -3235,7 +3235,7 @@ _cache_v = _data_fp[:10]
 #   2. No churn. The asset cache-bust hash above is content-derived on
 #      purpose, so an unchanged run produces a byte-identical page (no
 #      commit, no forced asset re-download). A clock stamp would break that
-#      every 3 hours for every visitor.
+#      on every run for every visitor.
 # In steady state the live patch gains matches continuously, so this
 # advances on essentially every run anyway.
 import json as _json

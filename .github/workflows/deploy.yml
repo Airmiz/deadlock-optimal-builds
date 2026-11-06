@@ -5,7 +5,7 @@ name: Deploy on push
 # push to main. Decoupled from refresh.yml so visual/code changes ship
 # immediately instead of waiting for the next data-refresh window.
 #
-# refresh.yml = data + build + deploy (slow path, every 3 hours)
+# refresh.yml = data + build + deploy (slow path, every 12 hours)
 # deploy.yml  = deploy only          (fast path, every push)
 
 on:
