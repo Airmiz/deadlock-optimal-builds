@@ -27,6 +27,7 @@ from _paths import (
     PATCH_MAX_TS, TIME_BOUNDS_QS,
     HMMR_BADGE, ASCENDANT_BADGE, ETERNUS_BADGE,
 )
+from inventory import LONG_MATCH_S
 
 
 def is_active_patch() -> bool:
@@ -297,6 +298,9 @@ def hero_urls(hid: int) -> list[tuple[str, Path]]:
     base = "https://api.deadlock-api.com/v1/analytics"
     common = TIME_BOUNDS_QS
     return [
+        # Long matches only, when inventories are full: the hero's category mix
+        (f"{base}/item-stats?hero_id={hid}&{common}&min_duration_s={LONG_MATCH_S}",
+         HERO_DATA / f"itemmix_{hid}.json"),
         # All MMR — no badge filter, full population
         (f"{base}/item-stats?hero_id={hid}&{common}&min_matches=20",
          HERO_DATA / f"itemstats_all_{hid}.json"),

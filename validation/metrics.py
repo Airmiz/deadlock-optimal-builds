@@ -7,7 +7,7 @@ freshly-queried item stats from the test window, compute:
      all items appearing in both windows. Measures how stable the
      scoring is across time.
 
-  2. Top-K hit rate (K = 8, 16). What fraction of the method's recommended
+  2. Top-K hit rate (K = 8, 12). What fraction of the method's recommended
      top-K items also rank in the top-K by raw win rate in the test window?
 
   3. Held-out-window WR delta vs baseline. Aggregate (wins, matches) over

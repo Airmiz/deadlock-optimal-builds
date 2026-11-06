@@ -60,23 +60,36 @@ Why these defaults:
 
 ## `items` (the workings)
 
-Per MMR slice, three independently-derived 16-item builds:
+Per MMR slice, three independently-derived 12-item builds:
 
 ```
 items.{slice}: {
   candidate_count: <int>,
   min_matches_filter: <int>,
-  wilson_greedy:     { picks: [16 items] },
-  synergy_ilp:       { picks: [16 items] },
-  build_replication: { picks: [16 items], source_builds: [...] }
+  wilson_greedy:     { picks: [12 items] },
+  synergy_ilp:       { picks: [12 items] },
+  build_replication: { picks: [12 items], source_builds: [...] }
 }
 ```
 
-Each pick contains: `slot` (weapon/vitality/spirit/flex), `category` (the item's intrinsic category), `tier`, `cost`, `name`, `item_id`, `matches`, `wins`, `win_rate`, `wilson_lb`, `score` (= wilson_lb − baseline), `wr_delta_pp` (in percentage points), `avg_buy_time_s`, `phase`. Build-replication picks also carry `build_freq_weight`. The `source_builds` list shows which community builds fed the replication aggregation.
+Each pick contains: `category` (the item's category), `tier`, `cost`, `name`, `item_id`, `matches`, `wins`, `win_rate`, `wilson_lb`, `score` (= wilson_lb − baseline), `wr_delta_pp` (in percentage points), `avg_buy_time_s`, `phase`. Build-replication picks also carry `build_freq_weight`. The `source_builds` list shows which community builds fed the replication aggregation.
 
 Why three methods and not one: each captures a different signal. Wilson tells you "what wins given enough data"; ILP tells you "what wins together"; replication tells you "what real winning humans buy". Disagreements between them are diagnostic — they're how you find selection bias and missing utility items.
 
 Sample-size floors differ by slice: 500 matches at all-MMR (lots of data, can be strict), 300 at high-MMR (smaller pool, looser threshold). Pair-synergy floors are 500 / 200 in the same way. These are tunable in `build_hero_output.py`.
+
+## `category_bands`
+
+The range each build must hold per category, for this hero across all slices. See "Inventory slots and category bands" in `methodology.md`.
+
+```
+category_bands: {
+  source: "hero" | "default",   // "default" when the hero has too little data
+  inventories: <int>,           // approximate full inventories behind the mean
+  mean: { weapon, vitality, spirit } | null,   // scaled to 12 items
+  bounds: { weapon: [min, max], vitality: [min, max], spirit: [min, max] }
+}
+```
 
 ## `ability_orders` (the workings)
 
@@ -121,7 +134,7 @@ Total API calls per run: ~400–450, well within the 200 req/min IP limit if we 
 ## Sample-size watchouts that may bite at scale
 
 Some heroes have far fewer matches than Shiv. Two failure modes to handle:
-- **A method may not produce 16 items.** If the candidate pool drops below 16, the ILP becomes infeasible and Wilson can't fill all category slots. The script should fall back to relaxed sample floors and flag the hero.
+- **A method may not produce 12 items.** If the candidate pool drops below 12, every method returns as many as exist. Picks stay real items and categories stay inside the bands where possible, but the build is short.
 - **Ability-order data may be sparse.** Heroes with low pick rates may have no full-order with ≥ 100 matches. We'll need to lower the floor or omit the field for those heroes.
 
 Both are normal — we'll surface them in `all_heroes_index.json` so you can see which heroes need extra care before trusting the output.

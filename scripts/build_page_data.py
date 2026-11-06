@@ -18,6 +18,10 @@ from _paths import (
     ROOT, CACHE, HERO_OUT, HERO_DATA, BUILD_FILES, ASSETS,
     PATCH_ID, PATCH_TITLE, PATCH_MIN_TS, HMMR_BADGE, SPEC_VERSION,
 )
+from inventory import (
+    CATEGORIES, INVENTORY_SLOTS, RESOLUTION_SCHEMA, default_bands,
+    one_per_lineage, select_picks,
+)
 
 
 
@@ -437,8 +441,9 @@ def _phase_for(buy_time_s: float) -> str:
 
 def _aggregate_cluster_build(in_builds: list[dict], hero_item_stats: list[dict],
                              lineage_canon: dict, ancestors_of: dict,
-                             metadata_by_item: dict | None = None) -> list[dict]:
-    """For one archetype cluster, build a 16-slot composite by aggregating
+                             metadata_by_item: dict | None = None,
+                             category_bands: dict | None = None) -> list[dict]:
+    """For one archetype cluster, build a full inventory by aggregating
     item picks across the cluster's builds. Returns picks shaped like
     items_by_slice entries so the page can render them with the same code path.
     """
@@ -514,25 +519,8 @@ def _aggregate_cluster_build(in_builds: list[dict], hero_item_stats: list[dict],
             by_lineage[canon] = c
     candidates = list(by_lineage.values())
 
-    # 4 per category (by cluster pick rate), then 4 flex from remaining
-    by_cat: dict[str, list] = {"weapon": [], "vitality": [], "spirit": []}
-    for c in candidates:
-        if c["category"] in by_cat:
-            by_cat[c["category"]].append(c)
-    for cat in by_cat:
-        by_cat[cat].sort(key=lambda x: -x["cluster_pick_rate"])
-
-    picks, used = [], set()
-    for cat in ("weapon", "vitality", "spirit"):
-        for c in by_cat[cat][:4]:
-            picks.append({**c, "slot": cat})
-            used.add(c["item_id"])
-    flex_pool = sorted(
-        [c for c in candidates if c["item_id"] not in used],
-        key=lambda x: -x["cluster_pick_rate"],
-    )[:4]
-    for c in flex_pool:
-        picks.append({**c, "slot": "flex"})
+    ranked = sorted(candidates, key=lambda x: -x["cluster_pick_rate"])
+    picks = [dict(c) for c in select_picks(ranked, category_bands)]
 
     # Decorate with lineage chains (same shape as the recommended build).
     # Ancestor entries also carry imbue metadata so the page can render
@@ -575,12 +563,13 @@ def _aggregate_cluster_build(in_builds: list[dict], hero_item_stats: list[dict],
 def _optimize_cluster_build(in_builds: list[dict], hero_item_stats: list,
                             pair_stats: list, baseline_wr: float,
                             lineage_canon: dict, ancestors_of: dict,
-                            metadata_by_item: dict | None) -> list[dict]:
+                            metadata_by_item: dict | None,
+                            category_bands: dict | None = None) -> list[dict]:
     """
     Per-archetype synergy ILP. Restricts the candidate pool to items that
     appear in this cluster's community builds, then runs the same Wilson-LB
     + pairwise-synergy optimization the global recommended build uses.
-    The result is a stat-optimized 16-slot build that's *coherent* with the
+    The result is a stat-optimized full inventory that's *coherent* with the
     archetype's playstyle, rather than the cluster's popularity aggregate.
     """
     # Lazy import to avoid circular deps
@@ -613,25 +602,19 @@ def _optimize_cluster_build(in_builds: list[dict], hero_item_stats: list,
     cluster_cands = {iid: c for iid, c in all_candidates.items()
                      if iid in cluster_item_ids}
 
-    # Need ≥16 candidates plus enough per category for the slot constraints.
-    # If we don't have enough, relax the threshold step-wise.
-    def category_counts(cands):
-        out = {"weapon": 0, "vitality": 0, "spirit": 0}
-        for c in cands.values():
-            if c["category"] in out:
-                out[c["category"]] += 1
-        return out
-
+    # Need a full inventory's worth of candidates, with enough in each category
+    # to reach the hero's floors. If we don't have that, relax the threshold
+    # step-wise.
+    floors = (category_bands or default_bands())["bounds"]
     relaxations = [0.30, 0.20, 0.15, 0.10]
     for thr in relaxations:
         cluster_item_ids = {iid for iid, c in cluster_picks.items()
                             if c / n_builds >= thr}
         cluster_cands = {iid: c for iid, c in all_candidates.items()
                          if iid in cluster_item_ids}
-        cc = category_counts(cluster_cands)
-        # Need at least 4 per main category to satisfy the slot constraint.
-        if (len(cluster_cands) >= 16 and
-                cc["weapon"] >= 4 and cc["vitality"] >= 4 and cc["spirit"] >= 4):
+        cc = {cat: sum(c["category"] == cat for c in cluster_cands.values()) for cat in CATEGORIES}
+        if (len(cluster_cands) >= INVENTORY_SLOTS and
+                all(cc[cat] >= floors[cat][0] for cat in CATEGORIES)):
             break
     else:
         # Couldn't get enough candidates even after relaxation — bail.
@@ -639,7 +622,8 @@ def _optimize_cluster_build(in_builds: list[dict], hero_item_stats: list,
 
     # Run the synergy ILP on the cluster-restricted pool.
     try:
-        picks = method_synergy_ilp(cluster_cands, pair_stats, pair_min_matches=200)
+        picks = method_synergy_ilp(cluster_cands, pair_stats, pair_min_matches=200,
+                                   category_bands=category_bands)
     except Exception:
         return []
 
@@ -724,7 +708,8 @@ def cluster_archetypes_for_hero(hid: int, max_clusters: int = 3,
                                 baseline_wr: float | None = None,
                                 lineage_canon: dict | None = None,
                                 ancestors_of: dict | None = None,
-                                metadata_by_item: dict | None = None) -> dict:
+                                metadata_by_item: dict | None = None,
+                                category_bands: dict | None = None) -> dict:
     """Pull the cached community builds for a hero, cluster them, return labelled archetypes."""
     # Stitch together both slices' build lists; dedupe by build_id
     seen_ids: set[int] = set()
@@ -790,11 +775,12 @@ def cluster_archetypes_for_hero(hid: int, max_clusters: int = 3,
         meta = _label_cluster(in_builds, out_builds)
         meta["share"] = round(len(in_builds) / len(builds), 3)
         meta["sample_build_names"] = [b["name"] for b in sorted(in_builds, key=lambda x: -x["wr"])[:3]]
-        # Aggregate a 16-slot composite build for this cluster, if we have
+        # Aggregate a composite build for this cluster, if we have
         # the stats / lineage maps to decorate it with buy times etc.
         if hero_item_stats is not None and lineage_canon is not None and ancestors_of is not None:
             meta["build"] = _aggregate_cluster_build(
-                in_builds, hero_item_stats, lineage_canon, ancestors_of, metadata_by_item
+                in_builds, hero_item_stats, lineage_canon, ancestors_of, metadata_by_item,
+                category_bands,
             )
         out.append(meta)
 
@@ -873,7 +859,7 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
             "mean_win_rate": arch.get("mean_win_rate", 0),
             "win_rate_lift_pp": arch.get("win_rate_lift_pp", 0),
             "items": [with_affinity({
-                "slot": p["slot"], "name": p["name"], "category": p["category"],
+                "name": p["name"], "category": p["category"],
                 "tier": p["tier"], "cost": p["cost"],
                 "buy_min": round(p["avg_buy_time_s"] / 60, 1),
                 "sell_min": (round(p["avg_sell_time_s"] / 60, 1)
@@ -912,7 +898,6 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
                 "total_cost": d["recommended"]["items"]["total_cost"],
                 "phases": {
                     ph: [with_affinity({
-                        "slot": p["slot"],
                         "name": p["name"],
                         "category": p["category"],
                         "tier": p["tier"],
@@ -953,7 +938,7 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
         # Per-MMR-slice item breakdown using the synergy ILP picks (the recommended method)
         "items_by_slice": {
             slice_label: [with_affinity({
-                "slot": p["slot"], "name": p["name"], "category": p["category"],
+                "name": p["name"], "category": p["category"],
                 "tier": p["tier"], "cost": p["cost"],
                 "buy_min": round(p["avg_buy_time_s"] / 60, 1),
                 "sell_min": (round(p["avg_sell_time_s"] / 60, 1)
@@ -1023,11 +1008,24 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
                 res = json.load(f)
         except Exception:
             return None
+        stored = res.get("items") or []
+        if stored and res.get("schema", 1) < RESOLUTION_SCHEMA:
+            # Not yet recomputed by the resolver: these hold 16 items and can
+            # repeat an upgrade chain. Reduce to a legal build for display.
+            # Their scores favour cheap components, so keep each chain's top
+            # tier rather than its top score.
+            from build_hero_output import build_lineage_map
+            _, canon = build_lineage_map(items_assets)
+            by_tier = sorted(stored, key=lambda p: (-p["tier"], -p["score"]))
+            kept = {p["item_id"] for p in one_per_lineage(by_tier, canon)}
+            stored = select_picks(sorted((p for p in stored if p["item_id"] in kept),
+                                         key=lambda p: -p["score"]),
+                                  d.get("category_bands"))
         # Adapt the resolver's pick schema to the page's expected fields.
         picks = []
-        for p in (res.get("items") or []):
+        for p in stored:
             picks.append(with_affinity({
-                "slot": p["slot"], "name": p["name"], "category": p["category"],
+                "name": p["name"], "category": p["category"],
                 "tier": p["tier"], "cost": p["cost"],
                 "buy_min": round(p["avg_buy_time_s"] / 60, 1) if p.get("avg_buy_time_s") else None,
                 "sell_min": (round(p["avg_sell_time_s"] / 60, 1)
@@ -1317,6 +1315,7 @@ def _build_patch_payload_inner(patch_id, raw_outputs, hero_out_dir, patch_cache_
             lineage_canon=lineage_canon,
             ancestors_of=ancestors_of,
             metadata_by_item=meta_by_int,
+            category_bands=d.get("category_bands"),
         )
 
     # SERIAL ON PURPOSE (max_workers=1). This used to run 4 threads, which
@@ -1453,7 +1452,8 @@ def cluster_archetypes_for_hero_in(hid: int, patch_cache_dir, max_clusters: int 
                                     baseline_wr: float | None = None,
                                     lineage_canon: dict | None = None,
                                     ancestors_of: dict | None = None,
-                                    metadata_by_item: dict | None = None) -> dict:
+                                    metadata_by_item: dict | None = None,
+                                    category_bands: dict | None = None) -> dict:
     """Patch-scoped variant: looks up build-stats / build files under the
     given patch_cache_dir rather than the module-level HERO_DATA constant.
     """
@@ -1519,19 +1519,20 @@ def cluster_archetypes_for_hero_in(hid: int, patch_cache_dir, max_clusters: int 
         if hero_item_stats is not None and lineage_canon is not None and ancestors_of is not None:
             # Try the synergy-ILP optimizer first (per-archetype stat optimization).
             # Fall back to frequency-based aggregation if the optimizer can't find
-            # 16 viable picks (rare — happens for low-data clusters).
+            # enough viable picks (rare — happens for low-data clusters).
             optimized = []
             if pair_stats is not None and baseline_wr is not None and len(in_b) >= 2:
                 optimized = _optimize_cluster_build(
                     in_b, hero_item_stats, pair_stats, baseline_wr,
-                    lineage_canon, ancestors_of, metadata_by_item,
+                    lineage_canon, ancestors_of, metadata_by_item, category_bands,
                 )
             if optimized:
                 meta["build"] = optimized
                 meta["build_method"] = "synergy_ilp"  # the good kind
             else:
                 meta["build"] = _aggregate_cluster_build(in_b, hero_item_stats,
-                                                         lineage_canon, ancestors_of, metadata_by_item)
+                                                         lineage_canon, ancestors_of, metadata_by_item,
+                                                         category_bands)
                 meta["build_method"] = "frequency"  # fallback
         out.append(meta)
     out.sort(key=lambda c: -c["share"])

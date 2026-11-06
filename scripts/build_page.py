@@ -343,7 +343,6 @@ HTML = """<!doctype html>
   .cat-weapon { background: rgba(214,133,107,0.15); color: var(--weapon); }
   .cat-vitality { background: rgba(108,180,106,0.15); color: var(--vitality); }
   .cat-spirit { background: rgba(180,135,217,0.15); color: var(--spirit); }
-  .slot-flex { color: var(--flex); font-size: 10px; font-weight: 600; }
 
   /* Tag pills: core / flex / situational / stat */
   .tag-pill {
@@ -588,32 +587,6 @@ HTML = """<!doctype html>
     background: rgba(201,132,255,0.08);
     cursor: help;
   }
-
-  /* Sell row: an early/mid item being sold to free a slot */
-  .item-row.is-sell {
-    background: linear-gradient(90deg, rgba(211,98,98,0.06) 0%, transparent 50%);
-    border-left: 2px dashed rgba(211,98,98,0.55);
-    padding: 5px 0 5px 6px;
-    margin-left: -8px;
-    opacity: 0.85;
-  }
-  .item-row.is-sell .icon { width: 26px; height: 26px; }
-  .item-row.is-sell .name { font-size: 12px; color: var(--text-dim); }
-  .item-row.is-sell .name .sell-tag {
-    color: var(--bad);
-    font-size: 10.5px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.7px;
-    margin-right: 6px;
-    border: 1px solid rgba(211,98,98,0.5);
-    border-radius: 3px;
-    padding: 1px 5px;
-    background: rgba(211,98,98,0.08);
-  }
-  .item-row.is-sell .meta { font-size: 11px; color: var(--text-dim); }
-  .item-row.is-sell .cost { color: var(--good); font-size: 11px; font-weight: 600; }
-  .item-row.is-sell .cost::before { content: '+ '; }
 
   /* Stage row: a chain ancestor placed in its actual buy-phase column */
   .item-row.is-stage {
@@ -2222,10 +2195,6 @@ HTML = """<!doctype html>
     // into stage events (each ancestor in its actual buy-phase) plus the
     // final-tier event in the late game. This way an early-game T1 component
     // that upgrades to a T3 in late game shows up under EARLY.
-    // We also emit "sell" events for items that the population typically
-    // sells mid-game to free a slot — anything bought early/mid with a clear
-    // sell time and a meaningful hold duration. End-of-game sells (very late
-    // sell time, very short hold) are ignored since those are just match-end.
     const phaseFromBuyMin = (m) => m < 12.5 ? 'early' : m < 25 ? 'mid' : 'late';
     const events = [];
     for (const it of items) {
@@ -2257,30 +2226,6 @@ HTML = """<!doctype html>
         });
       }
       events.push({ ...it, kind: 'final' });
-
-      // Sell event for this final pick? Conditions:
-      //   - has a sell time
-      //   - hold duration >= 6 min (real strategic sell, not match-end noise)
-      //   - bought before late phase (late items don't get sold to free slots)
-      //   - sell happens after the buy (sanity)
-      if (it.sell_min != null && it.buy_min != null
-          && it.sell_min > it.buy_min + 6
-          && it.phase !== 'late'
-          && it.sell_min < 38) {
-        // Refund: sell yields ~50% of item cost (Deadlock convention; the
-        // exact rate isn't critical, the user just wants to see the EVENT)
-        const refund = Math.round((it.cost || 0) * 0.5);
-        events.push({
-          kind: 'sell',
-          name: it.name, tier: it.tier, cost: refund, item_id: it.item_id,
-          buy_min: it.sell_min,  // for sort
-          sell_min: it.sell_min,
-          original_cost: it.cost,
-          phase: phaseFromBuyMin(it.sell_min),
-          category: it.category,
-          image: it.image,
-        });
-      }
     }
 
     // Group events by phase, sort within phase by buy time
@@ -2389,6 +2334,7 @@ HTML = """<!doctype html>
           ${activeJointArch
             ? `Conditional build for the <strong>max ${escHtml(activeJointArch.fingerprint_ability_names.join(' → '))}</strong> archetype — items aggregated from ${activeJointArch.n_builds} community builds that tier-3 those abilities in that order.`
             : 'From the synergy-aware ILP method — items chosen for win rate <em>and</em> pairwise synergy. Buy times are population averages.'}
+          This is the inventory to end on: 12 items, using the 9 slots you start with plus 1 for each enemy Walker destroyed.
           Hover any item with a community-build note to see the tooltip authors wrote about it.
         </div>
         <div class="summary-line" style="margin-top:-8px">
@@ -2617,28 +2563,7 @@ HTML = """<!doctype html>
 
   function renderEvent(e) {
     if (e.kind === 'stage') return renderStageRow(e);
-    if (e.kind === 'sell')  return renderSellRow(e);
     return renderItemRow(e);
-  }
-
-  function renderSellRow(sell) {
-    const cat = sell.category;
-    const imgPart = sell.image
-      ? `<img src="${sell.image}" style="filter:grayscale(0.6);opacity:0.7" onerror="this.style.display='none';this.parentNode.innerHTML='<span class=placeholder>T${sell.tier}</span>'">`
-      : `<span class="placeholder">T${sell.tier}</span>`;
-    return `
-      <div class="item-row is-sell" title="Population avg: this slot gets sold around minute ${sell.sell_min}, refunding roughly half the cost — frees a slot for late-game purchases">
-        <div class="icon">${imgPart}</div>
-        <div>
-          <div class="name"><span class="sell-tag">↓ Sell</span>${escHtml(sell.name)}</div>
-          <div class="meta">
-            <span class="cat-pill cat-${cat}">${cat}</span>
-            sell@${sell.sell_min}min · originally bought for ${fmtCost(sell.original_cost || 0)}
-          </div>
-        </div>
-        <div class="cost">${fmtCost(sell.cost)}</div>
-      </div>
-    `;
   }
 
   function renderStageRow(stage) {
@@ -2813,8 +2738,6 @@ HTML = """<!doctype html>
 
   function renderItemRow(item) {
     const cat = item.category;
-    const slot = item.slot;
-    const isFlex = slot === 'flex';
     // 5-class 2D tag taxonomy (methodology review §6.4) on item.tag.
     // Legacy 1D pick-rate band is still emitted as item.pick_rate_tag
     // for downstream consumers but no longer rendered in the UI.
@@ -2905,7 +2828,6 @@ HTML = """<!doctype html>
           <div class="meta">
             <span class="cat-pill cat-${cat}">${cat}</span>
             ${cdBadge}${imbBadge}
-            ${isFlex ? '<span class="slot-flex">FLEX SLOT · </span>' : ''}
             T${item.tier} · buy@${item.buy_min}min · WR ${fmtPct(item.wr)}
           </div>
           ${chainHtml}

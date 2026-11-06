@@ -18,7 +18,7 @@ Build Replication}):
   3. Evaluate each method's picks against the test-window data:
        - Spearman rank correlation of (train_score, test_score) across
          items appearing in both windows.
-       - Top-K hit rate (K=8, K=16) vs raw-WR ranking in test window.
+       - Top-K hit rate (K=8, K=12) vs raw-WR ranking in test window.
        - Pooled bundle WR of recommended picks in test window vs the
          test-window hero baseline (Δ in percentage points).
        - Wilson 95% LB calibration — coverage of test-window WR by
@@ -61,6 +61,7 @@ from build_hero_output import (  # noqa: E402
     method_wilson, method_synergy_ilp, method_build_replication,
     DEFAULT_SOUL_BUDGETS,
 )
+from inventory import INVENTORY_SLOTS, bands_from_item_stats  # noqa: E402
 import hierarchical  # noqa: E402
 import bias_correction  # noqa: E402
 
@@ -118,18 +119,23 @@ def _score_train_methods(
     out: dict[str, list] = {}
     if not candidates:
         return {m: [] for m in METHODS}
-    out["wilson_greedy"] = method_wilson(candidates)
+    # Bands from the train window only, so the test window stays unseen. Production
+    # uses long matches and all ranks, which this split doesn't fetch.
+    bands = bands_from_item_stats(train_item_stats, items_by_id)
+    out["wilson_greedy"] = method_wilson(candidates, bands)
     try:
         out["synergy_ilp"] = method_synergy_ilp(
             candidates, train_pair_stats, floors["pair"],
             soul_budgets=soul_budgets,
             synergy_top_k=synergy_top_k,
+            category_bands=bands,
         )
     except Exception:
         out["synergy_ilp"] = list(out["wilson_greedy"])
     out["build_replication"], _ = method_build_replication(
         candidates, train_build_stats, train_baseline_wr,
         BUILD_FILES, floors["build"],
+        category_bands=bands,
     )
     # Also keep the candidate scores for the rank correlation metric.
     out["__candidates__"] = candidates  # type: ignore[assignment]
@@ -154,7 +160,7 @@ def _evaluate_picks(
         "n_picks": len(picks),
         "rank_corr": rank_correlation(train_scores, test_scores),
         "top_8_hit": top_k_hit_rate(recommended_ids, test_ranking_by_wr, k=8),
-        "top_16_hit": top_k_hit_rate(recommended_ids, test_ranking_by_wr, k=16),
+        "top_12_hit": top_k_hit_rate(recommended_ids, test_ranking_by_wr, k=INVENTORY_SLOTS),
         "held_out": held_out_wr_delta(recommended_ids, test_item_stats, test_baseline_wr),
     }
 
@@ -296,7 +302,7 @@ def aggregate(per_hero_results: list[dict]) -> dict:
     for (m, mmr), entries in by_key.items():
         deltas = [e["held_out"]["delta_pp"] for e in entries if e["held_out"]["delta_pp"] is not None]
         h8 = [e["top_8_hit"]["hit_rate"] for e in entries if e["top_8_hit"]["hit_rate"] is not None]
-        h16 = [e["top_16_hit"]["hit_rate"] for e in entries if e["top_16_hit"]["hit_rate"] is not None]
+        h12 = [e["top_12_hit"]["hit_rate"] for e in entries if e["top_12_hit"]["hit_rate"] is not None]
         n = len(entries)
         summaries[f"{m}__{mmr}"] = {
             "method": m,
@@ -305,7 +311,7 @@ def aggregate(per_hero_results: list[dict]) -> dict:
             "mean_delta_pp": round(sum(deltas) / len(deltas), 3) if deltas else None,
             "median_delta_pp": round(sorted(deltas)[len(deltas)//2], 3) if deltas else None,
             "mean_top8_hit_rate": round(sum(h8) / len(h8), 4) if h8 else None,
-            "mean_top16_hit_rate": round(sum(h16) / len(h16), 4) if h16 else None,
+            "mean_top12_hit_rate": round(sum(h12) / len(h12), 4) if h12 else None,
             "heroes_positive_delta": sum(1 for d in deltas if d > 0),
         }
 
@@ -361,7 +367,7 @@ def _write_csv(path: Path, per_hero: list[dict]) -> None:
         "train_baseline_wr", "test_baseline_wr",
         "train_matches", "test_matches", "n_candidates",
         "spearman", "n_joint_items",
-        "top8_hit_rate", "top16_hit_rate",
+        "top8_hit_rate", "top12_hit_rate",
         "pooled_wr", "delta_pp", "coverage",
         "calib_coverage", "calib_violations",
     ]
@@ -384,7 +390,7 @@ def _write_csv(path: Path, per_hero: list[dict]) -> None:
                     tr["baseline_wr"], te["baseline_wr"],
                     tr["matches"], te["matches"], tr["n_candidate_items"],
                     met["rank_corr"]["spearman"], met["rank_corr"]["n_joint_items"],
-                    met["top_8_hit"]["hit_rate"], met["top_16_hit"]["hit_rate"],
+                    met["top_8_hit"]["hit_rate"], met["top_12_hit"]["hit_rate"],
                     met["held_out"]["pooled_wr"], met["held_out"]["delta_pp"],
                     met["held_out"]["coverage"],
                     calib.get("coverage"), calib.get("violations"),
@@ -424,7 +430,7 @@ def _write_summary_md(path: Path, split: Split, summary: dict,
             continue
         P(f"### MMR slice: `{mmr}`")
         P()
-        P("| Rank | Method | Mean Δpp | Median Δpp | Heroes>0 | Top-8 hit | Top-16 hit | n |")
+        P("| Rank | Method | Mean Δpp | Median Δpp | Heroes>0 | Top-8 hit | Top-12 hit | n |")
         P("|---|---|---|---|---|---|---|---|")
         for i, s in enumerate(rows, 1):
             P(f"| {i} | `{s['method']}` | "
@@ -432,7 +438,7 @@ def _write_summary_md(path: Path, split: Split, summary: dict,
               f"{_fmt(s['median_delta_pp'], '+.3f')} | "
               f"{s['heroes_positive_delta']}/{s['n_heroes']} | "
               f"{_fmt(s['mean_top8_hit_rate'], '.3f')} | "
-              f"{_fmt(s['mean_top16_hit_rate'], '.3f')} | "
+              f"{_fmt(s['mean_top12_hit_rate'], '.3f')} | "
               f"{s['n_heroes']} |")
         P()
 
@@ -497,7 +503,7 @@ def _write_summary_md(path: Path, split: Split, summary: dict,
     P("## How to read this")
     P()
     P("- **Δpp** is the *aggregate* held-out WR signal: pooled `sum(wins) / sum(matches)` of the recommended items in the test window, minus the test-window hero baseline. Positive means the method's picks really do outperform an average buy on data the method never saw. Negative means the picks regress to (or below) baseline in the next 7 days.")
-    P("- **Top-K hit rate** is the fraction of the method's top-K picks (K = 8, 16) that also rank in the top-K by raw test-window WR. Robust to the method's exact scoring rule.")
+    P("- **Top-K hit rate** is the fraction of the method's top-K picks (K = 8, 12) that also rank in the top-K by raw test-window WR. Robust to the method's exact scoring rule.")
     P("- **Spearman ρ** is a *data* property — it doesn't depend on the method. It measures how stable any given item's score is across the train→test split. High ρ → ranking generalizes; low ρ → either noise or genuine patch drift.")
     P("- **Calibration coverage** is also a *data* property. Wilson LB at 95% confidence is supposed to lie below the true WR ≥ 95% of the time. Coverage well under 0.95 means temporal drift inflates train-window WR — the LB is over-confident as soon as you cross the test boundary.")
     P()

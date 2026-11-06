@@ -82,11 +82,17 @@ def _page_inputs_complete(patch_id: str) -> bool:
     Hero JSONs alone aren't enough. They're committed, but the tab's matchups
     and build clusters come from cache/, which isn't, so a checkout can have
     the former without the latter. Matchups are the last thing a pass fetches,
-    so a full set of them stands in for the whole cache.
+    so a full set of them stands in for the whole cache. Hero JSONs from an
+    older spec count as missing too: the reference tab would otherwise keep
+    showing the old model next to the current one.
     """
-    if not any((ROOT / "heroes" / patch_id).glob("*_build.json")):
+    hero_file = next((ROOT / "heroes" / patch_id).glob("*_build.json"), None)
+    if hero_file is None:
         return False
     try:
+        with open(hero_file, encoding="utf-8") as f:
+            if json.load(f).get("spec_version") != SPEC_VERSION:
+                return False
         with open(CACHE / patch_id / "playable_heroes.json", encoding="utf-8") as f:
             n = len(json.load(f))
     except (OSError, ValueError):
@@ -129,7 +135,7 @@ TIME_BOUNDS_QS = f"min_unix_timestamp={PATCH_MIN_TS}" + (
 HMMR_BADGE = 91       # Phantom 1+
 ASCENDANT_BADGE = 101  # Ascendant 1+
 ETERNUS_BADGE = 111    # Eternus 1+
-SPEC_VERSION = "1.2.1"  # bumped — mmr_slices players nullable (API dropped hero-stats player counts)
+SPEC_VERSION = "1.3.0"  # bumped — 12-item builds inside per-hero category bands; picks lose `slot`, heroes gain `category_bands`
 
 CACHE = ROOT / "cache"
 ASSETS = ROOT / "assets"

@@ -17,13 +17,14 @@ This module bridges the gap by:
   3. Issuing a single /v1/analytics/item-stats query with
      account_ids=[all matched accounts] to get aggregated item stats
      across only those players' matches.
-  4. Aggregating into a 16-slot build using the same lift-weighted
-     scheme as method_build_replication.
+  4. Aggregating into a full inventory from what those players still
+     hold at match end, inside the hero's category bands.
 
 Results are cached per (patch_id, hero_id, slice, fingerprint) in
-cache/match_archetype_resolutions/. Cache is immutable — once a
-patch's data is settled (~24h after release), an archetype's
-resolution doesn't change.
+cache/match_archetype_resolutions/. Once a patch's data is settled
+(~24h after release), an archetype's matching accounts don't change. A
+resolution older than RESOLUTION_SCHEMA keeps its accounts and only has
+its items picked again, which takes one request instead of a full sweep.
 
 Run as a module to resolve a single archetype:
 
@@ -52,6 +53,8 @@ from _paths import (  # noqa: E402
     HMMR_BADGE, ASCENDANT_BADGE, ETERNUS_BADGE,
 )
 from batch_fetch import _HEADERS, _RETRIABLE_HTTP, _retry_after_s, fetch as _http_fetch  # noqa: E402
+from build_hero_output import build_lineage_map, phase_for  # noqa: E402
+from inventory import CATEGORIES, RESOLUTION_SCHEMA, one_per_lineage, select_picks  # noqa: E402
 
 
 RESOLUTIONS_DIR = CACHE / "match_archetype_resolutions"
@@ -164,6 +167,72 @@ def _account_items(hero_id: int, account_ids: list[int], bounds_qs: str,
     return _api_get(url) or []
 
 
+def _read_resolution(path: Path) -> dict | None:
+    if not path.exists() or path.stat().st_size < 2:
+        return None
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return None
+
+
+def _is_current(resolution: dict | None) -> bool:
+    """Whether a stored resolution can stand as it is. One that found no items
+    has nothing to pick again."""
+    if resolution is None:
+        return False
+    return resolution.get("schema", 1) >= RESOLUTION_SCHEMA or not resolution.get("items")
+
+
+def _select_items(stats: list[dict], category_bands: dict | None) -> list[dict]:
+    """Choose a full inventory from one player population's item stats.
+
+    Score = how often these players still hold the item at match end (relative
+    to their most-held item) weighted by raw WR. Counting held rather than
+    bought matters: every chain's cheap components are bought nearly every
+    match, then absorbed. Same shape as the joint_archetypes "items" dict so
+    the page can render uniformly.
+    """
+    with open(CACHE / "items.json", encoding="utf-8") as f:
+        items_by_id = {i["id"]: i for i in json.load(f)}
+    _, lineage_canon = build_lineage_map(items_by_id)
+
+    def held(s: dict) -> int:
+        return max(0, s.get("matches", 0) - (s.get("sold") or 0))
+
+    most_held = max((held(s) for s in stats), default=1) or 1
+    decorated = []
+    for s in stats:
+        it = items_by_id.get(s.get("item_id"))
+        if not it or it.get("type") != "upgrade" or it.get("item_slot_type") not in CATEGORIES:
+            continue
+        if held(s) <= 0:
+            continue
+        wr = s["wins"] / s["matches"]
+        pick_rate_pop = held(s) / most_held
+        sell_s = s.get("avg_sell_time_s") or 0
+        decorated.append({
+            "item_id": s["item_id"],
+            "name": it["name"],
+            "category": it["item_slot_type"],
+            "tier": it["item_tier"],
+            "cost": it["cost"],
+            "matches": s["matches"],
+            "wins": s["wins"],
+            "win_rate": round(wr, 4),
+            "personal_pick_rate": round(pick_rate_pop, 4),
+            "avg_buy_time_s": round(s.get("avg_buy_time_s", 0), 1),
+            "phase": phase_for(s.get("avg_buy_time_s", 0)),
+            "avg_sell_time_s": round(sell_s, 1) if sell_s else None,
+            "is_active": bool(it.get("is_active_item")),
+            "imbue": it.get("imbue"),
+            "score": round(pick_rate_pop * wr, 4),
+        })
+    decorated.sort(key=lambda c: -c["score"])
+    return select_picks(one_per_lineage(decorated, lineage_canon), category_bands)
+
+
 def resolve_archetype(
     hero_id: int,
     slice_label: str,
@@ -172,6 +241,7 @@ def resolve_archetype(
     use_cache: bool = True,
     candidate_workers: int = 4,
     verbose: bool = False,
+    category_bands: dict | None = None,
 ) -> dict:
     """Resolve a single match-only archetype to a concrete item list.
 
@@ -184,19 +254,15 @@ def resolve_archetype(
         "total_matches": T,
         "total_wins": W,
         "mean_win_rate": ...,
-        "items": [item_dict, ...],  # 16-slot bundle, slot-decorated
+        "items": [item_dict, ...],  # a full inventory, best first
         "from_cache": bool,
       }
     """
     cache_path = _cache_path(patch_id, hero_id, slice_label, fingerprint)
-    if use_cache and cache_path.exists() and cache_path.stat().st_size >= 2:
-        try:
-            with open(cache_path, encoding="utf-8") as f:
-                cached = json.load(f)
-            cached["from_cache"] = True
-            return cached
-        except Exception:
-            pass
+    cached = _read_resolution(cache_path) if use_cache else None
+    if _is_current(cached):
+        cached["from_cache"] = True
+        return cached
 
     _pmeta = PATCH_REGISTRY[patch_id]
     bounds_qs = f"min_unix_timestamp={_pmeta['min_ts']}"
@@ -204,6 +270,21 @@ def resolve_archetype(
         # Closed patch — bound the window so archetypes stay era-pure.
         bounds_qs += f"&max_unix_timestamp={_pmeta['max_ts']}"
     badge = SLICE_BADGE[slice_label]
+
+    if cached is not None:
+        # Older schema, so the accounts stand and only the items change. An
+        # empty answer here means the API failed, not that nobody matched:
+        # raising keeps the old file and leaves this outstanding for next time.
+        stats = _account_items(hero_id, cached["matching_accounts"], bounds_qs, badge)
+        if not stats:
+            raise RuntimeError("no item stats returned for the stored accounts")
+        result = {**cached, "schema": RESOLUTION_SCHEMA,
+                  "items": _select_items(stats, category_bands),
+                  "resolved_at_unix": int(time.time()), "from_cache": False}
+        with open(cache_path, "w", encoding="utf-8") as f:
+            json.dump(result, f, indent=2)
+        return result
+
     depth = SLICE_CANDIDATE_DEPTH[slice_label]
     target_fp = tuple(fingerprint)
 
@@ -255,69 +336,10 @@ def resolve_archetype(
     # is a list query — the API joins them into "matches involving any
     # of these accounts" which is the right scope for the bundle.
     items = _account_items(hero_id, matching_accounts, bounds_qs, badge)
-
-    # Aggregate into a slot-decorated 16-item bundle. Score = personal
-    # pick rate (matches with item / max matches across all items for
-    # this player population) weighted by raw WR. Same shape as the
-    # joint_archetypes "items" dict so the page can render uniformly.
-    items_meta_path = CACHE / "items.json"
-    with open(items_meta_path, encoding="utf-8") as f:
-        items_by_id = {i["id"]: i for i in json.load(f)}
-    most_matches = max((s.get("matches", 0) for s in items), default=1) or 1
-
-    def _phase_of(buy_s: float) -> str:
-        if buy_s < 750: return "early"
-        if buy_s < 1500: return "mid"
-        return "late"
-
-    decorated = []
-    for s in items:
-        it = items_by_id.get(s.get("item_id"))
-        if not it or it.get("type") != "upgrade" or it.get("item_slot_type") not in ("weapon", "vitality", "spirit"):
-            continue
-        if s.get("matches", 0) <= 0:
-            continue
-        wr = s["wins"] / s["matches"]
-        pick_rate_pop = s["matches"] / most_matches
-        sell_s = s.get("avg_sell_time_s") or 0
-        decorated.append({
-            "item_id": s["item_id"],
-            "name": it["name"],
-            "category": it["item_slot_type"],
-            "tier": it["item_tier"],
-            "cost": it["cost"],
-            "matches": s["matches"],
-            "wins": s["wins"],
-            "win_rate": round(wr, 4),
-            "personal_pick_rate": round(pick_rate_pop, 4),
-            "avg_buy_time_s": round(s.get("avg_buy_time_s", 0), 1),
-            "phase": _phase_of(s.get("avg_buy_time_s", 0)),
-            "avg_sell_time_s": round(sell_s, 1) if sell_s else None,
-            "is_active": bool(it.get("is_active_item")),
-            "imbue": it.get("imbue"),
-            # personal-pick-rate-weighted score; emphasizes items the
-            # population reliably buys, with high WR amplifying further
-            "score": round(pick_rate_pop * wr, 4),
-        })
-    decorated.sort(key=lambda c: -c["score"])
-
-    # 16-slot bundle following the same category constraints as the ILP:
-    # take top-4 per category by score, then 4 flex picks.
-    from collections import defaultdict
-    by_cat: dict[str, list[dict]] = defaultdict(list)
-    for c in decorated:
-        by_cat[c["category"]].append(c)
-    picks: list[dict] = []
-    used: set[int] = set()
-    for cat in ("weapon", "vitality", "spirit"):
-        for c in by_cat[cat][:4]:
-            picks.append({**c, "slot": cat})
-            used.add(c["item_id"])
-    flex_pool = [c for c in decorated if c["item_id"] not in used][:4]
-    for c in flex_pool:
-        picks.append({**c, "slot": "flex"})
+    picks = _select_items(items, category_bands)
 
     result = {
+        "schema": RESOLUTION_SCHEMA,
         "fingerprint": list(target_fp),
         "patch_id": patch_id,
         "hero_id": hero_id,
@@ -402,10 +424,12 @@ def _bulk(patch_id: str, use_cache: bool = True, verbose: bool = True,
                  "ascendant_plus": "asc", "eternus_plus": "eter"}
     jobs: list[tuple[int, str, tuple[int, ...]]] = []
     template_fp_by_hs: dict[tuple[int, str], set[tuple]] = {}
+    bands_by_hero: dict[int, dict | None] = {}
     for f in files:
         with open(f, encoding="utf-8") as fh:
             d = json.load(fh)
         hid = d["hero"]["id"]
+        bands_by_hero[hid] = d.get("category_bands")
         for src_label, short in SLICE_MAP.items():
             tpl_archs = (d["items"].get(src_label) or {}).get("joint_archetypes") or []
             tpl_fps = {tuple(a.get("fingerprint_ability_ids") or []) for a in tpl_archs}
@@ -421,9 +445,9 @@ def _bulk(patch_id: str, use_cache: bool = True, verbose: bool = True,
 
     # Split resolved-vs-outstanding up front. Resolutions are cached per
     # (patch, hero, slice, fingerprint) and committed to the repo, so this
-    # is just a file-existence check — no API calls, runs in milliseconds.
+    # only reads local files — no API calls, runs in well under a second.
     outstanding = [j for j in jobs
-                   if not _cache_path(patch_id, j[0], j[1], j[2]).exists()]
+                   if not _is_current(_read_resolution(_cache_path(patch_id, j[0], j[1], j[2])))]
     print(f"  {len(jobs)} match-only archetypes across all heroes / slices "
           f"({len(jobs) - len(outstanding)} already resolved, "
           f"{len(outstanding)} outstanding)")
@@ -436,7 +460,8 @@ def _bulk(patch_id: str, use_cache: bool = True, verbose: bool = True,
     for i, (hid, slice_label, fp) in enumerate(jobs, 1):
         try:
             result = resolve_archetype(hid, slice_label, fp, patch_id,
-                                        use_cache=use_cache, verbose=False)
+                                        use_cache=use_cache, verbose=False,
+                                        category_bands=bands_by_hero.get(hid))
             if verbose:
                 cache_flag = "C" if result.get("from_cache") else "N"
                 print(f"  [{i:>4}/{len(jobs)}] [{cache_flag}] hero={hid} slice={slice_label} "
@@ -451,7 +476,7 @@ def _bulk(patch_id: str, use_cache: bool = True, verbose: bool = True,
     # outstanding, and the caller uses this to decide whether another pass
     # is needed.
     still = [j for j in jobs
-             if not _cache_path(patch_id, j[0], j[1], j[2]).exists()]
+             if not _is_current(_read_resolution(_cache_path(patch_id, j[0], j[1], j[2])))]
     print(f"\nDone in {time.time()-t0:.1f}s — {len(still)} still outstanding")
     print(f"OUTSTANDING={len(still)}")
     return len(still)
