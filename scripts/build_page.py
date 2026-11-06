@@ -2555,7 +2555,7 @@ HTML = """<!doctype html>
       const sign = premium > 0 ? '+' : '';
       return `
         <div class="ability-row">
-          <div class="icon">${img ? `<img src="${img}" onerror="this.style.display='none';this.parentNode.innerHTML='<span class=placeholder>'+a.name.charAt(0)+'</span>'">` : `<span class="placeholder">${a.name.charAt(0)}</span>`}</div>
+          <div class="icon">${img ? `<img src="${img}" onerror="this.style.display='none';this.parentNode.innerHTML='<span class=placeholder>${a.name.charAt(0)}</span>'">` : `<span class="placeholder">${a.name.charAt(0)}</span>`}</div>
           <div>
             <div class="name">${a.name}</div>
             <div class="role">avg AP across all players: ${a.avg_ap_all_players}</div>
@@ -2898,7 +2898,7 @@ HTML = """<!doctype html>
     return `
       <div class="${rowClasses.join(' ')}"${dataAnn}>
         <div class="icon">
-          ${item.image ? `<img src="${item.image}" onerror="this.style.display='none';this.parentNode.innerHTML='<span class=placeholder>'+(item.tier?'T'+item.tier:'?')+'</span>'">` : `<span class="placeholder">T${item.tier||'?'}</span>`}
+          ${item.image ? `<img src="${item.image}" onerror="this.style.display='none';this.parentNode.innerHTML='<span class=placeholder>T${item.tier||'?'}</span>'">` : `<span class="placeholder">T${item.tier||'?'}</span>`}
         </div>
         <div>
           <div class="name">${sigStar}${item.name}<span class="tag-pill tag-${tag}" title="${tagTitle}">${tagLabel}</span>${pickBar}</div>
