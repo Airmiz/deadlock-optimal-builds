@@ -21,7 +21,7 @@ The split into `recommended` (the answer) and `items`/`ability_orders` (the work
 
 ## `hero`
 
-Static identity for the hero plus the four signature abilities resolved to (id, name) pairs. Abilities are pulled from `assets.deadlock-api.com/v2/heroes` then looked up in `assets.deadlock-api.com/v2/items` (abilities are encoded as items in the asset API).
+Static identity for the hero plus the four signature abilities resolved to (id, name) pairs. Abilities are pulled from `api.deadlock-api.com/v1/assets/heroes` then looked up in `api.deadlock-api.com/v1/assets/items` (abilities are encoded as items in the asset API).
 
 ## `patch`
 
@@ -104,7 +104,7 @@ Lists the API endpoints and asset URLs that fed this output, for reproducibility
 
 ## What the all-heroes batch produces
 
-For each of the 38 heroes:
+For each playable hero:
 - One `{hero_name}_build.json` file (~70KB each, ~2.7MB total)
 - Per-hero CSVs: `{hero}_items.csv`, `{hero}_ability_orders.csv`
 - One aggregate file: `all_heroes_index.json` — quick map of hero → file path + headline stats (baseline WR, recommended build cost, top ability)

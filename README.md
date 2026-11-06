@@ -4,8 +4,8 @@ Statistically derived optimal item builds and ability point orders for every pla
 
 The headline deliverable is a single self-contained HTML page — open it in any browser, click a hero, and see the recommended build, ability priority, openers, and full ability sequence for the current patch.
 
-![patch](https://img.shields.io/badge/patch-146261%20%E2%80%94%2006--30--2026-orange)
-![heroes](https://img.shields.io/badge/heroes-38-blue)
+![patch](https://img.shields.io/badge/patch-11--04--2026-orange)
+![heroes](https://img.shields.io/badge/heroes-44-blue)
 ![data](https://img.shields.io/badge/data-deadlock--api.com-lightgrey)
 
 ## Quick start
@@ -20,7 +20,7 @@ That's it. The page loads from local files; the `assets/` folder must travel wit
 ## What's in the page
 
 - **Hero grid** with portraits, sortable A–Z or by win rate
-- **MMR toggle**: All MMR / Phantom+ (badge 91+, ~top 15-20%) / Ascendant+ (badge 101+, ~top 3-5%) / Eternus+ (badge 111+, ~top 0.1-1%). Higher-rank tabs auto-disable on patches where their sample is empty.
+- **MMR toggle**: All MMR / Phantom+ (badge 91+) / Ascendant+ (badge 101+) / Eternus+ (badge 111+). `rank_distribution.html` measures what share of the current ranked season each one selects. Higher-rank tabs auto-disable on patches where their sample is empty.
 - **Ability priority** ranked by winner-weighted AP investment, with a "winner premium" delta showing where successful players invest more than the average
 - **Best opener** — the highest-WR first 4 ability points
 - **Best full ability order** — the highest-WR 16-point sequence
@@ -47,7 +47,7 @@ See `docs/build_spec.md` for the full output schema and `docs/shiv_mmr_compariso
 .
 ├── deadlock_builds.html        ← the deliverable, open in a browser
 ├── assets/                     ← hero/item/ability icons (4 MB)
-├── heroes/<patch_id>/          ← 38 per-hero spec JSONs per patch (history kept)
+├── heroes/<patch_id>/          ← per-hero spec JSONs per patch (history kept)
 ├── patches.json                ← patch registry, auto-maintained by detect_patches.py
 ├── all_heroes_index.json       ← aggregate index + headline stats
 ├── all_heroes_tier_list.csv    ← flat tier-list view
@@ -63,7 +63,7 @@ See `docs/build_spec.md` for the full output schema and `docs/shiv_mmr_compariso
 │   ├── batch_fetch_builds.py   ← (2) pull per-build details
 │   ├── batch_fetch_counters.py ← (2b) per-matchup counter data
 │   ├── build_hero_output.py    ← reference per-hero generator
-│   ├── run_all_heroes.py       ← (3) generate all 38 hero JSONs in parallel
+│   ├── run_all_heroes.py       ← (3) generate all hero JSONs in parallel
 │   ├── build_index.py          ← (4) aggregate the index + tier list
 │   ├── scrape_wiki_icons.py    ← (5) per-item-id icon overrides
 │   ├── build_page_data.py      ← (6) compile the current patch's dataset
@@ -76,13 +76,14 @@ See `docs/build_spec.md` for the full output schema and `docs/shiv_mmr_compariso
 
 **A new patch needs no code change.** `scripts/detect_patches.py` runs at the top of every refresh and maintains `patches.json`:
 
-- Reads the changelog feed (`https://api.deadlock-api.com/v1/patches`) for which updates count as a patch and their ids — the id is the forum thread id, so `.../06-30-2026-update.146261/` → `patch_146261`.
-- Takes each patch's go-live time from the Steam announcement (`ISteamNews`, appid 1422450), matched by the date in the title. The forum RSS `pub_date` is deliberately *not* used — XenForo bumps it on every hotfix edit, which would silently blend two patches' matches.
+- Reads the changelog feed (`https://api.deadlock-api.com/v2/patches`) for which updates count as a patch and their ids — the id is the forum thread id, so `.../06-30-2026-update.146261/` → `patch_146261`.
+- Takes each patch's go-live time from the Steam announcement (`ISteamNews`, appid 1422450), matched by the date in the title, or by the day it was posted for named updates like "City Never Sleeps". The forum RSS `pub_date` is deliberately *not* used — XenForo bumps it on every hotfix edit, which would silently blend two patches' matches.
+- Also adopts Steam-only patches that never get a forum thread: dated "Minor Update - MM-DD-YYYY" announcements and undated "… Gameplay Update" ones, keyed `patch_YYYYMMDD`.
 - Closes the outgoing patch by setting its `max_ts` to the new patch's `min_ts`, so old aggregates stop absorbing new-patch matches.
 
 Existing entries are never rewritten, so committed history stays stable. To correct a patch by hand, edit `patches.json` — detection won't overwrite it.
 
-**The site shows one patch: the current one.** Older patches stay in `heroes/<patch_id>/` as data (and still feed the cross-patch imbue fallback), but they aren't shipped in the page and aren't re-fetched — closed patches are immutable, so re-pulling them only burned API calls. A brand-new patch is held back until it has ~100K total matches (a few hours), so the page never shows a roster of empty builds; the switch then happens on its own.
+**The site shows two patches: the current one, plus the one before it as a deeper-sample reference.** Older patches stay in `heroes/<patch_id>/` as data (and still feed the cross-patch imbue fallback), but they aren't shipped in the page and aren't re-fetched — closed patches are immutable, so re-pulling them only burned API calls. The reference patch is backfilled automatically if it never got hero JSONs. A brand-new patch is held back until it has ~100K total matches (a few hours), so the page never shows a roster of empty builds; the switch then happens on its own.
 
 To run the pipeline by hand:
 
@@ -90,7 +91,7 @@ To run the pipeline by hand:
 python3 scripts/detect_patches.py     # ~2 sec — adopt any new patch
 python3 scripts/batch_fetch.py        # ~1 min — analytics + asset metadata
 python3 scripts/batch_fetch_builds.py # ~1 min — community build details
-python3 scripts/batch_fetch_counters.py # ~10 min cold — matchup counters
+python3 scripts/batch_fetch_counters.py # ~7 min — matchup counters (1,200 per run)
 python3 scripts/run_all_heroes.py     # ~2 min — regenerates per-hero JSONs
 python3 scripts/build_index.py        # ~1 sec — aggregate index + tier list
 python3 scripts/scrape_wiki_icons.py  # ~10 sec — per-item icon overrides
@@ -121,7 +122,7 @@ For a one-off public deploy without auto-refresh, push the current state and jus
 
 ## Data source and rate limits
 
-All data comes from [api.deadlock-api.com](https://api.deadlock-api.com), the community-run public Deadlock API. Analytics endpoints are rate-limited at **200 req/min per IP** (anonymous) or **400 req/min per API key**. The pipeline respects this — it fetches with 6 parallel workers and the per-call cache TTL is 1 hour, so repeated runs return instantly from the API's cache.
+All data comes from [api.deadlock-api.com](https://api.deadlock-api.com), the community-run public Deadlock API. Analytics endpoints are rate-limited at **200 req/min** and **2,500 req/hour**. The pipeline respects both: requests are paced globally, a throttled request waits out the `Retry-After` the API sends, and because matchup data grows with the square of the roster (too much for one hour), each refresh re-pulls at most 1,200 matchups, oldest first, so the full matrix turns over every couple of runs.
 
 The `cache/` directory in this repo holds local copies of fetched responses to avoid re-pulling between runs. It's gitignored — first-time clones run `batch_fetch.py` to populate it.
 
@@ -139,4 +140,4 @@ MIT — see `LICENSE`.
 
 ---
 
-**Status reminder:** the newest tracked patch is `patch_146261` (06-30-2026 Update). Every hero's recommended build is the highest-WR option *given current data* — Deadlock is in active development, the meta will shift, and re-running the pipeline on a new patch is one command.
+**Status reminder:** `patches.json` lists the newest tracked patch. Every hero's recommended build is the highest-WR option *given current data* — Deadlock is in active development, the meta will shift, and re-running the pipeline on a new patch is one command.

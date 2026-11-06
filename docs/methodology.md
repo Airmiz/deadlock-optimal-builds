@@ -5,7 +5,7 @@ This is a one-page explanation of every metric, badge, and term you'll see on th
 ## Data sources
 
 - **`api.deadlock-api.com`** — community-run public Deadlock API. The pipeline pulls per-hero analytics (item win rates, ability orders, top community builds, pairwise item synergies, matchup-specific item win rates) from this single source.
-- **`assets.deadlock-api.com/v2/heroes` and `/v2/items`** — asset metadata (names, tiers, costs, images, upgrade-component graph, cost-bonus tables).
+- **`api.deadlock-api.com/v1/assets/heroes` and `/v1/assets/items`** — asset metadata (names, tiers, costs, images, upgrade-component graph, cost-bonus tables).
 - **No human curation.** Every recommendation is a function of the API responses + the algorithms below.
 
 The pipeline is patch-aware: each patch's data lives under `cache/<patch_id>/` and `heroes/<patch_id>/`. The page lets you toggle between patches.
@@ -71,7 +71,7 @@ In plain language: "this hero uses this item at least twice as often as the aver
 
 Deadlock has cumulative gold-spent thresholds per category (weapon / vitality / spirit). At each threshold, your damage / health / spirit-power gets a percentage bonus. The bonuses are mostly small until **4,800 souls** in a category — there the bonus more than doubles. The page calls this the *major spike*.
 
-The thresholds are universal across heroes: 800, 1,600, 2,400, 3,200, **4,800**, 7,200, 9,600, 16,000. The bonus values changed between patches — see `SPIKE_BONUS_BY_PATCH` in `scripts/build_page.py` for the per-patch table.
+The thresholds are universal across heroes, with the major spike at **4,800**. Both the thresholds and the bonus values change between patches, so the page reads them from the game's `cost_bonuses` asset data for the patch on screen.
 
 The phase-summary line at the bottom of each Early/Mid/Late column shows running totals plus a ⚡ flag when the major spike has been crossed.
 

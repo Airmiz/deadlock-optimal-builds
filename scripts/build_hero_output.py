@@ -9,7 +9,7 @@ Produces a single JSON file per hero containing:
   - Per-ability AP priority (winners-weighted)
   - Provenance (patch, sample sizes, API queries)
 
-This file is the reference implementation that we'll batch across all 38 heroes.
+This file is the reference implementation that we'll batch across all heroes.
 Inputs are the raw API pulls we've already saved for Shiv:
   - heroes.json, items.json (asset metadata, shared)
   - hero_stats.json + hero_stats_b91.json (baseline)
@@ -1039,8 +1039,8 @@ def build_hero_output(
                 "/v1/builds (per-build details)",
             ],
             "asset_sources": [
-                "https://assets.deadlock-api.com/v2/heroes",
-                "https://assets.deadlock-api.com/v2/items",
+                "https://api.deadlock-api.com/v1/assets/heroes",
+                "https://api.deadlock-api.com/v1/assets/items",
             ],
         },
     }

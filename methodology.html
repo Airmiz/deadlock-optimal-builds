@@ -334,8 +334,8 @@ The page is patch-aware: each patch's data lives under its own namespace so mult
     <tr><td><code>api.deadlock-api.com/v1/analytics/hero-build-stats/{hero_id}</code></td><td>Top community builds and their stats</td></tr>
     <tr><td><code>api.deadlock-api.com/v1/analytics/ability-order-stats</code></td><td>Ability point ordering win rates</td></tr>
     <tr><td><code>api.deadlock-api.com/v1/builds</code></td><td>Per-build details (item lists, author, descriptions)</td></tr>
-    <tr><td><code>assets.deadlock-api.com/v2/heroes</code></td><td>Hero metadata: names, portraits, abilities, cost-bonus tables</td></tr>
-    <tr><td><code>assets.deadlock-api.com/v2/items</code></td><td>Item metadata: names, tiers, costs, images, upgrade-component graph, cooldowns, imbue type</td></tr>
+    <tr><td><code>api.deadlock-api.com/v1/assets/heroes</code></td><td>Hero metadata: names, portraits, abilities, cost-bonus tables</td></tr>
+    <tr><td><code>api.deadlock-api.com/v1/assets/items</code></td><td>Item metadata: names, tiers, costs, images, upgrade-component graph, cooldowns, imbue type</td></tr>
   </tbody>
 </table>
 <p>
@@ -350,7 +350,7 @@ The pipeline is patch-aware: each patch's data lives under <code>cache/&lt;patch
   </thead>
   <tbody>
     <tr><td><strong>All-MMR</strong></td><td>none</td><td>everyone playing the patch</td><td>broad sample, biased by skill confounds</td></tr>
-    <tr><td><strong>High-MMR</strong> <em>(default)</em></td><td><code>min_average_badge=91</code></td><td>Phantom 1+ (~top 15-20%)</td><td>sharper signal at smaller sample</td></tr>
+    <tr><td><strong>High-MMR</strong> <em>(default)</em></td><td><code>min_average_badge=91</code></td><td>Phantom 1+ (<a href="rank_distribution.html">current share</a>)</td><td>sharper signal at smaller sample</td></tr>
   </tbody>
 </table>
 <p>
@@ -487,7 +487,7 @@ $$
 <p>The gold ⭐ on certain item rows marks a hero affinity score above a threshold. Affinity is a hero's pick rate for an item, normalized by the average across all heroes:</p>
 <div class="eq">
 $$
-\text{affinity}_{h,i} = \frac{P(i \mid \text{hero}=h)}{\bar{P}(i)} \quad\text{where}\quad \bar{P}(i) = \tfrac{1}{38} \sum_{h'} P(i \mid \text{hero}=h')
+\text{affinity}_{h,i} = \frac{P(i \mid \text{hero}=h)}{\bar{P}(i)} \quad\text{where}\quad \bar{P}(i) = \tfrac{1}{N_{\text{heroes}}} \sum_{h'} P(i \mid \text{hero}=h')
 $$
 </div>
 <p>An item is tagged <strong>signature</strong> if it satisfies both:</p>
@@ -552,7 +552,7 @@ $$
     <tr><td>16,000</td><td class="num">+95%</td><td class="num">+48%</td><td class="num">+66%</td></tr>
   </tbody>
 </table>
-<p>Patch 129989 (04-30-2026) rebalanced weapon and vitality bonuses — see <code>SPIKE_BONUS_BY_PATCH</code> in <code>scripts/build_page.py</code> for the per-patch table.</p>
+<p>Both the steps and the bonuses change between patches, so this table is only the worked example. The build pages read the current values from the game's own <code>cost_bonuses</code> data for the patch on screen.</p>
 <p>The phase-summary line at the bottom of each Early/Mid/Late column shows running totals plus a ⚡ flag when the major spike has been crossed.</p>
 
 <h2 id="lineage">10. Lineage chains</h2>
@@ -665,7 +665,7 @@ $$
 </div>
 
 <h2 id="overrides">15. Per-patch item overrides</h2>
-<p>The asset CDN at <code>assets.deadlock-api.com</code> can lag a Deadlock patch by hours-to-days. When a patch ships, items like Shadow Weave can show their pre-patch tier/cost/cooldown values in our cache.</p>
+<p>The asset data at <code>api.deadlock-api.com/v1/assets</code> can lag a Deadlock patch by hours-to-days. When a patch ships, items like Shadow Weave can show their pre-patch tier/cost/cooldown values in our cache.</p>
 <p><code>ITEM_OVERRIDES_BY_PATCH</code> in <code>scripts/build_page_data.py</code> is a small per-patch dict that hand-codes corrections from the patch notes. Applied at compact-hero time so each patch shows its own correct values.</p>
 
 <div class="callout example">

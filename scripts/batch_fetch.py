@@ -10,9 +10,9 @@ Endpoints used (all under https://api.deadlock-api.com):
   /v1/analytics/hero-build-stats/{hero_id}  (top builds + their stats)
   /v1/analytics/ability-order-stats (ability point ordering win rates)
 
-Asset metadata (no rate limit, separate host):
-  https://assets.deadlock-api.com/v2/heroes
-  https://assets.deadlock-api.com/v2/items
+Asset metadata (not subject to the analytics rate limit):
+  /v1/assets/heroes
+  /v1/assets/items
 """
 import json
 import threading
@@ -77,6 +77,8 @@ _HEADERS = {
 TTL_ASSETS    = 7 * 24 * 3600   # 7 days
 TTL_ANALYTICS = 2 * 3600        # 2 hours
 
+ASSETS_BASE = "https://api.deadlock-api.com/v1/assets"
+
 # Default TTL for fetch() when no override is given. Conservative: matches the
 # refresh cadence so the system actually pulls fresh data each cron tick.
 DEFAULT_TTL = TTL_ANALYTICS
@@ -112,12 +114,24 @@ def _pace() -> None:
         _pace_next_slot[0] = now + _PACE_MIN_INTERVAL
 
 
-def _pace_penalty(seconds: float) -> None:
-    """Push the global next-request slot out — called after a 429/403 so
-    every worker backs off together instead of piling onto a tripped
-    rate limit one after another."""
+def _pace_penalty(until: float) -> None:
+    """Push the global next-request slot out to monotonic time `until` —
+    called after a 429/403 so every worker backs off together instead of
+    piling onto a tripped rate limit one after another.
+
+    An absolute deadline, because this can block while another worker sleeps
+    in _pace(). A relative "wait 45 min" applied after that sleep would stack
+    once per worker that got the same answer."""
     with _pace_lock:
-        _pace_next_slot[0] = max(_pace_next_slot[0], time.monotonic() + seconds)
+        _pace_next_slot[0] = max(_pace_next_slot[0], until)
+
+
+def _retry_after_s(err: urllib.error.HTTPError) -> float:
+    """Seconds the API asked us to wait (load-shed 503s send Retry-After)."""
+    try:
+        return float(err.headers.get("Retry-After") or 0)
+    except (TypeError, ValueError):
+        return 0.0
 
 
 def fetch(url: str, dest: Path, timeout: int = 25,
@@ -148,12 +162,13 @@ def fetch(url: str, dest: Path, timeout: int = 25,
             return dest, "cached"
         # Stale — fall through to re-fetch
     last_err: Exception | None = None
+    retry_at = 0.0
     for cooldown in (0,) + _BACKOFF_S:
         if cooldown and isinstance(last_err, urllib.error.HTTPError) \
                 and last_err.code in _RETRIABLE_HTTP:
             # Tripped the rate limit: push everyone's next slot out so the
             # pool doesn't pile onto a limit that just rejected us.
-            _pace_penalty(cooldown)
+            _pace_penalty(max(time.monotonic() + cooldown, retry_at))
         _pace()
         try:
             req = urllib.request.Request(url, headers=_HEADERS)
@@ -167,6 +182,7 @@ def fetch(url: str, dest: Path, timeout: int = 25,
             return dest, "ok"
         except urllib.error.HTTPError as e:
             last_err = e
+            retry_at = time.monotonic() + _retry_after_s(e)
             if e.code not in _RETRIABLE_HTTP:
                 break
         except Exception as e:
@@ -175,6 +191,63 @@ def fetch(url: str, dest: Path, timeout: int = 25,
     # Failure: keep the stale file (if any) rather than blowing it away.
     # Caller sees "error" so it can log + continue.
     return dest, f"error: {last_err}"
+
+
+def _fetch_asset(name: str) -> None:
+    """Refresh one asset snapshot, or stop with the actual reason.
+
+    fetch() reports failures through its status so analytics jobs can carry
+    on, but nothing downstream works without these files. When the old
+    assets.deadlock-api.com host disappeared, that status went unread and
+    the pipeline died a line later on a misleading FileNotFoundError.
+    """
+    dest = PATCH_CACHE / f"{name}.json"
+    # Large payloads (items.json is ~6 MB), so a longer timeout than analytics.
+    _, status = fetch(f"{ASSETS_BASE}/{name}", dest, timeout=90, ttl=TTL_ASSETS)
+    if status.startswith("error"):
+        if not dest.exists():
+            raise SystemExit(f"Could not fetch {ASSETS_BASE}/{name} ({status}) "
+                             f"and there is no earlier snapshot to fall back on")
+        print(f"  WARNING: {name} refresh failed ({status}); using the earlier snapshot")
+
+
+def _prefer_shop_icons() -> None:
+    """Make `image` each upgrade's own shop icon in the items snapshot.
+
+    The API now serves `shop_image`, unique to each purchasable item, next
+    to the old `image`, which is shared between unrelated items and missing
+    altogether for some of them. Every consumer reads `image`, so it is
+    normalised here. Wiki overrides still take priority at page-build time.
+    """
+    path = PATCH_CACHE / "items.json"
+    with open(path, encoding="utf-8") as f:
+        items = json.load(f)
+    changed = False
+    for it in items:
+        if it.get("type") == "upgrade" and it.get("shop_image") \
+                and it.get("image") != it["shop_image"]:
+            it["image"] = it["shop_image"]
+            it["image_webp"] = it.get("shop_image_webp") or it.get("image_webp")
+            changed = True
+    # Only rewrite after a fresh download: the file's mtime is what ages it
+    # against TTL_ASSETS, so writing every run would stop it ever refreshing.
+    if changed:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(items, f, ensure_ascii=False)
+
+
+def is_playable(hero: dict) -> bool:
+    """True for heroes in the live roster.
+
+    `development_state` is the release signal. `in_development` alone isn't:
+    the two newest heroes (Violet, Baba) still carry it with
+    development_state "release" while appearing in tens of thousands of
+    matches. Unreleased heroes have no development_state, so they keep being
+    excluded. This list matches the API's own /v1/assets/heroes?only_active=true.
+    """
+    if not hero.get("player_selectable", False) or hero.get("disabled", False):
+        return False
+    return not hero.get("in_development", False) or hero.get("development_state") == "release"
 
 
 def bootstrap_assets() -> None:
@@ -190,8 +263,9 @@ def bootstrap_assets() -> None:
     """
     # Patch-snapshot path (canonical going forward). Assets only change
     # when Valve drops a patch, so use the longer asset TTL.
-    fetch("https://assets.deadlock-api.com/v2/heroes", PATCH_CACHE / "heroes.json", ttl=TTL_ASSETS)
-    fetch("https://assets.deadlock-api.com/v2/items",  PATCH_CACHE / "items.json",  ttl=TTL_ASSETS)
+    _fetch_asset("heroes")
+    _fetch_asset("items")
+    _prefer_shop_icons()
     # Mirror to cache/ root for legacy callers (build_page_data still
     # reads items_assets at module level; will migrate in a follow-up).
     # ALWAYS overwrite: the root mirror used to be written only when
@@ -206,10 +280,7 @@ def bootstrap_assets() -> None:
 
     with open(PATCH_CACHE / "heroes.json", encoding="utf-8") as f:
         heroes = json.load(f)
-    playable = [h for h in heroes
-                if h.get("player_selectable", False)
-                and not h.get("disabled", False)
-                and not h.get("in_development", False)]
+    playable = [h for h in heroes if is_playable(h)]
     payload = [{"id": h["id"], "name": h["name"], "class_name": h["class_name"]}
                for h in playable]
     dest = PATCH_CACHE / "playable_heroes.json"

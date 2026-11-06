@@ -51,7 +51,7 @@ from _paths import (  # noqa: E402
     ROOT, CACHE, PATCH_REGISTRY, PATCH_CACHE, ACTIVE_PATCH_ID,
     HMMR_BADGE, ASCENDANT_BADGE, ETERNUS_BADGE,
 )
-from batch_fetch import _HEADERS, fetch as _http_fetch  # noqa: E402
+from batch_fetch import _HEADERS, _RETRIABLE_HTTP, _retry_after_s, fetch as _http_fetch  # noqa: E402
 
 
 RESOLUTIONS_DIR = CACHE / "match_archetype_resolutions"
@@ -70,15 +70,24 @@ MIN_PLAYER_SEQUENCE_MATCHES = 3
 
 
 def _api_get(url: str, retries: int = 3, backoff: float = 8.0) -> object:
-    """Resilient JSON GET with backoff on Cloudflare 403/429."""
+    """Resilient JSON GET with backoff on Cloudflare 403/429 and load-shed 503s.
+
+    A throttle that outlasts the retries raises rather than returning []: an
+    empty answer looks like "this player doesn't match", and the resulting
+    resolution would be committed and never recomputed. Raising leaves the
+    archetype outstanding for the next pass. With the API's 2,500 requests/hour
+    cap, a deep sweep does run into this, so it waits as long as Retry-After says.
+    """
     for attempt in range(retries):
         try:
             req = urllib.request.Request(url, headers=_HEADERS)
             with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read())
         except urllib.error.HTTPError as e:
-            if e.code in (403, 429) and attempt < retries - 1:
-                time.sleep(backoff * (attempt + 1))
+            if e.code in _RETRIABLE_HTTP:
+                if attempt == retries - 1:
+                    raise
+                time.sleep(max(backoff * (attempt + 1), _retry_after_s(e)))
                 continue
             return []
         except Exception:
@@ -113,7 +122,7 @@ def _scoreboard_candidates(hero_id: int, bounds_qs: str,
     badge_q = f"&min_average_badge={badge}" if badge is not None else ""
     url = (
         "https://api.deadlock-api.com/v1/analytics/scoreboards/players"
-        f"?hero_ids={hero_id}"
+        f"?hero_id={hero_id}"
         f"&{bounds_qs}"
         f"{badge_q}"
         f"&sort_by={sort_by}&sort_direction=desc"
