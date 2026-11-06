@@ -83,7 +83,7 @@ See `docs/build_spec.md` for the full output schema and `docs/shiv_mmr_compariso
 
 Existing entries are never rewritten, so committed history stays stable. To correct a patch by hand, edit `patches.json` — detection won't overwrite it.
 
-**The site shows two patches: the current one, plus the one before it as a deeper-sample reference.** Older patches stay in `heroes/<patch_id>/` as data (and still feed the cross-patch imbue fallback), but they aren't shipped in the page and aren't re-fetched — closed patches are immutable, so re-pulling them only burned API calls. The reference patch is backfilled automatically if it never got hero JSONs. A brand-new patch is held back until it has ~100K total matches (a few hours), so the page never shows a roster of empty builds; the switch then happens on its own.
+**The site shows two patches: the current one, plus the one before it as a deeper-sample reference.** Older patches stay in `heroes/<patch_id>/` as data (and still feed the cross-patch imbue fallback), but they aren't shipped in the page and aren't re-fetched — closed patches are immutable, so re-pulling them only burned API calls. The reference patch is backfilled automatically if its hero JSONs or cached inputs are incomplete. A brand-new patch is held back until it has ~100K total matches (a few hours), so the page never shows a roster of empty builds; the switch then happens on its own.
 
 To run the pipeline by hand:
 

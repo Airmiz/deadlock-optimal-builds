@@ -76,20 +76,39 @@ ACTIVE_PATCH_ID = PATCH_IDS_BY_AGE[-1] if PATCH_IDS_BY_AGE else ""
 
 
 
+def _page_inputs_complete(patch_id: str) -> bool:
+    """Does this patch have what the page build reads for it?
+
+    Hero JSONs alone aren't enough. They're committed, but the tab's matchups
+    and build clusters come from cache/, which isn't, so a checkout can have
+    the former without the latter. Matchups are the last thing a pass fetches,
+    so a full set of them stands in for the whole cache.
+    """
+    if not any((ROOT / "heroes" / patch_id).glob("*_build.json")):
+        return False
+    try:
+        with open(CACHE / patch_id / "playable_heroes.json", encoding="utf-8") as f:
+            n = len(json.load(f))
+    except (OSError, ValueError):
+        return False
+    return sum(1 for _ in (CACHE / patch_id / "counters").glob("*.json")) >= n * (n - 1)
+
+
 def patches_to_refresh() -> list[str]:
     """Patches the scheduled refresh should process, the live one last so the
     cache/ root mirrors end up on it.
 
     Normally that's just the live patch. The page also ships the patch before
-    it, which already has hero JSONs from its time as the live patch, unless
-    it opened and closed while the pipeline was down or between two runs.
-    Backfill it in that case so the page's reference tab doesn't silently fall
-    back to something much older.
+    it, which already has its data from its time as the live patch, unless it
+    opened and closed while the pipeline was down or between two runs, or
+    closed before its matchups had all been fetched. Backfill it in those cases
+    so the page's reference tab isn't left with missing data. Closed patches
+    are cached forever, so this is a one-off cost.
     """
     out = [ACTIVE_PATCH_ID]
     if len(PATCH_IDS_BY_AGE) > 1:
         previous = PATCH_IDS_BY_AGE[-2]
-        if not any((ROOT / "heroes" / previous).glob("*_build.json")):
+        if not _page_inputs_complete(previous):
             out.insert(0, previous)
     return out
 
