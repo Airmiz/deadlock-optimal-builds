@@ -157,6 +157,8 @@ jobs:
             python3 -u scripts/batch_fetch_builds.py
             python3 -u scripts/batch_fetch_counters.py
             python3 -u scripts/run_all_heroes.py
+            # The same data under the old 16-item rules, for the page's flip.
+            BUILD_SYSTEM=classic python3 -u scripts/run_all_heroes.py
             echo "::endgroup::"
           done
 
@@ -221,6 +223,8 @@ jobs:
         run: |
           python3 -u scripts/build_page_data.py
           python3 -u scripts/download_images.py
+          BUILD_SYSTEM=classic python3 -u scripts/build_page_data.py
+          BUILD_SYSTEM=classic python3 -u scripts/download_images.py
           python3 -u scripts/build_page.py
           python3 -u scripts/build_rank_page.py
 
@@ -234,7 +238,7 @@ jobs:
           # fresh CI checkout would look like a first build, re-stamp the
           # clock, and produce a page diff (and a commit) on every run even
           # when nothing changed.
-          git add -A heroes/ assets/ deadlock_builds.html rank_distribution.html all_heroes_index.json all_heroes_tier_list.csv cache/wiki_icon_overrides.json patches.json last_updated.json
+          git add -A heroes/ assets/ deadlock_builds.html deadlock_builds_classic.js rank_distribution.html all_heroes_index.json all_heroes_tier_list.csv cache/wiki_icon_overrides.json patches.json last_updated.json
           if git diff --cached --quiet; then
             echo "No changes to commit"
             exit 0
@@ -312,6 +316,8 @@ jobs:
           mkdir -p _site
           cp deadlock_builds.html _site/index.html
           cp deadlock_builds.html _site/deadlock_builds.html
+          # Absent only until the first refresh after the flip shipped.
+          [ ! -f deadlock_builds_classic.js ] || cp deadlock_builds_classic.js _site/
           cp methodology.html     _site/methodology.html
           cp rank_distribution.html _site/rank_distribution.html
           cp favicon.svg          _site/favicon.svg

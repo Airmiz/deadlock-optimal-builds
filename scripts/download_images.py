@@ -24,7 +24,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _paths import (
     ROOT, CACHE, HERO_OUT, HERO_DATA, BUILD_FILES, ASSETS,
-    PATCH_ID, PATCH_TITLE, PATCH_MIN_TS, HMMR_BADGE, SPEC_VERSION,
+    PATCH_ID, PATCH_TITLE, PATCH_MIN_TS, HMMR_BADGE, SPEC_VERSION, PAGE_DATA,
 )
 
 
@@ -148,7 +148,7 @@ def download(url: str, dest: Path) -> tuple[str, str]:
 
 
 def main() -> None:
-    with open(CACHE / "page_data.json", encoding="utf-8") as _fh:
+    with open(PAGE_DATA, encoding="utf-8") as _fh:
         data = json.load(_fh)
     urls = collect_urls(data)
     print(f"Unique image URLs: {len(urls)}")
@@ -233,8 +233,8 @@ def main() -> None:
         rewrite_hero_list(data.get("heroes", []))
         rewrite_items_dict(data.get("items_dict") or {})
 
-    # Overwrite page_data.json so build_page.py picks up the local paths
-    out = CACHE / "page_data.json"
+    # Overwrite the payload so build_page.py picks up the local paths
+    out = PAGE_DATA
     with open(out, "w", encoding="utf-8") as f:
         json.dump(data, f, separators=(",", ":"), ensure_ascii=False)
     print(f"\n[saved] {out}  {out.stat().st_size:,} bytes")

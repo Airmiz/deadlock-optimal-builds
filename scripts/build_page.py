@@ -1,4 +1,5 @@
-"""Assemble the static HTML page by embedding page_data.json into the template."""
+"""Assemble the static HTML page by embedding page_data.json into the template,
+and write the classic builds the page's flip loads on demand."""
 from pathlib import Path
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -343,6 +344,7 @@ HTML = """<!doctype html>
   .cat-weapon { background: rgba(214,133,107,0.15); color: var(--weapon); }
   .cat-vitality { background: rgba(108,180,106,0.15); color: var(--vitality); }
   .cat-spirit { background: rgba(180,135,217,0.15); color: var(--spirit); }
+  .slot-flex { color: var(--flex); font-size: 10px; font-weight: 600; }
 
   /* Tag pills: core / flex / situational / stat */
   .tag-pill {
@@ -587,6 +589,32 @@ HTML = """<!doctype html>
     background: rgba(201,132,255,0.08);
     cursor: help;
   }
+
+  /* Sell row (classic builds): an early/mid item being sold to free a slot */
+  .item-row.is-sell {
+    background: linear-gradient(90deg, rgba(211,98,98,0.06) 0%, transparent 50%);
+    border-left: 2px dashed rgba(211,98,98,0.55);
+    padding: 5px 0 5px 6px;
+    margin-left: -8px;
+    opacity: 0.85;
+  }
+  .item-row.is-sell .icon { width: 26px; height: 26px; }
+  .item-row.is-sell .name { font-size: 12px; color: var(--text-dim); }
+  .item-row.is-sell .name .sell-tag {
+    color: var(--bad);
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    margin-right: 6px;
+    border: 1px solid rgba(211,98,98,0.5);
+    border-radius: 3px;
+    padding: 1px 5px;
+    background: rgba(211,98,98,0.08);
+  }
+  .item-row.is-sell .meta { font-size: 11px; color: var(--text-dim); }
+  .item-row.is-sell .cost { color: var(--good); font-size: 11px; font-weight: 600; }
+  .item-row.is-sell .cost::before { content: '+ '; }
 
   /* Stage row: a chain ancestor placed in its actual buy-phase column */
   .item-row.is-stage {
@@ -1477,6 +1505,10 @@ HTML = """<!doctype html>
       <button data-mmr="asc" title="min_average_badge=101 (Ascendant+) — see the Rank distribution page for the measured share">Ascendant+</button>
       <button data-mmr="eter" title="min_average_badge=111 (Eternus+) — see the Rank distribution page for the measured share">Eternus+</button>
     </div>
+    <div class="toggle-group" id="build-toggle">
+      <button data-build="current" class="active" title="The current system: 12 items, the game's inventory cap, with each category close to what this hero's players carry">12 items</button>
+      <button data-build="classic" title="The old system: 16 items, 4 weapon / 4 vitality / 4 spirit / 4 flex, with sell rows. It predates the 12-slot inventory cap, but its data stays up to date">Classic 16</button>
+    </div>
   </div>
 </header>
 <div class="mobile-backdrop" id="mobile-backdrop"></div>
@@ -2195,6 +2227,11 @@ HTML = """<!doctype html>
     // into stage events (each ancestor in its actual buy-phase) plus the
     // final-tier event in the late game. This way an early-game T1 component
     // that upgrades to a T3 in late game shows up under EARLY.
+    // Classic builds (the only ones with a `slot`) also emit "sell" events for
+    // items that the population typically sells mid-game to free a slot —
+    // anything bought early/mid with a clear sell time and a meaningful hold
+    // duration. End-of-game sells (very late sell time, very short hold) are
+    // ignored since those are just match-end.
     const phaseFromBuyMin = (m) => m < 12.5 ? 'early' : m < 25 ? 'mid' : 'late';
     const events = [];
     for (const it of items) {
@@ -2226,6 +2263,30 @@ HTML = """<!doctype html>
         });
       }
       events.push({ ...it, kind: 'final' });
+
+      // Sell event for this final pick? Conditions:
+      //   - a classic build, with a sell time
+      //   - hold duration >= 6 min (real strategic sell, not match-end noise)
+      //   - bought before late phase (late items don't get sold to free slots)
+      //   - sell happens after the buy (sanity)
+      if (it.slot && it.sell_min != null && it.buy_min != null
+          && it.sell_min > it.buy_min + 6
+          && it.phase !== 'late'
+          && it.sell_min < 38) {
+        // Refund: sell yields ~50% of item cost (Deadlock convention; the
+        // exact rate isn't critical, the user just wants to see the EVENT)
+        const refund = Math.round((it.cost || 0) * 0.5);
+        events.push({
+          kind: 'sell',
+          name: it.name, tier: it.tier, cost: refund, item_id: it.item_id,
+          buy_min: it.sell_min,  // for sort
+          sell_min: it.sell_min,
+          original_cost: it.cost,
+          phase: phaseFromBuyMin(it.sell_min),
+          category: it.category,
+          image: it.image,
+        });
+      }
     }
 
     // Group events by phase, sort within phase by buy time
@@ -2334,7 +2395,9 @@ HTML = """<!doctype html>
           ${activeJointArch
             ? `Conditional build for the <strong>max ${escHtml(activeJointArch.fingerprint_ability_names.join(' → '))}</strong> archetype — items aggregated from ${activeJointArch.n_builds} community builds that tier-3 those abilities in that order.`
             : 'From the synergy-aware ILP method — items chosen for win rate <em>and</em> pairwise synergy. Buy times are population averages.'}
-          This is the inventory to end on: 12 items, using the 9 slots you start with plus 1 for each enemy Walker destroyed.
+          ${items.some(i => i.slot)
+            ? 'Classic build system: 16 items, 4 weapon / 4 vitality / 4 spirit / 4 flex, with sell rows. The game has capped inventories at 12 since May 2025, so not all of these fit at once.'
+            : 'This is the inventory to end on: 12 items, using the 9 slots you start with plus 1 for each enemy Walker destroyed.'}
           Hover any item with a community-build note to see the tooltip authors wrote about it.
         </div>
         <div class="summary-line" style="margin-top:-8px">
@@ -2563,7 +2626,28 @@ HTML = """<!doctype html>
 
   function renderEvent(e) {
     if (e.kind === 'stage') return renderStageRow(e);
+    if (e.kind === 'sell')  return renderSellRow(e);
     return renderItemRow(e);
+  }
+
+  function renderSellRow(sell) {
+    const cat = sell.category;
+    const imgPart = sell.image
+      ? `<img src="${sell.image}" style="filter:grayscale(0.6);opacity:0.7" onerror="this.style.display='none';this.parentNode.innerHTML='<span class=placeholder>T${sell.tier}</span>'">`
+      : `<span class="placeholder">T${sell.tier}</span>`;
+    return `
+      <div class="item-row is-sell" title="Population avg: this slot gets sold around minute ${sell.sell_min}, refunding roughly half the cost — frees a slot for late-game purchases">
+        <div class="icon">${imgPart}</div>
+        <div>
+          <div class="name"><span class="sell-tag">↓ Sell</span>${escHtml(sell.name)}</div>
+          <div class="meta">
+            <span class="cat-pill cat-${cat}">${cat}</span>
+            sell@${sell.sell_min}min · originally bought for ${fmtCost(sell.original_cost || 0)}
+          </div>
+        </div>
+        <div class="cost">${fmtCost(sell.cost)}</div>
+      </div>
+    `;
   }
 
   function renderStageRow(stage) {
@@ -2738,6 +2822,7 @@ HTML = """<!doctype html>
 
   function renderItemRow(item) {
     const cat = item.category;
+    const isFlex = item.slot === 'flex';
     // 5-class 2D tag taxonomy (methodology review §6.4) on item.tag.
     // Legacy 1D pick-rate band is still emitted as item.pick_rate_tag
     // for downstream consumers but no longer rendered in the UI.
@@ -2828,6 +2913,7 @@ HTML = """<!doctype html>
           <div class="meta">
             <span class="cat-pill cat-${cat}">${cat}</span>
             ${cdBadge}${imbBadge}
+            ${isFlex ? '<span class="slot-flex">FLEX SLOT · </span>' : ''}
             T${item.tier} · buy@${item.buy_min}min · WR ${fmtPct(item.wr)}
           </div>
           ${chainHtml}
@@ -3094,6 +3180,78 @@ HTML = """<!doctype html>
   });
   // (Methodology toggle removed — v2 is unconditional.)
 
+  // ---- 12-item / classic build flip ----
+  // The classic builds live in a separate file, loaded on the first flip, so
+  // the page stays the same size for anyone who never uses them. It holds only
+  // the fields that differ, and flipping swaps them into the hero objects in
+  // place, so the second flip restores the current builds the same way.
+  const CLASSIC_URL = '__CLASSIC_URL__';
+  const BUILD_PREF_KEY = 'deadlock-build-system';
+  const buildToggle = document.getElementById('build-toggle');
+  const classicButton = buildToggle.querySelector('[data-build="classic"]');
+  const classicLabel = classicButton.textContent;
+  let classicShowing = false;
+  let classicLoading = false;
+  if (!CLASSIC_URL) buildToggle.style.display = 'none';
+
+  function swapFields(target, other) {
+    for (const k of Object.keys(other)) {
+      const held = target[k];
+      target[k] = other[k];
+      other[k] = held;
+    }
+  }
+  function swapBuilds() {
+    for (const [pid, overlay] of Object.entries(window.CLASSIC_BUILDS.patches)) {
+      const patch = DATA.patches[pid];
+      if (!patch) continue;
+      swapFields(patch, overlay.fields);
+      for (const h of patch.heroes) {
+        if (overlay.heroes[h.id]) swapFields(h, overlay.heroes[h.id]);
+      }
+    }
+  }
+  function loadClassicBuilds() {
+    return new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = CLASSIC_URL;
+      s.onload = resolve;
+      s.onerror = () => { s.remove(); reject(new Error('classic builds failed to load')); };
+      document.head.appendChild(s);
+    });
+  }
+  async function setBuildSystem(classic) {
+    if (classic === classicShowing || classicLoading) return;
+    if (!window.CLASSIC_BUILDS) {
+      classicLoading = true;
+      classicButton.textContent = 'Loading…';
+      try {
+        await loadClassicBuilds();
+        classicButton.textContent = classicLabel;
+      } catch (err) {
+        classicButton.textContent = 'Classic 16: failed, retry';
+        return;
+      } finally {
+        classicLoading = false;
+      }
+    }
+    swapBuilds();
+    classicShowing = classic;
+    activeArchetypeIdxByHero = {};  // archetype refs point at the swapped-out builds
+    activeJointArchByHeroSlice = {};
+    activeMatchArchByHeroSlice = {};
+    buildToggle.querySelectorAll('button').forEach(b =>
+      b.classList.toggle('active', (b.dataset.build === 'classic') === classic));
+    try { localStorage.setItem(BUILD_PREF_KEY, classic ? 'classic' : 'current'); } catch (err) {}
+    updatePatchInfo();
+    renderHeroGrid();
+    renderMain();
+  }
+  buildToggle.addEventListener('click', e => {
+    if (e.target.tagName !== 'BUTTON') return;
+    setBuildSystem(e.target.dataset.build === 'classic');
+  });
+
   // ---- Mobile nav drawer wiring ----
   // Hamburger button toggles the slide-out hero drawer; tapping the
   // backdrop closes it. The body class drives the CSS transform.
@@ -3126,6 +3284,9 @@ HTML = """<!doctype html>
 
   // Initial render
   renderHeroGrid();
+  try {
+    if (CLASSIC_URL && localStorage.getItem(BUILD_PREF_KEY) === 'classic') setBuildSystem(true);
+  } catch (err) {}
 </script>
 </body>
 </html>
@@ -3184,6 +3345,42 @@ def _cb(m: re.Match) -> str:
     path = m.group(1)
     return f'{path}?v={_cache_v}'
 html = re.sub(r'(assets/[^"?\s)>]+)(?!\?)', _cb, html)
+
+
+def _classic_overlay(current: dict, classic: dict) -> dict:
+    """The fields of each patch and hero that differ under the classic rules.
+    Ability orders, matchups and the like are the same either way."""
+    out = {}
+    for pid, cp in classic["patches"].items():
+        p = current["patches"].get(pid)
+        if not p:
+            continue
+        heroes = {h["id"]: h for h in p["heroes"]}
+        out[pid] = {
+            "fields": {k: v for k, v in cp.items() if k != "heroes" and v != p.get(k)},
+            "heroes": {h["id"]: {k: v for k, v in h.items()
+                                 if v != heroes[h["id"]].get(k)}
+                       for h in cp["heroes"] if h["id"] in heroes},
+        }
+    return out
+
+
+# Without a classic payload (a hand run that skipped it), the page hides the flip.
+_classic_url = ""
+_classic_path = CACHE / "page_data_classic.json"
+if _classic_path.exists():
+    _classic = _json.loads(_classic_path.read_text(encoding="utf-8"))
+    _overlay = _classic_overlay(_json.loads(DATA_JSON), _classic)
+    _overlay_js = "window.CLASSIC_BUILDS=" + _json.dumps(
+        {"patches": _overlay}, separators=(",", ":"), ensure_ascii=False) + ";\n"
+    _overlay_js = re.sub(r'(assets/[^"?\s)>]+)(?!\?)', _cb, _overlay_js)
+    (ROOT / "deadlock_builds_classic.js").write_text(_overlay_js, encoding="utf-8")
+    _classic_url = ("deadlock_builds_classic.js?v="
+                    + hashlib.sha1(_overlay_js.encode("utf-8")).hexdigest()[:10])
+    print(f"[saved] deadlock_builds_classic.js  {len(_overlay_js.encode('utf-8')):,} bytes")
+else:
+    print("[warn] no classic payload, so the page's build flip is hidden")
+html = html.replace("__CLASSIC_URL__", _classic_url)
 
 target = ROOT / "deadlock_builds.html"
 target.write_text(html, encoding="utf-8")

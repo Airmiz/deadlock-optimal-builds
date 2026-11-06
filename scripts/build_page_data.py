@@ -17,6 +17,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _paths import (
     ROOT, CACHE, HERO_OUT, HERO_DATA, BUILD_FILES, ASSETS,
     PATCH_ID, PATCH_TITLE, PATCH_MIN_TS, HMMR_BADGE, SPEC_VERSION,
+    CLASSIC, HERO_ROOT, PAGE_DATA,
 )
 from inventory import (
     CATEGORIES, INVENTORY_SLOTS, RESOLUTION_SCHEMA, default_bands,
@@ -439,6 +440,12 @@ def _phase_for(buy_time_s: float) -> str:
     return "late"
 
 
+def _slot(p: dict) -> dict:
+    """A classic pick's slot label. The page treats a label as meaning a classic
+    build, so current builds must not pass on the one in an old resolution file."""
+    return {"slot": p["slot"]} if CLASSIC and "slot" in p else {}
+
+
 def _aggregate_cluster_build(in_builds: list[dict], hero_item_stats: list[dict],
                              lineage_canon: dict, ancestors_of: dict,
                              metadata_by_item: dict | None = None,
@@ -859,7 +866,7 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
             "mean_win_rate": arch.get("mean_win_rate", 0),
             "win_rate_lift_pp": arch.get("win_rate_lift_pp", 0),
             "items": [with_affinity({
-                "name": p["name"], "category": p["category"],
+                **_slot(p), "name": p["name"], "category": p["category"],
                 "tier": p["tier"], "cost": p["cost"],
                 "buy_min": round(p["avg_buy_time_s"] / 60, 1),
                 "sell_min": (round(p["avg_sell_time_s"] / 60, 1)
@@ -898,6 +905,7 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
                 "total_cost": d["recommended"]["items"]["total_cost"],
                 "phases": {
                     ph: [with_affinity({
+                        **_slot(p),
                         "name": p["name"],
                         "category": p["category"],
                         "tier": p["tier"],
@@ -938,7 +946,7 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
         # Per-MMR-slice item breakdown using the synergy ILP picks (the recommended method)
         "items_by_slice": {
             slice_label: [with_affinity({
-                "name": p["name"], "category": p["category"],
+                **_slot(p), "name": p["name"], "category": p["category"],
                 "tier": p["tier"], "cost": p["cost"],
                 "buy_min": round(p["avg_buy_time_s"] / 60, 1),
                 "sell_min": (round(p["avg_sell_time_s"] / 60, 1)
@@ -1009,7 +1017,11 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
         except Exception:
             return None
         stored = res.get("items") or []
-        if stored and res.get("schema", 1) < RESOLUTION_SCHEMA:
+        if CLASSIC:
+            # A file the resolver hasn't redone still holds its classic items.
+            stored = (res.get("classic_items") or
+                      (stored if res.get("schema", 1) < RESOLUTION_SCHEMA else []))
+        elif stored and res.get("schema", 1) < RESOLUTION_SCHEMA:
             # Not yet recomputed by the resolver: these hold 16 items and can
             # repeat an upgrade chain. Reduce to a legal build for display.
             # Their scores favour cheap components, so keep each chain's top
@@ -1025,7 +1037,7 @@ def compact_hero(d: dict, baselines: dict | None = None, archetypes: dict | None
         picks = []
         for p in stored:
             picks.append(with_affinity({
-                "name": p["name"], "category": p["category"],
+                **_slot(p), "name": p["name"], "category": p["category"],
                 "tier": p["tier"], "cost": p["cost"],
                 "buy_min": round(p["avg_buy_time_s"] / 60, 1) if p.get("avg_buy_time_s") else None,
                 "sell_min": (round(p["avg_sell_time_s"] / 60, 1)
@@ -1236,7 +1248,7 @@ def build_patch_payload(patch_id: str) -> dict | None:
     correctly per patch.
     """
     from _paths import PATCH_REGISTRY  # local import to keep the global pure
-    hero_out_dir = ROOT / "heroes" / patch_id
+    hero_out_dir = HERO_ROOT / patch_id
     patch_cache_dir = CACHE / patch_id
     files = sorted(hero_out_dir.glob("*_build.json"))
     if not files:
@@ -1571,12 +1583,22 @@ def main() -> None:
 
     payloads = {}
     chosen = None
-    for pid in ordered:
+    # The classic overlay covers whichever patches the main page already ships,
+    # so `build_page_data.py` has to have run in the default mode first.
+    classic_patches = []
+    if CLASSIC:
+        with open(CACHE / "page_data.json", encoding="utf-8") as f:
+            shipped = json.load(f)
+        chosen = shipped["default_patch"]
+        classic_patches = list(shipped["patches"])
+    for pid in classic_patches or ordered:
         payload = build_patch_payload(pid)
         if not payload:
             continue
         total = _patch_total_matches(payload)
         payloads[pid] = payload
+        if CLASSIC:
+            continue
         if total >= DATA_RICH_THRESHOLD:
             chosen = pid
             break
@@ -1584,7 +1606,7 @@ def main() -> None:
               f"too thin to ship alone, checking the previous patch")
     if chosen is None and payloads:
         chosen = next(iter(payloads))  # nothing qualified; ship the newest anyway
-    if chosen and chosen != (ordered[0] if ordered else None):
+    if not CLASSIC and chosen and chosen != (ordered[0] if ordered else None):
         print(f"  showing {chosen} until {ordered[0]} accumulates enough matches")
 
     # Ship the current patch PLUS the one before it, as a deeper-sample
@@ -1595,7 +1617,7 @@ def main() -> None:
     # let a reader cross-check a noisy current-patch build against a
     # settled one instead of having to trust a small sample.
     reference = None
-    if chosen:
+    if chosen and not CLASSIC:
         for pid in ordered[ordered.index(chosen) + 1:]:
             payload = payloads.get(pid) or build_patch_payload(pid)
             if payload:
@@ -1606,7 +1628,8 @@ def main() -> None:
                 break
     # Everything older stays on disk (and still feeds the imbue fallback
     # below) but is not shipped.
-    payloads = {pid: payloads[pid] for pid in (chosen, reference) if pid}
+    if not CLASSIC:
+        payloads = {pid: payloads[pid] for pid in (chosen, reference) if pid}
 
     # Cross-patch imbue-target fallback. A new patch (e.g. patch_129989) often
     # has zero community-build metadata for the first few days because few
@@ -1781,7 +1804,7 @@ def main() -> None:
         "patches": payloads,
     }
 
-    target = CACHE / "page_data.json"
+    target = PAGE_DATA
     with open(target, "w", encoding="utf-8") as f:
         json.dump(page_data, f, separators=(",", ":"), ensure_ascii=False)
     size = target.stat().st_size

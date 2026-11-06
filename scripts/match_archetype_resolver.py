@@ -54,7 +54,7 @@ from _paths import (  # noqa: E402
 )
 from batch_fetch import _HEADERS, _RETRIABLE_HTTP, _retry_after_s, fetch as _http_fetch  # noqa: E402
 from build_hero_output import build_lineage_map, phase_for  # noqa: E402
-from inventory import CATEGORIES, RESOLUTION_SCHEMA, one_per_lineage, select_picks  # noqa: E402
+from inventory import CATEGORIES, RESOLUTION_SCHEMA, classic_picks, one_per_lineage, select_picks  # noqa: E402
 
 
 RESOLUTIONS_DIR = CACHE / "match_archetype_resolutions"
@@ -185,32 +185,25 @@ def _is_current(resolution: dict | None) -> bool:
     return resolution.get("schema", 1) >= RESOLUTION_SCHEMA or not resolution.get("items")
 
 
-def _select_items(stats: list[dict], category_bands: dict | None) -> list[dict]:
-    """Choose a full inventory from one player population's item stats.
-
-    Score = how often these players still hold the item at match end (relative
-    to their most-held item) weighted by raw WR. Counting held rather than
-    bought matters: every chain's cheap components are bought nearly every
-    match, then absorbed. Same shape as the joint_archetypes "items" dict so
-    the page can render uniformly.
-    """
+def _load_items() -> dict:
     with open(CACHE / "items.json", encoding="utf-8") as f:
-        items_by_id = {i["id"]: i for i in json.load(f)}
-    _, lineage_canon = build_lineage_map(items_by_id)
+        return {i["id"]: i for i in json.load(f)}
 
-    def held(s: dict) -> int:
-        return max(0, s.get("matches", 0) - (s.get("sold") or 0))
 
-    most_held = max((held(s) for s in stats), default=1) or 1
+def _decorate(stats: list[dict], items_by_id: dict, count) -> list[dict]:
+    """Candidates from one population's item stats, best first. Score = count(s)
+    relative to the highest count, weighted by raw WR. Same shape as the
+    joint_archetypes "items" dict so the page can render uniformly."""
+    most = max((count(s) for s in stats), default=1) or 1
     decorated = []
     for s in stats:
         it = items_by_id.get(s.get("item_id"))
         if not it or it.get("type") != "upgrade" or it.get("item_slot_type") not in CATEGORIES:
             continue
-        if held(s) <= 0:
+        if count(s) <= 0:
             continue
         wr = s["wins"] / s["matches"]
-        pick_rate_pop = held(s) / most_held
+        pick_rate_pop = count(s) / most
         sell_s = s.get("avg_sell_time_s") or 0
         decorated.append({
             "item_id": s["item_id"],
@@ -230,7 +223,26 @@ def _select_items(stats: list[dict], category_bands: dict | None) -> list[dict]:
             "score": round(pick_rate_pop * wr, 4),
         })
     decorated.sort(key=lambda c: -c["score"])
-    return select_picks(one_per_lineage(decorated, lineage_canon), category_bands)
+    return decorated
+
+
+def _select_items(stats: list[dict], category_bands: dict | None) -> list[dict]:
+    """Choose a full inventory by how often these players still hold each item at
+    match end. Counting held rather than bought matters: every chain's cheap
+    components are bought nearly every match, then absorbed."""
+    items_by_id = _load_items()
+    _, lineage_canon = build_lineage_map(items_by_id)
+
+    def held(s: dict) -> int:
+        return max(0, s.get("matches", 0) - (s.get("sold") or 0))
+
+    return select_picks(one_per_lineage(_decorate(stats, items_by_id, held), lineage_canon),
+                        category_bands)
+
+
+def _select_classic_items(stats: list[dict]) -> list[dict]:
+    """The same players' build under the classic rules, for the page's flip."""
+    return classic_picks(_decorate(stats, _load_items(), lambda s: s.get("matches", 0)))
 
 
 def resolve_archetype(
@@ -280,6 +292,8 @@ def resolve_archetype(
             raise RuntimeError("no item stats returned for the stored accounts")
         result = {**cached, "schema": RESOLUTION_SCHEMA,
                   "items": _select_items(stats, category_bands),
+                  # The old file's items are its classic build, so keep them.
+                  "classic_items": cached["items"],
                   "resolved_at_unix": int(time.time()), "from_cache": False}
         with open(cache_path, "w", encoding="utf-8") as f:
             json.dump(result, f, indent=2)
@@ -351,6 +365,7 @@ def resolve_archetype(
         "total_wins_in_fingerprint": total_wins,
         "mean_win_rate_in_fingerprint": round(total_wins / total_matches, 4) if total_matches else None,
         "items": picks,
+        "classic_items": _select_classic_items(items),
         "resolved_at_unix": int(time.time()),
         "from_cache": False,
     }
