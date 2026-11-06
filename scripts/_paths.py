@@ -35,7 +35,7 @@ REGISTRY_PATH = ROOT / "patches.json"
 # Conventions (enforced by detect_patches.py):
 #   - The numeric id is the forums.playdeadlock.com changelog thread id
 #     (e.g. threads/06-30-2026-update.146261/ → patch_146261). The thread
-#     links are served by https://api.deadlock-api.com/v1/patches.
+#     links are served by https://api.deadlock-api.com/v2/patches.
 #   - min_ts is the patch's go-live moment: the Steam announcement epoch
 #     from ISteamNews GetNewsForApp (appid 1422450), NOT the forum RSS
 #     pub_date (XenForo bumps that on every hotfix edit).
@@ -74,6 +74,26 @@ PATCH_IDS_BY_AGE = sorted(PATCH_REGISTRY, key=lambda p: PATCH_REGISTRY[p].get("m
 # The live patch: the one with no upper bound on its match window.
 ACTIVE_PATCH_ID = PATCH_IDS_BY_AGE[-1] if PATCH_IDS_BY_AGE else ""
 
+
+
+def patches_to_refresh() -> list[str]:
+    """Patches the scheduled refresh should process, the live one last so the
+    cache/ root mirrors end up on it.
+
+    Normally that's just the live patch. The page also ships the patch before
+    it, which already has hero JSONs from its time as the live patch, unless
+    it opened and closed while the pipeline was down or between two runs.
+    Backfill it in that case so the page's reference tab doesn't silently fall
+    back to something much older.
+    """
+    out = [ACTIVE_PATCH_ID]
+    if len(PATCH_IDS_BY_AGE) > 1:
+        previous = PATCH_IDS_BY_AGE[-2]
+        if not any((ROOT / "heroes" / previous).glob("*_build.json")):
+            out.insert(0, previous)
+    return out
+
+
 PATCH_ID = os.environ.get("PATCH_ID") or ACTIVE_PATCH_ID
 _meta = PATCH_REGISTRY.get(PATCH_ID, {})
 PATCH_TITLE = _meta.get("title", PATCH_ID)
@@ -84,10 +104,12 @@ PATCH_MAX_TS = _meta.get("max_ts")  # None → open-ended (the live patch)
 TIME_BOUNDS_QS = f"min_unix_timestamp={PATCH_MIN_TS}" + (
     f"&max_unix_timestamp={PATCH_MAX_TS}" if PATCH_MAX_TS else "")
 # Deadlock badge_level encoding: tier * 10 + sub-tier (1..6).
-# Phantom 1 = 91, Ascendant 1 = 101, Eternus 1 = 111.
-HMMR_BADGE = 91       # Phantom 1+ — top ~15-20%
-ASCENDANT_BADGE = 101  # Ascendant 1+ — top ~3-5%
-ETERNUS_BADGE = 111    # Eternus 1+ — top ~0.1-1%
+# Phantom 1 = 91, Ascendant 1 = 101, Eternus 1 = 111. What share of players
+# these select changes with every ranked season: rank_distribution.html
+# measures it.
+HMMR_BADGE = 91       # Phantom 1+
+ASCENDANT_BADGE = 101  # Ascendant 1+
+ETERNUS_BADGE = 111    # Eternus 1+
 SPEC_VERSION = "1.2.1"  # bumped — mmr_slices players nullable (API dropped hero-stats player counts)
 
 CACHE = ROOT / "cache"

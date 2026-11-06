@@ -1,5 +1,5 @@
 """
-Aggregate the 38 per-hero outputs into a single index + tier-list views.
+Aggregate the per-hero outputs into a single index + tier-list views.
 """
 import json
 import csv

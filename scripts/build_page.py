@@ -1674,36 +1674,26 @@ HTML = """<!doctype html>
   const titleCase = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
   const phaseWhen = { early: 'laning · ≤12.5 min', mid: 'mid game · 12.5–25 min', late: 'late game · 25+ min' };
 
-  // Investment-spike thresholds (universal across heroes; verified from
-  // the asset's cost_bonuses data). The 4,800 milestone is the major
-  // spike — at that point the per-category bonus more than doubles.
-  const SPIKE_THRESHOLDS = [800, 1600, 2400, 3200, 4800, 7200, 9600, 16000];
+  // Investment-spike thresholds. The 4,800 milestone is the major spike —
+  // at that point the per-category bonus more than doubles. The bar stops at
+  // SPIKE_DISPLAY_MAX: the steps above it are beyond what a category normally
+  // reaches, and marking them would crowd the early ones together.
   const SPIKE_MAJOR = 4800;
   const SPIKE_DISPLAY_MAX = 16000;
-  // Bonus values at each threshold, per category, per patch.
-  // Source for patch_125825: asset cost_bonuses (still served by the CDN).
-  // Source for patch_129989: 04-30-2026 patch notes (asset CDN had not
-  //   refreshed at the time of writing — vitality/weapon bonuses changed,
-  //   spirit was not mentioned so kept identical).
-  const SPIKE_BONUS_BY_PATCH = {
-    patch_125825: {
-      weapon:   { 800: 7,  1600: 9,  2400: 13, 3200: 20, 4800: 49, 7200: 60, 9600: 80,  16000: 95 },
-      vitality: { 800: 8,  1600: 10, 2400: 13, 3200: 17, 4800: 34, 7200: 39, 9600: 44,  16000: 48 },
-      spirit:   { 800: 7,  1600: 11, 2400: 15, 3200: 19, 4800: 38, 7200: 48, 9600: 57,  16000: 66 },
-    },
-    patch_129989: {
-      // Weapon: 7/9/13/20/49/60/80/95/115/135 → 9/12/15/18/46/55/70/85/100/115
-      weapon:   { 800: 9,  1600: 12, 2400: 15, 3200: 18, 4800: 46, 7200: 55, 9600: 70,  16000: 85 },
-      // Vitality: 8/10/13/17/34/39/44/48/52/56 → 9/12/15/20/38/42/46/50/56/62
-      vitality: { 800: 9,  1600: 12, 2400: 15, 3200: 20, 4800: 38, 7200: 42, 9600: 46,  16000: 50 },
-      spirit:   { 800: 7,  1600: 11, 2400: 15, 3200: 19, 4800: 38, 7200: 48, 9600: 57,  16000: 66 },
-    },
+  // Bonus at each threshold, per category, from the game's own cost_bonuses
+  // for the patch on screen (build_page_data.py), so these can't go stale the
+  // way a hand-kept table did. Universal across heroes. The fallback only
+  // covers a patch whose asset snapshot lacks them.
+  const SPIKE_BONUS_FALLBACK = {
+    weapon:   { 800: 9, 1600: 12, 2400: 15, 3200: 18, 4800: 46, 6400: 54, 8000: 62, 11200: 74, 16000: 86, 22400: 100, 28800: 115 },
+    vitality: { 800: 9, 1600: 12, 2400: 15, 3200: 20, 4800: 38, 6400: 42, 8000: 46, 11200: 50, 16000: 54, 22400: 60, 28800: 66 },
+    spirit:   { 800: 7, 1600: 11, 2400: 15, 3200: 19, 4800: 38, 6400: 45, 8000: 52, 11200: 59, 16000: 66, 22400: 75, 28800: 100 },
   };
-  // Default to the newest known patch's values for any future patch we
-  // haven't hardcoded yet.
-  const SPIKE_BONUS_FALLBACK = SPIKE_BONUS_BY_PATCH.patch_129989;
   function getSpikeBonus() {
-    return SPIKE_BONUS_BY_PATCH[activePatchId] || SPIKE_BONUS_FALLBACK;
+    return activePatch.spike_bonuses || SPIKE_BONUS_FALLBACK;
+  }
+  function getSpikeThresholds() {
+    return Object.keys(getSpikeBonus().weapon).map(Number).sort((a, b) => a - b);
   }
   const SPIKE_UNIT = { weapon: '% wpn dmg', vitality: '% base HP', spirit: ' spirit' };
 
@@ -1782,7 +1772,7 @@ HTML = """<!doctype html>
   }
 
   function spikesCrossed(amount) {
-    return SPIKE_THRESHOLDS.filter(t => amount >= t);
+    return getSpikeThresholds().filter(t => amount >= t);
   }
 
   function renderHeroGrid() {
@@ -2203,7 +2193,7 @@ HTML = """<!doctype html>
         </div>
         <div class="empty-state" style="margin-top:18px">
           <p><strong>No build available at ${SLICE_LABELS[mmrSlice]}</strong> for ${h.name} on ${escHtml(activePatch.title)}.</p>
-          <p style="font-size:13px;margin-top:8px;color:var(--text-dim)">Higher-rank slices need a few thousand matches per hero before the optimizer has anything to chew on. Try ${SLICE_LABELS[fallback]} for now — the data tap-tap-taps in over the patch's lifetime.</p>
+          <p style="font-size:13px;margin-top:8px;color:var(--text-dim)">Higher-rank slices need a few thousand matches per hero before the optimizer has anything to chew on. Try ${SLICE_LABELS.all} for now — the data tap-tap-taps in over the patch's lifetime.</p>
         </div>`;
       return;
     }
@@ -2757,7 +2747,7 @@ HTML = """<!doctype html>
         segHtml('late',  midPct,   latePct),
       ].join('');
 
-      const marks = SPIKE_THRESHOLDS.map(t => {
+      const marks = getSpikeThresholds().filter(t => t <= SPIKE_DISPLAY_MAX).map(t => {
         const left = (t / SPIKE_DISPLAY_MAX) * 100;
         const isCrossed = total >= t;
         const isMajor = t === SPIKE_MAJOR;
@@ -2815,7 +2805,7 @@ HTML = """<!doctype html>
         ? `<span class="pend">${cat}: $0</span>`
         : major
           ? `<span class="major">${cat}: ${fmtCost(total)} ⚡</span>`
-          : `<span class="ok">${cat}: ${fmtCost(total)} (${ticks}/${SPIKE_THRESHOLDS.length})</span>`;
+          : `<span class="ok">${cat}: ${fmtCost(total)} (${ticks}/${getSpikeThresholds().length})</span>`;
       return label;
     });
     return `<div class="phase-spike-summary">at end of phase &nbsp;·&nbsp; ${parts.join(' &nbsp;·&nbsp; ')}</div>`;

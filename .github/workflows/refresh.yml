@@ -132,7 +132,9 @@ jobs:
       # identical files. Their hero JSONs stay in the repo as data and
       # still feed the cross-patch imbue fallback at page-build time.
       # A specific patch can still be forced via the workflow_dispatch
-      # input (e.g. to backfill one after a schema change).
+      # input (e.g. to backfill one after a schema change). The only other
+      # patch fetched is the one the page ships as its reference, and only
+      # when it has no hero JSONs yet (see patches_to_refresh).
       # Any script exiting non-zero fails this step — by design (see
       # run_all_heroes.py): a red workflow beats a silently frozen site.
       - name: Refresh the current patch
@@ -144,7 +146,7 @@ jobs:
           PYTHONUNBUFFERED: '1'
           PATCH_FILTER: ${{ github.event.inputs.patch_id }}
         run: |
-          PATCHES="${PATCH_FILTER:-$(python3 -c "import sys; sys.path.insert(0, 'scripts'); from _paths import ACTIVE_PATCH_ID; print(ACTIVE_PATCH_ID)")}"
+          PATCHES="${PATCH_FILTER:-$(python3 -c "import sys; sys.path.insert(0, 'scripts'); from _paths import patches_to_refresh; print(' '.join(patches_to_refresh()))")}"
           echo "Refreshing: $PATCHES"
           for p in $PATCHES; do
             echo "::group::$p"

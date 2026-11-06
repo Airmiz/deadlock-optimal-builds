@@ -6,20 +6,22 @@ shipping it — no code edit, no redeploy.
 
 Two sources, because neither alone is trustworthy:
 
-  1. https://api.deadlock-api.com/v1/patches — the forums.playdeadlock.com
-     changelog feed. Authoritative for WHICH updates count as a patch
-     (the coarse "MM-DD-YYYY Update" threads, not every hotfix) and for
-     the patch id, which is the thread id in the link:
-     .../threads/06-30-2026-update.146261/ -> patch_146261
+  1. https://api.deadlock-api.com/v2/patches — the forums.playdeadlock.com
+     changelog entries (source "forum") of its unified feed. Authoritative
+     for WHICH updates count as a patch (the coarse "MM-DD-YYYY" threads,
+     not every hotfix) and for the patch id, which is the thread id in the
+     link: .../threads/06-30-2026-update.146261/ -> patch_146261
      Its RSS pub_date is NOT usable as a start time — XenForo bumps it
      whenever the thread is edited, so it drifts days past go-live.
 
   2. ISteamNews GetNewsForApp (appid 1422450) — the Steam announcement,
      whose `date` is the real go-live epoch. Matched to a forum thread
      by the MM-DD-YYYY in the title ("Gameplay Update - 06-30-2026"
-     matches forum thread "06-30-2026 Update"). If Steam has no match we
-     fall back to the RSS pub_date and say so loudly, since a wrong
-     min_ts silently mixes two patches' matches together.
+     matches forum thread "06-30-2026 Update"), or, since Valve's big
+     updates now have names ("City Never Sleeps"), by the day it was
+     posted. If Steam has no match we fall back to the RSS pub_date and
+     say so loudly, since a wrong min_ts silently mixes two patches'
+     matches together.
 
 Existing entries are never rewritten — a min_ts that has already been
 used to build committed hero JSONs stays put, so history is stable and
@@ -36,12 +38,12 @@ import os
 import re
 import sys
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _paths import PATCH_REGISTRY, REGISTRY_PATH  # noqa: E402
 
-PATCHES_URL = "https://api.deadlock-api.com/v1/patches"
+PATCHES_URL = "https://api.deadlock-api.com/v2/patches"
 STEAM_NEWS_URL = ("https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/"
                   "?appid=1422450&count=100&maxlength=1")
 HEADERS = {
@@ -52,6 +54,10 @@ HEADERS = {
 # Thread id at the end of a forum link: ".../06-30-2026-update.146261/"
 THREAD_ID_RE = re.compile(r"\.(\d+)/?$")
 DATE_RE = re.compile(r"(\d{2})-(\d{2})-(\d{4})")
+# Valve dates its updates in Seattle time: "Minor Update - 11-04-2026" was
+# posted at 05:02 UTC on 11-05. A fixed offset is close enough, as updates
+# aren't shipped around midnight.
+VALVE_TZ = timezone(timedelta(hours=-8))
 
 
 def _get_json(url: str, timeout: int = 25):
@@ -67,6 +73,19 @@ def _date_key(text: str) -> str | None:
     return m.group(0) if m else None
 
 
+def _posted_date_key(epoch: int) -> str:
+    """The MM-DD-YYYY Valve would give an update posted at this epoch."""
+    return datetime.fromtimestamp(epoch, VALVE_TZ).strftime("%m-%d-%Y")
+
+
+def _is_steam_patch(title: str) -> bool:
+    """Does this official announcement ship balance changes? "Minor Update -
+    MM-DD-YYYY", or an undated "Halloween 2026 + Gameplay Update". Hero
+    teasers, "Ranked - Beta Season 2" and "Matchmaking Update" don't count."""
+    lowered = title.lower()
+    return ("update" in lowered and _date_key(title) is not None) or "gameplay update" in lowered
+
+
 def _rss_epoch(pub_date: str) -> int | None:
     try:
         return int(datetime.strptime(pub_date, "%Y-%m-%dT%H:%M:%SZ")
@@ -77,25 +96,29 @@ def _rss_epoch(pub_date: str) -> int | None:
 
 def discover() -> dict:
     """Return {patch_id: {title, min_ts}} for every patch the feeds know."""
-    patches = _get_json(PATCHES_URL)
+    patches = [p for p in _get_json(PATCHES_URL) if p.get("source") == "forum"]
     try:
         steam = _get_json(STEAM_NEWS_URL)["appnews"]["newsitems"]
     except Exception as e:
         print(f"  WARNING: Steam news unavailable ({e}) — falling back to RSS dates")
         steam = []
+    # Official Valve announcements only. The same feed carries press
+    # coverage (PCGamesN, PC Gamer, ...) whose headlines can mention a date
+    # without being a patch.
+    official = [i for i in steam
+                if i.get("feedname") == "steam_community_announcements" and i.get("date")]
     steam_epoch_by_date: dict[str, int] = {}
-    for item in steam:
-        # Official Valve announcements only. The same feed carries press
-        # coverage (PCGamesN, PC Gamer, ...) whose headlines can mention a
-        # date without being a patch.
-        if item.get("feedname") != "steam_community_announcements":
-            continue
-        key = _date_key(item.get("title", ""))
+    posted_epoch_by_date: dict[str, int] = {}
+    for item in official:
         # Several announcements can share a date (a patch plus its hotfix);
         # the earliest is the one that actually opened the patch window.
-        if key and item.get("date"):
+        key = _date_key(item.get("title", ""))
+        if key:
             prev = steam_epoch_by_date.get(key)
             steam_epoch_by_date[key] = min(prev, item["date"]) if prev else item["date"]
+        posted = _posted_date_key(item["date"])
+        prev = posted_epoch_by_date.get(posted)
+        posted_epoch_by_date[posted] = min(prev, item["date"]) if prev else item["date"]
 
     found: dict[str, dict] = {}
     for p in patches:
@@ -106,8 +129,14 @@ def discover() -> dict:
             continue
         pid = f"patch_{m.group(1)}"
         key = _date_key(title)
-        min_ts = steam_epoch_by_date.get(key) if key else None
+        # The thread for a named update ("City Never Sleeps") is titled by
+        # date alone and its announcement has no date in the title, so fall
+        # back to whatever Valve announced that day. The forum thread for it
+        # went up 16 days late, so pub_date is no substitute.
+        min_ts = (steam_epoch_by_date.get(key) or posted_epoch_by_date.get(key)) if key else None
         ts_source = "steam"
+        if key:
+            title = f"{key} Update"  # threads aren't consistently suffixed
         if min_ts is None:
             # Steam's news feed only reaches back ~100 items, so older
             # threads legitimately have no match. Note the weaker source
@@ -125,21 +154,18 @@ def discover() -> dict:
     # above cannot see them. They are real patches: the 07-28-2026 minor
     # update moved hero win rates by 0.90pp on average and 3.78pp at the
     # extreme, while the site was still serving one blended window back to
-    # 06-30 — 79% pre-patch data. Requiring both "update" and an MM-DD-YYYY
-    # in an official announcement's title keeps this to actual patches
-    # ("Matchmaking Update" has no date and is correctly ignored, and its
-    # measured effect on win rates was 0.27pp — noise).
+    # 06-30 — 79% pre-patch data. _is_steam_patch() keeps this to actual
+    # patches ("Matchmaking Update" is correctly ignored, and its measured
+    # effect on win rates was 0.27pp — noise).
     #
     # These have no thread id, so they are keyed by date: patch_YYYYMMDD.
     # Ordering is by min_ts everywhere, so mixing id schemes is safe.
     dates_with_thread = {_date_key(meta["title"]) for meta in found.values()}
-    for item in steam:
-        if item.get("feedname") != "steam_community_announcements":
-            continue
+    for item in official:
         title = (item.get("title") or "").strip()
-        key = _date_key(title)
-        if not key or "update" not in title.lower():
+        if not _is_steam_patch(title):
             continue
+        key = _date_key(title) or _posted_date_key(item["date"])
         if key in dates_with_thread:
             continue  # the forum thread is the canonical entry for this day
         mm, dd, yyyy = key.split("-")
@@ -149,7 +175,7 @@ def discover() -> dict:
         found[pid] = {
             # Normalised to match the forum-thread titles the page renders.
             "title": f"{key} Update",
-            "min_ts": int(steam_epoch_by_date[key]),
+            "min_ts": int(steam_epoch_by_date.get(key) or item["date"]),
             "_ts_source": "steam",
         }
     return found

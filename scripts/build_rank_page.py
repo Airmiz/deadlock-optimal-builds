@@ -15,14 +15,18 @@ Two data sources:
       same encoding _paths.py uses for the MMR cutoffs.
   /v1/assets/ranks — tier -> display name, colour and badge art.
 
-The distribution is a live snapshot: the endpoint ignores time bounds
-(verified — passing min_unix_timestamp returns identical totals), so
-this describes the playerbase now rather than per patch. The page says
-so rather than implying otherwise.
+  /v1/assets/ranked-seasons — when the current ranked season began.
+
+The endpoint counts each player at their latest rank inside its time window,
+so it is bounded to the current season: left open, it keeps every player who
+hasn't played since the last reset at the rank they held back then. This
+describes the current season rather than a patch, and the page says so rather
+than implying otherwise.
 """
 import json
 import os
 import sys
+import time
 from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -31,24 +35,57 @@ from batch_fetch import fetch, TTL_ASSETS  # noqa: E402
 
 DIST_URL = "https://api.deadlock-api.com/v1/analytics/badge-distribution"
 RANKS_URL = "https://api.deadlock-api.com/v1/assets/ranks"
+SEASONS_URL = "https://api.deadlock-api.com/v1/assets/ranked-seasons"
 # The distribution shifts slowly (and resets with a ranked season), so an
 # hourly re-pull is plenty; ranks are static art/metadata.
 TTL_DIST = 3600
+# Below this, a season has only just begun and its ladder would mislead more
+# than the all-time view does.
+MIN_SEASON_PLAYERS = 1000
+
+
+def _current_season() -> tuple[str, int] | None:
+    """(name, start epoch) of the ranked season in progress, if known."""
+    seasons_p = CACHE / "ranked_seasons.json"
+    _, status = fetch(SEASONS_URL, seasons_p, ttl=TTL_DIST)
+    if not seasons_p.exists():
+        print(f"  WARNING: no ranked-season data ({status})")
+        return None
+    with open(seasons_p, encoding="utf-8") as f:
+        seasons = json.load(f)
+    now = time.time()
+    for season in seasons:
+        for interval in season.get("intervals") or []:
+            if interval["start_timestamp"] <= now < interval["end_timestamp"]:
+                return season["name"], interval["start_timestamp"]
+    return None
 
 
 def _load():
     dist_p, ranks_p = CACHE / "badge_distribution.json", CACHE / "ranks.json"
-    _, s1 = fetch(DIST_URL, dist_p, ttl=TTL_DIST)
+    season = _current_season()
+    dist = None
+    s1 = "skipped"
+    if season:
+        season_p = CACHE / "badge_distribution_season.json"
+        _, s1 = fetch(f"{DIST_URL}?min_unix_timestamp={season[1]}", season_p, ttl=TTL_DIST)
+        with open(season_p, encoding="utf-8") as f:
+            dist = json.load(f)
+        if sum(d.get("unique_players") or 0 for d in dist) < MIN_SEASON_PLAYERS:
+            print(f"  {season[0]} is too young to rank on its own; using all seasons")
+            dist = season = None
+    if dist is None:
+        _, s1 = fetch(DIST_URL, dist_p, ttl=TTL_DIST)
+        with open(dist_p, encoding="utf-8") as f:
+            dist = json.load(f)
     _, s2 = fetch(RANKS_URL, ranks_p, ttl=TTL_ASSETS)
     print(f"  badge-distribution: {s1} | ranks: {s2}")
-    with open(dist_p, encoding="utf-8") as f:
-        dist = json.load(f)
     with open(ranks_p, encoding="utf-8") as f:
         ranks = json.load(f)
     if not isinstance(dist, list) or not dist:
         raise SystemExit("badge-distribution returned no rows — refusing to "
                          "emit a rank page that would claim an empty playerbase")
-    return dist, {r["tier"]: r for r in ranks}
+    return dist, {r["tier"]: r for r in ranks}, season[0] if season else None
 
 
 def _local_badge(tier: int, meta: dict) -> str:
@@ -80,7 +117,8 @@ def _esc(s):
 
 
 def build() -> str:
-    dist, ranks_by_tier = _load()
+    dist, ranks_by_tier, season_name = _load()
+    scope = f"players ranked so far in {season_name}" if season_name else "all ranked seasons"
     rows = [d for d in dist if d.get("unique_players") and d.get("badge_level")]
     rows.sort(key=lambda d: d["badge_level"])
     total_players = sum(d["unique_players"] for d in rows)
@@ -255,7 +293,7 @@ def build() -> str:
     badge = tier x 10 + sub-tier (the small numbers are sub-tiers 1-6) ·
     source: <a href="https://api.deadlock-api.com">deadlock-api.com</a>
     /v1/analytics/badge-distribution ·
-    snapshot of the current playerbase, not per patch · generated {generated}
+    {_esc(scope)}, not per patch · generated {generated}
   </div>
 </div>
 </body>

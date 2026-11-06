@@ -34,6 +34,26 @@ from batch_fetch import _HEADERS, fetch, is_active_patch, DEFAULT_TTL  # reuse t
 COUNTERS_DIR = PATCH_CACHE / "counters"
 COUNTERS_DIR.mkdir(parents=True, exist_ok=True)
 
+# Analytics are capped at 2,500 requests/hour, and matchups grow with the
+# square of the roster: at 44 heroes one refresh would be 704 per-hero requests
+# plus 1,892 of these, over the cap on its own. So each run of a live patch only
+# re-pulls this many, oldest first, and the matrix turns over every couple of
+# runs. Closed patches are exempt: they're only ever fetched once, and fetch()
+# waits out the limit if they hit it.
+MAX_FETCHES_PER_RUN = 1200
+
+
+def _due_jobs(jobs: list[tuple[str, Path]], ttl: int) -> list[tuple[str, Path]]:
+    """The jobs this run should fetch: missing files first, then the stalest."""
+    now = time.time()
+    due = []
+    for url, dest in jobs:
+        mtime = dest.stat().st_mtime if dest.exists() and dest.stat().st_size >= 2 else 0
+        if now - mtime >= ttl:
+            due.append((mtime, url, dest))
+    due.sort(key=lambda j: j[0])
+    return [(url, dest) for _, url, dest in due[:MAX_FETCHES_PER_RUN]]
+
 
 def hero_vs_enemy_url(hero_id: int, enemy_id: int) -> str:
     return (
@@ -64,6 +84,11 @@ def main() -> None:
             jobs.append((hero_vs_enemy_url(h["id"], e["id"]), dest))
 
     print(f"      {len(jobs)} jobs (excluding self-mirror)")
+    if active:
+        total = len(jobs)
+        jobs = _due_jobs(jobs, ttl)
+        print(f"      {len(jobs)} due this run (at most {MAX_FETCHES_PER_RUN}); "
+              f"{total - len(jobs)} still fresh or left for the next run")
 
     print(f"[2/2] Fetching with 6 workers (paced under the 200/min IP cap) …")
     t0 = time.time()

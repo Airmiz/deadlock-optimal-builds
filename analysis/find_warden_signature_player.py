@@ -101,7 +101,7 @@ def fetch_top_warden_accounts(patch_min_ts: int, badge: int | None) -> list[int]
     badge_q = f"&min_average_badge={badge}" if badge is not None else ""
     url = (
         "https://api.deadlock-api.com/v1/analytics/scoreboards/players"
-        f"?hero_ids={WARDEN_ID}"
+        f"?hero_id={WARDEN_ID}"
         f"&min_unix_timestamp={patch_min_ts}"
         f"{badge_q}"
         f"&sort_by=matches&sort_direction=desc"

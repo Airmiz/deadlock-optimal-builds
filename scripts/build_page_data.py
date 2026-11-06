@@ -1,5 +1,5 @@
 """
-Compile all 38 hero output files + asset metadata into one compact JS object
+Compile all hero output files + asset metadata into one compact JS object
 for the static HTML page. Output is roughly 250–400 KB embedded inline.
 
 Adds two cross-cutting enrichments at this stage:
@@ -166,7 +166,7 @@ def _hydrate_chain_images(chain: list) -> list:
 # ============================================================
 # Per-patch item overrides
 # ----------------------------------------------------------------------------
-# When a Deadlock patch ships, the live asset CDN at assets.deadlock-api.com
+# When a Deadlock patch ships, the asset data at api.deadlock-api.com/v1/assets
 # can take several days to catch up — meanwhile, items like Shadow Weave can
 # show with their PRE-patch tier/cost/cooldown values in our cache. To keep
 # the page accurate as soon as the patch drops, we maintain a small
@@ -190,6 +190,18 @@ ITEM_OVERRIDES_BY_PATCH: dict[str, dict[int, dict]] = {
         3647584222: {"cooldown_s": 27},
     },
 }
+
+
+def spike_bonuses() -> dict | None:
+    """{category: {soul threshold: bonus}} from the current hero assets, or
+    None when the snapshot lacks them. The table is the same for every hero,
+    so any hero that has one will do."""
+    for h in heroes_assets.values():
+        cb = h.get("cost_bonuses") or {}
+        if cb and all(cat in cb for cat in ("weapon", "vitality", "spirit")):
+            return {cat: {b["gold_threshold"]: b["bonus"] for b in cb[cat]}
+                    for cat in ("weapon", "vitality", "spirit")}
+    return None
 
 
 def apply_item_override(pick: dict, patch_id: str) -> dict:
@@ -1423,6 +1435,7 @@ def _build_patch_payload_inner(patch_id, raw_outputs, hero_out_dir, patch_cache_
         "id": patch_id,
         "title": meta.get("title", patch_id),
         "min_unix_timestamp": meta.get("min_ts", 0),
+        "spike_bonuses": spike_bonuses(),
         "hero_count": len(heroes_data),
         "signature_picks": n_signature,
         "heroes": heroes_data,
