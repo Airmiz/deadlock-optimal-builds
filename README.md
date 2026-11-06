@@ -104,7 +104,7 @@ Set `PATCH_ID=patch_<id>` to target a specific patch; the default is the current
 
 ## Auto-refresh + GitHub Pages
 
-`.github/workflows/refresh.yml` runs the full pipeline every 3 hours, commits the regenerated outputs back to `main`, and deploys the site to GitHub Pages. `.github/workflows/resolve-archetypes.yml` runs daily at 08:40 UTC to resolve match-only ability archetypes for the current patch — resolutions are committed and never recomputed, so it only does real work after a new patch lands, and a cold patch that can't finish in one job resumes on the next run. To enable for your fork:
+`.github/workflows/refresh.yml` runs the full pipeline every 12 hours (00:00 and 12:00 UTC), commits the regenerated outputs back to `main`, and deploys the site to GitHub Pages. `.github/workflows/resolve-archetypes.yml` checks every 3 hours at :40 and resolves match-only ability archetypes for the current patch — resolutions are committed and never recomputed, so it only does real work after a new patch lands, and a cold patch that can't finish in one job resumes on the next run. To enable for your fork:
 
 1. **Settings → Pages** → Source: **GitHub Actions**
 2. **Settings → Actions → General → Workflow permissions** → **Read and write**
@@ -122,7 +122,7 @@ For a one-off public deploy without auto-refresh, push the current state and jus
 
 ## Data source and rate limits
 
-All data comes from [api.deadlock-api.com](https://api.deadlock-api.com), the community-run public Deadlock API. Analytics endpoints are rate-limited at **200 req/min** and **2,500 req/hour**. The pipeline respects both: requests are paced globally, a throttled request waits out the `Retry-After` the API sends, and because matchup data grows with the square of the roster (too much for one hour), each refresh re-pulls at most 1,200 matchups, oldest first, so the full matrix turns over every couple of runs.
+All data comes from [api.deadlock-api.com](https://api.deadlock-api.com), the community-run public Deadlock API. Analytics endpoints are rate-limited at **200 req/min** and **2,500 req/hour**. The pipeline respects both: requests are paced globally, a throttled request waits out the `Retry-After` the API sends, and because matchup data grows with the square of the roster (too much for one hour), each refresh re-pulls at most 1,200 matchups, oldest first, so the full matrix turns over about once a day.
 
 The `cache/` directory in this repo holds local copies of fetched responses to avoid re-pulling between runs. It's gitignored — first-time clones run `batch_fetch.py` to populate it.
 

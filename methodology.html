@@ -721,7 +721,7 @@ PATCH_ID=patch_129989 python3 scripts/run_all_heroes.py     # generate per-hero 
 python3 scripts/build_page_data.py                           # multi-patch payload
 python3 scripts/download_images.py                           # localize image refs
 python3 scripts/build_page.py                                # assemble HTML</code></pre>
-<p>The pipeline auto-runs every 3 hours via GitHub Actions (<code>.github/workflows/refresh.yml</code>) and deploys to GitHub Pages. Each run takes ~2-3 minutes warm-cache (the cache directory is persisted across runs via <code>actions/cache@v4</code>).</p>
+<p>The pipeline auto-runs every 12 hours via GitHub Actions (<code>.github/workflows/refresh.yml</code>) and deploys to GitHub Pages. Each run takes ~2-3 minutes warm-cache (the cache directory is persisted across runs via <code>actions/cache@v4</code>).</p>
 
 <h2 id="caveats">18. What this project doesn't do</h2>
 <p>Honest list of methodology gaps:</p>
@@ -730,7 +730,7 @@ python3 scripts/build_page.py                                # assemble HTML</co
   <li><strong>Hierarchical pooling for low-pick heroes.</strong> Vyper / Sinclair-class heroes have sparse per-hero data; pooling across heroes via a multi-level model would help.</li>
   <li><strong>Provably-optimal CBC convergence.</strong> The 4-second timeout sometimes leaves provably-optimal slack, but the difference is rounding-error per pick.</li>
   <li><strong>Bayesian shrinkage as an alternative to Wilson.</strong> Analyzed in <code>analysis/wilson_vs_bayesian.py</code> — found ~4% pick changes, not worth the new hyperparameter.</li>
-  <li><strong>Real-time match data.</strong> Refresh is a 3-hour cadence; faster than that hits the API's 1-hour cache TTL anyway.</li>
+  <li><strong>Real-time match data.</strong> The site refreshes every 12 hours.</li>
   <li><strong>Causal vs observational.</strong> All recommendations are observational. We don't claim "buy this and you'll win"; we show "winners on this hero buy this".</li>
 </ul>
 

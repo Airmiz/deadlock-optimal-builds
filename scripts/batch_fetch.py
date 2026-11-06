@@ -68,7 +68,7 @@ _HEADERS = {
 #     Re-pull weekly to catch silent CDN updates without paying every run.
 #   - Analytics endpoints (hero-stats, item-stats, build-stats, ability orders,
 #     pair synergies) are aggregated by deadlock-api with ~1 hour upstream
-#     freshness. Re-pull every 2 hours so the 3-hour cron always sees fresh
+#     freshness. Re-pull every 2 hours so a scheduled run always sees fresh
 #     numbers without slamming the API on every run.
 #   - "Always" (TTL=0) — never cache. Used when callers want a guaranteed
 #     fresh pull regardless of file age.
