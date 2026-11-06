@@ -25,6 +25,7 @@ That's it. The page loads from local files; the `assets/` folder must travel wit
 - **Best opener** — the highest-WR first 4 ability points
 - **Best full ability order** — the highest-WR 16-point sequence
 - **Item build by phase** — the 12 items to end on, in Early / Mid / Late columns, with item icons, category pills, tier, cost, average buy time, win rate
+- **Build flip**: 12 items (the default) or Classic 16, the old 4 weapon / 4 vitality / 4 spirit / 4 flex system. Both come from the same data and stay up to date. The classic builds load from `deadlock_builds_classic.js` on the first flip, and the page remembers the choice in the browser.
 - **"Updated N ago"** in the header, keyed to the data rather than the clock: the stamp only advances when the numbers actually change, so a stalled pipeline shows a visibly ageing date (amber past ~36h) instead of always claiming to be fresh
 
 ## Methodology
@@ -101,6 +102,8 @@ python3 scripts/build_page_data.py    # ~40 sec — compile page dataset
 python3 scripts/download_images.py    # ~10 sec — pulls any new icons
 python3 scripts/build_page.py         # ~2 sec — emits the HTML
 ```
+
+For the page's Classic 16 flip, run `run_all_heroes.py` with `BUILD_SYSTEM=classic` for each shipped patch, then `build_page_data.py` and `download_images.py` the same way, all before `build_page.py`. Its hero JSONs stay in `cache/classic_heroes/`. If the classic payload is missing, the page hides the flip.
 
 Set `PATCH_ID=patch_<id>` to target a specific patch; the default is the current one. Every script is idempotent — re-running them only fetches what's missing or stale.
 

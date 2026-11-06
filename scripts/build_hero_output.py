@@ -24,9 +24,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _paths import (
     ROOT, CACHE, HERO_OUT, HERO_DATA, BUILD_FILES, ASSETS,
     PATCH_ID, PATCH_TITLE, PATCH_MIN_TS,
-    HMMR_BADGE, ASCENDANT_BADGE, ETERNUS_BADGE, SPEC_VERSION,
+    HMMR_BADGE, ASCENDANT_BADGE, ETERNUS_BADGE, SPEC_VERSION, CLASSIC,
 )
-from inventory import INVENTORY_SLOTS, CATEGORIES, bands_from_item_stats, fit_bounds, select_picks
+from inventory import (
+    INVENTORY_SLOTS, CATEGORIES, bands_from_item_stats, fit_bounds, label_slots, select_picks,
+)
 
 import json
 import math
@@ -350,13 +352,15 @@ def method_synergy_ilp(candidates: dict, pair_stats: list, pair_min_matches: int
             prob += pulp.lpSum(candidates[i]["cost"] * x[i] for i in cum_late) <= soul_budgets["late"]
 
     prob.solve(pulp.PULP_CBC_CMD(msg=False, timeLimit=4))
-    if pulp.LpStatus[prob.status] != "Optimal":
+    # The classic system keeps whatever the solver reached, even a short build,
+    # so that flipping back gives exactly what the site used to show.
+    if not CLASSIC and pulp.LpStatus[prob.status] != "Optimal":
         raise ValueError(f"no ILP solution ({pulp.LpStatus[prob.status]})")
 
     chosen = [i for i in item_ids if (pulp.value(x[i]) or 0) > 0.5]
-    if len(chosen) != target:
+    if not chosen or (not CLASSIC and len(chosen) != target):
         raise ValueError(f"ILP chose {len(chosen)} items, expected {target}")
-    return [dict(candidates[i]) for i in sorted(chosen, key=lambda i: -candidates[i]["score"])]
+    return label_slots([dict(candidates[i]) for i in sorted(chosen, key=lambda i: -candidates[i]["score"])])
 
 
 def method_build_replication(candidates: dict, build_stats_raw: list,
@@ -778,6 +782,7 @@ def select_recommended(item_methods: dict, ability: dict) -> dict:
     for p in picks:
         sell_s = p.get("avg_sell_time_s")
         entry = {
+            **({"slot": p["slot"]} if "slot" in p else {}),  # classic builds only
             "category": p["category"], "tier": p["tier"], "cost": p["cost"],
             "name": p["name"], "item_id": p["item_id"],
             "avg_buy_time_min": round(p["avg_buy_time_s"] / 60, 1),

@@ -86,13 +86,15 @@ def _page_inputs_complete(patch_id: str) -> bool:
     older spec count as missing too: the reference tab would otherwise keep
     showing the old model next to the current one.
     """
-    hero_file = next((ROOT / "heroes" / patch_id).glob("*_build.json"), None)
-    if hero_file is None:
-        return False
     try:
-        with open(hero_file, encoding="utf-8") as f:
-            if json.load(f).get("spec_version") != SPEC_VERSION:
+        # The page's flip needs the classic builds of this patch as well.
+        for hero_dir in (ROOT / "heroes" / patch_id, CACHE / "classic_heroes" / patch_id):
+            hero_file = next(hero_dir.glob("*_build.json"), None)
+            if hero_file is None:
                 return False
+            with open(hero_file, encoding="utf-8") as f:
+                if json.load(f).get("spec_version") != SPEC_VERSION:
+                    return False
         with open(CACHE / patch_id / "playable_heroes.json", encoding="utf-8") as f:
             n = len(json.load(f))
     except (OSError, ValueError):
@@ -139,12 +141,20 @@ SPEC_VERSION = "1.3.0"  # bumped — 12-item builds inside per-hero category ban
 
 CACHE = ROOT / "cache"
 ASSETS = ROOT / "assets"
+
+# Which build system this run produces. The default is the current 12-item
+# one. BUILD_SYSTEM=classic re-runs the build steps under the old 16-item rules
+# on the same fetched data, for the page's flip. Its hero JSONs stay in cache/
+# because they are derived data that only the page's overlay reads.
+CLASSIC = os.environ.get("BUILD_SYSTEM") == "classic"
+HERO_ROOT = CACHE / "classic_heroes" if CLASSIC else ROOT / "heroes"
+PAGE_DATA = CACHE / ("page_data_classic.json" if CLASSIC else "page_data.json")
 BUILD_FILES = CACHE / "build_files"  # shared (build details by ID)
 
 # Patch-specific directories
 PATCH_CACHE = CACHE / PATCH_ID
 HERO_DATA = PATCH_CACHE / "hero_data"
-HERO_OUT = ROOT / "heroes" / PATCH_ID
+HERO_OUT = HERO_ROOT / PATCH_ID
 
 for d in (CACHE, BUILD_FILES, ASSETS, ASSETS / "heroes", ASSETS / "items", ASSETS / "abilities",
           PATCH_CACHE, HERO_DATA, HERO_OUT):

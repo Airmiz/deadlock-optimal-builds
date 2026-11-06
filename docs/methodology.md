@@ -106,7 +106,7 @@ The page renders chain ancestors as their own *stage rows* in the phase column m
 
 ## No sell rows
 
-The page used to show a "sell" event for items with an early `avg_sell_time_s`. That average includes items absorbed into an upgrade, so most builds were told to sell around half their items, ending well short of a full inventory. A build is now the end state, and each chain's cheaper components still appear as stage rows.
+The page used to show a "sell" event for items with an early `avg_sell_time_s`. That average includes items absorbed into an upgrade, so most builds were told to sell around half their items, ending well short of a full inventory. A build is now the end state, and each chain's cheaper components still appear as stage rows. The Classic 16 flip at the top of the page shows the old system as it was, sell rows included.
 
 ## Cooldown + imbue badges
 

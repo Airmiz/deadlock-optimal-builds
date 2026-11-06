@@ -14,6 +14,7 @@ on:
     # Skip pushes that don't touch site-relevant files (e.g. cache/)
     paths:
       - 'deadlock_builds.html'
+      - 'deadlock_builds_classic.js'
       - 'methodology.html'
       - 'rank_distribution.html'
       - 'favicon.svg'
@@ -81,6 +82,8 @@ jobs:
           mkdir -p _site
           cp deadlock_builds.html _site/index.html
           cp deadlock_builds.html _site/deadlock_builds.html
+          # Absent only until the first refresh after the flip shipped.
+          [ ! -f deadlock_builds_classic.js ] || cp deadlock_builds_classic.js _site/
           cp methodology.html     _site/methodology.html
           cp rank_distribution.html _site/rank_distribution.html
           cp favicon.svg          _site/favicon.svg
