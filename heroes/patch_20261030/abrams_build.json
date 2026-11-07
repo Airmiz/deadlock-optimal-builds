@@ -55,7 +55,7 @@
   },
   "category_bands": {
     "source": "hero",
-    "inventories": 211788,
+    "inventories": 217137,
     "mean": {
       "weapon": 3.8,
       "vitality": 5.55,
@@ -80,7 +80,7 @@
     "items": {
       "method": "synergy_ilp",
       "mmr_slice": "high_mmr",
-      "total_cost": 52000,
+      "total_cost": 48800,
       "phases": {
         "early": [
           {
@@ -153,17 +153,61 @@
             "category": "vitality",
             "tier": 3,
             "cost": 3200,
-            "name": "Dispel Magic",
-            "item_id": 3731635960,
-            "avg_buy_time_min": 21.9,
-            "avg_sell_time_min": 26.4,
-            "win_rate": 0.5506,
+            "name": "Lifestrike",
+            "item_id": 1252627263,
+            "avg_buy_time_min": 19.5,
+            "avg_sell_time_min": 26.6,
+            "win_rate": 0.5325,
+            "tag": "core_inherited",
+            "pick_rate": 0.5,
+            "is_active": false,
+            "cooldown_s": 4.0,
+            "imbue": null,
+            "annotation": "Buy as ur 2nd 3.2k green if u skip spirit shielding",
+            "lineage_chain": [
+              {
+                "item_id": 1437614329,
+                "name": "Melee Lifesteal",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/melee_lifesteal.png",
+                "matches": 6586,
+                "avg_buy_time_min": 5.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "name": "Superior Duration",
+            "item_id": 2717651715,
+            "avg_buy_time_min": 23.8,
+            "avg_sell_time_min": 25.9,
+            "win_rate": 0.5713,
             "tag": "core_proven",
             "pick_rate": 1.0,
-            "is_active": true,
-            "cooldown_s": 45.0,
+            "is_active": false,
+            "cooldown_s": null,
             "imbue": null,
-            "annotation": "Can buy any 3.2k green"
+            "annotation": "Makes your active abilities and items a lot better. Siphon, Charge, Ult, Unstop, Metal Skin, Colossus, etc",
+            "lineage_chain": [
+              {
+                "item_id": 2951612397,
+                "name": "Duration Extender",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/duration_extender.png",
+                "matches": 2947,
+                "avg_buy_time_min": 20.4,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": 4072270083,
+                "imbue_target_share": 0.6
+              }
+            ]
           },
           {
             "category": "weapon",
@@ -228,22 +272,6 @@
                 "imbue_target_share": null
               }
             ]
-          },
-          {
-            "category": "vitality",
-            "tier": 4,
-            "cost": 6400,
-            "name": "Witchmail",
-            "item_id": 3028234315,
-            "avg_buy_time_min": 30.4,
-            "avg_sell_time_min": 30.9,
-            "win_rate": 0.627,
-            "tag": "core_proven",
-            "pick_rate": 0.5,
-            "is_active": false,
-            "cooldown_s": 1.0,
-            "imbue": null,
-            "annotation": "vs spirit\nPick Rate: 20%\nWR: +9%"
           },
           {
             "category": "vitality",
@@ -5515,29 +5543,6 @@
       "synergy_ilp": {
         "picks": [
           {
-            "item_id": 3028234315,
-            "name": "Witchmail",
-            "category": "vitality",
-            "tier": 4,
-            "cost": 6400,
-            "matches": 673,
-            "wins": 422,
-            "win_rate": 0.627,
-            "wilson_lb": 0.5899,
-            "score": 0.0619,
-            "wr_delta_pp": 9.9,
-            "avg_buy_time_s": 1825.8,
-            "phase": "late",
-            "avg_sell_time_s": 1851.5,
-            "is_active": false,
-            "cooldown_s": 1.0,
-            "imbue": null,
-            "tag": "core_proven",
-            "pick_rate_tag": "flex",
-            "pick_rate": 0.5,
-            "annotation": "vs spirit\nPick Rate: 20%\nWR: +9%"
-          },
-          {
             "item_id": 1371725689,
             "name": "Phantom Strike",
             "category": "vitality",
@@ -5707,6 +5712,43 @@
             "annotation": "Very high damage stat stick but doesn't do much else and is best paired with Blood Tribute, can replace Weighted if wanted"
           },
           {
+            "item_id": 2717651715,
+            "name": "Superior Duration",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 4756,
+            "wins": 2717,
+            "win_rate": 0.5713,
+            "wilson_lb": 0.5572,
+            "score": 0.0291,
+            "wr_delta_pp": 4.33,
+            "avg_buy_time_s": 1430.3,
+            "phase": "mid",
+            "avg_sell_time_s": 1555.9,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Makes your active abilities and items a lot better. Siphon, Charge, Ult, Unstop, Metal Skin, Colossus, etc",
+            "lineage_chain": [
+              {
+                "item_id": 2951612397,
+                "name": "Duration Extender",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/duration_extender.png",
+                "matches": 2947,
+                "avg_buy_time_min": 20.4,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": 4072270083,
+                "imbue_target_share": 0.6
+              }
+            ]
+          },
+          {
             "item_id": 3491236900,
             "name": "Plated Armor",
             "category": "vitality",
@@ -5753,29 +5795,6 @@
             "annotation": "Very necessary shred for melees, BiS. Significantly outperforms other gun 3ks for punching and is AOE shred+frate slow on rift"
           },
           {
-            "item_id": 3731635960,
-            "name": "Dispel Magic",
-            "category": "vitality",
-            "tier": 3,
-            "cost": 3200,
-            "matches": 1849,
-            "wins": 1018,
-            "win_rate": 0.5506,
-            "wilson_lb": 0.5278,
-            "score": -0.0002,
-            "wr_delta_pp": 2.25,
-            "avg_buy_time_s": 1316.3,
-            "phase": "mid",
-            "avg_sell_time_s": 1586.3,
-            "is_active": true,
-            "cooldown_s": 45.0,
-            "imbue": null,
-            "tag": "core_proven",
-            "pick_rate_tag": "core",
-            "pick_rate": 1.0,
-            "annotation": "Can buy any 3.2k green"
-          },
-          {
             "item_id": 2971868509,
             "name": "Bullet Resist Shredder",
             "category": "spirit",
@@ -5820,6 +5839,43 @@
             "pick_rate_tag": "core",
             "pick_rate": 1.0,
             "annotation": "If no pvp lane and bought egg skip this, sell this later when need slot"
+          },
+          {
+            "item_id": 1252627263,
+            "name": "Lifestrike",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 4340,
+            "wins": 2311,
+            "win_rate": 0.5325,
+            "wilson_lb": 0.5176,
+            "score": -0.0104,
+            "wr_delta_pp": 0.45,
+            "avg_buy_time_s": 1167.3,
+            "phase": "mid",
+            "avg_sell_time_s": 1598.5,
+            "is_active": false,
+            "cooldown_s": 4.0,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "Buy as ur 2nd 3.2k green if u skip spirit shielding",
+            "lineage_chain": [
+              {
+                "item_id": 1437614329,
+                "name": "Melee Lifesteal",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/melee_lifesteal.png",
+                "matches": 6586,
+                "avg_buy_time_min": 5.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
           },
           {
             "item_id": 1342610602,
