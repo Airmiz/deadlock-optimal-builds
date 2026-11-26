@@ -1,0 +1,1918 @@
+{
+  "spec_version": "1.3.0",
+  "hero": {
+    "id": 76,
+    "name": "Graves",
+    "abilities": [
+      {
+        "id": 3214055642,
+        "name": "Jar of Dead"
+      },
+      {
+        "id": 2001589780,
+        "name": "Grasping Hands"
+      },
+      {
+        "id": 629925354,
+        "name": "Essence Theft"
+      },
+      {
+        "id": 4110547059,
+        "name": "Borrowed Decree"
+      }
+    ]
+  },
+  "patch": {
+    "id": "patch_20261126",
+    "title": "11-26-2026 Update",
+    "min_unix_timestamp": 1795713708
+  },
+  "mmr_slices": {
+    "all_mmr": {
+      "filter": "no MMR filter",
+      "baseline_win_rate": 0.579,
+      "matches": 4539,
+      "players": null
+    },
+    "high_mmr": {
+      "filter": "min_average_badge=91 (Phantom+)",
+      "baseline_win_rate": 0.5412,
+      "matches": 85,
+      "players": null
+    },
+    "ascendant_plus": {
+      "filter": "min_average_badge=101 (Ascendant+)",
+      "baseline_win_rate": 0.4444,
+      "matches": 18,
+      "players": null
+    },
+    "eternus_plus": {
+      "filter": "min_average_badge=111 (Eternus+)",
+      "baseline_win_rate": 0.25,
+      "matches": 4,
+      "players": null
+    }
+  },
+  "category_bands": {
+    "source": "hero",
+    "inventories": 3126,
+    "mean": {
+      "weapon": 4.04,
+      "vitality": 3.88,
+      "spirit": 4.08
+    },
+    "bounds": {
+      "weapon": [
+        2,
+        6
+      ],
+      "vitality": [
+        2,
+        6
+      ],
+      "spirit": [
+        2,
+        6
+      ]
+    }
+  },
+  "recommended": {
+    "items": {
+      "method": "synergy_ilp",
+      "mmr_slice": "high_mmr",
+      "total_cost": 0,
+      "phases": {
+        "early": [],
+        "mid": [],
+        "late": []
+      }
+    },
+    "abilities": {
+      "ap_priority_order": [
+        "Jar of Dead",
+        "Grasping Hands",
+        "Essence Theft",
+        "Borrowed Decree"
+      ],
+      "best_full_order": null,
+      "best_opener_first4": null
+    }
+  },
+  "items": {
+    "all_mmr": {
+      "candidate_count": 23,
+      "min_matches_filter": 500,
+      "wilson_greedy": {
+        "picks": [
+          {
+            "item_id": 1282141666,
+            "name": "Siphon Bullets",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1044,
+            "wins": 667,
+            "win_rate": 0.6389,
+            "wilson_lb": 0.6093,
+            "score": 0.0303,
+            "wr_delta_pp": 5.99,
+            "avg_buy_time_s": 2076.5,
+            "phase": "late",
+            "avg_sell_time_s": 2211.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Can't be Anti Healed. % Health True Damage on enemies w/ Toxic + Scourge you fry Tanks. Also fixes Graves Health Issues. Building early for Suvivability, Bullet Resist + %Health Damage!"
+          },
+          {
+            "item_id": 343572757,
+            "name": "Spirit Burn",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 539,
+            "wins": 347,
+            "win_rate": 0.6438,
+            "wilson_lb": 0.6025,
+            "score": 0.0235,
+            "wr_delta_pp": 6.48,
+            "avg_buy_time_s": 2074.5,
+            "phase": "late",
+            "avg_sell_time_s": 2698.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2226497419,
+            "name": "Spiritual Overflow",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1718,
+            "wins": 1073,
+            "win_rate": 0.6246,
+            "wilson_lb": 0.6014,
+            "score": 0.0224,
+            "wr_delta_pp": 4.56,
+            "avg_buy_time_s": 1888.4,
+            "phase": "late",
+            "avg_sell_time_s": 2262.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "THIS OR INFUSER. Overflow is only 29 Spirit less than Boundless. +Fire rate +Spirit +Duration",
+            "lineage_chain": [
+              {
+                "item_id": 876563814,
+                "name": "Spirit Lifesteal",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/spirit_lifesteal.png",
+                "matches": 3439,
+                "avg_buy_time_min": 20.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3005970438,
+            "name": "Escalating Exposure",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2607,
+            "wins": 1610,
+            "win_rate": 0.6176,
+            "wilson_lb": 0.5988,
+            "score": 0.0198,
+            "wr_delta_pp": 3.86,
+            "avg_buy_time_s": 1788.7,
+            "phase": "late",
+            "avg_sell_time_s": 2089.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "4 stacks \u223c= boundless, EE better when damage instance stacking. Mystic shot, Tesla, Torment, Toxic x52% from Escalating. Our 5th Damage Instance",
+            "lineage_chain": [
+              {
+                "item_id": 2081037738,
+                "name": "Mystic Vulnerability",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_vulnerability.png",
+                "matches": 3216,
+                "avg_buy_time_min": 20.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2514,
+            "wins": 1535,
+            "win_rate": 0.6106,
+            "wilson_lb": 0.5914,
+            "score": 0.0124,
+            "wr_delta_pp": 3.16,
+            "avg_buy_time_s": 1772.3,
+            "phase": "late",
+            "avg_sell_time_s": 2086.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "+50 spirit",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_spirit.png",
+                "matches": 4299,
+                "avg_buy_time_min": 5.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_spirit.png",
+                "matches": 4072,
+                "avg_buy_time_min": 13.0,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3970837787,
+            "name": "Enchanter's Emblem",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 2321,
+            "wins": 1415,
+            "win_rate": 0.6097,
+            "wilson_lb": 0.5896,
+            "score": 0.0107,
+            "wr_delta_pp": 3.07,
+            "avg_buy_time_s": 1011.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2460.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Green Imp spirit, 15 Spirit conditonally  with 18% spirit resist permanantly. 25% spirit resist w/ mvuln"
+          },
+          {
+            "item_id": 2480592370,
+            "name": "Ricochet",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1034,
+            "wins": 635,
+            "win_rate": 0.6141,
+            "wilson_lb": 0.5841,
+            "score": 0.0051,
+            "wr_delta_pp": 3.51,
+            "avg_buy_time_s": 1820.8,
+            "phase": "late",
+            "avg_sell_time_s": 2172.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0
+          },
+          {
+            "item_id": 395867183,
+            "name": "Mystic Shot",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 3311,
+            "wins": 1965,
+            "win_rate": 0.5935,
+            "wilson_lb": 0.5766,
+            "score": -0.0023,
+            "wr_delta_pp": 1.45,
+            "avg_buy_time_s": 577.2,
+            "phase": "early",
+            "avg_sell_time_s": 2418.5,
+            "is_active": false,
+            "cooldown_s": 8.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Can't miss, massive damage, 3 - 5k damage per game. Huge with Resto Shot to trade. Can build tesla first instead!"
+          },
+          {
+            "item_id": 3696726732,
+            "name": "Toxic Bullets",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 3924,
+            "wins": 2315,
+            "win_rate": 0.59,
+            "wilson_lb": 0.5745,
+            "score": -0.0045,
+            "wr_delta_pp": 1.1,
+            "avg_buy_time_s": 1235.8,
+            "phase": "mid",
+            "avg_sell_time_s": 2462.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "4th Instance of Damage. % Health Damage valuable vs all. Extremely Strong w/ 22% spirit res shred."
+          },
+          {
+            "item_id": 395944548,
+            "name": "Torment Pulse",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1798,
+            "wins": 1073,
+            "win_rate": 0.5968,
+            "wilson_lb": 0.5739,
+            "score": -0.0051,
+            "wr_delta_pp": 1.78,
+            "avg_buy_time_s": 1030.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2649.7,
+            "is_active": false,
+            "cooldown_s": 1.4,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Purple Spike AoE for Farm + Fight, another instance of spirit damage. IAD kite with range to get maximum value"
+          },
+          {
+            "item_id": 334300056,
+            "name": "Stamina Mastery",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 3708,
+            "wins": 2180,
+            "win_rate": 0.5879,
+            "wilson_lb": 0.572,
+            "score": -0.007,
+            "wr_delta_pp": 0.89,
+            "avg_buy_time_s": 1211.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2091.3,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "IAD + more stam to be able to kite everyone and chase. Massive Power Spike + Green spike now",
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/extra_stamina.png",
+                "matches": 4653,
+                "avg_buy_time_min": 8.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3862866912,
+            "name": "Restorative Shot",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 4950,
+            "wins": 2895,
+            "win_rate": 0.5848,
+            "wilson_lb": 0.5711,
+            "score": -0.0079,
+            "wr_delta_pp": 0.59,
+            "avg_buy_time_s": 123.9,
+            "phase": "early",
+            "avg_sell_time_s": 1915.8,
+            "is_active": false,
+            "cooldown_s": 6.0,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Best Sustain item in lane, cannot miss with Graves, try to track CD and use on enemies in lane for +50 heal"
+          }
+        ]
+      },
+      "synergy_ilp": {
+        "picks": [
+          {
+            "item_id": 1282141666,
+            "name": "Siphon Bullets",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1044,
+            "wins": 667,
+            "win_rate": 0.6389,
+            "wilson_lb": 0.6093,
+            "score": 0.0303,
+            "wr_delta_pp": 5.99,
+            "avg_buy_time_s": 2076.5,
+            "phase": "late",
+            "avg_sell_time_s": 2211.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Can't be Anti Healed. % Health True Damage on enemies w/ Toxic + Scourge you fry Tanks. Also fixes Graves Health Issues. Building early for Suvivability, Bullet Resist + %Health Damage!"
+          },
+          {
+            "item_id": 2226497419,
+            "name": "Spiritual Overflow",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1718,
+            "wins": 1073,
+            "win_rate": 0.6246,
+            "wilson_lb": 0.6014,
+            "score": 0.0224,
+            "wr_delta_pp": 4.56,
+            "avg_buy_time_s": 1888.4,
+            "phase": "late",
+            "avg_sell_time_s": 2262.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "THIS OR INFUSER. Overflow is only 29 Spirit less than Boundless. +Fire rate +Spirit +Duration",
+            "lineage_chain": [
+              {
+                "item_id": 876563814,
+                "name": "Spirit Lifesteal",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/spirit_lifesteal.png",
+                "matches": 3439,
+                "avg_buy_time_min": 20.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3005970438,
+            "name": "Escalating Exposure",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2607,
+            "wins": 1610,
+            "win_rate": 0.6176,
+            "wilson_lb": 0.5988,
+            "score": 0.0198,
+            "wr_delta_pp": 3.86,
+            "avg_buy_time_s": 1788.7,
+            "phase": "late",
+            "avg_sell_time_s": 2089.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "4 stacks \u223c= boundless, EE better when damage instance stacking. Mystic shot, Tesla, Torment, Toxic x52% from Escalating. Our 5th Damage Instance",
+            "lineage_chain": [
+              {
+                "item_id": 2081037738,
+                "name": "Mystic Vulnerability",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_vulnerability.png",
+                "matches": 3216,
+                "avg_buy_time_min": 20.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2514,
+            "wins": 1535,
+            "win_rate": 0.6106,
+            "wilson_lb": 0.5914,
+            "score": 0.0124,
+            "wr_delta_pp": 3.16,
+            "avg_buy_time_s": 1772.3,
+            "phase": "late",
+            "avg_sell_time_s": 2086.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "+50 spirit",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_spirit.png",
+                "matches": 4299,
+                "avg_buy_time_min": 5.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_spirit.png",
+                "matches": 4072,
+                "avg_buy_time_min": 13.0,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3970837787,
+            "name": "Enchanter's Emblem",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 2321,
+            "wins": 1415,
+            "win_rate": 0.6097,
+            "wilson_lb": 0.5896,
+            "score": 0.0107,
+            "wr_delta_pp": 3.07,
+            "avg_buy_time_s": 1011.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2460.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Green Imp spirit, 15 Spirit conditonally  with 18% spirit resist permanantly. 25% spirit resist w/ mvuln"
+          },
+          {
+            "item_id": 395867183,
+            "name": "Mystic Shot",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 3311,
+            "wins": 1965,
+            "win_rate": 0.5935,
+            "wilson_lb": 0.5766,
+            "score": -0.0023,
+            "wr_delta_pp": 1.45,
+            "avg_buy_time_s": 577.2,
+            "phase": "early",
+            "avg_sell_time_s": 2418.5,
+            "is_active": false,
+            "cooldown_s": 8.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Can't miss, massive damage, 3 - 5k damage per game. Huge with Resto Shot to trade. Can build tesla first instead!"
+          },
+          {
+            "item_id": 3696726732,
+            "name": "Toxic Bullets",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 3924,
+            "wins": 2315,
+            "win_rate": 0.59,
+            "wilson_lb": 0.5745,
+            "score": -0.0045,
+            "wr_delta_pp": 1.1,
+            "avg_buy_time_s": 1235.8,
+            "phase": "mid",
+            "avg_sell_time_s": 2462.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "4th Instance of Damage. % Health Damage valuable vs all. Extremely Strong w/ 22% spirit res shred."
+          },
+          {
+            "item_id": 395944548,
+            "name": "Torment Pulse",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1798,
+            "wins": 1073,
+            "win_rate": 0.5968,
+            "wilson_lb": 0.5739,
+            "score": -0.0051,
+            "wr_delta_pp": 1.78,
+            "avg_buy_time_s": 1030.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2649.7,
+            "is_active": false,
+            "cooldown_s": 1.4,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Purple Spike AoE for Farm + Fight, another instance of spirit damage. IAD kite with range to get maximum value"
+          },
+          {
+            "item_id": 334300056,
+            "name": "Stamina Mastery",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 3708,
+            "wins": 2180,
+            "win_rate": 0.5879,
+            "wilson_lb": 0.572,
+            "score": -0.007,
+            "wr_delta_pp": 0.89,
+            "avg_buy_time_s": 1211.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2091.3,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "IAD + more stam to be able to kite everyone and chase. Massive Power Spike + Green spike now",
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/extra_stamina.png",
+                "matches": 4653,
+                "avg_buy_time_min": 8.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3862866912,
+            "name": "Restorative Shot",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 4950,
+            "wins": 2895,
+            "win_rate": 0.5848,
+            "wilson_lb": 0.5711,
+            "score": -0.0079,
+            "wr_delta_pp": 0.59,
+            "avg_buy_time_s": 123.9,
+            "phase": "early",
+            "avg_sell_time_s": 1915.8,
+            "is_active": false,
+            "cooldown_s": 6.0,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Best Sustain item in lane, cannot miss with Graves, try to track CD and use on enemies in lane for +50 heal"
+          },
+          {
+            "item_id": 811521119,
+            "name": "Tesla Bullets",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 3093,
+            "wins": 1802,
+            "win_rate": 0.5826,
+            "wilson_lb": 0.5651,
+            "score": -0.0138,
+            "wr_delta_pp": 0.36,
+            "avg_buy_time_s": 773.9,
+            "phase": "mid",
+            "avg_sell_time_s": 1652.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Massive Damage item, good for farming + fighting. Spreads MVuln, make sure to IAD + Slide with this to get the most use out of activations"
+          },
+          {
+            "item_id": 1672893796,
+            "name": "Grit",
+            "category": "vitality",
+            "tier": 1,
+            "cost": 800,
+            "matches": 2856,
+            "wins": 1664,
+            "win_rate": 0.5826,
+            "wilson_lb": 0.5644,
+            "score": -0.0145,
+            "wr_delta_pp": 0.37,
+            "avg_buy_time_s": 287.0,
+            "phase": "early",
+            "avg_sell_time_s": 832.2,
+            "is_active": true,
+            "cooldown_s": 60.0,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Insanely strong Trading + Survivability in lane. I often use this on high health to win an important trade in lane!"
+          }
+        ]
+      },
+      "build_replication": {
+        "picks": [
+          {
+            "item_id": 2163598980,
+            "name": "Spirit Resilience",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1171,
+            "wins": 693,
+            "win_rate": 0.5918,
+            "wilson_lb": 0.5634,
+            "score": -0.0156,
+            "wr_delta_pp": 1.28,
+            "avg_buy_time_s": 1695.7,
+            "phase": "late",
+            "avg_sell_time_s": 2434.9,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 33.7,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Massive Spirit resist stat check"
+          },
+          {
+            "item_id": 3005970438,
+            "name": "Escalating Exposure",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2607,
+            "wins": 1610,
+            "win_rate": 0.6176,
+            "wilson_lb": 0.5988,
+            "score": 0.0198,
+            "wr_delta_pp": 3.86,
+            "avg_buy_time_s": 1788.7,
+            "phase": "late",
+            "avg_sell_time_s": 2089.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 33.7,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "4 stacks \u223c= boundless, EE better when damage instance stacking. Mystic shot, Tesla, Torment, Toxic x52% from Escalating. Our 5th Damage Instance",
+            "lineage_chain": [
+              {
+                "item_id": 2081037738,
+                "name": "Mystic Vulnerability",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_vulnerability.png",
+                "matches": 3216,
+                "avg_buy_time_min": 20.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2226497419,
+            "name": "Spiritual Overflow",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1718,
+            "wins": 1073,
+            "win_rate": 0.6246,
+            "wilson_lb": 0.6014,
+            "score": 0.0224,
+            "wr_delta_pp": 4.56,
+            "avg_buy_time_s": 1888.4,
+            "phase": "late",
+            "avg_sell_time_s": 2262.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 33.7,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "THIS OR INFUSER. Overflow is only 29 Spirit less than Boundless. +Fire rate +Spirit +Duration",
+            "lineage_chain": [
+              {
+                "item_id": 876563814,
+                "name": "Spirit Lifesteal",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/spirit_lifesteal.png",
+                "matches": 3439,
+                "avg_buy_time_min": 20.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2037039379,
+            "name": "Inhibitor",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 520,
+            "wins": 314,
+            "win_rate": 0.6038,
+            "wilson_lb": 0.5612,
+            "score": -0.0178,
+            "wr_delta_pp": 2.49,
+            "avg_buy_time_s": 2231.7,
+            "phase": "late",
+            "avg_sell_time_s": 2516.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 33.7,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0
+          },
+          {
+            "item_id": 2108215830,
+            "name": "Heroic Aura",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 734,
+            "wins": 432,
+            "win_rate": 0.5886,
+            "wilson_lb": 0.5526,
+            "score": -0.0264,
+            "wr_delta_pp": 0.96,
+            "avg_buy_time_s": 1190.4,
+            "phase": "mid",
+            "avg_sell_time_s": 2140.1,
+            "is_active": true,
+            "cooldown_s": 22.0,
+            "imbue": null,
+            "build_freq_weight": 33.7,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "[can skip] Throw skulls then heroic to increase their attack speed and dash speed. Or boost zombies movespeed to make them near impossible stop"
+          },
+          {
+            "item_id": 334300056,
+            "name": "Stamina Mastery",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 3708,
+            "wins": 2180,
+            "win_rate": 0.5879,
+            "wilson_lb": 0.572,
+            "score": -0.007,
+            "wr_delta_pp": 0.89,
+            "avg_buy_time_s": 1211.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2091.3,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 33.7,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "IAD + more stam to be able to kite everyone and chase. Massive Power Spike + Green spike now",
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/extra_stamina.png",
+                "matches": 4653,
+                "avg_buy_time_min": 8.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3970837787,
+            "name": "Enchanter's Emblem",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 2321,
+            "wins": 1415,
+            "win_rate": 0.6097,
+            "wilson_lb": 0.5896,
+            "score": 0.0107,
+            "wr_delta_pp": 3.07,
+            "avg_buy_time_s": 1011.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2460.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 33.7,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Green Imp spirit, 15 Spirit conditonally  with 18% spirit resist permanantly. 25% spirit resist w/ mvuln"
+          },
+          {
+            "item_id": 395867183,
+            "name": "Mystic Shot",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 3311,
+            "wins": 1965,
+            "win_rate": 0.5935,
+            "wilson_lb": 0.5766,
+            "score": -0.0023,
+            "wr_delta_pp": 1.45,
+            "avg_buy_time_s": 577.2,
+            "phase": "early",
+            "avg_sell_time_s": 2418.5,
+            "is_active": false,
+            "cooldown_s": 8.0,
+            "imbue": null,
+            "build_freq_weight": 33.7,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Can't miss, massive damage, 3 - 5k damage per game. Huge with Resto Shot to trade. Can build tesla first instead!"
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2514,
+            "wins": 1535,
+            "win_rate": 0.6106,
+            "wilson_lb": 0.5914,
+            "score": 0.0124,
+            "wr_delta_pp": 3.16,
+            "avg_buy_time_s": 1772.3,
+            "phase": "late",
+            "avg_sell_time_s": 2086.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 33.7,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "+50 spirit",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_spirit.png",
+                "matches": 4299,
+                "avg_buy_time_min": 5.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_spirit.png",
+                "matches": 4072,
+                "avg_buy_time_min": 13.0,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3696726732,
+            "name": "Toxic Bullets",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 3924,
+            "wins": 2315,
+            "win_rate": 0.59,
+            "wilson_lb": 0.5745,
+            "score": -0.0045,
+            "wr_delta_pp": 1.1,
+            "avg_buy_time_s": 1235.8,
+            "phase": "mid",
+            "avg_sell_time_s": 2462.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 33.7,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "4th Instance of Damage. % Health Damage valuable vs all. Extremely Strong w/ 22% spirit res shred."
+          },
+          {
+            "item_id": 3647584222,
+            "name": "Split Shot",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 592,
+            "wins": 330,
+            "win_rate": 0.5574,
+            "wilson_lb": 0.5172,
+            "score": -0.0618,
+            "wr_delta_pp": -2.15,
+            "avg_buy_time_s": 760.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2246.0,
+            "is_active": true,
+            "cooldown_s": 27.0,
+            "imbue": null,
+            "build_freq_weight": 33.7,
+            "tag": "trap_popular",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0
+          },
+          {
+            "item_id": 3862866912,
+            "name": "Restorative Shot",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 4950,
+            "wins": 2895,
+            "win_rate": 0.5848,
+            "wilson_lb": 0.5711,
+            "score": -0.0079,
+            "wr_delta_pp": 0.59,
+            "avg_buy_time_s": 123.9,
+            "phase": "early",
+            "avg_sell_time_s": 1915.8,
+            "is_active": false,
+            "cooldown_s": 6.0,
+            "imbue": null,
+            "build_freq_weight": 33.7,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Best Sustain item in lane, cannot miss with Graves, try to track CD and use on enemies in lane for +50 heal"
+          }
+        ],
+        "source_builds": [
+          {
+            "build_id": 872212,
+            "name": "Jamlex Tank Graves",
+            "win_rate": 0.6427,
+            "matches": 403
+          }
+        ]
+      },
+      "joint_archetypes": [],
+      "item_metadata": {
+        "3862866912": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Best Sustain item in lane, cannot miss with Graves, try to track CD and use on enemies in lane for +50 heal",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1672893796": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Insanely strong Trading + Survivability in lane. I often use this on high health to win an important trade in lane!",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "968099481": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "+10 spirit to help abilities + items + sustain off jar of the dead healing",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "811521119": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Massive Damage item, good for farming + fighting. Spreads MVuln, make sure to IAD + Slide with this to get the most use out of activations",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "4139877411": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Buy when you need it. No longer 2 stam victim",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "395867183": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Can't miss, massive damage, 3 - 5k damage per game. Huge with Resto Shot to trade. Can build tesla first instead!",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "805079544": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "395944548": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Purple Spike AoE for Farm + Fight, another instance of spirit damage. IAD kite with range to get maximum value",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "7409189": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "+8 spirit to help scalings on abilities + items. +27 spirit when bought on 4.8k spike. Or suppressor but Imp gives a noticble increase on damage",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "334300056": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "IAD + more stam to be able to kite everyone and chase. Massive Power Spike + Green spike now",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3696726732": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "4th Instance of Damage. % Health Damage valuable vs all. Extremely Strong w/ 22% spirit res shred.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3970837787": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Green Imp spirit, 15 Spirit conditonally  with 18% spirit resist permanantly. 25% spirit resist w/ mvuln",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2081037738": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Spirit resist for you and Spirit Resist Shred on enemies 8% with MVuln, 22% with MVuln + Essence theft. Damage Amp for you + the team & nullify enemy spirit resist purchases",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "876563814": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Extremely valuable to sustain and Fight longer and Win fights you shouldn't. Upgrade into Spirtual Overflow later.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3005970438": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "4 stacks \u223c= boundless, EE better when damage instance stacking. Mystic shot, Tesla, Torment, Toxic x52% from Escalating. Our 5th Damage Instance",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2519598785": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "+50 spirit",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1282141666": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Can't be Anti Healed. % Health True Damage on enemies w/ Toxic + Scourge you fry Tanks. Also fixes Graves Health Issues. Building early for Suvivability, Bullet Resist + %Health Damage!",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2480592370": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "710436191": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Major Damage upgrade + active for picks. This is one of Graves best damage items. You can EE first but Capac will be more damage.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2226497419": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "THIS OR INFUSER. Overflow is only 29 Spirit less than Boundless. +Fire rate +Spirit +Duration",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "865846625": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2417568017": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Prio vs heavy frontline. Scourge for more Spirit Resist (70-80%) with +40% Debuff Resist, True Tank here with AoE % Health Damage.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2037039379": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3731635960": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "if you need would slot instead of spirit resilience",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1414025773": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "if you need would slot instead of spirit resilience",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1378931225": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "vs major m1 threat",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1292979587": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": 3214055642,
+          "imbue_target_share": 1.0
+        },
+        "1955841979": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Vs Carbine Paradox and other high burst spirit",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3491236900": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Vs Multiple M1s/ On-hits",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1662311306": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Vs Pocket to cleanse Affliction",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1371725689": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1113837674": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Vs heavy Spirit Team Comp",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1644605047": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "951866250": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "vs 1 time CC's don't buy into Artic Blasts, Unstop better",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3357231760": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2462046703": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1925087134": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "This or Imp Spirit. -- Suppresor is only -11 mshot, -2 tesla, -3 torment; damage @ spirit spike. I don't build Boundless anymore if you want to then buy Imp spirit here.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1548066885": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1219329868": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "35% spirit resist shred with essence theft + mvuln + spirit shredder bullets",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2463960640": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Escalating Res 30% bullet resist with some Mag Size + Health",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2829638276": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Only when scared/ heavy poke. Can buy this first and then sell whenver you need money/slots after lane.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "112198670": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "I think it's better to buy if you can spare slots. Shield scales on level. The barrier shields ALL damage not just spirit!!! +18% resist only works on shield. The shield inherits all % resists",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3647584222": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2163598980": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Massive Spirit resist stat check",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "380806748": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": 4110547059,
+          "imbue_target_share": 0.667
+        },
+        "2108215830": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "[can skip] Throw skulls then heroic to increase their attack speed and dash speed. Or boost zombies movespeed to make them near impossible stop",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1797283378": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Sell shield/enchanters. You are now Viktor. If you want more damage build Spirtual Overflow instead",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1144549437": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Test instead of MShot, it could be more damage with instance stack + EE to make it total 28% shred",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "915014646": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Reduces CD on Mystic Shot, Torment Pulse, Tesla/Capacitor, Heroic Aura, Escalating Exposure, Siphon Bullets",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        }
+      }
+    },
+    "high_mmr": {
+      "candidate_count": 0,
+      "min_matches_filter": 300,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "ascendant_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 100,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "eternus_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 30,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    }
+  },
+  "ability_orders": {
+    "all_mmr": {
+      "total_records": 6,
+      "total_matches": 1092,
+      "ability_priority": [
+        {
+          "ability_id": 2001589780,
+          "name": "Grasping Hands",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 629925354,
+          "name": "Essence Theft",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 3214055642,
+          "name": "Jar of Dead",
+          "avg_ap_all_players": 3.87,
+          "avg_ap_winners": 3.9,
+          "winner_premium_ap": 0.02
+        },
+        {
+          "ability_id": 4110547059,
+          "name": "Borrowed Decree",
+          "avg_ap_all_players": 3.22,
+          "avg_ap_winners": 3.3,
+          "winner_premium_ap": 0.08
+        }
+      ],
+      "best_full_orders": [
+        {
+          "sequence_ids": [
+            3214055642,
+            3214055642,
+            2001589780,
+            629925354,
+            629925354,
+            2001589780,
+            4110547059,
+            2001589780,
+            4110547059,
+            2001589780,
+            629925354,
+            629925354,
+            3214055642,
+            3214055642,
+            4110547059,
+            4110547059
+          ],
+          "sequence_names": [
+            "Jar of Dead",
+            "Jar of Dead",
+            "Grasping Hands",
+            "Essence Theft",
+            "Essence Theft",
+            "Grasping Hands",
+            "Borrowed Decree",
+            "Grasping Hands",
+            "Borrowed Decree",
+            "Grasping Hands",
+            "Essence Theft",
+            "Essence Theft",
+            "Jar of Dead",
+            "Jar of Dead",
+            "Borrowed Decree",
+            "Borrowed Decree"
+          ],
+          "wins": 217,
+          "losses": 100,
+          "matches": 317,
+          "players": 308,
+          "win_rate": 0.6845
+        },
+        {
+          "sequence_ids": [
+            3214055642,
+            3214055642,
+            2001589780,
+            629925354,
+            629925354,
+            2001589780,
+            4110547059,
+            2001589780,
+            4110547059,
+            2001589780,
+            629925354,
+            629925354,
+            3214055642,
+            3214055642,
+            4110547059
+          ],
+          "sequence_names": [
+            "Jar of Dead",
+            "Jar of Dead",
+            "Grasping Hands",
+            "Essence Theft",
+            "Essence Theft",
+            "Grasping Hands",
+            "Borrowed Decree",
+            "Grasping Hands",
+            "Borrowed Decree",
+            "Grasping Hands",
+            "Essence Theft",
+            "Essence Theft",
+            "Jar of Dead",
+            "Jar of Dead",
+            "Borrowed Decree"
+          ],
+          "wins": 291,
+          "losses": 167,
+          "matches": 458,
+          "players": 433,
+          "win_rate": 0.6354
+        }
+      ],
+      "best_openers_first4": [
+        {
+          "sequence_names": [
+            "Jar of Dead",
+            "Jar of Dead",
+            "Grasping Hands",
+            "Essence Theft"
+          ],
+          "wins": 675,
+          "matches": 1092,
+          "win_rate": 0.6181
+        }
+      ]
+    },
+    "high_mmr": {
+      "total_records": 1,
+      "total_matches": 20,
+      "ability_priority": [
+        {
+          "ability_id": 3214055642,
+          "name": "Jar of Dead",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 2001589780,
+          "name": "Grasping Hands",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 629925354,
+          "name": "Essence Theft",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 4110547059,
+          "name": "Borrowed Decree",
+          "avg_ap_all_players": 3.0,
+          "avg_ap_winners": 3.0,
+          "winner_premium_ap": 0.0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "ascendant_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 3214055642,
+          "name": "Jar of Dead",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 2001589780,
+          "name": "Grasping Hands",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 629925354,
+          "name": "Essence Theft",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 4110547059,
+          "name": "Borrowed Decree",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "eternus_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 3214055642,
+          "name": "Jar of Dead",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 2001589780,
+          "name": "Grasping Hands",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 629925354,
+          "name": "Essence Theft",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 4110547059,
+          "name": "Borrowed Decree",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    }
+  },
+  "provenance": {
+    "data_source": "api.deadlock-api.com",
+    "endpoints_used": [
+      "/v1/analytics/hero-stats",
+      "/v1/analytics/item-stats",
+      "/v1/analytics/item-permutation-stats?comb_size=2",
+      "/v1/analytics/hero-build-stats/{hero_id}",
+      "/v1/analytics/ability-order-stats",
+      "/v1/builds (per-build details)"
+    ],
+    "asset_sources": [
+      "https://api.deadlock-api.com/v1/assets/heroes",
+      "https://api.deadlock-api.com/v1/assets/items"
+    ]
+  },
+  "scoring_mode": "wilson"
+}

@@ -1,0 +1,999 @@
+{
+  "spec_version": "1.3.0",
+  "hero": {
+    "id": 58,
+    "name": "Vyper",
+    "abilities": [
+      {
+        "id": 645773760,
+        "name": "Screwjab Dagger"
+      },
+      {
+        "id": 3428732129,
+        "name": "Lethal Venom"
+      },
+      {
+        "id": 1469918191,
+        "name": "Slither"
+      },
+      {
+        "id": 1594727071,
+        "name": "Petrifying Bola"
+      }
+    ]
+  },
+  "patch": {
+    "id": "patch_20261126",
+    "title": "11-26-2026 Update",
+    "min_unix_timestamp": 1795713708
+  },
+  "mmr_slices": {
+    "all_mmr": {
+      "filter": "no MMR filter",
+      "baseline_win_rate": 0.4818,
+      "matches": 1596,
+      "players": null
+    },
+    "high_mmr": {
+      "filter": "min_average_badge=91 (Phantom+)",
+      "baseline_win_rate": 0.6557,
+      "matches": 61,
+      "players": null
+    },
+    "ascendant_plus": {
+      "filter": "min_average_badge=101 (Ascendant+)",
+      "baseline_win_rate": 0.6667,
+      "matches": 21,
+      "players": null
+    },
+    "eternus_plus": {
+      "filter": "min_average_badge=111 (Eternus+)",
+      "baseline_win_rate": 0.75,
+      "matches": 8,
+      "players": null
+    }
+  },
+  "category_bands": {
+    "source": "hero",
+    "inventories": 1041,
+    "mean": {
+      "weapon": 6.19,
+      "vitality": 3.71,
+      "spirit": 2.1
+    },
+    "bounds": {
+      "weapon": [
+        4,
+        8
+      ],
+      "vitality": [
+        2,
+        6
+      ],
+      "spirit": [
+        0,
+        4
+      ]
+    }
+  },
+  "recommended": {
+    "items": {
+      "method": "synergy_ilp",
+      "mmr_slice": "high_mmr",
+      "total_cost": 0,
+      "phases": {
+        "early": [],
+        "mid": [],
+        "late": []
+      }
+    },
+    "abilities": {
+      "ap_priority_order": [
+        "Screwjab Dagger",
+        "Lethal Venom",
+        "Slither",
+        "Petrifying Bola"
+      ],
+      "best_full_order": null,
+      "best_opener_first4": null
+    }
+  },
+  "items": {
+    "all_mmr": {
+      "candidate_count": 13,
+      "min_matches_filter": 500,
+      "wilson_greedy": {
+        "picks": [
+          {
+            "item_id": 2480592370,
+            "name": "Ricochet",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 647,
+            "wins": 369,
+            "win_rate": 0.5703,
+            "wilson_lb": 0.5319,
+            "score": 0.05,
+            "wr_delta_pp": 8.85,
+            "avg_buy_time_s": 1818.4,
+            "phase": "late",
+            "avg_sell_time_s": 2001.8,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 710436191,
+            "name": "Capacitor",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 759,
+            "wins": 420,
+            "win_rate": 0.5534,
+            "wilson_lb": 0.5178,
+            "score": 0.036,
+            "wr_delta_pp": 7.15,
+            "avg_buy_time_s": 1632.9,
+            "phase": "late",
+            "avg_sell_time_s": 2314.8,
+            "is_active": true,
+            "cooldown_s": 40.0,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 811521119,
+                "name": "Tesla Bullets",
+                "tier": 3,
+                "cost": 3200,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/tesla_bullets.png",
+                "matches": 1266,
+                "avg_buy_time_min": 15.5,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3919289022,
+            "name": "Mercurial Magnum",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1360,
+            "wins": 731,
+            "win_rate": 0.5375,
+            "wilson_lb": 0.5109,
+            "score": 0.0291,
+            "wr_delta_pp": 5.57,
+            "avg_buy_time_s": 1511.4,
+            "phase": "late",
+            "avg_sell_time_s": 1964.0,
+            "is_active": false,
+            "cooldown_s": 15.0,
+            "imbue": "imbue_active",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 84321454,
+                "name": "Quicksilver Reload",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/quicksilver_reload.png",
+                "matches": 1546,
+                "avg_buy_time_min": 12.5,
+                "imbue": "imbue_active",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1672893796,
+            "name": "Grit",
+            "category": "vitality",
+            "tier": 1,
+            "cost": 800,
+            "matches": 585,
+            "wins": 308,
+            "win_rate": 0.5265,
+            "wilson_lb": 0.486,
+            "score": 0.0042,
+            "wr_delta_pp": 4.47,
+            "avg_buy_time_s": 468.4,
+            "phase": "early",
+            "avg_sell_time_s": 887.7,
+            "is_active": true,
+            "cooldown_s": 60.0,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3647584222,
+            "name": "Split Shot",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1313,
+            "wins": 662,
+            "win_rate": 0.5042,
+            "wilson_lb": 0.4772,
+            "score": -0.0047,
+            "wr_delta_pp": 2.24,
+            "avg_buy_time_s": 928.8,
+            "phase": "mid",
+            "avg_sell_time_s": 2410.4,
+            "is_active": true,
+            "cooldown_s": 27.0,
+            "imbue": null,
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2739107182,
+            "name": "Burst Fire",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1844,
+            "wins": 919,
+            "win_rate": 0.4984,
+            "wilson_lb": 0.4756,
+            "score": -0.0063,
+            "wr_delta_pp": 1.65,
+            "avg_buy_time_s": 1028.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2775.0,
+            "is_active": false,
+            "cooldown_s": 9.0,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 668299740,
+                "name": "Rapid Rounds",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/rapid_rounds.png",
+                "matches": 1693,
+                "avg_buy_time_min": 8.9,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2971868509,
+            "name": "Bullet Resist Shredder",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 858,
+            "wins": 434,
+            "win_rate": 0.5058,
+            "wilson_lb": 0.4724,
+            "score": -0.0094,
+            "wr_delta_pp": 2.4,
+            "avg_buy_time_s": 808.3,
+            "phase": "mid",
+            "avg_sell_time_s": 2416.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1235347618,
+            "name": "Battle Vest",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 506,
+            "wins": 261,
+            "win_rate": 0.5158,
+            "wilson_lb": 0.4723,
+            "score": -0.0095,
+            "wr_delta_pp": 3.4,
+            "avg_buy_time_s": 568.2,
+            "phase": "early",
+            "avg_sell_time_s": 2215.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 334300056,
+            "name": "Stamina Mastery",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 997,
+            "wins": 501,
+            "win_rate": 0.5025,
+            "wilson_lb": 0.4715,
+            "score": -0.0103,
+            "wr_delta_pp": 2.07,
+            "avg_buy_time_s": 1287.1,
+            "phase": "mid",
+            "avg_sell_time_s": 2250.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/extra_stamina.png",
+                "matches": 890,
+                "avg_buy_time_min": 14.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1342610602,
+            "name": "Close Quarters",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 1735,
+            "wins": 851,
+            "win_rate": 0.4905,
+            "wilson_lb": 0.467,
+            "score": -0.0148,
+            "wr_delta_pp": 0.87,
+            "avg_buy_time_s": 182.1,
+            "phase": "early",
+            "avg_sell_time_s": 1533.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 7409189,
+            "name": "Improved Spirit",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1097,
+            "wins": 533,
+            "win_rate": 0.4859,
+            "wilson_lb": 0.4564,
+            "score": -0.0254,
+            "wr_delta_pp": 0.4,
+            "avg_buy_time_s": 599.8,
+            "phase": "early",
+            "avg_sell_time_s": 2134.9,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_spirit.png",
+                "matches": 1308,
+                "avg_buy_time_min": 5.0,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 499683006,
+            "name": "Bullet Lifesteal",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1008,
+            "wins": 463,
+            "win_rate": 0.4593,
+            "wilson_lb": 0.4288,
+            "score": -0.0531,
+            "wr_delta_pp": -2.25,
+            "avg_buy_time_s": 1083.1,
+            "phase": "mid",
+            "avg_sell_time_s": 1754.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          }
+        ]
+      },
+      "synergy_ilp": {
+        "picks": [
+          {
+            "item_id": 2480592370,
+            "name": "Ricochet",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 647,
+            "wins": 369,
+            "win_rate": 0.5703,
+            "wilson_lb": 0.5319,
+            "score": 0.05,
+            "wr_delta_pp": 8.85,
+            "avg_buy_time_s": 1818.4,
+            "phase": "late",
+            "avg_sell_time_s": 2001.8,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 710436191,
+            "name": "Capacitor",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 759,
+            "wins": 420,
+            "win_rate": 0.5534,
+            "wilson_lb": 0.5178,
+            "score": 0.036,
+            "wr_delta_pp": 7.15,
+            "avg_buy_time_s": 1632.9,
+            "phase": "late",
+            "avg_sell_time_s": 2314.8,
+            "is_active": true,
+            "cooldown_s": 40.0,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 811521119,
+                "name": "Tesla Bullets",
+                "tier": 3,
+                "cost": 3200,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/tesla_bullets.png",
+                "matches": 1266,
+                "avg_buy_time_min": 15.5,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3919289022,
+            "name": "Mercurial Magnum",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1360,
+            "wins": 731,
+            "win_rate": 0.5375,
+            "wilson_lb": 0.5109,
+            "score": 0.0291,
+            "wr_delta_pp": 5.57,
+            "avg_buy_time_s": 1511.4,
+            "phase": "late",
+            "avg_sell_time_s": 1964.0,
+            "is_active": false,
+            "cooldown_s": 15.0,
+            "imbue": "imbue_active",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 84321454,
+                "name": "Quicksilver Reload",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/quicksilver_reload.png",
+                "matches": 1546,
+                "avg_buy_time_min": 12.5,
+                "imbue": "imbue_active",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1672893796,
+            "name": "Grit",
+            "category": "vitality",
+            "tier": 1,
+            "cost": 800,
+            "matches": 585,
+            "wins": 308,
+            "win_rate": 0.5265,
+            "wilson_lb": 0.486,
+            "score": 0.0042,
+            "wr_delta_pp": 4.47,
+            "avg_buy_time_s": 468.4,
+            "phase": "early",
+            "avg_sell_time_s": 887.7,
+            "is_active": true,
+            "cooldown_s": 60.0,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3647584222,
+            "name": "Split Shot",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1313,
+            "wins": 662,
+            "win_rate": 0.5042,
+            "wilson_lb": 0.4772,
+            "score": -0.0047,
+            "wr_delta_pp": 2.24,
+            "avg_buy_time_s": 928.8,
+            "phase": "mid",
+            "avg_sell_time_s": 2410.4,
+            "is_active": true,
+            "cooldown_s": 27.0,
+            "imbue": null,
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2739107182,
+            "name": "Burst Fire",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1844,
+            "wins": 919,
+            "win_rate": 0.4984,
+            "wilson_lb": 0.4756,
+            "score": -0.0063,
+            "wr_delta_pp": 1.65,
+            "avg_buy_time_s": 1028.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2775.0,
+            "is_active": false,
+            "cooldown_s": 9.0,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 668299740,
+                "name": "Rapid Rounds",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/rapid_rounds.png",
+                "matches": 1693,
+                "avg_buy_time_min": 8.9,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2971868509,
+            "name": "Bullet Resist Shredder",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 858,
+            "wins": 434,
+            "win_rate": 0.5058,
+            "wilson_lb": 0.4724,
+            "score": -0.0094,
+            "wr_delta_pp": 2.4,
+            "avg_buy_time_s": 808.3,
+            "phase": "mid",
+            "avg_sell_time_s": 2416.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1235347618,
+            "name": "Battle Vest",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 506,
+            "wins": 261,
+            "win_rate": 0.5158,
+            "wilson_lb": 0.4723,
+            "score": -0.0095,
+            "wr_delta_pp": 3.4,
+            "avg_buy_time_s": 568.2,
+            "phase": "early",
+            "avg_sell_time_s": 2215.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 334300056,
+            "name": "Stamina Mastery",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 997,
+            "wins": 501,
+            "win_rate": 0.5025,
+            "wilson_lb": 0.4715,
+            "score": -0.0103,
+            "wr_delta_pp": 2.07,
+            "avg_buy_time_s": 1287.1,
+            "phase": "mid",
+            "avg_sell_time_s": 2250.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/extra_stamina.png",
+                "matches": 890,
+                "avg_buy_time_min": 14.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1342610602,
+            "name": "Close Quarters",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 1735,
+            "wins": 851,
+            "win_rate": 0.4905,
+            "wilson_lb": 0.467,
+            "score": -0.0148,
+            "wr_delta_pp": 0.87,
+            "avg_buy_time_s": 182.1,
+            "phase": "early",
+            "avg_sell_time_s": 1533.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 7409189,
+            "name": "Improved Spirit",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1097,
+            "wins": 533,
+            "win_rate": 0.4859,
+            "wilson_lb": 0.4564,
+            "score": -0.0254,
+            "wr_delta_pp": 0.4,
+            "avg_buy_time_s": 599.8,
+            "phase": "early",
+            "avg_sell_time_s": 2134.9,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_spirit.png",
+                "matches": 1308,
+                "avg_buy_time_min": 5.0,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 499683006,
+            "name": "Bullet Lifesteal",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1008,
+            "wins": 463,
+            "win_rate": 0.4593,
+            "wilson_lb": 0.4288,
+            "score": -0.0531,
+            "wr_delta_pp": -2.25,
+            "avg_buy_time_s": 1083.1,
+            "phase": "mid",
+            "avg_sell_time_s": 1754.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          }
+        ]
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "high_mmr": {
+      "candidate_count": 0,
+      "min_matches_filter": 300,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "ascendant_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 100,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "eternus_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 30,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    }
+  },
+  "ability_orders": {
+    "all_mmr": {
+      "total_records": 1,
+      "total_matches": 85,
+      "ability_priority": [
+        {
+          "ability_id": 3428732129,
+          "name": "Lethal Venom",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 1469918191,
+          "name": "Slither",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 1594727071,
+          "name": "Petrifying Bola",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 645773760,
+          "name": "Screwjab Dagger",
+          "avg_ap_all_players": 3.0,
+          "avg_ap_winners": 3.0,
+          "winner_premium_ap": 0.0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "high_mmr": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 645773760,
+          "name": "Screwjab Dagger",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3428732129,
+          "name": "Lethal Venom",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1469918191,
+          "name": "Slither",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1594727071,
+          "name": "Petrifying Bola",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "ascendant_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 645773760,
+          "name": "Screwjab Dagger",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3428732129,
+          "name": "Lethal Venom",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1469918191,
+          "name": "Slither",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1594727071,
+          "name": "Petrifying Bola",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "eternus_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 645773760,
+          "name": "Screwjab Dagger",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3428732129,
+          "name": "Lethal Venom",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1469918191,
+          "name": "Slither",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1594727071,
+          "name": "Petrifying Bola",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    }
+  },
+  "provenance": {
+    "data_source": "api.deadlock-api.com",
+    "endpoints_used": [
+      "/v1/analytics/hero-stats",
+      "/v1/analytics/item-stats",
+      "/v1/analytics/item-permutation-stats?comb_size=2",
+      "/v1/analytics/hero-build-stats/{hero_id}",
+      "/v1/analytics/ability-order-stats",
+      "/v1/builds (per-build details)"
+    ],
+    "asset_sources": [
+      "https://api.deadlock-api.com/v1/assets/heroes",
+      "https://api.deadlock-api.com/v1/assets/items"
+    ]
+  },
+  "scoring_mode": "wilson"
+}

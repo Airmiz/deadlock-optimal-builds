@@ -1,0 +1,1105 @@
+{
+  "spec_version": "1.3.0",
+  "hero": {
+    "id": 67,
+    "name": "Paige",
+    "abilities": [
+      {
+        "id": 604448162,
+        "name": "Bookwyrm"
+      },
+      {
+        "id": 3553292912,
+        "name": "Plot Armor"
+      },
+      {
+        "id": 3054993162,
+        "name": "Captivating Read"
+      },
+      {
+        "id": 1841901343,
+        "name": "Rallying Charge"
+      }
+    ]
+  },
+  "patch": {
+    "id": "patch_20261126",
+    "title": "11-26-2026 Update",
+    "min_unix_timestamp": 1795713708
+  },
+  "mmr_slices": {
+    "all_mmr": {
+      "filter": "no MMR filter",
+      "baseline_win_rate": 0.5648,
+      "matches": 3279,
+      "players": null
+    },
+    "high_mmr": {
+      "filter": "min_average_badge=91 (Phantom+)",
+      "baseline_win_rate": 0.4632,
+      "matches": 95,
+      "players": null
+    },
+    "ascendant_plus": {
+      "filter": "min_average_badge=101 (Ascendant+)",
+      "baseline_win_rate": 0.3636,
+      "matches": 22,
+      "players": null
+    },
+    "eternus_plus": {
+      "filter": "min_average_badge=111 (Eternus+)",
+      "baseline_win_rate": 1.0,
+      "matches": 1,
+      "players": null
+    }
+  },
+  "category_bands": {
+    "source": "hero",
+    "inventories": 2287,
+    "mean": {
+      "weapon": 0.98,
+      "vitality": 3.37,
+      "spirit": 7.65
+    },
+    "bounds": {
+      "weapon": [
+        0,
+        3
+      ],
+      "vitality": [
+        1,
+        5
+      ],
+      "spirit": [
+        6,
+        10
+      ]
+    }
+  },
+  "recommended": {
+    "items": {
+      "method": "synergy_ilp",
+      "mmr_slice": "high_mmr",
+      "total_cost": 0,
+      "phases": {
+        "early": [],
+        "mid": [],
+        "late": []
+      }
+    },
+    "abilities": {
+      "ap_priority_order": [
+        "Bookwyrm",
+        "Plot Armor",
+        "Captivating Read",
+        "Rallying Charge"
+      ],
+      "best_full_order": null,
+      "best_opener_first4": null
+    }
+  },
+  "items": {
+    "all_mmr": {
+      "candidate_count": 19,
+      "min_matches_filter": 500,
+      "wilson_greedy": {
+        "picks": [
+          {
+            "item_id": 343572757,
+            "name": "Spirit Burn",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1187,
+            "wins": 742,
+            "win_rate": 0.6251,
+            "wilson_lb": 0.5972,
+            "score": 0.0324,
+            "wr_delta_pp": 6.03,
+            "avg_buy_time_s": 1982.4,
+            "phase": "late",
+            "avg_sell_time_s": 1986.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2717651715,
+            "name": "Superior Duration",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2162,
+            "wins": 1286,
+            "win_rate": 0.5948,
+            "wilson_lb": 0.574,
+            "score": 0.0092,
+            "wr_delta_pp": 3.0,
+            "avg_buy_time_s": 1541.0,
+            "phase": "late",
+            "avg_sell_time_s": 2174.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 2951612397,
+                "name": "Duration Extender",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/duration_extender.png",
+                "matches": 1898,
+                "avg_buy_time_min": 20.0,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3005970438,
+            "name": "Escalating Exposure",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 945,
+            "wins": 570,
+            "win_rate": 0.6032,
+            "wilson_lb": 0.5716,
+            "score": 0.0068,
+            "wr_delta_pp": 3.84,
+            "avg_buy_time_s": 2008.0,
+            "phase": "late",
+            "avg_sell_time_s": 2014.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 2081037738,
+                "name": "Mystic Vulnerability",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_vulnerability.png",
+                "matches": 1171,
+                "avg_buy_time_min": 22.9,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 380806748,
+            "name": "Compress Cooldown",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 2532,
+            "wins": 1483,
+            "win_rate": 0.5857,
+            "wilson_lb": 0.5664,
+            "score": 0.0016,
+            "wr_delta_pp": 2.09,
+            "avg_buy_time_s": 1069.7,
+            "phase": "mid",
+            "avg_sell_time_s": 1339.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": "imbue_modifier_value",
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1814,
+            "wins": 1068,
+            "win_rate": 0.5888,
+            "wilson_lb": 0.5659,
+            "score": 0.0011,
+            "wr_delta_pp": 2.39,
+            "avg_buy_time_s": 1853.8,
+            "phase": "late",
+            "avg_sell_time_s": 1962.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_spirit.png",
+                "matches": 2559,
+                "avg_buy_time_min": 10.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_spirit.png",
+                "matches": 2620,
+                "avg_buy_time_min": 16.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3074274290,
+            "name": "Trophy Collector",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1873,
+            "wins": 1098,
+            "win_rate": 0.5862,
+            "wilson_lb": 0.5638,
+            "score": -0.001,
+            "wr_delta_pp": 2.14,
+            "avg_buy_time_s": 578.9,
+            "phase": "early",
+            "avg_sell_time_s": 2474.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 3399065363,
+                "name": "Sprint Boots",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/sprint_boots.png",
+                "matches": 1527,
+                "avg_buy_time_min": 8.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 754480263,
+            "name": "Mystic Expansion",
+            "category": "spirit",
+            "tier": 1,
+            "cost": 800,
+            "matches": 3449,
+            "wins": 1996,
+            "win_rate": 0.5787,
+            "wilson_lb": 0.5622,
+            "score": -0.0026,
+            "wr_delta_pp": 1.39,
+            "avg_buy_time_s": 657.7,
+            "phase": "early",
+            "avg_sell_time_s": 1448.3,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": "imbue_modifier_value",
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3776945997,
+            "name": "Extra Charge",
+            "category": "spirit",
+            "tier": 1,
+            "cost": 800,
+            "matches": 3239,
+            "wins": 1869,
+            "win_rate": 0.577,
+            "wilson_lb": 0.5599,
+            "score": -0.0049,
+            "wr_delta_pp": 1.22,
+            "avg_buy_time_s": 487.7,
+            "phase": "early",
+            "avg_sell_time_s": 1284.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 857669956,
+            "name": "Guardian Ward",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 2664,
+            "wins": 1540,
+            "win_rate": 0.5781,
+            "wilson_lb": 0.5592,
+            "score": -0.0056,
+            "wr_delta_pp": 1.33,
+            "avg_buy_time_s": 543.0,
+            "phase": "early",
+            "avg_sell_time_s": 1710.9,
+            "is_active": true,
+            "cooldown_s": 60.0,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 1672893796,
+                "name": "Grit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/grit.png",
+                "matches": 2470,
+                "avg_buy_time_min": 6.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3077079169,
+            "name": "High-Velocity Rounds",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 2872,
+            "wins": 1648,
+            "win_rate": 0.5738,
+            "wilson_lb": 0.5556,
+            "score": -0.0092,
+            "wr_delta_pp": 0.9,
+            "avg_buy_time_s": 129.4,
+            "phase": "early",
+            "avg_sell_time_s": 493.3,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1150006784,
+            "name": "Arcane Surge",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1140,
+            "wins": 659,
+            "win_rate": 0.5781,
+            "wilson_lb": 0.5492,
+            "score": -0.0156,
+            "wr_delta_pp": 1.33,
+            "avg_buy_time_s": 950.3,
+            "phase": "mid",
+            "avg_sell_time_s": 2411.3,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/extra_stamina.png",
+                "matches": 1210,
+                "avg_buy_time_min": 12.5,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1998374645,
+            "name": "Mystic Burst",
+            "category": "spirit",
+            "tier": 1,
+            "cost": 800,
+            "matches": 755,
+            "wins": 441,
+            "win_rate": 0.5841,
+            "wilson_lb": 0.5486,
+            "score": -0.0162,
+            "wr_delta_pp": 1.93,
+            "avg_buy_time_s": 832.9,
+            "phase": "mid",
+            "avg_sell_time_s": 1392.4,
+            "is_active": false,
+            "cooldown_s": 14.0,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          }
+        ]
+      },
+      "synergy_ilp": {
+        "picks": [
+          {
+            "item_id": 343572757,
+            "name": "Spirit Burn",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1187,
+            "wins": 742,
+            "win_rate": 0.6251,
+            "wilson_lb": 0.5972,
+            "score": 0.0324,
+            "wr_delta_pp": 6.03,
+            "avg_buy_time_s": 1982.4,
+            "phase": "late",
+            "avg_sell_time_s": 1986.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2717651715,
+            "name": "Superior Duration",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2162,
+            "wins": 1286,
+            "win_rate": 0.5948,
+            "wilson_lb": 0.574,
+            "score": 0.0092,
+            "wr_delta_pp": 3.0,
+            "avg_buy_time_s": 1541.0,
+            "phase": "late",
+            "avg_sell_time_s": 2174.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 2951612397,
+                "name": "Duration Extender",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/duration_extender.png",
+                "matches": 1898,
+                "avg_buy_time_min": 20.0,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3005970438,
+            "name": "Escalating Exposure",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 945,
+            "wins": 570,
+            "win_rate": 0.6032,
+            "wilson_lb": 0.5716,
+            "score": 0.0068,
+            "wr_delta_pp": 3.84,
+            "avg_buy_time_s": 2008.0,
+            "phase": "late",
+            "avg_sell_time_s": 2014.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 2081037738,
+                "name": "Mystic Vulnerability",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_vulnerability.png",
+                "matches": 1171,
+                "avg_buy_time_min": 22.9,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 380806748,
+            "name": "Compress Cooldown",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 2532,
+            "wins": 1483,
+            "win_rate": 0.5857,
+            "wilson_lb": 0.5664,
+            "score": 0.0016,
+            "wr_delta_pp": 2.09,
+            "avg_buy_time_s": 1069.7,
+            "phase": "mid",
+            "avg_sell_time_s": 1339.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": "imbue_modifier_value",
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1814,
+            "wins": 1068,
+            "win_rate": 0.5888,
+            "wilson_lb": 0.5659,
+            "score": 0.0011,
+            "wr_delta_pp": 2.39,
+            "avg_buy_time_s": 1853.8,
+            "phase": "late",
+            "avg_sell_time_s": 1962.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_spirit.png",
+                "matches": 2559,
+                "avg_buy_time_min": 10.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_spirit.png",
+                "matches": 2620,
+                "avg_buy_time_min": 16.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3074274290,
+            "name": "Trophy Collector",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1873,
+            "wins": 1098,
+            "win_rate": 0.5862,
+            "wilson_lb": 0.5638,
+            "score": -0.001,
+            "wr_delta_pp": 2.14,
+            "avg_buy_time_s": 578.9,
+            "phase": "early",
+            "avg_sell_time_s": 2474.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 3399065363,
+                "name": "Sprint Boots",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/sprint_boots.png",
+                "matches": 1527,
+                "avg_buy_time_min": 8.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 754480263,
+            "name": "Mystic Expansion",
+            "category": "spirit",
+            "tier": 1,
+            "cost": 800,
+            "matches": 3449,
+            "wins": 1996,
+            "win_rate": 0.5787,
+            "wilson_lb": 0.5622,
+            "score": -0.0026,
+            "wr_delta_pp": 1.39,
+            "avg_buy_time_s": 657.7,
+            "phase": "early",
+            "avg_sell_time_s": 1448.3,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": "imbue_modifier_value",
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3776945997,
+            "name": "Extra Charge",
+            "category": "spirit",
+            "tier": 1,
+            "cost": 800,
+            "matches": 3239,
+            "wins": 1869,
+            "win_rate": 0.577,
+            "wilson_lb": 0.5599,
+            "score": -0.0049,
+            "wr_delta_pp": 1.22,
+            "avg_buy_time_s": 487.7,
+            "phase": "early",
+            "avg_sell_time_s": 1284.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 857669956,
+            "name": "Guardian Ward",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 2664,
+            "wins": 1540,
+            "win_rate": 0.5781,
+            "wilson_lb": 0.5592,
+            "score": -0.0056,
+            "wr_delta_pp": 1.33,
+            "avg_buy_time_s": 543.0,
+            "phase": "early",
+            "avg_sell_time_s": 1710.9,
+            "is_active": true,
+            "cooldown_s": 60.0,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 1672893796,
+                "name": "Grit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/grit.png",
+                "matches": 2470,
+                "avg_buy_time_min": 6.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3077079169,
+            "name": "High-Velocity Rounds",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 2872,
+            "wins": 1648,
+            "win_rate": 0.5738,
+            "wilson_lb": 0.5556,
+            "score": -0.0092,
+            "wr_delta_pp": 0.9,
+            "avg_buy_time_s": 129.4,
+            "phase": "early",
+            "avg_sell_time_s": 493.3,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1150006784,
+            "name": "Arcane Surge",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1140,
+            "wins": 659,
+            "win_rate": 0.5781,
+            "wilson_lb": 0.5492,
+            "score": -0.0156,
+            "wr_delta_pp": 1.33,
+            "avg_buy_time_s": 950.3,
+            "phase": "mid",
+            "avg_sell_time_s": 2411.3,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/extra_stamina.png",
+                "matches": 1210,
+                "avg_buy_time_min": 12.5,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2603935618,
+            "name": "Healbane",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1162,
+            "wins": 668,
+            "win_rate": 0.5749,
+            "wilson_lb": 0.5462,
+            "score": -0.0186,
+            "wr_delta_pp": 1.01,
+            "avg_buy_time_s": 1052.5,
+            "phase": "mid",
+            "avg_sell_time_s": 2350.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          }
+        ]
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "high_mmr": {
+      "candidate_count": 0,
+      "min_matches_filter": 300,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "ascendant_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 100,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "eternus_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 30,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    }
+  },
+  "ability_orders": {
+    "all_mmr": {
+      "total_records": 6,
+      "total_matches": 649,
+      "ability_priority": [
+        {
+          "ability_id": 3553292912,
+          "name": "Plot Armor",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 3054993162,
+          "name": "Captivating Read",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 604448162,
+          "name": "Bookwyrm",
+          "avg_ap_all_players": 3.9,
+          "avg_ap_winners": 3.9,
+          "winner_premium_ap": -0.0
+        },
+        {
+          "ability_id": 1841901343,
+          "name": "Rallying Charge",
+          "avg_ap_all_players": 3.21,
+          "avg_ap_winners": 3.29,
+          "winner_premium_ap": 0.08
+        }
+      ],
+      "best_full_orders": [
+        {
+          "sequence_ids": [
+            3553292912,
+            3553292912,
+            3054993162,
+            604448162,
+            604448162,
+            604448162,
+            1841901343,
+            604448162,
+            3054993162,
+            3054993162,
+            1841901343,
+            3553292912,
+            3553292912,
+            3054993162,
+            1841901343
+          ],
+          "sequence_names": [
+            "Plot Armor",
+            "Plot Armor",
+            "Captivating Read",
+            "Bookwyrm",
+            "Bookwyrm",
+            "Bookwyrm",
+            "Rallying Charge",
+            "Bookwyrm",
+            "Captivating Read",
+            "Captivating Read",
+            "Rallying Charge",
+            "Plot Armor",
+            "Plot Armor",
+            "Captivating Read",
+            "Rallying Charge"
+          ],
+          "wins": 163,
+          "losses": 109,
+          "matches": 272,
+          "players": 257,
+          "win_rate": 0.5993
+        }
+      ],
+      "best_openers_first4": [
+        {
+          "sequence_names": [
+            "Plot Armor",
+            "Plot Armor",
+            "Captivating Read",
+            "Bookwyrm"
+          ],
+          "wins": 357,
+          "matches": 597,
+          "win_rate": 0.598
+        }
+      ]
+    },
+    "high_mmr": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 604448162,
+          "name": "Bookwyrm",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3553292912,
+          "name": "Plot Armor",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3054993162,
+          "name": "Captivating Read",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1841901343,
+          "name": "Rallying Charge",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "ascendant_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 604448162,
+          "name": "Bookwyrm",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3553292912,
+          "name": "Plot Armor",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3054993162,
+          "name": "Captivating Read",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1841901343,
+          "name": "Rallying Charge",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "eternus_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 604448162,
+          "name": "Bookwyrm",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3553292912,
+          "name": "Plot Armor",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3054993162,
+          "name": "Captivating Read",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1841901343,
+          "name": "Rallying Charge",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    }
+  },
+  "provenance": {
+    "data_source": "api.deadlock-api.com",
+    "endpoints_used": [
+      "/v1/analytics/hero-stats",
+      "/v1/analytics/item-stats",
+      "/v1/analytics/item-permutation-stats?comb_size=2",
+      "/v1/analytics/hero-build-stats/{hero_id}",
+      "/v1/analytics/ability-order-stats",
+      "/v1/builds (per-build details)"
+    ],
+    "asset_sources": [
+      "https://api.deadlock-api.com/v1/assets/heroes",
+      "https://api.deadlock-api.com/v1/assets/items"
+    ]
+  },
+  "scoring_mode": "wilson"
+}

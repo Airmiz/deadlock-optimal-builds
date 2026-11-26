@@ -1,0 +1,993 @@
+{
+  "spec_version": "1.3.0",
+  "hero": {
+    "id": 84,
+    "name": "Rat King",
+    "abilities": [
+      {
+        "id": 3002308408,
+        "name": "Scrap Grenade"
+      },
+      {
+        "id": 3681399397,
+        "name": "Rat Swarm"
+      },
+      {
+        "id": 690412829,
+        "name": "Royal Pestments"
+      },
+      {
+        "id": 1627989937,
+        "name": "Rule, Ratannia!"
+      }
+    ]
+  },
+  "patch": {
+    "id": "patch_20261126",
+    "title": "11-26-2026 Update",
+    "min_unix_timestamp": 1795713708
+  },
+  "mmr_slices": {
+    "all_mmr": {
+      "filter": "no MMR filter",
+      "baseline_win_rate": 0.5431,
+      "matches": 3975,
+      "players": null
+    },
+    "high_mmr": {
+      "filter": "min_average_badge=91 (Phantom+)",
+      "baseline_win_rate": 0.4783,
+      "matches": 46,
+      "players": null
+    },
+    "ascendant_plus": {
+      "filter": "min_average_badge=101 (Ascendant+)",
+      "baseline_win_rate": 0.3333,
+      "matches": 9,
+      "players": null
+    },
+    "eternus_plus": {
+      "filter": "min_average_badge=111 (Eternus+)",
+      "baseline_win_rate": 1.0,
+      "matches": 2,
+      "players": null
+    }
+  },
+  "category_bands": {
+    "source": "hero",
+    "inventories": 2916,
+    "mean": {
+      "weapon": 5.63,
+      "vitality": 4.94,
+      "spirit": 1.44
+    },
+    "bounds": {
+      "weapon": [
+        4,
+        8
+      ],
+      "vitality": [
+        3,
+        7
+      ],
+      "spirit": [
+        0,
+        3
+      ]
+    }
+  },
+  "recommended": {
+    "items": {
+      "method": "synergy_ilp",
+      "mmr_slice": "high_mmr",
+      "total_cost": 0,
+      "phases": {
+        "early": [],
+        "mid": [],
+        "late": []
+      }
+    },
+    "abilities": {
+      "ap_priority_order": [
+        "Scrap Grenade",
+        "Rat Swarm",
+        "Royal Pestments",
+        "Rule, Ratannia!"
+      ],
+      "best_full_order": null,
+      "best_opener_first4": null
+    }
+  },
+  "items": {
+    "all_mmr": {
+      "candidate_count": 22,
+      "min_matches_filter": 500,
+      "wilson_greedy": {
+        "picks": [
+          {
+            "item_id": 339443430,
+            "name": "Frenzy",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 538,
+            "wins": 334,
+            "win_rate": 0.6208,
+            "wilson_lb": 0.5791,
+            "score": 0.036,
+            "wr_delta_pp": 7.77,
+            "avg_buy_time_s": 2213.7,
+            "phase": "late",
+            "avg_sell_time_s": 1897.0,
+            "is_active": false,
+            "cooldown_s": 16.0,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1282141666,
+            "name": "Siphon Bullets",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1757,
+            "wins": 1049,
+            "win_rate": 0.597,
+            "wilson_lb": 0.5739,
+            "score": 0.0308,
+            "wr_delta_pp": 5.39,
+            "avg_buy_time_s": 1867.7,
+            "phase": "late",
+            "avg_sell_time_s": 1991.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3028234315,
+            "name": "Witchmail",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 830,
+            "wins": 495,
+            "win_rate": 0.5964,
+            "wilson_lb": 0.5626,
+            "score": 0.0195,
+            "wr_delta_pp": 5.32,
+            "avg_buy_time_s": 2058.8,
+            "phase": "late",
+            "avg_sell_time_s": 2113.6,
+            "is_active": false,
+            "cooldown_s": 1.0,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2221211450,
+            "name": "Spellslinger",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 796,
+            "wins": 474,
+            "win_rate": 0.5955,
+            "wilson_lb": 0.561,
+            "score": 0.0179,
+            "wr_delta_pp": 5.23,
+            "avg_buy_time_s": 2012.3,
+            "phase": "late",
+            "avg_sell_time_s": 2111.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1193964439,
+            "name": "Greater Expansion",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 635,
+            "wins": 377,
+            "win_rate": 0.5937,
+            "wilson_lb": 0.555,
+            "score": 0.0119,
+            "wr_delta_pp": 5.06,
+            "avg_buy_time_s": 1349.1,
+            "phase": "mid",
+            "avg_sell_time_s": 2083.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_reach.png",
+                "matches": 2073,
+                "avg_buy_time_min": 13.1,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 915014646,
+            "name": "Transcendent Cooldown",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1169,
+            "wins": 664,
+            "win_rate": 0.568,
+            "wilson_lb": 0.5394,
+            "score": -0.0037,
+            "wr_delta_pp": 2.49,
+            "avg_buy_time_s": 1960.7,
+            "phase": "late",
+            "avg_sell_time_s": 1964.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_cooldown.png",
+                "matches": 1497,
+                "avg_buy_time_min": 19.4,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 3261353684,
+                "name": "Superior Cooldown",
+                "tier": 3,
+                "cost": 3200,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/superior_cooldown.png",
+                "matches": 1903,
+                "avg_buy_time_min": 24.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1342610602,
+            "name": "Close Quarters",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 932,
+            "wins": 528,
+            "win_rate": 0.5665,
+            "wilson_lb": 0.5345,
+            "score": -0.0086,
+            "wr_delta_pp": 2.34,
+            "avg_buy_time_s": 373.7,
+            "phase": "early",
+            "avg_sell_time_s": 1634.3,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3585132399,
+            "name": "Fortitude",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 3848,
+            "wins": 2117,
+            "win_rate": 0.5502,
+            "wilson_lb": 0.5344,
+            "score": -0.0087,
+            "wr_delta_pp": 0.7,
+            "avg_buy_time_s": 935.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2655.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 3633614685,
+                "name": "Extra Health",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/extra_health.png",
+                "matches": 4032,
+                "avg_buy_time_min": 6.9,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1414319208,
+            "name": "Berserker",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 3152,
+            "wins": 1738,
+            "win_rate": 0.5514,
+            "wilson_lb": 0.534,
+            "score": -0.0092,
+            "wr_delta_pp": 0.83,
+            "avg_buy_time_s": 1369.8,
+            "phase": "mid",
+            "avg_sell_time_s": 1988.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3077079169,
+            "name": "High-Velocity Rounds",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 3573,
+            "wins": 1966,
+            "win_rate": 0.5502,
+            "wilson_lb": 0.5339,
+            "score": -0.0093,
+            "wr_delta_pp": 0.71,
+            "avg_buy_time_s": 220.4,
+            "phase": "early",
+            "avg_sell_time_s": 511.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1250307611,
+            "name": "Juggernaut",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1890,
+            "wins": 1040,
+            "win_rate": 0.5503,
+            "wilson_lb": 0.5278,
+            "score": -0.0154,
+            "wr_delta_pp": 0.71,
+            "avg_buy_time_s": 1846.9,
+            "phase": "late",
+            "avg_sell_time_s": 2002.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 3399065363,
+                "name": "Sprint Boots",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/sprint_boots.png",
+                "matches": 2671,
+                "avg_buy_time_min": 9.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 2447176615,
+                "name": "Enduring Speed",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/enduring_speed.png",
+                "matches": 3273,
+                "avg_buy_time_min": 15.0,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2163598980,
+            "name": "Spirit Resilience",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1964,
+            "wins": 1079,
+            "win_rate": 0.5494,
+            "wilson_lb": 0.5273,
+            "score": -0.0158,
+            "wr_delta_pp": 0.62,
+            "avg_buy_time_s": 1559.9,
+            "phase": "late",
+            "avg_sell_time_s": 2236.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          }
+        ]
+      },
+      "synergy_ilp": {
+        "picks": [
+          {
+            "item_id": 339443430,
+            "name": "Frenzy",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 538,
+            "wins": 334,
+            "win_rate": 0.6208,
+            "wilson_lb": 0.5791,
+            "score": 0.036,
+            "wr_delta_pp": 7.77,
+            "avg_buy_time_s": 2213.7,
+            "phase": "late",
+            "avg_sell_time_s": 1897.0,
+            "is_active": false,
+            "cooldown_s": 16.0,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1282141666,
+            "name": "Siphon Bullets",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1757,
+            "wins": 1049,
+            "win_rate": 0.597,
+            "wilson_lb": 0.5739,
+            "score": 0.0308,
+            "wr_delta_pp": 5.39,
+            "avg_buy_time_s": 1867.7,
+            "phase": "late",
+            "avg_sell_time_s": 1991.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3028234315,
+            "name": "Witchmail",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 830,
+            "wins": 495,
+            "win_rate": 0.5964,
+            "wilson_lb": 0.5626,
+            "score": 0.0195,
+            "wr_delta_pp": 5.32,
+            "avg_buy_time_s": 2058.8,
+            "phase": "late",
+            "avg_sell_time_s": 2113.6,
+            "is_active": false,
+            "cooldown_s": 1.0,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2221211450,
+            "name": "Spellslinger",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 796,
+            "wins": 474,
+            "win_rate": 0.5955,
+            "wilson_lb": 0.561,
+            "score": 0.0179,
+            "wr_delta_pp": 5.23,
+            "avg_buy_time_s": 2012.3,
+            "phase": "late",
+            "avg_sell_time_s": 2111.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1193964439,
+            "name": "Greater Expansion",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 635,
+            "wins": 377,
+            "win_rate": 0.5937,
+            "wilson_lb": 0.555,
+            "score": 0.0119,
+            "wr_delta_pp": 5.06,
+            "avg_buy_time_s": 1349.1,
+            "phase": "mid",
+            "avg_sell_time_s": 2083.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_reach.png",
+                "matches": 2073,
+                "avg_buy_time_min": 13.1,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 915014646,
+            "name": "Transcendent Cooldown",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1169,
+            "wins": 664,
+            "win_rate": 0.568,
+            "wilson_lb": 0.5394,
+            "score": -0.0037,
+            "wr_delta_pp": 2.49,
+            "avg_buy_time_s": 1960.7,
+            "phase": "late",
+            "avg_sell_time_s": 1964.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_cooldown.png",
+                "matches": 1497,
+                "avg_buy_time_min": 19.4,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 3261353684,
+                "name": "Superior Cooldown",
+                "tier": 3,
+                "cost": 3200,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/superior_cooldown.png",
+                "matches": 1903,
+                "avg_buy_time_min": 24.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3585132399,
+            "name": "Fortitude",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 3848,
+            "wins": 2117,
+            "win_rate": 0.5502,
+            "wilson_lb": 0.5344,
+            "score": -0.0087,
+            "wr_delta_pp": 0.7,
+            "avg_buy_time_s": 935.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2655.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 3633614685,
+                "name": "Extra Health",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/extra_health.png",
+                "matches": 4032,
+                "avg_buy_time_min": 6.9,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1414319208,
+            "name": "Berserker",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 3152,
+            "wins": 1738,
+            "win_rate": 0.5514,
+            "wilson_lb": 0.534,
+            "score": -0.0092,
+            "wr_delta_pp": 0.83,
+            "avg_buy_time_s": 1369.8,
+            "phase": "mid",
+            "avg_sell_time_s": 1988.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3077079169,
+            "name": "High-Velocity Rounds",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 3573,
+            "wins": 1966,
+            "win_rate": 0.5502,
+            "wilson_lb": 0.5339,
+            "score": -0.0093,
+            "wr_delta_pp": 0.71,
+            "avg_buy_time_s": 220.4,
+            "phase": "early",
+            "avg_sell_time_s": 511.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2163598980,
+            "name": "Spirit Resilience",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1964,
+            "wins": 1079,
+            "win_rate": 0.5494,
+            "wilson_lb": 0.5273,
+            "score": -0.0158,
+            "wr_delta_pp": 0.62,
+            "avg_buy_time_s": 1559.9,
+            "phase": "late",
+            "avg_sell_time_s": 2236.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 3403085434,
+            "name": "Fleetfoot",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1729,
+            "wins": 951,
+            "win_rate": 0.55,
+            "wilson_lb": 0.5265,
+            "score": -0.0167,
+            "wr_delta_pp": 0.69,
+            "avg_buy_time_s": 992.0,
+            "phase": "mid",
+            "avg_sell_time_s": 2301.9,
+            "is_active": true,
+            "cooldown_s": 16.0,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1009965641,
+            "name": "Monster Rounds",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 3052,
+            "wins": 1647,
+            "win_rate": 0.5396,
+            "wilson_lb": 0.5219,
+            "score": -0.0212,
+            "wr_delta_pp": -0.35,
+            "avg_buy_time_s": 255.6,
+            "phase": "early",
+            "avg_sell_time_s": 1007.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          }
+        ]
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "high_mmr": {
+      "candidate_count": 0,
+      "min_matches_filter": 300,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "ascendant_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 100,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "eternus_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 30,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    }
+  },
+  "ability_orders": {
+    "all_mmr": {
+      "total_records": 11,
+      "total_matches": 881,
+      "ability_priority": [
+        {
+          "ability_id": 690412829,
+          "name": "Royal Pestments",
+          "avg_ap_all_players": 3.87,
+          "avg_ap_winners": 3.89,
+          "winner_premium_ap": 0.02
+        },
+        {
+          "ability_id": 3681399397,
+          "name": "Rat Swarm",
+          "avg_ap_all_players": 3.81,
+          "avg_ap_winners": 3.82,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 1627989937,
+          "name": "Rule, Ratannia!",
+          "avg_ap_all_players": 3.76,
+          "avg_ap_winners": 3.77,
+          "winner_premium_ap": 0.01
+        },
+        {
+          "ability_id": 3002308408,
+          "name": "Scrap Grenade",
+          "avg_ap_all_players": 3.72,
+          "avg_ap_winners": 3.75,
+          "winner_premium_ap": 0.02
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "high_mmr": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 3002308408,
+          "name": "Scrap Grenade",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3681399397,
+          "name": "Rat Swarm",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 690412829,
+          "name": "Royal Pestments",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1627989937,
+          "name": "Rule, Ratannia!",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "ascendant_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 3002308408,
+          "name": "Scrap Grenade",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3681399397,
+          "name": "Rat Swarm",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 690412829,
+          "name": "Royal Pestments",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1627989937,
+          "name": "Rule, Ratannia!",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "eternus_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 3002308408,
+          "name": "Scrap Grenade",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3681399397,
+          "name": "Rat Swarm",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 690412829,
+          "name": "Royal Pestments",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1627989937,
+          "name": "Rule, Ratannia!",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    }
+  },
+  "provenance": {
+    "data_source": "api.deadlock-api.com",
+    "endpoints_used": [
+      "/v1/analytics/hero-stats",
+      "/v1/analytics/item-stats",
+      "/v1/analytics/item-permutation-stats?comb_size=2",
+      "/v1/analytics/hero-build-stats/{hero_id}",
+      "/v1/analytics/ability-order-stats",
+      "/v1/builds (per-build details)"
+    ],
+    "asset_sources": [
+      "https://api.deadlock-api.com/v1/assets/heroes",
+      "https://api.deadlock-api.com/v1/assets/items"
+    ]
+  },
+  "scoring_mode": "wilson"
+}

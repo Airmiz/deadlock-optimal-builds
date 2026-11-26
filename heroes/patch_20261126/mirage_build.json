@@ -1,0 +1,995 @@
+{
+  "spec_version": "1.3.0",
+  "hero": {
+    "id": 52,
+    "name": "Mirage",
+    "abilities": [
+      {
+        "id": 3733594387,
+        "name": "Fire Scarabs"
+      },
+      {
+        "id": 1336069669,
+        "name": "Dust Devil"
+      },
+      {
+        "id": 2221949202,
+        "name": "Djinn's Mark"
+      },
+      {
+        "id": 2604653402,
+        "name": "Traveler"
+      }
+    ]
+  },
+  "patch": {
+    "id": "patch_20261126",
+    "title": "11-26-2026 Update",
+    "min_unix_timestamp": 1795713708
+  },
+  "mmr_slices": {
+    "all_mmr": {
+      "filter": "no MMR filter",
+      "baseline_win_rate": 0.4453,
+      "matches": 1361,
+      "players": null
+    },
+    "high_mmr": {
+      "filter": "min_average_badge=91 (Phantom+)",
+      "baseline_win_rate": 0.5172,
+      "matches": 29,
+      "players": null
+    },
+    "ascendant_plus": {
+      "filter": "min_average_badge=101 (Ascendant+)",
+      "baseline_win_rate": 0.5,
+      "matches": 10,
+      "players": null
+    },
+    "eternus_plus": {
+      "filter": "min_average_badge=111 (Eternus+)",
+      "baseline_win_rate": 0.0,
+      "matches": 1,
+      "players": null
+    }
+  },
+  "category_bands": {
+    "source": "hero",
+    "inventories": 961,
+    "mean": {
+      "weapon": 4.93,
+      "vitality": 2.84,
+      "spirit": 4.23
+    },
+    "bounds": {
+      "weapon": [
+        3,
+        7
+      ],
+      "vitality": [
+        1,
+        5
+      ],
+      "spirit": [
+        2,
+        6
+      ]
+    }
+  },
+  "recommended": {
+    "items": {
+      "method": "synergy_ilp",
+      "mmr_slice": "high_mmr",
+      "total_cost": 0,
+      "phases": {
+        "early": [],
+        "mid": [],
+        "late": []
+      }
+    },
+    "abilities": {
+      "ap_priority_order": [
+        "Fire Scarabs",
+        "Dust Devil",
+        "Djinn's Mark",
+        "Traveler"
+      ],
+      "best_full_order": null,
+      "best_opener_first4": null
+    }
+  },
+  "items": {
+    "all_mmr": {
+      "candidate_count": 12,
+      "min_matches_filter": 500,
+      "wilson_greedy": {
+        "picks": [
+          {
+            "item_id": 3005970438,
+            "name": "Escalating Exposure",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1114,
+            "wins": 523,
+            "win_rate": 0.4695,
+            "wilson_lb": 0.4403,
+            "score": -0.0049,
+            "wr_delta_pp": 2.42,
+            "avg_buy_time_s": 1679.6,
+            "phase": "late",
+            "avg_sell_time_s": 1898.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 2081037738,
+                "name": "Mystic Vulnerability",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_vulnerability.png",
+                "matches": 1374,
+                "avg_buy_time_min": 14.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2480592370,
+            "name": "Ricochet",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1354,
+            "wins": 627,
+            "win_rate": 0.4631,
+            "wilson_lb": 0.4367,
+            "score": -0.0086,
+            "wr_delta_pp": 1.78,
+            "avg_buy_time_s": 1480.4,
+            "phase": "mid",
+            "avg_sell_time_s": 1805.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 915014646,
+            "name": "Transcendent Cooldown",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 538,
+            "wins": 255,
+            "win_rate": 0.474,
+            "wilson_lb": 0.4321,
+            "score": -0.0131,
+            "wr_delta_pp": 2.87,
+            "avg_buy_time_s": 2026.5,
+            "phase": "late",
+            "avg_sell_time_s": 2775.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_cooldown.png",
+                "matches": 1240,
+                "avg_buy_time_min": 12.3,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 3261353684,
+                "name": "Superior Cooldown",
+                "tier": 3,
+                "cost": 3200,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/superior_cooldown.png",
+                "matches": 1207,
+                "avg_buy_time_min": 24.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3696726732,
+            "name": "Toxic Bullets",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1435,
+            "wins": 645,
+            "win_rate": 0.4495,
+            "wilson_lb": 0.4239,
+            "score": -0.0214,
+            "wr_delta_pp": 0.42,
+            "avg_buy_time_s": 1200.0,
+            "phase": "mid",
+            "avg_sell_time_s": 2636.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1439347412,
+            "name": "Mystic Regeneration",
+            "category": "spirit",
+            "tier": 1,
+            "cost": 800,
+            "matches": 1545,
+            "wins": 686,
+            "win_rate": 0.444,
+            "wilson_lb": 0.4194,
+            "score": -0.0259,
+            "wr_delta_pp": -0.12,
+            "avg_buy_time_s": 147.0,
+            "phase": "early",
+            "avg_sell_time_s": 1739.3,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1925087134,
+            "name": "Suppressor",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 890,
+            "wins": 397,
+            "win_rate": 0.4461,
+            "wilson_lb": 0.4137,
+            "score": -0.0316,
+            "wr_delta_pp": 0.08,
+            "avg_buy_time_s": 502.7,
+            "phase": "early",
+            "avg_sell_time_s": 2379.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2603935618,
+            "name": "Healbane",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1165,
+            "wins": 512,
+            "win_rate": 0.4395,
+            "wilson_lb": 0.4112,
+            "score": -0.034,
+            "wr_delta_pp": -0.58,
+            "avg_buy_time_s": 654.3,
+            "phase": "early",
+            "avg_sell_time_s": 2451.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2356412290,
+            "name": "Titanic Magazine",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1185,
+            "wins": 519,
+            "win_rate": 0.438,
+            "wilson_lb": 0.41,
+            "score": -0.0353,
+            "wr_delta_pp": -0.73,
+            "avg_buy_time_s": 938.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2661.9,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 1548066885,
+                "name": "Extended Magazine",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/basic_magazine.png",
+                "matches": 756,
+                "avg_buy_time_min": 11.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3731635960,
+            "name": "Dispel Magic",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 585,
+            "wins": 258,
+            "win_rate": 0.441,
+            "wilson_lb": 0.4013,
+            "score": -0.044,
+            "wr_delta_pp": -0.42,
+            "avg_buy_time_s": 1175.1,
+            "phase": "mid",
+            "avg_sell_time_s": 2435.4,
+            "is_active": true,
+            "cooldown_s": 52.0,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 7409189,
+            "name": "Improved Spirit",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 656,
+            "wins": 281,
+            "win_rate": 0.4284,
+            "wilson_lb": 0.391,
+            "score": -0.0542,
+            "wr_delta_pp": -1.69,
+            "avg_buy_time_s": 925.5,
+            "phase": "mid",
+            "avg_sell_time_s": 1949.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_spirit.png",
+                "matches": 688,
+                "avg_buy_time_min": 8.5,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 84321454,
+            "name": "Quicksilver Reload",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 506,
+            "wins": 216,
+            "win_rate": 0.4269,
+            "wilson_lb": 0.3845,
+            "score": -0.0608,
+            "wr_delta_pp": -1.84,
+            "avg_buy_time_s": 767.1,
+            "phase": "mid",
+            "avg_sell_time_s": 2026.0,
+            "is_active": false,
+            "cooldown_s": 18.0,
+            "imbue": "imbue_active",
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1009965641,
+            "name": "Monster Rounds",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 682,
+            "wins": 283,
+            "win_rate": 0.415,
+            "wilson_lb": 0.3786,
+            "score": -0.0667,
+            "wr_delta_pp": -3.03,
+            "avg_buy_time_s": 212.9,
+            "phase": "early",
+            "avg_sell_time_s": 1721.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          }
+        ]
+      },
+      "synergy_ilp": {
+        "picks": [
+          {
+            "item_id": 3005970438,
+            "name": "Escalating Exposure",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1114,
+            "wins": 523,
+            "win_rate": 0.4695,
+            "wilson_lb": 0.4403,
+            "score": -0.0049,
+            "wr_delta_pp": 2.42,
+            "avg_buy_time_s": 1679.6,
+            "phase": "late",
+            "avg_sell_time_s": 1898.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 2081037738,
+                "name": "Mystic Vulnerability",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_vulnerability.png",
+                "matches": 1374,
+                "avg_buy_time_min": 14.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2480592370,
+            "name": "Ricochet",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1354,
+            "wins": 627,
+            "win_rate": 0.4631,
+            "wilson_lb": 0.4367,
+            "score": -0.0086,
+            "wr_delta_pp": 1.78,
+            "avg_buy_time_s": 1480.4,
+            "phase": "mid",
+            "avg_sell_time_s": 1805.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 915014646,
+            "name": "Transcendent Cooldown",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 538,
+            "wins": 255,
+            "win_rate": 0.474,
+            "wilson_lb": 0.4321,
+            "score": -0.0131,
+            "wr_delta_pp": 2.87,
+            "avg_buy_time_s": 2026.5,
+            "phase": "late",
+            "avg_sell_time_s": 2775.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "tech_pick",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_cooldown.png",
+                "matches": 1240,
+                "avg_buy_time_min": 12.3,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 3261353684,
+                "name": "Superior Cooldown",
+                "tier": 3,
+                "cost": 3200,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/superior_cooldown.png",
+                "matches": 1207,
+                "avg_buy_time_min": 24.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3696726732,
+            "name": "Toxic Bullets",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1435,
+            "wins": 645,
+            "win_rate": 0.4495,
+            "wilson_lb": 0.4239,
+            "score": -0.0214,
+            "wr_delta_pp": 0.42,
+            "avg_buy_time_s": 1200.0,
+            "phase": "mid",
+            "avg_sell_time_s": 2636.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1439347412,
+            "name": "Mystic Regeneration",
+            "category": "spirit",
+            "tier": 1,
+            "cost": 800,
+            "matches": 1545,
+            "wins": 686,
+            "win_rate": 0.444,
+            "wilson_lb": 0.4194,
+            "score": -0.0259,
+            "wr_delta_pp": -0.12,
+            "avg_buy_time_s": 147.0,
+            "phase": "early",
+            "avg_sell_time_s": 1739.3,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1925087134,
+            "name": "Suppressor",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 890,
+            "wins": 397,
+            "win_rate": 0.4461,
+            "wilson_lb": 0.4137,
+            "score": -0.0316,
+            "wr_delta_pp": 0.08,
+            "avg_buy_time_s": 502.7,
+            "phase": "early",
+            "avg_sell_time_s": 2379.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2603935618,
+            "name": "Healbane",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1165,
+            "wins": 512,
+            "win_rate": 0.4395,
+            "wilson_lb": 0.4112,
+            "score": -0.034,
+            "wr_delta_pp": -0.58,
+            "avg_buy_time_s": 654.3,
+            "phase": "early",
+            "avg_sell_time_s": 2451.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 2356412290,
+            "name": "Titanic Magazine",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1185,
+            "wins": 519,
+            "win_rate": 0.438,
+            "wilson_lb": 0.41,
+            "score": -0.0353,
+            "wr_delta_pp": -0.73,
+            "avg_buy_time_s": 938.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2661.9,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 1548066885,
+                "name": "Extended Magazine",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/basic_magazine.png",
+                "matches": 756,
+                "avg_buy_time_min": 11.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3731635960,
+            "name": "Dispel Magic",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 585,
+            "wins": 258,
+            "win_rate": 0.441,
+            "wilson_lb": 0.4013,
+            "score": -0.044,
+            "wr_delta_pp": -0.42,
+            "avg_buy_time_s": 1175.1,
+            "phase": "mid",
+            "avg_sell_time_s": 2435.4,
+            "is_active": true,
+            "cooldown_s": 52.0,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 7409189,
+            "name": "Improved Spirit",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 656,
+            "wins": 281,
+            "win_rate": 0.4284,
+            "wilson_lb": 0.391,
+            "score": -0.0542,
+            "wr_delta_pp": -1.69,
+            "avg_buy_time_s": 925.5,
+            "phase": "mid",
+            "avg_sell_time_s": 1949.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_spirit.png",
+                "matches": 688,
+                "avg_buy_time_min": 8.5,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 84321454,
+            "name": "Quicksilver Reload",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 506,
+            "wins": 216,
+            "win_rate": 0.4269,
+            "wilson_lb": 0.3845,
+            "score": -0.0608,
+            "wr_delta_pp": -1.84,
+            "avg_buy_time_s": 767.1,
+            "phase": "mid",
+            "avg_sell_time_s": 2026.0,
+            "is_active": false,
+            "cooldown_s": 18.0,
+            "imbue": "imbue_active",
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 1009965641,
+            "name": "Monster Rounds",
+            "category": "weapon",
+            "tier": 1,
+            "cost": 800,
+            "matches": 682,
+            "wins": 283,
+            "win_rate": 0.415,
+            "wilson_lb": 0.3786,
+            "score": -0.0667,
+            "wr_delta_pp": -3.03,
+            "avg_buy_time_s": 212.9,
+            "phase": "early",
+            "avg_sell_time_s": 1721.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          }
+        ]
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "high_mmr": {
+      "candidate_count": 0,
+      "min_matches_filter": 300,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "ascendant_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 100,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "eternus_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 30,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    }
+  },
+  "ability_orders": {
+    "all_mmr": {
+      "total_records": 3,
+      "total_matches": 226,
+      "ability_priority": [
+        {
+          "ability_id": 1336069669,
+          "name": "Dust Devil",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 2221949202,
+          "name": "Djinn's Mark",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 3733594387,
+          "name": "Fire Scarabs",
+          "avg_ap_all_players": 3.72,
+          "avg_ap_winners": 3.71,
+          "winner_premium_ap": -0.01
+        },
+        {
+          "ability_id": 2604653402,
+          "name": "Traveler",
+          "avg_ap_all_players": 3.58,
+          "avg_ap_winners": 3.58,
+          "winner_premium_ap": 0.0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "high_mmr": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 3733594387,
+          "name": "Fire Scarabs",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1336069669,
+          "name": "Dust Devil",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 2221949202,
+          "name": "Djinn's Mark",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 2604653402,
+          "name": "Traveler",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "ascendant_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 3733594387,
+          "name": "Fire Scarabs",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1336069669,
+          "name": "Dust Devil",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 2221949202,
+          "name": "Djinn's Mark",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 2604653402,
+          "name": "Traveler",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "eternus_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 3733594387,
+          "name": "Fire Scarabs",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1336069669,
+          "name": "Dust Devil",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 2221949202,
+          "name": "Djinn's Mark",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 2604653402,
+          "name": "Traveler",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    }
+  },
+  "provenance": {
+    "data_source": "api.deadlock-api.com",
+    "endpoints_used": [
+      "/v1/analytics/hero-stats",
+      "/v1/analytics/item-stats",
+      "/v1/analytics/item-permutation-stats?comb_size=2",
+      "/v1/analytics/hero-build-stats/{hero_id}",
+      "/v1/analytics/ability-order-stats",
+      "/v1/builds (per-build details)"
+    ],
+    "asset_sources": [
+      "https://api.deadlock-api.com/v1/assets/heroes",
+      "https://api.deadlock-api.com/v1/assets/items"
+    ]
+  },
+  "scoring_mode": "wilson"
+}

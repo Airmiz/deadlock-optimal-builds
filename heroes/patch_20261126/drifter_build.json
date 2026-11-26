@@ -1,0 +1,2130 @@
+{
+  "spec_version": "1.3.0",
+  "hero": {
+    "id": 64,
+    "name": "Drifter",
+    "abilities": [
+      {
+        "id": 3120550633,
+        "name": "Rend"
+      },
+      {
+        "id": 1264175662,
+        "name": "Stalker's Mark"
+      },
+      {
+        "id": 1033019133,
+        "name": "Bloodscent"
+      },
+      {
+        "id": 1168182161,
+        "name": "Eternal Night"
+      }
+    ]
+  },
+  "patch": {
+    "id": "patch_20261126",
+    "title": "11-26-2026 Update",
+    "min_unix_timestamp": 1795713708
+  },
+  "mmr_slices": {
+    "all_mmr": {
+      "filter": "no MMR filter",
+      "baseline_win_rate": 0.5068,
+      "matches": 4939,
+      "players": null
+    },
+    "high_mmr": {
+      "filter": "min_average_badge=91 (Phantom+)",
+      "baseline_win_rate": 0.5064,
+      "matches": 156,
+      "players": null
+    },
+    "ascendant_plus": {
+      "filter": "min_average_badge=101 (Ascendant+)",
+      "baseline_win_rate": 0.5,
+      "matches": 36,
+      "players": null
+    },
+    "eternus_plus": {
+      "filter": "min_average_badge=111 (Eternus+)",
+      "baseline_win_rate": 0.6667,
+      "matches": 3,
+      "players": null
+    }
+  },
+  "category_bands": {
+    "source": "hero",
+    "inventories": 3394,
+    "mean": {
+      "weapon": 4.96,
+      "vitality": 3.99,
+      "spirit": 3.04
+    },
+    "bounds": {
+      "weapon": [
+        3,
+        7
+      ],
+      "vitality": [
+        2,
+        6
+      ],
+      "spirit": [
+        1,
+        5
+      ]
+    }
+  },
+  "recommended": {
+    "items": {
+      "method": "synergy_ilp",
+      "mmr_slice": "high_mmr",
+      "total_cost": 0,
+      "phases": {
+        "early": [],
+        "mid": [],
+        "late": []
+      }
+    },
+    "abilities": {
+      "ap_priority_order": [
+        "Rend",
+        "Stalker's Mark",
+        "Bloodscent",
+        "Eternal Night"
+      ],
+      "best_full_order": null,
+      "best_opener_first4": null
+    }
+  },
+  "items": {
+    "all_mmr": {
+      "candidate_count": 30,
+      "min_matches_filter": 500,
+      "wilson_greedy": {
+        "picks": [
+          {
+            "item_id": 1396247347,
+            "name": "Lucky Shot",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 809,
+            "wins": 516,
+            "win_rate": 0.6378,
+            "wilson_lb": 0.6041,
+            "score": 0.0973,
+            "wr_delta_pp": 13.1,
+            "avg_buy_time_s": 1910.0,
+            "phase": "late",
+            "avg_sell_time_s": 2457.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "WITH CORRUBTED GLASS CANNON THIS WILL BE SO STRONG"
+          },
+          {
+            "item_id": 1113837674,
+            "name": "Silencer",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 972,
+            "wins": 585,
+            "win_rate": 0.6019,
+            "wilson_lb": 0.5707,
+            "score": 0.064,
+            "wr_delta_pp": 9.51,
+            "avg_buy_time_s": 2074.1,
+            "phase": "late",
+            "avg_sell_time_s": 2247.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "vs heavy spirit characters"
+          },
+          {
+            "item_id": 365620721,
+            "name": "Glass Cannon",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 684,
+            "wins": 413,
+            "win_rate": 0.6038,
+            "wilson_lb": 0.5667,
+            "score": 0.0599,
+            "wr_delta_pp": 9.7,
+            "avg_buy_time_s": 1842.7,
+            "phase": "late",
+            "avg_sell_time_s": 2390.8,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "RUSH THIS AND CORRUBT IT (CAN CORRUPT ANYTHING ELSE) IF YOU LIKE"
+          },
+          {
+            "item_id": 1955841979,
+            "name": "Spellbreaker",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 506,
+            "wins": 297,
+            "win_rate": 0.587,
+            "wilson_lb": 0.5436,
+            "score": 0.0368,
+            "wr_delta_pp": 8.02,
+            "avg_buy_time_s": 2146.1,
+            "phase": "late",
+            "avg_sell_time_s": 2197.5,
+            "is_active": false,
+            "cooldown_s": 9.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "spirit counter late game and debuff",
+            "lineage_chain": [
+              {
+                "item_id": 1047818222,
+                "name": "Debuff Reducer",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/debuff_reducer.png",
+                "matches": 375,
+                "avg_buy_time_min": 29.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1055679805,
+            "name": "Vampiric Burst",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1065,
+            "wins": 609,
+            "win_rate": 0.5718,
+            "wilson_lb": 0.5419,
+            "score": 0.0351,
+            "wr_delta_pp": 6.5,
+            "avg_buy_time_s": 1838.4,
+            "phase": "late",
+            "avg_sell_time_s": 2140.3,
+            "is_active": true,
+            "cooldown_s": 30.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "1v6 (dont take if they have alot of spirit burn)",
+            "lineage_chain": [
+              {
+                "item_id": 499683006,
+                "name": "Bullet Lifesteal",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/bullet_lifesteal.png",
+                "matches": 1614,
+                "avg_buy_time_min": 19.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3585132399,
+            "name": "Fortitude",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2910,
+            "wins": 1597,
+            "win_rate": 0.5488,
+            "wilson_lb": 0.5307,
+            "score": 0.0239,
+            "wr_delta_pp": 4.2,
+            "avg_buy_time_s": 1055.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2458.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "more heal and regen (4.8 heal spike)",
+            "lineage_chain": [
+              {
+                "item_id": 3633614685,
+                "name": "Extra Health",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/extra_health.png",
+                "matches": 2585,
+                "avg_buy_time_min": 10.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2951612397,
+            "name": "Duration Extender",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 867,
+            "wins": 485,
+            "win_rate": 0.5594,
+            "wilson_lb": 0.5262,
+            "score": 0.0194,
+            "wr_delta_pp": 5.26,
+            "avg_buy_time_s": 1421.6,
+            "phase": "mid",
+            "avg_sell_time_s": 1581.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": "imbue_modifier_value",
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0
+          },
+          {
+            "item_id": 343572757,
+            "name": "Spirit Burn",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1238,
+            "wins": 683,
+            "win_rate": 0.5517,
+            "wilson_lb": 0.5239,
+            "score": 0.0171,
+            "wr_delta_pp": 4.49,
+            "avg_buy_time_s": 1936.7,
+            "phase": "late",
+            "avg_sell_time_s": 2267.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5
+          },
+          {
+            "item_id": 2095565695,
+            "name": "Point Blank",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2723,
+            "wins": 1474,
+            "win_rate": 0.5413,
+            "wilson_lb": 0.5226,
+            "score": 0.0158,
+            "wr_delta_pp": 3.45,
+            "avg_buy_time_s": 1202.8,
+            "phase": "mid",
+            "avg_sell_time_s": 2460.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "more damage in close range-melee resist",
+            "lineage_chain": [
+              {
+                "item_id": 1342610602,
+                "name": "Close Quarters",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/close_quarters.png",
+                "matches": 3317,
+                "avg_buy_time_min": 5.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 800008313,
+            "name": "Crushing Fists",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1815,
+            "wins": 986,
+            "win_rate": 0.5433,
+            "wilson_lb": 0.5203,
+            "score": 0.0135,
+            "wr_delta_pp": 3.65,
+            "avg_buy_time_s": 1691.4,
+            "phase": "late",
+            "avg_sell_time_s": 2021.1,
+            "is_active": false,
+            "cooldown_s": 5.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
+            "lineage_chain": [
+              {
+                "item_id": 26002154,
+                "name": "Melee Charge",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/melee_charge.png",
+                "matches": 2981,
+                "avg_buy_time_min": 13.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3403085434,
+            "name": "Fleetfoot",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 504,
+            "wins": 283,
+            "win_rate": 0.5615,
+            "wilson_lb": 0.5179,
+            "score": 0.0111,
+            "wr_delta_pp": 5.47,
+            "avg_buy_time_s": 1054.0,
+            "phase": "mid",
+            "avg_sell_time_s": 2206.3,
+            "is_active": true,
+            "cooldown_s": 16.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "anti slow"
+          },
+          {
+            "item_id": 2481177645,
+            "name": "Hunter's Aura",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 3335,
+            "wins": 1779,
+            "win_rate": 0.5334,
+            "wilson_lb": 0.5165,
+            "score": 0.0097,
+            "wr_delta_pp": 2.67,
+            "avg_buy_time_s": 1353.9,
+            "phase": "mid",
+            "avg_sell_time_s": 2432.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "decent item in team fight and so strong in 1v1s"
+          }
+        ]
+      },
+      "synergy_ilp": {
+        "picks": [
+          {
+            "item_id": 1396247347,
+            "name": "Lucky Shot",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 809,
+            "wins": 516,
+            "win_rate": 0.6378,
+            "wilson_lb": 0.6041,
+            "score": 0.0973,
+            "wr_delta_pp": 13.1,
+            "avg_buy_time_s": 1910.0,
+            "phase": "late",
+            "avg_sell_time_s": 2457.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "WITH CORRUBTED GLASS CANNON THIS WILL BE SO STRONG"
+          },
+          {
+            "item_id": 1113837674,
+            "name": "Silencer",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 972,
+            "wins": 585,
+            "win_rate": 0.6019,
+            "wilson_lb": 0.5707,
+            "score": 0.064,
+            "wr_delta_pp": 9.51,
+            "avg_buy_time_s": 2074.1,
+            "phase": "late",
+            "avg_sell_time_s": 2247.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "vs heavy spirit characters"
+          },
+          {
+            "item_id": 1055679805,
+            "name": "Vampiric Burst",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1065,
+            "wins": 609,
+            "win_rate": 0.5718,
+            "wilson_lb": 0.5419,
+            "score": 0.0351,
+            "wr_delta_pp": 6.5,
+            "avg_buy_time_s": 1838.4,
+            "phase": "late",
+            "avg_sell_time_s": 2140.3,
+            "is_active": true,
+            "cooldown_s": 30.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "1v6 (dont take if they have alot of spirit burn)",
+            "lineage_chain": [
+              {
+                "item_id": 499683006,
+                "name": "Bullet Lifesteal",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/bullet_lifesteal.png",
+                "matches": 1614,
+                "avg_buy_time_min": 19.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3585132399,
+            "name": "Fortitude",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2910,
+            "wins": 1597,
+            "win_rate": 0.5488,
+            "wilson_lb": 0.5307,
+            "score": 0.0239,
+            "wr_delta_pp": 4.2,
+            "avg_buy_time_s": 1055.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2458.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "more heal and regen (4.8 heal spike)",
+            "lineage_chain": [
+              {
+                "item_id": 3633614685,
+                "name": "Extra Health",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/extra_health.png",
+                "matches": 2585,
+                "avg_buy_time_min": 10.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 343572757,
+            "name": "Spirit Burn",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1238,
+            "wins": 683,
+            "win_rate": 0.5517,
+            "wilson_lb": 0.5239,
+            "score": 0.0171,
+            "wr_delta_pp": 4.49,
+            "avg_buy_time_s": 1936.7,
+            "phase": "late",
+            "avg_sell_time_s": 2267.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5
+          },
+          {
+            "item_id": 2095565695,
+            "name": "Point Blank",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2723,
+            "wins": 1474,
+            "win_rate": 0.5413,
+            "wilson_lb": 0.5226,
+            "score": 0.0158,
+            "wr_delta_pp": 3.45,
+            "avg_buy_time_s": 1202.8,
+            "phase": "mid",
+            "avg_sell_time_s": 2460.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "more damage in close range-melee resist",
+            "lineage_chain": [
+              {
+                "item_id": 1342610602,
+                "name": "Close Quarters",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/close_quarters.png",
+                "matches": 3317,
+                "avg_buy_time_min": 5.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 800008313,
+            "name": "Crushing Fists",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1815,
+            "wins": 986,
+            "win_rate": 0.5433,
+            "wilson_lb": 0.5203,
+            "score": 0.0135,
+            "wr_delta_pp": 3.65,
+            "avg_buy_time_s": 1691.4,
+            "phase": "late",
+            "avg_sell_time_s": 2021.1,
+            "is_active": false,
+            "cooldown_s": 5.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
+            "lineage_chain": [
+              {
+                "item_id": 26002154,
+                "name": "Melee Charge",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/melee_charge.png",
+                "matches": 2981,
+                "avg_buy_time_min": 13.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2481177645,
+            "name": "Hunter's Aura",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 3335,
+            "wins": 1779,
+            "win_rate": 0.5334,
+            "wilson_lb": 0.5165,
+            "score": 0.0097,
+            "wr_delta_pp": 2.67,
+            "avg_buy_time_s": 1353.9,
+            "phase": "mid",
+            "avg_sell_time_s": 2432.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "decent item in team fight and so strong in 1v1s"
+          },
+          {
+            "item_id": 2739107182,
+            "name": "Burst Fire",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1930,
+            "wins": 1039,
+            "win_rate": 0.5383,
+            "wilson_lb": 0.516,
+            "score": 0.0093,
+            "wr_delta_pp": 3.16,
+            "avg_buy_time_s": 1396.1,
+            "phase": "mid",
+            "avg_sell_time_s": 2119.3,
+            "is_active": false,
+            "cooldown_s": 9.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "more fire rate",
+            "lineage_chain": [
+              {
+                "item_id": 668299740,
+                "name": "Rapid Rounds",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/rapid_rounds.png",
+                "matches": 1946,
+                "avg_buy_time_min": 10.2,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 98582110,
+            "name": "Stalker",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 5171,
+            "wins": 2646,
+            "win_rate": 0.5117,
+            "wilson_lb": 0.4981,
+            "score": -0.0087,
+            "wr_delta_pp": 0.49,
+            "avg_buy_time_s": 399.1,
+            "phase": "early",
+            "avg_sell_time_s": 2182.7,
+            "is_active": false,
+            "cooldown_s": 6.0,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "sell if no slot"
+          },
+          {
+            "item_id": 1252627263,
+            "name": "Lifestrike",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2608,
+            "wins": 1346,
+            "win_rate": 0.5161,
+            "wilson_lb": 0.4969,
+            "score": -0.0099,
+            "wr_delta_pp": 0.93,
+            "avg_buy_time_s": 1234.9,
+            "phase": "mid",
+            "avg_sell_time_s": 2385.2,
+            "is_active": false,
+            "cooldown_s": 4.0,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "can take only if you maxed rend",
+            "lineage_chain": [
+              {
+                "item_id": 1437614329,
+                "name": "Melee Lifesteal",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/melee_lifesteal.png",
+                "matches": 4622,
+                "avg_buy_time_min": 2.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3190916303,
+            "name": "Spirit Snatch",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 4022,
+            "wins": 2033,
+            "win_rate": 0.5055,
+            "wilson_lb": 0.49,
+            "score": -0.0168,
+            "wr_delta_pp": -0.13,
+            "avg_buy_time_s": 925.3,
+            "phase": "mid",
+            "avg_sell_time_s": 2626.1,
+            "is_active": false,
+            "cooldown_s": 6.0,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
+            "lineage_chain": [
+              {
+                "item_id": 465043967,
+                "name": "Spirit Strike",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/spirit_strike.png",
+                "matches": 3985,
+                "avg_buy_time_min": 7.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          }
+        ]
+      },
+      "build_replication": {
+        "picks": [
+          {
+            "item_id": 2603935618,
+            "name": "Healbane",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1050,
+            "wins": 509,
+            "win_rate": 0.4848,
+            "wilson_lb": 0.4546,
+            "score": -0.0521,
+            "wr_delta_pp": -2.2,
+            "avg_buy_time_s": 1034.8,
+            "phase": "mid",
+            "avg_sell_time_s": 2219.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 53.0,
+            "tag": "trap_popular",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "early anti heal and heal on kills"
+          },
+          {
+            "item_id": 2163598980,
+            "name": "Spirit Resilience",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1372,
+            "wins": 716,
+            "win_rate": 0.5219,
+            "wilson_lb": 0.4954,
+            "score": -0.0114,
+            "wr_delta_pp": 1.51,
+            "avg_buy_time_s": 1690.2,
+            "phase": "late",
+            "avg_sell_time_s": 2275.9,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 53.0,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "heavy spirit team"
+          },
+          {
+            "item_id": 1250307611,
+            "name": "Juggernaut",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 999,
+            "wins": 540,
+            "win_rate": 0.5405,
+            "wilson_lb": 0.5095,
+            "score": 0.0028,
+            "wr_delta_pp": 3.38,
+            "avg_buy_time_s": 2009.0,
+            "phase": "late",
+            "avg_sell_time_s": 2454.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 53.0,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "vs gun-slow-melee",
+            "lineage_chain": [
+              {
+                "item_id": 3399065363,
+                "name": "Sprint Boots",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/sprint_boots.png",
+                "matches": 3500,
+                "avg_buy_time_min": 10.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 2447176615,
+                "name": "Enduring Speed",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/enduring_speed.png",
+                "matches": 2234,
+                "avg_buy_time_min": 15.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2481177645,
+            "name": "Hunter's Aura",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 3335,
+            "wins": 1779,
+            "win_rate": 0.5334,
+            "wilson_lb": 0.5165,
+            "score": 0.0097,
+            "wr_delta_pp": 2.67,
+            "avg_buy_time_s": 1353.9,
+            "phase": "mid",
+            "avg_sell_time_s": 2432.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 53.0,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "decent item in team fight and so strong in 1v1s"
+          },
+          {
+            "item_id": 1955841979,
+            "name": "Spellbreaker",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 506,
+            "wins": 297,
+            "win_rate": 0.587,
+            "wilson_lb": 0.5436,
+            "score": 0.0368,
+            "wr_delta_pp": 8.02,
+            "avg_buy_time_s": 2146.1,
+            "phase": "late",
+            "avg_sell_time_s": 2197.5,
+            "is_active": false,
+            "cooldown_s": 9.0,
+            "imbue": null,
+            "build_freq_weight": 53.0,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "spirit counter late game and debuff",
+            "lineage_chain": [
+              {
+                "item_id": 1047818222,
+                "name": "Debuff Reducer",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/debuff_reducer.png",
+                "matches": 375,
+                "avg_buy_time_min": 29.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1055679805,
+            "name": "Vampiric Burst",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1065,
+            "wins": 609,
+            "win_rate": 0.5718,
+            "wilson_lb": 0.5419,
+            "score": 0.0351,
+            "wr_delta_pp": 6.5,
+            "avg_buy_time_s": 1838.4,
+            "phase": "late",
+            "avg_sell_time_s": 2140.3,
+            "is_active": true,
+            "cooldown_s": 30.0,
+            "imbue": null,
+            "build_freq_weight": 53.0,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "1v6 (dont take if they have alot of spirit burn)",
+            "lineage_chain": [
+              {
+                "item_id": 499683006,
+                "name": "Bullet Lifesteal",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/bullet_lifesteal.png",
+                "matches": 1614,
+                "avg_buy_time_min": 19.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1252627263,
+            "name": "Lifestrike",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2608,
+            "wins": 1346,
+            "win_rate": 0.5161,
+            "wilson_lb": 0.4969,
+            "score": -0.0099,
+            "wr_delta_pp": 0.93,
+            "avg_buy_time_s": 1234.9,
+            "phase": "mid",
+            "avg_sell_time_s": 2385.2,
+            "is_active": false,
+            "cooldown_s": 4.0,
+            "imbue": null,
+            "build_freq_weight": 53.0,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "can take only if you maxed rend",
+            "lineage_chain": [
+              {
+                "item_id": 1437614329,
+                "name": "Melee Lifesteal",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/melee_lifesteal.png",
+                "matches": 4622,
+                "avg_buy_time_min": 2.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 98582110,
+            "name": "Stalker",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 5171,
+            "wins": 2646,
+            "win_rate": 0.5117,
+            "wilson_lb": 0.4981,
+            "score": -0.0087,
+            "wr_delta_pp": 0.49,
+            "avg_buy_time_s": 399.1,
+            "phase": "early",
+            "avg_sell_time_s": 2182.7,
+            "is_active": false,
+            "cooldown_s": 6.0,
+            "imbue": null,
+            "build_freq_weight": 53.0,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "sell if no slot"
+          },
+          {
+            "item_id": 1113837674,
+            "name": "Silencer",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 972,
+            "wins": 585,
+            "win_rate": 0.6019,
+            "wilson_lb": 0.5707,
+            "score": 0.064,
+            "wr_delta_pp": 9.51,
+            "avg_buy_time_s": 2074.1,
+            "phase": "late",
+            "avg_sell_time_s": 2247.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 53.0,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "vs heavy spirit characters"
+          },
+          {
+            "item_id": 3403085434,
+            "name": "Fleetfoot",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 504,
+            "wins": 283,
+            "win_rate": 0.5615,
+            "wilson_lb": 0.5179,
+            "score": 0.0111,
+            "wr_delta_pp": 5.47,
+            "avg_buy_time_s": 1054.0,
+            "phase": "mid",
+            "avg_sell_time_s": 2206.3,
+            "is_active": true,
+            "cooldown_s": 16.0,
+            "imbue": null,
+            "build_freq_weight": 53.0,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "anti slow"
+          },
+          {
+            "item_id": 1396247347,
+            "name": "Lucky Shot",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 809,
+            "wins": 516,
+            "win_rate": 0.6378,
+            "wilson_lb": 0.6041,
+            "score": 0.0973,
+            "wr_delta_pp": 13.1,
+            "avg_buy_time_s": 1910.0,
+            "phase": "late",
+            "avg_sell_time_s": 2457.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 43.2,
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "WITH CORRUBTED GLASS CANNON THIS WILL BE SO STRONG"
+          },
+          {
+            "item_id": 2971868509,
+            "name": "Bullet Resist Shredder",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 2033,
+            "wins": 1041,
+            "win_rate": 0.5121,
+            "wilson_lb": 0.4903,
+            "score": -0.0165,
+            "wr_delta_pp": 0.53,
+            "avg_buy_time_s": 854.2,
+            "phase": "mid",
+            "avg_sell_time_s": 2240.9,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 43.2,
+            "tag": "core_inherited",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.5,
+            "annotation": "with tp -18 bullet resist"
+          }
+        ],
+        "source_builds": [
+          {
+            "build_id": 641585,
+            "name": "DRIFTER- DPS GUN (new update)",
+            "win_rate": 0.6226,
+            "matches": 318
+          },
+          {
+            "build_id": 690604,
+            "name": "Sensu Rank 1 Melee Spirit HYBRID Build",
+            "win_rate": 0.5337,
+            "matches": 208
+          }
+        ]
+      },
+      "joint_archetypes": [],
+      "item_metadata": {
+        "1437614329": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "more melee damage on rend-heal",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1342610602": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "more damage in close range-melee resist",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "98582110": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "sell if no slot",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "668299740": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "fire rate",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "4139877411": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3977876567": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "more fire rate-ammo ( 4.8 gun spike)",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3633614685": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "good situational",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2447176615": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "romaning",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1813726886": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "vs mina-shiv-holiday-calico-infernus-apollo-mirage-billy-abrams-wraith-rem-lash-kelvin-sinclair-silver-dynamo-celeste",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2829638276": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "hard lane",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "4204808176": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "vs melee characters",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3074274290": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "get it instead of enduring speed if you can stack fast",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3585132399": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "more heal and regen (4.8 heal spike)",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2095565695": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "more damage in close range-melee resist",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "4104549924": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "cheap fire rate",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2481177645": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "decent item in team fight and so strong in 1v1s",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2678489038": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "flank them and destroy them",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2739107182": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "more fire rate",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "365620721": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "RUSH THIS AND CORRUBT IT (CAN CORRUPT ANYTHING ELSE) IF YOU LIKE",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3791587546": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "only take if you need debuff resist",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2163598980": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "heavy spirit team",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1378931225": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "only for haze ult or silver otherwise i prefer disarming hex",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3731635960": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "vs infernus-lady geist-shiv-mirage-seven stun-bepop bomb-warden cage-haze stacks-yamato hook-graves trap-vyper venom-mo krill disarm-doorman cart-vindecta stake",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1414025773": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "vs ult abrams-lash-wraith-pocket-infernus-holiday-billy-rem-apollo-grey talon-calico-doorman-paige-lady geist-victor-vyper",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1396247347": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "WITH CORRUBTED GLASS CANNON THIS WILL BE SO STRONG",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1113837674": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "vs heavy spirit characters",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3884003354": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "vs tanks",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2480592370": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "only if you have silencer or inhibitor",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "339443430": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "fire rate-debuff resist-10% bullet life steal which is not bad",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "673001892": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "vs 3+ plated armor",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1055679805": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "1v6 (dont take if they have alot of spirit burn)",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2037039379": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "anti heal-anti damage",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3357231760": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "vs dynamo ult-krill ult-curse-disarm-mid boss fight-and debuff resist",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3491236900": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "gun counter late game",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1955841979": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "spirit counter late game and debuff",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "951866250": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "vs ult lash-mo krill-doorman-rem-holiday-victor-infernus-wraith-grey talon-vyper-paige-abrams-billy-paradox",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2226497419": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "fire rate-spirit power",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3919289022": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "more damage-realod-fire rate",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": 3120550633,
+          "imbue_target_share": 1.0
+        },
+        "2533252781": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "vs ult wraith-mina-billy-rem-lash-infernus-abrams-apollo-haze-doorman-victor and more spirit resist",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "865846625": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "more bullet life steal",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1282141666": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "very decent in deep late",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1662311306": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "sell disple for this in deep late also can use vs pocket ult",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1250307611": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "vs gun-slow-melee",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3696726732": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "anti heal",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "989206714": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "fire rate and debuff (insteada of burst fire)",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1798666702": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "decent buffs ? i guess",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2064029594": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "instead of stalker",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3403085434": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "anti slow",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2356412290": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "more weapon damage and ammo",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1252627263": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "can take only if you maxed rend",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "865958998": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "instead of fortitude (i prefer fortitude more )",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1409190604": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "fire rate-spirit resist (never tried it tbh)",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3140772621": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "vs +4 gun characters",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3270001687": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "movement",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2603935618": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "early anti heal and heal on kills",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "112198670": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "vs early heavy spirit",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1235347618": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "vs early heavy gun",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1644605047": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "vs alot cc early game and can upgrade to indomitable later",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3361075077": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "best vs wraith-vyper-warden maybe haze",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2061878743": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "better than metal skin and also works with spirit chracaters like infernus-mirage-celeste-seven",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1292979587": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "rend damage-fire rate",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": 3120550633,
+          "imbue_target_share": 1.0
+        },
+        "2717651715": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "more duration on ult-tp-rend silence",
+          "builds_appearing_in": 2,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2971868509": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "with tp -18 bullet resist",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1998374645": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3399065363": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "465043967": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3190916303": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "380806748": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": 1168182161,
+          "imbue_target_share": 0.667
+        },
+        "2121044373": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "395867183": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "26002154": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "343572757": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3261353684": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "800008313": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "915014646": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2407781327": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1976391348": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2617435668": {
+          "tag": "flex",
+          "pick_rate": 0.5,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 2,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        }
+      }
+    },
+    "high_mmr": {
+      "candidate_count": 0,
+      "min_matches_filter": 300,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "ascendant_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 100,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "eternus_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 30,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    }
+  },
+  "ability_orders": {
+    "all_mmr": {
+      "total_records": 16,
+      "total_matches": 1287,
+      "ability_priority": [
+        {
+          "ability_id": 1264175662,
+          "name": "Stalker's Mark",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 3120550633,
+          "name": "Rend",
+          "avg_ap_all_players": 3.9,
+          "avg_ap_winners": 3.9,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 1168182161,
+          "name": "Eternal Night",
+          "avg_ap_all_players": 3.79,
+          "avg_ap_winners": 3.84,
+          "winner_premium_ap": 0.05
+        },
+        {
+          "ability_id": 1033019133,
+          "name": "Bloodscent",
+          "avg_ap_all_players": 3.45,
+          "avg_ap_winners": 3.51,
+          "winner_premium_ap": 0.06
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": [
+        {
+          "sequence_names": [
+            "Rend",
+            "Rend",
+            "Stalker's Mark",
+            "Bloodscent"
+          ],
+          "wins": 427,
+          "matches": 787,
+          "win_rate": 0.5426
+        }
+      ]
+    },
+    "high_mmr": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 3120550633,
+          "name": "Rend",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1264175662,
+          "name": "Stalker's Mark",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1033019133,
+          "name": "Bloodscent",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1168182161,
+          "name": "Eternal Night",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "ascendant_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 3120550633,
+          "name": "Rend",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1264175662,
+          "name": "Stalker's Mark",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1033019133,
+          "name": "Bloodscent",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1168182161,
+          "name": "Eternal Night",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "eternus_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 3120550633,
+          "name": "Rend",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1264175662,
+          "name": "Stalker's Mark",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1033019133,
+          "name": "Bloodscent",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1168182161,
+          "name": "Eternal Night",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    }
+  },
+  "provenance": {
+    "data_source": "api.deadlock-api.com",
+    "endpoints_used": [
+      "/v1/analytics/hero-stats",
+      "/v1/analytics/item-stats",
+      "/v1/analytics/item-permutation-stats?comb_size=2",
+      "/v1/analytics/hero-build-stats/{hero_id}",
+      "/v1/analytics/ability-order-stats",
+      "/v1/builds (per-build details)"
+    ],
+    "asset_sources": [
+      "https://api.deadlock-api.com/v1/assets/heroes",
+      "https://api.deadlock-api.com/v1/assets/items"
+    ]
+  },
+  "scoring_mode": "wilson"
+}
