@@ -1,0 +1,1930 @@
+{
+  "spec_version": "1.3.0",
+  "hero": {
+    "id": 17,
+    "name": "Grey Talon",
+    "abilities": [
+      {
+        "id": 548943648,
+        "name": "Charged Shot"
+      },
+      {
+        "id": 3452399392,
+        "name": "Rain of Arrows"
+      },
+      {
+        "id": 512733154,
+        "name": "Spirit Snare"
+      },
+      {
+        "id": 3242902780,
+        "name": "Guided Owl"
+      }
+    ]
+  },
+  "patch": {
+    "id": "patch_20261127",
+    "title": "11-27-2026 Update",
+    "min_unix_timestamp": 1795833226
+  },
+  "mmr_slices": {
+    "all_mmr": {
+      "filter": "no MMR filter",
+      "baseline_win_rate": 0.4727,
+      "matches": 2689,
+      "players": null
+    },
+    "high_mmr": {
+      "filter": "min_average_badge=91 (Phantom+)",
+      "baseline_win_rate": 0.4819,
+      "matches": 83,
+      "players": null
+    },
+    "ascendant_plus": {
+      "filter": "min_average_badge=101 (Ascendant+)",
+      "baseline_win_rate": 0.6071,
+      "matches": 28,
+      "players": null
+    },
+    "eternus_plus": {
+      "filter": "min_average_badge=111 (Eternus+)",
+      "baseline_win_rate": 0.4286,
+      "matches": 7,
+      "players": null
+    }
+  },
+  "category_bands": {
+    "source": "hero",
+    "inventories": 1842,
+    "mean": {
+      "weapon": 2.76,
+      "vitality": 2.9,
+      "spirit": 6.34
+    },
+    "bounds": {
+      "weapon": [
+        1,
+        5
+      ],
+      "vitality": [
+        1,
+        5
+      ],
+      "spirit": [
+        4,
+        8
+      ]
+    }
+  },
+  "recommended": {
+    "items": {
+      "method": "synergy_ilp",
+      "mmr_slice": "high_mmr",
+      "total_cost": 0,
+      "phases": {
+        "early": [],
+        "mid": [],
+        "late": []
+      }
+    },
+    "abilities": {
+      "ap_priority_order": [
+        "Charged Shot",
+        "Rain of Arrows",
+        "Spirit Snare",
+        "Guided Owl"
+      ],
+      "best_full_order": null,
+      "best_opener_first4": null
+    }
+  },
+  "items": {
+    "all_mmr": {
+      "candidate_count": 13,
+      "min_matches_filter": 500,
+      "wilson_greedy": {
+        "picks": [
+          {
+            "item_id": 3577481646,
+            "name": "Mystic Reverb",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1445,
+            "wins": 806,
+            "win_rate": 0.5578,
+            "wilson_lb": 0.5321,
+            "score": 0.0594,
+            "wr_delta_pp": 8.51,
+            "avg_buy_time_s": 1973.0,
+            "phase": "late",
+            "avg_sell_time_s": 2146.0,
+            "is_active": false,
+            "cooldown_s": 6.25,
+            "imbue": "imbue_active",
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "imbue_target_id": 548943648,
+            "imbue_target_share": 1.0
+          },
+          {
+            "item_id": 343572757,
+            "name": "Spirit Burn",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1737,
+            "wins": 919,
+            "win_rate": 0.5291,
+            "wilson_lb": 0.5056,
+            "score": 0.0329,
+            "wr_delta_pp": 5.64,
+            "avg_buy_time_s": 1903.2,
+            "phase": "late",
+            "avg_sell_time_s": 2025.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "*MUST BUY* Item"
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2438,
+            "wins": 1220,
+            "win_rate": 0.5004,
+            "wilson_lb": 0.4806,
+            "score": 0.0079,
+            "wr_delta_pp": 2.77,
+            "avg_buy_time_s": 1593.8,
+            "phase": "late",
+            "avg_sell_time_s": 1741.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "A Must Item for pumping up your Spirit Power",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_spirit.png",
+                "matches": 2466,
+                "avg_buy_time_min": 7.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_spirit.png",
+                "matches": 2812,
+                "avg_buy_time_min": 11.0,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2064029594,
+            "name": "Opening Rounds",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 939,
+            "wins": 478,
+            "win_rate": 0.5091,
+            "wilson_lb": 0.4771,
+            "score": 0.0044,
+            "wr_delta_pp": 3.64,
+            "avg_buy_time_s": 625.0,
+            "phase": "early",
+            "avg_sell_time_s": 2372.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Extra Spirit Power helps in strengthening your Godshot even further. Combined with Mystic Shot, you receive additional 14 Spirit Power. Can revert to Sharpshooter, if preferred.",
+            "lineage_chain": [
+              {
+                "item_id": 3077079169,
+                "name": "High-Velocity Rounds",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/high_velocity_rounds.png",
+                "matches": 1558,
+                "avg_buy_time_min": 8.5,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 915014646,
+            "name": "Transcendent Cooldown",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1076,
+            "wins": 541,
+            "win_rate": 0.5028,
+            "wilson_lb": 0.473,
+            "score": 0.0003,
+            "wr_delta_pp": 3.01,
+            "avg_buy_time_s": 2037.6,
+            "phase": "late",
+            "avg_sell_time_s": 1913.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_cooldown.png",
+                "matches": 2335,
+                "avg_buy_time_min": 13.2,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": 3242902780,
+                "imbue_target_share": 0.8
+              },
+              {
+                "item_id": 3261353684,
+                "name": "Superior Cooldown",
+                "tier": 3,
+                "cost": 3200,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/superior_cooldown.png",
+                "matches": 2227,
+                "avg_buy_time_min": 24.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 334300056,
+            "name": "Stamina Mastery",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2294,
+            "wins": 1097,
+            "win_rate": 0.4782,
+            "wilson_lb": 0.4578,
+            "score": -0.0149,
+            "wr_delta_pp": 0.55,
+            "avg_buy_time_s": 1239.2,
+            "phase": "mid",
+            "avg_sell_time_s": 2258.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Can get this earlier, an excellent item for Talon. Primary focus is to be dangerous by Mid-Game (with extremely high Spirit Power for Godshot), hence this is purchased later in the build",
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/extra_stamina.png",
+                "matches": 1816,
+                "avg_buy_time_min": 14.9,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1763073141,
+            "name": "Recharging Rush",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1977,
+            "wins": 948,
+            "win_rate": 0.4795,
+            "wilson_lb": 0.4576,
+            "score": -0.0151,
+            "wr_delta_pp": 0.68,
+            "avg_buy_time_s": 1118.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2580.3,
+            "is_active": false,
+            "cooldown_s": 25.0,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Replenishes 1 Charged Shot every 20s after dealing 200+ gun dmg to an enemy within 3.5s (easy to trigger). You will have total 5 Godshots during a fight (Total 4 with R.Recharge + 1 via R.Rush)"
+          },
+          {
+            "item_id": 787198704,
+            "name": "Rapid Recharge",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2833,
+            "wins": 1343,
+            "win_rate": 0.4741,
+            "wilson_lb": 0.4557,
+            "score": -0.017,
+            "wr_delta_pp": 0.14,
+            "avg_buy_time_s": 1185.5,
+            "phase": "mid",
+            "avg_sell_time_s": 2683.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "lineage_chain": [
+              {
+                "item_id": 3776945997,
+                "name": "Extra Charge",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_charge.png",
+                "matches": 2960,
+                "avg_buy_time_min": 4.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 395867183,
+            "name": "Mystic Shot",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1320,
+            "wins": 635,
+            "win_rate": 0.4811,
+            "wilson_lb": 0.4542,
+            "score": -0.0185,
+            "wr_delta_pp": 0.84,
+            "avg_buy_time_s": 808.0,
+            "phase": "mid",
+            "avg_sell_time_s": 2454.1,
+            "is_active": false,
+            "cooldown_s": 8.0,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "This item combined with Opening Rounds, gives you additional 14 Spirit Power"
+          },
+          {
+            "item_id": 2121044373,
+            "name": "Tankbuster",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2845,
+            "wins": 1341,
+            "win_rate": 0.4714,
+            "wilson_lb": 0.4531,
+            "score": -0.0196,
+            "wr_delta_pp": -0.13,
+            "avg_buy_time_s": 1150.3,
+            "phase": "mid",
+            "avg_sell_time_s": 2853.8,
+            "is_active": false,
+            "cooldown_s": 14.0,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "lineage_chain": [
+              {
+                "item_id": 1998374645,
+                "name": "Mystic Burst",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_burst.png",
+                "matches": 2932,
+                "avg_buy_time_min": 2.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3970837787,
+            "name": "Enchanter's Emblem",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 2068,
+            "wins": 974,
+            "win_rate": 0.471,
+            "wilson_lb": 0.4495,
+            "score": -0.0231,
+            "wr_delta_pp": -0.17,
+            "avg_buy_time_s": 773.5,
+            "phase": "mid",
+            "avg_sell_time_s": 2445.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0
+          },
+          {
+            "item_id": 4104549924,
+            "name": "Swift Striker",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 983,
+            "wins": 461,
+            "win_rate": 0.469,
+            "wilson_lb": 0.438,
+            "score": -0.0347,
+            "wr_delta_pp": -0.37,
+            "avg_buy_time_s": 620.5,
+            "phase": "early",
+            "avg_sell_time_s": 2475.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "lineage_chain": [
+              {
+                "item_id": 668299740,
+                "name": "Rapid Rounds",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/rapid_rounds.png",
+                "matches": 683,
+                "avg_buy_time_min": 7.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          }
+        ]
+      },
+      "synergy_ilp": {
+        "picks": [
+          {
+            "item_id": 3577481646,
+            "name": "Mystic Reverb",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1445,
+            "wins": 806,
+            "win_rate": 0.5578,
+            "wilson_lb": 0.5321,
+            "score": 0.0594,
+            "wr_delta_pp": 8.51,
+            "avg_buy_time_s": 1973.0,
+            "phase": "late",
+            "avg_sell_time_s": 2146.0,
+            "is_active": false,
+            "cooldown_s": 6.25,
+            "imbue": "imbue_active",
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "imbue_target_id": 548943648,
+            "imbue_target_share": 1.0
+          },
+          {
+            "item_id": 343572757,
+            "name": "Spirit Burn",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1737,
+            "wins": 919,
+            "win_rate": 0.5291,
+            "wilson_lb": 0.5056,
+            "score": 0.0329,
+            "wr_delta_pp": 5.64,
+            "avg_buy_time_s": 1903.2,
+            "phase": "late",
+            "avg_sell_time_s": 2025.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "*MUST BUY* Item"
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2438,
+            "wins": 1220,
+            "win_rate": 0.5004,
+            "wilson_lb": 0.4806,
+            "score": 0.0079,
+            "wr_delta_pp": 2.77,
+            "avg_buy_time_s": 1593.8,
+            "phase": "late",
+            "avg_sell_time_s": 1741.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "A Must Item for pumping up your Spirit Power",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_spirit.png",
+                "matches": 2466,
+                "avg_buy_time_min": 7.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_spirit.png",
+                "matches": 2812,
+                "avg_buy_time_min": 11.0,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2064029594,
+            "name": "Opening Rounds",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 939,
+            "wins": 478,
+            "win_rate": 0.5091,
+            "wilson_lb": 0.4771,
+            "score": 0.0044,
+            "wr_delta_pp": 3.64,
+            "avg_buy_time_s": 625.0,
+            "phase": "early",
+            "avg_sell_time_s": 2372.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Extra Spirit Power helps in strengthening your Godshot even further. Combined with Mystic Shot, you receive additional 14 Spirit Power. Can revert to Sharpshooter, if preferred.",
+            "lineage_chain": [
+              {
+                "item_id": 3077079169,
+                "name": "High-Velocity Rounds",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/high_velocity_rounds.png",
+                "matches": 1558,
+                "avg_buy_time_min": 8.5,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 915014646,
+            "name": "Transcendent Cooldown",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1076,
+            "wins": 541,
+            "win_rate": 0.5028,
+            "wilson_lb": 0.473,
+            "score": 0.0003,
+            "wr_delta_pp": 3.01,
+            "avg_buy_time_s": 2037.6,
+            "phase": "late",
+            "avg_sell_time_s": 1913.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_cooldown.png",
+                "matches": 2335,
+                "avg_buy_time_min": 13.2,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": 3242902780,
+                "imbue_target_share": 0.8
+              },
+              {
+                "item_id": 3261353684,
+                "name": "Superior Cooldown",
+                "tier": 3,
+                "cost": 3200,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/superior_cooldown.png",
+                "matches": 2227,
+                "avg_buy_time_min": 24.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 334300056,
+            "name": "Stamina Mastery",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2294,
+            "wins": 1097,
+            "win_rate": 0.4782,
+            "wilson_lb": 0.4578,
+            "score": -0.0149,
+            "wr_delta_pp": 0.55,
+            "avg_buy_time_s": 1239.2,
+            "phase": "mid",
+            "avg_sell_time_s": 2258.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Can get this earlier, an excellent item for Talon. Primary focus is to be dangerous by Mid-Game (with extremely high Spirit Power for Godshot), hence this is purchased later in the build",
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/extra_stamina.png",
+                "matches": 1816,
+                "avg_buy_time_min": 14.9,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1763073141,
+            "name": "Recharging Rush",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1977,
+            "wins": 948,
+            "win_rate": 0.4795,
+            "wilson_lb": 0.4576,
+            "score": -0.0151,
+            "wr_delta_pp": 0.68,
+            "avg_buy_time_s": 1118.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2580.3,
+            "is_active": false,
+            "cooldown_s": 25.0,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Replenishes 1 Charged Shot every 20s after dealing 200+ gun dmg to an enemy within 3.5s (easy to trigger). You will have total 5 Godshots during a fight (Total 4 with R.Recharge + 1 via R.Rush)"
+          },
+          {
+            "item_id": 787198704,
+            "name": "Rapid Recharge",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2833,
+            "wins": 1343,
+            "win_rate": 0.4741,
+            "wilson_lb": 0.4557,
+            "score": -0.017,
+            "wr_delta_pp": 0.14,
+            "avg_buy_time_s": 1185.5,
+            "phase": "mid",
+            "avg_sell_time_s": 2683.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "lineage_chain": [
+              {
+                "item_id": 3776945997,
+                "name": "Extra Charge",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_charge.png",
+                "matches": 2960,
+                "avg_buy_time_min": 4.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 395867183,
+            "name": "Mystic Shot",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1320,
+            "wins": 635,
+            "win_rate": 0.4811,
+            "wilson_lb": 0.4542,
+            "score": -0.0185,
+            "wr_delta_pp": 0.84,
+            "avg_buy_time_s": 808.0,
+            "phase": "mid",
+            "avg_sell_time_s": 2454.1,
+            "is_active": false,
+            "cooldown_s": 8.0,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "This item combined with Opening Rounds, gives you additional 14 Spirit Power"
+          },
+          {
+            "item_id": 2121044373,
+            "name": "Tankbuster",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2845,
+            "wins": 1341,
+            "win_rate": 0.4714,
+            "wilson_lb": 0.4531,
+            "score": -0.0196,
+            "wr_delta_pp": -0.13,
+            "avg_buy_time_s": 1150.3,
+            "phase": "mid",
+            "avg_sell_time_s": 2853.8,
+            "is_active": false,
+            "cooldown_s": 14.0,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "lineage_chain": [
+              {
+                "item_id": 1998374645,
+                "name": "Mystic Burst",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_burst.png",
+                "matches": 2932,
+                "avg_buy_time_min": 2.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3970837787,
+            "name": "Enchanter's Emblem",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 2068,
+            "wins": 974,
+            "win_rate": 0.471,
+            "wilson_lb": 0.4495,
+            "score": -0.0231,
+            "wr_delta_pp": -0.17,
+            "avg_buy_time_s": 773.5,
+            "phase": "mid",
+            "avg_sell_time_s": 2445.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0
+          },
+          {
+            "item_id": 4104549924,
+            "name": "Swift Striker",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 983,
+            "wins": 461,
+            "win_rate": 0.469,
+            "wilson_lb": 0.438,
+            "score": -0.0347,
+            "wr_delta_pp": -0.37,
+            "avg_buy_time_s": 620.5,
+            "phase": "early",
+            "avg_sell_time_s": 2475.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "lineage_chain": [
+              {
+                "item_id": 668299740,
+                "name": "Rapid Rounds",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/rapid_rounds.png",
+                "matches": 683,
+                "avg_buy_time_min": 7.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          }
+        ]
+      },
+      "build_replication": {
+        "picks": [
+          {
+            "item_id": 2121044373,
+            "name": "Tankbuster",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2845,
+            "wins": 1341,
+            "win_rate": 0.4714,
+            "wilson_lb": 0.4531,
+            "score": -0.0196,
+            "wr_delta_pp": -0.13,
+            "avg_buy_time_s": 1150.3,
+            "phase": "mid",
+            "avg_sell_time_s": 2853.8,
+            "is_active": false,
+            "cooldown_s": 14.0,
+            "imbue": null,
+            "build_freq_weight": 4.9,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "lineage_chain": [
+              {
+                "item_id": 1998374645,
+                "name": "Mystic Burst",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_burst.png",
+                "matches": 2932,
+                "avg_buy_time_min": 2.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 343572757,
+            "name": "Spirit Burn",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1737,
+            "wins": 919,
+            "win_rate": 0.5291,
+            "wilson_lb": 0.5056,
+            "score": 0.0329,
+            "wr_delta_pp": 5.64,
+            "avg_buy_time_s": 1903.2,
+            "phase": "late",
+            "avg_sell_time_s": 2025.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 4.9,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "*MUST BUY* Item"
+          },
+          {
+            "item_id": 334300056,
+            "name": "Stamina Mastery",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2294,
+            "wins": 1097,
+            "win_rate": 0.4782,
+            "wilson_lb": 0.4578,
+            "score": -0.0149,
+            "wr_delta_pp": 0.55,
+            "avg_buy_time_s": 1239.2,
+            "phase": "mid",
+            "avg_sell_time_s": 2258.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 4.9,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Can get this earlier, an excellent item for Talon. Primary focus is to be dangerous by Mid-Game (with extremely high Spirit Power for Godshot), hence this is purchased later in the build",
+            "lineage_chain": [
+              {
+                "item_id": 4139877411,
+                "name": "Extra Stamina",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/extra_stamina.png",
+                "matches": 1816,
+                "avg_buy_time_min": 14.9,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2064029594,
+            "name": "Opening Rounds",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 939,
+            "wins": 478,
+            "win_rate": 0.5091,
+            "wilson_lb": 0.4771,
+            "score": 0.0044,
+            "wr_delta_pp": 3.64,
+            "avg_buy_time_s": 625.0,
+            "phase": "early",
+            "avg_sell_time_s": 2372.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 4.9,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Extra Spirit Power helps in strengthening your Godshot even further. Combined with Mystic Shot, you receive additional 14 Spirit Power. Can revert to Sharpshooter, if preferred.",
+            "lineage_chain": [
+              {
+                "item_id": 3077079169,
+                "name": "High-Velocity Rounds",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/high_velocity_rounds.png",
+                "matches": 1558,
+                "avg_buy_time_min": 8.5,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3970837787,
+            "name": "Enchanter's Emblem",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 2068,
+            "wins": 974,
+            "win_rate": 0.471,
+            "wilson_lb": 0.4495,
+            "score": -0.0231,
+            "wr_delta_pp": -0.17,
+            "avg_buy_time_s": 773.5,
+            "phase": "mid",
+            "avg_sell_time_s": 2445.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 4.9,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0
+          },
+          {
+            "item_id": 4104549924,
+            "name": "Swift Striker",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 983,
+            "wins": 461,
+            "win_rate": 0.469,
+            "wilson_lb": 0.438,
+            "score": -0.0347,
+            "wr_delta_pp": -0.37,
+            "avg_buy_time_s": 620.5,
+            "phase": "early",
+            "avg_sell_time_s": 2475.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 4.9,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "lineage_chain": [
+              {
+                "item_id": 668299740,
+                "name": "Rapid Rounds",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/rapid_rounds.png",
+                "matches": 683,
+                "avg_buy_time_min": 7.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3577481646,
+            "name": "Mystic Reverb",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1445,
+            "wins": 806,
+            "win_rate": 0.5578,
+            "wilson_lb": 0.5321,
+            "score": 0.0594,
+            "wr_delta_pp": 8.51,
+            "avg_buy_time_s": 1973.0,
+            "phase": "late",
+            "avg_sell_time_s": 2146.0,
+            "is_active": false,
+            "cooldown_s": 6.25,
+            "imbue": "imbue_active",
+            "build_freq_weight": 4.9,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "imbue_target_id": 548943648,
+            "imbue_target_share": 1.0
+          },
+          {
+            "item_id": 395867183,
+            "name": "Mystic Shot",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1320,
+            "wins": 635,
+            "win_rate": 0.4811,
+            "wilson_lb": 0.4542,
+            "score": -0.0185,
+            "wr_delta_pp": 0.84,
+            "avg_buy_time_s": 808.0,
+            "phase": "mid",
+            "avg_sell_time_s": 2454.1,
+            "is_active": false,
+            "cooldown_s": 8.0,
+            "imbue": null,
+            "build_freq_weight": 4.9,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "This item combined with Opening Rounds, gives you additional 14 Spirit Power"
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2438,
+            "wins": 1220,
+            "win_rate": 0.5004,
+            "wilson_lb": 0.4806,
+            "score": 0.0079,
+            "wr_delta_pp": 2.77,
+            "avg_buy_time_s": 1593.8,
+            "phase": "late",
+            "avg_sell_time_s": 1741.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 4.9,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "A Must Item for pumping up your Spirit Power",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_spirit.png",
+                "matches": 2466,
+                "avg_buy_time_min": 7.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_spirit.png",
+                "matches": 2812,
+                "avg_buy_time_min": 11.0,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 787198704,
+            "name": "Rapid Recharge",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2833,
+            "wins": 1343,
+            "win_rate": 0.4741,
+            "wilson_lb": 0.4557,
+            "score": -0.017,
+            "wr_delta_pp": 0.14,
+            "avg_buy_time_s": 1185.5,
+            "phase": "mid",
+            "avg_sell_time_s": 2683.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 4.9,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "lineage_chain": [
+              {
+                "item_id": 3776945997,
+                "name": "Extra Charge",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_charge.png",
+                "matches": 2960,
+                "avg_buy_time_min": 4.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1763073141,
+            "name": "Recharging Rush",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1977,
+            "wins": 948,
+            "win_rate": 0.4795,
+            "wilson_lb": 0.4576,
+            "score": -0.0151,
+            "wr_delta_pp": 0.68,
+            "avg_buy_time_s": 1118.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2580.3,
+            "is_active": false,
+            "cooldown_s": 25.0,
+            "imbue": null,
+            "build_freq_weight": 4.9,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Replenishes 1 Charged Shot every 20s after dealing 200+ gun dmg to an enemy within 3.5s (easy to trigger). You will have total 5 Godshots during a fight (Total 4 with R.Recharge + 1 via R.Rush)"
+          },
+          {
+            "item_id": 1644605047,
+            "name": "Reactive Barrier",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 678,
+            "wins": 322,
+            "win_rate": 0.4749,
+            "wilson_lb": 0.4376,
+            "score": -0.0351,
+            "wr_delta_pp": 0.23,
+            "avg_buy_time_s": 1401.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2171.0,
+            "is_active": false,
+            "cooldown_s": 55.0,
+            "imbue": null,
+            "build_freq_weight": 4.9,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "lineage_chain": [
+              {
+                "item_id": 1672893796,
+                "name": "Grit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/grit.png",
+                "matches": 432,
+                "avg_buy_time_min": 19.9,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          }
+        ],
+        "source_builds": [
+          {
+            "build_id": 755740,
+            "name": "SN|P3R : Spirit Godshot v2 (Old Top Daily Bugged)",
+            "win_rate": 0.4749,
+            "matches": 219
+          }
+        ]
+      },
+      "joint_archetypes": [],
+      "item_metadata": {
+        "2064029594": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Extra Spirit Power helps in strengthening your Godshot even further. Combined with Mystic Shot, you receive additional 14 Spirit Power. Can revert to Sharpshooter, if preferred.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3331811235": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "4104549924": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1998374645": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3776945997": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3970837787": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "380806748": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": 3242902780,
+          "imbue_target_share": 0.8
+        },
+        "2152872419": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "*Can be skipped* Buffed now with Bullet Velocity & Weapon Damage + triggers Recharging Rush easily. You can skip if : 1) focusing on fast Spirit Spikes 2) Prefer Opening Rounds/Swift Striker",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2829638276": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1644605047": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "805079544": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "7409189": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1763073141": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Replenishes 1 Charged Shot every 20s after dealing 200+ gun dmg to an enemy within 3.5s (easy to trigger). You will have total 5 Godshots during a fight (Total 4 with R.Recharge + 1 via R.Rush)",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2121044373": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "787198704": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2519598785": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "A Must Item for pumping up your Spirit Power",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3261353684": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "334300056": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Can get this earlier, an excellent item for Talon. Primary focus is to be dangerous by Mid-Game (with extremely high Spirit Power for Godshot), hence this is purchased later in the build",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1414025773": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2163598980": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3140772621": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3731635960": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "343572757": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "*MUST BUY* Item",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3577481646": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": 548943648,
+          "imbue_target_share": 1.0
+        },
+        "915014646": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2226497419": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Can replace one 1600 Gun to get this. Ideally keep Recharging Rush, to ensure your Godshot supplies dont run out",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1955841979": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3491236900": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "951866250": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2603935618": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3270001687": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1378931225": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2820116164": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1292979587": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Remains a Good choice for Spirit Talon, get this Mid game for +24 Spirit for Godshot + Extra Fire Rate",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": 548943648,
+          "imbue_target_share": 1.0
+        },
+        "2717651715": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Increase your Rain of Arrows Duration",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1193964439": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "For a Huge Spirit Snare Trap",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "677738769": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2922054143": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2061878743": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3144988365": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1009965641": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "395867183": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "This item combined with Opening Rounds, gives you additional 14 Spirit Power",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1932939246": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3884003354": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        }
+      }
+    },
+    "high_mmr": {
+      "candidate_count": 0,
+      "min_matches_filter": 300,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "ascendant_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 100,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "eternus_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 30,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    }
+  },
+  "ability_orders": {
+    "all_mmr": {
+      "total_records": 5,
+      "total_matches": 462,
+      "ability_priority": [
+        {
+          "ability_id": 548943648,
+          "name": "Charged Shot",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 3242902780,
+          "name": "Guided Owl",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 512733154,
+          "name": "Spirit Snare",
+          "avg_ap_all_players": 3.7,
+          "avg_ap_winners": 3.77,
+          "winner_premium_ap": 0.07
+        },
+        {
+          "ability_id": 3452399392,
+          "name": "Rain of Arrows",
+          "avg_ap_all_players": 3.33,
+          "avg_ap_winners": 3.38,
+          "winner_premium_ap": 0.04
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": [
+        {
+          "sequence_names": [
+            "Charged Shot",
+            "Charged Shot",
+            "Rain of Arrows",
+            "Spirit Snare"
+          ],
+          "wins": 252,
+          "matches": 462,
+          "win_rate": 0.5455
+        }
+      ]
+    },
+    "high_mmr": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 548943648,
+          "name": "Charged Shot",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3452399392,
+          "name": "Rain of Arrows",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 512733154,
+          "name": "Spirit Snare",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3242902780,
+          "name": "Guided Owl",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "ascendant_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 548943648,
+          "name": "Charged Shot",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3452399392,
+          "name": "Rain of Arrows",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 512733154,
+          "name": "Spirit Snare",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3242902780,
+          "name": "Guided Owl",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "eternus_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 548943648,
+          "name": "Charged Shot",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3452399392,
+          "name": "Rain of Arrows",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 512733154,
+          "name": "Spirit Snare",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3242902780,
+          "name": "Guided Owl",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    }
+  },
+  "provenance": {
+    "data_source": "api.deadlock-api.com",
+    "endpoints_used": [
+      "/v1/analytics/hero-stats",
+      "/v1/analytics/item-stats",
+      "/v1/analytics/item-permutation-stats?comb_size=2",
+      "/v1/analytics/hero-build-stats/{hero_id}",
+      "/v1/analytics/ability-order-stats",
+      "/v1/builds (per-build details)"
+    ],
+    "asset_sources": [
+      "https://api.deadlock-api.com/v1/assets/heroes",
+      "https://api.deadlock-api.com/v1/assets/items"
+    ]
+  },
+  "scoring_mode": "wilson"
+}

@@ -1,0 +1,1856 @@
+{
+  "spec_version": "1.3.0",
+  "hero": {
+    "id": 78,
+    "name": "Deadman Danny",
+    "abilities": [
+      {
+        "id": 2603013853,
+        "name": "Strix Salvo"
+      },
+      {
+        "id": 1904698842,
+        "name": "Chimera Mk1"
+      },
+      {
+        "id": 374042410,
+        "name": "Jettison Fuel"
+      },
+      {
+        "id": 1026127931,
+        "name": "Close The Deal"
+      }
+    ]
+  },
+  "patch": {
+    "id": "patch_20261127",
+    "title": "11-27-2026 Update",
+    "min_unix_timestamp": 1795833226
+  },
+  "mmr_slices": {
+    "all_mmr": {
+      "filter": "no MMR filter",
+      "baseline_win_rate": 0.5132,
+      "matches": 2923,
+      "players": null
+    },
+    "high_mmr": {
+      "filter": "min_average_badge=91 (Phantom+)",
+      "baseline_win_rate": 0.4091,
+      "matches": 44,
+      "players": null
+    },
+    "ascendant_plus": {
+      "filter": "min_average_badge=101 (Ascendant+)",
+      "baseline_win_rate": 0.4167,
+      "matches": 12,
+      "players": null
+    },
+    "eternus_plus": {
+      "filter": "min_average_badge=111 (Eternus+)",
+      "baseline_win_rate": 0.5,
+      "matches": 2,
+      "players": null
+    }
+  },
+  "category_bands": {
+    "source": "hero",
+    "inventories": 2057,
+    "mean": {
+      "weapon": 2.95,
+      "vitality": 3.78,
+      "spirit": 5.27
+    },
+    "bounds": {
+      "weapon": [
+        1,
+        5
+      ],
+      "vitality": [
+        2,
+        6
+      ],
+      "spirit": [
+        3,
+        7
+      ]
+    }
+  },
+  "recommended": {
+    "items": {
+      "method": "synergy_ilp",
+      "mmr_slice": "high_mmr",
+      "total_cost": 0,
+      "phases": {
+        "early": [],
+        "mid": [],
+        "late": []
+      }
+    },
+    "abilities": {
+      "ap_priority_order": [
+        "Strix Salvo",
+        "Chimera Mk1",
+        "Jettison Fuel",
+        "Close The Deal"
+      ],
+      "best_full_order": null,
+      "best_opener_first4": null
+    }
+  },
+  "items": {
+    "all_mmr": {
+      "candidate_count": 16,
+      "min_matches_filter": 500,
+      "wilson_greedy": {
+        "picks": [
+          {
+            "item_id": 3577481646,
+            "name": "Mystic Reverb",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 509,
+            "wins": 297,
+            "win_rate": 0.5835,
+            "wilson_lb": 0.5402,
+            "score": 0.027,
+            "wr_delta_pp": 7.03,
+            "avg_buy_time_s": 2086.1,
+            "phase": "late",
+            "avg_sell_time_s": 2042.5,
+            "is_active": false,
+            "cooldown_s": 6.25,
+            "imbue": "imbue_active",
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Even more burst + some very nice sustain. Works on your dying explosion too.",
+            "imbue_target_id": 1904698842,
+            "imbue_target_share": 0.833
+          },
+          {
+            "item_id": 343572757,
+            "name": "Spirit Burn",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1256,
+            "wins": 712,
+            "win_rate": 0.5669,
+            "wilson_lb": 0.5393,
+            "score": 0.0261,
+            "wr_delta_pp": 5.37,
+            "avg_buy_time_s": 1964.0,
+            "phase": "late",
+            "avg_sell_time_s": 1749.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "RUSHABLE. Great burst while giving us late game anti-heal incase you didnt buy healbane. Can replace healbane."
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2173,
+            "wins": 1188,
+            "win_rate": 0.5467,
+            "wilson_lb": 0.5257,
+            "score": 0.0125,
+            "wr_delta_pp": 3.35,
+            "avg_buy_time_s": 1755.9,
+            "phase": "late",
+            "avg_sell_time_s": 2212.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "HUGE damage spike, dont forget to counter buy from core needs.",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_spirit.png",
+                "matches": 2575,
+                "avg_buy_time_min": 6.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_spirit.png",
+                "matches": 3094,
+                "avg_buy_time_min": 10.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 951866250,
+            "name": "Indomitable",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1238,
+            "wins": 682,
+            "win_rate": 0.5509,
+            "wilson_lb": 0.5231,
+            "score": 0.0099,
+            "wr_delta_pp": 3.77,
+            "avg_buy_time_s": 1973.0,
+            "phase": "late",
+            "avg_sell_time_s": 2133.7,
+            "is_active": false,
+            "cooldown_s": 55.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Great upgrade from reactive, bought alot personally.",
+            "lineage_chain": [
+              {
+                "item_id": 1672893796,
+                "name": "Grit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/grit.png",
+                "matches": 2070,
+                "avg_buy_time_min": 6.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 1644605047,
+                "name": "Reactive Barrier",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/reactive_barrier.png",
+                "matches": 2411,
+                "avg_buy_time_min": 14.0,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2152872419,
+            "name": "Sharpshooter",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1489,
+            "wins": 815,
+            "win_rate": 0.5473,
+            "wilson_lb": 0.522,
+            "score": 0.0088,
+            "wr_delta_pp": 3.42,
+            "avg_buy_time_s": 1064.8,
+            "phase": "mid",
+            "avg_sell_time_s": 2823.9,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "This will always be getting value with how far away you are. Completes 4.8k gun.",
+            "lineage_chain": [
+              {
+                "item_id": 3077079169,
+                "name": "High-Velocity Rounds",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/high_velocity_rounds.png",
+                "matches": 3051,
+                "avg_buy_time_min": 2.5,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 3331811235,
+                "name": "Long Range",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/long_range.png",
+                "matches": 1208,
+                "avg_buy_time_min": 12.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3261353684,
+            "name": "Superior Cooldown",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2372,
+            "wins": 1269,
+            "win_rate": 0.535,
+            "wilson_lb": 0.5149,
+            "score": 0.0017,
+            "wr_delta_pp": 2.18,
+            "avg_buy_time_s": 1453.0,
+            "phase": "mid",
+            "avg_sell_time_s": 1992.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Just a super nice pickup across the board.",
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_cooldown.png",
+                "matches": 1749,
+                "avg_buy_time_min": 18.7,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1193964439,
+            "name": "Greater Expansion",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2603,
+            "wins": 1389,
+            "win_rate": 0.5336,
+            "wilson_lb": 0.5144,
+            "score": 0.0012,
+            "wr_delta_pp": 2.04,
+            "avg_buy_time_s": 1384.0,
+            "phase": "mid",
+            "avg_sell_time_s": 2126.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "By this point you want more AOE over single target damage, this is BIS.",
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_reach.png",
+                "matches": 2481,
+                "avg_buy_time_min": 11.9,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2603935618,
+            "name": "Healbane",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1127,
+            "wins": 605,
+            "win_rate": 0.5368,
+            "wilson_lb": 0.5076,
+            "score": -0.0055,
+            "wr_delta_pp": 2.37,
+            "avg_buy_time_s": 1008.9,
+            "phase": "mid",
+            "avg_sell_time_s": 2354.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Early anti-heal. Never a bad buy."
+          },
+          {
+            "item_id": 3731635960,
+            "name": "Dispel Magic",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1289,
+            "wins": 684,
+            "win_rate": 0.5306,
+            "wilson_lb": 0.5033,
+            "score": -0.0098,
+            "wr_delta_pp": 1.75,
+            "avg_buy_time_s": 1414.2,
+            "phase": "mid",
+            "avg_sell_time_s": 2290.1,
+            "is_active": true,
+            "cooldown_s": 52.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Knockdown and slowing hex fuck you. Super common buy."
+          },
+          {
+            "item_id": 2121044373,
+            "name": "Tankbuster",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2924,
+            "wins": 1521,
+            "win_rate": 0.5202,
+            "wilson_lb": 0.5021,
+            "score": -0.0111,
+            "wr_delta_pp": 0.7,
+            "avg_buy_time_s": 1096.4,
+            "phase": "mid",
+            "avg_sell_time_s": 2534.0,
+            "is_active": false,
+            "cooldown_s": 14.0,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Huge burst. Completes 4.8k spirit.",
+            "lineage_chain": [
+              {
+                "item_id": 1998374645,
+                "name": "Mystic Burst",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_burst.png",
+                "matches": 2553,
+                "avg_buy_time_min": 8.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3696726732,
+            "name": "Toxic Bullets",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1354,
+            "wins": 714,
+            "win_rate": 0.5273,
+            "wilson_lb": 0.5007,
+            "score": -0.0125,
+            "wr_delta_pp": 1.42,
+            "avg_buy_time_s": 1299.2,
+            "phase": "mid",
+            "avg_sell_time_s": 2365.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "good second anti-heal, i dont get the crutch hype tho."
+          },
+          {
+            "item_id": 2163598980,
+            "name": "Spirit Resilience",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 676,
+            "wins": 358,
+            "win_rate": 0.5296,
+            "wilson_lb": 0.4919,
+            "score": -0.0213,
+            "wr_delta_pp": 1.64,
+            "avg_buy_time_s": 1761.9,
+            "phase": "late",
+            "avg_sell_time_s": 2170.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "If emblem isn't enough."
+          }
+        ]
+      },
+      "synergy_ilp": {
+        "picks": [
+          {
+            "item_id": 3577481646,
+            "name": "Mystic Reverb",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 509,
+            "wins": 297,
+            "win_rate": 0.5835,
+            "wilson_lb": 0.5402,
+            "score": 0.027,
+            "wr_delta_pp": 7.03,
+            "avg_buy_time_s": 2086.1,
+            "phase": "late",
+            "avg_sell_time_s": 2042.5,
+            "is_active": false,
+            "cooldown_s": 6.25,
+            "imbue": "imbue_active",
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Even more burst + some very nice sustain. Works on your dying explosion too.",
+            "imbue_target_id": 1904698842,
+            "imbue_target_share": 0.833
+          },
+          {
+            "item_id": 343572757,
+            "name": "Spirit Burn",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1256,
+            "wins": 712,
+            "win_rate": 0.5669,
+            "wilson_lb": 0.5393,
+            "score": 0.0261,
+            "wr_delta_pp": 5.37,
+            "avg_buy_time_s": 1964.0,
+            "phase": "late",
+            "avg_sell_time_s": 1749.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "RUSHABLE. Great burst while giving us late game anti-heal incase you didnt buy healbane. Can replace healbane."
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2173,
+            "wins": 1188,
+            "win_rate": 0.5467,
+            "wilson_lb": 0.5257,
+            "score": 0.0125,
+            "wr_delta_pp": 3.35,
+            "avg_buy_time_s": 1755.9,
+            "phase": "late",
+            "avg_sell_time_s": 2212.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "HUGE damage spike, dont forget to counter buy from core needs.",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_spirit.png",
+                "matches": 2575,
+                "avg_buy_time_min": 6.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_spirit.png",
+                "matches": 3094,
+                "avg_buy_time_min": 10.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 951866250,
+            "name": "Indomitable",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1238,
+            "wins": 682,
+            "win_rate": 0.5509,
+            "wilson_lb": 0.5231,
+            "score": 0.0099,
+            "wr_delta_pp": 3.77,
+            "avg_buy_time_s": 1973.0,
+            "phase": "late",
+            "avg_sell_time_s": 2133.7,
+            "is_active": false,
+            "cooldown_s": 55.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Great upgrade from reactive, bought alot personally.",
+            "lineage_chain": [
+              {
+                "item_id": 1672893796,
+                "name": "Grit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/grit.png",
+                "matches": 2070,
+                "avg_buy_time_min": 6.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 1644605047,
+                "name": "Reactive Barrier",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/reactive_barrier.png",
+                "matches": 2411,
+                "avg_buy_time_min": 14.0,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2152872419,
+            "name": "Sharpshooter",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1489,
+            "wins": 815,
+            "win_rate": 0.5473,
+            "wilson_lb": 0.522,
+            "score": 0.0088,
+            "wr_delta_pp": 3.42,
+            "avg_buy_time_s": 1064.8,
+            "phase": "mid",
+            "avg_sell_time_s": 2823.9,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "This will always be getting value with how far away you are. Completes 4.8k gun.",
+            "lineage_chain": [
+              {
+                "item_id": 3077079169,
+                "name": "High-Velocity Rounds",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/high_velocity_rounds.png",
+                "matches": 3051,
+                "avg_buy_time_min": 2.5,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 3331811235,
+                "name": "Long Range",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/long_range.png",
+                "matches": 1208,
+                "avg_buy_time_min": 12.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3261353684,
+            "name": "Superior Cooldown",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2372,
+            "wins": 1269,
+            "win_rate": 0.535,
+            "wilson_lb": 0.5149,
+            "score": 0.0017,
+            "wr_delta_pp": 2.18,
+            "avg_buy_time_s": 1453.0,
+            "phase": "mid",
+            "avg_sell_time_s": 1992.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Just a super nice pickup across the board.",
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_cooldown.png",
+                "matches": 1749,
+                "avg_buy_time_min": 18.7,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1193964439,
+            "name": "Greater Expansion",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2603,
+            "wins": 1389,
+            "win_rate": 0.5336,
+            "wilson_lb": 0.5144,
+            "score": 0.0012,
+            "wr_delta_pp": 2.04,
+            "avg_buy_time_s": 1384.0,
+            "phase": "mid",
+            "avg_sell_time_s": 2126.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "By this point you want more AOE over single target damage, this is BIS.",
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_reach.png",
+                "matches": 2481,
+                "avg_buy_time_min": 11.9,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2603935618,
+            "name": "Healbane",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1127,
+            "wins": 605,
+            "win_rate": 0.5368,
+            "wilson_lb": 0.5076,
+            "score": -0.0055,
+            "wr_delta_pp": 2.37,
+            "avg_buy_time_s": 1008.9,
+            "phase": "mid",
+            "avg_sell_time_s": 2354.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Early anti-heal. Never a bad buy."
+          },
+          {
+            "item_id": 3731635960,
+            "name": "Dispel Magic",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1289,
+            "wins": 684,
+            "win_rate": 0.5306,
+            "wilson_lb": 0.5033,
+            "score": -0.0098,
+            "wr_delta_pp": 1.75,
+            "avg_buy_time_s": 1414.2,
+            "phase": "mid",
+            "avg_sell_time_s": 2290.1,
+            "is_active": true,
+            "cooldown_s": 52.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Knockdown and slowing hex fuck you. Super common buy."
+          },
+          {
+            "item_id": 2121044373,
+            "name": "Tankbuster",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2924,
+            "wins": 1521,
+            "win_rate": 0.5202,
+            "wilson_lb": 0.5021,
+            "score": -0.0111,
+            "wr_delta_pp": 0.7,
+            "avg_buy_time_s": 1096.4,
+            "phase": "mid",
+            "avg_sell_time_s": 2534.0,
+            "is_active": false,
+            "cooldown_s": 14.0,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Huge burst. Completes 4.8k spirit.",
+            "lineage_chain": [
+              {
+                "item_id": 1998374645,
+                "name": "Mystic Burst",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_burst.png",
+                "matches": 2553,
+                "avg_buy_time_min": 8.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3696726732,
+            "name": "Toxic Bullets",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1354,
+            "wins": 714,
+            "win_rate": 0.5273,
+            "wilson_lb": 0.5007,
+            "score": -0.0125,
+            "wr_delta_pp": 1.42,
+            "avg_buy_time_s": 1299.2,
+            "phase": "mid",
+            "avg_sell_time_s": 2365.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "good second anti-heal, i dont get the crutch hype tho."
+          },
+          {
+            "item_id": 3970837787,
+            "name": "Enchanter's Emblem",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 919,
+            "wins": 480,
+            "win_rate": 0.5223,
+            "wilson_lb": 0.49,
+            "score": -0.0232,
+            "wr_delta_pp": 0.91,
+            "avg_buy_time_s": 772.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2418.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Every stat is op early. Resist for your self damage too."
+          }
+        ]
+      },
+      "build_replication": {
+        "picks": [
+          {
+            "item_id": 2603935618,
+            "name": "Healbane",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1127,
+            "wins": 605,
+            "win_rate": 0.5368,
+            "wilson_lb": 0.5076,
+            "score": -0.0055,
+            "wr_delta_pp": 2.37,
+            "avg_buy_time_s": 1008.9,
+            "phase": "mid",
+            "avg_sell_time_s": 2354.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 20.5,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Early anti-heal. Never a bad buy."
+          },
+          {
+            "item_id": 2829638276,
+            "name": "Extra Regen",
+            "category": "vitality",
+            "tier": 1,
+            "cost": 800,
+            "matches": 659,
+            "wins": 308,
+            "win_rate": 0.4674,
+            "wilson_lb": 0.4296,
+            "score": -0.0836,
+            "wr_delta_pp": -4.58,
+            "avg_buy_time_s": 312.9,
+            "phase": "early",
+            "avg_sell_time_s": 1775.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 20.5,
+            "tag": "trap_popular",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Good sustain if needed but Danny gets the fruit bats easily."
+          },
+          {
+            "item_id": 2163598980,
+            "name": "Spirit Resilience",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 676,
+            "wins": 358,
+            "win_rate": 0.5296,
+            "wilson_lb": 0.4919,
+            "score": -0.0213,
+            "wr_delta_pp": 1.64,
+            "avg_buy_time_s": 1761.9,
+            "phase": "late",
+            "avg_sell_time_s": 2170.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 20.5,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "If emblem isn't enough."
+          },
+          {
+            "item_id": 951866250,
+            "name": "Indomitable",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1238,
+            "wins": 682,
+            "win_rate": 0.5509,
+            "wilson_lb": 0.5231,
+            "score": 0.0099,
+            "wr_delta_pp": 3.77,
+            "avg_buy_time_s": 1973.0,
+            "phase": "late",
+            "avg_sell_time_s": 2133.7,
+            "is_active": false,
+            "cooldown_s": 55.0,
+            "imbue": null,
+            "build_freq_weight": 20.5,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Great upgrade from reactive, bought alot personally.",
+            "lineage_chain": [
+              {
+                "item_id": 1672893796,
+                "name": "Grit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/grit.png",
+                "matches": 2070,
+                "avg_buy_time_min": 6.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 1644605047,
+                "name": "Reactive Barrier",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/reactive_barrier.png",
+                "matches": 2411,
+                "avg_buy_time_min": 14.0,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2121044373,
+            "name": "Tankbuster",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2924,
+            "wins": 1521,
+            "win_rate": 0.5202,
+            "wilson_lb": 0.5021,
+            "score": -0.0111,
+            "wr_delta_pp": 0.7,
+            "avg_buy_time_s": 1096.4,
+            "phase": "mid",
+            "avg_sell_time_s": 2534.0,
+            "is_active": false,
+            "cooldown_s": 14.0,
+            "imbue": null,
+            "build_freq_weight": 20.5,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Huge burst. Completes 4.8k spirit.",
+            "lineage_chain": [
+              {
+                "item_id": 1998374645,
+                "name": "Mystic Burst",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_burst.png",
+                "matches": 2553,
+                "avg_buy_time_min": 8.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 343572757,
+            "name": "Spirit Burn",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1256,
+            "wins": 712,
+            "win_rate": 0.5669,
+            "wilson_lb": 0.5393,
+            "score": 0.0261,
+            "wr_delta_pp": 5.37,
+            "avg_buy_time_s": 1964.0,
+            "phase": "late",
+            "avg_sell_time_s": 1749.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 20.5,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "RUSHABLE. Great burst while giving us late game anti-heal incase you didnt buy healbane. Can replace healbane."
+          },
+          {
+            "item_id": 1193964439,
+            "name": "Greater Expansion",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2603,
+            "wins": 1389,
+            "win_rate": 0.5336,
+            "wilson_lb": 0.5144,
+            "score": 0.0012,
+            "wr_delta_pp": 2.04,
+            "avg_buy_time_s": 1384.0,
+            "phase": "mid",
+            "avg_sell_time_s": 2126.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 20.5,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "By this point you want more AOE over single target damage, this is BIS.",
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_reach.png",
+                "matches": 2481,
+                "avg_buy_time_min": 11.9,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3970837787,
+            "name": "Enchanter's Emblem",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 919,
+            "wins": 480,
+            "win_rate": 0.5223,
+            "wilson_lb": 0.49,
+            "score": -0.0232,
+            "wr_delta_pp": 0.91,
+            "avg_buy_time_s": 772.6,
+            "phase": "mid",
+            "avg_sell_time_s": 2418.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 20.5,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Every stat is op early. Resist for your self damage too."
+          },
+          {
+            "item_id": 3577481646,
+            "name": "Mystic Reverb",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 509,
+            "wins": 297,
+            "win_rate": 0.5835,
+            "wilson_lb": 0.5402,
+            "score": 0.027,
+            "wr_delta_pp": 7.03,
+            "avg_buy_time_s": 2086.1,
+            "phase": "late",
+            "avg_sell_time_s": 2042.5,
+            "is_active": false,
+            "cooldown_s": 6.25,
+            "imbue": "imbue_active",
+            "build_freq_weight": 20.5,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Even more burst + some very nice sustain. Works on your dying explosion too.",
+            "imbue_target_id": 1904698842,
+            "imbue_target_share": 0.833
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 2173,
+            "wins": 1188,
+            "win_rate": 0.5467,
+            "wilson_lb": 0.5257,
+            "score": 0.0125,
+            "wr_delta_pp": 3.35,
+            "avg_buy_time_s": 1755.9,
+            "phase": "late",
+            "avg_sell_time_s": 2212.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 20.5,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "HUGE damage spike, dont forget to counter buy from core needs.",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_spirit.png",
+                "matches": 2575,
+                "avg_buy_time_min": 6.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_spirit.png",
+                "matches": 3094,
+                "avg_buy_time_min": 10.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3696726732,
+            "name": "Toxic Bullets",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1354,
+            "wins": 714,
+            "win_rate": 0.5273,
+            "wilson_lb": 0.5007,
+            "score": -0.0125,
+            "wr_delta_pp": 1.42,
+            "avg_buy_time_s": 1299.2,
+            "phase": "mid",
+            "avg_sell_time_s": 2365.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 20.5,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "good second anti-heal, i dont get the crutch hype tho."
+          },
+          {
+            "item_id": 3261353684,
+            "name": "Superior Cooldown",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2372,
+            "wins": 1269,
+            "win_rate": 0.535,
+            "wilson_lb": 0.5149,
+            "score": 0.0017,
+            "wr_delta_pp": 2.18,
+            "avg_buy_time_s": 1453.0,
+            "phase": "mid",
+            "avg_sell_time_s": 1992.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 20.5,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Just a super nice pickup across the board.",
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_cooldown.png",
+                "matches": 1749,
+                "avg_buy_time_min": 18.7,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          }
+        ],
+        "source_builds": [
+          {
+            "build_id": 884866,
+            "name": "Incoming! | Yeski Spirit Nuke! (ANNOTATED)",
+            "win_rate": 0.5848,
+            "matches": 224
+          }
+        ]
+      },
+      "joint_archetypes": [],
+      "item_metadata": {
+        "3077079169": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Must buy for hitting charged shots.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1672893796": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Use before you go in with your 2 prior to 2 points to avoid self damage.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2064029594": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Super valuable stats.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2152872419": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "This will always be getting value with how far away you are. Completes 4.8k gun.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3970837787": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Every stat is op early. Resist for your self damage too.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "7409189": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "His spirit scalings are super valuable.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2121044373": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Huge burst. Completes 4.8k spirit.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1644605047": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Danny is very prone to either enemy stuns or using his own to get away.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2603935618": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Early anti-heal. Never a bad buy.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3862866912": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "alternate to extra regen",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2829638276": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Good sustain if needed but Danny gets the fruit bats easily.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1009965641": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Need waveclear. Upgradeable into cultist.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1193964439": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "By this point you want more AOE over single target damage, this is BIS.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3261353684": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Just a super nice pickup across the board.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3731635960": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Knockdown and slowing hex fuck you. Super common buy.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2519598785": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "HUGE damage spike, dont forget to counter buy from core needs.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "343572757": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "RUSHABLE. Great burst while giving us late game anti-heal incase you didnt buy healbane. Can replace healbane.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2820116164": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Gives you safety going in for ults as sometimes you'll be put in an awkward position.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "915014646": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "More cooldown. Can be delayed if you didnt end up buying counter greens or actives. (also makes your ult cd 67 if u dont have emblem)",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3577481646": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Even more burst + some very nice sustain. Works on your dying explosion too.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": 1904698842,
+          "imbue_target_share": 0.833
+        },
+        "1378931225": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Early anti-gun",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1414025773": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Lash is not very cool.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2163598980": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "If emblem isn't enough.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1798666702": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Sneaky",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "951866250": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Great upgrade from reactive, bought alot personally.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3491236900": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Heavy anti gun",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3357231760": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Too many cc. good into mid contest.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2533252781": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Good for waiting for your cds to come back to escape.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1955841979": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Anti-spirit burst",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1662311306": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Enemy pocket or need a second dispel.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "865846625": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Rare buy, useful if you get extra gun options.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1152158042": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Niche buy. Can go crazy in huge teamfights.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "690458959": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Can be good i prefer sharpshooter.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "709540378": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Good buy if you bought monster rounds.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1932939246": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "If your team is heavy gun its nice.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3696726732": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "good second anti-heal, i dont get the crutch hype tho.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        }
+      }
+    },
+    "high_mmr": {
+      "candidate_count": 0,
+      "min_matches_filter": 300,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "ascendant_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 100,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "eternus_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 30,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    }
+  },
+  "ability_orders": {
+    "all_mmr": {
+      "total_records": 8,
+      "total_matches": 598,
+      "ability_priority": [
+        {
+          "ability_id": 2603013853,
+          "name": "Strix Salvo",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 1904698842,
+          "name": "Chimera Mk1",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 1026127931,
+          "name": "Close The Deal",
+          "avg_ap_all_players": 3.91,
+          "avg_ap_winners": 3.91,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 374042410,
+          "name": "Jettison Fuel",
+          "avg_ap_all_players": 3.22,
+          "avg_ap_winners": 3.26,
+          "winner_premium_ap": 0.04
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": [
+        {
+          "sequence_names": [
+            "Strix Salvo",
+            "Strix Salvo",
+            "Chimera Mk1",
+            "Jettison Fuel"
+          ],
+          "wins": 291,
+          "matches": 492,
+          "win_rate": 0.5915
+        }
+      ]
+    },
+    "high_mmr": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 2603013853,
+          "name": "Strix Salvo",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1904698842,
+          "name": "Chimera Mk1",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 374042410,
+          "name": "Jettison Fuel",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1026127931,
+          "name": "Close The Deal",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "ascendant_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 2603013853,
+          "name": "Strix Salvo",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1904698842,
+          "name": "Chimera Mk1",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 374042410,
+          "name": "Jettison Fuel",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1026127931,
+          "name": "Close The Deal",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "eternus_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 2603013853,
+          "name": "Strix Salvo",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1904698842,
+          "name": "Chimera Mk1",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 374042410,
+          "name": "Jettison Fuel",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1026127931,
+          "name": "Close The Deal",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    }
+  },
+  "provenance": {
+    "data_source": "api.deadlock-api.com",
+    "endpoints_used": [
+      "/v1/analytics/hero-stats",
+      "/v1/analytics/item-stats",
+      "/v1/analytics/item-permutation-stats?comb_size=2",
+      "/v1/analytics/hero-build-stats/{hero_id}",
+      "/v1/analytics/ability-order-stats",
+      "/v1/builds (per-build details)"
+    ],
+    "asset_sources": [
+      "https://api.deadlock-api.com/v1/assets/heroes",
+      "https://api.deadlock-api.com/v1/assets/items"
+    ]
+  },
+  "scoring_mode": "wilson"
+}

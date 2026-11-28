@@ -1,0 +1,2844 @@
+{
+  "spec_version": "1.3.0",
+  "hero": {
+    "id": 72,
+    "name": "Billy",
+    "abilities": [
+      {
+        "id": 1841661392,
+        "name": "Bashdown"
+      },
+      {
+        "id": 1792773251,
+        "name": "Rising Ram"
+      },
+      {
+        "id": 3296031213,
+        "name": "Blasted"
+      },
+      {
+        "id": 3762861984,
+        "name": "Chain Gang"
+      }
+    ]
+  },
+  "patch": {
+    "id": "patch_20261127",
+    "title": "11-27-2026 Update",
+    "min_unix_timestamp": 1795833226
+  },
+  "mmr_slices": {
+    "all_mmr": {
+      "filter": "no MMR filter",
+      "baseline_win_rate": 0.4909,
+      "matches": 5571,
+      "players": null
+    },
+    "high_mmr": {
+      "filter": "min_average_badge=91 (Phantom+)",
+      "baseline_win_rate": 0.5299,
+      "matches": 134,
+      "players": null
+    },
+    "ascendant_plus": {
+      "filter": "min_average_badge=101 (Ascendant+)",
+      "baseline_win_rate": 0.4615,
+      "matches": 39,
+      "players": null
+    },
+    "eternus_plus": {
+      "filter": "min_average_badge=111 (Eternus+)",
+      "baseline_win_rate": 0.0,
+      "matches": 4,
+      "players": null
+    }
+  },
+  "category_bands": {
+    "source": "hero",
+    "inventories": 3968,
+    "mean": {
+      "weapon": 3.77,
+      "vitality": 5.1,
+      "spirit": 3.13
+    },
+    "bounds": {
+      "weapon": [
+        2,
+        6
+      ],
+      "vitality": [
+        3,
+        7
+      ],
+      "spirit": [
+        1,
+        5
+      ]
+    }
+  },
+  "recommended": {
+    "items": {
+      "method": "synergy_ilp",
+      "mmr_slice": "high_mmr",
+      "total_cost": 0,
+      "phases": {
+        "early": [],
+        "mid": [],
+        "late": []
+      }
+    },
+    "abilities": {
+      "ap_priority_order": [
+        "Bashdown",
+        "Rising Ram",
+        "Blasted",
+        "Chain Gang"
+      ],
+      "best_full_order": null,
+      "best_opener_first4": null
+    }
+  },
+  "items": {
+    "all_mmr": {
+      "candidate_count": 28,
+      "min_matches_filter": 500,
+      "wilson_greedy": {
+        "picks": [
+          {
+            "item_id": 3028234315,
+            "name": "Witchmail",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 674,
+            "wins": 406,
+            "win_rate": 0.6024,
+            "wilson_lb": 0.5649,
+            "score": 0.074,
+            "wr_delta_pp": 11.14,
+            "avg_buy_time_s": 2082.8,
+            "phase": "late",
+            "avg_sell_time_s": 2368.2,
+            "is_active": false,
+            "cooldown_s": 1.0,
+            "imbue": null,
+            "tag": "flex",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.4
+          },
+          {
+            "item_id": 2407781327,
+            "name": "Colossus",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1154,
+            "wins": 680,
+            "win_rate": 0.5893,
+            "wilson_lb": 0.5606,
+            "score": 0.0697,
+            "wr_delta_pp": 9.83,
+            "avg_buy_time_s": 2038.8,
+            "phase": "late",
+            "avg_sell_time_s": 2153.1,
+            "is_active": true,
+            "cooldown_s": 37.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Very Good item. Can consider going this before rapid recharge or even earlier. We scale great with hp now so 25% base health + the items we have been going will go crazy(Make sure to active melee dps)",
+            "lineage_chain": [
+              {
+                "item_id": 3633614685,
+                "name": "Extra Health",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/extra_health.png",
+                "matches": 1004,
+                "avg_buy_time_min": 18.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1250307611,
+            "name": "Juggernaut",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1233,
+            "wins": 710,
+            "win_rate": 0.5758,
+            "wilson_lb": 0.5481,
+            "score": 0.0571,
+            "wr_delta_pp": 8.49,
+            "avg_buy_time_s": 2048.5,
+            "phase": "late",
+            "avg_sell_time_s": 2295.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "flex",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.4,
+            "annotation": "[UPGRADE] Great VS a lot of slows and also fast fire rate characters | Also great slot locked upgrade (Had no room, this is an upgrade not swappable :) )",
+            "lineage_chain": [
+              {
+                "item_id": 3399065363,
+                "name": "Sprint Boots",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/sprint_boots.png",
+                "matches": 1006,
+                "avg_buy_time_min": 17.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 2447176615,
+                "name": "Enduring Speed",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/enduring_speed.png",
+                "matches": 1771,
+                "avg_buy_time_min": 20.5,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 800008313,
+            "name": "Crushing Fists",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 4272,
+            "wins": 2337,
+            "win_rate": 0.5471,
+            "wilson_lb": 0.5321,
+            "score": 0.0412,
+            "wr_delta_pp": 5.61,
+            "avg_buy_time_s": 1642.6,
+            "phase": "late",
+            "avg_sell_time_s": 1806.3,
+            "is_active": false,
+            "cooldown_s": 5.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.6,
+            "annotation": "Damage increase, Buffed the cooldown on the passive damage now to 5s now and gives you a bit of shred / resistance.",
+            "lineage_chain": [
+              {
+                "item_id": 26002154,
+                "name": "Melee Charge",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/melee_charge.png",
+                "matches": 4491,
+                "avg_buy_time_min": 16.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1955841979,
+            "name": "Spellbreaker",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 871,
+            "wins": 489,
+            "win_rate": 0.5614,
+            "wilson_lb": 0.5283,
+            "score": 0.0373,
+            "wr_delta_pp": 7.05,
+            "avg_buy_time_s": 2124.7,
+            "phase": "late",
+            "avg_sell_time_s": 2160.9,
+            "is_active": false,
+            "cooldown_s": 9.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 0.8,
+            "annotation": "Great item now with the build path and changes, now gives you 25% debuff resist",
+            "lineage_chain": [
+              {
+                "item_id": 1047818222,
+                "name": "Debuff Reducer",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/debuff_reducer.png",
+                "matches": 822,
+                "avg_buy_time_min": 28.2,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2417568017,
+            "name": "Scourge",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 604,
+            "wins": 343,
+            "win_rate": 0.5679,
+            "wilson_lb": 0.5281,
+            "score": 0.0371,
+            "wr_delta_pp": 7.69,
+            "avg_buy_time_s": 2104.0,
+            "phase": "late",
+            "avg_sell_time_s": 2440.4,
+            "is_active": true,
+            "cooldown_s": 35.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "GREAT item with huge AOE w/ GE. Gives you a lot of debuff resist + health, and active spirit resistance + % max hp damage! (Dont sleep on this!)."
+          },
+          {
+            "item_id": 1193964439,
+            "name": "Greater Expansion",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2033,
+            "wins": 1114,
+            "win_rate": 0.548,
+            "wilson_lb": 0.5263,
+            "score": 0.0353,
+            "wr_delta_pp": 5.7,
+            "avg_buy_time_s": 1729.2,
+            "phase": "late",
+            "avg_sell_time_s": 2089.3,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 0.8,
+            "annotation": "Prio this item tbh its really good | +10% spirit resist |  bIG cHAIN gANg, big torment pulse, big bashdown, big peepee",
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_reach.png",
+                "matches": 1394,
+                "avg_buy_time_min": 21.7,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": 1841661392,
+                "imbue_target_share": 0.667
+              }
+            ]
+          },
+          {
+            "item_id": 951866250,
+            "name": "Indomitable",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 626,
+            "wins": 348,
+            "win_rate": 0.5559,
+            "wilson_lb": 0.5168,
+            "score": 0.0258,
+            "wr_delta_pp": 6.5,
+            "avg_buy_time_s": 2062.0,
+            "phase": "late",
+            "avg_sell_time_s": 2344.7,
+            "is_active": false,
+            "cooldown_s": 55.0,
+            "imbue": null,
+            "tag": "flex",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.4,
+            "annotation": "Raahhhhh.... go this if you go reactive barrier and the enemy team has a lot of cc (Mo ult, wraith ult, door man ult) + refund time on cooldowns (THIS IS AUTO COUNTERSPELL on 55s cooldown)",
+            "lineage_chain": [
+              {
+                "item_id": 1672893796,
+                "name": "Grit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/grit.png",
+                "matches": 1157,
+                "avg_buy_time_min": 9.9,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 1644605047,
+                "name": "Reactive Barrier",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/reactive_barrier.png",
+                "matches": 581,
+                "avg_buy_time_min": 22.0,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1414319208,
+            "name": "Berserker",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1743,
+            "wins": 930,
+            "win_rate": 0.5336,
+            "wilson_lb": 0.5101,
+            "score": 0.0192,
+            "wr_delta_pp": 4.26,
+            "avg_buy_time_s": 1695.0,
+            "phase": "late",
+            "avg_sell_time_s": 2300.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "tech_pick",
+            "pick_rate_tag": "situational",
+            "pick_rate": 0.2,
+            "annotation": "(TLDR more more damage) This item is really good and is pumping damage out | Take Any Damage = Stack = More Weapon Damage up to 70%!! Super good since we will be perma fighting and more tanky now!!!"
+          },
+          {
+            "item_id": 787198704,
+            "name": "Rapid Recharge",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 4077,
+            "wins": 2101,
+            "win_rate": 0.5153,
+            "wilson_lb": 0.5,
+            "score": 0.009,
+            "wr_delta_pp": 2.44,
+            "avg_buy_time_s": 1463.2,
+            "phase": "mid",
+            "avg_sell_time_s": 1935.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.6,
+            "annotation": "Great item + Spirit Damage Buffs! Allows for 1-2 extra bashdowns each fight.",
+            "lineage_chain": [
+              {
+                "item_id": 3776945997,
+                "name": "Extra Charge",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_charge.png",
+                "matches": 2847,
+                "avg_buy_time_min": 18.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3884003354,
+            "name": "Crippling Headshot",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 712,
+            "wins": 375,
+            "win_rate": 0.5267,
+            "wilson_lb": 0.49,
+            "score": -0.001,
+            "wr_delta_pp": 3.58,
+            "avg_buy_time_s": 1957.5,
+            "phase": "late",
+            "avg_sell_time_s": 2398.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.6,
+            "annotation": "Anti heal late + shred |  [Can sell Enchanter Emblem swap for this].",
+            "lineage_chain": [
+              {
+                "item_id": 1770441818,
+                "name": "Weakening Headshot",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/weakening_headshot.png",
+                "matches": 1026,
+                "avg_buy_time_min": 15.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2163598980,
+            "name": "Spirit Resilience",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 3722,
+            "wins": 1877,
+            "win_rate": 0.5043,
+            "wilson_lb": 0.4882,
+            "score": -0.0027,
+            "wr_delta_pp": 1.34,
+            "avg_buy_time_s": 1435.9,
+            "phase": "mid",
+            "avg_sell_time_s": 2210.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Core spirit resist; can consider rushing Spellbreaker against certain comps.."
+          }
+        ]
+      },
+      "synergy_ilp": {
+        "picks": [
+          {
+            "item_id": 3028234315,
+            "name": "Witchmail",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 674,
+            "wins": 406,
+            "win_rate": 0.6024,
+            "wilson_lb": 0.5649,
+            "score": 0.074,
+            "wr_delta_pp": 11.14,
+            "avg_buy_time_s": 2082.8,
+            "phase": "late",
+            "avg_sell_time_s": 2368.2,
+            "is_active": false,
+            "cooldown_s": 1.0,
+            "imbue": null,
+            "tag": "flex",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.4
+          },
+          {
+            "item_id": 2407781327,
+            "name": "Colossus",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1154,
+            "wins": 680,
+            "win_rate": 0.5893,
+            "wilson_lb": 0.5606,
+            "score": 0.0697,
+            "wr_delta_pp": 9.83,
+            "avg_buy_time_s": 2038.8,
+            "phase": "late",
+            "avg_sell_time_s": 2153.1,
+            "is_active": true,
+            "cooldown_s": 37.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Very Good item. Can consider going this before rapid recharge or even earlier. We scale great with hp now so 25% base health + the items we have been going will go crazy(Make sure to active melee dps)",
+            "lineage_chain": [
+              {
+                "item_id": 3633614685,
+                "name": "Extra Health",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/extra_health.png",
+                "matches": 1004,
+                "avg_buy_time_min": 18.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1250307611,
+            "name": "Juggernaut",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1233,
+            "wins": 710,
+            "win_rate": 0.5758,
+            "wilson_lb": 0.5481,
+            "score": 0.0571,
+            "wr_delta_pp": 8.49,
+            "avg_buy_time_s": 2048.5,
+            "phase": "late",
+            "avg_sell_time_s": 2295.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "flex",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.4,
+            "annotation": "[UPGRADE] Great VS a lot of slows and also fast fire rate characters | Also great slot locked upgrade (Had no room, this is an upgrade not swappable :) )",
+            "lineage_chain": [
+              {
+                "item_id": 3399065363,
+                "name": "Sprint Boots",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/sprint_boots.png",
+                "matches": 1006,
+                "avg_buy_time_min": 17.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 2447176615,
+                "name": "Enduring Speed",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/enduring_speed.png",
+                "matches": 1771,
+                "avg_buy_time_min": 20.5,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 800008313,
+            "name": "Crushing Fists",
+            "category": "weapon",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 4272,
+            "wins": 2337,
+            "win_rate": 0.5471,
+            "wilson_lb": 0.5321,
+            "score": 0.0412,
+            "wr_delta_pp": 5.61,
+            "avg_buy_time_s": 1642.6,
+            "phase": "late",
+            "avg_sell_time_s": 1806.3,
+            "is_active": false,
+            "cooldown_s": 5.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.6,
+            "annotation": "Damage increase, Buffed the cooldown on the passive damage now to 5s now and gives you a bit of shred / resistance.",
+            "lineage_chain": [
+              {
+                "item_id": 26002154,
+                "name": "Melee Charge",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/melee_charge.png",
+                "matches": 4491,
+                "avg_buy_time_min": 16.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1193964439,
+            "name": "Greater Expansion",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2033,
+            "wins": 1114,
+            "win_rate": 0.548,
+            "wilson_lb": 0.5263,
+            "score": 0.0353,
+            "wr_delta_pp": 5.7,
+            "avg_buy_time_s": 1729.2,
+            "phase": "late",
+            "avg_sell_time_s": 2089.3,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 0.8,
+            "annotation": "Prio this item tbh its really good | +10% spirit resist |  bIG cHAIN gANg, big torment pulse, big bashdown, big peepee",
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_reach.png",
+                "matches": 1394,
+                "avg_buy_time_min": 21.7,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": 1841661392,
+                "imbue_target_share": 0.667
+              }
+            ]
+          },
+          {
+            "item_id": 787198704,
+            "name": "Rapid Recharge",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 4077,
+            "wins": 2101,
+            "win_rate": 0.5153,
+            "wilson_lb": 0.5,
+            "score": 0.009,
+            "wr_delta_pp": 2.44,
+            "avg_buy_time_s": 1463.2,
+            "phase": "mid",
+            "avg_sell_time_s": 1935.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.6,
+            "annotation": "Great item + Spirit Damage Buffs! Allows for 1-2 extra bashdowns each fight.",
+            "lineage_chain": [
+              {
+                "item_id": 3776945997,
+                "name": "Extra Charge",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_charge.png",
+                "matches": 2847,
+                "avg_buy_time_min": 18.1,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2163598980,
+            "name": "Spirit Resilience",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 3722,
+            "wins": 1877,
+            "win_rate": 0.5043,
+            "wilson_lb": 0.4882,
+            "score": -0.0027,
+            "wr_delta_pp": 1.34,
+            "avg_buy_time_s": 1435.9,
+            "phase": "mid",
+            "avg_sell_time_s": 2210.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Core spirit resist; can consider rushing Spellbreaker against certain comps.."
+          },
+          {
+            "item_id": 2971868509,
+            "name": "Bullet Resist Shredder",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 2405,
+            "wins": 1221,
+            "win_rate": 0.5077,
+            "wilson_lb": 0.4877,
+            "score": -0.0032,
+            "wr_delta_pp": 1.68,
+            "avg_buy_time_s": 1027.5,
+            "phase": "mid",
+            "avg_sell_time_s": 2236.5,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 0.8,
+            "annotation": "[SWAP SURGE OF POWER or SLOWING HEX] Doesnt Stack if your team has it. Perfectly Paired with Torment Pulse, and gets the easy procs from it. (This can be sold later for another Spirit Item like GE)"
+          },
+          {
+            "item_id": 1252627263,
+            "name": "Lifestrike",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 5294,
+            "wins": 2649,
+            "win_rate": 0.5004,
+            "wilson_lb": 0.4869,
+            "score": -0.004,
+            "wr_delta_pp": 0.94,
+            "avg_buy_time_s": 987.9,
+            "phase": "mid",
+            "avg_sell_time_s": 2593.9,
+            "is_active": false,
+            "cooldown_s": 4.0,
+            "imbue": null,
+            "tag": "flex",
+            "pick_rate_tag": "flex",
+            "pick_rate": 0.4,
+            "annotation": "amazing sustain item for billy",
+            "lineage_chain": [
+              {
+                "item_id": 1437614329,
+                "name": "Melee Lifesteal",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/melee_lifesteal.png",
+                "matches": 5799,
+                "avg_buy_time_min": 3.6,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1235347618,
+            "name": "Battle Vest",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 3876,
+            "wins": 1948,
+            "win_rate": 0.5026,
+            "wilson_lb": 0.4868,
+            "score": -0.0041,
+            "wr_delta_pp": 1.16,
+            "avg_buy_time_s": 687.5,
+            "phase": "early",
+            "avg_sell_time_s": 2243.3,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Vs Gun get this / But consider reactive barrier if it can proc - Get enchancters Emblem if their team is all spirit | Can be sold for counter item / late game item |"
+          },
+          {
+            "item_id": 3190916303,
+            "name": "Spirit Snatch",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 4695,
+            "wins": 2343,
+            "win_rate": 0.499,
+            "wilson_lb": 0.4847,
+            "score": -0.0062,
+            "wr_delta_pp": 0.81,
+            "avg_buy_time_s": 1129.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2484.5,
+            "is_active": false,
+            "cooldown_s": 6.0,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "[CORE] Bashdown applies this as an AoE + buffs more spirit power/resist steal ! Really good item CORE + HUGE BUFFS",
+            "lineage_chain": [
+              {
+                "item_id": 465043967,
+                "name": "Spirit Strike",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/spirit_strike.png",
+                "matches": 3418,
+                "avg_buy_time_min": 12.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 98582110,
+            "name": "Stalker",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 3460,
+            "wins": 1728,
+            "win_rate": 0.4994,
+            "wilson_lb": 0.4828,
+            "score": -0.0082,
+            "wr_delta_pp": 0.85,
+            "avg_buy_time_s": 528.9,
+            "phase": "early",
+            "avg_sell_time_s": 2154.2,
+            "is_active": false,
+            "cooldown_s": 6.0,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "sell laterabbb"
+          }
+        ]
+      },
+      "build_replication": {
+        "picks": [
+          {
+            "item_id": 2829638276,
+            "name": "Extra Regen",
+            "category": "vitality",
+            "tier": 1,
+            "cost": 800,
+            "matches": 1271,
+            "wins": 621,
+            "win_rate": 0.4886,
+            "wilson_lb": 0.4612,
+            "score": -0.0297,
+            "wr_delta_pp": -0.23,
+            "avg_buy_time_s": 264.6,
+            "phase": "early",
+            "avg_sell_time_s": 1648.3,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 41.3,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 0.8,
+            "annotation": "[SWAP FOR Melee lifesteal] Vs heavy poke lane, where you just need to live and soak souls / box max. This is way more consistent compared to melee lifesteal and imo better. (SELL LATER can go fort!!)."
+          },
+          {
+            "item_id": 2163598980,
+            "name": "Spirit Resilience",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 3722,
+            "wins": 1877,
+            "win_rate": 0.5043,
+            "wilson_lb": 0.4882,
+            "score": -0.0027,
+            "wr_delta_pp": 1.34,
+            "avg_buy_time_s": 1435.9,
+            "phase": "mid",
+            "avg_sell_time_s": 2210.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 41.3,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Core spirit resist; can consider rushing Spellbreaker against certain comps.."
+          },
+          {
+            "item_id": 2417568017,
+            "name": "Scourge",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 604,
+            "wins": 343,
+            "win_rate": 0.5679,
+            "wilson_lb": 0.5281,
+            "score": 0.0371,
+            "wr_delta_pp": 7.69,
+            "avg_buy_time_s": 2104.0,
+            "phase": "late",
+            "avg_sell_time_s": 2440.4,
+            "is_active": true,
+            "cooldown_s": 35.0,
+            "imbue": null,
+            "build_freq_weight": 41.3,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "GREAT item with huge AOE w/ GE. Gives you a lot of debuff resist + health, and active spirit resistance + % max hp damage! (Dont sleep on this!)."
+          },
+          {
+            "item_id": 3970837787,
+            "name": "Enchanter's Emblem",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 818,
+            "wins": 400,
+            "win_rate": 0.489,
+            "wilson_lb": 0.4549,
+            "score": -0.0361,
+            "wr_delta_pp": -0.19,
+            "avg_buy_time_s": 951.9,
+            "phase": "mid",
+            "avg_sell_time_s": 2089.4,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 41.3,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "[SWAP] for anything in [Emblem Vest Swap Tab]"
+          },
+          {
+            "item_id": 1235347618,
+            "name": "Battle Vest",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 3876,
+            "wins": 1948,
+            "win_rate": 0.5026,
+            "wilson_lb": 0.4868,
+            "score": -0.0041,
+            "wr_delta_pp": 1.16,
+            "avg_buy_time_s": 687.5,
+            "phase": "early",
+            "avg_sell_time_s": 2243.3,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 41.3,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Vs Gun get this / But consider reactive barrier if it can proc - Get enchancters Emblem if their team is all spirit | Can be sold for counter item / late game item |"
+          },
+          {
+            "item_id": 3491236900,
+            "name": "Plated Armor",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 871,
+            "wins": 452,
+            "win_rate": 0.5189,
+            "wilson_lb": 0.4858,
+            "score": -0.0052,
+            "wr_delta_pp": 2.8,
+            "avg_buy_time_s": 2060.9,
+            "phase": "late",
+            "avg_sell_time_s": 1982.0,
+            "is_active": false,
+            "cooldown_s": 1.0,
+            "imbue": null,
+            "build_freq_weight": 41.3,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Good VS M1 heros | Mina , Infernus, Haze"
+          },
+          {
+            "item_id": 1813726886,
+            "name": "Slowing Hex",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1658,
+            "wins": 838,
+            "win_rate": 0.5054,
+            "wilson_lb": 0.4814,
+            "score": -0.0096,
+            "wr_delta_pp": 1.45,
+            "avg_buy_time_s": 1154.3,
+            "phase": "mid",
+            "avg_sell_time_s": 2237.7,
+            "is_active": true,
+            "cooldown_s": 29.0,
+            "imbue": null,
+            "build_freq_weight": 41.3,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 0.8,
+            "annotation": "[SWAP] - For SURGE OF POWER or BULLET RESIST SHREDDER - Use on mobile carries, good to set up while ulting."
+          },
+          {
+            "item_id": 1955841979,
+            "name": "Spellbreaker",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 871,
+            "wins": 489,
+            "win_rate": 0.5614,
+            "wilson_lb": 0.5283,
+            "score": 0.0373,
+            "wr_delta_pp": 7.05,
+            "avg_buy_time_s": 2124.7,
+            "phase": "late",
+            "avg_sell_time_s": 2160.9,
+            "is_active": false,
+            "cooldown_s": 9.0,
+            "imbue": null,
+            "build_freq_weight": 41.3,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 0.8,
+            "annotation": "Great item now with the build path and changes, now gives you 25% debuff resist",
+            "lineage_chain": [
+              {
+                "item_id": 1047818222,
+                "name": "Debuff Reducer",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/debuff_reducer.png",
+                "matches": 822,
+                "avg_buy_time_min": 28.2,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3190916303,
+            "name": "Spirit Snatch",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 4695,
+            "wins": 2343,
+            "win_rate": 0.499,
+            "wilson_lb": 0.4847,
+            "score": -0.0062,
+            "wr_delta_pp": 0.81,
+            "avg_buy_time_s": 1129.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2484.5,
+            "is_active": false,
+            "cooldown_s": 6.0,
+            "imbue": null,
+            "build_freq_weight": 41.3,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "[CORE] Bashdown applies this as an AoE + buffs more spirit power/resist steal ! Really good item CORE + HUGE BUFFS",
+            "lineage_chain": [
+              {
+                "item_id": 465043967,
+                "name": "Spirit Strike",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/spirit_strike.png",
+                "matches": 3418,
+                "avg_buy_time_min": 12.8,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3731635960,
+            "name": "Dispel Magic",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 735,
+            "wins": 380,
+            "win_rate": 0.517,
+            "wilson_lb": 0.4809,
+            "score": -0.01,
+            "wr_delta_pp": 2.61,
+            "avg_buy_time_s": 1508.6,
+            "phase": "late",
+            "avg_sell_time_s": 2135.5,
+            "is_active": true,
+            "cooldown_s": 52.0,
+            "imbue": null,
+            "build_freq_weight": 41.3,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "CLEANSE YOURSELF (This is really good since we are in CC meta) Please really consider this item, especially vs stacking characters like infernus, mirage, shiv, and a lot of cc actives"
+          },
+          {
+            "item_id": 3791587546,
+            "name": "Weighted Shots",
+            "category": "weapon",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1397,
+            "wins": 689,
+            "win_rate": 0.4932,
+            "wilson_lb": 0.467,
+            "score": -0.0239,
+            "wr_delta_pp": 0.23,
+            "avg_buy_time_s": 1350.3,
+            "phase": "mid",
+            "avg_sell_time_s": 2351.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 41.3,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "buy this when you sell stalker",
+            "lineage_chain": [
+              {
+                "item_id": 393974127,
+                "name": "Slowing Bullets",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/slowing_bullets.png",
+                "matches": 1047,
+                "avg_buy_time_min": 14.2,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 98582110,
+            "name": "Stalker",
+            "category": "weapon",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 3460,
+            "wins": 1728,
+            "win_rate": 0.4994,
+            "wilson_lb": 0.4828,
+            "score": -0.0082,
+            "wr_delta_pp": 0.85,
+            "avg_buy_time_s": 528.9,
+            "phase": "early",
+            "avg_sell_time_s": 2154.2,
+            "is_active": false,
+            "cooldown_s": 6.0,
+            "imbue": null,
+            "build_freq_weight": 41.3,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "sell laterabbb"
+          }
+        ],
+        "source_builds": [
+          {
+            "build_id": 435330,
+            "name": "HipsterLion 70% WinRate 1 Shot G.O.A.T",
+            "win_rate": 0.4897,
+            "matches": 341
+          },
+          {
+            "build_id": 613001,
+            "name": "ttvcrayon_fps punchy compy donkey",
+            "win_rate": 0.5323,
+            "matches": 325
+          },
+          {
+            "build_id": 317853,
+            "name": "Billy - Bruiser-Close Range [62% WR] [tracklock.gg]",
+            "win_rate": 0.4542,
+            "matches": 295
+          },
+          {
+            "build_id": 493224,
+            "name": "BeepBeepBilly |\ud83d\udca6\u2622 1v12\u2718 | 7/26\u2605 ANNOTATIONS ON ALL",
+            "win_rate": 0.5223,
+            "matches": 291
+          },
+          {
+            "build_id": 612896,
+            "name": "TTV/ShiroRz COMPY BILLY TRUTH BUILD",
+            "win_rate": 0.4434,
+            "matches": 212
+          }
+        ]
+      },
+      "joint_archetypes": [
+        {
+          "archetype_id": 1,
+          "fingerprint_ability_ids": [
+            1792773251,
+            1841661392,
+            3762861984
+          ],
+          "fingerprint_ability_names": [
+            "Rising Ram",
+            "Bashdown",
+            "Chain Gang"
+          ],
+          "n_builds": 4,
+          "total_matches": 1252,
+          "total_wins": 626,
+          "mean_win_rate": 0.5,
+          "win_rate_lift_pp": 0.91,
+          "consensus_ladder_ids": [
+            3296031213
+          ],
+          "consensus_ladder_names": [
+            "Blasted"
+          ],
+          "modal_full_ladder_ids": [
+            3296031213,
+            1841661392,
+            1792773251,
+            3762861984,
+            3296031213,
+            3296031213,
+            1792773251,
+            1792773251,
+            1792773251,
+            3762861984,
+            3762861984,
+            1841661392,
+            1841661392,
+            1841661392,
+            3762861984,
+            3296031213
+          ],
+          "modal_full_ladder_names": [
+            "Blasted",
+            "Bashdown",
+            "Rising Ram",
+            "Chain Gang",
+            "Blasted",
+            "Blasted",
+            "Rising Ram",
+            "Rising Ram",
+            "Rising Ram",
+            "Chain Gang",
+            "Chain Gang",
+            "Bashdown",
+            "Bashdown",
+            "Bashdown",
+            "Chain Gang",
+            "Blasted"
+          ],
+          "items": [
+            {
+              "item_id": 2829638276,
+              "name": "Extra Regen",
+              "category": "vitality",
+              "tier": 1,
+              "cost": 800,
+              "matches": 1271,
+              "wins": 621,
+              "win_rate": 0.4886,
+              "wilson_lb": 0.4612,
+              "score": -0.0297,
+              "wr_delta_pp": -0.23,
+              "avg_buy_time_s": 264.6,
+              "phase": "early",
+              "avg_sell_time_s": 1648.3,
+              "is_active": false,
+              "cooldown_s": null,
+              "imbue": null,
+              "joint_freq_weight": 41.3,
+              "tag": "core_inherited",
+              "pick_rate_tag": "core",
+              "pick_rate": 0.8,
+              "annotation": "[SWAP FOR Melee lifesteal] Vs heavy poke lane, where you just need to live and soak souls / box max. This is way more consistent compared to melee lifesteal and imo better. (SELL LATER can go fort!!)."
+            },
+            {
+              "item_id": 2163598980,
+              "name": "Spirit Resilience",
+              "category": "vitality",
+              "tier": 3,
+              "cost": 3200,
+              "matches": 3722,
+              "wins": 1877,
+              "win_rate": 0.5043,
+              "wilson_lb": 0.4882,
+              "score": -0.0027,
+              "wr_delta_pp": 1.34,
+              "avg_buy_time_s": 1435.9,
+              "phase": "mid",
+              "avg_sell_time_s": 2210.1,
+              "is_active": false,
+              "cooldown_s": null,
+              "imbue": null,
+              "joint_freq_weight": 41.3,
+              "tag": "core_proven",
+              "pick_rate_tag": "core",
+              "pick_rate": 1.0,
+              "annotation": "Core spirit resist; can consider rushing Spellbreaker against certain comps.."
+            },
+            {
+              "item_id": 2417568017,
+              "name": "Scourge",
+              "category": "spirit",
+              "tier": 4,
+              "cost": 6400,
+              "matches": 604,
+              "wins": 343,
+              "win_rate": 0.5679,
+              "wilson_lb": 0.5281,
+              "score": 0.0371,
+              "wr_delta_pp": 7.69,
+              "avg_buy_time_s": 2104.0,
+              "phase": "late",
+              "avg_sell_time_s": 2440.4,
+              "is_active": true,
+              "cooldown_s": 35.0,
+              "imbue": null,
+              "joint_freq_weight": 41.3,
+              "tag": "core_proven",
+              "pick_rate_tag": "core",
+              "pick_rate": 1.0,
+              "annotation": "GREAT item with huge AOE w/ GE. Gives you a lot of debuff resist + health, and active spirit resistance + % max hp damage! (Dont sleep on this!)."
+            },
+            {
+              "item_id": 3970837787,
+              "name": "Enchanter's Emblem",
+              "category": "vitality",
+              "tier": 2,
+              "cost": 1600,
+              "matches": 818,
+              "wins": 400,
+              "win_rate": 0.489,
+              "wilson_lb": 0.4549,
+              "score": -0.0361,
+              "wr_delta_pp": -0.19,
+              "avg_buy_time_s": 951.9,
+              "phase": "mid",
+              "avg_sell_time_s": 2089.4,
+              "is_active": false,
+              "cooldown_s": null,
+              "imbue": null,
+              "joint_freq_weight": 41.3,
+              "tag": "core_inherited",
+              "pick_rate_tag": "core",
+              "pick_rate": 1.0,
+              "annotation": "[SWAP] for anything in [Emblem Vest Swap Tab]"
+            },
+            {
+              "item_id": 1235347618,
+              "name": "Battle Vest",
+              "category": "vitality",
+              "tier": 2,
+              "cost": 1600,
+              "matches": 3876,
+              "wins": 1948,
+              "win_rate": 0.5026,
+              "wilson_lb": 0.4868,
+              "score": -0.0041,
+              "wr_delta_pp": 1.16,
+              "avg_buy_time_s": 687.5,
+              "phase": "early",
+              "avg_sell_time_s": 2243.3,
+              "is_active": false,
+              "cooldown_s": null,
+              "imbue": null,
+              "joint_freq_weight": 41.3,
+              "tag": "core_proven",
+              "pick_rate_tag": "core",
+              "pick_rate": 1.0,
+              "annotation": "Vs Gun get this / But consider reactive barrier if it can proc - Get enchancters Emblem if their team is all spirit | Can be sold for counter item / late game item |"
+            },
+            {
+              "item_id": 3491236900,
+              "name": "Plated Armor",
+              "category": "vitality",
+              "tier": 4,
+              "cost": 6400,
+              "matches": 871,
+              "wins": 452,
+              "win_rate": 0.5189,
+              "wilson_lb": 0.4858,
+              "score": -0.0052,
+              "wr_delta_pp": 2.8,
+              "avg_buy_time_s": 2060.9,
+              "phase": "late",
+              "avg_sell_time_s": 1982.0,
+              "is_active": false,
+              "cooldown_s": 1.0,
+              "imbue": null,
+              "joint_freq_weight": 41.3,
+              "tag": "core_proven",
+              "pick_rate_tag": "core",
+              "pick_rate": 1.0,
+              "annotation": "Good VS M1 heros | Mina , Infernus, Haze"
+            },
+            {
+              "item_id": 1813726886,
+              "name": "Slowing Hex",
+              "category": "spirit",
+              "tier": 2,
+              "cost": 1600,
+              "matches": 1658,
+              "wins": 838,
+              "win_rate": 0.5054,
+              "wilson_lb": 0.4814,
+              "score": -0.0096,
+              "wr_delta_pp": 1.45,
+              "avg_buy_time_s": 1154.3,
+              "phase": "mid",
+              "avg_sell_time_s": 2237.7,
+              "is_active": true,
+              "cooldown_s": 29.0,
+              "imbue": null,
+              "joint_freq_weight": 41.3,
+              "tag": "core_proven",
+              "pick_rate_tag": "core",
+              "pick_rate": 0.8,
+              "annotation": "[SWAP] - For SURGE OF POWER or BULLET RESIST SHREDDER - Use on mobile carries, good to set up while ulting."
+            },
+            {
+              "item_id": 1955841979,
+              "name": "Spellbreaker",
+              "category": "vitality",
+              "tier": 4,
+              "cost": 6400,
+              "matches": 871,
+              "wins": 489,
+              "win_rate": 0.5614,
+              "wilson_lb": 0.5283,
+              "score": 0.0373,
+              "wr_delta_pp": 7.05,
+              "avg_buy_time_s": 2124.7,
+              "phase": "late",
+              "avg_sell_time_s": 2160.9,
+              "is_active": false,
+              "cooldown_s": 9.0,
+              "imbue": null,
+              "joint_freq_weight": 41.3,
+              "tag": "core_proven",
+              "pick_rate_tag": "core",
+              "pick_rate": 0.8,
+              "annotation": "Great item now with the build path and changes, now gives you 25% debuff resist",
+              "lineage_chain": [
+                {
+                  "item_id": 1047818222,
+                  "name": "Debuff Reducer",
+                  "tier": 2,
+                  "cost": 1600,
+                  "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/debuff_reducer.png",
+                  "matches": 822,
+                  "avg_buy_time_min": 28.2,
+                  "imbue": null,
+                  "imbue_target_id": null,
+                  "imbue_target_share": null
+                }
+              ]
+            },
+            {
+              "item_id": 3190916303,
+              "name": "Spirit Snatch",
+              "category": "spirit",
+              "tier": 3,
+              "cost": 3200,
+              "matches": 4695,
+              "wins": 2343,
+              "win_rate": 0.499,
+              "wilson_lb": 0.4847,
+              "score": -0.0062,
+              "wr_delta_pp": 0.81,
+              "avg_buy_time_s": 1129.7,
+              "phase": "mid",
+              "avg_sell_time_s": 2484.5,
+              "is_active": false,
+              "cooldown_s": 6.0,
+              "imbue": null,
+              "joint_freq_weight": 41.3,
+              "tag": "core_inherited",
+              "pick_rate_tag": "core",
+              "pick_rate": 1.0,
+              "annotation": "[CORE] Bashdown applies this as an AoE + buffs more spirit power/resist steal ! Really good item CORE + HUGE BUFFS",
+              "lineage_chain": [
+                {
+                  "item_id": 465043967,
+                  "name": "Spirit Strike",
+                  "tier": 1,
+                  "cost": 800,
+                  "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/spirit_strike.png",
+                  "matches": 3418,
+                  "avg_buy_time_min": 12.8,
+                  "imbue": null,
+                  "imbue_target_id": null,
+                  "imbue_target_share": null
+                }
+              ]
+            },
+            {
+              "item_id": 3731635960,
+              "name": "Dispel Magic",
+              "category": "vitality",
+              "tier": 3,
+              "cost": 3200,
+              "matches": 735,
+              "wins": 380,
+              "win_rate": 0.517,
+              "wilson_lb": 0.4809,
+              "score": -0.01,
+              "wr_delta_pp": 2.61,
+              "avg_buy_time_s": 1508.6,
+              "phase": "late",
+              "avg_sell_time_s": 2135.5,
+              "is_active": true,
+              "cooldown_s": 52.0,
+              "imbue": null,
+              "joint_freq_weight": 41.3,
+              "tag": "core_proven",
+              "pick_rate_tag": "core",
+              "pick_rate": 1.0,
+              "annotation": "CLEANSE YOURSELF (This is really good since we are in CC meta) Please really consider this item, especially vs stacking characters like infernus, mirage, shiv, and a lot of cc actives"
+            },
+            {
+              "item_id": 3791587546,
+              "name": "Weighted Shots",
+              "category": "weapon",
+              "tier": 3,
+              "cost": 3200,
+              "matches": 1397,
+              "wins": 689,
+              "win_rate": 0.4932,
+              "wilson_lb": 0.467,
+              "score": -0.0239,
+              "wr_delta_pp": 0.23,
+              "avg_buy_time_s": 1350.3,
+              "phase": "mid",
+              "avg_sell_time_s": 2351.7,
+              "is_active": false,
+              "cooldown_s": null,
+              "imbue": null,
+              "joint_freq_weight": 41.3,
+              "tag": "core_inherited",
+              "pick_rate_tag": "core",
+              "pick_rate": 1.0,
+              "annotation": "buy this when you sell stalker",
+              "lineage_chain": [
+                {
+                  "item_id": 393974127,
+                  "name": "Slowing Bullets",
+                  "tier": 2,
+                  "cost": 1600,
+                  "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/weapon/slowing_bullets.png",
+                  "matches": 1047,
+                  "avg_buy_time_min": 14.2,
+                  "imbue": null,
+                  "imbue_target_id": null,
+                  "imbue_target_share": null
+                }
+              ]
+            },
+            {
+              "item_id": 98582110,
+              "name": "Stalker",
+              "category": "weapon",
+              "tier": 2,
+              "cost": 1600,
+              "matches": 3460,
+              "wins": 1728,
+              "win_rate": 0.4994,
+              "wilson_lb": 0.4828,
+              "score": -0.0082,
+              "wr_delta_pp": 0.85,
+              "avg_buy_time_s": 528.9,
+              "phase": "early",
+              "avg_sell_time_s": 2154.2,
+              "is_active": false,
+              "cooldown_s": 6.0,
+              "imbue": null,
+              "joint_freq_weight": 41.3,
+              "tag": "core_inherited",
+              "pick_rate_tag": "core",
+              "pick_rate": 1.0,
+              "annotation": "sell laterabbb"
+            }
+          ],
+          "source_builds": [
+            {
+              "build_id": 435330,
+              "name": "HipsterLion 70% WinRate 1 Shot G.O.A.T",
+              "win_rate": 0.4897,
+              "matches": 341
+            },
+            {
+              "build_id": 613001,
+              "name": "ttvcrayon_fps punchy compy donkey",
+              "win_rate": 0.5323,
+              "matches": 325
+            },
+            {
+              "build_id": 317853,
+              "name": "Billy - Bruiser-Close Range [62% WR] [tracklock.gg]",
+              "win_rate": 0.4542,
+              "matches": 295
+            },
+            {
+              "build_id": 493224,
+              "name": "BeepBeepBilly |\ud83d\udca6\u2622 1v12\u2718 | 7/26\u2605 ANNOTATIONS ON ALL",
+              "win_rate": 0.5223,
+              "matches": 291
+            }
+          ]
+        }
+      ],
+      "item_metadata": {
+        "2829638276": {
+          "tag": "core",
+          "pick_rate": 0.8,
+          "annotation": "[SWAP FOR Melee lifesteal] Vs heavy poke lane, where you just need to live and soak souls / box max. This is way more consistent compared to melee lifesteal and imo better. (SELL LATER can go fort!!).",
+          "builds_appearing_in": 4,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1437614329": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "sell later",
+          "builds_appearing_in": 5,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1342610602": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "You do a little damage now",
+          "builds_appearing_in": 5,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1009965641": {
+          "tag": "core",
+          "pick_rate": 0.8,
+          "annotation": "Monster rounds is good in lane and out of lane. Helps you push / farm faster",
+          "builds_appearing_in": 4,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "465043967": {
+          "tag": "core",
+          "pick_rate": 0.8,
+          "annotation": "Pick Rate: 76%\nWR: +1%",
+          "builds_appearing_in": 4,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3791587546": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "buy this when you sell stalker",
+          "builds_appearing_in": 5,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1252627263": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "amazing sustain item for billy",
+          "builds_appearing_in": 2,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2447176615": {
+          "tag": "core",
+          "pick_rate": 0.8,
+          "annotation": "[SWAP] Billy kinda slow so this feels nice on him. Can be subbed with a Battle Vest Swap item or sub for Tropy Collector.",
+          "builds_appearing_in": 4,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3776945997": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "1 more bashdown is pretty goated",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1235347618": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Vs Gun get this / But consider reactive barrier if it can proc - Get enchancters Emblem if their team is all spirit | Can be sold for counter item / late game item |",
+          "builds_appearing_in": 5,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1644605047": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "If most enemies can proc it, buy it. [If Slot locked buy spirit resilience if vs a lot of spirit damage]",
+          "builds_appearing_in": 5,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2603935618": {
+          "tag": "core",
+          "pick_rate": 0.8,
+          "annotation": "Most reliable anti heal for billy (really good item) [Can be swapped with Battle Vest]",
+          "builds_appearing_in": 4,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "112198670": {
+          "tag": "core",
+          "pick_rate": 0.8,
+          "annotation": "This is a pretty good item vs very Bursty Spirit damage. It now gives you spirit resistance when proc'ed. Will be squishier when its off cooldown!",
+          "builds_appearing_in": 4,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "805079544": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1710079648": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3399065363": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "Can buy much earlier",
+          "builds_appearing_in": 2,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3403085434": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "[SWAP] for Slowing Bullets. This item is has buffed %Weapon damage + Slow Resist, help with urn rotations early (Very good item) | Helps with 4.8k gun spike early",
+          "builds_appearing_in": 2,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3190916303": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "[CORE] Bashdown applies this as an AoE + buffs more spirit power/resist steal ! Really good item CORE + HUGE BUFFS",
+          "builds_appearing_in": 5,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2121044373": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "after the change to the way this Item works it is actually pretty good, both your cold front and your charge proc this",
+          "builds_appearing_in": 3,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "787198704": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "Great item + Spirit Damage Buffs! Allows for 1-2 extra bashdowns each fight.",
+          "builds_appearing_in": 3,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1254091416": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "619484391": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2617435668": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1813726886": {
+          "tag": "core",
+          "pick_rate": 0.8,
+          "annotation": "[SWAP] - For SURGE OF POWER or BULLET RESIST SHREDDER - Use on mobile carries, good to set up while ulting.",
+          "builds_appearing_in": 4,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1371725689": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "vs Vindicta (dont go knockdown) this gets way more value and they usually just get counter spell + dispel (this is harder to react too)",
+          "builds_appearing_in": 5,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2163598980": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Core spirit resist; can consider rushing Spellbreaker against certain comps..",
+          "builds_appearing_in": 5,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3731635960": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "CLEANSE YOURSELF (This is really good since we are in CC meta) Please really consider this item, especially vs stacking characters like infernus, mirage, shiv, and a lot of cc actives",
+          "builds_appearing_in": 5,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1378931225": {
+          "tag": "core",
+          "pick_rate": 0.8,
+          "annotation": "Immune to bullets for a bit",
+          "builds_appearing_in": 4,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3270001687": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Great vs hard engage characters or scary ults to hide from",
+          "builds_appearing_in": 5,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2463960640": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "[SWAP] (If very gun heavy you can skip slowing bullets and go for this instead) Buffed Item Weapon% Dps + Gun Resistance!!",
+          "builds_appearing_in": 3,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2481177645": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "395944548": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "[SWAP] For Rapid Recharge. - Consistent spirit damage (Have to be in close proximity of enemy).",
+          "builds_appearing_in": 2,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1414025773": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "OP item but need skill + timing",
+          "builds_appearing_in": 5,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "915014646": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "you'll have lots of items so this is pretty good",
+          "builds_appearing_in": 3,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2417568017": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "GREAT item with huge AOE w/ GE. Gives you a lot of debuff resist + health, and active spirit resistance + % max hp damage! (Dont sleep on this!).",
+          "builds_appearing_in": 5,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2533252781": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "used to be great until they doubled the cd because of damned victor",
+          "builds_appearing_in": 2,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1955841979": {
+          "tag": "core",
+          "pick_rate": 0.8,
+          "annotation": "Great item now with the build path and changes, now gives you 25% debuff resist",
+          "builds_appearing_in": 4,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3491236900": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Good VS M1 heros | Mina , Infernus, Haze",
+          "builds_appearing_in": 5,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3357231760": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "This is one of the best items in the game. Go this if enemy has a lot of ways of punishing you for going in / CC. Silences, Curse, Doorman, stuns, etc.",
+          "builds_appearing_in": 3,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2407781327": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Very Good item. Can consider going this before rapid recharge or even earlier. We scale great with hp now so 25% base health + the items we have been going will go crazy(Make sure to active melee dps)",
+          "builds_appearing_in": 5,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "380806748": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "Your ult means 1 key character will die, buy this for more ults",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": 3762861984,
+          "imbue_target_share": 1.0
+        },
+        "3261353684": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "all your cds are pretty high so this can make you have less downtime",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "876563814": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "s",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "865958998": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "395867183": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "a",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "800008313": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "Damage increase, Buffed the cooldown on the passive damage now to 5s now and gives you a bit of shred / resistance.",
+          "builds_appearing_in": 3,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "26002154": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "[SWAP] for Slowing Bullets. Buffed the Passive damage to be 5s now. (Meh item but helps you spike to Crushing faster) | 4.8k spike.",
+          "builds_appearing_in": 3,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3140772621": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "",
+          "builds_appearing_in": 3,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1976391348": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "burst dmg, so you go 2 1 cold front 3 1",
+          "builds_appearing_in": 2,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "709540378": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "This item feels so good with MORE BUFFS. So much money.  [You can skip slowing bullets and go this instead]",
+          "builds_appearing_in": 3,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "4053935515": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "Flat burst dmg, good for squishy comps like mina,paige,...",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3696726732": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "If they don't die to your burst and they have lots of hp this can be better than cultist",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2095565695": {
+          "tag": "core",
+          "pick_rate": 0.8,
+          "annotation": "[UPGRADE] Increases dps when close + melee resist + slowing on shot",
+          "builds_appearing_in": 4,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3812615317": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "pop this then charge to do a billion dmg",
+          "builds_appearing_in": 2,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "98582110": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "sell laterabbb",
+          "builds_appearing_in": 5,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3361075077": {
+          "tag": "core",
+          "pick_rate": 0.8,
+          "annotation": "Could be very good in lane. It is up every wave fight around this. Good vs graves skulls. Pref vs more gun favored enemies to benefit from bullet res.",
+          "builds_appearing_in": 4,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3970837787": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "[SWAP] for anything in [Emblem Vest Swap Tab]",
+          "builds_appearing_in": 5,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1998374645": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1672893796": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "play safer in lane and also play around grit to when trading.",
+          "builds_appearing_in": 3,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "393974127": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "[SWAP] Slowing bullets is still good especially now while perma fighting. Helps us get our spike early and gives us 15% weapon damage | 4.8k spike",
+          "builds_appearing_in": 3,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2971868509": {
+          "tag": "core",
+          "pick_rate": 0.8,
+          "annotation": "[SWAP SURGE OF POWER or SLOWING HEX] Doesnt Stack if your team has it. Perfectly Paired with Torment Pulse, and gets the easy procs from it. (This can be sold later for another Spirit Item like GE)",
+          "builds_appearing_in": 4,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2108215830": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "[Swap] for Crushing or RR. This item does not stack if you team has it. Very good item as it gives your WHOLE team bullet resistance! and on active gives firerate + Movement speed! !",
+          "builds_appearing_in": 3,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3585132399": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "(You can go this instead of Colossus if you want to be active on the map) Sell in late game for Colossus. Really good item that has you perma on the map, giving you some extra hp",
+          "builds_appearing_in": 3,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1193964439": {
+          "tag": "core",
+          "pick_rate": 0.8,
+          "annotation": "Prio this item tbh its really good | +10% spirit resist |  bIG cHAIN gANg, big torment pulse, big bashdown, big peepee",
+          "builds_appearing_in": 4,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1250307611": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "[UPGRADE] Great VS a lot of slows and also fast fire rate characters | Also great slot locked upgrade (Had no room, this is an upgrade not swappable :) )",
+          "builds_appearing_in": 2,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3028234315": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2820116164": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2519598785": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "This is more of a Late game purchase when you have items like scourge, alch fire, RR + Crushing (Ultra late game)",
+          "builds_appearing_in": 3,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1055679805": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2037039379": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "",
+          "builds_appearing_in": 2,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "339443430": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "INSANE for debuff + fire rate. this should be your 2nd or 3rd T4 purchase (or whenever needed)",
+          "builds_appearing_in": 2,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1282141666": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "BUY 1st IF ENEMY BUYING TOO MUCH GREENS OR IF THEYRE TOO TANKY. INSANE FOR SUSTAIN AND GUN DMG",
+          "builds_appearing_in": 2,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "343572757": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1113837674": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "Give you spirit resistance + your Bashdown (1) Procs the Spirit Damage Reduction in an AOE. Really good into spirit heavy comps!!",
+          "builds_appearing_in": 3,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3884003354": {
+          "tag": "flex",
+          "pick_rate": 0.6,
+          "annotation": "Anti heal late + shred |  [Can sell Enchanter Emblem swap for this].",
+          "builds_appearing_in": 3,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "754480263": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "Pick Rate: 34%\nWR: +4%",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": 1841661392,
+          "imbue_target_share": 0.667
+        },
+        "3633614685": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "Builds into Colossus & Fortitude. Consider Fortitude if you want to snow ball and rotate to a lot of fights early on.",
+          "builds_appearing_in": 2,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1047818222": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "vs debuffs\nPick Rate: 13%\nWR: +1%",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1292979587": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "Sell extra regen for this | Gives your ram more spirit damage. Can be replaced with slowing hex if your team really needs it.. or Bullet Resist Shredder for a cheap boost in damage.",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": 1792773251,
+          "imbue_target_share": 1.0
+        },
+        "1414319208": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "(TLDR more more damage) This item is really good and is pumping damage out | Take Any Damage = Stack = More Weapon Damage up to 70%!! Super good since we will be perma fighting and more tanky now!!!",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3074274290": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "[SWAP ENDURING SPEED] if you are roaming around a lot and getting a lot of kills + enemy doesnt have much slows you can replace this with enduring speed",
+          "builds_appearing_in": 2,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "951866250": {
+          "tag": "flex",
+          "pick_rate": 0.4,
+          "annotation": "Raahhhhh.... go this if you go reactive barrier and the enemy team has a lot of cc (Mo ult, wraith ult, door man ult) + refund time on cooldowns (THIS IS AUTO COUNTERSPELL on 55s cooldown)",
+          "builds_appearing_in": 2,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1152158042": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "Sets up your ult, or can better guarantee kills off of it |",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2142980412": {
+          "tag": "situational",
+          "pick_rate": 0.2,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 5,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        }
+      }
+    },
+    "high_mmr": {
+      "candidate_count": 0,
+      "min_matches_filter": 300,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "ascendant_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 100,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "eternus_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 30,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    }
+  },
+  "ability_orders": {
+    "all_mmr": {
+      "total_records": 12,
+      "total_matches": 1732,
+      "ability_priority": [
+        {
+          "ability_id": 1841661392,
+          "name": "Bashdown",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 1792773251,
+          "name": "Rising Ram",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 3296031213,
+          "name": "Blasted",
+          "avg_ap_all_players": 3.71,
+          "avg_ap_winners": 3.74,
+          "winner_premium_ap": 0.03
+        },
+        {
+          "ability_id": 3762861984,
+          "name": "Chain Gang",
+          "avg_ap_all_players": 3.45,
+          "avg_ap_winners": 3.58,
+          "winner_premium_ap": 0.13
+        }
+      ],
+      "best_full_orders": [
+        {
+          "sequence_ids": [
+            3296031213,
+            3296031213,
+            1841661392,
+            1792773251,
+            3296031213,
+            1792773251,
+            3762861984,
+            1792773251,
+            1841661392,
+            1841661392,
+            1841661392,
+            3296031213,
+            1792773251,
+            3762861984,
+            3762861984,
+            3762861984
+          ],
+          "sequence_names": [
+            "Blasted",
+            "Blasted",
+            "Bashdown",
+            "Rising Ram",
+            "Blasted",
+            "Rising Ram",
+            "Chain Gang",
+            "Rising Ram",
+            "Bashdown",
+            "Bashdown",
+            "Bashdown",
+            "Blasted",
+            "Rising Ram",
+            "Chain Gang",
+            "Chain Gang",
+            "Chain Gang"
+          ],
+          "wins": 158,
+          "losses": 66,
+          "matches": 224,
+          "players": 213,
+          "win_rate": 0.7054
+        },
+        {
+          "sequence_ids": [
+            3296031213,
+            3296031213,
+            1841661392,
+            1792773251,
+            3296031213,
+            1792773251,
+            3762861984,
+            1792773251,
+            1841661392,
+            1841661392,
+            1841661392,
+            3296031213,
+            1792773251,
+            3762861984,
+            3762861984
+          ],
+          "sequence_names": [
+            "Blasted",
+            "Blasted",
+            "Bashdown",
+            "Rising Ram",
+            "Blasted",
+            "Rising Ram",
+            "Chain Gang",
+            "Rising Ram",
+            "Bashdown",
+            "Bashdown",
+            "Bashdown",
+            "Blasted",
+            "Rising Ram",
+            "Chain Gang",
+            "Chain Gang"
+          ],
+          "wins": 220,
+          "losses": 172,
+          "matches": 392,
+          "players": 364,
+          "win_rate": 0.5612
+        },
+        {
+          "sequence_ids": [
+            3296031213,
+            3296031213,
+            1841661392,
+            1792773251,
+            3296031213,
+            3762861984,
+            3762861984,
+            1792773251,
+            1792773251,
+            1841661392,
+            1841661392,
+            1792773251,
+            1841661392,
+            3762861984,
+            3762861984
+          ],
+          "sequence_names": [
+            "Blasted",
+            "Blasted",
+            "Bashdown",
+            "Rising Ram",
+            "Blasted",
+            "Chain Gang",
+            "Chain Gang",
+            "Rising Ram",
+            "Rising Ram",
+            "Bashdown",
+            "Bashdown",
+            "Rising Ram",
+            "Bashdown",
+            "Chain Gang",
+            "Chain Gang"
+          ],
+          "wins": 130,
+          "losses": 118,
+          "matches": 248,
+          "players": 228,
+          "win_rate": 0.5242
+        },
+        {
+          "sequence_ids": [
+            3296031213,
+            3296031213,
+            1841661392,
+            1792773251,
+            3296031213,
+            1792773251,
+            3762861984,
+            1792773251,
+            1841661392,
+            1841661392,
+            1841661392,
+            1792773251,
+            3296031213,
+            3762861984,
+            3762861984
+          ],
+          "sequence_names": [
+            "Blasted",
+            "Blasted",
+            "Bashdown",
+            "Rising Ram",
+            "Blasted",
+            "Rising Ram",
+            "Chain Gang",
+            "Rising Ram",
+            "Bashdown",
+            "Bashdown",
+            "Bashdown",
+            "Rising Ram",
+            "Blasted",
+            "Chain Gang",
+            "Chain Gang"
+          ],
+          "wins": 98,
+          "losses": 105,
+          "matches": 203,
+          "players": 193,
+          "win_rate": 0.4828
+        }
+      ],
+      "best_openers_first4": [
+        {
+          "sequence_names": [
+            "Blasted",
+            "Blasted",
+            "Bashdown",
+            "Rising Ram"
+          ],
+          "wins": 843,
+          "matches": 1566,
+          "win_rate": 0.5383
+        }
+      ]
+    },
+    "high_mmr": {
+      "total_records": 1,
+      "total_matches": 24,
+      "ability_priority": [
+        {
+          "ability_id": 1841661392,
+          "name": "Bashdown",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 1792773251,
+          "name": "Rising Ram",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 3296031213,
+          "name": "Blasted",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 3762861984,
+          "name": "Chain Gang",
+          "avg_ap_all_players": 3.0,
+          "avg_ap_winners": 3.0,
+          "winner_premium_ap": 0.0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "ascendant_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 1841661392,
+          "name": "Bashdown",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1792773251,
+          "name": "Rising Ram",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3296031213,
+          "name": "Blasted",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3762861984,
+          "name": "Chain Gang",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "eternus_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 1841661392,
+          "name": "Bashdown",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1792773251,
+          "name": "Rising Ram",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3296031213,
+          "name": "Blasted",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 3762861984,
+          "name": "Chain Gang",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    }
+  },
+  "provenance": {
+    "data_source": "api.deadlock-api.com",
+    "endpoints_used": [
+      "/v1/analytics/hero-stats",
+      "/v1/analytics/item-stats",
+      "/v1/analytics/item-permutation-stats?comb_size=2",
+      "/v1/analytics/hero-build-stats/{hero_id}",
+      "/v1/analytics/ability-order-stats",
+      "/v1/builds (per-build details)"
+    ],
+    "asset_sources": [
+      "https://api.deadlock-api.com/v1/assets/heroes",
+      "https://api.deadlock-api.com/v1/assets/items"
+    ]
+  },
+  "scoring_mode": "wilson"
+}

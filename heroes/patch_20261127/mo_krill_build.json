@@ -1,0 +1,2000 @@
+{
+  "spec_version": "1.3.0",
+  "hero": {
+    "id": 18,
+    "name": "Mo & Krill",
+    "abilities": [
+      {
+        "id": 1454278799,
+        "name": "Scorn"
+      },
+      {
+        "id": 2406758797,
+        "name": "Burrow"
+      },
+      {
+        "id": 1914797280,
+        "name": "Sand Blast"
+      },
+      {
+        "id": 1917840730,
+        "name": "Combo"
+      }
+    ]
+  },
+  "patch": {
+    "id": "patch_20261127",
+    "title": "11-27-2026 Update",
+    "min_unix_timestamp": 1795833226
+  },
+  "mmr_slices": {
+    "all_mmr": {
+      "filter": "no MMR filter",
+      "baseline_win_rate": 0.4748,
+      "matches": 2382,
+      "players": null
+    },
+    "high_mmr": {
+      "filter": "min_average_badge=91 (Phantom+)",
+      "baseline_win_rate": 0.5432,
+      "matches": 81,
+      "players": null
+    },
+    "ascendant_plus": {
+      "filter": "min_average_badge=101 (Ascendant+)",
+      "baseline_win_rate": 0.5,
+      "matches": 36,
+      "players": null
+    },
+    "eternus_plus": {
+      "filter": "min_average_badge=111 (Eternus+)",
+      "baseline_win_rate": 0.8333,
+      "matches": 6,
+      "players": null
+    }
+  },
+  "category_bands": {
+    "source": "hero",
+    "inventories": 1646,
+    "mean": {
+      "weapon": 0.24,
+      "vitality": 4.75,
+      "spirit": 7.02
+    },
+    "bounds": {
+      "weapon": [
+        0,
+        2
+      ],
+      "vitality": [
+        3,
+        7
+      ],
+      "spirit": [
+        5,
+        9
+      ]
+    }
+  },
+  "recommended": {
+    "items": {
+      "method": "synergy_ilp",
+      "mmr_slice": "high_mmr",
+      "total_cost": 0,
+      "phases": {
+        "early": [],
+        "mid": [],
+        "late": []
+      }
+    },
+    "abilities": {
+      "ap_priority_order": [
+        "Scorn",
+        "Burrow",
+        "Sand Blast",
+        "Combo"
+      ],
+      "best_full_order": null,
+      "best_opener_first4": null
+    }
+  },
+  "items": {
+    "all_mmr": {
+      "candidate_count": 17,
+      "min_matches_filter": 500,
+      "wilson_greedy": {
+        "picks": [
+          {
+            "item_id": 2417568017,
+            "name": "Scourge",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 715,
+            "wins": 399,
+            "win_rate": 0.558,
+            "wilson_lb": 0.5214,
+            "score": 0.0466,
+            "wr_delta_pp": 8.32,
+            "avg_buy_time_s": 1871.0,
+            "phase": "late",
+            "avg_sell_time_s": 2043.1,
+            "is_active": true,
+            "cooldown_s": 35.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "nerfed but do not let anyone tell you its bad on mo now, still gives resist and has good damage"
+          },
+          {
+            "item_id": 3005970438,
+            "name": "Escalating Exposure",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 680,
+            "wins": 377,
+            "win_rate": 0.5544,
+            "wilson_lb": 0.5169,
+            "score": 0.042,
+            "wr_delta_pp": 7.96,
+            "avg_buy_time_s": 1932.8,
+            "phase": "late",
+            "avg_sell_time_s": 1920.8,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "spirit shred, makes you scale in long fights better, also pretty good spirit resist,",
+            "lineage_chain": [
+              {
+                "item_id": 2081037738,
+                "name": "Mystic Vulnerability",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_vulnerability.png",
+                "matches": 594,
+                "avg_buy_time_min": 24.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1250307611,
+            "name": "Juggernaut",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 547,
+            "wins": 302,
+            "win_rate": 0.5521,
+            "wilson_lb": 0.5102,
+            "score": 0.0354,
+            "wr_delta_pp": 7.73,
+            "avg_buy_time_s": 1974.6,
+            "phase": "late",
+            "avg_sell_time_s": 2069.8,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 3399065363,
+                "name": "Sprint Boots",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/sprint_boots.png",
+                "matches": 1921,
+                "avg_buy_time_min": 7.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 2447176615,
+                "name": "Enduring Speed",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/enduring_speed.png",
+                "matches": 970,
+                "avg_buy_time_min": 15.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 637,
+            "wins": 347,
+            "win_rate": 0.5447,
+            "wilson_lb": 0.5059,
+            "score": 0.0311,
+            "wr_delta_pp": 6.99,
+            "avg_buy_time_s": 1866.2,
+            "phase": "late",
+            "avg_sell_time_s": 1829.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "with duration, it technically has 2.88x scaling, BUT after 1.5 seconds of burrow people can freely dash out of it, so its not worth it",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_spirit.png",
+                "matches": 1012,
+                "avg_buy_time_min": 11.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_spirit.png",
+                "matches": 952,
+                "avg_buy_time_min": 18.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3812615317,
+            "name": "Arctic Blast",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1067,
+            "wins": 565,
+            "win_rate": 0.5295,
+            "wilson_lb": 0.4995,
+            "score": 0.0247,
+            "wr_delta_pp": 5.47,
+            "avg_buy_time_s": 1791.9,
+            "phase": "late",
+            "avg_sell_time_s": 2192.2,
+            "is_active": true,
+            "cooldown_s": 24.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "use this directly after you scorn, deletes opponent's indom, and holds them inplace for entire burrow duration",
+            "lineage_chain": [
+              {
+                "item_id": 1976391348,
+                "name": "Cold Front",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/cold_front.png",
+                "matches": 1795,
+                "avg_buy_time_min": 11.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 915014646,
+            "name": "Transcendent Cooldown",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1309,
+            "wins": 680,
+            "win_rate": 0.5195,
+            "wilson_lb": 0.4924,
+            "score": 0.0176,
+            "wr_delta_pp": 4.47,
+            "avg_buy_time_s": 1847.9,
+            "phase": "late",
+            "avg_sell_time_s": 1837.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "buy this if u have atleast 3 actives, or if ur hard hard slot locked and need to spend money",
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_cooldown.png",
+                "matches": 1754,
+                "avg_buy_time_min": 19.1,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": 1454278799,
+                "imbue_target_share": 1.0
+              },
+              {
+                "item_id": 3261353684,
+                "name": "Superior Cooldown",
+                "tier": 3,
+                "cost": 3200,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/superior_cooldown.png",
+                "matches": 1995,
+                "avg_buy_time_min": 23.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3270001687,
+            "name": "Warp Stone",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1220,
+            "wins": 620,
+            "win_rate": 0.5082,
+            "wilson_lb": 0.4802,
+            "score": 0.0054,
+            "wr_delta_pp": 3.34,
+            "avg_buy_time_s": 1181.0,
+            "phase": "mid",
+            "avg_sell_time_s": 2463.1,
+            "is_active": true,
+            "cooldown_s": 16.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "good against fliers, mina, and seven, or just games you're struggling to get combo's"
+          },
+          {
+            "item_id": 3970837787,
+            "name": "Enchanter's Emblem",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 517,
+            "wins": 267,
+            "win_rate": 0.5164,
+            "wilson_lb": 0.4734,
+            "score": -0.0014,
+            "wr_delta_pp": 4.16,
+            "avg_buy_time_s": 968.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2318.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "15% spirit resist is super needed, +2 regen, and a good bit of extra spirit power most of the time, sameish value to spirit lifesteal"
+          },
+          {
+            "item_id": 1193964439,
+            "name": "Greater Expansion",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 697,
+            "wins": 351,
+            "win_rate": 0.5036,
+            "wilson_lb": 0.4665,
+            "score": -0.0083,
+            "wr_delta_pp": 2.88,
+            "avg_buy_time_s": 1661.9,
+            "phase": "late",
+            "avg_sell_time_s": 2127.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "works on every single part of Mo's kit, aswell as actives like warpstone and scourge, increases healing almost as much as tankbuster",
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_reach.png",
+                "matches": 1033,
+                "avg_buy_time_min": 6.1,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": 1454278799,
+                "imbue_target_share": 1.0
+              }
+            ]
+          },
+          {
+            "item_id": 2717651715,
+            "name": "Superior Duration",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1545,
+            "wins": 757,
+            "win_rate": 0.49,
+            "wilson_lb": 0.4651,
+            "score": -0.0097,
+            "wr_delta_pp": 1.52,
+            "avg_buy_time_s": 1461.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2260.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "If your too lazy to go to his twitch, the whole spiel is that duration is just unneeded on Mo, 99% of combos dont need that extra one second to kill, and that 1% isnt worth spending 3200 souls,",
+            "lineage_chain": [
+              {
+                "item_id": 2951612397,
+                "name": "Duration Extender",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/duration_extender.png",
+                "matches": 1148,
+                "avg_buy_time_min": 20.8,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": 1917840730,
+                "imbue_target_share": 1.0
+              }
+            ]
+          },
+          {
+            "item_id": 395944548,
+            "name": "Torment Pulse",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2319,
+            "wins": 1122,
+            "win_rate": 0.4838,
+            "wilson_lb": 0.4635,
+            "score": -0.0113,
+            "wr_delta_pp": 0.9,
+            "avg_buy_time_s": 876.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2677.8,
+            "is_active": false,
+            "cooldown_s": 1.4,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Torment is the most core core of any item mo can get, very good damage and your only way of passive damage."
+          },
+          {
+            "item_id": 2163598980,
+            "name": "Spirit Resilience",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1132,
+            "wins": 554,
+            "win_rate": 0.4894,
+            "wilson_lb": 0.4604,
+            "score": -0.0144,
+            "wr_delta_pp": 1.46,
+            "avg_buy_time_s": 1540.9,
+            "phase": "late",
+            "avg_sell_time_s": 2333.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "AMAZING CARD, very high base spirit res, highly discourage buying other spirit res INSTEAD of this card, buy it with other cards"
+          }
+        ]
+      },
+      "synergy_ilp": {
+        "picks": [
+          {
+            "item_id": 2417568017,
+            "name": "Scourge",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 715,
+            "wins": 399,
+            "win_rate": 0.558,
+            "wilson_lb": 0.5214,
+            "score": 0.0466,
+            "wr_delta_pp": 8.32,
+            "avg_buy_time_s": 1871.0,
+            "phase": "late",
+            "avg_sell_time_s": 2043.1,
+            "is_active": true,
+            "cooldown_s": 35.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "nerfed but do not let anyone tell you its bad on mo now, still gives resist and has good damage"
+          },
+          {
+            "item_id": 3005970438,
+            "name": "Escalating Exposure",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 680,
+            "wins": 377,
+            "win_rate": 0.5544,
+            "wilson_lb": 0.5169,
+            "score": 0.042,
+            "wr_delta_pp": 7.96,
+            "avg_buy_time_s": 1932.8,
+            "phase": "late",
+            "avg_sell_time_s": 1920.8,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "spirit shred, makes you scale in long fights better, also pretty good spirit resist,",
+            "lineage_chain": [
+              {
+                "item_id": 2081037738,
+                "name": "Mystic Vulnerability",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_vulnerability.png",
+                "matches": 594,
+                "avg_buy_time_min": 24.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 1250307611,
+            "name": "Juggernaut",
+            "category": "vitality",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 547,
+            "wins": 302,
+            "win_rate": 0.5521,
+            "wilson_lb": 0.5102,
+            "score": 0.0354,
+            "wr_delta_pp": 7.73,
+            "avg_buy_time_s": 1974.6,
+            "phase": "late",
+            "avg_sell_time_s": 2069.8,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "stat_anomaly",
+            "pick_rate_tag": "stat",
+            "pick_rate": 0.0,
+            "lineage_chain": [
+              {
+                "item_id": 3399065363,
+                "name": "Sprint Boots",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/sprint_boots.png",
+                "matches": 1921,
+                "avg_buy_time_min": 7.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 2447176615,
+                "name": "Enduring Speed",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/vitality/enduring_speed.png",
+                "matches": 970,
+                "avg_buy_time_min": 15.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 637,
+            "wins": 347,
+            "win_rate": 0.5447,
+            "wilson_lb": 0.5059,
+            "score": 0.0311,
+            "wr_delta_pp": 6.99,
+            "avg_buy_time_s": 1866.2,
+            "phase": "late",
+            "avg_sell_time_s": 1829.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "with duration, it technically has 2.88x scaling, BUT after 1.5 seconds of burrow people can freely dash out of it, so its not worth it",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_spirit.png",
+                "matches": 1012,
+                "avg_buy_time_min": 11.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_spirit.png",
+                "matches": 952,
+                "avg_buy_time_min": 18.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3812615317,
+            "name": "Arctic Blast",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1067,
+            "wins": 565,
+            "win_rate": 0.5295,
+            "wilson_lb": 0.4995,
+            "score": 0.0247,
+            "wr_delta_pp": 5.47,
+            "avg_buy_time_s": 1791.9,
+            "phase": "late",
+            "avg_sell_time_s": 2192.2,
+            "is_active": true,
+            "cooldown_s": 24.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "use this directly after you scorn, deletes opponent's indom, and holds them inplace for entire burrow duration",
+            "lineage_chain": [
+              {
+                "item_id": 1976391348,
+                "name": "Cold Front",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/cold_front.png",
+                "matches": 1795,
+                "avg_buy_time_min": 11.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 915014646,
+            "name": "Transcendent Cooldown",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1309,
+            "wins": 680,
+            "win_rate": 0.5195,
+            "wilson_lb": 0.4924,
+            "score": 0.0176,
+            "wr_delta_pp": 4.47,
+            "avg_buy_time_s": 1847.9,
+            "phase": "late",
+            "avg_sell_time_s": 1837.2,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "buy this if u have atleast 3 actives, or if ur hard hard slot locked and need to spend money",
+            "lineage_chain": [
+              {
+                "item_id": 380806748,
+                "name": "Compress Cooldown",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_cooldown.png",
+                "matches": 1754,
+                "avg_buy_time_min": 19.1,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": 1454278799,
+                "imbue_target_share": 1.0
+              },
+              {
+                "item_id": 3261353684,
+                "name": "Superior Cooldown",
+                "tier": 3,
+                "cost": 3200,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/superior_cooldown.png",
+                "matches": 1995,
+                "avg_buy_time_min": 23.3,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3270001687,
+            "name": "Warp Stone",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1220,
+            "wins": 620,
+            "win_rate": 0.5082,
+            "wilson_lb": 0.4802,
+            "score": 0.0054,
+            "wr_delta_pp": 3.34,
+            "avg_buy_time_s": 1181.0,
+            "phase": "mid",
+            "avg_sell_time_s": 2463.1,
+            "is_active": true,
+            "cooldown_s": 16.0,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "good against fliers, mina, and seven, or just games you're struggling to get combo's"
+          },
+          {
+            "item_id": 2717651715,
+            "name": "Superior Duration",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1545,
+            "wins": 757,
+            "win_rate": 0.49,
+            "wilson_lb": 0.4651,
+            "score": -0.0097,
+            "wr_delta_pp": 1.52,
+            "avg_buy_time_s": 1461.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2260.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "If your too lazy to go to his twitch, the whole spiel is that duration is just unneeded on Mo, 99% of combos dont need that extra one second to kill, and that 1% isnt worth spending 3200 souls,",
+            "lineage_chain": [
+              {
+                "item_id": 2951612397,
+                "name": "Duration Extender",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/duration_extender.png",
+                "matches": 1148,
+                "avg_buy_time_min": 20.8,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": 1917840730,
+                "imbue_target_share": 1.0
+              }
+            ]
+          },
+          {
+            "item_id": 395944548,
+            "name": "Torment Pulse",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2319,
+            "wins": 1122,
+            "win_rate": 0.4838,
+            "wilson_lb": 0.4635,
+            "score": -0.0113,
+            "wr_delta_pp": 0.9,
+            "avg_buy_time_s": 876.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2677.8,
+            "is_active": false,
+            "cooldown_s": 1.4,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Torment is the most core core of any item mo can get, very good damage and your only way of passive damage."
+          },
+          {
+            "item_id": 1998374645,
+            "name": "Mystic Burst",
+            "category": "spirit",
+            "tier": 1,
+            "cost": 800,
+            "matches": 2497,
+            "wins": 1189,
+            "win_rate": 0.4762,
+            "wilson_lb": 0.4566,
+            "score": -0.0182,
+            "wr_delta_pp": 0.14,
+            "avg_buy_time_s": 163.8,
+            "phase": "early",
+            "avg_sell_time_s": 1581.8,
+            "is_active": false,
+            "cooldown_s": 14.0,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "adds hundreds of healing to each Scorn, you can be a lot more free and agressive in lane now"
+          },
+          {
+            "item_id": 84321454,
+            "name": "Quicksilver Reload",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 2042,
+            "wins": 971,
+            "win_rate": 0.4755,
+            "wilson_lb": 0.4539,
+            "score": -0.0209,
+            "wr_delta_pp": 0.07,
+            "avg_buy_time_s": 381.6,
+            "phase": "early",
+            "avg_sell_time_s": 2199.8,
+            "is_active": false,
+            "cooldown_s": 18.0,
+            "imbue": "imbue_active",
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Adds hundreds of healing to each Scorn, scales nicely with spirit, but optional if u want it early",
+            "imbue_target_id": 1454278799,
+            "imbue_target_share": 1.0
+          },
+          {
+            "item_id": 2603935618,
+            "name": "Healbane",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1823,
+            "wins": 868,
+            "win_rate": 0.4761,
+            "wilson_lb": 0.4533,
+            "score": -0.0215,
+            "wr_delta_pp": 0.13,
+            "avg_buy_time_s": 910.8,
+            "phase": "mid",
+            "avg_sell_time_s": 2354.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "good heal and good antiheal, not much more to say, higher rank you are less optional this becomes, (sellable)"
+          }
+        ]
+      },
+      "build_replication": {
+        "picks": [
+          {
+            "item_id": 2603935618,
+            "name": "Healbane",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 1823,
+            "wins": 868,
+            "win_rate": 0.4761,
+            "wilson_lb": 0.4533,
+            "score": -0.0215,
+            "wr_delta_pp": 0.13,
+            "avg_buy_time_s": 910.8,
+            "phase": "mid",
+            "avg_sell_time_s": 2354.1,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 24.2,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "good heal and good antiheal, not much more to say, higher rank you are less optional this becomes, (sellable)"
+          },
+          {
+            "item_id": 2717651715,
+            "name": "Superior Duration",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1545,
+            "wins": 757,
+            "win_rate": 0.49,
+            "wilson_lb": 0.4651,
+            "score": -0.0097,
+            "wr_delta_pp": 1.52,
+            "avg_buy_time_s": 1461.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2260.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 24.2,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "If your too lazy to go to his twitch, the whole spiel is that duration is just unneeded on Mo, 99% of combos dont need that extra one second to kill, and that 1% isnt worth spending 3200 souls,",
+            "lineage_chain": [
+              {
+                "item_id": 2951612397,
+                "name": "Duration Extender",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/duration_extender.png",
+                "matches": 1148,
+                "avg_buy_time_min": 20.8,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": 1917840730,
+                "imbue_target_share": 1.0
+              }
+            ]
+          },
+          {
+            "item_id": 2163598980,
+            "name": "Spirit Resilience",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1132,
+            "wins": 554,
+            "win_rate": 0.4894,
+            "wilson_lb": 0.4604,
+            "score": -0.0144,
+            "wr_delta_pp": 1.46,
+            "avg_buy_time_s": 1540.9,
+            "phase": "late",
+            "avg_sell_time_s": 2333.7,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 24.2,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "AMAZING CARD, very high base spirit res, highly discourage buying other spirit res INSTEAD of this card, buy it with other cards"
+          },
+          {
+            "item_id": 3005970438,
+            "name": "Escalating Exposure",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 680,
+            "wins": 377,
+            "win_rate": 0.5544,
+            "wilson_lb": 0.5169,
+            "score": 0.042,
+            "wr_delta_pp": 7.96,
+            "avg_buy_time_s": 1932.8,
+            "phase": "late",
+            "avg_sell_time_s": 1920.8,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 24.2,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "spirit shred, makes you scale in long fights better, also pretty good spirit resist,",
+            "lineage_chain": [
+              {
+                "item_id": 2081037738,
+                "name": "Mystic Vulnerability",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_vulnerability.png",
+                "matches": 594,
+                "avg_buy_time_min": 24.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 2417568017,
+            "name": "Scourge",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 715,
+            "wins": 399,
+            "win_rate": 0.558,
+            "wilson_lb": 0.5214,
+            "score": 0.0466,
+            "wr_delta_pp": 8.32,
+            "avg_buy_time_s": 1871.0,
+            "phase": "late",
+            "avg_sell_time_s": 2043.1,
+            "is_active": true,
+            "cooldown_s": 35.0,
+            "imbue": null,
+            "build_freq_weight": 24.2,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "nerfed but do not let anyone tell you its bad on mo now, still gives resist and has good damage"
+          },
+          {
+            "item_id": 3812615317,
+            "name": "Arctic Blast",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 1067,
+            "wins": 565,
+            "win_rate": 0.5295,
+            "wilson_lb": 0.4995,
+            "score": 0.0247,
+            "wr_delta_pp": 5.47,
+            "avg_buy_time_s": 1791.9,
+            "phase": "late",
+            "avg_sell_time_s": 2192.2,
+            "is_active": true,
+            "cooldown_s": 24.0,
+            "imbue": null,
+            "build_freq_weight": 24.2,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "use this directly after you scorn, deletes opponent's indom, and holds them inplace for entire burrow duration",
+            "lineage_chain": [
+              {
+                "item_id": 1976391348,
+                "name": "Cold Front",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/cold_front.png",
+                "matches": 1795,
+                "avg_buy_time_min": 11.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 3270001687,
+            "name": "Warp Stone",
+            "category": "vitality",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 1220,
+            "wins": 620,
+            "win_rate": 0.5082,
+            "wilson_lb": 0.4802,
+            "score": 0.0054,
+            "wr_delta_pp": 3.34,
+            "avg_buy_time_s": 1181.0,
+            "phase": "mid",
+            "avg_sell_time_s": 2463.1,
+            "is_active": true,
+            "cooldown_s": 16.0,
+            "imbue": null,
+            "build_freq_weight": 24.2,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "good against fliers, mina, and seven, or just games you're struggling to get combo's"
+          },
+          {
+            "item_id": 1193964439,
+            "name": "Greater Expansion",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 697,
+            "wins": 351,
+            "win_rate": 0.5036,
+            "wilson_lb": 0.4665,
+            "score": -0.0083,
+            "wr_delta_pp": 2.88,
+            "avg_buy_time_s": 1661.9,
+            "phase": "late",
+            "avg_sell_time_s": 2127.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 24.2,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "works on every single part of Mo's kit, aswell as actives like warpstone and scourge, increases healing almost as much as tankbuster",
+            "lineage_chain": [
+              {
+                "item_id": 754480263,
+                "name": "Mystic Expansion",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/mystic_reach.png",
+                "matches": 1033,
+                "avg_buy_time_min": 6.1,
+                "imbue": "imbue_modifier_value",
+                "imbue_target_id": 1454278799,
+                "imbue_target_share": 1.0
+              }
+            ]
+          },
+          {
+            "item_id": 3970837787,
+            "name": "Enchanter's Emblem",
+            "category": "vitality",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 517,
+            "wins": 267,
+            "win_rate": 0.5164,
+            "wilson_lb": 0.4734,
+            "score": -0.0014,
+            "wr_delta_pp": 4.16,
+            "avg_buy_time_s": 968.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2318.6,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 24.2,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "15% spirit resist is super needed, +2 regen, and a good bit of extra spirit power most of the time, sameish value to spirit lifesteal"
+          },
+          {
+            "item_id": 84321454,
+            "name": "Quicksilver Reload",
+            "category": "spirit",
+            "tier": 2,
+            "cost": 1600,
+            "matches": 2042,
+            "wins": 971,
+            "win_rate": 0.4755,
+            "wilson_lb": 0.4539,
+            "score": -0.0209,
+            "wr_delta_pp": 0.07,
+            "avg_buy_time_s": 381.6,
+            "phase": "early",
+            "avg_sell_time_s": 2199.8,
+            "is_active": false,
+            "cooldown_s": 18.0,
+            "imbue": "imbue_active",
+            "build_freq_weight": 24.2,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Adds hundreds of healing to each Scorn, scales nicely with spirit, but optional if u want it early",
+            "imbue_target_id": 1454278799,
+            "imbue_target_share": 1.0
+          },
+          {
+            "item_id": 2519598785,
+            "name": "Boundless Spirit",
+            "category": "spirit",
+            "tier": 4,
+            "cost": 6400,
+            "matches": 637,
+            "wins": 347,
+            "win_rate": 0.5447,
+            "wilson_lb": 0.5059,
+            "score": 0.0311,
+            "wr_delta_pp": 6.99,
+            "avg_buy_time_s": 1866.2,
+            "phase": "late",
+            "avg_sell_time_s": 1829.0,
+            "is_active": false,
+            "cooldown_s": null,
+            "imbue": null,
+            "build_freq_weight": 24.2,
+            "tag": "core_proven",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "with duration, it technically has 2.88x scaling, BUT after 1.5 seconds of burrow people can freely dash out of it, so its not worth it",
+            "lineage_chain": [
+              {
+                "item_id": 968099481,
+                "name": "Extra Spirit",
+                "tier": 1,
+                "cost": 800,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/extra_spirit.png",
+                "matches": 1012,
+                "avg_buy_time_min": 11.4,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              },
+              {
+                "item_id": 7409189,
+                "name": "Improved Spirit",
+                "tier": 2,
+                "cost": 1600,
+                "image": "https://assets-bucket.deadlock-api.com/assets-api-res/images/items/spirit/improved_spirit.png",
+                "matches": 952,
+                "avg_buy_time_min": 18.7,
+                "imbue": null,
+                "imbue_target_id": null,
+                "imbue_target_share": null
+              }
+            ]
+          },
+          {
+            "item_id": 395944548,
+            "name": "Torment Pulse",
+            "category": "spirit",
+            "tier": 3,
+            "cost": 3200,
+            "matches": 2319,
+            "wins": 1122,
+            "win_rate": 0.4838,
+            "wilson_lb": 0.4635,
+            "score": -0.0113,
+            "wr_delta_pp": 0.9,
+            "avg_buy_time_s": 876.7,
+            "phase": "mid",
+            "avg_sell_time_s": 2677.8,
+            "is_active": false,
+            "cooldown_s": 1.4,
+            "imbue": null,
+            "build_freq_weight": 24.2,
+            "tag": "core_inherited",
+            "pick_rate_tag": "core",
+            "pick_rate": 1.0,
+            "annotation": "Torment is the most core core of any item mo can get, very good damage and your only way of passive damage."
+          }
+        ],
+        "source_builds": [
+          {
+            "build_id": 540641,
+            "name": "She Mo's On My Krill Till I Burst [Annotated]",
+            "win_rate": 0.5735,
+            "matches": 204
+          }
+        ]
+      },
+      "joint_archetypes": [],
+      "item_metadata": {
+        "754480263": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "you will hit scorns you would've never dreamt of hitting without it, builds into greater expansion",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": 1454278799,
+          "imbue_target_share": 1.0
+        },
+        "1998374645": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "adds hundreds of healing to each Scorn, you can be a lot more free and agressive in lane now",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3399065363": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Much needed speed to rotate and roam, and early hp regen",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3074274290": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Only buy ONE of trophy collecter or enduring speed (im looking at you palmer)",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1976391348": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Use while burrowed to set up for your unburrow, or just use it while spinning, good to clear troops alongside a scorn (sellable)",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "395944548": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Torment is the most core core of any item mo can get, very good damage and your only way of passive damage.",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2603935618": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "good heal and good antiheal, not much more to say, higher rank you are less optional this becomes, (sellable)",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3585132399": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Faster rotates+start all fights at full hp, never have to reset, skip if behind",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1439347412": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "can buy earlier if u need the regen early",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "968099481": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "did you know by technicality, burrow has x2.25 spirit scaling?-->",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "7409189": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "but that assumes u hit your whole burrow tho, which is 80% the time, but is only like 40% with duration. (sellable if can proc tankbuster without it)",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2447176615": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "just a worse trophy collecter lowkey but ill keep it here for now",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "4204808176": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1813726886": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "I FUCKING HATE SHIVVVV",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1925087134": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3970837787": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "15% spirit resist is super needed, +2 regen, and a good bit of extra spirit power most of the time, sameish value to spirit lifesteal",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "84321454": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Adds hundreds of healing to each Scorn, scales nicely with spirit, but optional if u want it early",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": 1454278799,
+          "imbue_target_share": 1.0
+        },
+        "3361075077": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "super good against gun heavy teams",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3270001687": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "good against fliers, mina, and seven, or just games you're struggling to get combo's",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2922054143": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "ouch ouch gun ouch ouch ouch",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2121044373": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Buy earlier or later depending on if you can proc it (165 damage, 107 spirit power)",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2947183272": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Very good healing, best in long fights that you will be able to proc it several times",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2417568017": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "nerfed but do not let anyone tell you its bad on mo now, still gives resist and has good damage",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3005970438": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "spirit shred, makes you scale in long fights better, also pretty good spirit resist,",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "380806748": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "just put this on scorn simple as, no other ability is worth putting it on",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": 1454278799,
+          "imbue_target_share": 1.0
+        },
+        "3261353684": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "cooldown reduce is just nice to have, helps you stay more active in fights,",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1193964439": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "works on every single part of Mo's kit, aswell as actives like warpstone and scourge, increases healing almost as much as tankbuster",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2407781327": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "oh my god this is gen Invincibility at the push of the button, tysm fifthy for putting me on ts",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "915014646": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "buy this if u have atleast 3 actives, or if ur hard hard slot locked and need to spend money",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3812615317": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "use this directly after you scorn, deletes opponent's indom, and holds them inplace for entire burrow duration",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2617435668": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "biggest FUCK YOU you can do besides your ult, buy this if just one specific person on the enemy team is carrying",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1378931225": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "on par with bullet resilience, really up to personal preference idrk the situations that are ideal for each",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3731635960": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "unstoppable but ur broke",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3028234315": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "HOLYYYYYYYYYYYYYYY SHITTTTTTT, can actually be so fucking good, though best to buy when most of enemy team deals consecutive damage. Also buy with other resistancer, cuz it doesnt give a lotsss",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "3357231760": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "so so so sososososoososoooooo goood esp in current meta with the plethora of CC, hard to describe when to buy, but just count how much cc the enemy has",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "1932939246": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "Legit the only orange item i will ever buy, saddens me to buy one at all, good damage for aoe, throw it in teamfights or under combo",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2163598980": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "AMAZING CARD, very high base spirit res, highly discourage buying other spirit res INSTEAD of this card, buy it with other cards",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "343572757": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "good damage and antiheal, combines well with escalating cuz of fire ticks, can sell healbane for it if you are slamming enemies",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2951612397": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "I know this is probably very shocking to new players, or those who simply dont know, but A full explanation of why not to use Duration items can be found at TTV/palmer13579",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": 1917840730,
+          "imbue_target_share": 1.0
+        },
+        "2717651715": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "If your too lazy to go to his twitch, the whole spiel is that duration is just unneeded on Mo, 99% of combos dont need that extra one second to kill, and that 1% isnt worth spending 3200 souls,",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2095565695": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "I know you may want to try out 'GunMo' but its generally just worse than spirit in every possible way, any gun card is just statistically worse than its spirit alternatives",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2081037738": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "used instead of extra spirit as it can also proc tankbuster, teamwide damage, and gives spirit resist. Saving 6.4k and a slot without boundless",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        },
+        "2519598785": {
+          "tag": "core",
+          "pick_rate": 1.0,
+          "annotation": "with duration, it technically has 2.88x scaling, BUT after 1.5 seconds of burrow people can freely dash out of it, so its not worth it",
+          "builds_appearing_in": 1,
+          "builds_total": 1,
+          "imbue_target_id": null,
+          "imbue_target_share": null
+        }
+      }
+    },
+    "high_mmr": {
+      "candidate_count": 0,
+      "min_matches_filter": 300,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "ascendant_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 100,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    },
+    "eternus_plus": {
+      "candidate_count": 0,
+      "min_matches_filter": 30,
+      "wilson_greedy": {
+        "picks": []
+      },
+      "synergy_ilp": {
+        "picks": []
+      },
+      "build_replication": {
+        "picks": [],
+        "source_builds": []
+      },
+      "joint_archetypes": [],
+      "item_metadata": {}
+    }
+  },
+  "ability_orders": {
+    "all_mmr": {
+      "total_records": 5,
+      "total_matches": 795,
+      "ability_priority": [
+        {
+          "ability_id": 1454278799,
+          "name": "Scorn",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 2406758797,
+          "name": "Burrow",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 1917840730,
+          "name": "Combo",
+          "avg_ap_all_players": 4.0,
+          "avg_ap_winners": 4.0,
+          "winner_premium_ap": 0.0
+        },
+        {
+          "ability_id": 1914797280,
+          "name": "Sand Blast",
+          "avg_ap_all_players": 3.34,
+          "avg_ap_winners": 3.4,
+          "winner_premium_ap": 0.06
+        }
+      ],
+      "best_full_orders": [
+        {
+          "sequence_ids": [
+            1454278799,
+            1454278799,
+            1914797280,
+            2406758797,
+            1454278799,
+            1914797280,
+            1917840730,
+            2406758797,
+            2406758797,
+            2406758797,
+            1454278799,
+            1917840730,
+            1917840730,
+            1917840730,
+            1914797280
+          ],
+          "sequence_names": [
+            "Scorn",
+            "Scorn",
+            "Sand Blast",
+            "Burrow",
+            "Scorn",
+            "Sand Blast",
+            "Combo",
+            "Burrow",
+            "Burrow",
+            "Burrow",
+            "Scorn",
+            "Combo",
+            "Combo",
+            "Combo",
+            "Sand Blast"
+          ],
+          "wins": 125,
+          "losses": 111,
+          "matches": 236,
+          "players": 221,
+          "win_rate": 0.5297
+        },
+        {
+          "sequence_ids": [
+            1454278799,
+            1454278799,
+            1914797280,
+            2406758797,
+            1454278799,
+            2406758797,
+            1917840730,
+            2406758797,
+            2406758797,
+            1917840730,
+            1917840730,
+            1454278799,
+            1917840730,
+            1914797280,
+            1914797280
+          ],
+          "sequence_names": [
+            "Scorn",
+            "Scorn",
+            "Sand Blast",
+            "Burrow",
+            "Scorn",
+            "Burrow",
+            "Combo",
+            "Burrow",
+            "Burrow",
+            "Combo",
+            "Combo",
+            "Scorn",
+            "Combo",
+            "Sand Blast",
+            "Sand Blast"
+          ],
+          "wins": 107,
+          "losses": 116,
+          "matches": 223,
+          "players": 207,
+          "win_rate": 0.4798
+        }
+      ],
+      "best_openers_first4": [
+        {
+          "sequence_names": [
+            "Scorn",
+            "Scorn",
+            "Sand Blast",
+            "Burrow"
+          ],
+          "wins": 439,
+          "matches": 795,
+          "win_rate": 0.5522
+        }
+      ]
+    },
+    "high_mmr": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 1454278799,
+          "name": "Scorn",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 2406758797,
+          "name": "Burrow",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1914797280,
+          "name": "Sand Blast",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1917840730,
+          "name": "Combo",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "ascendant_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 1454278799,
+          "name": "Scorn",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 2406758797,
+          "name": "Burrow",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1914797280,
+          "name": "Sand Blast",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1917840730,
+          "name": "Combo",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    },
+    "eternus_plus": {
+      "total_records": 0,
+      "total_matches": 0,
+      "ability_priority": [
+        {
+          "ability_id": 1454278799,
+          "name": "Scorn",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 2406758797,
+          "name": "Burrow",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1914797280,
+          "name": "Sand Blast",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        },
+        {
+          "ability_id": 1917840730,
+          "name": "Combo",
+          "avg_ap_all_players": 0,
+          "avg_ap_winners": 0,
+          "winner_premium_ap": 0
+        }
+      ],
+      "best_full_orders": [],
+      "best_openers_first4": []
+    }
+  },
+  "provenance": {
+    "data_source": "api.deadlock-api.com",
+    "endpoints_used": [
+      "/v1/analytics/hero-stats",
+      "/v1/analytics/item-stats",
+      "/v1/analytics/item-permutation-stats?comb_size=2",
+      "/v1/analytics/hero-build-stats/{hero_id}",
+      "/v1/analytics/ability-order-stats",
+      "/v1/builds (per-build details)"
+    ],
+    "asset_sources": [
+      "https://api.deadlock-api.com/v1/assets/heroes",
+      "https://api.deadlock-api.com/v1/assets/items"
+    ]
+  },
+  "scoring_mode": "wilson"
+}
